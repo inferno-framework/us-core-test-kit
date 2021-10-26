@@ -50,7 +50,7 @@ module USCore
               slices: [],
               elements: []
             },
-            # mandatory_elements: [],
+            mandatory_elements: mandatory_elements,
             # tests: []
           }
       end
@@ -343,6 +343,12 @@ module USCore
             end
           end
         group_metadata[:must_supports][:elements].uniq!
+      end
+
+      def mandatory_elements
+        profile.snapshot.element
+          .select { |element| element.min.positive? }
+          .map { |element| element.path }
       end
     end
   end
