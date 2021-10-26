@@ -24,6 +24,8 @@ module USCore
         # NOTE: binding code can stand alone
         add_terminology_bindings
         add_search_param_descriptions
+        add_references
+
         group_metadata
       end
 
@@ -59,6 +61,10 @@ module USCore
 
       def profile
         @profile ||= ig_resources.profile_by_url(profile_url)
+      end
+
+      def profile_elements
+        @profile_elements ||= profile.snapshot.element
       end
 
       def base_name
@@ -160,14 +166,14 @@ module USCore
         # relevant for any of its child profiles
         return if resource == 'Observation'
 
-        profile.snapshot.element
+        profile_elements
           .select { |element| element.type&.any? { |type| type.code == 'CodeableConcept' } }
           .select { |element| element.binding&.strength == 'required' }
           .map { |element| element.path.gsub("#{resource}.", '').gsub('[x]', 'CodeableConcept') }
       end
 
       def add_terminology_bindings
-        elements = profile.snapshot.element
+        elements = profile_elements
         elements_with_bindings =
           elements
             .select { |element| element.binding.present? }
@@ -198,7 +204,7 @@ module USCore
       end
 
       def add_terminology_bindings_from_extensions
-        profile.snapshot.element
+        profile_elements
           .select { |element| element.type&.first&.code == 'Extension' }
           .each do |extension_element|
             extension_url = extension_element.type.first.profile&.first
@@ -245,7 +251,7 @@ module USCore
       end
 
       def add_must_support_elements
-        elements = profile.snapshot.element
+        elements = profile_elements
         elements
           .select { |element| element.mustSupport }
           .each do |current_element|
@@ -348,10 +354,12 @@ module USCore
       end
 
       def mandatory_elements
-        profile.snapshot.element
+        profile_elements
           .select { |element| element.min.positive? }
           .map { |element| element.path }
       end
+
+      # BEGIN search param descriptions
 
       def add_search_param_descriptions
         group_metadata[:search_param_descriptions].each_key do |param_key|
@@ -361,7 +369,7 @@ module USCore
           path = param.expression.gsub(/.where\((.*)/, '')
           as_type = path.scan(/.as\((.*?)\)/).flatten.first
           path.gsub!(/.as\((.*?)\)/, as_type.upcase_first) if as_type.present?
-          element = profile.snapshot.element.find { |element| element.id == path }
+          element = profile_elements.find { |element| element.id == path }
 
           param_metadata = {
             path: path,
@@ -425,7 +433,7 @@ module USCore
 
       def add_values_from_slices(param_metadata)
         slices =
-          profile.snapshot.element.select do |element|
+          profile_elements.select do |element|
             element.path == param_metadata[:path] &&
               element.sliceName.present? &&
               element.patternCodeableConcept.present?
@@ -437,7 +445,7 @@ module USCore
 
       def add_values_from_fixed_codes(profile_element, param_metadata)
         param_metadata[:values] +=
-          profile.snapshot.element
+          profile_elements
             .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
             .map { |element| element.fixedCode }
       end
@@ -467,6 +475,20 @@ module USCore
         return unless use_valid_codes
 
         param_metadata[:values] = fhir_metadata['valid_codes'].values.flatten
+      end
+
+      # END search param descriptions
+
+      def add_references
+        group_metadata[:references] =
+          profile_elements
+            .select { |element| element.type&.first&.code == 'Reference' }
+            .map do |reference_definition|
+              {
+                path: reference_definition.path,
+                profiles: reference_definition.type.first.targetProfile
+              }
+            end
       end
     end
   end
