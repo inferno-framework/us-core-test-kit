@@ -23,6 +23,8 @@ module USCore
         add_must_support_elements
         # NOTE: binding code can stand alone
         add_terminology_bindings
+        add_search_param_descriptions
+        group_metadata
       end
 
       def group_metadata
@@ -349,6 +351,122 @@ module USCore
         profile.snapshot.element
           .select { |element| element.min.positive? }
           .map { |element| element.path }
+      end
+
+      def add_search_param_descriptions
+        group_metadata[:search_param_descriptions].each_key do |param_key|
+          param = ig_resources.search_param_by_resource_and_name(resource, param_key)
+          param_hash = param.source_hash
+
+          path = param.expression.gsub(/.where\((.*)/, '')
+          as_type = path.scan(/.as\((.*?)\)/).flatten.first
+          path.gsub!(/.as\((.*?)\)/, as_type.upcase_first) if as_type.present?
+          element = profile.snapshot.element.find { |element| element.id == path }
+
+          param_metadata = {
+            path: path,
+            comparators: {},
+            values: Set.new
+          }
+          if element.present?
+            param_metadata.merge!(
+              type: element.type.first.code,
+              contains_multiple: element.max == '*'
+            )
+
+            add_valid_codes(element, param_metadata)
+          else
+            # search is a variable type, eg. Condition.onsetDateTime - element
+            # in profile def is Condition.onset[x]
+            param_metadata[:type] = param.type
+            param_metadata[:contains_multiple] = false
+          end
+
+          expectation_extensions = param_hash['_comparator'] || []
+          param.comparator&.each_with_index do |comparator, index|
+            expectation_extension = expectation_extensions[index]
+
+            expectation =
+              if expectation_extension.nil?
+                'MAY'
+              else
+                expectation_extension['extension'].first['valueCode']
+              end
+
+            param_metadata[:comparators][comparator.to_sym] = expectation
+          end
+
+          multiple_or_expectation = param_hash['_multipleOr']['extension'].first['valueCode']
+          param_metadata[:multiple_or] = multiple_or_expectation
+
+          if param.chain.present?
+            expectations =
+              param_hash['_chain'].map { |expectation| expectation['extension'].first['valueCode'] }
+            param_metadata[:chain] =
+              param.chain
+                .zip(expectations)
+                .map { |chain, expectation| { chain: chain, expectation: expectation } }
+          end
+
+          group_metadata[:search_param_descriptions][param_key] = param_metadata
+        end
+      end
+
+      def add_valid_codes(element, param_metadata)
+        if param_metadata[:contains_multiple]
+          add_values_from_slices(param_metadata)
+        elsif param_metadata[:type] == 'CodeableConcept'
+          add_values_from_fixed_codes(element, param_metadata)
+          add_values_from_pattern_codeable_concept(element, param_metadata)
+        end
+        add_values_from_value_set_binding(element, param_metadata)
+        add_values_from_resource_metadata(param_metadata)
+      end
+
+      def add_values_from_slices(param_metadata)
+        slices =
+          profile.snapshot.element.select do |element|
+            element.path == param_metadata[:path] &&
+              element.sliceName.present? &&
+              element.patternCodeableConcept.present?
+          end
+        slices.each do |slice|
+          param_metadata[:values] << slice.patternCodeableConcept.coding.first.code
+        end
+      end
+
+      def add_values_from_fixed_codes(profile_element, param_metadata)
+        param_metadata[:values] +=
+          profile.snapshot.element
+            .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
+            .map { |element| element.fixedCode }
+      end
+
+      def add_values_from_pattern_codeable_concept(profile_element, param_metadata)
+        return if profile_element.patternCodeableConcept.blank?
+
+        param_metadata[:values] << profile_element.patternCodeableConcept.coding.first.code
+      end
+
+      def add_values_from_value_set_binding(profile_element, param_metadata)
+        value_set_binding = profile_element.binding
+        return if value_set_binding.blank?
+
+        value_set = ig_resources.value_set_by_url(value_set_binding.valueSet)
+        return if value_set.blank?
+
+        systems = value_set.compose.include.reject { |code| code.concept.nil? }
+        return if systems.blank?
+
+        param_metadata[:values] += systems.flat_map { |system| system.concept.map { |code| code.code } }
+      end
+
+      def add_values_from_resource_metadata(param_metadata)
+        fhir_metadata = FHIR.const_get(resource)::METADATA[param_metadata[:path].gsub("#{resource}.", '')]
+        use_valid_codes = param_metadata[:values].blank? && fhir_metadata&.dig('valid_codes').present?
+        return unless use_valid_codes
+
+        param_metadata[:values] = fhir_metadata['valid_codes'].values.flatten
       end
     end
   end

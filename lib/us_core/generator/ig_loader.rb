@@ -26,8 +26,8 @@ module USCore
           begin
             resource = FHIR.from_contents(entry.read)
             next if resource.nil?
-          rescue JSON::ParserError
-            puts "JSON parsing error in #{file_name}"
+          rescue StandardError
+            puts "#{file_name} does not appear to be a FHIR resource."
             next
           end
 

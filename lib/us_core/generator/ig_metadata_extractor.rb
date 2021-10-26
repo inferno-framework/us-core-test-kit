@@ -14,6 +14,7 @@ module USCore
       def extract
         add_metadata_from_ig
         add_metadata_from_resources
+        metadata
       end
 
       def add_metadata_from_ig
@@ -25,11 +26,12 @@ module USCore
       end
 
       def add_metadata_from_resources
-        resources_in_capability_statement.each do |resource|
-          resource.supportedProfile&.each do |supported_profile|
-            GroupMetadataExtractor.new(resource, supported_profile, metadata, ig_resources).extract
+        metadata.groups =
+          resources_in_capability_statement.flat_map do |resource|
+            resource.supportedProfile&.map do |supported_profile|
+              GroupMetadataExtractor.new(resource, supported_profile, metadata, ig_resources).extract
+            end
           end
-        end
       end
     end
   end
