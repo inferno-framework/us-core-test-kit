@@ -23,8 +23,21 @@ namespace :us_core do
     require_relative 'lib/us_core/generator'
     generator = USCore::Generator.new
 
-    x = generator.load_ig_package
+    generator.generate
+  end
 
-    binding.pry
+  desc 'Check metadata'
+  task :check_metadata do
+    require 'YAML'
+
+    expected_metadata = YAML.load_file('expected_metadata.yml')
+    metadata = YAML.load_file('metadata.yml')
+
+    if metadata == expected_metadata
+      puts 'Metadata matches!'
+    else
+      # Metadata does not match
+      binding.pry
+    end
   end
 end
