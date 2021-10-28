@@ -15,23 +15,6 @@ module USCore
         self.ig_resources = ig_resources
       end
 
-      def extract
-        # add_basic_searches
-        # add_combo_searches
-        # add_interactions
-        # add_include_search
-        # add_revinclude_targets
-
-        # add_required_codeable_concepts
-        # add_must_support_elements
-        # NOTE: binding code can stand alone
-        # add_terminology_bindings
-        # add_search_definitions
-        add_references
-
-        group_metadata
-      end
-
       def group_metadata
         @group_metadata ||=
           {
@@ -51,10 +34,10 @@ module USCore
             include_params: include_params,
             revincludes: revincludes,
             required_concepts: required_concepts,
-            # references: [],
             must_supports: must_supports,
             mandatory_elements: mandatory_elements,
             bindings: bindings,
+            references: references
             # tests: []
           }
       end
@@ -170,16 +153,15 @@ module USCore
           .map { |element| element.path }
       end
 
-      def add_references
-        group_metadata[:references] =
-          profile_elements
-            .select { |element| element.type&.first&.code == 'Reference' }
-            .map do |reference_definition|
-              {
-                path: reference_definition.path,
-                profiles: reference_definition.type.first.targetProfile
-              }
-            end
+      def references
+        profile_elements
+          .select { |element| element.type&.first&.code == 'Reference' }
+          .map do |reference_definition|
+            {
+              path: reference_definition.path,
+              profiles: reference_definition.type.first.targetProfile
+            }
+          end
       end
     end
   end
