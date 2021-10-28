@@ -1851,8 +1851,6 @@
     :elements:
     - :path: udiCarrier
     - :path: udiCarrier.deviceIdentifier
-    - :path: udiCarrier.carrierAIDC
-    - :path: udiCarrier.carrierHRF
     - :path: distinctIdentifier
     - :path: manufactureDate
     - :path: expirationDate
@@ -1939,6 +1937,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -1988,12 +1992,6 @@
     :names:
     - patient
     - code
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
@@ -3164,6 +3162,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -3213,12 +3217,6 @@
     :names:
     - patient
     - code
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
@@ -4604,8 +4602,6 @@
     - :path: content
     - :path: content.attachment
     - :path: content.attachment.contentType
-    - :path: content.attachment.data
-    - :path: content.attachment.url
     - :path: content.format
     - :path: context
     - :path: context.encounter
@@ -5731,6 +5727,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - intent
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -5754,12 +5756,6 @@
   - :names:
     - authoredon
     :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - intent
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -6027,6 +6023,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -6079,12 +6081,6 @@
     :names_not_must_support_or_mandatory:
     - date
     :must_support_or_mandatory: false
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -6314,6 +6310,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -6358,12 +6360,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -6629,6 +6625,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -6673,12 +6675,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -7909,6 +7905,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -7953,12 +7955,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -8224,6 +8220,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -8268,12 +8270,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -8629,6 +8625,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - status
     :expectation: MAY
@@ -8673,12 +8675,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL

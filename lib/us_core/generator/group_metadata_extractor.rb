@@ -42,6 +42,8 @@ module USCore
           }
 
         mark_mandatory_and_must_support_searches
+        handle_special_cases
+
         @group_metadata
       end
 
@@ -76,6 +78,54 @@ module USCore
           search[:must_support_or_mandatory] = search[:names_not_must_support_or_mandatory].empty?
         end
       end
+
+      ### BEGIN SPECIAL CASES ###
+
+      CATEGORY_FIRST_PROFILES = [
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'
+      ]
+
+      def category_first_profile?
+        CATEGORY_FIRST_PROFILES.include?(profile_url)
+      end
+
+      def first_search_params
+        @first_search_params ||=
+          if resource == 'Observation'
+            ['patient', 'code']
+          elsif category_first_profile?
+            ['patient', 'category']
+          elsif resource == 'MedicationRequest'
+            ['patient', 'intent']
+          end
+      end
+
+      def handle_special_cases
+        set_first_search
+
+        case profile_url
+        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device'
+          must_supports[:elements].delete_if do |element|
+            ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include? element[:path]
+          end
+        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference'
+          must_supports[:elements].delete_if do |element|
+            ['content.attachment.data', 'content.attachment.url'].include? element[:path]
+          end
+        end
+      end
+
+      def set_first_search
+        search = searches.find { |param| param[:names] == first_search_params }
+        return if search.nil?
+
+        searches.delete(search)
+        searches.unshift(search)
+      end
+
+      ### END SPECIAL CASES ###
 
       def profile
         @profile ||= ig_resources.profile_by_url(profile_url)
