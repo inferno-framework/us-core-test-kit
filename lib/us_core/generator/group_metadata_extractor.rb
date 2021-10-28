@@ -1,4 +1,5 @@
 require_relative 'ig_metadata'
+require_relative 'search_metadata_extractor'
 
 module USCore
   class Generator
@@ -13,8 +14,8 @@ module USCore
       end
 
       def extract
-        add_basic_searches
-        add_combo_searches
+        # add_basic_searches
+        # add_combo_searches
         # add_interactions
         # add_include_search
         # add_revinclude_targets
@@ -23,7 +24,7 @@ module USCore
         add_must_support_elements
         # NOTE: binding code can stand alone
         add_terminology_bindings
-        add_search_param_descriptions
+        # add_search_definitions
         add_references
 
         group_metadata
@@ -43,8 +44,8 @@ module USCore
             title: title,
             interactions: interactions,
             operations: operations,
-            searches: [],
-            search_param_descriptions: {},
+            searches: search_metadata_extractor.searches,
+            search_param_descriptions: search_metadata_extractor.search_definitions,
             include_params: include_params,
             revincludes: revincludes,
             required_concepts: required_concepts,
@@ -104,37 +105,6 @@ module USCore
         profile.title.gsub(/US\s*Core\s*/, '').gsub(/\s*Profile/, '').strip
       end
 
-      def add_basic_searches
-        resource_capabilities.searchParam&.each do |search_param|
-          group_metadata[:searches] << {
-            names: [search_param.name],
-            expectation: search_param.extension.first.valueCode # TODO: fix expectation extension finding
-          }
-          group_metadata[:search_param_descriptions][search_param.name.to_sym] = {}
-        end
-      end
-
-      def add_combo_searches
-        search_extensions = resource_capabilities.extension || []
-        combo_extension_url = 'http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination'
-        search_extensions
-          .select { |extension| extension.url == combo_extension_url }
-          .each do |extension|
-            combo_params = extension.extension
-            new_search_combo = {
-              expectation: combo_params.first.valueCode,
-              names: []
-            }
-            combo_params.each do |param|
-              next unless param.valueString.present?
-
-              new_search_combo[:names] << param.valueString
-              group_metadata[:search_param_descriptions][param.valueString.to_sym] = {}
-            end
-            group_metadata[:searches] << new_search_combo
-          end
-      end
-
       def interactions
         resource_capabilities.interaction.map do |interaction|
           {
@@ -151,6 +121,11 @@ module USCore
             expectation: operation.extension.first.valueCode # TODO: fix expectation extension finding
           }
         end
+      end
+
+      def search_metadata_extractor
+        @search_metadata_extractor ||=
+          SearchMetadataExtractor.new(resource_capabilities, ig_resources, resource, profile_elements)
       end
 
       def include_params
@@ -358,126 +333,6 @@ module USCore
           .select { |element| element.min.positive? }
           .map { |element| element.path }
       end
-
-      # BEGIN search param descriptions
-
-      def add_search_param_descriptions
-        group_metadata[:search_param_descriptions].each_key do |param_key|
-          param = ig_resources.search_param_by_resource_and_name(resource, param_key)
-          param_hash = param.source_hash
-
-          path = param.expression.gsub(/.where\((.*)/, '')
-          as_type = path.scan(/.as\((.*?)\)/).flatten.first
-          path.gsub!(/.as\((.*?)\)/, as_type.upcase_first) if as_type.present?
-          element = profile_elements.find { |element| element.id == path }
-
-          param_metadata = {
-            path: path,
-            comparators: {},
-            values: Set.new
-          }
-          if element.present?
-            param_metadata.merge!(
-              type: element.type.first.code,
-              contains_multiple: element.max == '*'
-            )
-
-            add_valid_codes(element, param_metadata)
-          else
-            # search is a variable type, eg. Condition.onsetDateTime - element
-            # in profile def is Condition.onset[x]
-            param_metadata[:type] = param.type
-            param_metadata[:contains_multiple] = false
-          end
-
-          expectation_extensions = param_hash['_comparator'] || []
-          param.comparator&.each_with_index do |comparator, index|
-            expectation_extension = expectation_extensions[index]
-
-            expectation =
-              if expectation_extension.nil?
-                'MAY'
-              else
-                expectation_extension['extension'].first['valueCode']
-              end
-
-            param_metadata[:comparators][comparator.to_sym] = expectation
-          end
-
-          multiple_or_expectation = param_hash['_multipleOr']['extension'].first['valueCode']
-          param_metadata[:multiple_or] = multiple_or_expectation
-
-          if param.chain.present?
-            expectations =
-              param_hash['_chain'].map { |expectation| expectation['extension'].first['valueCode'] }
-            param_metadata[:chain] =
-              param.chain
-                .zip(expectations)
-                .map { |chain, expectation| { chain: chain, expectation: expectation } }
-          end
-
-          group_metadata[:search_param_descriptions][param_key] = param_metadata
-        end
-      end
-
-      def add_valid_codes(element, param_metadata)
-        if param_metadata[:contains_multiple]
-          add_values_from_slices(param_metadata)
-        elsif param_metadata[:type] == 'CodeableConcept'
-          add_values_from_fixed_codes(element, param_metadata)
-          add_values_from_pattern_codeable_concept(element, param_metadata)
-        end
-        add_values_from_value_set_binding(element, param_metadata)
-        add_values_from_resource_metadata(param_metadata)
-      end
-
-      def add_values_from_slices(param_metadata)
-        slices =
-          profile_elements.select do |element|
-            element.path == param_metadata[:path] &&
-              element.sliceName.present? &&
-              element.patternCodeableConcept.present?
-          end
-        slices.each do |slice|
-          param_metadata[:values] << slice.patternCodeableConcept.coding.first.code
-        end
-      end
-
-      def add_values_from_fixed_codes(profile_element, param_metadata)
-        param_metadata[:values] +=
-          profile_elements
-            .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
-            .map { |element| element.fixedCode }
-      end
-
-      def add_values_from_pattern_codeable_concept(profile_element, param_metadata)
-        return if profile_element.patternCodeableConcept.blank?
-
-        param_metadata[:values] << profile_element.patternCodeableConcept.coding.first.code
-      end
-
-      def add_values_from_value_set_binding(profile_element, param_metadata)
-        value_set_binding = profile_element.binding
-        return if value_set_binding.blank?
-
-        value_set = ig_resources.value_set_by_url(value_set_binding.valueSet)
-        return if value_set.blank?
-
-        systems = value_set.compose.include.reject { |code| code.concept.nil? }
-        return if systems.blank?
-
-        param_metadata[:values] += systems.flat_map { |system| system.concept.map { |code| code.code } }
-      end
-
-      def add_values_from_resource_metadata(param_metadata)
-        fhir_metadata = FHIR.const_get(resource)::METADATA[param_metadata[:path].gsub("#{resource}.", '')]
-        use_valid_codes = param_metadata[:values].blank? && fhir_metadata&.dig('valid_codes').present?
-        return unless use_valid_codes
-
-        param_metadata[:values] = fhir_metadata['valid_codes'].values.flatten
-      end
-
-      # END search param descriptions
 
       def add_references
         group_metadata[:references] =

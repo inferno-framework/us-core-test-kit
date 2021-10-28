@@ -54,8 +54,7 @@
     :patient:
       :path: AllergyIntolerance.patient
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -208,9 +207,8 @@
     :category:
       :path: CarePlan.category
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          assess-plan: true
+      :values:
+      - assess-plan
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -226,16 +224,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Period
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: CarePlan.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -458,8 +454,7 @@
     :patient:
       :path: CareTeam.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -599,9 +594,8 @@
     :category:
       :path: Condition.category
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          health-concern: true
+      :values:
+      - health-concern
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -621,8 +615,7 @@
     :patient:
       :path: Condition.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -638,17 +631,15 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :code:
       :path: Condition.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          '160245001': true
+      :values:
+      - '160245001'
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
@@ -782,8 +773,7 @@
     :patient:
       :path: Device.patient
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -1950,19 +1940,17 @@
     :patient:
       :path: DiagnosticReport.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
       :path: DiagnosticReport.category
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          LP29684-5: true
-          LP29708-2: true
-          LP7839-6: true
+      :values:
+      - LP29684-5
+      - LP29708-2
+      - LP7839-6
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -2985,8 +2973,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
@@ -3158,17 +3145,15 @@
     :patient:
       :path: DiagnosticReport.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
       :path: DiagnosticReport.category
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          LAB: true
+      :values:
+      - LAB
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4191,8 +4176,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
@@ -4366,8 +4350,7 @@
     :_id:
       :path: DocumentReference.id
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
@@ -4384,8 +4367,7 @@
     :patient:
       :path: DocumentReference.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -4444,9 +4426,8 @@
     :type:
       :path: DocumentReference.type
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          UNK: true
+      :values:
+      - UNK
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
@@ -4462,8 +4443,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: instant
       :contains_multiple: false
       :multiple_or: MAY
@@ -4479,8 +4459,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Period
       :contains_multiple: false
       :multiple_or: MAY
@@ -4672,8 +4651,7 @@
     :_id:
       :path: Encounter.id
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
@@ -4707,24 +4685,21 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Period
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
       :path: Encounter.identifier
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
       :path: Encounter.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -4993,8 +4968,7 @@
     :patient:
       :path: Goal.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -5010,8 +4984,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
@@ -5148,8 +5121,7 @@
     :patient:
       :path: Immunization.patient
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -5175,8 +5147,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
@@ -5332,99 +5303,94 @@
     :name:
       :path: Location.name
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
       :path: Location.address
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Address
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
       :path: Location.address.city
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
       :path: Location.address.state
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          AK: true
-          AL: true
-          AR: true
-          AS: true
-          AZ: true
-          CA: true
-          CO: true
-          CT: true
-          DC: true
-          DE: true
-          FL: true
-          FM: true
-          GA: true
-          GU: true
-          HI: true
-          IA: true
-          ID: true
-          IL: true
-          IN: true
-          KS: true
-          KY: true
-          LA: true
-          MA: true
-          MD: true
-          ME: true
-          MH: true
-          MI: true
-          MN: true
-          MO: true
-          MP: true
-          MS: true
-          MT: true
-          NC: true
-          ND: true
-          NE: true
-          NH: true
-          NJ: true
-          NM: true
-          NV: true
-          NY: true
-          OH: true
-          OK: true
-          OR: true
-          PA: true
-          PR: true
-          PW: true
-          RI: true
-          SC: true
-          SD: true
-          TN: true
-          TX: true
-          UT: true
-          VA: true
-          VI: true
-          VT: true
-          WA: true
-          WI: true
-          WV: true
-          WY: true
+      :values:
+      - AK
+      - AL
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - FM
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MH
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - PW
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
       :path: Location.address.postalCode
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
@@ -5658,16 +5624,14 @@
     :patient:
       :path: MedicationRequest.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :encounter:
       :path: MedicationRequest.encounter
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -5683,8 +5647,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: dateTime
       :contains_multiple: false
       :multiple_or: MAY
@@ -5913,10 +5876,9 @@
     :status:
       :path: Observation.status
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          final: true
-          entered-in-error: true
+      :values:
+      - final
+      - entered-in-error
       :type: code
       :contains_multiple: false
       :multiple_or: SHALL
@@ -5939,9 +5901,8 @@
     :code:
       :path: Observation.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          72166-2: true
+      :values:
+      - 72166-2
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -5957,16 +5918,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -6193,24 +6152,15 @@
       :path: Observation.category
       :comparators: {}
       :values:
-      - social-history
       - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
     :code:
       :path: Observation.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          77606-2: true
+      :values:
+      - 77606-2
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -6226,16 +6176,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -6498,9 +6446,8 @@
     :category:
       :path: Observation.category
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          laboratory: true
+      :values:
+      - laboratory
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -7523,16 +7470,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -7762,24 +7707,15 @@
       :path: Observation.category
       :comparators: {}
       :values:
-      - social-history
       - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
     :code:
       :path: Observation.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          59576-9: true
+      :values:
+      - 59576-9
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -7795,16 +7731,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -8068,25 +8002,16 @@
       :path: Observation.category
       :comparators: {}
       :values:
-      - social-history
       - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
     :code:
       :path: Observation.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          2708-6: true
-          59408-5: true
+      :values:
+      - 2708-6
+      - 59408-5
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -8102,16 +8027,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -8464,24 +8387,15 @@
       :path: Observation.category
       :comparators: {}
       :values:
-      - social-history
       - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
     :code:
       :path: Observation.code
       :comparators: {}
-      :values: !ruby/object:Set
-        hash:
-          8289-1: true
+      :values:
+      - 8289-1
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -8497,16 +8411,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
       :path: Observation.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -8722,16 +8634,14 @@
     :name:
       :path: Organization.name
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
       :path: Organization.address
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Address
       :contains_multiple: true
       :multiple_or: MAY
@@ -8876,8 +8786,7 @@
     :_id:
       :path: Patient.id
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
@@ -8893,16 +8802,14 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
     :family:
       :path: Patient.name.family
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
@@ -8920,24 +8827,21 @@
     :given:
       :path: Patient.name.given
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: string
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
       :path: Patient.identifier
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :name:
       :path: Patient.name
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
@@ -9139,16 +9043,14 @@
     :name:
       :path: Practitioner.name
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
       :path: Practitioner.identifier
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
@@ -9374,8 +9276,7 @@
     :practitioner:
       :path: PractitionerRole.practitioner
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -9522,8 +9423,7 @@
     :patient:
       :path: Procedure.subject
       :comparators: {}
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
@@ -9539,8 +9439,7 @@
         :sa: MAY
         :eb: MAY
         :ap: MAY
-      :values: !ruby/object:Set
-        hash: {}
+      :values: []
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
