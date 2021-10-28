@@ -1,4 +1,5 @@
 require_relative 'ig_metadata'
+require_relative 'must_support_metadata_extractor'
 require_relative 'search_metadata_extractor'
 require_relative 'terminology_binding_metadata_extractor'
 
@@ -22,7 +23,7 @@ module USCore
         # add_revinclude_targets
 
         # add_required_codeable_concepts
-        add_must_support_elements
+        # add_must_support_elements
         # NOTE: binding code can stand alone
         # add_terminology_bindings
         # add_search_definitions
@@ -51,11 +52,7 @@ module USCore
             revincludes: revincludes,
             required_concepts: required_concepts,
             # references: [],
-            must_supports: {
-              extensions: [],
-              slices: [],
-              elements: []
-            },
+            must_supports: must_supports,
             mandatory_elements: mandatory_elements,
             bindings: bindings,
             # tests: []
@@ -158,107 +155,13 @@ module USCore
         terminology_binding_metadata_extractor.terminology_bindings
       end
 
-      def add_must_support_elements
-        elements = profile_elements
-        elements
-          .select { |element| element.mustSupport }
-          .each do |current_element|
-            # TODO: Can special cases be moved out of here?
-            next if profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns' &&
-                    current_element.path.include?('component')
-            next if profile.name == 'observation-bp' && current_element.path.include?('Observation.value[x]')
-            next if profile.name.include?('Pediatric') && current_element.path == 'Observation.dataAbsentReason'
+      def must_support_metadata_extractor
+        @must_support_metadata_extractor ||=
+          MustSupportMetadataExtractor.new(profile_elements, profile, resource)
+      end
 
-            if current_element.path.end_with? 'extension'
-              group_metadata[:must_supports][:extensions] << {
-                id: current_element.id,
-                url: current_element.type.first.profile.first
-              }
-            elsif current_element.sliceName.present?
-              repeated_element = elements.find { |element| element.id == current_element.path  }
-              discriminators = repeated_element.slicing.discriminator
-              must_support_element = {
-                name: current_element.id,
-                path: current_element.path.gsub("#{resource}.", '')
-              }
-
-              if discriminators.first.type == 'pattern'
-                discriminator_path = discriminators.first.path
-                discriminator_path = '' if discriminator_path == '$this'
-                pattern_element =
-                  if discriminator_path.present?
-                    elements.find { |element| element.id == "#{current_element.id}.#{discriminator_path}" }
-                  else
-                    current_element
-                  end
-
-                must_support_element[:discriminator] =
-                  if pattern_element.patternCodeableConcept.present?
-                    {
-                      type: 'patternCodeableConcept',
-                      path: discriminator_path,
-                      code: pattern_element.patternCodeableConcept.coding.first.code,
-                      system: pattern_element.patternCodeableConcept.coding.first.system
-                    }
-                  elsif pattern_element.patternIdentifier.present?
-                    {
-                      type: 'patternIdentifier',
-                      path: discriminator_path,
-                      system: pattern_element.patternIdentifier.system
-                    }
-                  else
-                    raise StandardError, 'Unsupported discriminator pattern type'
-                  end
-              elsif discriminators.first.type == 'type'
-                type_path = discriminators.first.path
-                type_path = '' if type_path == '$this'
-                type_element =
-                  if type_path.present?
-                    elements.find { |element| element.id == "#{current_element.id}.#{type_path}" }
-                  else
-                    current_element
-                  end
-
-                type_code = type_element.type.first.code
-                must_support_element[:discriminator] = {
-                  type: 'type',
-                  code: type_code.upcase.first
-                }
-              elsif discriminators.first.type == 'value'
-                must_support_element[:discriminator] = { type: 'value' }
-                must_support_element[:discriminator][:values] = discriminators.map do |discriminator|
-                  fixed_element = elements.find do |element|
-                    element.id.starts_with?(current_element.id) && element.path == "#{current_element.path}.#{discriminator.path}"
-                  end
-
-                  {
-                    path: discriminator.path,
-                    value: fixed_element.fixedUri || fixed_element.fixedCode
-                  }
-                end
-              end
-              group_metadata[:must_supports][:slices] << must_support_element
-            else
-              path = current_element.path.gsub("#{resource}.", '')
-              must_support_element = { path: path }
-              if current_element.fixedUri.present?
-                must_support_element[:fixed_value] = current_element.fixedUri
-              elsif current_element.patternCodeableConcept.present?
-                must_support_element[:fixed_value] = current_element.patternCodeableConcept.coding.first.code
-                must_support_element[:path] += '.coding.code'
-              elsif current_element.fixedCode.present?
-                must_support_element[:fixed_value] = current_element.fixedCode
-              elsif current_element.patternIdentifier.present?
-                must_support_element[:fixed_value] = current_element.patternIdentifier.system
-                must_support_element[:path] += '.system'
-              end
-              group_metadata[:must_supports][:elements].delete_if do |must_support|
-                must_support[:path] == must_support_element[:path] && must_support[:fixed_value].blank?
-              end
-              group_metadata[:must_supports][:elements] << must_support_element
-            end
-          end
-        group_metadata[:must_supports][:elements].uniq!
+      def must_supports
+        must_support_metadata_extractor.must_supports
       end
 
       def mandatory_elements

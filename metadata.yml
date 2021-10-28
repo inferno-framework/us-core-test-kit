@@ -6193,6 +6193,11 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :name: Observation.value[x]:valueQuantity
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: Q
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -6202,11 +6207,6 @@
           :value: vital-signs
         - :path: coding.system
           :value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.value[x]:valueQuantity
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: Q
     :elements:
     - :path: status
     - :path: category
@@ -7748,6 +7748,11 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :name: Observation.value[x]:valueQuantity
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: Q
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -7757,11 +7762,6 @@
           :value: vital-signs
         - :path: coding.system
           :value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.value[x]:valueQuantity
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: Q
     :elements:
     - :path: status
     - :path: category
@@ -8044,6 +8044,25 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :name: Observation.component:FlowRate
+      :path: component
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: code
+        :code: 3151-8
+        :system: http://loinc.org
+    - :name: Observation.component:Concentration
+      :path: component
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: code
+        :code: 3150-0
+        :system: http://loinc.org
+    - :name: Observation.value[x]:valueQuantity
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: Q
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -8062,25 +8081,6 @@
           :value: 59408-5
         - :path: system
           :value: http://loinc.org
-    - :name: Observation.value[x]:valueQuantity
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: Q
-    - :name: Observation.component:FlowRate
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3151-8
-        :system: http://loinc.org
-    - :name: Observation.component:Concentration
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3150-0
-        :system: http://loinc.org
     :elements:
     - :path: status
     - :path: category
@@ -8428,6 +8428,11 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :name: Observation.value[x]:valueQuantity
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: Q
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -8437,11 +8442,6 @@
           :value: vital-signs
         - :path: coding.system
           :value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.value[x]:valueQuantity
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: Q
     :elements:
     - :path: status
     - :path: category
