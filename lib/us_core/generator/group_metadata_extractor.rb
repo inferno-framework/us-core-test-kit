@@ -1,5 +1,6 @@
 require_relative 'ig_metadata'
 require_relative 'search_metadata_extractor'
+require_relative 'terminology_binding_metadata_extractor'
 
 module USCore
   class Generator
@@ -23,7 +24,7 @@ module USCore
         # add_required_codeable_concepts
         add_must_support_elements
         # NOTE: binding code can stand alone
-        add_terminology_bindings
+        # add_terminology_bindings
         # add_search_definitions
         add_references
 
@@ -56,6 +57,7 @@ module USCore
               elements: []
             },
             mandatory_elements: mandatory_elements,
+            bindings: bindings,
             # tests: []
           }
       end
@@ -147,82 +149,13 @@ module USCore
           .map { |element| element.path.gsub("#{resource}.", '').gsub('[x]', 'CodeableConcept') }
       end
 
-      def add_terminology_bindings
-        elements = profile_elements
-        elements_with_bindings =
-          elements
-            .select { |element| element.binding.present? }
-            .reject do |element|
-              case element.type.first.code
-              when 'Quantity'
-                code = elements.find { |e| e.path == "#{element.path}.code" }
-                system = elements.find { |e| e.path == "#{element.path}.system" }
-                code&.fixedCode || system&.fixedUri
-              when 'code'
-                element.fixedCode.present?
-              end
-            end
-
-        group_metadata[:bindings] = elements_with_bindings.map do |element|
-          {
-            type: element.type.first.code,
-            strength: element.binding.strength,
-            # Goal.target.detail has an unbound binding
-            system: element.binding.valueSet&.split('|')&.first,
-            path: element.path.gsub('[x]', '').gsub("#{resource}.", '')
-          }
-        end
-
-        add_terminology_bindings_from_extensions
-        # elements.select { |element| element.type&.first&.code == 'Extension' }
-        #   .each { |extension| add_terminology_bindings_from_extension(extension) }
+      def terminology_binding_metadata_extractor
+        @terminology_binding_metadata_extractor ||=
+          TerminologyBindingMetadataExtractor.new(profile_elements, ig_resources, resource)
       end
 
-      def add_terminology_bindings_from_extensions
-        profile_elements
-          .select { |element| element.type&.first&.code == 'Extension' }
-          .each do |extension_element|
-            extension_url = extension_element.type.first.profile&.first
-            next unless extension_url.present?
-
-            extension = ig_resources.profile_by_url(extension_url)
-
-            elements = extension.snapshot.element
-            elements_with_bindings = elements.select do |element|
-              element.binding.present? && !element.id.include?('Extension.extension')
-            end
-
-            group_metadata[:bindings] += elements_with_bindings.map do |element|
-              {
-                type: element.type.first.code,
-                strength: element.binding.strength,
-                system: element.binding.valueSet&.split('|')&.first,
-                path: element.path.gsub('[x]', '').gsub('Extension.', ''),
-                extensions: [extension_url]
-              }
-            end
-
-            nested_extensions = elements.select { |element| element.path == 'Extension.extension' }
-            nested_extensions.each do |nested_extension|
-              nested_extension_element = elements.find { |element| element.id == "#{nested_extension.id}.url" }
-              next unless nested_extension_element.present?
-
-              nested_extension_url = nested_extension_element.fixedUri
-              nested_elements_with_bindings = elements.select do |element|
-                element.id.include?(nested_extension.id) && element.binding.present?
-              end
-
-              group_metadata[:bindings] += nested_elements_with_bindings.map do |element|
-                {
-                  type: element.type.first.code,
-                  strength: element.binding.strength,
-                  system: element.binding.valueSet&.split('|')&.first,
-                  path: element.path.gsub('[x]', '').gsub('Extension.extension.', ''),
-                  extensions: [extension_url, nested_extension_url]
-                }
-              end
-            end
-          end
+      def bindings
+        terminology_binding_metadata_extractor.terminology_bindings
       end
 
       def add_must_support_elements
