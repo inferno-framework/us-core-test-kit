@@ -1,3 +1,4 @@
+require_relative 'group_metadata'
 require_relative 'ig_metadata'
 require_relative 'must_support_metadata_extractor'
 require_relative 'search_metadata_extractor'
@@ -17,6 +18,11 @@ module USCore
 
       def group_metadata
         @group_metadata ||=
+          GroupMetadata.new(group_metadata_hash)
+      end
+
+      def group_metadata_hash
+        @group_metadata_hash ||=
           {
             name: name,
             class_name: class_name,
@@ -44,7 +50,7 @@ module USCore
         mark_mandatory_and_must_support_searches
         handle_special_cases
 
-        @group_metadata
+        @group_metadata_hash
       end
 
       def mark_mandatory_and_must_support_searches

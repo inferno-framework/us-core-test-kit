@@ -11,13 +11,13 @@ module USCore
     def generate
       load_ig_package
       extract_metadata
-      File.open('metadata.yml', 'w') do |file|
-        file.write(YAML.dump(ig_metadata.to_hash))
-      end
     end
 
     def extract_metadata
       self.ig_metadata = IGMetadataExtractor.new(ig_resources).extract
+      File.open('metadata.yml', 'w') do |file|
+        file.write(YAML.dump(ig_metadata.to_hash))
+      end
     end
 
     def load_ig_package
