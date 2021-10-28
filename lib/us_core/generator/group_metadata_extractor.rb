@@ -29,8 +29,8 @@ module USCore
             title: title,
             interactions: interactions,
             operations: operations,
-            searches: search_metadata_extractor.searches,
-            search_param_descriptions: search_metadata_extractor.search_definitions,
+            searches: searches,
+            search_definitions: search_definitions,
             include_params: include_params,
             revincludes: revincludes,
             required_concepts: required_concepts,
@@ -40,6 +40,41 @@ module USCore
             references: references
             # tests: []
           }
+
+        mark_mandatory_and_must_support_searches
+        @group_metadata
+      end
+
+      def mark_mandatory_and_must_support_searches
+        searches.each do |search|
+          search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
+            path = search_definitions[name.to_sym][:path]
+            any_must_support_elements = (must_supports[:elements]).any? do |element|
+              full_must_support_path = "#{resource}.#{element[:path]}"
+
+              # allow for non-choice, choice types, and _id
+              name == '_id' || full_must_support_path == path || full_must_support_path == "#{path}[x]"
+            end
+
+            any_must_support_slices = must_supports[:slices].any? do |slice|
+              # only handle type slices because that is all we need for now
+              if slice[:discriminator] && slice[:discriminator][:type] == 'type'
+                full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
+                full_must_support_path == path
+              else
+                false
+              end
+            end
+
+            any_mandatory_elements = mandatory_elements.any? do |element|
+              element == path
+            end
+
+            any_must_support_elements || any_must_support_slices || any_mandatory_elements
+          end
+
+          search[:must_support_or_mandatory] = search[:names_not_must_support_or_mandatory].empty?
+        end
       end
 
       def profile
@@ -88,26 +123,36 @@ module USCore
       end
 
       def interactions
-        resource_capabilities.interaction.map do |interaction|
-          {
-            code: interaction.code,
-            expectation: interaction.extension.first.valueCode # TODO: fix expectation extension finding
-          }
-        end
+        @interactions ||=
+          resource_capabilities.interaction.map do |interaction|
+            {
+              code: interaction.code,
+              expectation: interaction.extension.first.valueCode # TODO: fix expectation extension finding
+            }
+          end
       end
 
       def operations
-        resource_capabilities.operation.map do |operation|
-          {
-            code: operation.name,
-            expectation: operation.extension.first.valueCode # TODO: fix expectation extension finding
-          }
-        end
+        @operations ||=
+          resource_capabilities.operation.map do |operation|
+            {
+              code: operation.name,
+              expectation: operation.extension.first.valueCode # TODO: fix expectation extension finding
+            }
+          end
       end
 
       def search_metadata_extractor
         @search_metadata_extractor ||=
           SearchMetadataExtractor.new(resource_capabilities, ig_resources, resource, profile_elements)
+      end
+
+      def searches
+        @searches ||= search_metadata_extractor.searches
+      end
+
+      def search_definitions
+        @search_definitions ||= search_metadata_extractor.search_definitions
       end
 
       def include_params
@@ -135,7 +180,8 @@ module USCore
       end
 
       def bindings
-        terminology_binding_metadata_extractor.terminology_bindings
+        @bindings ||=
+          terminology_binding_metadata_extractor.terminology_bindings
       end
 
       def must_support_metadata_extractor
@@ -144,24 +190,27 @@ module USCore
       end
 
       def must_supports
-        must_support_metadata_extractor.must_supports
+        @must_supports ||=
+          must_support_metadata_extractor.must_supports
       end
 
       def mandatory_elements
-        profile_elements
-          .select { |element| element.min.positive? }
-          .map { |element| element.path }
+        @mandatory_elements ||=
+          profile_elements
+            .select { |element| element.min.positive? }
+            .map { |element| element.path }
       end
 
       def references
-        profile_elements
-          .select { |element| element.type&.first&.code == 'Reference' }
-          .map do |reference_definition|
-            {
-              path: reference_definition.path,
-              profiles: reference_definition.type.first.targetProfile
-            }
-          end
+        @references ||=
+          profile_elements
+            .select { |element| element.type&.first&.code == 'Reference' }
+            .map do |reference_definition|
+              {
+                path: reference_definition.path,
+                profiles: reference_definition.type.first.targetProfile
+              }
+            end
       end
     end
   end

@@ -29,7 +29,7 @@ module USCore
         metadata.groups =
           resources_in_capability_statement.flat_map do |resource|
             resource.supportedProfile&.map do |supported_profile|
-              GroupMetadataExtractor.new(resource, supported_profile, metadata, ig_resources).extract
+              GroupMetadataExtractor.new(resource, supported_profile, metadata, ig_resources).group_metadata
             end
           end
       end
