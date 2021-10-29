@@ -1,4 +1,4 @@
-require_relative 'care_team_read_test'
+require_relative 'care_team/care_team_read_test'
 
 module USCore
   class CareTeamGroup < Inferno::TestGroup

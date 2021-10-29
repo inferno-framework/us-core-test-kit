@@ -1,4 +1,4 @@
-require_relative 'encounter_read_test'
+require_relative 'encounter/encounter_read_test'
 
 module USCore
   class EncounterGroup < Inferno::TestGroup

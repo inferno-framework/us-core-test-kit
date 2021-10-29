@@ -1,4 +1,4 @@
-require_relative 'organization_read_test'
+require_relative 'organization/organization_read_test'
 
 module USCore
   class OrganizationGroup < Inferno::TestGroup

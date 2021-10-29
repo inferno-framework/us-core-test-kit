@@ -1,4 +1,4 @@
-require_relative 'immunization_read_test'
+require_relative 'immunization/immunization_read_test'
 
 module USCore
   class ImmunizationGroup < Inferno::TestGroup

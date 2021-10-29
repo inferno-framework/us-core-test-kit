@@ -1,4 +1,4 @@
-require_relative 'diagnostic_report_note_read_test'
+require_relative 'diagnostic_report_note/diagnostic_report_note_read_test'
 
 module USCore
   class DiagnosticReportNoteGroup < Inferno::TestGroup

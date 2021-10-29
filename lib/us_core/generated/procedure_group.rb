@@ -1,4 +1,4 @@
-require_relative 'procedure_read_test'
+require_relative 'procedure/procedure_read_test'
 
 module USCore
   class ProcedureGroup < Inferno::TestGroup

@@ -1,4 +1,4 @@
-require_relative 'device_read_test'
+require_relative 'device/device_read_test'
 
 module USCore
   class DeviceGroup < Inferno::TestGroup

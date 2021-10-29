@@ -56,7 +56,7 @@ module USCore
       def mark_mandatory_and_must_support_searches
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
-            path = search_definitions[name.to_sym][:path]
+            path = search_definitions[name.to_sym][:full_path]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
               full_must_support_path = "#{resource}.#{element[:path]}"
 

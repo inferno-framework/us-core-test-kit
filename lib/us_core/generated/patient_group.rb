@@ -1,4 +1,4 @@
-require_relative 'patient_read_test'
+require_relative 'patient/patient_read_test'
 
 module USCore
   class PatientGroup < Inferno::TestGroup

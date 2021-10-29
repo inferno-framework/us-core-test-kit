@@ -33,8 +33,12 @@ module USCore
         "#{class_name.underscore}.rb"
       end
 
+      def output_file_directory
+        File.join(__dir__, '..', 'generated', profile_identifier)
+      end
+
       def output_file_name
-        File.join(__dir__, '..', 'generated', base_output_file_name)
+        File.join(output_file_directory, base_output_file_name)
       end
 
       def read_interaction
@@ -62,6 +66,7 @@ module USCore
       end
 
       def generate
+        FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
 
         group_metadata.add_test(

@@ -1,4 +1,4 @@
-require_relative 'pediatric_weight_for_height_read_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_read_test'
 
 module USCore
   class PediatricWeightForHeightGroup < Inferno::TestGroup

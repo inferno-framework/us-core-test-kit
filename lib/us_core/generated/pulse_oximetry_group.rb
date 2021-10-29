@@ -1,4 +1,4 @@
-require_relative 'pulse_oximetry_read_test'
+require_relative 'pulse_oximetry/pulse_oximetry_read_test'
 
 module USCore
   class PulseOximetryGroup < Inferno::TestGroup

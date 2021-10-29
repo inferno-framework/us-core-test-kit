@@ -1,4 +1,4 @@
-require_relative 'pediatric_bmi_for_age_read_test'
+require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_read_test'
 
 module USCore
   class PediatricBmiForAgeGroup < Inferno::TestGroup

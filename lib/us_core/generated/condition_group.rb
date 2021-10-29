@@ -1,4 +1,4 @@
-require_relative 'condition_read_test'
+require_relative 'condition/condition_read_test'
 
 module USCore
   class ConditionGroup < Inferno::TestGroup

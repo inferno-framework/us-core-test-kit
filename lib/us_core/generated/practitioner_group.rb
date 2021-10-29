@@ -1,4 +1,4 @@
-require_relative 'practitioner_read_test'
+require_relative 'practitioner/practitioner_read_test'
 
 module USCore
   class PractitionerGroup < Inferno::TestGroup

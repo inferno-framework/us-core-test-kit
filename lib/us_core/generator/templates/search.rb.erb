@@ -1,0 +1,24 @@
+require_relative '../search_test'
+
+module USCore
+  class <%= class_name %> < Inferno::Test
+    include USCore::SearchTest
+
+    title 'Server returns correct <%= resource_type %> resource from <%= resource_type %> search interaction'
+    description 'A server <%= conformance_expectation %> support the <%= resource_type %> search interaction.'
+
+    id :<%= test_id %>
+
+    def resource_type
+      '<%= resource_type %>'
+    end
+
+def search_params
+<%= search_param_strings %>
+end
+
+    run do
+      perform_search_test(scratch[:<%= profile_identifier %>_resources])
+    end
+  end
+end

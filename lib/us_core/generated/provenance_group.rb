@@ -1,4 +1,4 @@
-require_relative 'provenance_read_test'
+require_relative 'provenance/provenance_read_test'
 
 module USCore
   class ProvenanceGroup < Inferno::TestGroup

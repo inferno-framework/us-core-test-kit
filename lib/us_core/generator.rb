@@ -5,6 +5,7 @@ require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
 require_relative 'generator/group_generator'
 require_relative 'generator/read_test_generator'
+require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
 
 module USCore
@@ -33,6 +34,10 @@ module USCore
 
     def generate_read_tests
       ReadTestGenerator.generate(ig_metadata)
+    end
+
+    def generate_search_tests
+      SearchTestGenerator.generate(ig_metadata)
     end
 
     def generate_groups

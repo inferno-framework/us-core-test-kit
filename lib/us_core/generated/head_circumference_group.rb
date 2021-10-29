@@ -1,4 +1,4 @@
-require_relative 'head_circumference_read_test'
+require_relative 'head_circumference/head_circumference_read_test'
 
 module USCore
   class HeadCircumferenceGroup < Inferno::TestGroup

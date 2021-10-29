@@ -1,4 +1,4 @@
-require_relative 'medication_request_read_test'
+require_relative 'medication_request/medication_request_read_test'
 
 module USCore
   class MedicationRequestGroup < Inferno::TestGroup

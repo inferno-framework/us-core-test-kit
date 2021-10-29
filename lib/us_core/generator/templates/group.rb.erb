@@ -1,4 +1,4 @@
-<% test_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% test_file_list.each do |file_name| %>require_relative '<%= profile_identifier %>/<%= file_name %>'
 <% end %>
 module USCore
   class <%= class_name %> < Inferno::TestGroup

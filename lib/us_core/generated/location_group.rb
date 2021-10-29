@@ -1,4 +1,4 @@
-require_relative 'location_read_test'
+require_relative 'location/location_read_test'
 
 module USCore
   class LocationGroup < Inferno::TestGroup

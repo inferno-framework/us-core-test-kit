@@ -14,6 +14,7 @@ module USCore
         @search_definition ||=
           {
             path: path,
+            full_path: full_path,
             comparators: comparators,
             values: values,
             type: type,
@@ -31,8 +32,8 @@ module USCore
         param.source_hash
       end
 
-      def path
-        @path ||=
+      def full_path
+        @full_path ||=
           begin
             path = param.expression.gsub(/.where\((.*)/, '')
             as_type = path.scan(/.as\((.*?)\)/).flatten.first
@@ -41,9 +42,13 @@ module USCore
           end
       end
 
+      def path
+        @path ||= full_path.gsub("#{resource}.", '')
+      end
+
       def profile_element
         @profile_element ||=
-          profile_elements.find { |element| element.id == path }
+          profile_elements.find { |element| element.id == full_path }
       end
 
       def comparator_expectation_extensions
@@ -117,7 +122,7 @@ module USCore
         return [] unless contains_multiple?
 
         profile_elements.select do |element|
-          element.path == path &&
+          element.path == full_path &&
             element.sliceName.present? &&
             element.patternCodeableConcept.present?
         end

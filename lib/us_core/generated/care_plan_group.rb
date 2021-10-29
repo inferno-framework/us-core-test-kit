@@ -1,4 +1,4 @@
-require_relative 'care_plan_read_test'
+require_relative 'care_plan/care_plan_read_test'
 
 module USCore
   class CarePlanGroup < Inferno::TestGroup

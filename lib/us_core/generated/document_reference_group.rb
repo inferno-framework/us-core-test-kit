@@ -1,4 +1,4 @@
-require_relative 'document_reference_read_test'
+require_relative 'document_reference/document_reference_read_test'
 
 module USCore
   class DocumentReferenceGroup < Inferno::TestGroup

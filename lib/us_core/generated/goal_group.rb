@@ -1,4 +1,4 @@
-require_relative 'goal_read_test'
+require_relative 'goal/goal_read_test'
 
 module USCore
   class GoalGroup < Inferno::TestGroup

@@ -1,4 +1,4 @@
-require_relative 'allergy_intolerance_read_test'
+require_relative 'allergy_intolerance/allergy_intolerance_read_test'
 
 module USCore
   class AllergyIntoleranceGroup < Inferno::TestGroup

@@ -1,4 +1,4 @@
-require_relative 'smokingstatus_read_test'
+require_relative 'smokingstatus/smokingstatus_read_test'
 
 module USCore
   class SmokingstatusGroup < Inferno::TestGroup

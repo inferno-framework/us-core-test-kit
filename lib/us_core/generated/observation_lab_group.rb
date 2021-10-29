@@ -1,4 +1,4 @@
-require_relative 'observation_lab_read_test'
+require_relative 'observation_lab/observation_lab_read_test'
 
 module USCore
   class ObservationLabGroup < Inferno::TestGroup
