@@ -1,3 +1,5 @@
+require_relative 'practitioner_role/practitioner_role_specialty_search_test'
+require_relative 'practitioner_role/practitioner_role_practitioner_search_test'
 require_relative 'practitioner_role/practitioner_role_read_test'
 
 module USCore
@@ -7,6 +9,8 @@ module USCore
 
     id :practitioner_role
 
+    test from: :practitioner_role_specialty_search_test
+    test from: :practitioner_role_practitioner_search_test
     test from: :practitioner_role_read_test
   end
 end

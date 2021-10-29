@@ -6,7 +6,7 @@ module USCore
       class << self
         def generate(ig_metadata)
           ig_metadata.groups
-            .select { |group| group[:searches].present? }
+            .select { |group| group.searches.present? }
             .each do |group|
               group.searches.each { |search| new(group, search).generate }
             end
@@ -78,10 +78,22 @@ module USCore
           end
       end
 
-      def search_params_strings
+      def search_param_name_string
+        search_metadata[:names].join(' + ')
+      end
+
+      def needs_patient_id?
+        search_metadata[:names].include? 'patient'
+      end
+
+      def search_param_strings
         search_params
-          .map { |param| search_param_string }
+          .map { |param| search_param_string(param) }
           .join(",\n")
+      end
+
+      def path_for_value(path)
+        path == 'class' ? 'local_class' : path
       end
 
       def search_param_string(param)
@@ -89,10 +101,10 @@ module USCore
           if param[:name] == 'patient'
             'patient_id'
           else
-            "search_param_value(find_a_value_at('#{param[:path]}'))"
+            "search_param_value(find_a_value_at(scratch_resources, '#{path_for_value(param[:path])}'))"
           end
 
-        "'#{param[:name]}': #{value_string}"
+        "#{' ' * 8}'#{param[:name]}': #{value_string}"
       end
 
       def search_definition(name)

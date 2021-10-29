@@ -3,7 +3,7 @@ module USCore
     def perform_read_test(resources, reply_handler = nil)
       skip_if resources.blank?, no_resources_skip_message
 
-      resource_given = resources.find do
+      resource_given = resources.find do |resource|
         resource.is_a?(resource_class) || resource.is_a?(FHIR::Reference)
       end
 
@@ -18,7 +18,7 @@ module USCore
 
       fhir_read resource_type, id
 
-      assert_response_ok
+      assert_response_status(200)
       # TODO: DAR checks
       # reply_handler&.call(resource)
 

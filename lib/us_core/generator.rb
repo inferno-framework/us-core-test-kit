@@ -15,6 +15,7 @@ module USCore
     def generate
       load_ig_package
       extract_metadata
+      generate_search_tests
       generate_read_tests
       generate_groups
       generate_suites

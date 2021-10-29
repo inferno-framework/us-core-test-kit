@@ -1,4 +1,4 @@
-require_relative '../read_test'
+require_relative '../../read_test'
 
 module USCore
   class DiagnosticReportNoteReadTest < Inferno::Test

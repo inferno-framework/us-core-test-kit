@@ -105,6 +105,8 @@ module USCore
             ['patient', 'category']
           elsif resource == 'MedicationRequest'
             ['patient', 'intent']
+          else
+            ['patient']
           end
       end
 

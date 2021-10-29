@@ -1,24 +1,38 @@
-require_relative '../search_test'
+require_relative '../../search_test'
 
 module USCore
   class <%= class_name %> < Inferno::Test
     include USCore::SearchTest
 
-    title 'Server returns correct <%= resource_type %> resource from <%= resource_type %> search interaction'
-    description 'A server <%= conformance_expectation %> support the <%= resource_type %> search interaction.'
+    title 'Server returns valid results for <%= resource_type %> search by <%= search_param_name_string %>'
+    description %(
+      A server <%= conformance_expectation %> support searching by <%=
+      search_param_name_string %> on the <%= resource_type %> resource. This
+      test will pass if resources are returned and match the search criteria. If
+      none are returned, the test is skipped'
+    %)
 
     id :<%= test_id %>
-
+<% if needs_patient_id? %>
+    input :patient_id, default: '85'
+<% end %>
     def resource_type
       '<%= resource_type %>'
     end
 
-def search_params
+    def scratch_resources
+      scratch[:<%= profile_identifier %>_resources] = [] if scratch[:<%= profile_identifier %>_resources].nil?
+      scratch[:<%= profile_identifier %>_resources]
+    end
+
+    def search_params
+      {
 <%= search_param_strings %>
-end
+      }
+    end
 
     run do
-      perform_search_test(scratch[:<%= profile_identifier %>_resources])
+      perform_search_test
     end
   end
 end

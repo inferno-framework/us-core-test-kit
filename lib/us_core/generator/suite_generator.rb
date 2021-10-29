@@ -32,7 +32,7 @@ module USCore
       end
 
       def output_file_name
-        File.join(__dir__, '..', base_output_file_name)
+        File.join(__dir__, '..', 'generated', base_output_file_name)
       end
 
       def suite_id

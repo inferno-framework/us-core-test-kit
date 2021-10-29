@@ -1,11 +1,11 @@
 module USCore
   module SearchTest
-    def perform_search_test(resources, reply_handler = nil)
-      fhir_search resource_type, search_params
+    def perform_search_test(reply_handler = nil)
+      fhir_search resource_type, params: search_params
 
       # TODO: handle searches w/status
 
-      assert_response_ok
+      assert_response_status(200)
 
       # TODO:
       # assert_valid_bundle_entries(resource_types: [resource, 'OperationOutcome'])
@@ -13,9 +13,9 @@ module USCore
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      scratch[:allergy_intolerance_resources] = resources_returned
-      scratch[:resources_returned] = resources_returned
-      scratch[:search_parameters_used] = resources_returned
+      scratch_resources.concat(resources_returned).uniq!
+      # scratch[:resources_returned] = resources_returned
+      # scratch[:search_parameters_used] = resources_returned
 
       # TODO: save_delayed_references
 
@@ -30,6 +30,7 @@ module USCore
     def fetch_all_bundled_resources(reply_handler: nil, max_pages: 20)
       page_count = 1
       resources = []
+      bundle = resource
 
       until bundle.nil? || page_count == max_pages
         resources += bundle&.entry&.map { |entry| entry&.resource }
@@ -38,15 +39,15 @@ module USCore
 
         break if next_bundle_link.blank?
 
-        reply = client.raw_read_url(next_bundle_link)
+        reply = fhir_client.raw_read_url(next_bundle_link)
         # TODO:
         # store_request('outgoing') { reply }
         error_message = cant_resolve_next_bundle_message(next_bundle_link)
 
-        assert_response_ok(error_message: error_message)
+        assert_response_status(200)
         assert_valid_json(reply.body, error_message)
 
-        bundle = client.parse_reply(FHIR::Bundle, client.default_format, reply)
+        bundle = fhir_client.parse_reply(FHIR::Bundle, fhir_client.default_format, reply)
 
         page_count += 1
       end
@@ -112,10 +113,10 @@ module USCore
         when FHIR::CodeableConcept
           if include_system
             # TODO: fix if system is blank
-            coding_with_code = find_value_at(element, 'coding') { |coding| coding.code.present? }
+            coding_with_code = find_a_value_at(element, 'coding') { |coding| coding.code.present? }
             coding_with_code.present? ? "#{coding_with_code.system}|#{coding_with_code.code}" : nil
           else
-            find_value_at(element, 'coding.code')
+            find_a_value_at(element, 'coding.code')
           end
         when FHIR::Identifier
           if include_system

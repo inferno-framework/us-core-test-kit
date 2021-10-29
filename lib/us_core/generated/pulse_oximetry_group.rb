@@ -1,3 +1,13 @@
+require_relative 'pulse_oximetry/pulse_oximetry_patient_code_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_status_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_category_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_code_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_date_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_patient_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_patient_category_date_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_patient_category_status_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_patient_code_date_search_test'
+require_relative 'pulse_oximetry/pulse_oximetry_patient_category_search_test'
 require_relative 'pulse_oximetry/pulse_oximetry_read_test'
 
 module USCore
@@ -7,6 +17,16 @@ module USCore
 
     id :pulse_oximetry
 
+    test from: :pulse_oximetry_patient_code_search_test
+    test from: :pulse_oximetry_status_search_test
+    test from: :pulse_oximetry_category_search_test
+    test from: :pulse_oximetry_code_search_test
+    test from: :pulse_oximetry_date_search_test
+    test from: :pulse_oximetry_patient_search_test
+    test from: :pulse_oximetry_patient_category_date_search_test
+    test from: :pulse_oximetry_patient_category_status_search_test
+    test from: :pulse_oximetry_patient_code_date_search_test
+    test from: :pulse_oximetry_patient_category_search_test
     test from: :pulse_oximetry_read_test
   end
 end

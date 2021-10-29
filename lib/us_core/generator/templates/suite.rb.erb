@@ -1,19 +1,19 @@
-<% group_file_list.each do |file_name| %>require_relative 'generated/<%= file_name %>'
+<% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
 module USCore
   class <%= class_name %> < Inferno::TestSuite
     title '<%= title %>'
     # description ''
 
-    input :url, :bearer_token
+    id :<%= suite_id %>
+
+    input :url, default: 'https://inferno.healthit.gov/reference-server/r4'
+    input :bearer_token, default: 'SAMPLE_TOKEN'
 
     fhir_client do
       url :url
       bearer_token :bearer_token
     end
-
-
-    id :<%= suite_id %>
 <% group_id_list.each do |id| %>
     group from: :<%= id %><% end %>
   end

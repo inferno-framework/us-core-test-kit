@@ -1,3 +1,13 @@
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_code_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_status_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_category_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_code_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_date_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_category_date_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_category_status_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_code_date_search_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_category_search_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_read_test'
 
 module USCore
@@ -7,6 +17,16 @@ module USCore
 
     id :pediatric_weight_for_height
 
+    test from: :pediatric_weight_for_height_patient_code_search_test
+    test from: :pediatric_weight_for_height_status_search_test
+    test from: :pediatric_weight_for_height_category_search_test
+    test from: :pediatric_weight_for_height_code_search_test
+    test from: :pediatric_weight_for_height_date_search_test
+    test from: :pediatric_weight_for_height_patient_search_test
+    test from: :pediatric_weight_for_height_patient_category_date_search_test
+    test from: :pediatric_weight_for_height_patient_category_status_search_test
+    test from: :pediatric_weight_for_height_patient_code_date_search_test
+    test from: :pediatric_weight_for_height_patient_category_search_test
     test from: :pediatric_weight_for_height_read_test
   end
 end

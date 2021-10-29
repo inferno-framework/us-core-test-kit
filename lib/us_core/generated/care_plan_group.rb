@@ -1,3 +1,11 @@
+require_relative 'care_plan/care_plan_patient_search_test'
+require_relative 'care_plan/care_plan_category_search_test'
+require_relative 'care_plan/care_plan_date_search_test'
+require_relative 'care_plan/care_plan_status_search_test'
+require_relative 'care_plan/care_plan_patient_category_status_date_search_test'
+require_relative 'care_plan/care_plan_patient_category_status_search_test'
+require_relative 'care_plan/care_plan_patient_category_search_test'
+require_relative 'care_plan/care_plan_patient_category_date_search_test'
 require_relative 'care_plan/care_plan_read_test'
 
 module USCore
@@ -7,6 +15,14 @@ module USCore
 
     id :care_plan
 
+    test from: :care_plan_patient_search_test
+    test from: :care_plan_category_search_test
+    test from: :care_plan_date_search_test
+    test from: :care_plan_status_search_test
+    test from: :care_plan_patient_category_status_date_search_test
+    test from: :care_plan_patient_category_status_search_test
+    test from: :care_plan_patient_category_search_test
+    test from: :care_plan_patient_category_date_search_test
     test from: :care_plan_read_test
   end
 end
