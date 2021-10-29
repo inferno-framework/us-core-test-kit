@@ -3,6 +3,7 @@ require 'fhir_models'
 require_relative 'ext/fhir_models'
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
+require_relative 'generator/read_test_generator'
 
 module USCore
   class Generator
@@ -11,6 +12,7 @@ module USCore
     def generate
       load_ig_package
       extract_metadata
+      generate_read_tests
     end
 
     def extract_metadata
@@ -25,8 +27,8 @@ module USCore
       self.ig_resources = IGLoader.new.load
     end
 
-    def inspect
-      'Generator'
+    def generate_read_tests
+      ReadTestGenerator.generate(ig_metadata)
     end
   end
 end
