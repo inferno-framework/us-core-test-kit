@@ -3,8 +3,6 @@ require_relative 'naming'
 module USCore
   class Generator
     class ReadTestGenerator
-      attr_accessor :group_metadata
-
       class << self
         def generate(ig_metadata)
           ig_metadata.groups
@@ -16,6 +14,8 @@ module USCore
           group_metadata.interactions.find { |interaction| interaction[:code] == 'read' }
         end
       end
+
+      attr_accessor :group_metadata
 
       def initialize(group_metadata)
         self.group_metadata = group_metadata
@@ -29,8 +29,12 @@ module USCore
         @output ||= ERB.new(template).result(binding)
       end
 
+      def base_output_file_name
+        "#{class_name.underscore}.rb"
+      end
+
       def output_file_name
-        File.join(__dir__, '..', 'generated', "#{class_name.underscore}.rb")
+        File.join(__dir__, '..', 'generated', base_output_file_name)
       end
 
       def read_interaction
@@ -59,6 +63,11 @@ module USCore
 
       def generate
         File.open(output_file_name, 'w') { |f| f.write(output) }
+
+        group_metadata.add_test(
+          id: test_id,
+          file_name: base_output_file_name
+        )
       end
     end
   end

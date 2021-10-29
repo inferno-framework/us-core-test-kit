@@ -1,0 +1,12 @@
+<% test_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% end %>
+module USCore
+  class <%= class_name %> < Inferno::TestGroup
+    title '<%= Naming.upper_camel_case_for_profile(group_metadata) %> Tests'
+    # description ''
+
+    id :<%= group_id %>
+<% test_id_list.each do |id| %>
+    test from: :<%= id %><% end %>
+  end
+end

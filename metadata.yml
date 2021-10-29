@@ -148,6 +148,7 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  :tests:
 - :name: us_core_careplan
   :class_name: USCorev311CareplanSequence
   :version: v3.1.1
@@ -436,6 +437,7 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
+  :tests:
 - :name: us_core_careteam
   :class_name: USCorev311CareteamSequence
   :version: v3.1.1
@@ -561,6 +563,7 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
 - :name: us_core_condition
   :class_name: USCorev311ConditionSequence
   :version: v3.1.1
@@ -781,6 +784,7 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
 - :name: us_core_implantable_device
   :class_name: USCorev311ImplantableDeviceSequence
   :version: v3.1.1
@@ -1908,6 +1912,7 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
+  :tests:
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev311DiagnosticreportNoteSequence
   :version: v3.1.1
@@ -3133,6 +3138,7 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
+  :tests:
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev311DiagnosticreportLabSequence
   :version: v3.1.1
@@ -4367,6 +4373,7 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
+  :tests:
 - :name: us_core_documentreference
   :class_name: USCorev311DocumentreferenceSequence
   :version: v3.1.1
@@ -4698,6 +4705,7 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
 - :name: us_core_encounter
   :class_name: USCorev311EncounterSequence
   :version: v3.1.1
@@ -5041,6 +5049,7 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
+  :tests:
 - :name: us_core_goal
   :class_name: USCorev311GoalSequence
   :version: v3.1.1
@@ -5222,6 +5231,7 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
+  :tests:
 - :name: us_core_immunization
   :class_name: USCorev311ImmunizationSequence
   :version: v3.1.1
@@ -5416,6 +5426,7 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
 - :name: us_core_location
   :class_name: USCorev311LocationSequence
   :version: v3.1.1
@@ -5636,6 +5647,7 @@
   - :path: Location.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
+  :tests:
 - :name: us_core_medication
   :class_name: USCorev311MedicationSequence
   :version: v3.1.1
@@ -5698,6 +5710,7 @@
   - :path: Medication.manufacturer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
 - :name: us_core_medicationrequest
   :class_name: USCorev311MedicationrequestSequence
   :version: v3.1.1
@@ -5994,6 +6007,7 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
+  :tests:
 - :name: us_core_smokingstatus
   :class_name: USCorev311SmokingstatusSequence
   :version: v3.1.1
@@ -6281,6 +6295,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
   :version: v3.1.1
@@ -6596,6 +6611,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
 - :name: us_core_observation_lab
   :class_name: USCorev311ObservationLabSequence
   :version: v3.1.1
@@ -7876,6 +7892,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
   :version: v3.1.1
@@ -8191,6 +8208,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
 - :name: us_core_pulse_oximetry
   :class_name: USCorev311PulseOximetrySequence
   :version: v3.1.1
@@ -8595,6 +8613,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
   :version: v3.1.1
@@ -8911,6 +8930,7 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
 - :name: us_core_organization
   :class_name: USCorev311OrganizationSequence
   :version: v3.1.1
@@ -9036,6 +9056,7 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
+  :tests:
 - :name: us_core_patient
   :class_name: USCorev311PatientSequence
   :version: v3.1.1
@@ -9346,6 +9367,7 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  :tests:
 - :name: us_core_practitioner
   :class_name: USCorev311PractitionerSequence
   :version: v3.1.1
@@ -9461,6 +9483,7 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
 - :name: us_core_practitionerrole
   :class_name: USCorev311PractitionerroleSequence
   :version: v3.1.1
@@ -9700,6 +9723,7 @@
   - :path: PractitionerRole.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
+  :tests:
 - :name: us_core_procedure
   :class_name: USCorev311ProcedureSequence
   :version: v3.1.1
@@ -10951,6 +10975,7 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
+  :tests:
 - :name: us_core_provenance
   :class_name: USCorev311ProvenanceSequence
   :version: v3.1.1
@@ -11114,3 +11139,4 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:

@@ -3,6 +3,7 @@ require 'fhir_models'
 require_relative 'ext/fhir_models'
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
+require_relative 'generator/group_generator'
 require_relative 'generator/read_test_generator'
 
 module USCore
@@ -13,6 +14,7 @@ module USCore
       load_ig_package
       extract_metadata
       generate_read_tests
+      generate_groups
     end
 
     def extract_metadata
@@ -29,6 +31,10 @@ module USCore
 
     def generate_read_tests
       ReadTestGenerator.generate(ig_metadata)
+    end
+
+    def generate_groups
+      GroupGenerator.generate(ig_metadata)
     end
   end
 end

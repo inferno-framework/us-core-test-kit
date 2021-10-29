@@ -21,9 +21,12 @@ module USCore
         :mandatory_elements,
         :bindings,
         :references,
+        :tests,
+        :id,
+        :file_name
       ].freeze
 
-      ATTRIBUTES.each { |name| attr_reader name }
+      ATTRIBUTES.each { |name| attr_accessor name }
 
       def initialize(**params)
         params.each do |key, value|
@@ -31,6 +34,14 @@ module USCore
 
           instance_variable_set(:"@#{key}", value)
         end
+      end
+
+      def add_test(id:, file_name:)
+        self.tests ||= []
+        self.tests << {
+          id: id,
+          file_name: file_name
+        }
       end
 
       def to_hash
