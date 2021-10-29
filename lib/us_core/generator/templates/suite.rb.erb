@@ -1,0 +1,20 @@
+<% group_file_list.each do |file_name| %>require_relative 'generated/<%= file_name %>'
+<% end %>
+module USCore
+  class <%= class_name %> < Inferno::TestSuite
+    title '<%= title %>'
+    # description ''
+
+    input :url, :bearer_token
+
+    fhir_client do
+      url :url
+      bearer_token :bearer_token
+    end
+
+
+    id :<%= suite_id %>
+<% group_id_list.each do |id| %>
+    group from: :<%= id %><% end %>
+  end
+end
