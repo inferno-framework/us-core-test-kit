@@ -153,6 +153,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev311CareplanSequence
   :version: v3.1.1
@@ -448,6 +449,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev311CareteamSequence
   :version: v3.1.1
@@ -578,6 +580,11 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: participant.member
+    :resources:
+    - Practitioner
+    - Organization
 - :name: us_core_condition
   :class_name: USCorev311ConditionSequence
   :version: v3.1.1
@@ -806,6 +813,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev311ImplantableDeviceSequence
   :version: v3.1.1
@@ -1938,6 +1946,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev311DiagnosticreportNoteSequence
   :version: v3.1.1
@@ -3171,6 +3180,14 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: encounter
+    :resources:
+    - Encounter
+  - :path: performer
+    :resources:
+    - Practitioner
+    - Organization
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev311DiagnosticreportLabSequence
   :version: v3.1.1
@@ -4413,6 +4430,11 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: performer
+    :resources:
+    - Practitioner
+    - Organization
 - :name: us_core_documentreference
   :class_name: USCorev311DocumentreferenceSequence
   :version: v3.1.1
@@ -4754,6 +4776,17 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: author
+    :resources:
+    - Practitioner
+    - Organization
+  - :path: custodian
+    :resources:
+    - Organization
+  - :path: context.encounter
+    :resources:
+    - Encounter
 - :name: us_core_encounter
   :class_name: USCorev311EncounterSequence
   :version: v3.1.1
@@ -5107,6 +5140,10 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: participant.individual
+    :resources:
+    - Practitioner
 - :name: us_core_goal
   :class_name: USCorev311GoalSequence
   :version: v3.1.1
@@ -5294,6 +5331,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev311ImmunizationSequence
   :version: v3.1.1
@@ -5494,6 +5532,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev311LocationSequence
   :version: v3.1.1
@@ -5722,6 +5761,10 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: managingOrganization
+    :resources:
+    - Organization
 - :name: us_core_medication
   :class_name: USCorev311MedicationSequence
   :version: v3.1.1
@@ -5787,6 +5830,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_medicationrequest
   :class_name: USCorev311MedicationrequestSequence
   :version: v3.1.1
@@ -6091,6 +6135,11 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: requester
+    :resources:
+    - Practitioner
+    - Organization
 - :name: us_core_smokingstatus
   :class_name: USCorev311SmokingstatusSequence
   :version: v3.1.1
@@ -6386,6 +6435,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
   :version: v3.1.1
@@ -6709,6 +6759,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_observation_lab
   :class_name: USCorev311ObservationLabSequence
   :version: v3.1.1
@@ -7997,6 +8048,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
   :version: v3.1.1
@@ -8320,6 +8372,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev311PulseOximetrySequence
   :version: v3.1.1
@@ -8732,6 +8785,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
   :version: v3.1.1
@@ -9056,6 +9110,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: bodyheight
   :class_name: BodyheightSequence
   :version: v3.1.1
@@ -9385,6 +9440,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: bodytemp
   :class_name: BodytempSequence
   :version: v3.1.1
@@ -9714,6 +9770,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: bp
   :class_name: BpSequence
   :version: v3.1.1
@@ -10067,6 +10124,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: bodyweight
   :class_name: BodyweightSequence
   :version: v3.1.1
@@ -10396,6 +10454,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: heartrate
   :class_name: HeartrateSequence
   :version: v3.1.1
@@ -10722,6 +10781,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: resprate
   :class_name: ResprateSequence
   :version: v3.1.1
@@ -11048,6 +11108,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev311OrganizationSequence
   :version: v3.1.1
@@ -11178,6 +11239,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev311PatientSequence
   :version: v3.1.1
@@ -11498,6 +11560,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev311PractitionerSequence
   :version: v3.1.1
@@ -11618,6 +11681,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev311PractitionerroleSequence
   :version: v3.1.1
@@ -11862,6 +11926,13 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: practitioner
+    :resources:
+    - Practitioner
+  - :path: organization
+    :resources:
+    - Organization
 - :name: us_core_procedure
   :class_name: USCorev311ProcedureSequence
   :version: v3.1.1
@@ -13120,6 +13191,7 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev311ProvenanceSequence
   :version: v3.1.1
@@ -13286,3 +13358,11 @@
   :tests:
   :id:
   :file_name:
+  :delayed_references:
+  - :path: agent.who
+    :resources:
+    - Practitioner
+    - Organization
+  - :path: agent.onBehalfOf
+    :resources:
+    - Organization

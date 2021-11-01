@@ -23,6 +23,10 @@ module USCore
         resources_by_type['StructureDefinition'].find { |profile| profile.url == url }
       end
 
+      def resource_for_profile(url)
+        resources_by_type['StructureDefinition'].find { |profile| profile.url == url }.type
+      end
+
       def value_set_by_url(url)
         resources_by_type['ValueSet'].find { |profile| profile.url == url }
       end

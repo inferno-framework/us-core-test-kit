@@ -1,3 +1,4 @@
+require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
 require_relative 'care_team_group'
@@ -6,11 +7,8 @@ require_relative 'device_group'
 require_relative 'diagnostic_report_note_group'
 require_relative 'diagnostic_report_lab_group'
 require_relative 'document_reference_group'
-require_relative 'encounter_group'
 require_relative 'goal_group'
 require_relative 'immunization_group'
-require_relative 'location_group'
-require_relative 'medication_group'
 require_relative 'medication_request_group'
 require_relative 'smokingstatus_group'
 require_relative 'pediatric_weight_for_height_group'
@@ -24,11 +22,13 @@ require_relative 'bp_group'
 require_relative 'bodyweight_group'
 require_relative 'heartrate_group'
 require_relative 'resprate_group'
+require_relative 'procedure_group'
+require_relative 'encounter_group'
+require_relative 'location_group'
+require_relative 'medication_group'
 require_relative 'organization_group'
-require_relative 'patient_group'
 require_relative 'practitioner_group'
 require_relative 'practitioner_role_group'
-require_relative 'procedure_group'
 require_relative 'provenance_group'
 
 module USCore
@@ -46,6 +46,7 @@ module USCore
       bearer_token :bearer_token
     end
 
+    group from: :patient
     group from: :allergy_intolerance
     group from: :care_plan
     group from: :care_team
@@ -54,11 +55,8 @@ module USCore
     group from: :diagnostic_report_note
     group from: :diagnostic_report_lab
     group from: :document_reference
-    group from: :encounter
     group from: :goal
     group from: :immunization
-    group from: :location
-    group from: :medication
     group from: :medication_request
     group from: :smokingstatus
     group from: :pediatric_weight_for_height
@@ -72,11 +70,13 @@ module USCore
     group from: :bodyweight
     group from: :heartrate
     group from: :resprate
+    group from: :procedure
+    group from: :encounter
+    group from: :location
+    group from: :medication
     group from: :organization
-    group from: :patient
     group from: :practitioner
     group from: :practitioner_role
-    group from: :procedure
     group from: :provenance
   end
 end

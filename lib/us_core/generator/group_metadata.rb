@@ -23,7 +23,17 @@ module USCore
         :references,
         :tests,
         :id,
-        :file_name
+        :file_name,
+        :delayed_references
+      ].freeze
+
+      NON_USCDI_RESOURCES = [
+        'Encounter',
+        'Location',
+        'Organization',
+        'Practitioner',
+        'PractitionerRole',
+        'Provenance'
       ].freeze
 
       ATTRIBUTES.each { |name| attr_accessor name }
@@ -36,6 +46,20 @@ module USCore
         end
       end
 
+      def delayed?
+        return false if resource == 'Patient'
+
+        no_patient_searches? || non_uscdi_resource?
+      end
+
+      def no_patient_searches?
+        searches.none? { |search| search[:names].include? 'patient' }
+      end
+
+      def non_uscdi_resource?
+        NON_USCDI_RESOURCES.include? resource
+      end
+
       def add_test(id:, file_name:)
         self.tests ||= []
         self.tests << {
@@ -46,6 +70,20 @@ module USCore
 
       def to_hash
         ATTRIBUTES.each_with_object({}) { |key, hash| hash[key] = send(key) }
+      end
+
+      def add_delayed_references(delayed_profiles, ig_resources)
+        self.delayed_references =
+          references
+            .select { |reference| (reference[:profiles] & delayed_profiles).present? }
+            .map do |reference|
+              profile_urls = (reference[:profiles] & delayed_profiles)
+              delayed_resources = profile_urls.map { |url| ig_resources.resource_for_profile(url) }
+              {
+                path: reference[:path].gsub("#{resource}.", ''),
+                resources: delayed_resources
+              }
+            end
       end
     end
   end

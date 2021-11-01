@@ -48,6 +48,8 @@ module USCore
               GroupMetadataExtractor.new(resource, supported_profile, metadata, ig_resources).group_metadata
             end
           end
+
+        metadata.postprocess_groups(ig_resources)
       end
     end
   end

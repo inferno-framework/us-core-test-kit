@@ -5,7 +5,7 @@ module USCore
     class GroupGenerator
       class << self
         def generate(ig_metadata)
-          ig_metadata.groups
+          ig_metadata.ordered_groups
             .each { |group| new(group).generate }
         end
       end
