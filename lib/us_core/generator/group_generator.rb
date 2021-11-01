@@ -28,12 +28,20 @@ module USCore
         "#{class_name.underscore}.rb"
       end
 
+      def base_metadata_file_name
+        "metadata.yml"
+      end
+
       def class_name
         "#{Naming.upper_camel_case_for_profile(group_metadata)}Group"
       end
 
       def output_file_name
         File.join(__dir__, '..', 'generated', base_output_file_name)
+      end
+
+      def metadata_file_name
+        File.join(__dir__, '..', 'generated', profile_identifier, base_metadata_file_name)
       end
 
       def profile_identifier
@@ -52,6 +60,7 @@ module USCore
         File.open(output_file_name, 'w') { |f| f.write(output) }
         group_metadata.id = group_id
         group_metadata.file_name = base_output_file_name
+        File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
       end
 
       def test_id_list

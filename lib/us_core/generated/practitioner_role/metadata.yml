@@ -1,0 +1,258 @@
+---
+:name: us_core_practitionerrole
+:class_name: USCorev311PractitionerroleSequence
+:version: v3.1.1
+:reformatted_version: v311
+:resource: PractitionerRole
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+:profile_name: US Core PractitionerRole Profile
+:title: PractitionerRole
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - specialty
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - practitioner
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :specialty:
+    :path: specialty
+    :full_path: PractitionerRole.specialty
+    :comparators: {}
+    :values:
+    - '408467006'
+    - '394577000'
+    - '394578005'
+    - '421661004'
+    - '408462000'
+    - '394579002'
+    - '394804000'
+    - '394580004'
+    - '394803006'
+    - '408480009'
+    - '408454008'
+    - '394809005'
+    - '394592004'
+    - '394600006'
+    - '394601005'
+    - '394581000'
+    - '408478003'
+    - '394812008'
+    - '408444009'
+    - '394582007'
+    - '408475000'
+    - '410005002'
+    - '394583002'
+    - '419772000'
+    - '394584008'
+    - '408443003'
+    - '394802001'
+    - '394915009'
+    - '394814009'
+    - '394808002'
+    - '394811001'
+    - '408446006'
+    - '394586005'
+    - '394916005'
+    - '408472002'
+    - '394597005'
+    - '394598000'
+    - '394807007'
+    - '419192003'
+    - '408468001'
+    - '394593009'
+    - '394813003'
+    - '410001006'
+    - '394589003'
+    - '394591006'
+    - '394599008'
+    - '394649004'
+    - '408470005'
+    - '394585009'
+    - '394821009'
+    - '422191005'
+    - '394594003'
+    - '416304004'
+    - '418960008'
+    - '394882004'
+    - '394806003'
+    - '394588006'
+    - '408459003'
+    - '394607009'
+    - '419610006'
+    - '418058008'
+    - '420208008'
+    - '418652005'
+    - '418535003'
+    - '418862001'
+    - '419365004'
+    - '418002000'
+    - '419983000'
+    - '419170002'
+    - '419472004'
+    - '394539006'
+    - '420112009'
+    - '409968004'
+    - '394587001'
+    - '394913002'
+    - '408440000'
+    - '418112009'
+    - '419815003'
+    - '394914008'
+    - '408455009'
+    - '394602003'
+    - '408447002'
+    - '394810000'
+    - '408450004'
+    - '408476004'
+    - '408469009'
+    - '408466002'
+    - '408471009'
+    - '408464004'
+    - '408441001'
+    - '408465003'
+    - '394605001'
+    - '394608004'
+    - '408461007'
+    - '408460008'
+    - '394606000'
+    - '408449004'
+    - '418018006'
+    - '394604002'
+    - '394609007'
+    - '408474001'
+    - '394610002'
+    - '394611003'
+    - '408477008'
+    - '394801008'
+    - '408463005'
+    - '419321007'
+    - '394576009'
+    - '394590007'
+    - '409967009'
+    - '408448007'
+    - '419043006'
+    - '394612005'
+    - '394733009'
+    - '394732004'
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :practitioner:
+    :path: practitioner
+    :full_path: PractitionerRole.practitioner
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+    :chain:
+    - :chain: identifier
+      :expectation: SHALL
+    - :chain: name
+      :expectation: SHALL
+:include_params:
+- PractitionerRole:endpoint
+- PractitionerRole:practitioner
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: practitioner
+  - :path: organization
+  - :path: code
+  - :path: specialty
+  - :path: location
+  - :path: telecom
+  - :path: telecom.system
+  - :path: telecom.value
+  - :path: endpoint
+:mandatory_elements:
+- PractitionerRole.practitioner
+- PractitionerRole.organization
+- PractitionerRole.telecom.system
+- PractitionerRole.telecom.value
+- PractitionerRole.notAvailable.description
+:bindings:
+- :type: code
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: language
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-provider-role
+  :path: code
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-provider-specialty
+  :path: specialty
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-system
+  :path: telecom.system
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-use
+  :path: telecom.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/days-of-week
+  :path: availableTime.daysOfWeek
+:references:
+- :path: PractitionerRole.practitioner
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+- :path: PractitionerRole.organization
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+- :path: PractitionerRole.location
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: PractitionerRole.healthcareService
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/HealthcareService
+- :path: PractitionerRole.endpoint
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Endpoint
+:tests:
+- :id: practitioner_role_specialty_search_test
+  :file_name: practitioner_role_specialty_search_test.rb
+- :id: practitioner_role_practitioner_search_test
+  :file_name: practitioner_role_practitioner_search_test.rb
+- :id: practitioner_role_read_test
+  :file_name: practitioner_role_read_test.rb
+:id: practitioner_role
+:file_name: practitioner_role_group.rb
+:delayed_references:
+- :path: practitioner
+  :resources:
+  - Practitioner
+- :path: organization
+  :resources:
+  - Organization
