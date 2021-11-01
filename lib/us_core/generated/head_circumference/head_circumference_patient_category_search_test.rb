@@ -20,14 +20,13 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:head_circumference_resources] = [] if scratch[:head_circumference_resources].nil?
-      scratch[:head_circumference_resources]
+      scratch[:head_circumference_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'category': search_param_value(find_a_value_at(scratch_resources, 'category'))
+        'category': search_param_value('category')
       }
     end
 

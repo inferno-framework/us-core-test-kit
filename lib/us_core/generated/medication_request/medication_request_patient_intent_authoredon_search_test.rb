@@ -20,15 +20,14 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:medication_request_resources] = [] if scratch[:medication_request_resources].nil?
-      scratch[:medication_request_resources]
+      scratch[:medication_request_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'intent': search_param_value(find_a_value_at(scratch_resources, 'intent')),
-        'authoredon': search_param_value(find_a_value_at(scratch_resources, 'authoredOn'))
+        'intent': search_param_value('intent'),
+        'authoredon': search_param_value('authoredOn')
       }
     end
 

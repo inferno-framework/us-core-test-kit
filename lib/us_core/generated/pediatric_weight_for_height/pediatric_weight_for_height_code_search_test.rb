@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pediatric_weight_for_height_resources] = [] if scratch[:pediatric_weight_for_height_resources].nil?
-      scratch[:pediatric_weight_for_height_resources]
+      scratch[:pediatric_weight_for_height_resources] ||= []
     end
 
     def search_params
       {
-        'code': search_param_value(find_a_value_at(scratch_resources, 'code'))
+        'code': search_param_value('code')
       }
     end
 

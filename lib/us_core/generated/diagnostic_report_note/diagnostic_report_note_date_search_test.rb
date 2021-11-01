@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:diagnostic_report_note_resources] = [] if scratch[:diagnostic_report_note_resources].nil?
-      scratch[:diagnostic_report_note_resources]
+      scratch[:diagnostic_report_note_resources] ||= []
     end
 
     def search_params
       {
-        'date': search_param_value(find_a_value_at(scratch_resources, 'effective'))
+        'date': search_param_value('effective')
       }
     end
 

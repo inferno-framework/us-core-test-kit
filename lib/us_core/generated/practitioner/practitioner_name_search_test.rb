@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:practitioner_resources] = [] if scratch[:practitioner_resources].nil?
-      scratch[:practitioner_resources]
+      scratch[:practitioner_resources] ||= []
     end
 
     def search_params
       {
-        'name': search_param_value(find_a_value_at(scratch_resources, 'name'))
+        'name': search_param_value('name')
       }
     end
 

@@ -20,13 +20,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:encounter_resources] = [] if scratch[:encounter_resources].nil?
-      scratch[:encounter_resources]
+      scratch[:encounter_resources] ||= []
     end
 
     def search_params
       {
-        'class': search_param_value(find_a_value_at(scratch_resources, 'local_class')),
+        'class': search_param_value('local_class'),
         'patient': patient_id
       }
     end

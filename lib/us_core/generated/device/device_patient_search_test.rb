@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:device_resources] = [] if scratch[:device_resources].nil?
-      scratch[:device_resources]
+      scratch[:device_resources] ||= []
     end
 
     def search_params

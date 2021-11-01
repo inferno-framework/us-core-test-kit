@@ -20,14 +20,13 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:condition_resources] = [] if scratch[:condition_resources].nil?
-      scratch[:condition_resources]
+      scratch[:condition_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'onset-date': search_param_value(find_a_value_at(scratch_resources, 'onsetDateTime'))
+        'onset-date': search_param_value('onsetDateTime')
       }
     end
 

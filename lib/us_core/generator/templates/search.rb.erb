@@ -21,8 +21,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:<%= profile_identifier %>_resources] = [] if scratch[:<%= profile_identifier %>_resources].nil?
-      scratch[:<%= profile_identifier %>_resources]
+      scratch[:<%= profile_identifier %>_resources] ||= []
     end
 
     def search_params

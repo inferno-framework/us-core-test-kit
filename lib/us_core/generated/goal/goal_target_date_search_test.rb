@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:goal_resources] = [] if scratch[:goal_resources].nil?
-      scratch[:goal_resources]
+      scratch[:goal_resources] ||= []
     end
 
     def search_params
       {
-        'target-date': search_param_value(find_a_value_at(scratch_resources, '(target.due as date)'))
+        'target-date': search_param_value('(target.due as date)')
       }
     end
 

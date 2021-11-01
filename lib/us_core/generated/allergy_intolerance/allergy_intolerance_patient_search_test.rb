@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:allergy_intolerance_resources] = [] if scratch[:allergy_intolerance_resources].nil?
-      scratch[:allergy_intolerance_resources]
+      scratch[:allergy_intolerance_resources] ||= []
     end
 
     def search_params

@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:medication_request_resources] = [] if scratch[:medication_request_resources].nil?
-      scratch[:medication_request_resources]
+      scratch[:medication_request_resources] ||= []
     end
 
     def search_params

@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:document_reference_resources] = [] if scratch[:document_reference_resources].nil?
-      scratch[:document_reference_resources]
+      scratch[:document_reference_resources] ||= []
     end
 
     def search_params
       {
-        '_id': search_param_value(find_a_value_at(scratch_resources, 'id'))
+        '_id': search_param_value('id')
       }
     end
 

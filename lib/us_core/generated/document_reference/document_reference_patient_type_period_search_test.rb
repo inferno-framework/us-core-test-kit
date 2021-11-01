@@ -20,15 +20,14 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:document_reference_resources] = [] if scratch[:document_reference_resources].nil?
-      scratch[:document_reference_resources]
+      scratch[:document_reference_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'type': search_param_value(find_a_value_at(scratch_resources, 'type')),
-        'period': search_param_value(find_a_value_at(scratch_resources, 'context.period'))
+        'type': search_param_value('type'),
+        'period': search_param_value('context.period')
       }
     end
 

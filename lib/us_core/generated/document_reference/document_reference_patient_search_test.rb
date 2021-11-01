@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:document_reference_resources] = [] if scratch[:document_reference_resources].nil?
-      scratch[:document_reference_resources]
+      scratch[:document_reference_resources] ||= []
     end
 
     def search_params

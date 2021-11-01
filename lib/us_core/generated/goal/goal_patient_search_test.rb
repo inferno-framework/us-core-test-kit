@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:goal_resources] = [] if scratch[:goal_resources].nil?
-      scratch[:goal_resources]
+      scratch[:goal_resources] ||= []
     end
 
     def search_params

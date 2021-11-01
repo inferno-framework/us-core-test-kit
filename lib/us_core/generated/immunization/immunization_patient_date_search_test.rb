@@ -20,14 +20,13 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:immunization_resources] = [] if scratch[:immunization_resources].nil?
-      scratch[:immunization_resources]
+      scratch[:immunization_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'date': search_param_value(find_a_value_at(scratch_resources, 'occurrence'))
+        'date': search_param_value('occurrence')
       }
     end
 

@@ -20,16 +20,15 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:care_plan_resources] = [] if scratch[:care_plan_resources].nil?
-      scratch[:care_plan_resources]
+      scratch[:care_plan_resources] ||= []
     end
 
     def search_params
       {
         'patient': patient_id,
-        'category': search_param_value(find_a_value_at(scratch_resources, 'category')),
-        'status': search_param_value(find_a_value_at(scratch_resources, 'status')),
-        'date': search_param_value(find_a_value_at(scratch_resources, 'period'))
+        'category': search_param_value('category'),
+        'status': search_param_value('status'),
+        'date': search_param_value('period')
       }
     end
 

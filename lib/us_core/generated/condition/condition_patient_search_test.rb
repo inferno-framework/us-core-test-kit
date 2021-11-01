@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:condition_resources] = [] if scratch[:condition_resources].nil?
-      scratch[:condition_resources]
+      scratch[:condition_resources] ||= []
     end
 
     def search_params

@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:care_team_resources] = [] if scratch[:care_team_resources].nil?
-      scratch[:care_team_resources]
+      scratch[:care_team_resources] ||= []
     end
 
     def search_params

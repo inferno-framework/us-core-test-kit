@@ -101,7 +101,7 @@ module USCore
           if param[:name] == 'patient'
             'patient_id'
           else
-            "search_param_value(find_a_value_at(scratch_resources, '#{path_for_value(param[:path])}'))"
+            "search_param_value('#{path_for_value(param[:path])}')"
           end
 
         "#{' ' * 8}'#{param[:name]}': #{value_string}"

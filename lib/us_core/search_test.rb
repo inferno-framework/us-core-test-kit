@@ -97,7 +97,8 @@ module USCore
       nil
     end
 
-    def search_param_value(element, include_system = false)
+    def search_param_value(path, include_system = false)
+      element = find_a_value_at(scratch_resources, path)
       search_value =
         case element
         when FHIR::Period

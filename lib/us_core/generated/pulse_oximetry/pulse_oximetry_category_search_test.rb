@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pulse_oximetry_resources] = [] if scratch[:pulse_oximetry_resources].nil?
-      scratch[:pulse_oximetry_resources]
+      scratch[:pulse_oximetry_resources] ||= []
     end
 
     def search_params
       {
-        'category': search_param_value(find_a_value_at(scratch_resources, 'category'))
+        'category': search_param_value('category')
       }
     end
 

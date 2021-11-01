@@ -20,8 +20,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pediatric_bmi_for_age_resources] = [] if scratch[:pediatric_bmi_for_age_resources].nil?
-      scratch[:pediatric_bmi_for_age_resources]
+      scratch[:pediatric_bmi_for_age_resources] ||= []
     end
 
     def search_params

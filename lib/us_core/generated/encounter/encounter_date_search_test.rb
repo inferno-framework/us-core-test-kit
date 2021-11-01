@@ -18,13 +18,12 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:encounter_resources] = [] if scratch[:encounter_resources].nil?
-      scratch[:encounter_resources]
+      scratch[:encounter_resources] ||= []
     end
 
     def search_params
       {
-        'date': search_param_value(find_a_value_at(scratch_resources, 'period'))
+        'date': search_param_value('period')
       }
     end
 
