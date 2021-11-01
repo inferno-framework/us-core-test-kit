@@ -23,7 +23,7 @@ module USCore
 
     def search_params
       {
-        'target-date': search_param_value('(target.due as date)')
+        'target-date': search_param_value('target.dueDate')
       }
     end
 

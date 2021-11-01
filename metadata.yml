@@ -5192,8 +5192,8 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :path: "(target.due as date)"
-      :full_path: "(Goal.target.due as date)"
+      :path: target.dueDate
+      :full_path: Goal.target.dueDate
       :comparators:
         :eq: MAY
         :ne: MAY

@@ -36,8 +36,9 @@ module USCore
         @full_path ||=
           begin
             path = param.expression.gsub(/.where\((.*)/, '')
-            as_type = path.scan(/.as\((.*?)\)/).flatten.first
-            path.gsub!(/.as\((.*?)\)/, as_type.upcase_first) if as_type.present?
+            path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
+            as_type = path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.first
+            path.gsub!(/[. ]as[( ]([^)]*)[)]?/, as_type.upcase_first) if as_type.present?
             path
           end
       end
