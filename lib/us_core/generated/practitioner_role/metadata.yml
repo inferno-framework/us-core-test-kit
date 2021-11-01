@@ -241,12 +241,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
+- :id: practitioner_role_read_test
+  :file_name: practitioner_role_read_test.rb
 - :id: practitioner_role_specialty_search_test
   :file_name: practitioner_role_specialty_search_test.rb
 - :id: practitioner_role_practitioner_search_test
   :file_name: practitioner_role_practitioner_search_test.rb
-- :id: practitioner_role_read_test
-  :file_name: practitioner_role_read_test.rb
 :id: practitioner_role
 :file_name: practitioner_role_group.rb
 :delayed_references:

@@ -1,6 +1,6 @@
+require_relative 'organization/organization_read_test'
 require_relative 'organization/organization_name_search_test'
 require_relative 'organization/organization_address_search_test'
-require_relative 'organization/organization_read_test'
 
 module USCore
   class OrganizationGroup < Inferno::TestGroup
@@ -9,8 +9,8 @@ module USCore
 
     id :organization
 
+    test from: :organization_read_test
     test from: :organization_name_search_test
     test from: :organization_address_search_test
-    test from: :organization_read_test
   end
 end

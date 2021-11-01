@@ -13,8 +13,12 @@ module USCore
       'Encounter'
     end
 
+    def scratch_resources
+      scratch[:encounter_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:encounter_resources])
+      perform_read_test(scratch.dig(:references, 'Encounter'))
     end
   end
 end

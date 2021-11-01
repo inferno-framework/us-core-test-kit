@@ -13,8 +13,12 @@ module USCore
       'Goal'
     end
 
+    def scratch_resources
+      scratch[:goal_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:goal_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

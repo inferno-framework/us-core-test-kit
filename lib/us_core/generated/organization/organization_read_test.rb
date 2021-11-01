@@ -13,8 +13,12 @@ module USCore
       'Organization'
     end
 
+    def scratch_resources
+      scratch[:organization_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:organization_resources])
+      perform_read_test(scratch.dig(:references, 'Organization'))
     end
   end
 end

@@ -13,8 +13,12 @@ module USCore
       'Observation'
     end
 
+    def scratch_resources
+      scratch[:bp_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:bp_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

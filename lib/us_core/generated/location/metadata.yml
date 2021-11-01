@@ -225,6 +225,8 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
+- :id: location_read_test
+  :file_name: location_read_test.rb
 - :id: location_name_search_test
   :file_name: location_name_search_test.rb
 - :id: location_address_search_test
@@ -235,8 +237,6 @@
   :file_name: location_address_state_search_test.rb
 - :id: location_address_postalcode_search_test
   :file_name: location_address_postalcode_search_test.rb
-- :id: location_read_test
-  :file_name: location_read_test.rb
 :id: location
 :file_name: location_group.rb
 :delayed_references:

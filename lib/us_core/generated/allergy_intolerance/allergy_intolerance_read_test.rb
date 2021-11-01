@@ -13,8 +13,12 @@ module USCore
       'AllergyIntolerance'
     end
 
+    def scratch_resources
+      scratch[:allergy_intolerance_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:allergy_intolerance_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

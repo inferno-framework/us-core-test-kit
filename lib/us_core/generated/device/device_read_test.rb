@@ -13,8 +13,12 @@ module USCore
       'Device'
     end
 
+    def scratch_resources
+      scratch[:device_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:device_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

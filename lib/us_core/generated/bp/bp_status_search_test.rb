@@ -1,4 +1,5 @@
 require_relative '../../search_test'
+require_relative '../../generator/group_metadata'
 
 module USCore
   class BpStatusSearchTest < Inferno::Test
@@ -15,6 +16,10 @@ module USCore
 
     def resource_type
       'Observation'
+    end
+
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
     end
 
     def scratch_resources

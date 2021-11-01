@@ -13,8 +13,12 @@ module USCore
       'CareTeam'
     end
 
+    def scratch_resources
+      scratch[:care_team_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:care_team_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

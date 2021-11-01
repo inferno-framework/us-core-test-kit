@@ -13,8 +13,12 @@ module USCore
       'MedicationRequest'
     end
 
+    def scratch_resources
+      scratch[:medication_request_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:medication_request_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

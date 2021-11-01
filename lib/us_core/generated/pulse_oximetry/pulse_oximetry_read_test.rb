@@ -13,8 +13,12 @@ module USCore
       'Observation'
     end
 
+    def scratch_resources
+      scratch[:pulse_oximetry_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:pulse_oximetry_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

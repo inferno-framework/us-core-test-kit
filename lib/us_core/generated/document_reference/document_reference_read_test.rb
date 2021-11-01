@@ -13,8 +13,12 @@ module USCore
       'DocumentReference'
     end
 
+    def scratch_resources
+      scratch[:document_reference_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:document_reference_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

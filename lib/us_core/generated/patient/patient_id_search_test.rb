@@ -1,4 +1,5 @@
 require_relative '../../search_test'
+require_relative '../../generator/group_metadata'
 
 module USCore
   class PatientIdSearchTest < Inferno::Test
@@ -13,8 +14,14 @@ module USCore
 
     id :patient__id_search_test
 
+    input :patient_id, default: '85'
+
     def resource_type
       'Patient'
+    end
+
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
     end
 
     def scratch_resources
@@ -23,7 +30,7 @@ module USCore
 
     def search_params
       {
-        '_id': search_param_value('id')
+        '_id': patient_id
       }
     end
 

@@ -13,8 +13,12 @@ module USCore
       'Immunization'
     end
 
+    def scratch_resources
+      scratch[:immunization_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:immunization_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

@@ -127,12 +127,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
+- :id: organization_read_test
+  :file_name: organization_read_test.rb
 - :id: organization_name_search_test
   :file_name: organization_name_search_test.rb
 - :id: organization_address_search_test
   :file_name: organization_address_search_test.rb
-- :id: organization_read_test
-  :file_name: organization_read_test.rb
 :id: organization
 :file_name: organization_group.rb
 :delayed_references: []

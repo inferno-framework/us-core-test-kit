@@ -13,8 +13,12 @@ module USCore
       'DiagnosticReport'
     end
 
+    def scratch_resources
+      scratch[:diagnostic_report_note_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:diagnostic_report_note_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

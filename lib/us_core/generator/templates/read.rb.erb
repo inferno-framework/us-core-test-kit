@@ -13,8 +13,12 @@ module USCore
       '<%= resource_type %>'
     end
 
+    def scratch_resources
+      scratch[:<%= profile_identifier %>_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:<%= profile_identifier %>_resources])
+      perform_read_test(<%= resource_collection_string %>)
     end
   end
 end

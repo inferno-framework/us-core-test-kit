@@ -13,8 +13,12 @@ module USCore
       'Observation'
     end
 
+    def scratch_resources
+      scratch[:pediatric_bmi_for_age_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:pediatric_bmi_for_age_resources])
+      perform_read_test(scratch_resources)
     end
   end
 end

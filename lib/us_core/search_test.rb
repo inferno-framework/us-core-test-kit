@@ -1,6 +1,32 @@
 module USCore
   module SearchTest
+    def self.included(klass)
+      klass.extend(ClassMethods)
+    end
+
+    module ClassMethods
+      def references_to_save
+        @references_to_save ||= metadata.delayed_references.freeze
+      end
+
+      def first_search?
+        @first_search ||= id.end_with?(first_search_id)
+      end
+
+      def first_search_id
+        metadata.tests
+          .select { |test| test[:id].include? 'search' }
+          .first[:id]
+      end
+
+      def need_to_save_references?
+        first_search? && references_to_save.present?
+      end
+    end
+
     def perform_search_test(reply_handler = nil)
+      check_search_params
+
       fhir_search resource_type, params: search_params
 
       # TODO: handle searches w/status
@@ -17,9 +43,21 @@ module USCore
       # scratch[:resources_returned] = resources_returned
       # scratch[:search_parameters_used] = resources_returned
 
-      # TODO: save_delayed_references
+      save_delayed_references(resources_returned) if self.class.need_to_save_references?
 
       skip_if resources_returned.empty?, no_resources_skip_message
+    end
+
+    def check_search_params
+      empty_search_params = search_params.select { |_name, value| value.blank? }
+
+      skip_if empty_search_params.present?, empty_search_params_message(empty_search_params)
+    end
+
+    def empty_search_params_message(empty_search_params)
+      list = empty_search_params.keys.map { |name| "`#{name}`" }.join(', ')
+
+      "Could not find values for the search parameters #{list}"
     end
 
     def no_resources_skip_message
@@ -142,6 +180,39 @@ module USCore
         end
       escaped_value = search_value&.gsub(',', '\\,')
       escaped_value
+    end
+
+    def save_resource_reference(resource_type, reference)
+      scratch[:references] ||= {}
+      scratch[:references][resource_type] ||= Set.new
+      scratch[:references][resource_type] << reference
+    end
+
+    def save_delayed_references(resources)
+      resources.each do |resource|
+        self.class.references_to_save.each do |reference_to_save|
+          resolve_path(resource, reference_to_save[:path])
+            .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? }
+            .each do |reference|
+              resource_type = reference.resource_class.name.demodulize
+              need_to_save = reference_to_save[:resources].include?(resource_type)
+              next unless need_to_save
+
+              save_resource_reference(resource_type, reference)
+            end
+        end
+      end
+    end
+
+    def resolve_path(elements, path)
+      elements = Array.wrap(elements)
+      return elements if path.blank?
+
+      paths = path.split('.')
+
+      elements.flat_map do |element|
+        resolve_path(element&.send(paths.first), paths.drop(1).join('.'))
+      end.compact
     end
   end
 end

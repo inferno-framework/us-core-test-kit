@@ -13,8 +13,12 @@ module USCore
       'Medication'
     end
 
+    def scratch_resources
+      scratch[:medication_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:medication_resources])
+      perform_read_test(scratch.dig(:references, 'Medication'))
     end
   end
 end

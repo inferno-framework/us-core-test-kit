@@ -61,6 +61,14 @@ module USCore
         group_metadata.resource
       end
 
+      def resource_collection_string
+        if group_metadata.delayed?
+          "scratch.dig(:references, '#{resource_type}')"
+        else
+          'scratch_resources'
+        end
+      end
+
       def conformance_expectation
         read_interaction[:expectation]
       end

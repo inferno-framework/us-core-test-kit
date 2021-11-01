@@ -83,7 +83,8 @@ module USCore
       end
 
       def needs_patient_id?
-        search_metadata[:names].include? 'patient'
+        search_metadata[:names].include?('patient') ||
+          (resource_type == 'Patient' && search_metadata[:names].include?('_id'))
       end
 
       def search_param_strings
@@ -96,9 +97,14 @@ module USCore
         path == 'class' ? 'local_class' : path
       end
 
+      def patient_id_param?(param)
+        param[:name] == 'patient' ||
+          (resource_type == 'Patient' && param[:name] == '_id')
+      end
+
       def search_param_string(param)
         value_string =
-          if param[:name] == 'patient'
+          if patient_id_param?(param)
             'patient_id'
           else
             "search_param_value('#{path_for_value(param[:path])}')"

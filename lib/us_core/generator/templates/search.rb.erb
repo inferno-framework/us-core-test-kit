@@ -1,4 +1,5 @@
 require_relative '../../search_test'
+require_relative '../../generator/group_metadata'
 
 module USCore
   class <%= class_name %> < Inferno::Test
@@ -18,6 +19,10 @@ module USCore
 <% end %>
     def resource_type
       '<%= resource_type %>'
+    end
+
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
     end
 
     def scratch_resources

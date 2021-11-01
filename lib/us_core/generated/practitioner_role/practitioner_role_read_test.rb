@@ -13,8 +13,12 @@ module USCore
       'PractitionerRole'
     end
 
+    def scratch_resources
+      scratch[:practitioner_role_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:practitioner_role_resources])
+      perform_read_test(scratch.dig(:references, 'PractitionerRole'))
     end
   end
 end

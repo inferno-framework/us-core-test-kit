@@ -13,8 +13,12 @@ module USCore
       'Provenance'
     end
 
+    def scratch_resources
+      scratch[:provenance_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:provenance_resources])
+      perform_read_test(scratch.dig(:references, 'Provenance'))
     end
   end
 end

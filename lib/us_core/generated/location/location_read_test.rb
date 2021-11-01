@@ -13,8 +13,12 @@ module USCore
       'Location'
     end
 
+    def scratch_resources
+      scratch[:location_resources] ||= []
+    end
+
     run do
-      perform_read_test(scratch[:location_resources])
+      perform_read_test(scratch.dig(:references, 'Location'))
     end
   end
 end

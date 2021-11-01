@@ -24,6 +24,10 @@ module USCore
 
       assert_resource_type(resource_type)
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
+
+      if resource_given.is_a? FHIR::Reference
+        scratch_resources << resource
+      end
     end
 
     def no_resources_skip_message
