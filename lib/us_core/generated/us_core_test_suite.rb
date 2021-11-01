@@ -18,6 +18,12 @@ require_relative 'observation_lab_group'
 require_relative 'pediatric_bmi_for_age_group'
 require_relative 'pulse_oximetry_group'
 require_relative 'head_circumference_group'
+require_relative 'bodyheight_group'
+require_relative 'bodytemp_group'
+require_relative 'bp_group'
+require_relative 'bodyweight_group'
+require_relative 'heartrate_group'
+require_relative 'resprate_group'
 require_relative 'organization_group'
 require_relative 'patient_group'
 require_relative 'practitioner_group'
@@ -60,6 +66,12 @@ module USCore
     group from: :pediatric_bmi_for_age
     group from: :pulse_oximetry
     group from: :head_circumference
+    group from: :bodyheight
+    group from: :bodytemp
+    group from: :bp
+    group from: :bodyweight
+    group from: :heartrate
+    group from: :resprate
     group from: :organization
     group from: :patient
     group from: :practitioner

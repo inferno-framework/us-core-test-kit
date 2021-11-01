@@ -12,6 +12,11 @@ module USCore
       end
 
       def load
+        load_ig
+        load_standalone_resources
+      end
+
+      def load_ig
         tar = Gem::Package::TarReader.new(Zlib::GzipReader.open(File.join(__dir__, '..', 'igs', 'package.tgz')))
 
         tar.each do |entry|
@@ -27,6 +32,23 @@ module USCore
             resource = FHIR.from_contents(entry.read)
             next if resource.nil?
           rescue StandardError
+            puts "#{file_name} does not appear to be a FHIR resource."
+            next
+          end
+
+          ig_resources.add(resource)
+        end
+
+        ig_resources
+      end
+
+      def load_standalone_resources
+        Dir.glob(File.join(__dir__, '..', 'igs', '*.json')).each do |file_path|
+          begin
+            resource = FHIR.from_contents(File.read(file_path))
+            next if resource.nil?
+          rescue StandardError
+            file_name = file_path.split('/').last
             puts "#{file_name} does not appear to be a FHIR resource."
             next
           end

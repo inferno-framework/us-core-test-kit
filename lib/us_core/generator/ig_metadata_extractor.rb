@@ -8,6 +8,7 @@ module USCore
 
       def initialize(ig_resources)
         self.ig_resources = ig_resources
+        add_vital_signs_profiles
         self.metadata = IGMetadata.new
       end
 
@@ -23,6 +24,21 @@ module USCore
 
       def resources_in_capability_statement
         ig_resources.capability_statement.rest.first.resource
+      end
+
+      # The US Core Server Capability Statement does not list support for the
+      # required vital signs profiles, so they need to be added
+      def add_vital_signs_profiles
+        ig_resources.capability_statement.rest.first.resource
+          .find { |resource| resource.type == 'Observation' }
+          .supportedProfile.concat [
+            'http://hl7.org/fhir/StructureDefinition/bodyheight',
+            'http://hl7.org/fhir/StructureDefinition/bodytemp',
+            'http://hl7.org/fhir/StructureDefinition/bp',
+            'http://hl7.org/fhir/StructureDefinition/bodyweight',
+            'http://hl7.org/fhir/StructureDefinition/heartrate',
+            'http://hl7.org/fhir/StructureDefinition/resprate'
+          ]
       end
 
       def add_metadata_from_resources
