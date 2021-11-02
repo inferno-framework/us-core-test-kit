@@ -26,10 +26,8 @@ module USCore
       scratch[:location_resources] ||= []
     end
 
-    def search_params
-      {
-        'address-postalcode': search_param_value('address.postalCode')
-      }
+    def search_param_names
+      ['address-postalcode']
     end
 
     run do

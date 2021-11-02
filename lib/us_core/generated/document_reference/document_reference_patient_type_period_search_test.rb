@@ -28,12 +28,8 @@ module USCore
       scratch[:document_reference_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'type': search_param_value('type'),
-        'period': search_param_value('context.period')
-      }
+    def search_param_names
+      ['patient', 'type', 'period']
     end
 
     run do

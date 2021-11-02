@@ -28,10 +28,8 @@ module USCore
       scratch[:patient_resources] ||= []
     end
 
-    def search_params
-      {
-        '_id': patient_id
-      }
+    def search_param_names
+      ['_id']
     end
 
     run do

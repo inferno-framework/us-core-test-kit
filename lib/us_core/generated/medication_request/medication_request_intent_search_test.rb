@@ -26,10 +26,8 @@ module USCore
       scratch[:medication_request_resources] ||= []
     end
 
-    def search_params
-      {
-        'intent': search_param_value('intent')
-      }
+    def search_param_names
+      ['intent']
     end
 
     run do

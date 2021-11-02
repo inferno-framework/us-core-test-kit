@@ -26,10 +26,8 @@ module USCore
       scratch[:allergy_intolerance_resources] ||= []
     end
 
-    def search_params
-      {
-        'clinical-status': search_param_value('clinicalStatus')
-      }
+    def search_param_names
+      ['clinical-status']
     end
 
     run do

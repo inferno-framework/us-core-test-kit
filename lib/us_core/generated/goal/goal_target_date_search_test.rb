@@ -26,10 +26,8 @@ module USCore
       scratch[:goal_resources] ||= []
     end
 
-    def search_params
-      {
-        'target-date': search_param_value('target.dueDate')
-      }
+    def search_param_names
+      ['target-date']
     end
 
     run do

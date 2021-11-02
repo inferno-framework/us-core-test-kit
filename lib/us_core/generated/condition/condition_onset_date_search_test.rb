@@ -26,10 +26,8 @@ module USCore
       scratch[:condition_resources] ||= []
     end
 
-    def search_params
-      {
-        'onset-date': search_param_value('onsetDateTime')
-      }
+    def search_param_names
+      ['onset-date']
     end
 
     run do

@@ -28,12 +28,8 @@ module USCore
       scratch[:medication_request_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'intent': search_param_value('intent'),
-        'status': search_param_value('status')
-      }
+    def search_param_names
+      ['patient', 'intent', 'status']
     end
 
     run do

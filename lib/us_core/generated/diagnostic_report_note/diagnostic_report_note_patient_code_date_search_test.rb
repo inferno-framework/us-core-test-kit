@@ -28,12 +28,8 @@ module USCore
       scratch[:diagnostic_report_note_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'code': search_param_value('code'),
-        'date': search_param_value('effective')
-      }
+    def search_param_names
+      ['patient', 'code', 'date']
     end
 
     run do

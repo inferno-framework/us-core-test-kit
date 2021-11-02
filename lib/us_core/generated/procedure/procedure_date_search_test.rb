@@ -26,10 +26,8 @@ module USCore
       scratch[:procedure_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('performed')
-      }
+    def search_param_names
+      ['date']
     end
 
     run do

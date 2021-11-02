@@ -26,10 +26,8 @@ module USCore
       scratch[:location_resources] ||= []
     end
 
-    def search_params
-      {
-        'name': search_param_value('name')
-      }
+    def search_param_names
+      ['name']
     end
 
     run do

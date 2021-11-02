@@ -24,8 +24,39 @@ module USCore
       end
     end
 
+    def fixed_value_search_param_name
+      (search_param_names - ['patient']).first
+    end
+
+    def fixed_value_search_param_values
+      self.class.metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
+    end
+
+    def fixed_value_search_params(value)
+      search_param_names.each_with_object({}) do |name, params|
+        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+      end
+    end
+
+    def search_params_with_values
+      search_param_names.each_with_object({}) do |name, params|
+        value = patient_id_param?(name) ? patient_id : search_param_value(search_param_path(name))
+        params[name] = value
+      end
+    end
+
+    def patient_id_param?(name)
+      name == 'patient' || (name == '_id' && resource_type == 'Patient')
+    end
+
+    def search_param_path(name)
+      path = self.class.metadata.search_definitions[name.to_sym][:path]
+      path == 'class' ? 'local_class' : path
+    end
+
     def perform_search_test(reply_handler = nil)
-      check_search_params
+      search_params = search_params_with_values
+      check_search_params(search_params)
 
       fhir_search resource_type, params: search_params
 
@@ -34,7 +65,7 @@ module USCore
       assert_response_status(200)
 
       # TODO:
-      # assert_valid_bundle_entries(resource_types: [resource, 'OperationOutcome'])
+      # assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
@@ -48,8 +79,38 @@ module USCore
       skip_if resources_returned.empty?, no_resources_skip_message
     end
 
-    def check_search_params
-      empty_search_params = search_params.select { |_name, value| value.blank? }
+    def perform_fixed_value_search_test(reply_handler = nil)
+      all_resources_returned = []
+      fixed_value_search_param_values.each do |fixed_value|
+        search_params = fixed_value_search_params(fixed_value)
+        check_search_params(search_params)
+
+        fhir_search resource_type, params: search_params
+
+        # TODO: handle searches w/status
+
+        assert_response_status(200)
+
+        # TODO:
+        # assert_valid_bundle_entries(resource_types: [resource, 'OperationOutcome'])
+
+        resources_returned =
+          fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+        info("#{resources_returned.length} resources found")
+        all_resources_returned.concat(resources_returned)
+
+        scratch_resources.concat(resources_returned).uniq!
+        # scratch[:resources_returned] = resources_returned
+        # scratch[:search_parameters_used] = resources_returned
+
+        save_delayed_references(resources_returned) if self.class.need_to_save_references?
+      end
+
+      skip_if all_resources_returned.empty?, no_resources_skip_message
+    end
+
+    def check_search_params(params)
+      empty_search_params = params.select { |_name, value| value.blank? }
 
       skip_if empty_search_params.present?, empty_search_params_message(empty_search_params)
     end

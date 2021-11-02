@@ -26,10 +26,8 @@ module USCore
       scratch[:pediatric_bmi_for_age_resources] ||= []
     end
 
-    def search_params
-      {
-        'category': search_param_value('category')
-      }
+    def search_param_names
+      ['category']
     end
 
     run do

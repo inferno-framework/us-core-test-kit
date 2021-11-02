@@ -28,10 +28,8 @@ module USCore
       scratch[:pediatric_weight_for_height_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id
-      }
+    def search_param_names
+      ['patient']
     end
 
     run do

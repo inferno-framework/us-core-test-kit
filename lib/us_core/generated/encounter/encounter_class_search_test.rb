@@ -26,10 +26,8 @@ module USCore
       scratch[:encounter_resources] ||= []
     end
 
-    def search_params
-      {
-        'class': search_param_value('local_class')
-      }
+    def search_param_names
+      ['class']
     end
 
     run do

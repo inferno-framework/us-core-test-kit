@@ -26,10 +26,8 @@ module USCore
       scratch[:condition_resources] ||= []
     end
 
-    def search_params
-      {
-        'category': search_param_value('category')
-      }
+    def search_param_names
+      ['category']
     end
 
     run do

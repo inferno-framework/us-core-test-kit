@@ -26,10 +26,8 @@ module USCore
       scratch[:pediatric_weight_for_height_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('effective')
-      }
+    def search_param_names
+      ['date']
     end
 
     run do

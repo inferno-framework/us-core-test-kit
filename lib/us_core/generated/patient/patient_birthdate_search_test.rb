@@ -26,10 +26,8 @@ module USCore
       scratch[:patient_resources] ||= []
     end
 
-    def search_params
-      {
-        'birthdate': search_param_value('birthDate')
-      }
+    def search_param_names
+      ['birthdate']
     end
 
     run do

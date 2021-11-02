@@ -28,15 +28,12 @@ module USCore
       scratch[:observation_lab_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'category': search_param_value('category')
-      }
+    def search_param_names
+      ['patient', 'category']
     end
 
     run do
-      perform_search_test
+      perform_fixed_value_search_test
     end
   end
 end

@@ -28,11 +28,8 @@ module USCore
       scratch[:device_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'type': search_param_value('type')
-      }
+    def search_param_names
+      ['patient', 'type']
     end
 
     run do

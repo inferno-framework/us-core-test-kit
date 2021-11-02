@@ -28,12 +28,8 @@ module USCore
       scratch[:bodyheight_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'category': search_param_value('category'),
-        'status': search_param_value('status')
-      }
+    def search_param_names
+      ['patient', 'category', 'status']
     end
 
     run do

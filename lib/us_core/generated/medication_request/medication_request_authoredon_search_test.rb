@@ -26,10 +26,8 @@ module USCore
       scratch[:medication_request_resources] ||= []
     end
 
-    def search_params
-      {
-        'authoredon': search_param_value('authoredOn')
-      }
+    def search_param_names
+      ['authoredon']
     end
 
     run do

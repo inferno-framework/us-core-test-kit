@@ -28,15 +28,12 @@ module USCore
       scratch[:head_circumference_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'code': search_param_value('code')
-      }
+    def search_param_names
+      ['patient', 'code']
     end
 
     run do
-      perform_search_test
+      perform_fixed_value_search_test
     end
   end
 end

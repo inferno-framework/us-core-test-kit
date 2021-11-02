@@ -28,11 +28,8 @@ module USCore
       scratch[:procedure_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'date': search_param_value('performed')
-      }
+    def search_param_names
+      ['patient', 'date']
     end
 
     run do

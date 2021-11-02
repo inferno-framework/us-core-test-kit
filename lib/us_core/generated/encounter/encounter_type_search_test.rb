@@ -26,10 +26,8 @@ module USCore
       scratch[:encounter_resources] ||= []
     end
 
-    def search_params
-      {
-        'type': search_param_value('type')
-      }
+    def search_param_names
+      ['type']
     end
 
     run do

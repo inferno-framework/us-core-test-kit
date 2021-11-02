@@ -26,10 +26,8 @@ module USCore
       scratch[:document_reference_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('date')
-      }
+    def search_param_names
+      ['date']
     end
 
     run do

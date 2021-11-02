@@ -29,14 +29,12 @@ module USCore
       scratch[:<%= profile_identifier %>_resources] ||= []
     end
 
-    def search_params
-      {
-<%= search_param_strings %>
-      }
+    def search_param_names
+      <%= search_param_names_array %>
     end
 
     run do
-      perform_search_test
+      <%= perform_test_string %>
     end
   end
 end

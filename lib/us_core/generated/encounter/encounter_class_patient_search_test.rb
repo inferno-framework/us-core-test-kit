@@ -28,11 +28,8 @@ module USCore
       scratch[:encounter_resources] ||= []
     end
 
-    def search_params
-      {
-        'class': search_param_value('local_class'),
-        'patient': patient_id
-      }
+    def search_param_names
+      ['class', 'patient']
     end
 
     run do

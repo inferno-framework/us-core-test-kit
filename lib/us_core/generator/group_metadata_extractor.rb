@@ -99,15 +99,15 @@ module USCore
 
       def first_search_params
         @first_search_params ||=
-          if resource == 'Observation'
-            ['patient', 'code']
-          elsif category_first_profile?
-            ['patient', 'category']
-          elsif resource == 'MedicationRequest'
-            ['patient', 'intent']
-          else
-            ['patient']
-          end
+        if category_first_profile?
+          ['patient', 'category']
+        elsif resource == 'Observation'
+          ['patient', 'code']
+        elsif resource == 'MedicationRequest'
+          ['patient', 'intent']
+        else
+          ['patient']
+        end
       end
 
       def handle_special_cases

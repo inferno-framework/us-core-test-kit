@@ -26,10 +26,8 @@ module USCore
       scratch[:goal_resources] ||= []
     end
 
-    def search_params
-      {
-        'lifecycle-status': search_param_value('lifecycleStatus')
-      }
+    def search_param_names
+      ['lifecycle-status']
     end
 
     run do

@@ -26,10 +26,8 @@ module USCore
       scratch[:bodyweight_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('effective')
-      }
+    def search_param_names
+      ['date']
     end
 
     run do

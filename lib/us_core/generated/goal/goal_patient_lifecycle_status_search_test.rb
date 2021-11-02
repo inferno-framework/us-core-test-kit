@@ -28,11 +28,8 @@ module USCore
       scratch[:goal_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'lifecycle-status': search_param_value('lifecycleStatus')
-      }
+    def search_param_names
+      ['patient', 'lifecycle-status']
     end
 
     run do

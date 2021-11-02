@@ -28,11 +28,8 @@ module USCore
       scratch[:encounter_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('period'),
-        'patient': patient_id
-      }
+    def search_param_names
+      ['date', 'patient']
     end
 
     run do

@@ -26,10 +26,8 @@ module USCore
       scratch[:practitioner_role_resources] ||= []
     end
 
-    def search_params
-      {
-        'specialty': search_param_value('specialty')
-      }
+    def search_param_names
+      ['specialty']
     end
 
     run do

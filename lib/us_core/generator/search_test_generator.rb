@@ -78,6 +78,19 @@ module USCore
           end
       end
 
+      def first_search?
+        group_metadata.searches.first == search_metadata
+      end
+
+      def fixed_value_search?
+        first_search? && search_metadata[:names] != ['patient'] &&
+          !group_metadata.delayed? && resource_type != 'Patient'
+      end
+
+      def fixed_value_search_param_name
+        (search_metadata[:names] - [:patient]).first
+      end
+
       def search_param_name_string
         search_metadata[:names].join(' + ')
       end
@@ -87,10 +100,12 @@ module USCore
           (resource_type == 'Patient' && search_metadata[:names].include?('_id'))
       end
 
-      def search_param_strings
-        search_params
-          .map { |param| search_param_string(param) }
-          .join(",\n")
+      def search_param_names_array
+        # search_params
+        #   .map { |param| search_param_string(param) }
+        #   .join(",\n")
+        name_strings = search_params.map { |param| "'#{param[:name]}'" }
+        "[#{name_strings.join(', ')}]"
       end
 
       def path_for_value(path)
@@ -102,15 +117,19 @@ module USCore
           (resource_type == 'Patient' && param[:name] == '_id')
       end
 
-      def search_param_string(param)
-        value_string =
-          if patient_id_param?(param)
-            'patient_id'
-          else
-            "search_param_value('#{path_for_value(param[:path])}')"
-          end
+      # def search_param_string(param)
+      #   value_string =
+      #     if patient_id_param?(param)
+      #       'patient_id'
+      #     else
+      #       "search_param_value('#{path_for_value(param[:path])}')"
+      #     end
 
-        "#{' ' * 8}'#{param[:name]}': #{value_string}"
+      #   "#{' ' * 8}'#{param[:name]}': #{value_string}"
+      # end
+
+      def perform_test_string
+        fixed_value_search? ? 'perform_fixed_value_search_test' : 'perform_search_test'
       end
 
       def search_definition(name)

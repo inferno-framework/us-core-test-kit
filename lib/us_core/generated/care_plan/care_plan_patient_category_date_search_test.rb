@@ -28,12 +28,8 @@ module USCore
       scratch[:care_plan_resources] ||= []
     end
 
-    def search_params
-      {
-        'patient': patient_id,
-        'category': search_param_value('category'),
-        'date': search_param_value('period')
-      }
+    def search_param_names
+      ['patient', 'category', 'date']
     end
 
     run do

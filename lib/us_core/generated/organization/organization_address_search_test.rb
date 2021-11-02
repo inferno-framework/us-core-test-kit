@@ -26,10 +26,8 @@ module USCore
       scratch[:organization_resources] ||= []
     end
 
-    def search_params
-      {
-        'address': search_param_value('address')
-      }
+    def search_param_names
+      ['address']
     end
 
     run do

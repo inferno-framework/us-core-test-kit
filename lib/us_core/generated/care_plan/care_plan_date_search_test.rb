@@ -26,10 +26,8 @@ module USCore
       scratch[:care_plan_resources] ||= []
     end
 
-    def search_params
-      {
-        'date': search_param_value('period')
-      }
+    def search_param_names
+      ['date']
     end
 
     run do

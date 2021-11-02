@@ -31,7 +31,7 @@
 - :expectation: SHALL
   :names:
   - patient
-  - code
+  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :names:
@@ -83,7 +83,7 @@
 - :expectation: SHALL
   :names:
   - patient
-  - category
+  - code
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -1286,8 +1286,8 @@
   - http://hl7.org/fhir/StructureDefinition/Observation
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
 :tests:
-- :id: observation_lab_patient_code_search_test
-  :file_name: observation_lab_patient_code_search_test.rb
+- :id: observation_lab_patient_category_search_test
+  :file_name: observation_lab_patient_category_search_test.rb
 - :id: observation_lab_status_search_test
   :file_name: observation_lab_status_search_test.rb
 - :id: observation_lab_category_search_test
@@ -1304,8 +1304,8 @@
   :file_name: observation_lab_patient_category_status_search_test.rb
 - :id: observation_lab_patient_code_date_search_test
   :file_name: observation_lab_patient_code_date_search_test.rb
-- :id: observation_lab_patient_category_search_test
-  :file_name: observation_lab_patient_category_search_test.rb
+- :id: observation_lab_patient_code_search_test
+  :file_name: observation_lab_patient_code_search_test.rb
 - :id: observation_lab_read_test
   :file_name: observation_lab_read_test.rb
 :id: observation_lab

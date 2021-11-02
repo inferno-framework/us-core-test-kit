@@ -26,10 +26,8 @@ module USCore
       scratch[:head_circumference_resources] ||= []
     end
 
-    def search_params
-      {
-        'code': search_param_value('code')
-      }
+    def search_param_names
+      ['code']
     end
 
     run do

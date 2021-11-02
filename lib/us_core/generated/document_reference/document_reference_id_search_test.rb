@@ -26,10 +26,8 @@ module USCore
       scratch[:document_reference_resources] ||= []
     end
 
-    def search_params
-      {
-        '_id': search_param_value('id')
-      }
+    def search_param_names
+      ['_id']
     end
 
     run do

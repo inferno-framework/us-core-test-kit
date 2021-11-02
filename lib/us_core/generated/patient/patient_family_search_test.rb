@@ -26,10 +26,8 @@ module USCore
       scratch[:patient_resources] ||= []
     end
 
-    def search_params
-      {
-        'family': search_param_value('name.family')
-      }
+    def search_param_names
+      ['family']
     end
 
     run do
