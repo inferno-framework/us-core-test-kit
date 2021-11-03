@@ -14,8 +14,13 @@ module USCore
 
     id :location_name_search_test
 
-    def resource_type
-      'Location'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        first_search: true,
+        resource_type: 'Location',
+        search_param_names: ['name'],
+        saves_delayed_references: true
+      )
     end
 
     def self.metadata
@@ -26,12 +31,8 @@ module USCore
       scratch[:location_resources] ||= []
     end
 
-    def search_param_names
-      ['name']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

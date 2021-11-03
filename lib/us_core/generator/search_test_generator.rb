@@ -101,9 +101,6 @@ module USCore
       end
 
       def search_param_names_array
-        # search_params
-        #   .map { |param| search_param_string(param) }
-        #   .join(",\n")
         name_strings = search_params.map { |param| "'#{param[:name]}'" }
         "[#{name_strings.join(', ')}]"
       end
@@ -117,23 +114,28 @@ module USCore
           (resource_type == 'Patient' && param[:name] == '_id')
       end
 
-      # def search_param_string(param)
-      #   value_string =
-      #     if patient_id_param?(param)
-      #       'patient_id'
-      #     else
-      #       "search_param_value('#{path_for_value(param[:path])}')"
-      #     end
-
-      #   "#{' ' * 8}'#{param[:name]}': #{value_string}"
-      # end
-
-      def perform_test_string
-        fixed_value_search? ? 'perform_fixed_value_search_test' : 'perform_search_test'
-      end
-
       def search_definition(name)
         group_metadata.search_definitions[name.to_sym]
+      end
+
+      def saves_delayed_references?
+        first_search? && group_metadata.delayed_references.present?
+      end
+
+      def search_properties
+        {}.tap do |properties|
+          properties[:first_search] = 'true' if first_search?
+          properties[:fixed_value_search] = 'true' if fixed_value_search?
+          properties[:resource_type] = "'#{resource_type}'"
+          properties[:search_param_names] = search_param_names_array
+          properties[:saves_delayed_references] = 'true' if saves_delayed_references?
+        end
+      end
+
+      def search_test_properties_string
+        search_properties
+          .map { |key, value| "#{' ' * 8}#{key}: #{value}" }
+          .join(",\n")
       end
 
       def generate

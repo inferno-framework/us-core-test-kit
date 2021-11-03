@@ -14,8 +14,11 @@ module USCore
 
     id :bodyheight_category_search_test
 
-    def resource_type
-      'Observation'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Observation',
+        search_param_names: ['category']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:bodyheight_resources] ||= []
     end
 
-    def search_param_names
-      ['category']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

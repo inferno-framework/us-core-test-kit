@@ -14,8 +14,11 @@ module USCore
 
     id :care_plan_status_search_test
 
-    def resource_type
-      'CarePlan'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'CarePlan',
+        search_param_names: ['status']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:care_plan_resources] ||= []
     end
 
-    def search_param_names
-      ['status']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

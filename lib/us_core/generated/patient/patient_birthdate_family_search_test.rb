@@ -14,8 +14,11 @@ module USCore
 
     id :patient_birthdate_family_search_test
 
-    def resource_type
-      'Patient'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Patient',
+        search_param_names: ['birthdate', 'family']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:patient_resources] ||= []
     end
 
-    def search_param_names
-      ['birthdate', 'family']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

@@ -16,8 +16,13 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'CareTeam'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        first_search: true,
+        resource_type: 'CareTeam',
+        search_param_names: ['patient'],
+        saves_delayed_references: true
+      )
     end
 
     def self.metadata
@@ -28,12 +33,8 @@ module USCore
       scratch[:care_team_resources] ||= []
     end
 
-    def search_param_names
-      ['patient']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

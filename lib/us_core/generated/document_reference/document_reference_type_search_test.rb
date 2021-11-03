@@ -14,8 +14,11 @@ module USCore
 
     id :document_reference_type_search_test
 
-    def resource_type
-      'DocumentReference'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'DocumentReference',
+        search_param_names: ['type']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:document_reference_resources] ||= []
     end
 
-    def search_param_names
-      ['type']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

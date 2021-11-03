@@ -14,8 +14,11 @@ module USCore
 
     id :encounter__id_search_test
 
-    def resource_type
-      'Encounter'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Encounter',
+        search_param_names: ['_id']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:encounter_resources] ||= []
     end
 
-    def search_param_names
-      ['_id']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

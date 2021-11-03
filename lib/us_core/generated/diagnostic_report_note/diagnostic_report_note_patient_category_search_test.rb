@@ -16,8 +16,14 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'DiagnosticReport'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        first_search: true,
+        fixed_value_search: true,
+        resource_type: 'DiagnosticReport',
+        search_param_names: ['patient', 'category'],
+        saves_delayed_references: true
+      )
     end
 
     def self.metadata
@@ -28,12 +34,8 @@ module USCore
       scratch[:diagnostic_report_note_resources] ||= []
     end
 
-    def search_param_names
-      ['patient', 'category']
-    end
-
     run do
-      perform_fixed_value_search_test
+      run_search_test
     end
   end
 end

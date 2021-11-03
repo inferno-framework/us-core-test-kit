@@ -16,8 +16,13 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'Observation'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        first_search: true,
+        fixed_value_search: true,
+        resource_type: 'Observation',
+        search_param_names: ['patient', 'code']
+      )
     end
 
     def self.metadata
@@ -28,12 +33,8 @@ module USCore
       scratch[:heartrate_resources] ||= []
     end
 
-    def search_param_names
-      ['patient', 'code']
-    end
-
     run do
-      perform_fixed_value_search_test
+      run_search_test
     end
   end
 end

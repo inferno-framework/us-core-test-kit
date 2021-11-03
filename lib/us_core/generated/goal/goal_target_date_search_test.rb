@@ -14,8 +14,11 @@ module USCore
 
     id :goal_target_date_search_test
 
-    def resource_type
-      'Goal'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Goal',
+        search_param_names: ['target-date']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:goal_resources] ||= []
     end
 
-    def search_param_names
-      ['target-date']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

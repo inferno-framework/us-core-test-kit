@@ -16,8 +16,11 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'Immunization'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Immunization',
+        search_param_names: ['patient', 'date']
+      )
     end
 
     def self.metadata
@@ -28,12 +31,8 @@ module USCore
       scratch[:immunization_resources] ||= []
     end
 
-    def search_param_names
-      ['patient', 'date']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

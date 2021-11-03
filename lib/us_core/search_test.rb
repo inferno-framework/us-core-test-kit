@@ -1,27 +1,24 @@
+require_relative 'search_test_properties'
+
 module USCore
   module SearchTest
-    def self.included(klass)
-      klass.extend(ClassMethods)
-    end
+    extend Forwardable
 
-    module ClassMethods
-      def references_to_save
-        @references_to_save ||= metadata.delayed_references.freeze
-      end
+    def_delegators 'self.class', :metadata
+    def_delegators 'properties',
+                   :resource_type,
+                   :search_param_names,
+                   :saves_delayed_references?,
+                   :first_search?,
+                   :fixed_value_search?
+    # def self.included(klass)
+    #   klass.extend(ClassMethods)
+    # end
 
-      def first_search?
-        @first_search ||= id.end_with?(first_search_id)
-      end
-
-      def first_search_id
-        metadata.tests
-          .select { |test| test[:id].include? 'search' }
-          .first[:id]
-      end
-
-      def need_to_save_references?
-        first_search? && references_to_save.present?
-      end
+    # module ClassMethods
+    # end
+    def references_to_save
+      @references_to_save ||= metadata.delayed_references.freeze
     end
 
     def fixed_value_search_param_name
@@ -29,7 +26,7 @@ module USCore
     end
 
     def fixed_value_search_param_values
-      self.class.metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
+      metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
     end
 
     def fixed_value_search_params(value)
@@ -50,8 +47,16 @@ module USCore
     end
 
     def search_param_path(name)
-      path = self.class.metadata.search_definitions[name.to_sym][:path]
+      path = metadata.search_definitions[name.to_sym][:path]
       path == 'class' ? 'local_class' : path
+    end
+
+    def run_search_test
+      if fixed_value_search?
+        perform_fixed_value_search_test
+      else
+        perform_search_test
+      end
     end
 
     def perform_search_test
@@ -88,7 +93,7 @@ module USCore
       assert_response_status(200)
 
       # NOTE: do we even want to do any validation here?
-      assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
+      # assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
@@ -101,7 +106,7 @@ module USCore
 
       # TODO: handle search variants: references, codes, POST
 
-      save_delayed_references(resources_returned) if self.class.need_to_save_references?
+      save_delayed_references(resources_returned) if saves_delayed_references?
 
       resources_returned
     end
@@ -248,7 +253,7 @@ module USCore
 
     def save_delayed_references(resources)
       resources.each do |resource|
-        self.class.references_to_save.each do |reference_to_save|
+        references_to_save.each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
             .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? }
             .each do |reference|

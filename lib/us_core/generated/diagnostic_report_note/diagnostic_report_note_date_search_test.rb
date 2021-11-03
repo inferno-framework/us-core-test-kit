@@ -14,8 +14,11 @@ module USCore
 
     id :diagnostic_report_note_date_search_test
 
-    def resource_type
-      'DiagnosticReport'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'DiagnosticReport',
+        search_param_names: ['date']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:diagnostic_report_note_resources] ||= []
     end
 
-    def search_param_names
-      ['date']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

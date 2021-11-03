@@ -14,8 +14,11 @@ module USCore
 
     id :organization_address_search_test
 
-    def resource_type
-      'Organization'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Organization',
+        search_param_names: ['address']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:organization_resources] ||= []
     end
 
-    def search_param_names
-      ['address']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

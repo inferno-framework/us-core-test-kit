@@ -14,8 +14,11 @@ module USCore
 
     id :smokingstatus_date_search_test
 
-    def resource_type
-      'Observation'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Observation',
+        search_param_names: ['date']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:smokingstatus_resources] ||= []
     end
 
-    def search_param_names
-      ['date']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

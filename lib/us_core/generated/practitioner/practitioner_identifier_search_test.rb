@@ -14,8 +14,11 @@ module USCore
 
     id :practitioner_identifier_search_test
 
-    def resource_type
-      'Practitioner'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Practitioner',
+        search_param_names: ['identifier']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:practitioner_resources] ||= []
     end
 
-    def search_param_names
-      ['identifier']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

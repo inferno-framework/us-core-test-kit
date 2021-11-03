@@ -16,8 +16,11 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'AllergyIntolerance'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'AllergyIntolerance',
+        search_param_names: ['patient', 'clinical-status']
+      )
     end
 
     def self.metadata
@@ -28,12 +31,8 @@ module USCore
       scratch[:allergy_intolerance_resources] ||= []
     end
 
-    def search_param_names
-      ['patient', 'clinical-status']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

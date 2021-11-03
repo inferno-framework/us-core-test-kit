@@ -14,8 +14,11 @@ module USCore
 
     id :location_address_postalcode_search_test
 
-    def resource_type
-      'Location'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Location',
+        search_param_names: ['address-postalcode']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:location_resources] ||= []
     end
 
-    def search_param_names
-      ['address-postalcode']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

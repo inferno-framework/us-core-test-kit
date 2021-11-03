@@ -14,8 +14,11 @@ module USCore
 
     id :bodyweight_status_search_test
 
-    def resource_type
-      'Observation'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Observation',
+        search_param_names: ['status']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:bodyweight_resources] ||= []
     end
 
-    def search_param_names
-      ['status']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

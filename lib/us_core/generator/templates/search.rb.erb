@@ -17,8 +17,10 @@ module USCore
 <% if needs_patient_id? %>
     input :patient_id, default: '85'
 <% end %>
-    def resource_type
-      '<%= resource_type %>'
+    def properties
+      @properties ||= SearchTestProperties.new(
+<%= search_test_properties_string %>
+      )
     end
 
     def self.metadata
@@ -29,12 +31,8 @@ module USCore
       scratch[:<%= profile_identifier %>_resources] ||= []
     end
 
-    def search_param_names
-      <%= search_param_names_array %>
-    end
-
     run do
-      <%= perform_test_string %>
+      run_search_test
     end
   end
 end

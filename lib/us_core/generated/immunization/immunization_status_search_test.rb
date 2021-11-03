@@ -14,8 +14,11 @@ module USCore
 
     id :immunization_status_search_test
 
-    def resource_type
-      'Immunization'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Immunization',
+        search_param_names: ['status']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:immunization_resources] ||= []
     end
 
-    def search_param_names
-      ['status']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

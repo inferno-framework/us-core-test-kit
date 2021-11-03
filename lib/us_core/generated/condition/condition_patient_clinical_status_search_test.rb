@@ -16,8 +16,11 @@ module USCore
 
     input :patient_id, default: '85'
 
-    def resource_type
-      'Condition'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Condition',
+        search_param_names: ['patient', 'clinical-status']
+      )
     end
 
     def self.metadata
@@ -28,12 +31,8 @@ module USCore
       scratch[:condition_resources] ||= []
     end
 
-    def search_param_names
-      ['patient', 'clinical-status']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end

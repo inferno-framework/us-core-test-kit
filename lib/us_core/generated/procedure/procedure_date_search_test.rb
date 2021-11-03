@@ -14,8 +14,11 @@ module USCore
 
     id :procedure_date_search_test
 
-    def resource_type
-      'Procedure'
+    def properties
+      @properties ||= SearchTestProperties.new(
+        resource_type: 'Procedure',
+        search_param_names: ['date']
+      )
     end
 
     def self.metadata
@@ -26,12 +29,8 @@ module USCore
       scratch[:procedure_resources] ||= []
     end
 
-    def search_param_names
-      ['date']
-    end
-
     run do
-      perform_search_test
+      run_search_test
     end
   end
 end
