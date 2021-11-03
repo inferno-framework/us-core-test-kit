@@ -75,22 +75,31 @@ module USCore
     end
 
     def perform_search(params)
+      # TODO: skip if not supported?
+
       check_search_params(params)
 
       fhir_search resource_type, params: params
 
+      # TODO: handle medication inclusion
       # TODO: handle searches w/status
+      # TODO: handle search comparators
 
       assert_response_status(200)
 
+      # NOTE: do we even want to do any validation here?
       assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
+      # TODO: validate that responses match query
+
       scratch_resources.concat(resources_returned).uniq!
       # scratch[:resources_returned] = resources_returned
       # scratch[:search_parameters_used] = resources_returned
+
+      # TODO: handle search variants: references, codes, POST
 
       save_delayed_references(resources_returned) if self.class.need_to_save_references?
 

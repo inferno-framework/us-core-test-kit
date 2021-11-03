@@ -17,8 +17,18 @@ module USCore
       extract_metadata
       generate_search_tests
       generate_read_tests
+      # generate_vread_tests
+      # generate_history_tests
+      # generate_provenance_tests
+      # generate_validation_tests
+      # generate_must_support_tests
+      # generate_reference_resolution_tests
       generate_groups
       generate_suites
+
+      # These won't be generated, but we need them:
+      # - CapabilityStatement group
+      # - DAR group
     end
 
     def extract_metadata
