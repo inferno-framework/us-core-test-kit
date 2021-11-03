@@ -54,18 +54,36 @@ module USCore
       path == 'class' ? 'local_class' : path
     end
 
-    def perform_search_test(reply_handler = nil)
+    def perform_search_test
       search_params = search_params_with_values
-      check_search_params(search_params)
 
-      fhir_search resource_type, params: search_params
+      resources_returned = perform_search(search_params)
+
+      skip_if resources_returned.empty?, no_resources_skip_message
+    end
+
+    def perform_fixed_value_search_test
+      all_resources_returned = []
+      fixed_value_search_param_values.each do |fixed_value|
+        search_params = fixed_value_search_params(fixed_value)
+
+        resources_returned = perform_search(search_params)
+        all_resources_returned.concat(resources_returned)
+      end
+
+      skip_if all_resources_returned.empty?, no_resources_skip_message
+    end
+
+    def perform_search(params)
+      check_search_params(params)
+
+      fhir_search resource_type, params: params
 
       # TODO: handle searches w/status
 
       assert_response_status(200)
 
-      # TODO:
-      # assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
+      assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
@@ -76,37 +94,7 @@ module USCore
 
       save_delayed_references(resources_returned) if self.class.need_to_save_references?
 
-      skip_if resources_returned.empty?, no_resources_skip_message
-    end
-
-    def perform_fixed_value_search_test(reply_handler = nil)
-      all_resources_returned = []
-      fixed_value_search_param_values.each do |fixed_value|
-        search_params = fixed_value_search_params(fixed_value)
-        check_search_params(search_params)
-
-        fhir_search resource_type, params: search_params
-
-        # TODO: handle searches w/status
-
-        assert_response_status(200)
-
-        # TODO:
-        # assert_valid_bundle_entries(resource_types: [resource, 'OperationOutcome'])
-
-        resources_returned =
-          fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
-        info("#{resources_returned.length} resources found")
-        all_resources_returned.concat(resources_returned)
-
-        scratch_resources.concat(resources_returned).uniq!
-        # scratch[:resources_returned] = resources_returned
-        # scratch[:search_parameters_used] = resources_returned
-
-        save_delayed_references(resources_returned) if self.class.need_to_save_references?
-      end
-
-      skip_if all_resources_returned.empty?, no_resources_skip_message
+      resources_returned
     end
 
     def check_search_params(params)
