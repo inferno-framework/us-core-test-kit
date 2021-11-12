@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pulse_oximetry_resources] ||= []
+      scratch[:pulse_oximetry_resources] ||= {}
     end
 
     run do

@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:document_reference_resources] ||= []
+      scratch[:document_reference_resources] ||= {}
     end
 
     run do

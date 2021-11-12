@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:procedure_resources] ||= []
+      scratch[:procedure_resources] ||= {}
     end
 
     run do

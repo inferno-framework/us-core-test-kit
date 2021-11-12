@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:bodyweight_resources] ||= []
+      scratch[:bodyweight_resources] ||= {}
     end
 
     run do

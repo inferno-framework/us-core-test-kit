@@ -38,8 +38,13 @@ module USCore
 
     id :us_core
 
-    input :url, default: 'https://inferno.healthit.gov/reference-server/r4'
-    input :bearer_token, default: 'SAMPLE_TOKEN'
+    input :url,
+      title: 'FHIR Endpoint',
+      description: 'URL of the FHIR endpoint',
+      default: 'https://inferno.healthit.gov/reference-server/r4'
+    input :bearer_token,
+      title: 'Bearer Token',
+      default: 'SAMPLE_TOKEN'
 
     fhir_client do
       url :url

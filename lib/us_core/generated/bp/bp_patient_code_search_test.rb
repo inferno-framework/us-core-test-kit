@@ -14,7 +14,10 @@ module USCore
 
     id :bp_patient_code_search_test
 
-    input :patient_id, default: '85'
+    input :patient_ids,
+      title: 'Patient IDs',
+      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
+      default: '85,355'
 
     def properties
       @properties ||= SearchTestProperties.new(
@@ -30,7 +33,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:bp_resources] ||= []
+      scratch[:bp_resources] ||= {}
     end
 
     run do

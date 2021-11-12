@@ -65,7 +65,7 @@ module USCore
         if group_metadata.delayed?
           "scratch.dig(:references, '#{resource_type}')"
         else
-          'scratch_resources'
+          'all_scratch_resources'
         end
       end
 

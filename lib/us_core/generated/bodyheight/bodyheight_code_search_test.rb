@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:bodyheight_resources] ||= []
+      scratch[:bodyheight_resources] ||= {}
     end
 
     run do

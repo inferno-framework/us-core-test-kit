@@ -14,11 +14,11 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:diagnostic_report_lab_resources] ||= []
+      scratch[:diagnostic_report_lab_resources] ||= {}
     end
 
     run do
-      perform_read_test(scratch_resources)
+      perform_read_test(all_scratch_resources)
     end
   end
 end

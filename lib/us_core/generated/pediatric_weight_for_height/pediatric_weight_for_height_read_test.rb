@@ -14,11 +14,11 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pediatric_weight_for_height_resources] ||= []
+      scratch[:pediatric_weight_for_height_resources] ||= {}
     end
 
     run do
-      perform_read_test(scratch_resources)
+      perform_read_test(all_scratch_resources)
     end
   end
 end

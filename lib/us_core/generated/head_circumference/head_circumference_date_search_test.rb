@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:head_circumference_resources] ||= []
+      scratch[:head_circumference_resources] ||= {}
     end
 
     run do

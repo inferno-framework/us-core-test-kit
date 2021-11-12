@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:immunization_resources] ||= []
+      scratch[:immunization_resources] ||= {}
     end
 
     run do

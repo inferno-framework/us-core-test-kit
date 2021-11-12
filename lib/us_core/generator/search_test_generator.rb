@@ -109,10 +109,10 @@ module USCore
         path == 'class' ? 'local_class' : path
       end
 
-      def patient_id_param?(param)
-        param[:name] == 'patient' ||
-          (resource_type == 'Patient' && param[:name] == '_id')
-      end
+      # def patient_id_param?(param)
+      #   param[:name] == 'patient' ||
+      #     (resource_type == 'Patient' && param[:name] == '_id')
+      # end
 
       def search_definition(name)
         group_metadata.search_definitions[name.to_sym]

@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:heartrate_resources] ||= []
+      scratch[:heartrate_resources] ||= {}
     end
 
     run do

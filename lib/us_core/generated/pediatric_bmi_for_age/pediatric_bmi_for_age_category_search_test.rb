@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pediatric_bmi_for_age_resources] ||= []
+      scratch[:pediatric_bmi_for_age_resources] ||= {}
     end
 
     run do

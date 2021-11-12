@@ -15,6 +15,7 @@ use Rack::Static, urls: ['/public'], root: inferno_path
 
 Inferno::Application.finalize!
 
+require_relative 'lib/us_core/request_logger'
 use Inferno::Utils::Middleware::RequestLogger
 
 run Inferno::Web.app

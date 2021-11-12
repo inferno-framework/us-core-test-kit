@@ -14,7 +14,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:<%= profile_identifier %>_resources] ||= []
+      scratch[:<%= profile_identifier %>_resources] ||= {}
     end
 
     run do

@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:smokingstatus_resources] ||= []
+      scratch[:smokingstatus_resources] ||= {}
     end
 
     run do

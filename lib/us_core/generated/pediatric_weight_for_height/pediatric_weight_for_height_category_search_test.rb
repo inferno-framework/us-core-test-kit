@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:pediatric_weight_for_height_resources] ||= []
+      scratch[:pediatric_weight_for_height_resources] ||= {}
     end
 
     run do

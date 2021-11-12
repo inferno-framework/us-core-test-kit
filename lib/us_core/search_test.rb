@@ -17,72 +17,40 @@ module USCore
 
     # module ClassMethods
     # end
-    def references_to_save
-      @references_to_save ||= metadata.delayed_references.freeze
+
+    def all_search_params
+      @all_search_params ||=
+        patient_id_list.each_with_object({}) do |patient_id, params|
+          params[patient_id] ||= []
+          new_params =
+            if fixed_value_search?
+              fixed_value_search_param_values.map { |value| fixed_value_search_params(value, patient_id) }
+            else
+              [search_params_with_values(patient_id)]
+            end
+          new_params.reject! { |params| params.any?(&:blank?) }
+
+          params[patient_id].concat(new_params)
+        end
     end
 
-    def fixed_value_search_param_name
-      (search_param_names - ['patient']).first
-    end
-
-    def fixed_value_search_param_values
-      metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
-    end
-
-    def fixed_value_search_params(value)
-      search_param_names.each_with_object({}) do |name, params|
-        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
-      end
-    end
-
-    def search_params_with_values
-      search_param_names.each_with_object({}) do |name, params|
-        value = patient_id_param?(name) ? patient_id : search_param_value(search_param_path(name))
-        params[name] = value
-      end
-    end
-
-    def patient_id_param?(name)
-      name == 'patient' || (name == '_id' && resource_type == 'Patient')
-    end
-
-    def search_param_path(name)
-      path = metadata.search_definitions[name.to_sym][:path]
-      path == 'class' ? 'local_class' : path
+    def any_valid_search_params?
+      all_search_params.any? { |_patient_id, params| params.present? }
     end
 
     def run_search_test
-      if fixed_value_search?
-        perform_fixed_value_search_test
-      else
-        perform_search_test
-      end
-    end
+      skip_if !any_valid_search_params?, unable_to_resolve_params_message
 
-    def perform_search_test
-      search_params = search_params_with_values
-
-      resources_returned = perform_search(search_params)
+      resources_returned =
+        all_search_params.flat_map do |patient_id, params_list|
+          params_list.flat_map { |params| perform_search(params, patient_id) }
+        end
 
       skip_if resources_returned.empty?, no_resources_skip_message
     end
 
-    def perform_fixed_value_search_test
-      all_resources_returned = []
-      fixed_value_search_param_values.each do |fixed_value|
-        search_params = fixed_value_search_params(fixed_value)
-
-        resources_returned = perform_search(search_params)
-        all_resources_returned.concat(resources_returned)
-      end
-
-      skip_if all_resources_returned.empty?, no_resources_skip_message
-    end
-
-    def perform_search(params)
+    def perform_search(params, patient_id)
       # TODO: skip if not supported?
-
-      check_search_params(params)
 
       fhir_search resource_type, params: params
 
@@ -100,7 +68,8 @@ module USCore
 
       # TODO: validate that responses match query
 
-      scratch_resources.concat(resources_returned).uniq!
+      all_scratch_resources.concat(resources_returned).uniq!
+      scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
       # scratch[:resources_returned] = resources_returned
       # scratch[:search_parameters_used] = resources_returned
 
@@ -111,16 +80,74 @@ module USCore
       resources_returned
     end
 
-    def check_search_params(params)
-      empty_search_params = params.select { |_name, value| value.blank? }
+    def all_scratch_resources
+      scratch_resources[:all] ||= []
+    end
 
-      skip_if empty_search_params.present?, empty_search_params_message(empty_search_params)
+    def scratch_resources_for_patient(patient_id)
+      return all_scratch_resources if patient_id.nil?
+
+      scratch_resources[patient_id] ||= []
+    end
+
+    def references_to_save
+      @references_to_save ||= metadata.delayed_references.freeze
+    end
+
+    def fixed_value_search_param_name
+      (search_param_names - ['patient']).first
+    end
+
+    def fixed_value_search_param_values
+      metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
+    end
+
+    def fixed_value_search_params(value, patient_id)
+      search_param_names.each_with_object({}) do |name, params|
+        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+      end
+    end
+
+    def search_params_with_values(patient_id)
+      search_param_names.each_with_object({}) do |name, params|
+        value = patient_id_param?(name) ? patient_id : search_param_value(search_param_path(name), patient_id)
+        params[name] = value
+      end
+    end
+
+    def patient_id_list
+      return [nil] unless respond_to? :patient_ids
+
+      patient_ids.split(',').map(&:strip)
+    end
+
+    def patient_search?
+      search_param_names.any? { |name| patient_id_param? name }
+    end
+
+    def patient_id_param?(name)
+      name == 'patient' || (name == '_id' && resource_type == 'Patient')
+    end
+
+    def search_param_path(name)
+      path = metadata.search_definitions[name.to_sym][:path]
+      path == 'class' ? 'local_class' : path
+    end
+
+    def all_search_params_present?(params)
+      params.all? { |_name, value| value.present? }
+    end
+
+    def array_of_codes(array)
+      array.map { |name| "`#{name}`" }.join(', ')
+    end
+
+    def unable_to_resolve_params_message
+      "Could not find values for all search params #{array_of_codes(search_param_names)}"
     end
 
     def empty_search_params_message(empty_search_params)
-      list = empty_search_params.keys.map { |name| "`#{name}`" }.join(', ')
-
-      "Could not find values for the search parameters #{list}"
+      "Could not find values for the search parameters #{array_of_codes(empty_search_params.keys)}"
     end
 
     def no_resources_skip_message
@@ -198,8 +225,8 @@ module USCore
       nil
     end
 
-    def search_param_value(path, include_system = false)
-      element = find_a_value_at(scratch_resources, path)
+    def search_param_value(path, patient_id, include_system = false)
+      element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
       search_value =
         case element
         when FHIR::Period

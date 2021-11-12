@@ -1,5 +1,9 @@
 module USCore
   module ReadTest
+    def all_scratch_resources
+      scratch_resources[:all] ||= []
+    end
+
     def perform_read_test(resources, reply_handler = nil)
       skip_if resources.blank?, no_resources_skip_message
 
@@ -26,7 +30,7 @@ module USCore
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
 
       if resource_given.is_a? FHIR::Reference
-        scratch_resources << resource
+        all_scratch_resources << resource
       end
     end
 

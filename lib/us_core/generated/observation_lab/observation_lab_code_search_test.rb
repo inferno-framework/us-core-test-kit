@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:observation_lab_resources] ||= []
+      scratch[:observation_lab_resources] ||= {}
     end
 
     run do

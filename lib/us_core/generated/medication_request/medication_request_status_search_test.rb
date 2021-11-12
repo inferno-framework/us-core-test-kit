@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:medication_request_resources] ||= []
+      scratch[:medication_request_resources] ||= {}
     end
 
     run do

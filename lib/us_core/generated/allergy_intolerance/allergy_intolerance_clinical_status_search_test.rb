@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:allergy_intolerance_resources] ||= []
+      scratch[:allergy_intolerance_resources] ||= {}
     end
 
     run do

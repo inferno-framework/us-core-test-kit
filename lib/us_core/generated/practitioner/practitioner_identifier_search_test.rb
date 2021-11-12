@@ -26,7 +26,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:practitioner_resources] ||= []
+      scratch[:practitioner_resources] ||= {}
     end
 
     run do

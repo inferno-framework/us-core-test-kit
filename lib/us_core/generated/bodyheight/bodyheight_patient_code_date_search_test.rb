@@ -14,7 +14,10 @@ module USCore
 
     id :bodyheight_patient_code_date_search_test
 
-    input :patient_id, default: '85'
+    input :patient_ids,
+      title: 'Patient IDs',
+      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
+      default: '85,355'
 
     def properties
       @properties ||= SearchTestProperties.new(
@@ -28,7 +31,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:bodyheight_resources] ||= []
+      scratch[:bodyheight_resources] ||= {}
     end
 
     run do

@@ -14,7 +14,7 @@ module USCore
     end
 
     def scratch_resources
-      scratch[:provenance_resources] ||= []
+      scratch[:provenance_resources] ||= {}
     end
 
     run do
