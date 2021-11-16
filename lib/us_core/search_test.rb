@@ -10,7 +10,8 @@ module USCore
                    :search_param_names,
                    :saves_delayed_references?,
                    :first_search?,
-                   :fixed_value_search?
+                   :fixed_value_search?,
+                   :possible_status_search?
     # def self.included(klass)
     #   klass.extend(ClassMethods)
     # end
@@ -39,6 +40,7 @@ module USCore
     end
 
     def run_search_test
+      # TODO: skip if not supported?
       skip_if !any_valid_search_params?, unable_to_resolve_params_message
 
       resources_returned =
@@ -50,12 +52,11 @@ module USCore
     end
 
     def perform_search(params, patient_id)
-      # TODO: skip if not supported?
-
       fhir_search resource_type, params: params
 
+      perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
+
       # TODO: handle medication inclusion
-      # TODO: handle searches w/status
       # TODO: handle search comparators
 
       assert_response_status(200)
@@ -78,6 +79,33 @@ module USCore
       save_delayed_references(resources_returned) if saves_delayed_references?
 
       resources_returned
+    end
+
+    def perform_search_with_status(original_params, patient_id)
+      assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
+      # TODO: warn about documenting status requirements
+      status_search_values.flat_map do |status_value|
+        search_params = original_params.merge('status': status_value)
+
+        fhir_search resource_type, params: search_params
+
+        assert_response_status(200)
+        assert_resource_type(:bundle)
+
+        entries = resource.entry.select { |entry| entry.resource.resourceType == 'Observation' }
+
+        if entries.present?
+          original_params.merge!('status': status_value)
+          break
+        end
+      end
+    end
+
+    def status_search_values
+      definition = metadata.search_definitions[:status]
+      return [] if definition.blank?
+
+      definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : [definition[:values]]
     end
 
     def all_scratch_resources

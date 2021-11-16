@@ -22,7 +22,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'MedicationRequest',
-        search_param_names: ['patient', 'intent', 'encounter']
+        search_param_names: ['patient', 'intent', 'encounter'],
+        possible_status_search: true
       )
     end
 

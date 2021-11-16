@@ -24,7 +24,8 @@ module USCore
         first_search: true,
         fixed_value_search: true,
         resource_type: 'Observation',
-        search_param_names: ['patient', 'code']
+        search_param_names: ['patient', 'code'],
+        possible_status_search: true
       )
     end
 

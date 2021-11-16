@@ -25,7 +25,8 @@ module USCore
         fixed_value_search: true,
         resource_type: 'MedicationRequest',
         search_param_names: ['patient', 'intent'],
-        saves_delayed_references: true
+        saves_delayed_references: true,
+        possible_status_search: true
       )
     end
 

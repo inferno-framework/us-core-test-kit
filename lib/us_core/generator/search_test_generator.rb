@@ -122,6 +122,10 @@ module USCore
         first_search? && group_metadata.delayed_references.present?
       end
 
+      def possible_status_search?
+        !search_metadata[:names].include?('status') && group_metadata.search_definitions.key?(:status)
+      end
+
       def search_properties
         {}.tap do |properties|
           properties[:first_search] = 'true' if first_search?
@@ -129,6 +133,7 @@ module USCore
           properties[:resource_type] = "'#{resource_type}'"
           properties[:search_param_names] = search_param_names_array
           properties[:saves_delayed_references] = 'true' if saves_delayed_references?
+          properties[:possible_status_search] = 'true' if possible_status_search?
         end
       end
 

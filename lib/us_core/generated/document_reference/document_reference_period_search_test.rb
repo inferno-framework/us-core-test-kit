@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'DocumentReference',
-        search_param_names: ['period']
+        search_param_names: ['period'],
+        possible_status_search: true
       )
     end
 

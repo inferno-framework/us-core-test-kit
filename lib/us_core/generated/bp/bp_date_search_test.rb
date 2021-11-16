@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Observation',
-        search_param_names: ['date']
+        search_param_names: ['date'],
+        possible_status_search: true
       )
     end
 

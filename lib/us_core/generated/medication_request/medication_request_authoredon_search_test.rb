@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'MedicationRequest',
-        search_param_names: ['authoredon']
+        search_param_names: ['authoredon'],
+        possible_status_search: true
       )
     end
 

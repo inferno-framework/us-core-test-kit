@@ -5,7 +5,8 @@ module USCore
       :search_param_names,
       :first_search,
       :fixed_value_search,
-      :saves_delayed_references
+      :saves_delayed_references,
+      :possible_status_search
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }
@@ -28,6 +29,10 @@ module USCore
 
     def saves_delayed_references?
       !!saves_delayed_references
+    end
+
+    def possible_status_search?
+      !!possible_status_search
     end
   end
 end

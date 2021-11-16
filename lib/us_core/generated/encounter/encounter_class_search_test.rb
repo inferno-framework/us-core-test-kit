@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Encounter',
-        search_param_names: ['class']
+        search_param_names: ['class'],
+        possible_status_search: true
       )
     end
 

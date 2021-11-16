@@ -23,7 +23,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Immunization',
-        search_param_names: ['patient']
+        search_param_names: ['patient'],
+        possible_status_search: true
       )
     end
 
