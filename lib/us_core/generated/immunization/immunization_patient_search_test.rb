@@ -24,7 +24,8 @@ module USCore
         first_search: true,
         resource_type: 'Immunization',
         search_param_names: ['patient'],
-        possible_status_search: true
+        possible_status_search: true,
+        test_reference_variants: true
       )
     end
 

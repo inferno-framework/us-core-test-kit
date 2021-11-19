@@ -27,7 +27,8 @@ module USCore
         search_param_names: ['patient', 'intent'],
         saves_delayed_references: true,
         possible_status_search: true,
-        test_medication_inclusion: true
+        test_medication_inclusion: true,
+        test_reference_variants: true
       )
     end
 

@@ -25,7 +25,8 @@ module USCore
         resource_type: 'DocumentReference',
         search_param_names: ['patient'],
         saves_delayed_references: true,
-        possible_status_search: true
+        possible_status_search: true,
+        test_reference_variants: true
       )
     end
 

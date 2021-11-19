@@ -27,7 +27,8 @@ module USCore
         search_param_names: ['patient', 'category'],
         saves_delayed_references: true,
         possible_status_search: true,
-        token_search_params: ['category']
+        token_search_params: ['category'],
+        test_reference_variants: true
       )
     end
 

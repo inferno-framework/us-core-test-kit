@@ -155,6 +155,7 @@ module USCore
           properties[:possible_status_search] = 'true' if possible_status_search?
           properties[:test_medication_inclusion] = 'true' if resource_type == 'MedicationRequest'
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
+          properties[:test_reference_variants] = 'true' if first_search? && search_param_names.include?('patient')
         end
       end
 

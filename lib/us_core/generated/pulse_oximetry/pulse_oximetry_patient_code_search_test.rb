@@ -26,7 +26,8 @@ module USCore
         resource_type: 'Observation',
         search_param_names: ['patient', 'code'],
         possible_status_search: true,
-        token_search_params: ['code']
+        token_search_params: ['code'],
+        test_reference_variants: true
       )
     end
 

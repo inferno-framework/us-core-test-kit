@@ -13,7 +13,8 @@ module USCore
                    :fixed_value_search?,
                    :possible_status_search?,
                    :test_medication_inclusion?,
-                   :token_search_params
+                   :token_search_params,
+                   :test_reference_variants?
     # def self.included(klass)
     #   klass.extend(ClassMethods)
     # end
@@ -68,23 +69,65 @@ module USCore
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      test_medication_inclusion(resources_returned, params, patient_id) if test_medication_inclusion?
       # TODO: validate that responses match query
 
       all_scratch_resources.concat(resources_returned).uniq!
       scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
-      # scratch[:resources_returned] = resources_returned
-      # scratch[:search_parameters_used] = resources_returned
-
-      # TODO: handle search variants: references, POST
-      perform_search_with_system(params, patient_id) if token_search_params.present?
 
       save_delayed_references(resources_returned) if saves_delayed_references?
+
+      return resources_returned if all_search_variants_tested?
+
+      # TODO: handle search variants: POST
+      test_medication_inclusion(resources_returned, params, patient_id) if test_medication_inclusion?
+      perform_reference_with_type_search(params, resources_returned.count) if test_reference_variants?
+      perform_search_with_system(params, patient_id) if token_search_params.present?
 
       resources_returned
     end
 
+    def search_variant_test_records
+      @search_variant_test_records ||= initial_search_variant_test_records
+    end
+
+    def initial_search_variant_test_records
+      {}.tap do |records|
+        records[:medication_inclusion] = false if test_medication_inclusion?
+        records[:reference_variants] = false if test_reference_variants?
+        records[:token_variants] = false if token_search_params.present?
+      end
+    end
+
+    def all_search_variants_tested?
+      search_variant_test_records.all? { |_variant, tested| tested }
+    end
+
+    def perform_reference_with_type_search(params, resource_count)
+      return if resource_count == 0
+      return if search_variant_test_records[:reference_variants]
+
+      new_search_params = params.merge('patient' => "Patient/#{params['patient']}")
+      fhir_search resource_type, params: new_search_params
+
+      assert_response_status(200)
+      assert_resource_type(:bundle)
+
+      new_resource_count =
+        fetch_all_bundled_resources
+          .select { |resource| resource.resourceType == resource_type }
+          .count
+
+      assert new_resource_count == resource_count,
+             "Expected search by `#{params['patient']}` to to return the same results as searching " \
+             "by `#{new_search_params['patient']}`, but found #{resource_count} resources with " \
+             "`#{params['patient']}` and #{new_resource_count} with `#{new_search_params['patient']}`"
+
+      search_variant_test_records[:reference_variants] = true
+    end
+
     def perform_search_with_system(params, patient_id)
+      return if search_variant_test_records[:token_variants]
+
       new_search_params = token_search_params.each_with_object({}) do |name, search_params|
         search_params[name] = search_param_value(name, patient_id, include_system: true)
       end
@@ -101,6 +144,8 @@ module USCore
           .select { |resource| resource.resourceType == resource_type }
 
       assert resources_returned.present?, "No resources were returned when searching by `system|code`"
+
+      search_variant_test_records[:token_variants] = true
     end
 
     def perform_search_with_status(original_params, patient_id)
@@ -131,6 +176,8 @@ module USCore
     end
 
     def test_medication_inclusion(medication_requests, params, patient_id)
+      return if search_variant_test_records[:medication_inclusion]
+
       scratch[:medication] ||= {}
       scratch[:medication][:all] ||= []
       scratch[:medication][patient_id] ||= []
@@ -163,6 +210,8 @@ module USCore
       scratch[:medication][:all].uniq!(&:id)
       scratch[:medication][patient_id] += medications
       scratch[:medication][patient_id].uniq!(&:id)
+
+      search_variant_test_records[:medication_inclusion] = true
     end
 
     def all_scratch_resources

@@ -23,7 +23,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Goal',
-        search_param_names: ['patient']
+        search_param_names: ['patient'],
+        test_reference_variants: true
       )
     end
 

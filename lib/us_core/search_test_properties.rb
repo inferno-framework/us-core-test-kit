@@ -8,7 +8,8 @@ module USCore
       :saves_delayed_references,
       :possible_status_search,
       :test_medication_inclusion,
-      :token_search_params
+      :token_search_params,
+      :test_reference_variants
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }
@@ -39,6 +40,10 @@ module USCore
 
     def test_medication_inclusion?
       !!test_medication_inclusion
+    end
+
+    def test_reference_variants?
+      !!test_reference_variants
     end
   end
 end
