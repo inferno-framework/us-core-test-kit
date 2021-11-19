@@ -18,7 +18,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'MedicationRequest',
         search_param_names: ['intent'],
-        possible_status_search: true
+        possible_status_search: true,
+        test_medication_inclusion: true
       )
     end
 

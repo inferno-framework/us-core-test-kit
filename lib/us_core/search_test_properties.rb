@@ -6,7 +6,8 @@ module USCore
       :first_search,
       :fixed_value_search,
       :saves_delayed_references,
-      :possible_status_search
+      :possible_status_search,
+      :test_medication_inclusion
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }
@@ -33,6 +34,10 @@ module USCore
 
     def possible_status_search?
       !!possible_status_search
+    end
+
+    def test_medication_inclusion?
+      !!test_medication_inclusion
     end
   end
 end

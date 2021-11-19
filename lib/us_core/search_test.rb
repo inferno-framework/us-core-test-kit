@@ -11,7 +11,8 @@ module USCore
                    :saves_delayed_references?,
                    :first_search?,
                    :fixed_value_search?,
-                   :possible_status_search?
+                   :possible_status_search?,
+                   :test_medication_inclusion?
     # def self.included(klass)
     #   klass.extend(ClassMethods)
     # end
@@ -56,7 +57,6 @@ module USCore
 
       perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
 
-      # TODO: handle medication inclusion
       # TODO: handle search comparators
 
       assert_response_status(200)
@@ -67,6 +67,7 @@ module USCore
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
+      test_medication_inclusion(resources_returned, params, patient_id) if test_medication_inclusion?
       # TODO: validate that responses match query
 
       all_scratch_resources.concat(resources_returned).uniq!
@@ -106,6 +107,41 @@ module USCore
       return [] if definition.blank?
 
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : [definition[:values]]
+    end
+
+    def test_medication_inclusion(medication_requests, params, patient_id)
+      scratch[:medication] ||= {}
+      scratch[:medication][:all] ||= []
+      scratch[:medication][patient_id] ||= []
+      scratch[:medication][:contained] ||= []
+
+      requests_with_external_references =
+        medication_requests
+          .select { |request| request&.medicationReference&.present? }
+          .reject { |request| request&.medicationReference&.reference&.start_with? '#' }
+
+      scratch[:medication][:contained] +=
+        medication_requests
+          .select { |request| request&.medicationReference&.reference&.start_with? '#' }
+          .flat_map(&:contained)
+          .select { |resource| resource.resourceType == 'Medication' }
+
+      return if requests_with_external_references.blank?
+
+      search_params = params.merge(_include: 'MedicationRequest:medication')
+
+      fhir_search resource_type, params: search_params
+
+      assert_response_status(200)
+      assert_resource_type(:bundle)
+
+      medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
+      assert medications.present?, 'No Medications were included in the search results'
+
+      scratch[:medication][:all] += medications
+      scratch[:medication][:all].uniq!(&:id)
+      scratch[:medication][patient_id] += medications
+      scratch[:medication][patient_id].uniq!(&:id)
     end
 
     def all_scratch_resources

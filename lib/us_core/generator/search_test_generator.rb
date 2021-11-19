@@ -134,6 +134,7 @@ module USCore
           properties[:search_param_names] = search_param_names_array
           properties[:saves_delayed_references] = 'true' if saves_delayed_references?
           properties[:possible_status_search] = 'true' if possible_status_search?
+          properties[:test_medication_inclusion] = 'true' if resource_type == 'MedicationRequest'
         end
       end
 

@@ -26,7 +26,8 @@ module USCore
         resource_type: 'MedicationRequest',
         search_param_names: ['patient', 'intent'],
         saves_delayed_references: true,
-        possible_status_search: true
+        possible_status_search: true,
+        test_medication_inclusion: true
       )
     end
 
