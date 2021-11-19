@@ -19,7 +19,8 @@ module USCore
         first_search: true,
         resource_type: 'PractitionerRole',
         search_param_names: ['specialty'],
-        saves_delayed_references: true
+        saves_delayed_references: true,
+        token_search_params: ['specialty']
       )
     end
 

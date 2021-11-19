@@ -25,7 +25,8 @@ module USCore
         fixed_value_search: true,
         resource_type: 'Observation',
         search_param_names: ['patient', 'category'],
-        possible_status_search: true
+        possible_status_search: true,
+        token_search_params: ['category']
       )
     end
 

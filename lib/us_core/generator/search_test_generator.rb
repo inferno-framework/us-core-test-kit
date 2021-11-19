@@ -100,9 +100,12 @@ module USCore
           (resource_type == 'Patient' && search_metadata[:names].include?('_id'))
       end
 
+      def search_param_names
+        search_params.map { |param| param[:name] }
+      end
+
       def search_param_names_array
-        name_strings = search_params.map { |param| "'#{param[:name]}'" }
-        "[#{name_strings.join(', ')}]"
+        array_of_strings(search_param_names)
       end
 
       def path_for_value(path)
@@ -126,6 +129,22 @@ module USCore
         !search_metadata[:names].include?('status') && group_metadata.search_definitions.key?(:status)
       end
 
+      def token_search_params
+        @token_search_params ||=
+          search_param_names.select do |name|
+            ['Identifier', 'CodeableConcept', 'Coding'].include? group_metadata.search_definitions[name.to_sym][:type]
+          end
+      end
+
+      def token_search_params_string
+        array_of_strings(token_search_params)
+      end
+
+      def array_of_strings(array)
+        quoted_strings = array.map { |element| "'#{element}'" }
+        "[#{quoted_strings.join(', ')}]"
+      end
+
       def search_properties
         {}.tap do |properties|
           properties[:first_search] = 'true' if first_search?
@@ -135,6 +154,7 @@ module USCore
           properties[:saves_delayed_references] = 'true' if saves_delayed_references?
           properties[:possible_status_search] = 'true' if possible_status_search?
           properties[:test_medication_inclusion] = 'true' if resource_type == 'MedicationRequest'
+          properties[:token_search_params] = token_search_params_string if token_search_params.present?
         end
       end
 

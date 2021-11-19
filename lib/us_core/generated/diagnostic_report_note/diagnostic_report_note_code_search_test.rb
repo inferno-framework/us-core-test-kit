@@ -18,7 +18,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'DiagnosticReport',
         search_param_names: ['code'],
-        possible_status_search: true
+        possible_status_search: true,
+        token_search_params: ['code']
       )
     end
 

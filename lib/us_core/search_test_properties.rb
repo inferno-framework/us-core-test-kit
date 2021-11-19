@@ -7,7 +7,8 @@ module USCore
       :fixed_value_search,
       :saves_delayed_references,
       :possible_status_search,
-      :test_medication_inclusion
+      :test_medication_inclusion,
+      :token_search_params
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }

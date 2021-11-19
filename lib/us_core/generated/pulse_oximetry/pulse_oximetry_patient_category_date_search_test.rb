@@ -23,7 +23,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'Observation',
         search_param_names: ['patient', 'category', 'date'],
-        possible_status_search: true
+        possible_status_search: true,
+        token_search_params: ['category']
       )
     end
 

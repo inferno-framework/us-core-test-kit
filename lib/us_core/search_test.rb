@@ -12,7 +12,8 @@ module USCore
                    :first_search?,
                    :fixed_value_search?,
                    :possible_status_search?,
-                   :test_medication_inclusion?
+                   :test_medication_inclusion?,
+                   :token_search_params
     # def self.included(klass)
     #   klass.extend(ClassMethods)
     # end
@@ -75,11 +76,31 @@ module USCore
       # scratch[:resources_returned] = resources_returned
       # scratch[:search_parameters_used] = resources_returned
 
-      # TODO: handle search variants: references, codes, POST
+      # TODO: handle search variants: references, POST
+      perform_search_with_system(params, patient_id) if token_search_params.present?
 
       save_delayed_references(resources_returned) if saves_delayed_references?
 
       resources_returned
+    end
+
+    def perform_search_with_system(params, patient_id)
+      new_search_params = token_search_params.each_with_object({}) do |name, search_params|
+        search_params[name] = search_param_value(name, patient_id, include_system: true)
+      end
+      return if new_search_params.any? { |_name, value| value.blank? }
+
+      search_params = params.merge(new_search_params)
+      fhir_search resource_type, params: search_params
+
+      assert_response_status(200)
+      assert_resource_type(:bundle)
+
+      resources_returned =
+        fetch_all_bundled_resources
+          .select { |resource| resource.resourceType == resource_type }
+
+      assert resources_returned.present?, "No resources were returned when searching by `system|code`"
     end
 
     def perform_search_with_status(original_params, patient_id)
@@ -174,7 +195,7 @@ module USCore
 
     def search_params_with_values(patient_id)
       search_param_names.each_with_object({}) do |name, params|
-        value = patient_id_param?(name) ? patient_id : search_param_value(search_param_path(name), patient_id)
+        value = patient_id_param?(name) ? patient_id : search_param_value(name, patient_id)
         params[name] = value
       end
     end
@@ -289,7 +310,8 @@ module USCore
       nil
     end
 
-    def search_param_value(path, patient_id, include_system = false)
+    def search_param_value(name, patient_id, include_system: false)
+      path = search_param_path(name)
       element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
       search_value =
         case element

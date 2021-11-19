@@ -18,7 +18,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'Encounter',
         search_param_names: ['type'],
-        possible_status_search: true
+        possible_status_search: true,
+        token_search_params: ['type']
       )
     end
 

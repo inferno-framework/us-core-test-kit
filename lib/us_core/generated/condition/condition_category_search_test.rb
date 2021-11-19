@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Condition',
-        search_param_names: ['category']
+        search_param_names: ['category'],
+        token_search_params: ['category']
       )
     end
 

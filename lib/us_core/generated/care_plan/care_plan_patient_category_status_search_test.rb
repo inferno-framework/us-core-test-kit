@@ -22,7 +22,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'CarePlan',
-        search_param_names: ['patient', 'category', 'status']
+        search_param_names: ['patient', 'category', 'status'],
+        token_search_params: ['category']
       )
     end
 

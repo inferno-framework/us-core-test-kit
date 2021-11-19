@@ -22,7 +22,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'AllergyIntolerance',
-        search_param_names: ['patient', 'clinical-status']
+        search_param_names: ['patient', 'clinical-status'],
+        token_search_params: ['clinical-status']
       )
     end
 

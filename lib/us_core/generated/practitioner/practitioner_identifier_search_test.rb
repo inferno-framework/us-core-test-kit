@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Practitioner',
-        search_param_names: ['identifier']
+        search_param_names: ['identifier'],
+        token_search_params: ['identifier']
       )
     end
 

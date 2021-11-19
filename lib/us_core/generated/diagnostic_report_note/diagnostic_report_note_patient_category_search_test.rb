@@ -26,7 +26,8 @@ module USCore
         resource_type: 'DiagnosticReport',
         search_param_names: ['patient', 'category'],
         saves_delayed_references: true,
-        possible_status_search: true
+        possible_status_search: true,
+        token_search_params: ['category']
       )
     end
 
