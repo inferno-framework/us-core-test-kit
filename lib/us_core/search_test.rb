@@ -14,7 +14,8 @@ module USCore
                    :possible_status_search?,
                    :test_medication_inclusion?,
                    :token_search_params,
-                   :test_reference_variants?
+                   :test_reference_variants?,
+                   :params_with_comparators
     # def self.included(klass)
     #   klass.extend(ClassMethods)
     # end
@@ -59,15 +60,18 @@ module USCore
 
       perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
 
-      # TODO: handle search comparators
-
       assert_response_status(200)
+      assert_resource_type(:bundle)
 
       # NOTE: do we even want to do any validation here?
       # assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+
+      return [] if resources_returned.blank?
+
+      perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
       # TODO: validate that responses match query
 
@@ -95,11 +99,62 @@ module USCore
         records[:medication_inclusion] = false if test_medication_inclusion?
         records[:reference_variants] = false if test_reference_variants?
         records[:token_variants] = false if token_search_params.present?
+        records[:comparator_searches] = Set.new if params_with_comparators.present?
       end
     end
 
     def all_search_variants_tested?
-      search_variant_test_records.all? { |_variant, tested| tested }
+      search_variant_test_records.all? { |_variant, tested| tested.present? } &&
+        all_comparator_searches_tested?
+    end
+
+    def all_comparator_searches_tested?
+      return true if params_with_comparators.blank?
+
+      Set.new(params_with_comparators) == search_variant_test_records[:comparator_searches]
+    end
+
+    def date_comparator_value(comparator, date)
+      date = date.start || date.end if date.is_a? FHIR::Period
+      case comparator
+      when 'lt', 'le'
+        comparator + (DateTime.xmlschema(date) + 1).xmlschema
+      when 'gt', 'ge'
+        comparator + (DateTime.xmlschema(date) - 1).xmlschema
+      else
+        # ''
+        raise "Unsupported comparator '#{comparator}'"
+      end
+    end
+
+    def required_comparators(name)
+      metadata
+        .search_definitions
+        .dig(name.to_sym, :comparators)
+        .select { |_comparator, expectation| expectation == 'SHALL' }
+        .keys
+        .map(&:to_s)
+    end
+
+    def perform_comparator_searches(params, patient_id)
+      params_with_comparators.each do |name|
+        next if search_variant_test_records[:comparator_searches].include? name
+
+        required_comparators(name).each do |comparator|
+          path = search_param_path(name)
+          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
+          params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
+
+          fhir_search resource_type, params: params_with_comparator
+
+          assert_response_status(200)
+          assert_resource_type(:bundle)
+
+          # TODO: validate that responses match query
+        end
+
+        search_variant_test_records[:comparator_searches] << name
+      end
     end
 
     def perform_reference_with_type_search(params, resource_count)

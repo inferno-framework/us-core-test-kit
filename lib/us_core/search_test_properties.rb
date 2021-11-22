@@ -9,7 +9,8 @@ module USCore
       :possible_status_search,
       :test_medication_inclusion,
       :token_search_params,
-      :test_reference_variants
+      :test_reference_variants,
+      :params_with_comparators
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }

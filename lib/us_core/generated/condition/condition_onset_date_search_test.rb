@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Condition',
-        search_param_names: ['onset-date']
+        search_param_names: ['onset-date'],
+        params_with_comparators: ['onset-date']
       )
     end
 

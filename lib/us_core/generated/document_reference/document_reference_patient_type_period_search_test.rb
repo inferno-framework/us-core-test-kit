@@ -24,7 +24,8 @@ module USCore
         resource_type: 'DocumentReference',
         search_param_names: ['patient', 'type', 'period'],
         possible_status_search: true,
-        token_search_params: ['type']
+        token_search_params: ['type'],
+        params_with_comparators: ['period']
       )
     end
 

@@ -112,6 +112,18 @@ module USCore
         path == 'class' ? 'local_class' : path
       end
 
+      def required_comparators_for_param(name)
+        search_definition(name)[:comparators].select { |_comparator, expectation| expectation == 'SHALL' }
+      end
+
+      def required_comparators
+        @required_comparators ||=
+          search_param_names.each_with_object({}) do |name, comparators|
+            required_comparators = required_comparators_for_param(name)
+            comparators[name] = required_comparators if required_comparators.present?
+          end
+      end
+
       # def patient_id_param?(param)
       #   param[:name] == 'patient' ||
       #     (resource_type == 'Patient' && param[:name] == '_id')
@@ -140,6 +152,10 @@ module USCore
         array_of_strings(token_search_params)
       end
 
+      def required_comparators_string
+        array_of_strings(required_comparators.keys)
+      end
+
       def array_of_strings(array)
         quoted_strings = array.map { |element| "'#{element}'" }
         "[#{quoted_strings.join(', ')}]"
@@ -156,6 +172,7 @@ module USCore
           properties[:test_medication_inclusion] = 'true' if resource_type == 'MedicationRequest'
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
           properties[:test_reference_variants] = 'true' if first_search? && search_param_names.include?('patient')
+          properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
         end
       end
 

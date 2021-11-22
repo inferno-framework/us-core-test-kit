@@ -17,7 +17,8 @@ module USCore
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Goal',
-        search_param_names: ['target-date']
+        search_param_names: ['target-date'],
+        params_with_comparators: ['target-date']
       )
     end
 

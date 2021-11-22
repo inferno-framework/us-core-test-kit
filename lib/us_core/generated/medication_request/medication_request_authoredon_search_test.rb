@@ -19,7 +19,8 @@ module USCore
         resource_type: 'MedicationRequest',
         search_param_names: ['authoredon'],
         possible_status_search: true,
-        test_medication_inclusion: true
+        test_medication_inclusion: true,
+        params_with_comparators: ['authoredon']
       )
     end
 

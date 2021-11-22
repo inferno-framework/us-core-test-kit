@@ -23,7 +23,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'Procedure',
         search_param_names: ['patient', 'date'],
-        possible_status_search: true
+        possible_status_search: true,
+        params_with_comparators: ['date']
       )
     end
 

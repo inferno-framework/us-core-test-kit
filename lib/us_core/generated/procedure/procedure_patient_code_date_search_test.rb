@@ -24,7 +24,8 @@ module USCore
         resource_type: 'Procedure',
         search_param_names: ['patient', 'code', 'date'],
         possible_status_search: true,
-        token_search_params: ['code']
+        token_search_params: ['code'],
+        params_with_comparators: ['date']
       )
     end
 

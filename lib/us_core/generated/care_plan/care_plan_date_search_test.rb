@@ -18,7 +18,8 @@ module USCore
       @properties ||= SearchTestProperties.new(
         resource_type: 'CarePlan',
         search_param_names: ['date'],
-        possible_status_search: true
+        possible_status_search: true,
+        params_with_comparators: ['date']
       )
     end
 
