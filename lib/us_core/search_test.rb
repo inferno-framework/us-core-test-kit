@@ -16,12 +16,6 @@ module USCore
                    :token_search_params,
                    :test_reference_variants?,
                    :params_with_comparators
-    # def self.included(klass)
-    #   klass.extend(ClassMethods)
-    # end
-
-    # module ClassMethods
-    # end
 
     def all_search_params
       @all_search_params ||=
@@ -60,11 +54,9 @@ module USCore
 
       perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
 
-      assert_response_status(200)
-      assert_resource_type(:bundle)
+      check_search_response
 
       # NOTE: do we even want to do any validation here?
-      # assert_valid_bundle_entries(resource_types: [resource_type, 'OperationOutcome'])
 
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
@@ -88,6 +80,18 @@ module USCore
       perform_search_with_system(params, patient_id) if token_search_params.present?
 
       resources_returned
+    end
+
+    def search_and_check_response(params)
+      fhir_search resource_type, params: params
+
+      check_search_response
+    end
+
+    def check_search_response
+      assert_response_status(200)
+      assert_resource_type(:bundle)
+      # assert_valid_resource
     end
 
     def search_variant_test_records
@@ -145,10 +149,7 @@ module USCore
           date_element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
-          fhir_search resource_type, params: params_with_comparator
-
-          assert_response_status(200)
-          assert_resource_type(:bundle)
+          search_and_check_response(params_with_comparator)
 
           # TODO: validate that responses match query
         end
@@ -162,10 +163,7 @@ module USCore
       return if search_variant_test_records[:reference_variants]
 
       new_search_params = params.merge('patient' => "Patient/#{params['patient']}")
-      fhir_search resource_type, params: new_search_params
-
-      assert_response_status(200)
-      assert_resource_type(:bundle)
+      search_and_check_response(new_search_params)
 
       new_resource_count =
         fetch_all_bundled_resources
@@ -189,10 +187,7 @@ module USCore
       return if new_search_params.any? { |_name, value| value.blank? }
 
       search_params = params.merge(new_search_params)
-      fhir_search resource_type, params: search_params
-
-      assert_response_status(200)
-      assert_resource_type(:bundle)
+      search_and_check_response(search_params)
 
       resources_returned =
         fetch_all_bundled_resources
@@ -209,10 +204,7 @@ module USCore
       status_search_values.flat_map do |status_value|
         search_params = original_params.merge('status': status_value)
 
-        fhir_search resource_type, params: search_params
-
-        assert_response_status(200)
-        assert_resource_type(:bundle)
+        search_and_check_response(search_params)
 
         entries = resource.entry.select { |entry| entry.resource.resourceType == 'Observation' }
 
@@ -253,10 +245,7 @@ module USCore
 
       search_params = params.merge(_include: 'MedicationRequest:medication')
 
-      fhir_search resource_type, params: search_params
-
-      assert_response_status(200)
-      assert_resource_type(:bundle)
+      search_and_check_response(search_params)
 
       medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
@@ -357,8 +346,8 @@ module USCore
         break if next_bundle_link.blank?
 
         reply = fhir_client.raw_read_url(next_bundle_link)
-        # TODO:
-        # store_request('outgoing') { reply }
+
+        store_request('outgoing') { reply }
         error_message = cant_resolve_next_bundle_message(next_bundle_link)
 
         assert_response_status(200)
@@ -368,6 +357,15 @@ module USCore
 
         page_count += 1
       end
+
+      valid_resource_types = [resource_type, 'OperationOutcome']
+      valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
+
+      all_valid_resource_types =
+        resources.all? { |entry| valid_resource_types.include? entry.resourceType }
+
+      assert all_valid_resource_types,
+             "All resources returned must be of the type: #{valid_resource_types.join(', ')}"
 
       resources
     end
