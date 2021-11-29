@@ -61,8 +61,6 @@ module USCore
 
       check_search_response
 
-      # NOTE: do we even want to do any validation here?
-
       resources_returned =
         fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
@@ -100,7 +98,7 @@ module USCore
     def check_search_response
       assert_response_status(200)
       assert_resource_type(:bundle)
-      # assert_valid_resource
+      # NOTE: how do we want to handle validating Bundles?
     end
 
     def search_variant_test_records
@@ -438,23 +436,27 @@ module USCore
           element.reference
         when FHIR::CodeableConcept
           if include_system
-            # TODO: fix if system is blank
-            coding_with_code = find_a_value_at(element, 'coding') { |coding| coding.code.present? }
-            coding_with_code.present? ? "#{coding_with_code.system}|#{coding_with_code.code}" : nil
+            coding =
+              find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+            coding.present? ? "#{coding.system}|#{coding.code}" : nil
           else
             find_a_value_at(element, 'coding.code')
           end
         when FHIR::Identifier
           if include_system
-            # TODO: fix if system is blank
-            "#{element.system}|#{element.value}"
+            identifier = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |identifier|
+              identifier.value.present? && identifier.system.present?
+            end
+            identifier.present? ? "#{identifier.system}|#{identifier.value}" : nil
           else
             element.value
           end
         when FHIR::Coding
           if include_system
-            # TODO: fix if system is blank
-            "#{element.system}|#{element.code}"
+            coding = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |coding|
+              coding.code.present? && coding.system.present?
+            end
+            coding.present? ? "#{coding.system}|#{coding.code}" : nil
           else
             element.code
           end
