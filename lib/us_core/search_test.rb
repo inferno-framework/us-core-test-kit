@@ -27,7 +27,9 @@ module USCore
             else
               [search_params_with_values(patient_id)]
             end
-          new_params.reject! { |params| params.any?(&:blank?) }
+          new_params.reject! do |params|
+            params.any? { |_key, value| value.blank? }
+          end
 
           params[patient_id].concat(new_params)
         end
@@ -41,6 +43,7 @@ module USCore
       # TODO: skip if not supported?
       skip_if !any_valid_search_params?, unable_to_resolve_params_message
 
+      info(all_search_params.inspect)
       resources_returned =
         all_search_params.flat_map do |patient_id, params_list|
           params_list.flat_map { |params| perform_search(params, patient_id) }
@@ -65,10 +68,12 @@ module USCore
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
-      # TODO: validate that responses match query
-
       all_scratch_resources.concat(resources_returned).uniq!
       scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
+
+      resources_returned.each do |resource|
+        check_resource_against_params(resource, params)
+      end
 
       save_delayed_references(resources_returned) if saves_delayed_references?
 
@@ -491,6 +496,103 @@ module USCore
       elements.flat_map do |element|
         resolve_path(element&.send(paths.first), paths.drop(1).join('.'))
       end.compact
+    end
+
+    #### RESULT CHECKING ####
+
+    def check_resource_against_params(resource, params)
+      params.each do |name, search_value|
+        path = search_param_path(name)
+        type = metadata.search_definitions[name.to_sym][:type]
+        values_found =  # TODO: handle special cases
+          resolve_path(resource, path)
+            .map do |value|
+              if value.is_a? FHIR::Reference
+                value.reference
+              else
+                value
+              end
+            end
+
+        match_found =
+          case type
+          when 'Period', 'date'
+            # TODO
+            # values_found.any? { |date| validate_date_search(search_value, date) }
+            true
+          when 'HumanName'
+            # When a string search parameter refers to the types HumanName and Address,
+            # the search covers the elements of type string, and does not cover elements such as use and period
+            # https://www.hl7.org/fhir/search.html#string
+            search_value_downcase = search_value.downcase
+            values_found.any? do |name|
+              name&.text&.downcase&.start_with?(search_value_downcase) ||
+                name&.family&.downcase&.start_with?(search_value_downcase) ||
+                name&.given&.any? { |given| given.downcase.start_with?(search_value_downcase) } ||
+                name&.prefix&.any? { |prefix| prefix.downcase.start_with?(search_value_downcase) } ||
+                name&.suffix&.any? { |suffix| suffix.downcase.start_with?(search_value_downcase) }
+            end
+          when 'Address'
+            search_value_downcase = search_value.downcase
+            values_found.any? do |address|
+              address&.text&.downcase&.start_with?(search_value_downcase) ||
+              address&.city&.downcase&.start_with?(search_value_downcase) ||
+              address&.state&.downcase&.start_with?(search_value_downcase) ||
+              address&.postalCode&.downcase&.start_with?(search_value_downcase) ||
+              address&.country&.downcase&.start_with?(search_value_downcase)
+            end
+          when 'CodeableConcept'
+            codings = values_found.flat_map(&:coding)
+            if search_value.include? '|'
+              system = search_value.split('|').first
+              code = search_value.split('|').last
+              codings&.any? { |coding| coding.system == system && coding.code == code }
+            else
+              codings&.any? { |coding| coding.code == search_value }
+            end
+          when 'Coding'
+            if search_value.include? '|'
+              system = search_value.split('|').first
+              code = search_value.split('|').last
+              values_found.any? { |coding| coding.system == system && coding.code == code }
+            else
+              values_found.any? { |coding| coding.code == search_value }
+            end
+          when 'Identifier'
+            if search_value.include? '|'
+              # identifier_system = search_value.split('|').first
+              # value = search_value.split('|').last
+              info(values_found.map { |identifier| "#{identifier.system}|#{identifier.value}" }.join(', '))
+              values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
+            else
+              info(values_found.map(&:value).join(', '))
+              values_found.any? { |identifier| identifier.value == search_value }
+            end
+          when 'string'
+            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+            values_found.any? do |value_found|
+              searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
+            end
+          else
+            # searching by patient requires special case because we are searching by a resource identifier
+            # references can also be URL's, so we made need to resolve those url's
+            if ['subject', 'patient'].include? name.to_s
+              id = search_value.split('Patient/').last
+              possible_values = [id, 'Patient/' + id, "#{url}/Patient/\#{id}"]
+              values_found.any? do |reference|
+                possible_values.include? reference
+              end
+            else
+              search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+              values_found.any? { |value_found| search_values.include? value_found }
+            end
+          end
+
+        assert match_found,
+               "#{resource_type}/#{resource.id} did not match the search parameters:\n" \
+               "* Expected: #{search_value}\n" \
+               "* Found: #{values_found.map(&:inspect).join(', ')}"
+      end
     end
   end
 end
