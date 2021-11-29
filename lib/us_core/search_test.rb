@@ -1,8 +1,10 @@
+require_relative 'date_search_validation'
 require_relative 'search_test_properties'
 
 module USCore
   module SearchTest
     extend Forwardable
+    include DateSearchValidation
 
     def_delegators 'self.class', :metadata
     def_delegators 'properties',
@@ -68,8 +70,10 @@ module USCore
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
-      all_scratch_resources.concat(resources_returned).uniq!
-      scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
+      if first_search?
+        all_scratch_resources.concat(resources_returned).uniq!
+        scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
+      end
 
       resources_returned.each do |resource|
         check_resource_against_params(resource, params)
@@ -156,7 +160,8 @@ module USCore
 
           search_and_check_response(params_with_comparator)
 
-          # TODO: validate that responses match query
+          fetch_all_bundled_resources
+            .each { |resource| check_resource_against_params(resource, params_with_comparator) }
         end
 
         search_variant_test_records[:comparator_searches] << name
@@ -426,9 +431,8 @@ module USCore
           if element.start.present?
             'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
           else
-            # TODO
-            # end_datetime = get_fhir_datetime_range(element.end)[:end]
-            # 'lt' + (end_datetime + 1).xmlschema
+            end_datetime = get_fhir_datetime_range(element.end)[:end]
+            'lt' + (end_datetime + 1).xmlschema
           end
         when FHIR::Reference
           element.reference
@@ -504,7 +508,7 @@ module USCore
       params.each do |name, search_value|
         path = search_param_path(name)
         type = metadata.search_definitions[name.to_sym][:type]
-        values_found =  # TODO: handle special cases
+        values_found =
           resolve_path(resource, path)
             .map do |value|
               if value.is_a? FHIR::Reference
@@ -516,10 +520,8 @@ module USCore
 
         match_found =
           case type
-          when 'Period', 'date'
-            # TODO
-            # values_found.any? { |date| validate_date_search(search_value, date) }
-            true
+          when 'Period', 'date', 'instant', 'dateTime'
+            values_found.any? { |date| validate_date_search(search_value, date) }
           when 'HumanName'
             # When a string search parameter refers to the types HumanName and Address,
             # the search covers the elements of type string, and does not cover elements such as use and period
@@ -560,8 +562,6 @@ module USCore
             end
           when 'Identifier'
             if search_value.include? '|'
-              # identifier_system = search_value.split('|').first
-              # value = search_value.split('|').last
               info(values_found.map { |identifier| "#{identifier.system}|#{identifier.value}" }.join(', '))
               values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
             else
