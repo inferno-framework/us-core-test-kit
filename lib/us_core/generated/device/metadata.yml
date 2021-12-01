@@ -1137,6 +1137,8 @@
   :file_name: device_patient_type_search_test.rb
 - :id: device_read_test
   :file_name: device_read_test.rb
+- :id: device_provenance_revinclude_search_test
+  :file_name: device_provenance_revinclude_search_test.rb
 - :id: device_validation_test
   :file_name: device_validation_test.rb
 :id: device

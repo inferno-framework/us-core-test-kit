@@ -321,6 +321,8 @@
   :file_name: medication_request_patient_intent_status_search_test.rb
 - :id: medication_request_read_test
   :file_name: medication_request_read_test.rb
+- :id: medication_request_provenance_revinclude_search_test
+  :file_name: medication_request_provenance_revinclude_search_test.rb
 - :id: medication_request_validation_test
   :file_name: medication_request_validation_test.rb
 :id: medication_request

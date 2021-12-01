@@ -364,6 +364,8 @@
   :file_name: document_reference_patient_category_search_test.rb
 - :id: document_reference_read_test
   :file_name: document_reference_read_test.rb
+- :id: document_reference_provenance_revinclude_search_test
+  :file_name: document_reference_provenance_revinclude_search_test.rb
 - :id: document_reference_validation_test
   :file_name: document_reference_validation_test.rb
 :id: document_reference

@@ -9,6 +9,7 @@ require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_patient_category_s
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_patient_code_date_search_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_patient_category_search_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_read_test'
+require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_provenance_revinclude_search_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_validation_test'
 
 module USCore
@@ -29,6 +30,7 @@ module USCore
     test from: :pediatric_bmi_for_age_patient_code_date_search_test
     test from: :pediatric_bmi_for_age_patient_category_search_test
     test from: :pediatric_bmi_for_age_read_test
+    test from: :pediatric_bmi_for_age_provenance_revinclude_search_test
     test from: :pediatric_bmi_for_age_validation_test
   end
 end

@@ -4,6 +4,7 @@ require_relative 'ext/fhir_models'
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
 require_relative 'generator/group_generator'
+require_relative 'generator/provenance_revinclude_search_test_generator'
 require_relative 'generator/read_test_generator'
 require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
@@ -20,7 +21,7 @@ module USCore
       generate_read_tests
       # generate_vread_tests
       # generate_history_tests
-      # generate_provenance_tests
+      generate_provenance_revinclude_search_tests
       generate_validation_tests
       # generate_must_support_tests
       # generate_reference_resolution_tests
@@ -54,6 +55,10 @@ module USCore
 
     def generate_search_tests
       SearchTestGenerator.generate(ig_metadata)
+    end
+
+    def generate_provenance_revinclude_search_tests
+      ProvenanceRevincludeSearchTestGenerator.generate(ig_metadata)
     end
 
     def generate_groups

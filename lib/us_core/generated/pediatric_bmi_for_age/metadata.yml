@@ -343,6 +343,8 @@
   :file_name: pediatric_bmi_for_age_patient_category_search_test.rb
 - :id: pediatric_bmi_for_age_read_test
   :file_name: pediatric_bmi_for_age_read_test.rb
+- :id: pediatric_bmi_for_age_provenance_revinclude_search_test
+  :file_name: pediatric_bmi_for_age_provenance_revinclude_search_test.rb
 - :id: pediatric_bmi_for_age_validation_test
   :file_name: pediatric_bmi_for_age_validation_test.rb
 :id: pediatric_bmi_for_age

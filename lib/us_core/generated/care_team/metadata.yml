@@ -135,6 +135,8 @@
   :file_name: care_team_patient_status_search_test.rb
 - :id: care_team_read_test
   :file_name: care_team_read_test.rb
+- :id: care_team_provenance_revinclude_search_test
+  :file_name: care_team_provenance_revinclude_search_test.rb
 - :id: care_team_validation_test
   :file_name: care_team_validation_test.rb
 :id: care_team

@@ -1262,6 +1262,8 @@
   :file_name: diagnostic_report_lab_patient_code_search_test.rb
 - :id: diagnostic_report_lab_read_test
   :file_name: diagnostic_report_lab_read_test.rb
+- :id: diagnostic_report_lab_provenance_revinclude_search_test
+  :file_name: diagnostic_report_lab_provenance_revinclude_search_test.rb
 - :id: diagnostic_report_lab_validation_test
   :file_name: diagnostic_report_lab_validation_test.rb
 :id: diagnostic_report_lab

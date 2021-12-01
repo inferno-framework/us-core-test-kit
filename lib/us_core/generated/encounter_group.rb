@@ -10,6 +10,7 @@ require_relative 'encounter/encounter_class_patient_search_test'
 require_relative 'encounter/encounter_patient_status_search_test'
 require_relative 'encounter/encounter_patient_type_search_test'
 require_relative 'encounter/encounter_date_patient_search_test'
+require_relative 'encounter/encounter_provenance_revinclude_search_test'
 require_relative 'encounter/encounter_validation_test'
 
 module USCore
@@ -31,6 +32,7 @@ module USCore
     test from: :encounter_patient_status_search_test
     test from: :encounter_patient_type_search_test
     test from: :encounter_date_patient_search_test
+    test from: :encounter_provenance_revinclude_search_test
     test from: :encounter_validation_test
   end
 end

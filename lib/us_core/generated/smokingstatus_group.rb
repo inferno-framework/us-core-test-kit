@@ -9,6 +9,7 @@ require_relative 'smokingstatus/smokingstatus_patient_category_status_search_tes
 require_relative 'smokingstatus/smokingstatus_patient_code_date_search_test'
 require_relative 'smokingstatus/smokingstatus_patient_category_search_test'
 require_relative 'smokingstatus/smokingstatus_read_test'
+require_relative 'smokingstatus/smokingstatus_provenance_revinclude_search_test'
 require_relative 'smokingstatus/smokingstatus_validation_test'
 
 module USCore
@@ -29,6 +30,7 @@ module USCore
     test from: :smokingstatus_patient_code_date_search_test
     test from: :smokingstatus_patient_category_search_test
     test from: :smokingstatus_read_test
+    test from: :smokingstatus_provenance_revinclude_search_test
     test from: :smokingstatus_validation_test
   end
 end

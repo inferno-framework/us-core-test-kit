@@ -245,6 +245,8 @@
   :file_name: condition_patient_code_search_test.rb
 - :id: condition_read_test
   :file_name: condition_read_test.rb
+- :id: condition_provenance_revinclude_search_test
+  :file_name: condition_provenance_revinclude_search_test.rb
 - :id: condition_validation_test
   :file_name: condition_validation_test.rb
 :id: condition

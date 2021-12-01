@@ -4,6 +4,7 @@ require_relative 'immunization/immunization_date_search_test'
 require_relative 'immunization/immunization_patient_date_search_test'
 require_relative 'immunization/immunization_patient_status_search_test'
 require_relative 'immunization/immunization_read_test'
+require_relative 'immunization/immunization_provenance_revinclude_search_test'
 require_relative 'immunization/immunization_validation_test'
 
 module USCore
@@ -19,6 +20,7 @@ module USCore
     test from: :immunization_patient_date_search_test
     test from: :immunization_patient_status_search_test
     test from: :immunization_read_test
+    test from: :immunization_provenance_revinclude_search_test
     test from: :immunization_validation_test
   end
 end

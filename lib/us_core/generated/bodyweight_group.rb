@@ -9,6 +9,7 @@ require_relative 'bodyweight/bodyweight_patient_category_status_search_test'
 require_relative 'bodyweight/bodyweight_patient_code_date_search_test'
 require_relative 'bodyweight/bodyweight_patient_category_search_test'
 require_relative 'bodyweight/bodyweight_read_test'
+require_relative 'bodyweight/bodyweight_provenance_revinclude_search_test'
 require_relative 'bodyweight/bodyweight_validation_test'
 
 module USCore
@@ -29,6 +30,7 @@ module USCore
     test from: :bodyweight_patient_code_date_search_test
     test from: :bodyweight_patient_category_search_test
     test from: :bodyweight_read_test
+    test from: :bodyweight_provenance_revinclude_search_test
     test from: :bodyweight_validation_test
   end
 end

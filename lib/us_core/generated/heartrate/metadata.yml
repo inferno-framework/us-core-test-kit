@@ -346,6 +346,8 @@
   :file_name: heartrate_patient_category_search_test.rb
 - :id: heartrate_read_test
   :file_name: heartrate_read_test.rb
+- :id: heartrate_provenance_revinclude_search_test
+  :file_name: heartrate_provenance_revinclude_search_test.rb
 - :id: heartrate_validation_test
   :file_name: heartrate_validation_test.rb
 :id: heartrate

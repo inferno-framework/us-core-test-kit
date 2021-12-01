@@ -314,6 +314,8 @@
   :file_name: smokingstatus_patient_category_search_test.rb
 - :id: smokingstatus_read_test
   :file_name: smokingstatus_read_test.rb
+- :id: smokingstatus_provenance_revinclude_search_test
+  :file_name: smokingstatus_provenance_revinclude_search_test.rb
 - :id: smokingstatus_validation_test
   :file_name: smokingstatus_validation_test.rb
 :id: smokingstatus

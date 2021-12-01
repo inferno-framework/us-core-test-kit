@@ -62,7 +62,7 @@ module USCore
       end
 
       def resource_collection_string
-        if group_metadata.delayed?
+        if group_metadata.delayed? && resource_type != 'Provenance'
           "scratch.dig(:references, '#{resource_type}')"
         else
           'all_scratch_resources'

@@ -10,6 +10,7 @@ require_relative 'patient/patient_family_gender_search_test'
 require_relative 'patient/patient_birthdate_name_search_test'
 require_relative 'patient/patient_gender_name_search_test'
 require_relative 'patient/patient_read_test'
+require_relative 'patient/patient_provenance_revinclude_search_test'
 require_relative 'patient/patient_validation_test'
 
 module USCore
@@ -31,6 +32,7 @@ module USCore
     test from: :patient_birthdate_name_search_test
     test from: :patient_gender_name_search_test
     test from: :patient_read_test
+    test from: :patient_provenance_revinclude_search_test
     test from: :patient_validation_test
   end
 end

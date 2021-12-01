@@ -2,6 +2,7 @@ require_relative 'device/device_patient_search_test'
 require_relative 'device/device_type_search_test'
 require_relative 'device/device_patient_type_search_test'
 require_relative 'device/device_read_test'
+require_relative 'device/device_provenance_revinclude_search_test'
 require_relative 'device/device_validation_test'
 
 module USCore
@@ -15,6 +16,7 @@ module USCore
     test from: :device_type_search_test
     test from: :device_patient_type_search_test
     test from: :device_read_test
+    test from: :device_provenance_revinclude_search_test
     test from: :device_validation_test
   end
 end

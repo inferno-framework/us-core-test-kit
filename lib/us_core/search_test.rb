@@ -6,7 +6,7 @@ module USCore
     extend Forwardable
     include DateSearchValidation
 
-    def_delegators 'self.class', :metadata
+    def_delegators 'self.class', :metadata, :provenance_metadata
     def_delegators 'properties',
                    :resource_type,
                    :search_param_names,
@@ -37,13 +37,46 @@ module USCore
         end
     end
 
-    def any_valid_search_params?
-      all_search_params.any? { |_patient_id, params| params.present? }
+    def all_provenance_revinclude_search_params
+      @all_provenance_revinclude_search_params ||=
+        all_search_params.transform_values! do |params_list|
+          params_list.map { |params| params.merge(_revinclude: 'Provenance:target') }
+        end
+    end
+
+    def any_valid_search_params?(search_params)
+      search_params.any? { |_patient_id, params| params.present? }
+    end
+
+    def run_provenance_revinclude_search_test
+      # TODO: skip if not supported?
+      skip_if !any_valid_search_params?(all_provenance_revinclude_search_params), unable_to_resolve_params_message
+
+      provenance_resources =
+        all_provenance_revinclude_search_params.flat_map do |_patient_id, params_list|
+          params_list.flat_map do |params|
+            fhir_search resource_type, params: params
+
+            perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
+
+            check_search_response
+
+            fetch_all_bundled_resources(additional_resource_types: ['Provenance'])
+              .select { |resource| resource.resourceType == 'Provenance' }
+          end
+        end
+
+      scratch_provenance_resources[:all] ||= []
+      scratch_provenance_resources[:all].concat(provenance_resources)
+
+      save_delayed_references(provenance_resources, 'Provenance')
+
+      skip_if provenance_resources.empty?, no_resources_skip_message('Provenance')
     end
 
     def run_search_test
       # TODO: skip if not supported?
-      skip_if !any_valid_search_params?, unable_to_resolve_params_message
+      skip_if !any_valid_search_params?(all_search_params), unable_to_resolve_params_message
 
       resources_returned =
         all_search_params.flat_map do |patient_id, params_list|
@@ -275,8 +308,9 @@ module USCore
       scratch_resources[patient_id] ||= []
     end
 
-    def references_to_save
-      @references_to_save ||= metadata.delayed_references.freeze
+    def references_to_save(resource_type = nil)
+      reference_metadata = resource_type == 'Provenance' ? provenance_metadata : metadata
+      reference_metadata.delayed_references
     end
 
     def fixed_value_search_param_name
@@ -335,12 +369,12 @@ module USCore
       "Could not find values for the search parameters #{array_of_codes(empty_search_params.keys)}"
     end
 
-    def no_resources_skip_message
+    def no_resources_skip_message(resource_type = self.resource_type)
       "No #{resource_type} resources appear to be available. " \
       "Please use patients with more information"
     end
 
-    def fetch_all_bundled_resources(reply_handler: nil, max_pages: 20)
+    def fetch_all_bundled_resources(reply_handler: nil, max_pages: 20, additional_resource_types: [])
       page_count = 1
       resources = []
       bundle = resource
@@ -365,7 +399,7 @@ module USCore
         page_count += 1
       end
 
-      valid_resource_types = [resource_type, 'OperationOutcome']
+      valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
       valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
 
       all_valid_resource_types =
@@ -476,9 +510,9 @@ module USCore
       scratch[:references][resource_type] << reference
     end
 
-    def save_delayed_references(resources)
+    def save_delayed_references(resources, containing_resource_type = self.resource_type)
       resources.each do |resource|
-        references_to_save.each do |reference_to_save|
+        references_to_save(containing_resource_type).each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
             .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? }
             .each do |reference|

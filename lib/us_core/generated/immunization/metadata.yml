@@ -209,6 +209,8 @@
   :file_name: immunization_patient_status_search_test.rb
 - :id: immunization_read_test
   :file_name: immunization_read_test.rb
+- :id: immunization_provenance_revinclude_search_test
+  :file_name: immunization_provenance_revinclude_search_test.rb
 - :id: immunization_validation_test
   :file_name: immunization_validation_test.rb
 :id: immunization

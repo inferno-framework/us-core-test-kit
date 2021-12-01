@@ -2,6 +2,7 @@ require_relative 'care_team/care_team_patient_search_test'
 require_relative 'care_team/care_team_status_search_test'
 require_relative 'care_team/care_team_patient_status_search_test'
 require_relative 'care_team/care_team_read_test'
+require_relative 'care_team/care_team_provenance_revinclude_search_test'
 require_relative 'care_team/care_team_validation_test'
 
 module USCore
@@ -15,6 +16,7 @@ module USCore
     test from: :care_team_status_search_test
     test from: :care_team_patient_status_search_test
     test from: :care_team_read_test
+    test from: :care_team_provenance_revinclude_search_test
     test from: :care_team_validation_test
   end
 end

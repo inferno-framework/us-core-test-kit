@@ -9,6 +9,7 @@ require_relative 'diagnostic_report_note/diagnostic_report_note_patient_status_s
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_code_date_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_code_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_read_test'
+require_relative 'diagnostic_report_note/diagnostic_report_note_provenance_revinclude_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_validation_test'
 
 module USCore
@@ -29,6 +30,7 @@ module USCore
     test from: :diagnostic_report_note_patient_code_date_search_test
     test from: :diagnostic_report_note_patient_code_search_test
     test from: :diagnostic_report_note_read_test
+    test from: :diagnostic_report_note_provenance_revinclude_search_test
     test from: :diagnostic_report_note_validation_test
   end
 end

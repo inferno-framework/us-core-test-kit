@@ -9,6 +9,7 @@ require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patien
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_code_date_search_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_patient_category_search_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_read_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_provenance_revinclude_search_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_validation_test'
 
 module USCore
@@ -29,6 +30,7 @@ module USCore
     test from: :pediatric_weight_for_height_patient_code_date_search_test
     test from: :pediatric_weight_for_height_patient_category_search_test
     test from: :pediatric_weight_for_height_read_test
+    test from: :pediatric_weight_for_height_provenance_revinclude_search_test
     test from: :pediatric_weight_for_height_validation_test
   end
 end

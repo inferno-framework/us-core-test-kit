@@ -1271,6 +1271,8 @@
   :file_name: procedure_patient_code_date_search_test.rb
 - :id: procedure_read_test
   :file_name: procedure_read_test.rb
+- :id: procedure_provenance_revinclude_search_test
+  :file_name: procedure_provenance_revinclude_search_test.rb
 - :id: procedure_validation_test
   :file_name: procedure_validation_test.rb
 :id: procedure
