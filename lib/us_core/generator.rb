@@ -7,6 +7,7 @@ require_relative 'generator/group_generator'
 require_relative 'generator/read_test_generator'
 require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
+require_relative 'generator/validation_test_generator'
 
 module USCore
   class Generator
@@ -20,7 +21,7 @@ module USCore
       # generate_vread_tests
       # generate_history_tests
       # generate_provenance_tests
-      # generate_validation_tests
+      generate_validation_tests
       # generate_must_support_tests
       # generate_reference_resolution_tests
       generate_groups
@@ -41,6 +42,10 @@ module USCore
     def load_ig_package
       FHIR.logger = Logger.new('/dev/null')
       self.ig_resources = IGLoader.new.load
+    end
+
+    def generate_validation_tests
+      ValidationTestGenerator.generate(ig_metadata)
     end
 
     def generate_read_tests

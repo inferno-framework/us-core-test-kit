@@ -9,6 +9,7 @@ require_relative 'diagnostic_report_lab/diagnostic_report_lab_patient_status_sea
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_patient_code_date_search_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_patient_code_search_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_read_test'
+require_relative 'diagnostic_report_lab/diagnostic_report_lab_validation_test'
 
 module USCore
   class DiagnosticReportLabGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :diagnostic_report_lab_patient_code_date_search_test
     test from: :diagnostic_report_lab_patient_code_search_test
     test from: :diagnostic_report_lab_read_test
+    test from: :diagnostic_report_lab_validation_test
   end
 end

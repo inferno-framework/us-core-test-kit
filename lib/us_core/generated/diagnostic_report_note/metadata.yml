@@ -1252,6 +1252,8 @@
   :file_name: diagnostic_report_note_patient_code_search_test.rb
 - :id: diagnostic_report_note_read_test
   :file_name: diagnostic_report_note_read_test.rb
+- :id: diagnostic_report_note_validation_test
+  :file_name: diagnostic_report_note_validation_test.rb
 :id: diagnostic_report_note
 :file_name: diagnostic_report_note_group.rb
 :delayed_references:

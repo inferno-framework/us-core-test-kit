@@ -349,6 +349,8 @@
   :file_name: bodytemp_patient_category_search_test.rb
 - :id: bodytemp_read_test
   :file_name: bodytemp_read_test.rb
+- :id: bodytemp_validation_test
+  :file_name: bodytemp_validation_test.rb
 :id: bodytemp
 :file_name: bodytemp_group.rb
 :delayed_references: []

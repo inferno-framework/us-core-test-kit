@@ -310,6 +310,8 @@
   :file_name: care_plan_patient_category_date_search_test.rb
 - :id: care_plan_read_test
   :file_name: care_plan_read_test.rb
+- :id: care_plan_validation_test
+  :file_name: care_plan_validation_test.rb
 :id: care_plan
 :file_name: care_plan_group.rb
 :delayed_references: []

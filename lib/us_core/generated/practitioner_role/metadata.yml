@@ -247,6 +247,8 @@
   :file_name: practitioner_role_specialty_search_test.rb
 - :id: practitioner_role_practitioner_search_test
   :file_name: practitioner_role_practitioner_search_test.rb
+- :id: practitioner_role_validation_test
+  :file_name: practitioner_role_validation_test.rb
 :id: practitioner_role
 :file_name: practitioner_role_group.rb
 :delayed_references:

@@ -314,6 +314,8 @@
   :file_name: smokingstatus_patient_category_search_test.rb
 - :id: smokingstatus_read_test
   :file_name: smokingstatus_read_test.rb
+- :id: smokingstatus_validation_test
+  :file_name: smokingstatus_validation_test.rb
 :id: smokingstatus
 :file_name: smokingstatus_group.rb
 :delayed_references: []

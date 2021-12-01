@@ -9,6 +9,7 @@ require_relative 'resprate/resprate_patient_category_status_search_test'
 require_relative 'resprate/resprate_patient_code_date_search_test'
 require_relative 'resprate/resprate_patient_category_search_test'
 require_relative 'resprate/resprate_read_test'
+require_relative 'resprate/resprate_validation_test'
 
 module USCore
   class ResprateGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :resprate_patient_code_date_search_test
     test from: :resprate_patient_category_search_test
     test from: :resprate_read_test
+    test from: :resprate_validation_test
   end
 end

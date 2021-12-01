@@ -432,6 +432,8 @@
   :file_name: pulse_oximetry_patient_category_search_test.rb
 - :id: pulse_oximetry_read_test
   :file_name: pulse_oximetry_read_test.rb
+- :id: pulse_oximetry_validation_test
+  :file_name: pulse_oximetry_validation_test.rb
 :id: pulse_oximetry
 :file_name: pulse_oximetry_group.rb
 :delayed_references: []

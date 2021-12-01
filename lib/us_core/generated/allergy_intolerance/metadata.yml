@@ -157,6 +157,8 @@
   :file_name: allergy_intolerance_patient_clinical_status_search_test.rb
 - :id: allergy_intolerance_read_test
   :file_name: allergy_intolerance_read_test.rb
+- :id: allergy_intolerance_validation_test
+  :file_name: allergy_intolerance_validation_test.rb
 :id: allergy_intolerance
 :file_name: allergy_intolerance_group.rb
 :delayed_references: []

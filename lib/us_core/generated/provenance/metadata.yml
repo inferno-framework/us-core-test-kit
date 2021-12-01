@@ -165,6 +165,8 @@
 :tests:
 - :id: provenance_read_test
   :file_name: provenance_read_test.rb
+- :id: provenance_validation_test
+  :file_name: provenance_validation_test.rb
 :id: provenance
 :file_name: provenance_group.rb
 :delayed_references:

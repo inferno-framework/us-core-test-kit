@@ -343,6 +343,8 @@
   :file_name: pediatric_weight_for_height_patient_category_search_test.rb
 - :id: pediatric_weight_for_height_read_test
   :file_name: pediatric_weight_for_height_read_test.rb
+- :id: pediatric_weight_for_height_validation_test
+  :file_name: pediatric_weight_for_height_validation_test.rb
 :id: pediatric_weight_for_height
 :file_name: pediatric_weight_for_height_group.rb
 :delayed_references: []

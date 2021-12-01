@@ -9,6 +9,7 @@ require_relative 'bodytemp/bodytemp_patient_category_status_search_test'
 require_relative 'bodytemp/bodytemp_patient_code_date_search_test'
 require_relative 'bodytemp/bodytemp_patient_category_search_test'
 require_relative 'bodytemp/bodytemp_read_test'
+require_relative 'bodytemp/bodytemp_validation_test'
 
 module USCore
   class BodytempGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :bodytemp_patient_code_date_search_test
     test from: :bodytemp_patient_category_search_test
     test from: :bodytemp_read_test
+    test from: :bodytemp_validation_test
   end
 end

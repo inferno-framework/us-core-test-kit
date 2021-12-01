@@ -11,6 +11,7 @@ require_relative 'document_reference/document_reference_patient_category_date_se
 require_relative 'document_reference/document_reference_patient_status_search_test'
 require_relative 'document_reference/document_reference_patient_category_search_test'
 require_relative 'document_reference/document_reference_read_test'
+require_relative 'document_reference/document_reference_validation_test'
 
 module USCore
   class DocumentReferenceGroup < Inferno::TestGroup
@@ -32,5 +33,6 @@ module USCore
     test from: :document_reference_patient_status_search_test
     test from: :document_reference_patient_category_search_test
     test from: :document_reference_read_test
+    test from: :document_reference_validation_test
   end
 end

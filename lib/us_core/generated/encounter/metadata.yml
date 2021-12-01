@@ -374,6 +374,8 @@
   :file_name: encounter_patient_type_search_test.rb
 - :id: encounter_date_patient_search_test
   :file_name: encounter_date_patient_search_test.rb
+- :id: encounter_validation_test
+  :file_name: encounter_validation_test.rb
 :id: encounter
 :file_name: encounter_group.rb
 :delayed_references:

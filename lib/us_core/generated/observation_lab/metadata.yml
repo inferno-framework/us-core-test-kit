@@ -1308,6 +1308,8 @@
   :file_name: observation_lab_patient_code_search_test.rb
 - :id: observation_lab_read_test
   :file_name: observation_lab_read_test.rb
+- :id: observation_lab_validation_test
+  :file_name: observation_lab_validation_test.rb
 :id: observation_lab
 :file_name: observation_lab_group.rb
 :delayed_references: []

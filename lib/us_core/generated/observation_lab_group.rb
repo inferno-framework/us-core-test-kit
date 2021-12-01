@@ -9,6 +9,7 @@ require_relative 'observation_lab/observation_lab_patient_category_status_search
 require_relative 'observation_lab/observation_lab_patient_code_date_search_test'
 require_relative 'observation_lab/observation_lab_patient_code_search_test'
 require_relative 'observation_lab/observation_lab_read_test'
+require_relative 'observation_lab/observation_lab_validation_test'
 
 module USCore
   class ObservationLabGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :observation_lab_patient_code_date_search_test
     test from: :observation_lab_patient_code_search_test
     test from: :observation_lab_read_test
+    test from: :observation_lab_validation_test
   end
 end

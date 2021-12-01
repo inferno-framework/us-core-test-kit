@@ -346,6 +346,8 @@
   :file_name: resprate_patient_category_search_test.rb
 - :id: resprate_read_test
   :file_name: resprate_read_test.rb
+- :id: resprate_validation_test
+  :file_name: resprate_validation_test.rb
 :id: resprate
 :file_name: resprate_group.rb
 :delayed_references: []

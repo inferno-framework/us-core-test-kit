@@ -9,6 +9,7 @@ require_relative 'head_circumference/head_circumference_patient_category_status_
 require_relative 'head_circumference/head_circumference_patient_code_date_search_test'
 require_relative 'head_circumference/head_circumference_patient_category_search_test'
 require_relative 'head_circumference/head_circumference_read_test'
+require_relative 'head_circumference/head_circumference_validation_test'
 
 module USCore
   class HeadCircumferenceGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :head_circumference_patient_code_date_search_test
     test from: :head_circumference_patient_category_search_test
     test from: :head_circumference_read_test
+    test from: :head_circumference_validation_test
   end
 end

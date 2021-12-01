@@ -4,6 +4,7 @@ require_relative 'goal/goal_target_date_search_test'
 require_relative 'goal/goal_patient_lifecycle_status_search_test'
 require_relative 'goal/goal_patient_target_date_search_test'
 require_relative 'goal/goal_read_test'
+require_relative 'goal/goal_validation_test'
 
 module USCore
   class GoalGroup < Inferno::TestGroup
@@ -18,5 +19,6 @@ module USCore
     test from: :goal_patient_lifecycle_status_search_test
     test from: :goal_patient_target_date_search_test
     test from: :goal_read_test
+    test from: :goal_validation_test
   end
 end

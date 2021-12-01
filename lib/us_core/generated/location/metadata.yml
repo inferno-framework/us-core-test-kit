@@ -237,6 +237,8 @@
   :file_name: location_address_state_search_test.rb
 - :id: location_address_postalcode_search_test
   :file_name: location_address_postalcode_search_test.rb
+- :id: location_validation_test
+  :file_name: location_validation_test.rb
 :id: location
 :file_name: location_group.rb
 :delayed_references:

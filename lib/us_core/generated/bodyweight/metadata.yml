@@ -349,6 +349,8 @@
   :file_name: bodyweight_patient_category_search_test.rb
 - :id: bodyweight_read_test
   :file_name: bodyweight_read_test.rb
+- :id: bodyweight_validation_test
+  :file_name: bodyweight_validation_test.rb
 :id: bodyweight
 :file_name: bodyweight_group.rb
 :delayed_references: []

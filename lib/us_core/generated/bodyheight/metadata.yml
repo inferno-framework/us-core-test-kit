@@ -349,6 +349,8 @@
   :file_name: bodyheight_patient_category_search_test.rb
 - :id: bodyheight_read_test
   :file_name: bodyheight_read_test.rb
+- :id: bodyheight_validation_test
+  :file_name: bodyheight_validation_test.rb
 :id: bodyheight
 :file_name: bodyheight_group.rb
 :delayed_references: []

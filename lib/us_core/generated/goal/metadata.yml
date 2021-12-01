@@ -196,6 +196,8 @@
   :file_name: goal_patient_target_date_search_test.rb
 - :id: goal_read_test
   :file_name: goal_read_test.rb
+- :id: goal_validation_test
+  :file_name: goal_validation_test.rb
 :id: goal
 :file_name: goal_group.rb
 :delayed_references: []

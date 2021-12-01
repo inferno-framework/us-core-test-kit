@@ -45,7 +45,6 @@ module USCore
       # TODO: skip if not supported?
       skip_if !any_valid_search_params?, unable_to_resolve_params_message
 
-      info(all_search_params.inspect)
       resources_returned =
         all_search_params.flat_map do |patient_id, params_list|
           params_list.flat_map { |params| perform_search(params, patient_id) }
@@ -564,10 +563,8 @@ module USCore
             end
           when 'Identifier'
             if search_value.include? '|'
-              info(values_found.map { |identifier| "#{identifier.system}|#{identifier.value}" }.join(', '))
               values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
             else
-              info(values_found.map(&:value).join(', '))
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'

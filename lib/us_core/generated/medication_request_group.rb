@@ -8,6 +8,7 @@ require_relative 'medication_request/medication_request_patient_intent_encounter
 require_relative 'medication_request/medication_request_patient_intent_authoredon_search_test'
 require_relative 'medication_request/medication_request_patient_intent_status_search_test'
 require_relative 'medication_request/medication_request_read_test'
+require_relative 'medication_request/medication_request_validation_test'
 
 module USCore
   class MedicationRequestGroup < Inferno::TestGroup
@@ -26,5 +27,6 @@ module USCore
     test from: :medication_request_patient_intent_authoredon_search_test
     test from: :medication_request_patient_intent_status_search_test
     test from: :medication_request_read_test
+    test from: :medication_request_validation_test
   end
 end

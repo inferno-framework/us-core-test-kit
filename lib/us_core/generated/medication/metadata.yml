@@ -64,6 +64,8 @@
 :tests:
 - :id: medication_read_test
   :file_name: medication_read_test.rb
+- :id: medication_validation_test
+  :file_name: medication_validation_test.rb
 :id: medication
 :file_name: medication_group.rb
 :delayed_references: []

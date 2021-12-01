@@ -343,6 +343,8 @@
   :file_name: head_circumference_patient_category_search_test.rb
 - :id: head_circumference_read_test
   :file_name: head_circumference_read_test.rb
+- :id: head_circumference_validation_test
+  :file_name: head_circumference_validation_test.rb
 :id: head_circumference
 :file_name: head_circumference_group.rb
 :delayed_references: []
