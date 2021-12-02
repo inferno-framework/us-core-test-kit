@@ -1,10 +1,12 @@
 require_relative 'date_search_validation'
+require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
 
 module USCore
   module SearchTest
     extend Forwardable
     include DateSearchValidation
+    include FHIRResourceNavigation
 
     def_delegators 'self.class', :metadata, :provenance_metadata
     def_delegators 'properties',
@@ -415,44 +417,6 @@ module USCore
       "Could not resolve next bundle: #{link}"
     end
 
-    def find_a_value_at(element, path)
-      return nil if element.nil?
-
-      elements = Array.wrap(element)
-
-      if path.empty?
-        return elements.find { |el| yield(el) } if block_given?
-
-        return elements.first
-      end
-
-      path_segments = path.split('.')
-      segment = path_segments.shift.to_sym
-
-      no_elements_present =
-        elements.none? do |element|
-          child = element.send(segment)
-
-          child.present? || child == false
-        end
-
-      return nil if no_elements_present
-
-      elements.each do |element|
-        child = element.send(segment)
-        element_found =
-          if block_given?
-            find_a_value_at(child, path_segments.join('.')) { |value_found| yield(value_found) }
-          else
-            find_a_value_at(child, path_segments.join('.'))
-          end
-
-        return element_found if element_found.present? || element_found == false
-      end
-
-      nil
-    end
-
     def search_param_value(name, patient_id, include_system: false)
       path = search_param_path(name)
       element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
@@ -524,17 +488,6 @@ module USCore
             end
         end
       end
-    end
-
-    def resolve_path(elements, path)
-      elements = Array.wrap(elements)
-      return elements if path.blank?
-
-      paths = path.split('.')
-
-      elements.flat_map do |element|
-        resolve_path(element&.send(paths.first), paths.drop(1).join('.'))
-      end.compact
     end
 
     #### RESULT CHECKING ####
