@@ -1279,6 +1279,8 @@
   :file_name: observation_lab_validation_test.rb
 - :id: observation_lab_must_support_test
   :file_name: observation_lab_must_support_test.rb
+- :id: observation_lab_reference_resolution_test
+  :file_name: observation_lab_reference_resolution_test.rb
 :id: observation_lab
 :file_name: observation_lab_group.rb
 :delayed_references: []

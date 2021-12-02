@@ -7,6 +7,7 @@ require_relative 'bodyweight/bodyweight_read_test'
 require_relative 'bodyweight/bodyweight_provenance_revinclude_search_test'
 require_relative 'bodyweight/bodyweight_validation_test'
 require_relative 'bodyweight/bodyweight_must_support_test'
+require_relative 'bodyweight/bodyweight_reference_resolution_test'
 
 module USCore
   class BodyweightGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :bodyweight_provenance_revinclude_search_test
     test from: :bodyweight_validation_test
     test from: :bodyweight_must_support_test
+    test from: :bodyweight_reference_resolution_test
   end
 end

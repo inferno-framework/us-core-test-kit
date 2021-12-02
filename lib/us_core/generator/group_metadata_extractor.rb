@@ -88,6 +88,7 @@ module USCore
       ### BEGIN SPECIAL CASES ###
 
       CATEGORY_FIRST_PROFILES = [
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'

@@ -283,6 +283,8 @@
   :file_name: smokingstatus_validation_test.rb
 - :id: smokingstatus_must_support_test
   :file_name: smokingstatus_must_support_test.rb
+- :id: smokingstatus_reference_resolution_test
+  :file_name: smokingstatus_reference_resolution_test.rb
 :id: smokingstatus
 :file_name: smokingstatus_group.rb
 :delayed_references: []

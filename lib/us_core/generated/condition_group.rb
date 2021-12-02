@@ -7,6 +7,7 @@ require_relative 'condition/condition_read_test'
 require_relative 'condition/condition_provenance_revinclude_search_test'
 require_relative 'condition/condition_validation_test'
 require_relative 'condition/condition_must_support_test'
+require_relative 'condition/condition_reference_resolution_test'
 
 module USCore
   class ConditionGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :condition_provenance_revinclude_search_test
     test from: :condition_validation_test
     test from: :condition_must_support_test
+    test from: :condition_reference_resolution_test
   end
 end

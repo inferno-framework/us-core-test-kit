@@ -169,6 +169,8 @@
   :file_name: provenance_validation_test.rb
 - :id: provenance_must_support_test
   :file_name: provenance_must_support_test.rb
+- :id: provenance_reference_resolution_test
+  :file_name: provenance_reference_resolution_test.rb
 :id: provenance
 :file_name: provenance_group.rb
 :delayed_references:

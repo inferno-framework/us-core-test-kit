@@ -68,6 +68,8 @@
   :file_name: medication_validation_test.rb
 - :id: medication_must_support_test
   :file_name: medication_must_support_test.rb
+- :id: medication_reference_resolution_test
+  :file_name: medication_reference_resolution_test.rb
 :id: medication
 :file_name: medication_group.rb
 :delayed_references: []

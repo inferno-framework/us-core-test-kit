@@ -9,6 +9,7 @@ require_relative 'encounter/encounter_date_patient_search_test'
 require_relative 'encounter/encounter_provenance_revinclude_search_test'
 require_relative 'encounter/encounter_validation_test'
 require_relative 'encounter/encounter_must_support_test'
+require_relative 'encounter/encounter_reference_resolution_test'
 
 module USCore
   class EncounterGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :encounter_provenance_revinclude_search_test
     test from: :encounter_validation_test
     test from: :encounter_must_support_test
+    test from: :encounter_reference_resolution_test
   end
 end

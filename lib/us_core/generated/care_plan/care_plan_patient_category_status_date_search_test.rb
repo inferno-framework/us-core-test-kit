@@ -21,12 +21,9 @@ module USCore
 
     def properties
       @properties ||= SearchTestProperties.new(
-        first_search: true,
-        fixed_value_search: true,
         resource_type: 'CarePlan',
         search_param_names: ['patient', 'category', 'status', 'date'],
         token_search_params: ['category'],
-        test_reference_variants: true,
         params_with_comparators: ['date']
       )
     end

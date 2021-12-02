@@ -7,6 +7,8 @@ require_relative 'generator/group_generator'
 require_relative 'generator/must_support_test_generator'
 require_relative 'generator/provenance_revinclude_search_test_generator'
 require_relative 'generator/read_test_generator'
+require_relative 'generator/reference_resolution_test_generator'
+require_relative 'generator/resource_list_generator'
 require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
 require_relative 'generator/validation_test_generator'
@@ -18,6 +20,7 @@ module USCore
     def generate
       load_ig_package
       extract_metadata
+      generate_resource_list
       generate_search_tests
       generate_read_tests
       # generate_vread_tests
@@ -25,8 +28,10 @@ module USCore
       generate_provenance_revinclude_search_tests
       generate_validation_tests
       generate_must_support_tests
-      # generate_reference_resolution_tests
+      generate_reference_resolution_tests
+
       generate_groups
+
       generate_suites
 
       # These won't be generated, but we need them:
@@ -44,6 +49,14 @@ module USCore
     def load_ig_package
       FHIR.logger = Logger.new('/dev/null')
       self.ig_resources = IGLoader.new.load
+    end
+
+    def generate_resource_list
+      ResourceListGenerator.generate(ig_metadata)
+    end
+
+    def generate_reference_resolution_tests
+      ReferenceResolutionTestGenerator.generate(ig_metadata)
     end
 
     def generate_must_support_tests

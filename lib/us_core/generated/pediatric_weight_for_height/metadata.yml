@@ -314,6 +314,8 @@
   :file_name: pediatric_weight_for_height_validation_test.rb
 - :id: pediatric_weight_for_height_must_support_test
   :file_name: pediatric_weight_for_height_must_support_test.rb
+- :id: pediatric_weight_for_height_reference_resolution_test
+  :file_name: pediatric_weight_for_height_reference_resolution_test.rb
 :id: pediatric_weight_for_height
 :file_name: pediatric_weight_for_height_group.rb
 :delayed_references: []

@@ -137,6 +137,8 @@
   :file_name: organization_validation_test.rb
 - :id: organization_must_support_test
   :file_name: organization_must_support_test.rb
+- :id: organization_reference_resolution_test
+  :file_name: organization_reference_resolution_test.rb
 :id: organization
 :file_name: organization_group.rb
 :delayed_references: []

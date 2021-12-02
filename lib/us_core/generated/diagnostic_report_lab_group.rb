@@ -8,6 +8,7 @@ require_relative 'diagnostic_report_lab/diagnostic_report_lab_read_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_provenance_revinclude_search_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_validation_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_must_support_test'
+require_relative 'diagnostic_report_lab/diagnostic_report_lab_reference_resolution_test'
 
 module USCore
   class DiagnosticReportLabGroup < Inferno::TestGroup
@@ -26,5 +27,6 @@ module USCore
     test from: :diagnostic_report_lab_provenance_revinclude_search_test
     test from: :diagnostic_report_lab_validation_test
     test from: :diagnostic_report_lab_must_support_test
+    test from: :diagnostic_report_lab_reference_resolution_test
   end
 end

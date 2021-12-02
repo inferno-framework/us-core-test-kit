@@ -4,6 +4,7 @@ require_relative 'device/device_read_test'
 require_relative 'device/device_provenance_revinclude_search_test'
 require_relative 'device/device_validation_test'
 require_relative 'device/device_must_support_test'
+require_relative 'device/device_reference_resolution_test'
 
 module USCore
   class DeviceGroup < Inferno::TestGroup
@@ -18,5 +19,6 @@ module USCore
     test from: :device_provenance_revinclude_search_test
     test from: :device_validation_test
     test from: :device_must_support_test
+    test from: :device_reference_resolution_test
   end
 end

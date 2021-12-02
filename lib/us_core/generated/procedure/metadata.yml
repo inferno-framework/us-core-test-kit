@@ -1256,6 +1256,8 @@
   :file_name: procedure_validation_test.rb
 - :id: procedure_must_support_test
   :file_name: procedure_must_support_test.rb
+- :id: procedure_reference_resolution_test
+  :file_name: procedure_reference_resolution_test.rb
 :id: procedure
 :file_name: procedure_group.rb
 :delayed_references: []

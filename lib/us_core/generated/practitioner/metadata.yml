@@ -127,6 +127,8 @@
   :file_name: practitioner_validation_test.rb
 - :id: practitioner_must_support_test
   :file_name: practitioner_must_support_test.rb
+- :id: practitioner_reference_resolution_test
+  :file_name: practitioner_reference_resolution_test.rb
 :id: practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []

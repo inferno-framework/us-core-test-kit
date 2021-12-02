@@ -311,6 +311,8 @@
   :file_name: patient_validation_test.rb
 - :id: patient_must_support_test
   :file_name: patient_must_support_test.rb
+- :id: patient_reference_resolution_test
+  :file_name: patient_reference_resolution_test.rb
 :id: patient
 :file_name: patient_group.rb
 :delayed_references: []

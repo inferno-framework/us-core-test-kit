@@ -7,6 +7,7 @@ require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_read_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_provenance_revinclude_search_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_validation_test'
 require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_must_support_test'
+require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_reference_resolution_test'
 
 module USCore
   class PediatricBmiForAgeGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :pediatric_bmi_for_age_provenance_revinclude_search_test
     test from: :pediatric_bmi_for_age_validation_test
     test from: :pediatric_bmi_for_age_must_support_test
+    test from: :pediatric_bmi_for_age_reference_resolution_test
   end
 end

@@ -320,6 +320,8 @@
   :file_name: bodytemp_validation_test.rb
 - :id: bodytemp_must_support_test
   :file_name: bodytemp_must_support_test.rb
+- :id: bodytemp_reference_resolution_test
+  :file_name: bodytemp_reference_resolution_test.rb
 :id: bodytemp
 :file_name: bodytemp_group.rb
 :delayed_references: []

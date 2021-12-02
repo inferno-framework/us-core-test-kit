@@ -201,6 +201,8 @@
   :file_name: immunization_validation_test.rb
 - :id: immunization_must_support_test
   :file_name: immunization_must_support_test.rb
+- :id: immunization_reference_resolution_test
+  :file_name: immunization_reference_resolution_test.rb
 :id: immunization
 :file_name: immunization_group.rb
 :delayed_references: []

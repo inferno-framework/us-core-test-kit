@@ -241,6 +241,8 @@
   :file_name: location_validation_test.rb
 - :id: location_must_support_test
   :file_name: location_must_support_test.rb
+- :id: location_reference_resolution_test
+  :file_name: location_reference_resolution_test.rb
 :id: location
 :file_name: location_group.rb
 :delayed_references:

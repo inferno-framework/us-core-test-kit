@@ -178,6 +178,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -192,12 +198,6 @@
     - patient
     - category
     - status
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD

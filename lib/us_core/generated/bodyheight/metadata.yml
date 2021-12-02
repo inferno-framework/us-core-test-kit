@@ -320,6 +320,8 @@
   :file_name: bodyheight_validation_test.rb
 - :id: bodyheight_must_support_test
   :file_name: bodyheight_must_support_test.rb
+- :id: bodyheight_reference_resolution_test
+  :file_name: bodyheight_reference_resolution_test.rb
 :id: bodyheight
 :file_name: bodyheight_group.rb
 :delayed_references: []

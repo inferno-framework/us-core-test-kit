@@ -127,6 +127,8 @@
   :file_name: care_team_validation_test.rb
 - :id: care_team_must_support_test
   :file_name: care_team_must_support_test.rb
+- :id: care_team_reference_resolution_test
+  :file_name: care_team_reference_resolution_test.rb
 :id: care_team
 :file_name: care_team_group.rb
 :delayed_references:

@@ -6,6 +6,7 @@ require_relative 'location/location_address_state_search_test'
 require_relative 'location/location_address_postalcode_search_test'
 require_relative 'location/location_validation_test'
 require_relative 'location/location_must_support_test'
+require_relative 'location/location_reference_resolution_test'
 
 module USCore
   class LocationGroup < Inferno::TestGroup
@@ -22,5 +23,6 @@ module USCore
     test from: :location_address_postalcode_search_test
     test from: :location_validation_test
     test from: :location_must_support_test
+    test from: :location_reference_resolution_test
   end
 end

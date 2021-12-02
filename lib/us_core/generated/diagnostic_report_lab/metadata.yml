@@ -1240,6 +1240,8 @@
   :file_name: diagnostic_report_lab_validation_test.rb
 - :id: diagnostic_report_lab_must_support_test
   :file_name: diagnostic_report_lab_must_support_test.rb
+- :id: diagnostic_report_lab_reference_resolution_test
+  :file_name: diagnostic_report_lab_reference_resolution_test.rb
 :id: diagnostic_report_lab
 :file_name: diagnostic_report_lab_group.rb
 :delayed_references:

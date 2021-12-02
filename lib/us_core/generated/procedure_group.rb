@@ -6,6 +6,7 @@ require_relative 'procedure/procedure_read_test'
 require_relative 'procedure/procedure_provenance_revinclude_search_test'
 require_relative 'procedure/procedure_validation_test'
 require_relative 'procedure/procedure_must_support_test'
+require_relative 'procedure/procedure_reference_resolution_test'
 
 module USCore
   class ProcedureGroup < Inferno::TestGroup
@@ -22,5 +23,6 @@ module USCore
     test from: :procedure_provenance_revinclude_search_test
     test from: :procedure_validation_test
     test from: :procedure_must_support_test
+    test from: :procedure_reference_resolution_test
   end
 end

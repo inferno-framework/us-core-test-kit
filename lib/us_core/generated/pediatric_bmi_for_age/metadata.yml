@@ -314,6 +314,8 @@
   :file_name: pediatric_bmi_for_age_validation_test.rb
 - :id: pediatric_bmi_for_age_must_support_test
   :file_name: pediatric_bmi_for_age_must_support_test.rb
+- :id: pediatric_bmi_for_age_reference_resolution_test
+  :file_name: pediatric_bmi_for_age_reference_resolution_test.rb
 :id: pediatric_bmi_for_age
 :file_name: pediatric_bmi_for_age_group.rb
 :delayed_references: []

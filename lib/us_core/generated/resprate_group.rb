@@ -7,6 +7,7 @@ require_relative 'resprate/resprate_read_test'
 require_relative 'resprate/resprate_provenance_revinclude_search_test'
 require_relative 'resprate/resprate_validation_test'
 require_relative 'resprate/resprate_must_support_test'
+require_relative 'resprate/resprate_reference_resolution_test'
 
 module USCore
   class ResprateGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :resprate_provenance_revinclude_search_test
     test from: :resprate_validation_test
     test from: :resprate_must_support_test
+    test from: :resprate_reference_resolution_test
   end
 end

@@ -403,6 +403,8 @@
   :file_name: pulse_oximetry_validation_test.rb
 - :id: pulse_oximetry_must_support_test
   :file_name: pulse_oximetry_must_support_test.rb
+- :id: pulse_oximetry_reference_resolution_test
+  :file_name: pulse_oximetry_reference_resolution_test.rb
 :id: pulse_oximetry
 :file_name: pulse_oximetry_group.rb
 :delayed_references: []

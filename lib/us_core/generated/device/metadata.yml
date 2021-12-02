@@ -1136,6 +1136,8 @@
   :file_name: device_validation_test.rb
 - :id: device_must_support_test
   :file_name: device_must_support_test.rb
+- :id: device_reference_resolution_test
+  :file_name: device_reference_resolution_test.rb
 :id: device
 :file_name: device_group.rb
 :delayed_references: []

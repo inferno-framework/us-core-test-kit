@@ -7,6 +7,7 @@ require_relative 'bodyheight/bodyheight_read_test'
 require_relative 'bodyheight/bodyheight_provenance_revinclude_search_test'
 require_relative 'bodyheight/bodyheight_validation_test'
 require_relative 'bodyheight/bodyheight_must_support_test'
+require_relative 'bodyheight/bodyheight_reference_resolution_test'
 
 module USCore
   class BodyheightGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :bodyheight_provenance_revinclude_search_test
     test from: :bodyheight_validation_test
     test from: :bodyheight_must_support_test
+    test from: :bodyheight_reference_resolution_test
   end
 end

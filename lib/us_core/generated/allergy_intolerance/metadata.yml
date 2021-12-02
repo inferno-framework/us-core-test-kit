@@ -156,6 +156,8 @@
   :file_name: allergy_intolerance_validation_test.rb
 - :id: allergy_intolerance_must_support_test
   :file_name: allergy_intolerance_must_support_test.rb
+- :id: allergy_intolerance_reference_resolution_test
+  :file_name: allergy_intolerance_reference_resolution_test.rb
 :id: allergy_intolerance
 :file_name: allergy_intolerance_group.rb
 :delayed_references: []

@@ -9,6 +9,7 @@ require_relative 'document_reference/document_reference_read_test'
 require_relative 'document_reference/document_reference_provenance_revinclude_search_test'
 require_relative 'document_reference/document_reference_validation_test'
 require_relative 'document_reference/document_reference_must_support_test'
+require_relative 'document_reference/document_reference_reference_resolution_test'
 
 module USCore
   class DocumentReferenceGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :document_reference_provenance_revinclude_search_test
     test from: :document_reference_validation_test
     test from: :document_reference_must_support_test
+    test from: :document_reference_reference_resolution_test
   end
 end

@@ -7,6 +7,7 @@ require_relative 'pulse_oximetry/pulse_oximetry_read_test'
 require_relative 'pulse_oximetry/pulse_oximetry_provenance_revinclude_search_test'
 require_relative 'pulse_oximetry/pulse_oximetry_validation_test'
 require_relative 'pulse_oximetry/pulse_oximetry_must_support_test'
+require_relative 'pulse_oximetry/pulse_oximetry_reference_resolution_test'
 
 module USCore
   class PulseOximetryGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :pulse_oximetry_provenance_revinclude_search_test
     test from: :pulse_oximetry_validation_test
     test from: :pulse_oximetry_must_support_test
+    test from: :pulse_oximetry_reference_resolution_test
   end
 end

@@ -9,6 +9,7 @@ require_relative 'patient/patient_read_test'
 require_relative 'patient/patient_provenance_revinclude_search_test'
 require_relative 'patient/patient_validation_test'
 require_relative 'patient/patient_must_support_test'
+require_relative 'patient/patient_reference_resolution_test'
 
 module USCore
   class PatientGroup < Inferno::TestGroup
@@ -28,5 +29,6 @@ module USCore
     test from: :patient_provenance_revinclude_search_test
     test from: :patient_validation_test
     test from: :patient_must_support_test
+    test from: :patient_reference_resolution_test
   end
 end

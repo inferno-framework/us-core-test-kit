@@ -7,6 +7,7 @@ require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_read_t
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_provenance_revinclude_search_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_validation_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_must_support_test'
+require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_reference_resolution_test'
 
 module USCore
   class PediatricWeightForHeightGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :pediatric_weight_for_height_provenance_revinclude_search_test
     test from: :pediatric_weight_for_height_validation_test
     test from: :pediatric_weight_for_height_must_support_test
+    test from: :pediatric_weight_for_height_reference_resolution_test
   end
 end

@@ -7,6 +7,7 @@ require_relative 'observation_lab/observation_lab_read_test'
 require_relative 'observation_lab/observation_lab_provenance_revinclude_search_test'
 require_relative 'observation_lab/observation_lab_validation_test'
 require_relative 'observation_lab/observation_lab_must_support_test'
+require_relative 'observation_lab/observation_lab_reference_resolution_test'
 
 module USCore
   class ObservationLabGroup < Inferno::TestGroup
@@ -24,5 +25,6 @@ module USCore
     test from: :observation_lab_provenance_revinclude_search_test
     test from: :observation_lab_validation_test
     test from: :observation_lab_must_support_test
+    test from: :observation_lab_reference_resolution_test
   end
 end
