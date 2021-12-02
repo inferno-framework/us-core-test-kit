@@ -40,31 +40,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - category
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - type
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - period
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -106,23 +81,38 @@
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
-  :status:
-    :path: status
-    :full_path: DocumentReference.status
-    :comparators: {}
-    :values:
-    - current
-    - superseded
-    - entered-in-error
-    :type: code
-    :contains_multiple: false
-    :multiple_or: SHALL
   :patient:
     :path: subject
     :full_path: DocumentReference.subject
     :comparators: {}
     :values: []
     :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :type:
+    :path: type
+    :full_path: DocumentReference.type
+    :comparators: {}
+    :values:
+    - UNK
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :period:
+    :path: context.period
+    :full_path: DocumentReference.context.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -178,15 +168,6 @@
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
-  :type:
-    :path: type
-    :full_path: DocumentReference.type
-    :comparators: {}
-    :values:
-    - UNK
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: MAY
   :date:
     :path: date
     :full_path: DocumentReference.date
@@ -204,23 +185,17 @@
     :type: instant
     :contains_multiple: false
     :multiple_or: MAY
-  :period:
-    :path: context.period
-    :full_path: DocumentReference.context.period
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: Period
+  :status:
+    :path: status
+    :full_path: DocumentReference.status
+    :comparators: {}
+    :values:
+    - current
+    - superseded
+    - entered-in-error
+    :type: code
     :contains_multiple: false
-    :multiple_or: MAY
+    :multiple_or: SHALL
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -342,16 +317,6 @@
   :file_name: document_reference_patient_search_test.rb
 - :id: document_reference__id_search_test
   :file_name: document_reference_id_search_test.rb
-- :id: document_reference_status_search_test
-  :file_name: document_reference_status_search_test.rb
-- :id: document_reference_category_search_test
-  :file_name: document_reference_category_search_test.rb
-- :id: document_reference_type_search_test
-  :file_name: document_reference_type_search_test.rb
-- :id: document_reference_date_search_test
-  :file_name: document_reference_date_search_test.rb
-- :id: document_reference_period_search_test
-  :file_name: document_reference_period_search_test.rb
 - :id: document_reference_patient_type_period_search_test
   :file_name: document_reference_patient_type_period_search_test.rb
 - :id: document_reference_patient_type_search_test
@@ -368,6 +333,8 @@
   :file_name: document_reference_provenance_revinclude_search_test.rb
 - :id: document_reference_validation_test
   :file_name: document_reference_validation_test.rb
+- :id: document_reference_must_support_test
+  :file_name: document_reference_must_support_test.rb
 :id: document_reference
 :file_name: document_reference_group.rb
 :delayed_references:

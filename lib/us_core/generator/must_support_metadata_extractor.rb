@@ -132,7 +132,7 @@ module USCore
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'type',
-              code: type_code.upcase.first
+              code: type_code.upcase_first
             }
           }
         end

@@ -35,28 +35,8 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
   - patient
   :expectation: SHALL
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - category
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - code
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHALL
@@ -86,6 +66,40 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
+  :patient:
+    :path: subject
+    :full_path: DiagnosticReport.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :category:
+    :path: category
+    :full_path: DiagnosticReport.category
+    :comparators: {}
+    :values:
+    - LAB
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :path: effective
+    :full_path: DiagnosticReport.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
   :status:
     :path: status
     :full_path: DiagnosticReport.status
@@ -104,23 +118,6 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
-  :patient:
-    :path: subject
-    :full_path: DiagnosticReport.subject
-    :comparators: {}
-    :values: []
-    :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :category:
-    :path: category
-    :full_path: DiagnosticReport.category
-    :comparators: {}
-    :values:
-    - LAB
-    :type: CodeableConcept
-    :contains_multiple: true
-    :multiple_or: MAY
   :code:
     :path: code
     :full_path: DiagnosticReport.code
@@ -1129,23 +1126,6 @@
     :type: CodeableConcept
     :contains_multiple: false
     :multiple_or: SHOULD
-  :date:
-    :path: effective
-    :full_path: DiagnosticReport.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
-    :contains_multiple: false
-    :multiple_or: MAY
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -1242,16 +1222,8 @@
 :tests:
 - :id: diagnostic_report_lab_patient_category_search_test
   :file_name: diagnostic_report_lab_patient_category_search_test.rb
-- :id: diagnostic_report_lab_status_search_test
-  :file_name: diagnostic_report_lab_status_search_test.rb
 - :id: diagnostic_report_lab_patient_search_test
   :file_name: diagnostic_report_lab_patient_search_test.rb
-- :id: diagnostic_report_lab_category_search_test
-  :file_name: diagnostic_report_lab_category_search_test.rb
-- :id: diagnostic_report_lab_code_search_test
-  :file_name: diagnostic_report_lab_code_search_test.rb
-- :id: diagnostic_report_lab_date_search_test
-  :file_name: diagnostic_report_lab_date_search_test.rb
 - :id: diagnostic_report_lab_patient_category_date_search_test
   :file_name: diagnostic_report_lab_patient_category_date_search_test.rb
 - :id: diagnostic_report_lab_patient_status_search_test
@@ -1266,6 +1238,8 @@
   :file_name: diagnostic_report_lab_provenance_revinclude_search_test.rb
 - :id: diagnostic_report_lab_validation_test
   :file_name: diagnostic_report_lab_validation_test.rb
+- :id: diagnostic_report_lab_must_support_test
+  :file_name: diagnostic_report_lab_must_support_test.rb
 :id: diagnostic_report_lab
 :file_name: diagnostic_report_lab_group.rb
 :delayed_references:

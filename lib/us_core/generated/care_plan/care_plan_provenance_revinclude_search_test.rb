@@ -5,11 +5,11 @@ module USCore
   class CarePlanProvenanceRevincludeSearchTest < Inferno::Test
     include USCore::SearchTest
 
-    title 'Server returns Provenance resources from CarePlan search by patient + revInclude:Provenance:target'
+    title 'Server returns Provenance resources from CarePlan search by patient + category + status + date + revInclude:Provenance:target'
     description %(
       A server SHALL be capable of supporting _revIncludes:Provenance:target.
 
-      This test will perform a search by patient + revInclude:Provenance:target and
+      This test will perform a search by patient + category + status + date + revInclude:Provenance:target and
       will pass if a Provenance resource is found in the response.
     %)
 
@@ -22,9 +22,9 @@ module USCore
 
     def properties
       @properties ||= SearchTestProperties.new(
+        fixed_value_search: true,
         resource_type: 'CarePlan',
-        search_param_names: ['patient'],
-        possible_status_search: true
+        search_param_names: ['patient', 'category', 'status', 'date']
       )
     end
 

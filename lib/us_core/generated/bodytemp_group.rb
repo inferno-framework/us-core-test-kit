@@ -1,9 +1,4 @@
 require_relative 'bodytemp/bodytemp_patient_code_search_test'
-require_relative 'bodytemp/bodytemp_status_search_test'
-require_relative 'bodytemp/bodytemp_category_search_test'
-require_relative 'bodytemp/bodytemp_code_search_test'
-require_relative 'bodytemp/bodytemp_date_search_test'
-require_relative 'bodytemp/bodytemp_patient_search_test'
 require_relative 'bodytemp/bodytemp_patient_category_date_search_test'
 require_relative 'bodytemp/bodytemp_patient_category_status_search_test'
 require_relative 'bodytemp/bodytemp_patient_code_date_search_test'
@@ -11,6 +6,7 @@ require_relative 'bodytemp/bodytemp_patient_category_search_test'
 require_relative 'bodytemp/bodytemp_read_test'
 require_relative 'bodytemp/bodytemp_provenance_revinclude_search_test'
 require_relative 'bodytemp/bodytemp_validation_test'
+require_relative 'bodytemp/bodytemp_must_support_test'
 
 module USCore
   class BodytempGroup < Inferno::TestGroup
@@ -20,11 +16,6 @@ module USCore
     id :bodytemp
 
     test from: :bodytemp_patient_code_search_test
-    test from: :bodytemp_status_search_test
-    test from: :bodytemp_category_search_test
-    test from: :bodytemp_code_search_test
-    test from: :bodytemp_date_search_test
-    test from: :bodytemp_patient_search_test
     test from: :bodytemp_patient_category_date_search_test
     test from: :bodytemp_patient_category_status_search_test
     test from: :bodytemp_patient_code_date_search_test
@@ -32,5 +23,6 @@ module USCore
     test from: :bodytemp_read_test
     test from: :bodytemp_provenance_revinclude_search_test
     test from: :bodytemp_validation_test
+    test from: :bodytemp_must_support_test
   end
 end

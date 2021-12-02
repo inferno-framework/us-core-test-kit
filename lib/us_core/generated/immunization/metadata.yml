@@ -33,16 +33,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -64,17 +54,6 @@
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
-  :status:
-    :path: status
-    :full_path: Immunization.status
-    :comparators: {}
-    :values:
-    - completed
-    - entered-in-error
-    - not-done
-    :type: code
-    :contains_multiple: false
-    :multiple_or: MAY
   :date:
     :path: occurrence
     :full_path: Immunization.occurrence
@@ -90,6 +69,17 @@
       :ap: MAY
     :values: []
     :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :path: status
+    :full_path: Immunization.status
+    :comparators: {}
+    :values:
+    - completed
+    - entered-in-error
+    - not-done
+    :type: code
     :contains_multiple: false
     :multiple_or: MAY
 :include_params: []
@@ -199,10 +189,6 @@
 :tests:
 - :id: immunization_patient_search_test
   :file_name: immunization_patient_search_test.rb
-- :id: immunization_status_search_test
-  :file_name: immunization_status_search_test.rb
-- :id: immunization_date_search_test
-  :file_name: immunization_date_search_test.rb
 - :id: immunization_patient_date_search_test
   :file_name: immunization_patient_date_search_test.rb
 - :id: immunization_patient_status_search_test
@@ -213,6 +199,8 @@
   :file_name: immunization_provenance_revinclude_search_test.rb
 - :id: immunization_validation_test
   :file_name: immunization_validation_test.rb
+- :id: immunization_must_support_test
+  :file_name: immunization_must_support_test.rb
 :id: immunization
 :file_name: immunization_group.rb
 :delayed_references: []

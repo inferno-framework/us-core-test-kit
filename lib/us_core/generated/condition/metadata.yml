@@ -33,27 +33,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - category
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - clinical-status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - onset-date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory:
-  - onset-date
-  :must_support_or_mandatory: false
-- :names:
-  - code
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -80,29 +59,6 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
-  :category:
-    :path: category
-    :full_path: Condition.category
-    :comparators: {}
-    :values:
-    - health-concern
-    :type: CodeableConcept
-    :contains_multiple: true
-    :multiple_or: MAY
-  :clinical-status:
-    :path: clinicalStatus
-    :full_path: Condition.clinicalStatus
-    :comparators: {}
-    :values:
-    - active
-    - recurrence
-    - relapse
-    - inactive
-    - remission
-    - resolved
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: MAY
   :patient:
     :path: subject
     :full_path: Condition.subject
@@ -126,6 +82,29 @@
       :ap: MAY
     :values: []
     :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :category:
+    :path: category
+    :full_path: Condition.category
+    :comparators: {}
+    :values:
+    - health-concern
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :clinical-status:
+    :path: clinicalStatus
+    :full_path: Condition.clinicalStatus
+    :comparators: {}
+    :values:
+    - active
+    - recurrence
+    - relapse
+    - inactive
+    - remission
+    - resolved
+    :type: CodeableConcept
     :contains_multiple: false
     :multiple_or: MAY
   :code:
@@ -227,14 +206,6 @@
 :tests:
 - :id: condition_patient_search_test
   :file_name: condition_patient_search_test.rb
-- :id: condition_category_search_test
-  :file_name: condition_category_search_test.rb
-- :id: condition_clinical_status_search_test
-  :file_name: condition_clinical_status_search_test.rb
-- :id: condition_onset_date_search_test
-  :file_name: condition_onset_date_search_test.rb
-- :id: condition_code_search_test
-  :file_name: condition_code_search_test.rb
 - :id: condition_patient_onset_date_search_test
   :file_name: condition_patient_onset_date_search_test.rb
 - :id: condition_patient_category_search_test
@@ -249,6 +220,8 @@
   :file_name: condition_provenance_revinclude_search_test.rb
 - :id: condition_validation_test
   :file_name: condition_validation_test.rb
+- :id: condition_must_support_test
+  :file_name: condition_must_support_test.rb
 :id: condition
 :file_name: condition_group.rb
 :delayed_references: []

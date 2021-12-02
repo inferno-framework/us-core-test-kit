@@ -35,11 +35,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - clinical-status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -47,6 +42,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
+    :patient:
+      :path: patient
+      :full_path: AllergyIntolerance.patient
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
     :clinical-status:
       :path: clinicalStatus
       :full_path: AllergyIntolerance.clinicalStatus
@@ -56,14 +59,6 @@
       - inactive
       - resolved
       :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: MAY
-    :patient:
-      :path: patient
-      :full_path: AllergyIntolerance.patient
-      :comparators: {}
-      :values: []
-      :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
   :include_params: []
@@ -183,27 +178,6 @@
     :expectation: MAY
   :operations: []
   :searches:
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - date
-    :must_support_or_mandatory: false
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -235,6 +209,14 @@
     - date
     :must_support_or_mandatory: false
   :search_definitions:
+    :patient:
+      :path: subject
+      :full_path: CarePlan.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: CarePlan.category
@@ -244,6 +226,21 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
+    :status:
+      :path: status
+      :full_path: CarePlan.status
+      :comparators: {}
+      :values:
+      - draft
+      - active
+      - on-hold
+      - revoked
+      - completed
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+      :multiple_or: SHALL
     :date:
       :path: period
       :full_path: CarePlan.period
@@ -261,29 +258,6 @@
       :type: Period
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: CarePlan.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
-      :contains_multiple: false
-      :multiple_or: MAY
-    :status:
-      :path: status
-      :full_path: CarePlan.status
-      :comparators: {}
-      :values:
-      - draft
-      - active
-      - on-hold
-      - revoked
-      - completed
-      - entered-in-error
-      - unknown
-      :type: code
-      :contains_multiple: false
-      :multiple_or: SHALL
   :include_params: []
   :revincludes:
   - Provenance:target
@@ -479,16 +453,6 @@
     :expectation: MAY
   :operations: []
   :searches:
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -619,27 +583,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - clinical-status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - onset-date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - onset-date
-    :must_support_or_mandatory: false
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -666,29 +609,6 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :category:
-      :path: category
-      :full_path: Condition.category
-      :comparators: {}
-      :values:
-      - health-concern
-      :type: CodeableConcept
-      :contains_multiple: true
-      :multiple_or: MAY
-    :clinical-status:
-      :path: clinicalStatus
-      :full_path: Condition.clinicalStatus
-      :comparators: {}
-      :values:
-      - active
-      - recurrence
-      - relapse
-      - inactive
-      - remission
-      - resolved
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: MAY
     :patient:
       :path: subject
       :full_path: Condition.subject
@@ -712,6 +632,29 @@
         :ap: MAY
       :values: []
       :type: date
+      :contains_multiple: false
+      :multiple_or: MAY
+    :category:
+      :path: category
+      :full_path: Condition.category
+      :comparators: {}
+      :values:
+      - health-concern
+      :type: CodeableConcept
+      :contains_multiple: true
+      :multiple_or: MAY
+    :clinical-status:
+      :path: clinicalStatus
+      :full_path: Condition.clinicalStatus
+      :comparators: {}
+      :values:
+      - active
+      - recurrence
+      - relapse
+      - inactive
+      - remission
+      - resolved
+      :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
     :code:
@@ -846,11 +789,6 @@
   - :names:
     - patient
     :expectation: SHALL
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - type
-    :expectation: MAY
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -1983,28 +1921,8 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
     - patient
     :expectation: SHALL
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -2034,24 +1952,6 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: DiagnosticReport.status
-      :comparators: {}
-      :values:
-      - registered
-      - partial
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - appended
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
-      :contains_multiple: false
-      :multiple_or: SHALL
     :patient:
       :path: subject
       :full_path: DiagnosticReport.subject
@@ -2071,6 +1971,41 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
+    :date:
+      :path: effective
+      :full_path: DiagnosticReport.effective
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: SHALL
+        :ge: SHALL
+        :lt: SHALL
+        :le: SHALL
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+      :multiple_or: MAY
+    :status:
+      :path: status
+      :full_path: DiagnosticReport.status
+      :comparators: {}
+      :values:
+      - registered
+      - partial
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - appended
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+      :multiple_or: SHALL
     :code:
       :path: code
       :full_path: DiagnosticReport.code
@@ -3079,23 +3014,6 @@
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
-    :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
-      :comparators:
-        :eq: MAY
-        :ne: MAY
-        :gt: SHALL
-        :ge: SHALL
-        :lt: SHALL
-        :le: SHALL
-        :sa: MAY
-        :eb: MAY
-        :ap: MAY
-      :values: []
-      :type: date
-      :contains_multiple: false
-      :multiple_or: MAY
   :include_params: &1 []
   :revincludes: &2
   - Provenance:target
@@ -3224,28 +3142,8 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
     - patient
     :expectation: SHALL
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -3275,6 +3173,40 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
+    :patient:
+      :path: subject
+      :full_path: DiagnosticReport.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
+    :category:
+      :path: category
+      :full_path: DiagnosticReport.category
+      :comparators: {}
+      :values:
+      - LAB
+      :type: CodeableConcept
+      :contains_multiple: true
+      :multiple_or: MAY
+    :date:
+      :path: effective
+      :full_path: DiagnosticReport.effective
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: SHALL
+        :ge: SHALL
+        :lt: SHALL
+        :le: SHALL
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+      :multiple_or: MAY
     :status:
       :path: status
       :full_path: DiagnosticReport.status
@@ -3293,23 +3225,6 @@
       :type: code
       :contains_multiple: false
       :multiple_or: SHALL
-    :patient:
-      :path: subject
-      :full_path: DiagnosticReport.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
-      :contains_multiple: false
-      :multiple_or: MAY
-    :category:
-      :path: category
-      :full_path: DiagnosticReport.category
-      :comparators: {}
-      :values:
-      - LAB
-      :type: CodeableConcept
-      :contains_multiple: true
-      :multiple_or: MAY
     :code:
       :path: code
       :full_path: DiagnosticReport.code
@@ -4318,23 +4233,6 @@
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
-    :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
-      :comparators:
-        :eq: MAY
-        :ne: MAY
-        :gt: SHALL
-        :ge: SHALL
-        :lt: SHALL
-        :le: SHALL
-        :sa: MAY
-        :eb: MAY
-        :ap: MAY
-      :values: []
-      :type: date
-      :contains_multiple: false
-      :multiple_or: MAY
   :include_params: *1
   :revincludes: *2
   :required_concepts: []
@@ -4476,31 +4374,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - type
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - period
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -4542,23 +4415,38 @@
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
-    :status:
-      :path: status
-      :full_path: DocumentReference.status
-      :comparators: {}
-      :values:
-      - current
-      - superseded
-      - entered-in-error
-      :type: code
-      :contains_multiple: false
-      :multiple_or: SHALL
     :patient:
       :path: subject
       :full_path: DocumentReference.subject
       :comparators: {}
       :values: []
       :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
+    :type:
+      :path: type
+      :full_path: DocumentReference.type
+      :comparators: {}
+      :values:
+      - UNK
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: MAY
+    :period:
+      :path: context.period
+      :full_path: DocumentReference.context.period
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: SHALL
+        :ge: SHALL
+        :lt: SHALL
+        :le: SHALL
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: Period
       :contains_multiple: false
       :multiple_or: MAY
     :category:
@@ -4614,15 +4502,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :type:
-      :path: type
-      :full_path: DocumentReference.type
-      :comparators: {}
-      :values:
-      - UNK
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: MAY
     :date:
       :path: date
       :full_path: DocumentReference.date
@@ -4640,23 +4519,17 @@
       :type: instant
       :contains_multiple: false
       :multiple_or: MAY
-    :period:
-      :path: context.period
-      :full_path: DocumentReference.context.period
-      :comparators:
-        :eq: MAY
-        :ne: MAY
-        :gt: SHALL
-        :ge: SHALL
-        :lt: SHALL
-        :le: SHALL
-        :sa: MAY
-        :eb: MAY
-        :ap: MAY
-      :values: []
-      :type: Period
+    :status:
+      :path: status
+      :full_path: DocumentReference.status
+      :comparators: {}
+      :values:
+      - current
+      - superseded
+      - entered-in-error
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
   :include_params: []
   :revincludes:
   - Provenance:target
@@ -4827,28 +4700,8 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :names:
-    - class
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
     - identifier
     :expectation: SHOULD
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - type
-    :expectation: MAY
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -4884,6 +4737,22 @@
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
+    :identifier:
+      :path: identifier
+      :full_path: Encounter.identifier
+      :comparators: {}
+      :values: []
+      :type: Identifier
+      :contains_multiple: true
+      :multiple_or: MAY
+    :patient:
+      :path: subject
+      :full_path: Encounter.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
     :class:
       :path: class
       :full_path: Encounter.class
@@ -4901,39 +4770,6 @@
       - SS
       - VR
       :type: Coding
-      :contains_multiple: false
-      :multiple_or: MAY
-    :date:
-      :path: period
-      :full_path: Encounter.period
-      :comparators:
-        :eq: MAY
-        :ne: MAY
-        :gt: SHALL
-        :ge: SHALL
-        :lt: SHALL
-        :le: SHALL
-        :sa: MAY
-        :eb: MAY
-        :ap: MAY
-      :values: []
-      :type: Period
-      :contains_multiple: false
-      :multiple_or: MAY
-    :identifier:
-      :path: identifier
-      :full_path: Encounter.identifier
-      :comparators: {}
-      :values: []
-      :type: Identifier
-      :contains_multiple: true
-      :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Encounter.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :status:
@@ -4964,6 +4800,23 @@
       - OKI
       :type: CodeableConcept
       :contains_multiple: true
+      :multiple_or: MAY
+    :date:
+      :path: period
+      :full_path: Encounter.period
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: SHALL
+        :ge: SHALL
+        :lt: SHALL
+        :le: SHALL
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: Period
+      :contains_multiple: false
       :multiple_or: MAY
   :include_params: []
   :revincludes:
@@ -5178,17 +5031,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - lifecycle-status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - target-date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - target-date
-    :must_support_or_mandatory: false
   - :expectation: SHOULD
     :names:
     - patient
@@ -5199,10 +5041,17 @@
     :names:
     - patient
     - target-date
-    :names_not_must_support_or_mandatory:
-    - target-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
+    :patient:
+      :path: subject
+      :full_path: Goal.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
     :lifecycle-status:
       :path: lifecycleStatus
       :full_path: Goal.lifecycleStatus
@@ -5218,14 +5067,6 @@
       - entered-in-error
       - rejected
       :type: code
-      :contains_multiple: false
-      :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Goal.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
@@ -5256,7 +5097,7 @@
       :path: target.due[x]
       :discriminator:
         :type: type
-        :code: D
+        :code: Date
     :elements:
     - :path: lifecycleStatus
     - :path: description
@@ -5366,16 +5207,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -5397,17 +5228,6 @@
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
-    :status:
-      :path: status
-      :full_path: Immunization.status
-      :comparators: {}
-      :values:
-      - completed
-      - entered-in-error
-      - not-done
-      :type: code
-      :contains_multiple: false
-      :multiple_or: MAY
     :date:
       :path: occurrence
       :full_path: Immunization.occurrence
@@ -5423,6 +5243,17 @@
         :ap: MAY
       :values: []
       :type: date
+      :contains_multiple: false
+      :multiple_or: MAY
+    :status:
+      :path: status
+      :full_path: Immunization.status
+      :comparators: {}
+      :values:
+      - completed
+      - entered-in-error
+      - not-done
+      :type: code
       :contains_multiple: false
       :multiple_or: MAY
   :include_params: []
@@ -5866,31 +5697,6 @@
     - intent
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - intent
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - encounter
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - authoredon
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -5913,22 +5719,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: MedicationRequest.status
+    :patient:
+      :path: subject
+      :full_path: MedicationRequest.subject
       :comparators: {}
-      :values:
-      - active
-      - on-hold
-      - cancelled
-      - completed
-      - entered-in-error
-      - stopped
-      - draft
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :intent:
       :path: intent
       :full_path: MedicationRequest.intent
@@ -5945,14 +5743,6 @@
       :type: code
       :contains_multiple: false
       :multiple_or: SHALL
-    :patient:
-      :path: subject
-      :full_path: MedicationRequest.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
-      :contains_multiple: false
-      :multiple_or: MAY
     :encounter:
       :path: encounter
       :full_path: MedicationRequest.encounter
@@ -5978,6 +5768,22 @@
       :type: dateTime
       :contains_multiple: false
       :multiple_or: MAY
+    :status:
+      :path: status
+      :full_path: MedicationRequest.status
+      :comparators: {}
+      :values:
+      - active
+      - on-hold
+      - cancelled
+      - completed
+      - entered-in-error
+      - stopped
+      - draft
+      - unknown
+      :type: code
+      :contains_multiple: false
+      :multiple_or: SHALL
   :include_params:
   - MedicationRequest:medication
   :revincludes:
@@ -6175,33 +5981,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - category
-    :must_support_or_mandatory: false
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - date
-    :must_support_or_mandatory: false
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -6235,16 +6014,14 @@
     - category
     :must_support_or_mandatory: false
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - final
-      - entered-in-error
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -6262,15 +6039,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 72166-2
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -6288,14 +6056,25 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - final
+      - entered-in-error
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 72166-2
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
@@ -6307,7 +6086,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: C
+        :code: CodeableConcept
     :elements:
     - :path: status
     - :path: code
@@ -6471,31 +6250,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -6524,22 +6278,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -6549,15 +6295,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 77606-2
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -6575,14 +6312,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 77606-2
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -6593,7 +6347,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -6795,31 +6549,6 @@
     - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -6848,6 +6577,40 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :multiple_or: MAY
+    :category:
+      :path: category
+      :full_path: Observation.category
+      :comparators: {}
+      :values:
+      - laboratory
+      :type: CodeableConcept
+      :contains_multiple: true
+      :multiple_or: MAY
+    :date:
+      :path: effective
+      :full_path: Observation.effective
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: SHALL
+        :ge: SHALL
+        :lt: SHALL
+        :le: SHALL
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+      :multiple_or: MAY
     :status:
       :path: status
       :full_path: Observation.status
@@ -6864,15 +6627,6 @@
       :type: code
       :contains_multiple: false
       :multiple_or: SHALL
-    :category:
-      :path: category
-      :full_path: Observation.category
-      :comparators: {}
-      :values:
-      - laboratory
-      :type: CodeableConcept
-      :contains_multiple: true
-      :multiple_or: MAY
     :code:
       :path: code
       :full_path: Observation.code
@@ -7881,31 +7635,6 @@
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
-    :date:
-      :path: effective
-      :full_path: Observation.effective
-      :comparators:
-        :eq: MAY
-        :ne: MAY
-        :gt: SHALL
-        :ge: SHALL
-        :lt: SHALL
-        :le: SHALL
-        :sa: MAY
-        :eb: MAY
-        :ap: MAY
-      :values: []
-      :type: date
-      :contains_multiple: false
-      :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
-      :comparators: {}
-      :values: []
-      :type: Reference
-      :contains_multiple: false
-      :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -8084,31 +7813,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -8137,22 +7841,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -8162,15 +7858,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 59576-9
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -8188,14 +7875,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 59576-9
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -8206,7 +7910,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -8408,31 +8112,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -8461,22 +8140,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -8486,16 +8157,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 2708-6
-      - 59408-5
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -8513,14 +8174,32 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 2708-6
+      - 59408-5
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -8545,7 +8224,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -8822,31 +8501,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -8875,22 +8529,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -8900,15 +8546,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 8289-1
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -8926,14 +8563,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 8289-1
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -8944,7 +8598,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -9146,31 +8800,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -9199,22 +8828,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -9224,15 +8845,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 8302-2
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -9250,14 +8862,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 8302-2
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -9268,7 +8897,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -9476,31 +9105,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -9529,22 +9133,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -9554,15 +9150,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 8310-5
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -9580,14 +9167,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 8310-5
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -9598,7 +9202,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -9806,31 +9410,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -9859,22 +9438,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -9884,15 +9455,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 85354-9
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -9910,14 +9472,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 85354-9
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -10160,31 +9739,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -10213,22 +9767,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -10238,15 +9784,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 29463-7
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -10264,14 +9801,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 29463-7
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -10282,7 +9836,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -10490,31 +10044,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -10543,22 +10072,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -10568,15 +10089,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 8867-4
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -10594,14 +10106,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 8867-4
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -10612,7 +10141,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -10817,31 +10346,6 @@
     - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - category
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - patient
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -10870,22 +10374,14 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Observation.status
+    :patient:
+      :path: subject
+      :full_path: Observation.subject
       :comparators: {}
-      :values:
-      - registered
-      - preliminary
-      - final
-      - amended
-      - corrected
-      - cancelled
-      - entered-in-error
-      - unknown
-      :type: code
+      :values: []
+      :type: Reference
       :contains_multiple: false
-      :multiple_or: SHALL
+      :multiple_or: MAY
     :category:
       :path: category
       :full_path: Observation.category
@@ -10895,15 +10391,6 @@
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
-    :code:
-      :path: code
-      :full_path: Observation.code
-      :comparators: {}
-      :values:
-      - 9279-1
-      :type: CodeableConcept
-      :contains_multiple: false
-      :multiple_or: SHOULD
     :date:
       :path: effective
       :full_path: Observation.effective
@@ -10921,14 +10408,31 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
-    :patient:
-      :path: subject
-      :full_path: Observation.subject
+    :status:
+      :path: status
+      :full_path: Observation.status
       :comparators: {}
-      :values: []
-      :type: Reference
+      :values:
+      - registered
+      - preliminary
+      - final
+      - amended
+      - corrected
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
       :contains_multiple: false
-      :multiple_or: MAY
+      :multiple_or: SHALL
+    :code:
+      :path: code
+      :full_path: Observation.code
+      :comparators: {}
+      :values:
+      - 9279-1
+      :type: CodeableConcept
+      :contains_multiple: false
+      :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
   :required_concepts:
@@ -10939,7 +10443,7 @@
       :path: value[x]
       :discriminator:
         :type: type
-        :code: Q
+        :code: Quantity
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -11275,26 +10779,6 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :names:
-    - birthdate
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - family
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - gender
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - given
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
     - identifier
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
@@ -11337,6 +10821,22 @@
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
+    :identifier:
+      :path: identifier
+      :full_path: Patient.identifier
+      :comparators: {}
+      :values: []
+      :type: Identifier
+      :contains_multiple: true
+      :multiple_or: MAY
+    :name:
+      :path: name
+      :full_path: Patient.name
+      :comparators: {}
+      :values: []
+      :type: HumanName
+      :contains_multiple: true
+      :multiple_or: MAY
     :birthdate:
       :path: birthDate
       :full_path: Patient.birthDate
@@ -11373,30 +10873,6 @@
       - unknown
       :type: code
       :contains_multiple: false
-      :multiple_or: MAY
-    :given:
-      :path: name.given
-      :full_path: Patient.name.given
-      :comparators: {}
-      :values: []
-      :type: string
-      :contains_multiple: true
-      :multiple_or: MAY
-    :identifier:
-      :path: identifier
-      :full_path: Patient.identifier
-      :comparators: {}
-      :values: []
-      :type: Identifier
-      :contains_multiple: true
-      :multiple_or: MAY
-    :name:
-      :path: name
-      :full_path: Patient.name
-      :comparators: {}
-      :values: []
-      :type: HumanName
-      :contains_multiple: true
       :multiple_or: MAY
   :include_params: []
   :revincludes:
@@ -11967,21 +11443,6 @@
     :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - status
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - date
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :names:
-    - code
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
@@ -12002,22 +11463,6 @@
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
-    :status:
-      :path: status
-      :full_path: Procedure.status
-      :comparators: {}
-      :values:
-      - preparation
-      - in-progress
-      - not-done
-      - on-hold
-      - stopped
-      - completed
-      - entered-in-error
-      - unknown
-      :type: code
-      :contains_multiple: false
-      :multiple_or: SHALL
     :patient:
       :path: subject
       :full_path: Procedure.subject
@@ -12043,6 +11488,22 @@
       :type: date
       :contains_multiple: false
       :multiple_or: MAY
+    :status:
+      :path: status
+      :full_path: Procedure.status
+      :comparators: {}
+      :values:
+      - preparation
+      - in-progress
+      - not-done
+      - on-hold
+      - stopped
+      - completed
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+      :multiple_or: SHALL
     :code:
       :path: code
       :full_path: Procedure.code

@@ -39,28 +39,8 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :names:
-  - class
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
   - identifier
   :expectation: SHOULD
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - type
-  :expectation: MAY
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -96,6 +76,22 @@
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
+  :identifier:
+    :path: identifier
+    :full_path: Encounter.identifier
+    :comparators: {}
+    :values: []
+    :type: Identifier
+    :contains_multiple: true
+    :multiple_or: MAY
+  :patient:
+    :path: subject
+    :full_path: Encounter.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
   :class:
     :path: class
     :full_path: Encounter.class
@@ -113,39 +109,6 @@
     - SS
     - VR
     :type: Coding
-    :contains_multiple: false
-    :multiple_or: MAY
-  :date:
-    :path: period
-    :full_path: Encounter.period
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: Period
-    :contains_multiple: false
-    :multiple_or: MAY
-  :identifier:
-    :path: identifier
-    :full_path: Encounter.identifier
-    :comparators: {}
-    :values: []
-    :type: Identifier
-    :contains_multiple: true
-    :multiple_or: MAY
-  :patient:
-    :path: subject
-    :full_path: Encounter.subject
-    :comparators: {}
-    :values: []
-    :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :status:
@@ -176,6 +139,23 @@
     - OKI
     :type: CodeableConcept
     :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :path: period
+    :full_path: Encounter.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
+    :contains_multiple: false
     :multiple_or: MAY
 :include_params: []
 :revincludes:
@@ -356,16 +336,8 @@
   :file_name: encounter_patient_search_test.rb
 - :id: encounter__id_search_test
   :file_name: encounter_id_search_test.rb
-- :id: encounter_class_search_test
-  :file_name: encounter_class_search_test.rb
-- :id: encounter_date_search_test
-  :file_name: encounter_date_search_test.rb
 - :id: encounter_identifier_search_test
   :file_name: encounter_identifier_search_test.rb
-- :id: encounter_status_search_test
-  :file_name: encounter_status_search_test.rb
-- :id: encounter_type_search_test
-  :file_name: encounter_type_search_test.rb
 - :id: encounter_class_patient_search_test
   :file_name: encounter_class_patient_search_test.rb
 - :id: encounter_patient_status_search_test
@@ -378,6 +350,8 @@
   :file_name: encounter_provenance_revinclude_search_test.rb
 - :id: encounter_validation_test
   :file_name: encounter_validation_test.rb
+- :id: encounter_must_support_test
+  :file_name: encounter_must_support_test.rb
 :id: encounter
 :file_name: encounter_group.rb
 :delayed_references:

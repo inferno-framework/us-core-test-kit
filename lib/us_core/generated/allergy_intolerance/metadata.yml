@@ -33,11 +33,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - clinical-status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -45,6 +40,14 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
+  :patient:
+    :path: patient
+    :full_path: AllergyIntolerance.patient
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
   :clinical-status:
     :path: clinicalStatus
     :full_path: AllergyIntolerance.clinicalStatus
@@ -54,14 +57,6 @@
     - inactive
     - resolved
     :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: MAY
-  :patient:
-    :path: patient
-    :full_path: AllergyIntolerance.patient
-    :comparators: {}
-    :values: []
-    :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
 :include_params: []
@@ -151,8 +146,6 @@
 :tests:
 - :id: allergy_intolerance_patient_search_test
   :file_name: allergy_intolerance_patient_search_test.rb
-- :id: allergy_intolerance_clinical_status_search_test
-  :file_name: allergy_intolerance_clinical_status_search_test.rb
 - :id: allergy_intolerance_patient_clinical_status_search_test
   :file_name: allergy_intolerance_patient_clinical_status_search_test.rb
 - :id: allergy_intolerance_read_test
@@ -161,6 +154,8 @@
   :file_name: allergy_intolerance_provenance_revinclude_search_test.rb
 - :id: allergy_intolerance_validation_test
   :file_name: allergy_intolerance_validation_test.rb
+- :id: allergy_intolerance_must_support_test
+  :file_name: allergy_intolerance_must_support_test.rb
 :id: allergy_intolerance
 :file_name: allergy_intolerance_group.rb
 :delayed_references: []

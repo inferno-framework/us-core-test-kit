@@ -33,17 +33,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - lifecycle-status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - target-date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory:
-  - target-date
-  :must_support_or_mandatory: false
 - :expectation: SHOULD
   :names:
   - patient
@@ -54,10 +43,17 @@
   :names:
   - patient
   - target-date
-  :names_not_must_support_or_mandatory:
-  - target-date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
+  :patient:
+    :path: subject
+    :full_path: Goal.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
   :lifecycle-status:
     :path: lifecycleStatus
     :full_path: Goal.lifecycleStatus
@@ -73,14 +69,6 @@
     - entered-in-error
     - rejected
     :type: code
-    :contains_multiple: false
-    :multiple_or: MAY
-  :patient:
-    :path: subject
-    :full_path: Goal.subject
-    :comparators: {}
-    :values: []
-    :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :target-date:
@@ -111,7 +99,7 @@
     :path: target.due[x]
     :discriminator:
       :type: type
-      :code: D
+      :code: Date
   :elements:
   - :path: lifecycleStatus
   - :path: description
@@ -186,10 +174,6 @@
 :tests:
 - :id: goal_patient_search_test
   :file_name: goal_patient_search_test.rb
-- :id: goal_lifecycle_status_search_test
-  :file_name: goal_lifecycle_status_search_test.rb
-- :id: goal_target_date_search_test
-  :file_name: goal_target_date_search_test.rb
 - :id: goal_patient_lifecycle_status_search_test
   :file_name: goal_patient_lifecycle_status_search_test.rb
 - :id: goal_patient_target_date_search_test
@@ -200,6 +184,8 @@
   :file_name: goal_provenance_revinclude_search_test.rb
 - :id: goal_validation_test
   :file_name: goal_validation_test.rb
+- :id: goal_must_support_test
+  :file_name: goal_must_support_test.rb
 :id: goal
 :file_name: goal_group.rb
 :delayed_references: []

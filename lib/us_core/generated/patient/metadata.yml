@@ -34,26 +34,6 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :names:
-  - birthdate
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - family
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - gender
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - given
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
   - identifier
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
@@ -96,6 +76,22 @@
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
+  :identifier:
+    :path: identifier
+    :full_path: Patient.identifier
+    :comparators: {}
+    :values: []
+    :type: Identifier
+    :contains_multiple: true
+    :multiple_or: MAY
+  :name:
+    :path: name
+    :full_path: Patient.name
+    :comparators: {}
+    :values: []
+    :type: HumanName
+    :contains_multiple: true
+    :multiple_or: MAY
   :birthdate:
     :path: birthDate
     :full_path: Patient.birthDate
@@ -132,30 +128,6 @@
     - unknown
     :type: code
     :contains_multiple: false
-    :multiple_or: MAY
-  :given:
-    :path: name.given
-    :full_path: Patient.name.given
-    :comparators: {}
-    :values: []
-    :type: string
-    :contains_multiple: true
-    :multiple_or: MAY
-  :identifier:
-    :path: identifier
-    :full_path: Patient.identifier
-    :comparators: {}
-    :values: []
-    :type: Identifier
-    :contains_multiple: true
-    :multiple_or: MAY
-  :name:
-    :path: name
-    :full_path: Patient.name
-    :comparators: {}
-    :values: []
-    :type: HumanName
-    :contains_multiple: true
     :multiple_or: MAY
 :include_params: []
 :revincludes:
@@ -319,14 +291,6 @@
 :tests:
 - :id: patient__id_search_test
   :file_name: patient_id_search_test.rb
-- :id: patient_birthdate_search_test
-  :file_name: patient_birthdate_search_test.rb
-- :id: patient_family_search_test
-  :file_name: patient_family_search_test.rb
-- :id: patient_gender_search_test
-  :file_name: patient_gender_search_test.rb
-- :id: patient_given_search_test
-  :file_name: patient_given_search_test.rb
 - :id: patient_identifier_search_test
   :file_name: patient_identifier_search_test.rb
 - :id: patient_name_search_test
@@ -345,6 +309,8 @@
   :file_name: patient_provenance_revinclude_search_test.rb
 - :id: patient_validation_test
   :file_name: patient_validation_test.rb
+- :id: patient_must_support_test
+  :file_name: patient_must_support_test.rb
 :id: patient
 :file_name: patient_group.rb
 :delayed_references: []

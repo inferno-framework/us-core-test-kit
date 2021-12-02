@@ -21,8 +21,12 @@ module USCore
 
     def properties
       @properties ||= SearchTestProperties.new(
+        first_search: true,
+        fixed_value_search: true,
         resource_type: 'CareTeam',
-        search_param_names: ['patient', 'status']
+        search_param_names: ['patient', 'status'],
+        saves_delayed_references: true,
+        test_reference_variants: true
       )
     end
 

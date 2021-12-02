@@ -33,21 +33,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - code
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - patient
@@ -68,22 +53,6 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
-  :status:
-    :path: status
-    :full_path: Procedure.status
-    :comparators: {}
-    :values:
-    - preparation
-    - in-progress
-    - not-done
-    - on-hold
-    - stopped
-    - completed
-    - entered-in-error
-    - unknown
-    :type: code
-    :contains_multiple: false
-    :multiple_or: SHALL
   :patient:
     :path: subject
     :full_path: Procedure.subject
@@ -109,6 +78,22 @@
     :type: date
     :contains_multiple: false
     :multiple_or: MAY
+  :status:
+    :path: status
+    :full_path: Procedure.status
+    :comparators: {}
+    :values:
+    - preparation
+    - in-progress
+    - not-done
+    - on-hold
+    - stopped
+    - completed
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
   :code:
     :path: code
     :full_path: Procedure.code
@@ -1257,12 +1242,6 @@
 :tests:
 - :id: procedure_patient_search_test
   :file_name: procedure_patient_search_test.rb
-- :id: procedure_status_search_test
-  :file_name: procedure_status_search_test.rb
-- :id: procedure_date_search_test
-  :file_name: procedure_date_search_test.rb
-- :id: procedure_code_search_test
-  :file_name: procedure_code_search_test.rb
 - :id: procedure_patient_date_search_test
   :file_name: procedure_patient_date_search_test.rb
 - :id: procedure_patient_status_search_test
@@ -1275,6 +1254,8 @@
   :file_name: procedure_provenance_revinclude_search_test.rb
 - :id: procedure_validation_test
   :file_name: procedure_validation_test.rb
+- :id: procedure_must_support_test
+  :file_name: procedure_must_support_test.rb
 :id: procedure
 :file_name: procedure_group.rb
 :delayed_references: []

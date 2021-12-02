@@ -28,16 +28,6 @@
   :expectation: MAY
 :operations: []
 :searches:
-- :names:
-  - patient
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - patient
@@ -127,10 +117,6 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: care_team_patient_search_test
-  :file_name: care_team_patient_search_test.rb
-- :id: care_team_status_search_test
-  :file_name: care_team_status_search_test.rb
 - :id: care_team_patient_status_search_test
   :file_name: care_team_patient_status_search_test.rb
 - :id: care_team_read_test
@@ -139,6 +125,8 @@
   :file_name: care_team_provenance_revinclude_search_test.rb
 - :id: care_team_validation_test
   :file_name: care_team_validation_test.rb
+- :id: care_team_must_support_test
+  :file_name: care_team_must_support_test.rb
 :id: care_team
 :file_name: care_team_group.rb
 :delayed_references:

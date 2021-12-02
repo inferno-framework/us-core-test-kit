@@ -1,15 +1,11 @@
 require_relative 'medication_request/medication_request_patient_intent_search_test'
-require_relative 'medication_request/medication_request_status_search_test'
-require_relative 'medication_request/medication_request_intent_search_test'
-require_relative 'medication_request/medication_request_patient_search_test'
-require_relative 'medication_request/medication_request_encounter_search_test'
-require_relative 'medication_request/medication_request_authoredon_search_test'
 require_relative 'medication_request/medication_request_patient_intent_encounter_search_test'
 require_relative 'medication_request/medication_request_patient_intent_authoredon_search_test'
 require_relative 'medication_request/medication_request_patient_intent_status_search_test'
 require_relative 'medication_request/medication_request_read_test'
 require_relative 'medication_request/medication_request_provenance_revinclude_search_test'
 require_relative 'medication_request/medication_request_validation_test'
+require_relative 'medication_request/medication_request_must_support_test'
 
 module USCore
   class MedicationRequestGroup < Inferno::TestGroup
@@ -19,16 +15,12 @@ module USCore
     id :medication_request
 
     test from: :medication_request_patient_intent_search_test
-    test from: :medication_request_status_search_test
-    test from: :medication_request_intent_search_test
-    test from: :medication_request_patient_search_test
-    test from: :medication_request_encounter_search_test
-    test from: :medication_request_authoredon_search_test
     test from: :medication_request_patient_intent_encounter_search_test
     test from: :medication_request_patient_intent_authoredon_search_test
     test from: :medication_request_patient_intent_status_search_test
     test from: :medication_request_read_test
     test from: :medication_request_provenance_revinclude_search_test
     test from: :medication_request_validation_test
+    test from: :medication_request_must_support_test
   end
 end

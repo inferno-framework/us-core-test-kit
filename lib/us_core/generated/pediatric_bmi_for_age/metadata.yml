@@ -34,31 +34,6 @@
   - code
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - category
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - code
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - patient
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - patient
@@ -87,22 +62,14 @@
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
-  :status:
-    :path: status
-    :full_path: Observation.status
+  :patient:
+    :path: subject
+    :full_path: Observation.subject
     :comparators: {}
-    :values:
-    - registered
-    - preliminary
-    - final
-    - amended
-    - corrected
-    - cancelled
-    - entered-in-error
-    - unknown
-    :type: code
+    :values: []
+    :type: Reference
     :contains_multiple: false
-    :multiple_or: SHALL
+    :multiple_or: MAY
   :category:
     :path: category
     :full_path: Observation.category
@@ -112,15 +79,6 @@
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
-  :code:
-    :path: code
-    :full_path: Observation.code
-    :comparators: {}
-    :values:
-    - 59576-9
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
   :date:
     :path: effective
     :full_path: Observation.effective
@@ -138,14 +96,31 @@
     :type: date
     :contains_multiple: false
     :multiple_or: MAY
-  :patient:
-    :path: subject
-    :full_path: Observation.subject
+  :status:
+    :path: status
+    :full_path: Observation.status
     :comparators: {}
-    :values: []
-    :type: Reference
+    :values:
+    - registered
+    - preliminary
+    - final
+    - amended
+    - corrected
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
     :contains_multiple: false
-    :multiple_or: MAY
+    :multiple_or: SHALL
+  :code:
+    :path: code
+    :full_path: Observation.code
+    :comparators: {}
+    :values:
+    - 59576-9
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -157,7 +132,7 @@
     :path: value[x]
     :discriminator:
       :type: type
-      :code: Q
+      :code: Quantity
   - :name: Observation.category:VSCat
     :path: category
     :discriminator:
@@ -323,16 +298,6 @@
 :tests:
 - :id: pediatric_bmi_for_age_patient_code_search_test
   :file_name: pediatric_bmi_for_age_patient_code_search_test.rb
-- :id: pediatric_bmi_for_age_status_search_test
-  :file_name: pediatric_bmi_for_age_status_search_test.rb
-- :id: pediatric_bmi_for_age_category_search_test
-  :file_name: pediatric_bmi_for_age_category_search_test.rb
-- :id: pediatric_bmi_for_age_code_search_test
-  :file_name: pediatric_bmi_for_age_code_search_test.rb
-- :id: pediatric_bmi_for_age_date_search_test
-  :file_name: pediatric_bmi_for_age_date_search_test.rb
-- :id: pediatric_bmi_for_age_patient_search_test
-  :file_name: pediatric_bmi_for_age_patient_search_test.rb
 - :id: pediatric_bmi_for_age_patient_category_date_search_test
   :file_name: pediatric_bmi_for_age_patient_category_date_search_test.rb
 - :id: pediatric_bmi_for_age_patient_category_status_search_test
@@ -347,6 +312,8 @@
   :file_name: pediatric_bmi_for_age_provenance_revinclude_search_test.rb
 - :id: pediatric_bmi_for_age_validation_test
   :file_name: pediatric_bmi_for_age_validation_test.rb
+- :id: pediatric_bmi_for_age_must_support_test
+  :file_name: pediatric_bmi_for_age_must_support_test.rb
 :id: pediatric_bmi_for_age
 :file_name: pediatric_bmi_for_age_group.rb
 :delayed_references: []

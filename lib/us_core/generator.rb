@@ -4,6 +4,7 @@ require_relative 'ext/fhir_models'
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
 require_relative 'generator/group_generator'
+require_relative 'generator/must_support_test_generator'
 require_relative 'generator/provenance_revinclude_search_test_generator'
 require_relative 'generator/read_test_generator'
 require_relative 'generator/search_test_generator'
@@ -23,7 +24,7 @@ module USCore
       # generate_history_tests
       generate_provenance_revinclude_search_tests
       generate_validation_tests
-      # generate_must_support_tests
+      generate_must_support_tests
       # generate_reference_resolution_tests
       generate_groups
       generate_suites
@@ -43,6 +44,10 @@ module USCore
     def load_ig_package
       FHIR.logger = Logger.new('/dev/null')
       self.ig_resources = IGLoader.new.load
+    end
+
+    def generate_must_support_tests
+      MustSupportTestGenerator.generate(ig_metadata)
     end
 
     def generate_validation_tests

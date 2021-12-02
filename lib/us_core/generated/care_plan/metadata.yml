@@ -28,27 +28,6 @@
   :expectation: MAY
 :operations: []
 :searches:
-- :names:
-  - patient
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - category
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :names:
-  - date
-  :expectation: MAY
-  :names_not_must_support_or_mandatory:
-  - date
-  :must_support_or_mandatory: false
-- :names:
-  - status
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -80,6 +59,14 @@
   - date
   :must_support_or_mandatory: false
 :search_definitions:
+  :patient:
+    :path: subject
+    :full_path: CarePlan.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
   :category:
     :path: category
     :full_path: CarePlan.category
@@ -89,6 +76,21 @@
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
+  :status:
+    :path: status
+    :full_path: CarePlan.status
+    :comparators: {}
+    :values:
+    - draft
+    - active
+    - on-hold
+    - revoked
+    - completed
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
   :date:
     :path: period
     :full_path: CarePlan.period
@@ -106,29 +108,6 @@
     :type: Period
     :contains_multiple: false
     :multiple_or: MAY
-  :patient:
-    :path: subject
-    :full_path: CarePlan.subject
-    :comparators: {}
-    :values: []
-    :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :status:
-    :path: status
-    :full_path: CarePlan.status
-    :comparators: {}
-    :values:
-    - draft
-    - active
-    - on-hold
-    - revoked
-    - completed
-    - entered-in-error
-    - unknown
-    :type: code
-    :contains_multiple: false
-    :multiple_or: SHALL
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -292,14 +271,6 @@
   - http://hl7.org/fhir/StructureDefinition/HealthcareService
   - http://hl7.org/fhir/StructureDefinition/Device
 :tests:
-- :id: care_plan_patient_search_test
-  :file_name: care_plan_patient_search_test.rb
-- :id: care_plan_category_search_test
-  :file_name: care_plan_category_search_test.rb
-- :id: care_plan_date_search_test
-  :file_name: care_plan_date_search_test.rb
-- :id: care_plan_status_search_test
-  :file_name: care_plan_status_search_test.rb
 - :id: care_plan_patient_category_status_date_search_test
   :file_name: care_plan_patient_category_status_date_search_test.rb
 - :id: care_plan_patient_category_status_search_test
@@ -314,6 +285,8 @@
   :file_name: care_plan_provenance_revinclude_search_test.rb
 - :id: care_plan_validation_test
   :file_name: care_plan_validation_test.rb
+- :id: care_plan_must_support_test
+  :file_name: care_plan_must_support_test.rb
 :id: care_plan
 :file_name: care_plan_group.rb
 :delayed_references: []
