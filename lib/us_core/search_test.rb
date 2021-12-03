@@ -267,10 +267,10 @@ module USCore
     def test_medication_inclusion(medication_requests, params, patient_id)
       return if search_variant_test_records[:medication_inclusion]
 
-      scratch[:medication] ||= {}
-      scratch[:medication][:all] ||= []
-      scratch[:medication][patient_id] ||= []
-      scratch[:medication][:contained] ||= []
+      scratch[:medication_resources] ||= {}
+      scratch[:medication_resources][:all] ||= []
+      scratch[:medication_resources][patient_id] ||= []
+      scratch[:medication_resources][:contained] ||= []
 
       requests_with_external_references =
         medication_requests
@@ -283,12 +283,12 @@ module USCore
           .flat_map(&:contained)
           .select { |resource| resource.resourceType == 'Medication' }
 
-      scratch[:medication][:all] += contained_medications
-      scratch[:medication][:all].uniq!(&:id)
-      scratch[:medication][patient_id] += contained_medications
-      scratch[:medication][patient_id].uniq!(&:id)
-      scratch[:medication][:contained] += contained_medications
-      scratch[:medication][:contained].uniq!(&:id)
+      scratch[:medication_resources][:all] += contained_medications
+      scratch[:medication_resources][:all].uniq!(&:id)
+      scratch[:medication_resources][patient_id] += contained_medications
+      scratch[:medication_resources][patient_id].uniq!(&:id)
+      scratch[:medication_resources][:contained] += contained_medications
+      scratch[:medication_resources][:contained].uniq!(&:id)
 
       return if requests_with_external_references.blank?
 
@@ -299,10 +299,10 @@ module USCore
       medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
 
-      scratch[:medication][:all] += medications
-      scratch[:medication][:all].uniq!(&:id)
-      scratch[:medication][patient_id] += medications
-      scratch[:medication][patient_id].uniq!(&:id)
+      scratch[:medication_resources][:all] += medications
+      scratch[:medication_resources][:all].uniq!(&:id)
+      scratch[:medication_resources][patient_id] += medications
+      scratch[:medication_resources][patient_id].uniq!(&:id)
 
       search_variant_test_records[:medication_inclusion] = true
     end

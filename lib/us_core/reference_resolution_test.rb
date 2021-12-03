@@ -84,6 +84,7 @@ module USCore
         reference_type = reference.resource_type
 
         begin
+          # TODO: this request isn't persisted
           resolved_resource = reference.read
         rescue ClientException => e
           # report error if the resource is a US Core resource type
