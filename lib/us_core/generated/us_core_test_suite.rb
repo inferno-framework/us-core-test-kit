@@ -24,11 +24,8 @@ require_relative 'heartrate_group'
 require_relative 'resprate_group'
 require_relative 'procedure_group'
 require_relative 'encounter_group'
-require_relative 'location_group'
-require_relative 'medication_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
-require_relative 'practitioner_role_group'
 require_relative 'provenance_group'
 
 module USCore
@@ -77,11 +74,8 @@ module USCore
     group from: :resprate
     group from: :procedure
     group from: :encounter
-    group from: :location
-    group from: :medication
     group from: :organization
     group from: :practitioner
-    group from: :practitioner_role
     group from: :provenance
   end
 end

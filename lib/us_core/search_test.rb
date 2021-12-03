@@ -277,11 +277,18 @@ module USCore
           .select { |request| request&.medicationReference&.present? }
           .reject { |request| request&.medicationReference&.reference&.start_with? '#' }
 
-      scratch[:medication][:contained] +=
+      contained_medications =
         medication_requests
           .select { |request| request&.medicationReference&.reference&.start_with? '#' }
           .flat_map(&:contained)
           .select { |resource| resource.resourceType == 'Medication' }
+
+      scratch[:medication][:all] += contained_medications
+      scratch[:medication][:all].uniq!(&:id)
+      scratch[:medication][patient_id] += contained_medications
+      scratch[:medication][patient_id].uniq!(&:id)
+      scratch[:medication][:contained] += contained_medications
+      scratch[:medication][:contained].uniq!(&:id)
 
       return if requests_with_external_references.blank?
 

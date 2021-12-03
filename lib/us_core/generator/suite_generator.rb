@@ -1,4 +1,5 @@
 require_relative 'naming'
+require_relative 'special_cases'
 
 module USCore
   class Generator
@@ -47,14 +48,19 @@ module USCore
         File.open(output_file_name, 'w') { |f| f.write(output) }
       end
 
+      def groups
+        ig_metadata.ordered_groups
+          .reject { |group| SpecialCases.exclude_resource? group.resource }
+      end
+
       def group_id_list
         @group_id_list ||=
-          ig_metadata.ordered_groups.map(&:id)
+          groups.map(&:id)
       end
 
       def group_file_list
         @group_file_list ||=
-          ig_metadata.ordered_groups.map { |group| group.file_name.delete_suffix('.rb') }
+          groups.map { |group| group.file_name.delete_suffix('.rb') }
       end
     end
   end

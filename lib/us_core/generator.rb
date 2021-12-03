@@ -23,8 +23,8 @@ module USCore
       generate_resource_list
       generate_search_tests
       generate_read_tests
-      # generate_vread_tests
-      # generate_history_tests
+      # TODO: generate_vread_tests
+      # TODO: generate_history_tests
       generate_provenance_revinclude_search_tests
       generate_validation_tests
       generate_must_support_tests
@@ -34,9 +34,10 @@ module USCore
 
       generate_suites
 
-      # These won't be generated, but we need them:
+      # TODO: These won't be generated, but we need them:
       # - CapabilityStatement group
       # - DAR group
+      # - Clinical Notes Guidance
     end
 
     def extract_metadata

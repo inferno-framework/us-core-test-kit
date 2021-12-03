@@ -1,4 +1,5 @@
 require_relative 'naming'
+require_relative 'special_cases'
 
 module USCore
   class Generator
@@ -6,6 +7,7 @@ module USCore
       class << self
         def generate(ig_metadata)
           ig_metadata.groups
+            .reject { |group| SpecialCases.exclude_resource? group.resource }
             .select { |group| group.searches.present? }
             .each do |group|
               group.searches.each { |search| new(group, search).generate }

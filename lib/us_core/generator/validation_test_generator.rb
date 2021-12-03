@@ -1,4 +1,5 @@
 require_relative 'naming'
+require_relative 'special_cases'
 
 module USCore
   class Generator
@@ -6,14 +7,24 @@ module USCore
       class << self
         def generate(ig_metadata)
           ig_metadata.groups
-            .each { |group| new(group).generate }
+            .reject { |group| SpecialCases.exclude_resource? group.resource }
+            .each do |group|
+              new(group).generate
+              next unless group.resource == 'MedicationRequest'
+
+              # The Medication validation test lives in the MedicationRequest
+              # group, so we need to pass in that group's metadata
+              medication_group_metadata = ig_metadata.groups.find { |group| group.resource == 'Medication' }
+              new(medication_group_metadata, group).generate
+            end
         end
       end
 
-      attr_accessor :group_metadata
+      attr_accessor :group_metadata, :medication_request_metadata
 
-      def initialize(group_metadata)
+      def initialize(group_metadata, medication_request_metadata = nil)
         self.group_metadata = group_metadata
+        self.medication_request_metadata = medication_request_metadata
       end
 
       def template
@@ -29,11 +40,15 @@ module USCore
       end
 
       def output_file_directory
-        File.join(__dir__, '..', 'generated', profile_identifier)
+        File.join(__dir__, '..', 'generated', directory_name)
       end
 
       def output_file_name
         File.join(output_file_directory, base_output_file_name)
+      end
+
+      def directory_name
+        Naming.snake_case_for_profile(medication_request_metadata || group_metadata)
       end
 
       def profile_identifier
@@ -68,10 +83,16 @@ module USCore
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
 
-        group_metadata.add_test(
+        test_metadata = {
           id: test_id,
           file_name: base_output_file_name
-        )
+        }
+
+        if resource_type == 'Medication'
+          medication_request_metadata.add_test(test_metadata)
+        else
+          group_metadata.add_test(test_metadata)
+        end
       end
     end
   end
