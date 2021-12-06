@@ -284,11 +284,8 @@ module USCore
           .select { |resource| resource.resourceType == 'Medication' }
 
       scratch[:medication_resources][:all] += contained_medications
-      scratch[:medication_resources][:all].uniq!(&:id)
       scratch[:medication_resources][patient_id] += contained_medications
-      scratch[:medication_resources][patient_id].uniq!(&:id)
       scratch[:medication_resources][:contained] += contained_medications
-      scratch[:medication_resources][:contained].uniq!(&:id)
 
       return if requests_with_external_references.blank?
 
@@ -299,10 +296,10 @@ module USCore
       medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
 
+      medications.uniq!(&:id)
+
       scratch[:medication_resources][:all] += medications
-      scratch[:medication_resources][:all].uniq!(&:id)
       scratch[:medication_resources][patient_id] += medications
-      scratch[:medication_resources][patient_id].uniq!(&:id)
 
       search_variant_test_records[:medication_inclusion] = true
     end

@@ -29,12 +29,16 @@ RSpec.describe USCore::SearchTest do
 
         def self.metadata
           @metadata ||=
-            USCore::Generator::GroupMetadata.new(YAML.load_file(File.join(
-                                                          __dir__,
-                                                          '..',
-                                                          'fixtures',
-                                                          'status_search_metadata.yml'
-                                                        )))
+            USCore::Generator::GroupMetadata.new(
+              YAML.load_file(
+                File.join(
+                  __dir__,
+                  '..',
+                  'fixtures',
+                  'status_search_metadata.yml'
+                )
+              )
+            )
         end
 
         def scratch_resources
@@ -119,6 +123,93 @@ RSpec.describe USCore::SearchTest do
       result = run(status_search_test, patient_ids: patient_id, url: url)
 
       expect(result.result).to eq('pass')
+    end
+  end
+
+  describe 'search with medication inclusion' do
+    context 'when the medication resources are contained' do
+      let(:patient_id) { '123' }
+      let(:medication_id) { '#abc' }
+      let(:medication) { FHIR::Medication.new(id: medication_id) }
+      let(:medication_request) do
+        FHIR::MedicationRequest.new(
+          id: 'def',
+          # status: 'active',
+          # intent: 'order',
+          medicationReference: {
+            reference: medication_id
+          },
+          subject: {
+            reference: "Patient/#{patient_id}"
+          },
+          contained: [
+            medication
+          ]
+        )
+      end
+      let(:medication_request_search_test) do
+        Class.new(Inferno::Test) do
+          include USCore::SearchTest
+
+          def properties
+            @properties ||= USCore::SearchTestProperties.new(
+              resource_type: 'MedicationRequest',
+              search_param_names: ['patient'],
+              possible_status_search: true,
+              test_medication_inclusion: true,
+            )
+          end
+
+          def self.metadata
+            @metadata ||=
+              USCore::Generator::GroupMetadata.new(
+                YAML.load_file(
+                  File.join(
+                    __dir__,
+                    '..',
+                    'fixtures',
+                    'medication_inclusion_metadata.yml'
+                  )
+                )
+              )
+          end
+
+          def scratch_resources
+            scratch[:medication_request_resources] ||= {}
+          end
+
+          fhir_client { url :url }
+          input :url, :patient_ids
+
+          run do
+            run_search_test
+          end
+        end
+      end
+      let(:bundle) do
+        FHIR::Bundle.new(entry: [{resource: medication_request}])
+      end
+      let(:test_scratch) { {} }
+
+      before do
+        Inferno::Repositories::Tests.new.insert(medication_request_search_test)
+        allow_any_instance_of(medication_request_search_test)
+          .to receive(:scratch).and_return(test_scratch)
+      end
+
+      it 'passes without performing an _include search' do
+        # Match any request that doesn't contain '_include'
+        stub_request(:get, /^((?!_include).)*$/)
+          .to_return(status: 200, body: bundle.to_json)
+
+        result = run(medication_request_search_test, patient_ids: patient_id, url: url)
+        expect(result.result).to eq('pass')
+        expect(test_scratch[:medication_resources][:all]).to include(medication)
+        expect(test_scratch[:medication_resources][:contained]).to include(medication)
+        expect(test_scratch[:medication_resources][patient_id]).to include(medication)
+      end
+
+
     end
   end
 end
