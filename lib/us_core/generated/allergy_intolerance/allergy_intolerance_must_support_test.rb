@@ -19,7 +19,7 @@ module USCore
       * AllergyIntolerance.verificationStatus
     )
 
-    id :allergy_intolerance_must_support_test
+    id :us_core_311_allergy_intolerance_must_support_test
 
     def resource_type
       'AllergyIntolerance'

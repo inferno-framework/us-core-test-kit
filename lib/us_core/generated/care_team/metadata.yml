@@ -117,19 +117,19 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: care_team_patient_status_search_test
+- :id: us_core_311_care_team_patient_status_search_test
   :file_name: care_team_patient_status_search_test.rb
-- :id: care_team_read_test
+- :id: us_core_311_care_team_read_test
   :file_name: care_team_read_test.rb
-- :id: care_team_provenance_revinclude_search_test
+- :id: us_core_311_care_team_provenance_revinclude_search_test
   :file_name: care_team_provenance_revinclude_search_test.rb
-- :id: care_team_validation_test
+- :id: us_core_311_care_team_validation_test
   :file_name: care_team_validation_test.rb
-- :id: care_team_must_support_test
+- :id: us_core_311_care_team_must_support_test
   :file_name: care_team_must_support_test.rb
-- :id: care_team_reference_resolution_test
+- :id: us_core_311_care_team_reference_resolution_test
   :file_name: care_team_reference_resolution_test.rb
-:id: care_team
+:id: us_core_311_care_team
 :file_name: care_team_group.rb
 :delayed_references:
 - :path: participant.member

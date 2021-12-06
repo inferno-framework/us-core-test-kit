@@ -47,7 +47,7 @@ module USCore
       end
 
       def test_id
-        "#{profile_identifier}_must_support_test"
+        "us_core_311_#{profile_identifier}_must_support_test"
       end
 
       def class_name

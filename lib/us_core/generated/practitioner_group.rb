@@ -66,17 +66,17 @@ fail if any attempted read fails.
 
     )
 
-    id :practitioner
+    id :us_core_311_practitioner
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml')))
     end
 
-    test from: :practitioner_read_test
-    test from: :practitioner_name_search_test
-    test from: :practitioner_identifier_search_test
-    test from: :practitioner_validation_test
-    test from: :practitioner_must_support_test
-    test from: :practitioner_reference_resolution_test
+    test from: :us_core_311_practitioner_read_test
+    test from: :us_core_311_practitioner_name_search_test
+    test from: :us_core_311_practitioner_identifier_search_test
+    test from: :us_core_311_practitioner_validation_test
+    test from: :us_core_311_practitioner_must_support_test
+    test from: :us_core_311_practitioner_reference_resolution_test
   end
 end

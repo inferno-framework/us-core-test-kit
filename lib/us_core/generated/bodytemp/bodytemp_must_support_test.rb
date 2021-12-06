@@ -29,7 +29,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :bodytemp_must_support_test
+    id :us_core_311_bodytemp_must_support_test
 
     def resource_type
       'Observation'

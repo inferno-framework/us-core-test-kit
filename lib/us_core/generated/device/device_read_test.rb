@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Device resource from Device read interaction'
     description 'A server SHALL support the Device read interaction.'
 
-    id :device_read_test
+    id :us_core_311_device_read_test
 
     def resource_type
       'Device'

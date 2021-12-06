@@ -23,7 +23,7 @@ module USCore
       * MedicationRequest.subject
     )
 
-    id :medication_request_must_support_test
+    id :us_core_311_medication_request_must_support_test
 
     def resource_type
       'MedicationRequest'

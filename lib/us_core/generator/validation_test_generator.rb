@@ -64,7 +64,7 @@ module USCore
       end
 
       def test_id
-        "#{profile_identifier}_validation_test"
+        "us_core_311_#{profile_identifier}_validation_test"
       end
 
       def class_name

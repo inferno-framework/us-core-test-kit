@@ -24,7 +24,7 @@ response will be used for subsequent tests.
 
     )
 
-    id :immunization_patient_search_test
+    id :us_core_311_immunization_patient_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

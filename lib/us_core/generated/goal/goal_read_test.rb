@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Goal resource from Goal read interaction'
     description 'A server SHALL support the Goal read interaction.'
 
-    id :goal_read_test
+    id :us_core_311_goal_read_test
 
     def resource_type
       'Goal'

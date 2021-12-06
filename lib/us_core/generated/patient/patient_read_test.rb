@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Patient resource from Patient read interaction'
     description 'A server SHALL support the Patient read interaction.'
 
-    id :patient_read_test
+    id :us_core_311_patient_read_test
 
     def resource_type
       'Patient'

@@ -46,7 +46,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :pulse_oximetry_must_support_test
+    id :us_core_311_pulse_oximetry_must_support_test
 
     def resource_type
       'Observation'

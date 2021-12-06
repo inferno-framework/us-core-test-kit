@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Practitioner resource from Practitioner read interaction'
     description 'A server SHALL support the Practitioner read interaction.'
 
-    id :practitioner_read_test
+    id :us_core_311_practitioner_read_test
 
     def resource_type
       'Practitioner'

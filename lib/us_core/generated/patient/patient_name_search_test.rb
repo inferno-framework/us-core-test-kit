@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :patient_name_search_test
+    id :us_core_311_patient_name_search_test
 
     def properties
       @properties ||= SearchTestProperties.new(

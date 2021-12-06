@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :device_patient_type_search_test
+    id :us_core_311_device_patient_type_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

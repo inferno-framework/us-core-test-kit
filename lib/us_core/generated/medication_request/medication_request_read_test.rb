@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct MedicationRequest resource from MedicationRequest read interaction'
     description 'A server SHALL support the MedicationRequest read interaction.'
 
-    id :medication_request_read_test
+    id :us_core_311_medication_request_read_test
 
     def resource_type
       'MedicationRequest'

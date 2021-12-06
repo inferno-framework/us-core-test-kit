@@ -1240,24 +1240,24 @@
   - http://hl7.org/fhir/StructureDefinition/Medication
   - http://hl7.org/fhir/StructureDefinition/Substance
 :tests:
-- :id: procedure_patient_search_test
+- :id: us_core_311_procedure_patient_search_test
   :file_name: procedure_patient_search_test.rb
-- :id: procedure_patient_date_search_test
+- :id: us_core_311_procedure_patient_date_search_test
   :file_name: procedure_patient_date_search_test.rb
-- :id: procedure_patient_status_search_test
+- :id: us_core_311_procedure_patient_status_search_test
   :file_name: procedure_patient_status_search_test.rb
-- :id: procedure_patient_code_date_search_test
+- :id: us_core_311_procedure_patient_code_date_search_test
   :file_name: procedure_patient_code_date_search_test.rb
-- :id: procedure_read_test
+- :id: us_core_311_procedure_read_test
   :file_name: procedure_read_test.rb
-- :id: procedure_provenance_revinclude_search_test
+- :id: us_core_311_procedure_provenance_revinclude_search_test
   :file_name: procedure_provenance_revinclude_search_test.rb
-- :id: procedure_validation_test
+- :id: us_core_311_procedure_validation_test
   :file_name: procedure_validation_test.rb
-- :id: procedure_must_support_test
+- :id: us_core_311_procedure_must_support_test
   :file_name: procedure_must_support_test.rb
-- :id: procedure_reference_resolution_test
+- :id: us_core_311_procedure_reference_resolution_test
   :file_name: procedure_reference_resolution_test.rb
-:id: procedure
+:id: us_core_311_procedure
 :file_name: procedure_group.rb
 :delayed_references: []

@@ -17,7 +17,7 @@ fail if their code/system are not found in the valueset.
 
     )
 
-    id :immunization_validation_test
+    id :us_core_311_immunization_validation_test
 
     def resource_type
       'Immunization'

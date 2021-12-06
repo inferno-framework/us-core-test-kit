@@ -20,7 +20,7 @@ module USCore
       * CarePlan.text.status
     )
 
-    id :care_plan_must_support_test
+    id :us_core_311_care_plan_must_support_test
 
     def resource_type
       'CarePlan'

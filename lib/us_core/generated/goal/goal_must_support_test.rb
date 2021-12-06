@@ -18,7 +18,7 @@ module USCore
       * Goal.target.due[x]:dueDate
     )
 
-    id :goal_must_support_test
+    id :us_core_311_goal_must_support_test
 
     def resource_type
       'Goal'

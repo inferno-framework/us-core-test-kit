@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Provenance resource from Provenance read interaction'
     description 'A server SHALL support the Provenance read interaction.'
 
-    id :provenance_read_test
+    id :us_core_311_provenance_read_test
 
     def resource_type
       'Provenance'

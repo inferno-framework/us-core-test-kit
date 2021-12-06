@@ -33,7 +33,7 @@ module USCore
     title 'US Core 3.1.1'
     # description ''
 
-    id :us_core
+    id :us_core_311
 
     input :url,
       title: 'FHIR Endpoint',
@@ -48,34 +48,34 @@ module USCore
       bearer_token :bearer_token
     end
 
-    group from: :patient
-    group from: :allergy_intolerance
-    group from: :care_plan
-    group from: :care_team
-    group from: :condition
-    group from: :device
-    group from: :diagnostic_report_note
-    group from: :diagnostic_report_lab
-    group from: :document_reference
-    group from: :goal
-    group from: :immunization
-    group from: :medication_request
-    group from: :smokingstatus
-    group from: :pediatric_weight_for_height
-    group from: :observation_lab
-    group from: :pediatric_bmi_for_age
-    group from: :pulse_oximetry
-    group from: :head_circumference
-    group from: :bodyheight
-    group from: :bodytemp
-    group from: :bp
-    group from: :bodyweight
-    group from: :heartrate
-    group from: :resprate
-    group from: :procedure
-    group from: :encounter
-    group from: :organization
-    group from: :practitioner
-    group from: :provenance
+    group from: :us_core_311_patient
+    group from: :us_core_311_allergy_intolerance
+    group from: :us_core_311_care_plan
+    group from: :us_core_311_care_team
+    group from: :us_core_311_condition
+    group from: :us_core_311_device
+    group from: :us_core_311_diagnostic_report_note
+    group from: :us_core_311_diagnostic_report_lab
+    group from: :us_core_311_document_reference
+    group from: :us_core_311_goal
+    group from: :us_core_311_immunization
+    group from: :us_core_311_medication_request
+    group from: :us_core_311_smokingstatus
+    group from: :us_core_311_pediatric_weight_for_height
+    group from: :us_core_311_observation_lab
+    group from: :us_core_311_pediatric_bmi_for_age
+    group from: :us_core_311_pulse_oximetry
+    group from: :us_core_311_head_circumference
+    group from: :us_core_311_bodyheight
+    group from: :us_core_311_bodytemp
+    group from: :us_core_311_bp
+    group from: :us_core_311_bodyweight
+    group from: :us_core_311_heartrate
+    group from: :us_core_311_resprate
+    group from: :us_core_311_procedure
+    group from: :us_core_311_encounter
+    group from: :us_core_311_organization
+    group from: :us_core_311_practitioner
+    group from: :us_core_311_provenance
   end
 end

@@ -29,7 +29,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :bodyweight_must_support_test
+    id :us_core_311_bodyweight_must_support_test
 
     def resource_type
       'Observation'

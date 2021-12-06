@@ -75,23 +75,23 @@ fail if any attempted read fails.
 
     )
 
-    id :patient
+    id :us_core_311_patient
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml')))
     end
 
-    test from: :patient__id_search_test
-    test from: :patient_identifier_search_test
-    test from: :patient_name_search_test
-    test from: :patient_birthdate_family_search_test
-    test from: :patient_family_gender_search_test
-    test from: :patient_birthdate_name_search_test
-    test from: :patient_gender_name_search_test
-    test from: :patient_read_test
-    test from: :patient_provenance_revinclude_search_test
-    test from: :patient_validation_test
-    test from: :patient_must_support_test
-    test from: :patient_reference_resolution_test
+    test from: :us_core_311_patient__id_search_test
+    test from: :us_core_311_patient_identifier_search_test
+    test from: :us_core_311_patient_name_search_test
+    test from: :us_core_311_patient_birthdate_family_search_test
+    test from: :us_core_311_patient_family_gender_search_test
+    test from: :us_core_311_patient_birthdate_name_search_test
+    test from: :us_core_311_patient_gender_name_search_test
+    test from: :us_core_311_patient_read_test
+    test from: :us_core_311_patient_provenance_revinclude_search_test
+    test from: :us_core_311_patient_validation_test
+    test from: :us_core_311_patient_must_support_test
+    test from: :us_core_311_patient_reference_resolution_test
   end
 end

@@ -13,7 +13,7 @@ module USCore
       will pass if a Provenance resource is found in the response.
     %)
 
-    id :resprate_provenance_revinclude_search_test
+    id :us_core_311_resprate_provenance_revinclude_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

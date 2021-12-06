@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct CareTeam resource from CareTeam read interaction'
     description 'A server SHALL support the CareTeam read interaction.'
 
-    id :care_team_read_test
+    id :us_core_311_care_team_read_test
 
     def resource_type
       'CareTeam'

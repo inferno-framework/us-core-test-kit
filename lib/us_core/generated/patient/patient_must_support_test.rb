@@ -36,7 +36,7 @@ module USCore
       * Patient.telecom.value
     )
 
-    id :patient_must_support_test
+    id :us_core_311_patient_must_support_test
 
     def resource_type
       'Patient'

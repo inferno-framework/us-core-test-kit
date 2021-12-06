@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct AllergyIntolerance resource from AllergyIntolerance read interaction'
     description 'A server SHALL support the AllergyIntolerance read interaction.'
 
-    id :allergy_intolerance_read_test
+    id :us_core_311_allergy_intolerance_read_test
 
     def resource_type
       'AllergyIntolerance'

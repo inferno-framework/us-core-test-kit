@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :organization_address_search_test
+    id :us_core_311_organization_address_search_test
 
     def properties
       @properties ||= SearchTestProperties.new(

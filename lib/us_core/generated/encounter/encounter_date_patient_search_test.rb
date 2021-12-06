@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :encounter_date_patient_search_test
+    id :us_core_311_encounter_date_patient_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

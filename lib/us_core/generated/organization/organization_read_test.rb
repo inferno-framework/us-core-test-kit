@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Organization resource from Organization read interaction'
     description 'A server SHALL support the Organization read interaction.'
 
-    id :organization_read_test
+    id :us_core_311_organization_read_test
 
     def resource_type
       'Organization'

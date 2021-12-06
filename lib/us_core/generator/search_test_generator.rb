@@ -47,7 +47,7 @@ module USCore
       end
 
       def test_id
-        "#{profile_identifier}_#{search_identifier}_search_test"
+        "us_core_311_#{profile_identifier}_#{search_identifier}_search_test"
       end
 
       def search_identifier

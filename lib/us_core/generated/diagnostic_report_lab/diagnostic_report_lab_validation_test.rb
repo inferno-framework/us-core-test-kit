@@ -17,7 +17,7 @@ fail if their code/system are not found in the valueset.
 
     )
 
-    id :diagnostic_report_lab_validation_test
+    id :us_core_311_diagnostic_report_lab_validation_test
 
     def resource_type
       'DiagnosticReport'

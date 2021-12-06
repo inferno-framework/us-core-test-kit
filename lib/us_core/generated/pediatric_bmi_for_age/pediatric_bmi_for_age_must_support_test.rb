@@ -28,7 +28,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :pediatric_bmi_for_age_must_support_test
+    id :us_core_311_pediatric_bmi_for_age_must_support_test
 
     def resource_type
       'Observation'

@@ -18,7 +18,7 @@ module USCore
       * CareTeam.subject
     )
 
-    id :care_team_must_support_test
+    id :us_core_311_care_team_must_support_test
 
     def resource_type
       'CareTeam'

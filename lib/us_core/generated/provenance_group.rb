@@ -40,15 +40,15 @@ fail if any attempted read fails.
 
     )
 
-    id :provenance
+    id :us_core_311_provenance
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'provenance', 'metadata.yml')))
     end
 
-    test from: :provenance_read_test
-    test from: :provenance_validation_test
-    test from: :provenance_must_support_test
-    test from: :provenance_reference_resolution_test
+    test from: :us_core_311_provenance_read_test
+    test from: :us_core_311_provenance_validation_test
+    test from: :us_core_311_provenance_must_support_test
+    test from: :us_core_311_provenance_reference_resolution_test
   end
 end

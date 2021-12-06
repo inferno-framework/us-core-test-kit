@@ -43,7 +43,7 @@ module USCore
       end
 
       def test_id
-        "#{profile_identifier}_reference_resolution_test"
+        "us_core_311_#{profile_identifier}_reference_resolution_test"
       end
 
       def class_name

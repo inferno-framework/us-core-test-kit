@@ -71,21 +71,21 @@ fail if any attempted read fails.
 
     )
 
-    id :head_circumference
+    id :us_core_311_head_circumference
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference', 'metadata.yml')))
     end
 
-    test from: :head_circumference_patient_code_search_test
-    test from: :head_circumference_patient_category_date_search_test
-    test from: :head_circumference_patient_category_status_search_test
-    test from: :head_circumference_patient_code_date_search_test
-    test from: :head_circumference_patient_category_search_test
-    test from: :head_circumference_read_test
-    test from: :head_circumference_provenance_revinclude_search_test
-    test from: :head_circumference_validation_test
-    test from: :head_circumference_must_support_test
-    test from: :head_circumference_reference_resolution_test
+    test from: :us_core_311_head_circumference_patient_code_search_test
+    test from: :us_core_311_head_circumference_patient_category_date_search_test
+    test from: :us_core_311_head_circumference_patient_category_status_search_test
+    test from: :us_core_311_head_circumference_patient_code_date_search_test
+    test from: :us_core_311_head_circumference_patient_category_search_test
+    test from: :us_core_311_head_circumference_read_test
+    test from: :us_core_311_head_circumference_provenance_revinclude_search_test
+    test from: :us_core_311_head_circumference_validation_test
+    test from: :us_core_311_head_circumference_must_support_test
+    test from: :us_core_311_head_circumference_reference_resolution_test
   end
 end

@@ -73,22 +73,22 @@ fail if any attempted read fails.
 
     )
 
-    id :diagnostic_report_lab
+    id :us_core_311_diagnostic_report_lab
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'diagnostic_report_lab', 'metadata.yml')))
     end
 
-    test from: :diagnostic_report_lab_patient_category_search_test
-    test from: :diagnostic_report_lab_patient_search_test
-    test from: :diagnostic_report_lab_patient_category_date_search_test
-    test from: :diagnostic_report_lab_patient_status_search_test
-    test from: :diagnostic_report_lab_patient_code_date_search_test
-    test from: :diagnostic_report_lab_patient_code_search_test
-    test from: :diagnostic_report_lab_read_test
-    test from: :diagnostic_report_lab_provenance_revinclude_search_test
-    test from: :diagnostic_report_lab_validation_test
-    test from: :diagnostic_report_lab_must_support_test
-    test from: :diagnostic_report_lab_reference_resolution_test
+    test from: :us_core_311_diagnostic_report_lab_patient_category_search_test
+    test from: :us_core_311_diagnostic_report_lab_patient_search_test
+    test from: :us_core_311_diagnostic_report_lab_patient_category_date_search_test
+    test from: :us_core_311_diagnostic_report_lab_patient_status_search_test
+    test from: :us_core_311_diagnostic_report_lab_patient_code_date_search_test
+    test from: :us_core_311_diagnostic_report_lab_patient_code_search_test
+    test from: :us_core_311_diagnostic_report_lab_read_test
+    test from: :us_core_311_diagnostic_report_lab_provenance_revinclude_search_test
+    test from: :us_core_311_diagnostic_report_lab_validation_test
+    test from: :us_core_311_diagnostic_report_lab_must_support_test
+    test from: :us_core_311_diagnostic_report_lab_reference_resolution_test
   end
 end

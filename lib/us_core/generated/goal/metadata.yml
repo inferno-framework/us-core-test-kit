@@ -172,22 +172,22 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Observation
 :tests:
-- :id: goal_patient_search_test
+- :id: us_core_311_goal_patient_search_test
   :file_name: goal_patient_search_test.rb
-- :id: goal_patient_lifecycle_status_search_test
+- :id: us_core_311_goal_patient_lifecycle_status_search_test
   :file_name: goal_patient_lifecycle_status_search_test.rb
-- :id: goal_patient_target_date_search_test
+- :id: us_core_311_goal_patient_target_date_search_test
   :file_name: goal_patient_target_date_search_test.rb
-- :id: goal_read_test
+- :id: us_core_311_goal_read_test
   :file_name: goal_read_test.rb
-- :id: goal_provenance_revinclude_search_test
+- :id: us_core_311_goal_provenance_revinclude_search_test
   :file_name: goal_provenance_revinclude_search_test.rb
-- :id: goal_validation_test
+- :id: us_core_311_goal_validation_test
   :file_name: goal_validation_test.rb
-- :id: goal_must_support_test
+- :id: us_core_311_goal_must_support_test
   :file_name: goal_must_support_test.rb
-- :id: goal_reference_resolution_test
+- :id: us_core_311_goal_reference_resolution_test
   :file_name: goal_reference_resolution_test.rb
-:id: goal
+:id: us_core_311_goal
 :file_name: goal_group.rb
 :delayed_references: []

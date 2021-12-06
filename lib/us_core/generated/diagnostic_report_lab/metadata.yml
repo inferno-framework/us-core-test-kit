@@ -1220,29 +1220,29 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Media
 :tests:
-- :id: diagnostic_report_lab_patient_category_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_category_search_test
   :file_name: diagnostic_report_lab_patient_category_search_test.rb
-- :id: diagnostic_report_lab_patient_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_search_test
   :file_name: diagnostic_report_lab_patient_search_test.rb
-- :id: diagnostic_report_lab_patient_category_date_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_category_date_search_test
   :file_name: diagnostic_report_lab_patient_category_date_search_test.rb
-- :id: diagnostic_report_lab_patient_status_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_status_search_test
   :file_name: diagnostic_report_lab_patient_status_search_test.rb
-- :id: diagnostic_report_lab_patient_code_date_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_code_date_search_test
   :file_name: diagnostic_report_lab_patient_code_date_search_test.rb
-- :id: diagnostic_report_lab_patient_code_search_test
+- :id: us_core_311_diagnostic_report_lab_patient_code_search_test
   :file_name: diagnostic_report_lab_patient_code_search_test.rb
-- :id: diagnostic_report_lab_read_test
+- :id: us_core_311_diagnostic_report_lab_read_test
   :file_name: diagnostic_report_lab_read_test.rb
-- :id: diagnostic_report_lab_provenance_revinclude_search_test
+- :id: us_core_311_diagnostic_report_lab_provenance_revinclude_search_test
   :file_name: diagnostic_report_lab_provenance_revinclude_search_test.rb
-- :id: diagnostic_report_lab_validation_test
+- :id: us_core_311_diagnostic_report_lab_validation_test
   :file_name: diagnostic_report_lab_validation_test.rb
-- :id: diagnostic_report_lab_must_support_test
+- :id: us_core_311_diagnostic_report_lab_must_support_test
   :file_name: diagnostic_report_lab_must_support_test.rb
-- :id: diagnostic_report_lab_reference_resolution_test
+- :id: us_core_311_diagnostic_report_lab_reference_resolution_test
   :file_name: diagnostic_report_lab_reference_resolution_test.rb
-:id: diagnostic_report_lab
+:id: us_core_311_diagnostic_report_lab
 :file_name: diagnostic_report_lab_group.rb
 :delayed_references:
 - :path: performer

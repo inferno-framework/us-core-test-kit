@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :goal_patient_lifecycle_status_search_test
+    id :us_core_311_goal_patient_lifecycle_status_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

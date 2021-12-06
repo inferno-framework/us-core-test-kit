@@ -66,18 +66,18 @@ fail if any attempted read fails.
 
     )
 
-    id :device
+    id :us_core_311_device
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'device', 'metadata.yml')))
     end
 
-    test from: :device_patient_search_test
-    test from: :device_patient_type_search_test
-    test from: :device_read_test
-    test from: :device_provenance_revinclude_search_test
-    test from: :device_validation_test
-    test from: :device_must_support_test
-    test from: :device_reference_resolution_test
+    test from: :us_core_311_device_patient_search_test
+    test from: :us_core_311_device_patient_type_search_test
+    test from: :us_core_311_device_read_test
+    test from: :us_core_311_device_provenance_revinclude_search_test
+    test from: :us_core_311_device_validation_test
+    test from: :us_core_311_device_must_support_test
+    test from: :us_core_311_device_reference_resolution_test
   end
 end

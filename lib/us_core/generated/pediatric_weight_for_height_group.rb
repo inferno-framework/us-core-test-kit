@@ -71,21 +71,21 @@ fail if any attempted read fails.
 
     )
 
-    id :pediatric_weight_for_height
+    id :us_core_311_pediatric_weight_for_height
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_weight_for_height', 'metadata.yml')))
     end
 
-    test from: :pediatric_weight_for_height_patient_code_search_test
-    test from: :pediatric_weight_for_height_patient_category_date_search_test
-    test from: :pediatric_weight_for_height_patient_category_status_search_test
-    test from: :pediatric_weight_for_height_patient_code_date_search_test
-    test from: :pediatric_weight_for_height_patient_category_search_test
-    test from: :pediatric_weight_for_height_read_test
-    test from: :pediatric_weight_for_height_provenance_revinclude_search_test
-    test from: :pediatric_weight_for_height_validation_test
-    test from: :pediatric_weight_for_height_must_support_test
-    test from: :pediatric_weight_for_height_reference_resolution_test
+    test from: :us_core_311_pediatric_weight_for_height_patient_code_search_test
+    test from: :us_core_311_pediatric_weight_for_height_patient_category_date_search_test
+    test from: :us_core_311_pediatric_weight_for_height_patient_category_status_search_test
+    test from: :us_core_311_pediatric_weight_for_height_patient_code_date_search_test
+    test from: :us_core_311_pediatric_weight_for_height_patient_category_search_test
+    test from: :us_core_311_pediatric_weight_for_height_read_test
+    test from: :us_core_311_pediatric_weight_for_height_provenance_revinclude_search_test
+    test from: :us_core_311_pediatric_weight_for_height_validation_test
+    test from: :us_core_311_pediatric_weight_for_height_must_support_test
+    test from: :us_core_311_pediatric_weight_for_height_reference_resolution_test
   end
 end

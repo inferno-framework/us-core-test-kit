@@ -18,7 +18,7 @@ module USCore
       * Observation.value[x]:valueCodeableConcept
     )
 
-    id :smokingstatus_must_support_test
+    id :us_core_311_smokingstatus_must_support_test
 
     def resource_type
       'Observation'

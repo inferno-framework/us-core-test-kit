@@ -11,7 +11,7 @@ module USCore
       read any of those references.
     )
 
-    id :pediatric_bmi_for_age_reference_resolution_test
+    id :us_core_311_pediatric_bmi_for_age_reference_resolution_test
 
     def resource_type
       'Observation'

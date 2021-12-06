@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct DocumentReference resource from DocumentReference read interaction'
     description 'A server SHALL support the DocumentReference read interaction.'
 
-    id :document_reference_read_test
+    id :us_core_311_document_reference_read_test
 
     def resource_type
       'DocumentReference'

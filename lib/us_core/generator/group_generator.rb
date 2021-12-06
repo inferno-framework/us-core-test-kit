@@ -55,7 +55,7 @@ module USCore
       end
 
       def group_id
-        profile_identifier
+        "us_core_311_#{profile_identifier}"
       end
 
       def resource_type

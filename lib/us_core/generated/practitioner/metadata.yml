@@ -117,18 +117,18 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: practitioner_read_test
+- :id: us_core_311_practitioner_read_test
   :file_name: practitioner_read_test.rb
-- :id: practitioner_name_search_test
+- :id: us_core_311_practitioner_name_search_test
   :file_name: practitioner_name_search_test.rb
-- :id: practitioner_identifier_search_test
+- :id: us_core_311_practitioner_identifier_search_test
   :file_name: practitioner_identifier_search_test.rb
-- :id: practitioner_validation_test
+- :id: us_core_311_practitioner_validation_test
   :file_name: practitioner_validation_test.rb
-- :id: practitioner_must_support_test
+- :id: us_core_311_practitioner_must_support_test
   :file_name: practitioner_must_support_test.rb
-- :id: practitioner_reference_resolution_test
+- :id: us_core_311_practitioner_reference_resolution_test
   :file_name: practitioner_reference_resolution_test.rb
-:id: practitioner
+:id: us_core_311_practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []

@@ -73,23 +73,23 @@ fail if any attempted read fails.
 
     )
 
-    id :encounter
+    id :us_core_311_encounter
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'encounter', 'metadata.yml')))
     end
 
-    test from: :encounter_read_test
-    test from: :encounter_patient_search_test
-    test from: :encounter__id_search_test
-    test from: :encounter_identifier_search_test
-    test from: :encounter_class_patient_search_test
-    test from: :encounter_patient_status_search_test
-    test from: :encounter_patient_type_search_test
-    test from: :encounter_date_patient_search_test
-    test from: :encounter_provenance_revinclude_search_test
-    test from: :encounter_validation_test
-    test from: :encounter_must_support_test
-    test from: :encounter_reference_resolution_test
+    test from: :us_core_311_encounter_read_test
+    test from: :us_core_311_encounter_patient_search_test
+    test from: :us_core_311_encounter__id_search_test
+    test from: :us_core_311_encounter_identifier_search_test
+    test from: :us_core_311_encounter_class_patient_search_test
+    test from: :us_core_311_encounter_patient_status_search_test
+    test from: :us_core_311_encounter_patient_type_search_test
+    test from: :us_core_311_encounter_date_patient_search_test
+    test from: :us_core_311_encounter_provenance_revinclude_search_test
+    test from: :us_core_311_encounter_validation_test
+    test from: :us_core_311_encounter_must_support_test
+    test from: :us_core_311_encounter_reference_resolution_test
   end
 end

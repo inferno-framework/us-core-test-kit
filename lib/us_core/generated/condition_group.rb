@@ -69,21 +69,21 @@ fail if any attempted read fails.
 
     )
 
-    id :condition
+    id :us_core_311_condition
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition', 'metadata.yml')))
     end
 
-    test from: :condition_patient_search_test
-    test from: :condition_patient_onset_date_search_test
-    test from: :condition_patient_category_search_test
-    test from: :condition_patient_clinical_status_search_test
-    test from: :condition_patient_code_search_test
-    test from: :condition_read_test
-    test from: :condition_provenance_revinclude_search_test
-    test from: :condition_validation_test
-    test from: :condition_must_support_test
-    test from: :condition_reference_resolution_test
+    test from: :us_core_311_condition_patient_search_test
+    test from: :us_core_311_condition_patient_onset_date_search_test
+    test from: :us_core_311_condition_patient_category_search_test
+    test from: :us_core_311_condition_patient_clinical_status_search_test
+    test from: :us_core_311_condition_patient_code_search_test
+    test from: :us_core_311_condition_read_test
+    test from: :us_core_311_condition_provenance_revinclude_search_test
+    test from: :us_core_311_condition_validation_test
+    test from: :us_core_311_condition_must_support_test
+    test from: :us_core_311_condition_reference_resolution_test
   end
 end

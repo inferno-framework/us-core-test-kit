@@ -302,26 +302,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: bodyweight_patient_code_search_test
+- :id: us_core_311_bodyweight_patient_code_search_test
   :file_name: bodyweight_patient_code_search_test.rb
-- :id: bodyweight_patient_category_date_search_test
+- :id: us_core_311_bodyweight_patient_category_date_search_test
   :file_name: bodyweight_patient_category_date_search_test.rb
-- :id: bodyweight_patient_category_status_search_test
+- :id: us_core_311_bodyweight_patient_category_status_search_test
   :file_name: bodyweight_patient_category_status_search_test.rb
-- :id: bodyweight_patient_code_date_search_test
+- :id: us_core_311_bodyweight_patient_code_date_search_test
   :file_name: bodyweight_patient_code_date_search_test.rb
-- :id: bodyweight_patient_category_search_test
+- :id: us_core_311_bodyweight_patient_category_search_test
   :file_name: bodyweight_patient_category_search_test.rb
-- :id: bodyweight_read_test
+- :id: us_core_311_bodyweight_read_test
   :file_name: bodyweight_read_test.rb
-- :id: bodyweight_provenance_revinclude_search_test
+- :id: us_core_311_bodyweight_provenance_revinclude_search_test
   :file_name: bodyweight_provenance_revinclude_search_test.rb
-- :id: bodyweight_validation_test
+- :id: us_core_311_bodyweight_validation_test
   :file_name: bodyweight_validation_test.rb
-- :id: bodyweight_must_support_test
+- :id: us_core_311_bodyweight_must_support_test
   :file_name: bodyweight_must_support_test.rb
-- :id: bodyweight_reference_resolution_test
+- :id: us_core_311_bodyweight_reference_resolution_test
   :file_name: bodyweight_reference_resolution_test.rb
-:id: bodyweight
+:id: us_core_311_bodyweight
 :file_name: bodyweight_group.rb
 :delayed_references: []

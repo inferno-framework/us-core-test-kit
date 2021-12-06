@@ -1124,20 +1124,20 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Device
 :tests:
-- :id: device_patient_search_test
+- :id: us_core_311_device_patient_search_test
   :file_name: device_patient_search_test.rb
-- :id: device_patient_type_search_test
+- :id: us_core_311_device_patient_type_search_test
   :file_name: device_patient_type_search_test.rb
-- :id: device_read_test
+- :id: us_core_311_device_read_test
   :file_name: device_read_test.rb
-- :id: device_provenance_revinclude_search_test
+- :id: us_core_311_device_provenance_revinclude_search_test
   :file_name: device_provenance_revinclude_search_test.rb
-- :id: device_validation_test
+- :id: us_core_311_device_validation_test
   :file_name: device_validation_test.rb
-- :id: device_must_support_test
+- :id: us_core_311_device_must_support_test
   :file_name: device_must_support_test.rb
-- :id: device_reference_resolution_test
+- :id: us_core_311_device_reference_resolution_test
   :file_name: device_reference_resolution_test.rb
-:id: device
+:id: us_core_311_device
 :file_name: device_group.rb
 :delayed_references: []

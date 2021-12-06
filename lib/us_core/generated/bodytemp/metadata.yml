@@ -302,26 +302,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: bodytemp_patient_code_search_test
+- :id: us_core_311_bodytemp_patient_code_search_test
   :file_name: bodytemp_patient_code_search_test.rb
-- :id: bodytemp_patient_category_date_search_test
+- :id: us_core_311_bodytemp_patient_category_date_search_test
   :file_name: bodytemp_patient_category_date_search_test.rb
-- :id: bodytemp_patient_category_status_search_test
+- :id: us_core_311_bodytemp_patient_category_status_search_test
   :file_name: bodytemp_patient_category_status_search_test.rb
-- :id: bodytemp_patient_code_date_search_test
+- :id: us_core_311_bodytemp_patient_code_date_search_test
   :file_name: bodytemp_patient_code_date_search_test.rb
-- :id: bodytemp_patient_category_search_test
+- :id: us_core_311_bodytemp_patient_category_search_test
   :file_name: bodytemp_patient_category_search_test.rb
-- :id: bodytemp_read_test
+- :id: us_core_311_bodytemp_read_test
   :file_name: bodytemp_read_test.rb
-- :id: bodytemp_provenance_revinclude_search_test
+- :id: us_core_311_bodytemp_provenance_revinclude_search_test
   :file_name: bodytemp_provenance_revinclude_search_test.rb
-- :id: bodytemp_validation_test
+- :id: us_core_311_bodytemp_validation_test
   :file_name: bodytemp_validation_test.rb
-- :id: bodytemp_must_support_test
+- :id: us_core_311_bodytemp_must_support_test
   :file_name: bodytemp_must_support_test.rb
-- :id: bodytemp_reference_resolution_test
+- :id: us_core_311_bodytemp_reference_resolution_test
   :file_name: bodytemp_reference_resolution_test.rb
-:id: bodytemp
+:id: us_core_311_bodytemp
 :file_name: bodytemp_group.rb
 :delayed_references: []

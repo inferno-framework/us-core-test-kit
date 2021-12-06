@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Observation resource from Observation read interaction'
     description 'A server SHALL support the Observation read interaction.'
 
-    id :pediatric_bmi_for_age_read_test
+    id :us_core_311_pediatric_bmi_for_age_read_test
 
     def resource_type
       'Observation'

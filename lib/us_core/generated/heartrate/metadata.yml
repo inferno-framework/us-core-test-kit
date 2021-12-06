@@ -299,26 +299,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: heartrate_patient_code_search_test
+- :id: us_core_311_heartrate_patient_code_search_test
   :file_name: heartrate_patient_code_search_test.rb
-- :id: heartrate_patient_category_date_search_test
+- :id: us_core_311_heartrate_patient_category_date_search_test
   :file_name: heartrate_patient_category_date_search_test.rb
-- :id: heartrate_patient_category_status_search_test
+- :id: us_core_311_heartrate_patient_category_status_search_test
   :file_name: heartrate_patient_category_status_search_test.rb
-- :id: heartrate_patient_code_date_search_test
+- :id: us_core_311_heartrate_patient_code_date_search_test
   :file_name: heartrate_patient_code_date_search_test.rb
-- :id: heartrate_patient_category_search_test
+- :id: us_core_311_heartrate_patient_category_search_test
   :file_name: heartrate_patient_category_search_test.rb
-- :id: heartrate_read_test
+- :id: us_core_311_heartrate_read_test
   :file_name: heartrate_read_test.rb
-- :id: heartrate_provenance_revinclude_search_test
+- :id: us_core_311_heartrate_provenance_revinclude_search_test
   :file_name: heartrate_provenance_revinclude_search_test.rb
-- :id: heartrate_validation_test
+- :id: us_core_311_heartrate_validation_test
   :file_name: heartrate_validation_test.rb
-- :id: heartrate_must_support_test
+- :id: us_core_311_heartrate_must_support_test
   :file_name: heartrate_must_support_test.rb
-- :id: heartrate_reference_resolution_test
+- :id: us_core_311_heartrate_reference_resolution_test
   :file_name: heartrate_reference_resolution_test.rb
-:id: heartrate
+:id: us_core_311_heartrate
 :file_name: heartrate_group.rb
 :delayed_references: []

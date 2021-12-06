@@ -11,7 +11,7 @@ module USCore
       read any of those references.
     )
 
-    id :medication_request_reference_resolution_test
+    id :us_core_311_medication_request_reference_resolution_test
 
     def resource_type
       'MedicationRequest'

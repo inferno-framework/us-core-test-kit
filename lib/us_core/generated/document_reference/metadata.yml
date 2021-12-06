@@ -313,31 +313,31 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: document_reference_patient_search_test
+- :id: us_core_311_document_reference_patient_search_test
   :file_name: document_reference_patient_search_test.rb
-- :id: document_reference__id_search_test
+- :id: us_core_311_document_reference__id_search_test
   :file_name: document_reference_id_search_test.rb
-- :id: document_reference_patient_type_period_search_test
+- :id: us_core_311_document_reference_patient_type_period_search_test
   :file_name: document_reference_patient_type_period_search_test.rb
-- :id: document_reference_patient_type_search_test
+- :id: us_core_311_document_reference_patient_type_search_test
   :file_name: document_reference_patient_type_search_test.rb
-- :id: document_reference_patient_category_date_search_test
+- :id: us_core_311_document_reference_patient_category_date_search_test
   :file_name: document_reference_patient_category_date_search_test.rb
-- :id: document_reference_patient_status_search_test
+- :id: us_core_311_document_reference_patient_status_search_test
   :file_name: document_reference_patient_status_search_test.rb
-- :id: document_reference_patient_category_search_test
+- :id: us_core_311_document_reference_patient_category_search_test
   :file_name: document_reference_patient_category_search_test.rb
-- :id: document_reference_read_test
+- :id: us_core_311_document_reference_read_test
   :file_name: document_reference_read_test.rb
-- :id: document_reference_provenance_revinclude_search_test
+- :id: us_core_311_document_reference_provenance_revinclude_search_test
   :file_name: document_reference_provenance_revinclude_search_test.rb
-- :id: document_reference_validation_test
+- :id: us_core_311_document_reference_validation_test
   :file_name: document_reference_validation_test.rb
-- :id: document_reference_must_support_test
+- :id: us_core_311_document_reference_must_support_test
   :file_name: document_reference_must_support_test.rb
-- :id: document_reference_reference_resolution_test
+- :id: us_core_311_document_reference_reference_resolution_test
   :file_name: document_reference_reference_resolution_test.rb
-:id: document_reference
+:id: us_core_311_document_reference
 :file_name: document_reference_group.rb
 :delayed_references:
 - :path: author

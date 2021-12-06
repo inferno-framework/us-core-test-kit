@@ -69,20 +69,20 @@ fail if any attempted read fails.
 
     )
 
-    id :procedure
+    id :us_core_311_procedure
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'procedure', 'metadata.yml')))
     end
 
-    test from: :procedure_patient_search_test
-    test from: :procedure_patient_date_search_test
-    test from: :procedure_patient_status_search_test
-    test from: :procedure_patient_code_date_search_test
-    test from: :procedure_read_test
-    test from: :procedure_provenance_revinclude_search_test
-    test from: :procedure_validation_test
-    test from: :procedure_must_support_test
-    test from: :procedure_reference_resolution_test
+    test from: :us_core_311_procedure_patient_search_test
+    test from: :us_core_311_procedure_patient_date_search_test
+    test from: :us_core_311_procedure_patient_status_search_test
+    test from: :us_core_311_procedure_patient_code_date_search_test
+    test from: :us_core_311_procedure_read_test
+    test from: :us_core_311_procedure_provenance_revinclude_search_test
+    test from: :us_core_311_procedure_validation_test
+    test from: :us_core_311_procedure_must_support_test
+    test from: :us_core_311_procedure_reference_resolution_test
   end
 end

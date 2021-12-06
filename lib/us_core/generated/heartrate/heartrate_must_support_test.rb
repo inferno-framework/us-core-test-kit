@@ -29,7 +29,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :heartrate_must_support_test
+    id :us_core_311_heartrate_must_support_test
 
     def resource_type
       'Observation'

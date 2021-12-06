@@ -37,7 +37,7 @@ module USCore
       end
 
       def suite_id
-        'us_core'
+        'us_core_311'
       end
 
       def title

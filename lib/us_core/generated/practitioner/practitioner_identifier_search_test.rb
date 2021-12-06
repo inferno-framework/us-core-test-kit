@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :practitioner_identifier_search_test
+    id :us_core_311_practitioner_identifier_search_test
 
     def properties
       @properties ||= SearchTestProperties.new(

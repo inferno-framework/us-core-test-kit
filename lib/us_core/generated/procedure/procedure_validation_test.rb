@@ -17,7 +17,7 @@ fail if their code/system are not found in the valueset.
 
     )
 
-    id :procedure_validation_test
+    id :us_core_311_procedure_validation_test
 
     def resource_type
       'Procedure'

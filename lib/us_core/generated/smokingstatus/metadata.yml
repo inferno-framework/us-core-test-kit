@@ -265,26 +265,26 @@
   - http://hl7.org/fhir/StructureDefinition/Observation
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
 :tests:
-- :id: smokingstatus_patient_code_search_test
+- :id: us_core_311_smokingstatus_patient_code_search_test
   :file_name: smokingstatus_patient_code_search_test.rb
-- :id: smokingstatus_patient_category_date_search_test
+- :id: us_core_311_smokingstatus_patient_category_date_search_test
   :file_name: smokingstatus_patient_category_date_search_test.rb
-- :id: smokingstatus_patient_category_status_search_test
+- :id: us_core_311_smokingstatus_patient_category_status_search_test
   :file_name: smokingstatus_patient_category_status_search_test.rb
-- :id: smokingstatus_patient_code_date_search_test
+- :id: us_core_311_smokingstatus_patient_code_date_search_test
   :file_name: smokingstatus_patient_code_date_search_test.rb
-- :id: smokingstatus_patient_category_search_test
+- :id: us_core_311_smokingstatus_patient_category_search_test
   :file_name: smokingstatus_patient_category_search_test.rb
-- :id: smokingstatus_read_test
+- :id: us_core_311_smokingstatus_read_test
   :file_name: smokingstatus_read_test.rb
-- :id: smokingstatus_provenance_revinclude_search_test
+- :id: us_core_311_smokingstatus_provenance_revinclude_search_test
   :file_name: smokingstatus_provenance_revinclude_search_test.rb
-- :id: smokingstatus_validation_test
+- :id: us_core_311_smokingstatus_validation_test
   :file_name: smokingstatus_validation_test.rb
-- :id: smokingstatus_must_support_test
+- :id: us_core_311_smokingstatus_must_support_test
   :file_name: smokingstatus_must_support_test.rb
-- :id: smokingstatus_reference_resolution_test
+- :id: us_core_311_smokingstatus_reference_resolution_test
   :file_name: smokingstatus_reference_resolution_test.rb
-:id: smokingstatus
+:id: us_core_311_smokingstatus
 :file_name: smokingstatus_group.rb
 :delayed_references: []

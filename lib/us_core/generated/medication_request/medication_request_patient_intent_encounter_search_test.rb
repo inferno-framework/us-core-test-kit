@@ -20,7 +20,7 @@ Medications, the search will be repeated with
 
     )
 
-    id :medication_request_patient_intent_encounter_search_test
+    id :us_core_311_medication_request_patient_intent_encounter_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

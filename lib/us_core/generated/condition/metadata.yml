@@ -204,26 +204,26 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: condition_patient_search_test
+- :id: us_core_311_condition_patient_search_test
   :file_name: condition_patient_search_test.rb
-- :id: condition_patient_onset_date_search_test
+- :id: us_core_311_condition_patient_onset_date_search_test
   :file_name: condition_patient_onset_date_search_test.rb
-- :id: condition_patient_category_search_test
+- :id: us_core_311_condition_patient_category_search_test
   :file_name: condition_patient_category_search_test.rb
-- :id: condition_patient_clinical_status_search_test
+- :id: us_core_311_condition_patient_clinical_status_search_test
   :file_name: condition_patient_clinical_status_search_test.rb
-- :id: condition_patient_code_search_test
+- :id: us_core_311_condition_patient_code_search_test
   :file_name: condition_patient_code_search_test.rb
-- :id: condition_read_test
+- :id: us_core_311_condition_read_test
   :file_name: condition_read_test.rb
-- :id: condition_provenance_revinclude_search_test
+- :id: us_core_311_condition_provenance_revinclude_search_test
   :file_name: condition_provenance_revinclude_search_test.rb
-- :id: condition_validation_test
+- :id: us_core_311_condition_validation_test
   :file_name: condition_validation_test.rb
-- :id: condition_must_support_test
+- :id: us_core_311_condition_must_support_test
   :file_name: condition_must_support_test.rb
-- :id: condition_reference_resolution_test
+- :id: us_core_311_condition_reference_resolution_test
   :file_name: condition_reference_resolution_test.rb
-:id: condition
+:id: us_core_311_condition
 :file_name: condition_group.rb
 :delayed_references: []

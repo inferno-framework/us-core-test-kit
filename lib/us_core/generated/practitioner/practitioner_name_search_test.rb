@@ -19,7 +19,7 @@ response will be used for subsequent tests.
 
     )
 
-    id :practitioner_name_search_test
+    id :us_core_311_practitioner_name_search_test
 
     def properties
       @properties ||= SearchTestProperties.new(

@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :procedure_patient_status_search_test
+    id :us_core_311_procedure_patient_status_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

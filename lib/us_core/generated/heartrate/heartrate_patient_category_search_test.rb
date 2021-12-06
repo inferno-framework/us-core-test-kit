@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :heartrate_patient_category_search_test
+    id :us_core_311_heartrate_patient_category_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

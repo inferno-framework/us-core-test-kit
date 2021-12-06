@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Procedure resource from Procedure read interaction'
     description 'A server SHALL support the Procedure read interaction.'
 
-    id :procedure_read_test
+    id :us_core_311_procedure_read_test
 
     def resource_type
       'Procedure'

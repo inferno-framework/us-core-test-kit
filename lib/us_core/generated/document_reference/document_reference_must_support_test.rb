@@ -28,7 +28,7 @@ module USCore
       * DocumentReference.type
     )
 
-    id :document_reference_must_support_test
+    id :us_core_311_document_reference_must_support_test
 
     def resource_type
       'DocumentReference'

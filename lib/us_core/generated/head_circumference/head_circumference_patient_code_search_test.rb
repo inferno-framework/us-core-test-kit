@@ -24,7 +24,7 @@ response will be used for subsequent tests.
 
     )
 
-    id :head_circumference_patient_code_search_test
+    id :us_core_311_head_circumference_patient_code_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

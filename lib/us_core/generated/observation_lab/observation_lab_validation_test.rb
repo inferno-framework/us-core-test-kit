@@ -17,7 +17,7 @@ fail if their code/system are not found in the valueset.
 
     )
 
-    id :observation_lab_validation_test
+    id :us_core_311_observation_lab_validation_test
 
     def resource_type
       'Observation'

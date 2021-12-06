@@ -11,7 +11,7 @@ module USCore
       read any of those references.
     )
 
-    id :pediatric_weight_for_height_reference_resolution_test
+    id :us_core_311_pediatric_weight_for_height_reference_resolution_test
 
     def resource_type
       'Observation'

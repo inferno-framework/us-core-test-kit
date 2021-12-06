@@ -11,7 +11,7 @@ module USCore
       read any of those references.
     )
 
-    id :provenance_reference_resolution_test
+    id :us_core_311_provenance_reference_resolution_test
 
     def resource_type
       'Provenance'

@@ -65,17 +65,17 @@ fail if any attempted read fails.
 
     )
 
-    id :care_team
+    id :us_core_311_care_team
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'care_team', 'metadata.yml')))
     end
 
-    test from: :care_team_patient_status_search_test
-    test from: :care_team_read_test
-    test from: :care_team_provenance_revinclude_search_test
-    test from: :care_team_validation_test
-    test from: :care_team_must_support_test
-    test from: :care_team_reference_resolution_test
+    test from: :us_core_311_care_team_patient_status_search_test
+    test from: :us_core_311_care_team_read_test
+    test from: :us_core_311_care_team_provenance_revinclude_search_test
+    test from: :us_core_311_care_team_validation_test
+    test from: :us_core_311_care_team_must_support_test
+    test from: :us_core_311_care_team_reference_resolution_test
   end
 end

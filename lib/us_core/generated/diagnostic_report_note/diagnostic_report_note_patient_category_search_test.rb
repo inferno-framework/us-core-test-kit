@@ -24,7 +24,7 @@ response will be used for subsequent tests.
 
     )
 
-    id :diagnostic_report_note_patient_category_search_test
+    id :us_core_311_diagnostic_report_note_patient_category_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

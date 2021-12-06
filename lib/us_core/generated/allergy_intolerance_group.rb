@@ -66,18 +66,18 @@ fail if any attempted read fails.
 
     )
 
-    id :allergy_intolerance
+    id :us_core_311_allergy_intolerance
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'allergy_intolerance', 'metadata.yml')))
     end
 
-    test from: :allergy_intolerance_patient_search_test
-    test from: :allergy_intolerance_patient_clinical_status_search_test
-    test from: :allergy_intolerance_read_test
-    test from: :allergy_intolerance_provenance_revinclude_search_test
-    test from: :allergy_intolerance_validation_test
-    test from: :allergy_intolerance_must_support_test
-    test from: :allergy_intolerance_reference_resolution_test
+    test from: :us_core_311_allergy_intolerance_patient_search_test
+    test from: :us_core_311_allergy_intolerance_patient_clinical_status_search_test
+    test from: :us_core_311_allergy_intolerance_read_test
+    test from: :us_core_311_allergy_intolerance_provenance_revinclude_search_test
+    test from: :us_core_311_allergy_intolerance_validation_test
+    test from: :us_core_311_allergy_intolerance_must_support_test
+    test from: :us_core_311_allergy_intolerance_reference_resolution_test
   end
 end

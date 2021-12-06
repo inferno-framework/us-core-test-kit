@@ -70,21 +70,21 @@ fail if any attempted read fails.
 
     )
 
-    id :medication_request
+    id :us_core_311_medication_request
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'medication_request', 'metadata.yml')))
     end
 
-    test from: :medication_request_patient_intent_search_test
-    test from: :medication_request_patient_intent_encounter_search_test
-    test from: :medication_request_patient_intent_authoredon_search_test
-    test from: :medication_request_patient_intent_status_search_test
-    test from: :medication_request_read_test
-    test from: :medication_request_provenance_revinclude_search_test
-    test from: :medication_request_validation_test
-    test from: :medication_validation_test
-    test from: :medication_request_must_support_test
-    test from: :medication_request_reference_resolution_test
+    test from: :us_core_311_medication_request_patient_intent_search_test
+    test from: :us_core_311_medication_request_patient_intent_encounter_search_test
+    test from: :us_core_311_medication_request_patient_intent_authoredon_search_test
+    test from: :us_core_311_medication_request_patient_intent_status_search_test
+    test from: :us_core_311_medication_request_read_test
+    test from: :us_core_311_medication_request_provenance_revinclude_search_test
+    test from: :us_core_311_medication_request_validation_test
+    test from: :us_core_311_medication_validation_test
+    test from: :us_core_311_medication_request_must_support_test
+    test from: :us_core_311_medication_request_reference_resolution_test
   end
 end

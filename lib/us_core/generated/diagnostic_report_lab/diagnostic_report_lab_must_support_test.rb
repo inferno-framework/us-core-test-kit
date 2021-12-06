@@ -22,7 +22,7 @@ module USCore
       * DiagnosticReport.subject
     )
 
-    id :diagnostic_report_lab_must_support_test
+    id :us_core_311_diagnostic_report_lab_must_support_test
 
     def resource_type
       'DiagnosticReport'

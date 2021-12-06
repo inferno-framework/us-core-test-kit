@@ -23,7 +23,7 @@ module USCore
       * Provenance.target
     )
 
-    id :provenance_must_support_test
+    id :us_core_311_provenance_must_support_test
 
     def resource_type
       'Provenance'

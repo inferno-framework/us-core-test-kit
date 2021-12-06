@@ -163,15 +163,15 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: provenance_read_test
+- :id: us_core_311_provenance_read_test
   :file_name: provenance_read_test.rb
-- :id: provenance_validation_test
+- :id: us_core_311_provenance_validation_test
   :file_name: provenance_validation_test.rb
-- :id: provenance_must_support_test
+- :id: us_core_311_provenance_must_support_test
   :file_name: provenance_must_support_test.rb
-- :id: provenance_reference_resolution_test
+- :id: us_core_311_provenance_reference_resolution_test
   :file_name: provenance_reference_resolution_test.rb
-:id: provenance
+:id: us_core_311_provenance
 :file_name: provenance_group.rb
 :delayed_references:
 - :path: agent.who

@@ -18,7 +18,7 @@ module USCore
       * Condition.verificationStatus
     )
 
-    id :condition_must_support_test
+    id :us_core_311_condition_must_support_test
 
     def resource_type
       'Condition'

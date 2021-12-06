@@ -11,7 +11,7 @@ module USCore
       read any of those references.
     )
 
-    id :diagnostic_report_note_reference_resolution_test
+    id :us_core_311_diagnostic_report_note_reference_resolution_test
 
     def resource_type
       'DiagnosticReport'

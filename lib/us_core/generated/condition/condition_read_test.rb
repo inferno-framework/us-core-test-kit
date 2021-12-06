@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Condition resource from Condition read interaction'
     description 'A server SHALL support the Condition read interaction.'
 
-    id :condition_read_test
+    id :us_core_311_condition_read_test
 
     def resource_type
       'Condition'

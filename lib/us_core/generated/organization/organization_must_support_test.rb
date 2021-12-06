@@ -26,7 +26,7 @@ module USCore
       * Organization.telecom
     )
 
-    id :organization_must_support_test
+    id :us_core_311_organization_must_support_test
 
     def resource_type
       'Organization'

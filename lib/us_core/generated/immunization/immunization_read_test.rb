@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Immunization resource from Immunization read interaction'
     description 'A server SHALL support the Immunization read interaction.'
 
-    id :immunization_read_test
+    id :us_core_311_immunization_read_test
 
     def resource_type
       'Immunization'

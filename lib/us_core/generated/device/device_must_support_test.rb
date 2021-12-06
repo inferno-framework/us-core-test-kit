@@ -22,7 +22,7 @@ module USCore
       * Device.udiCarrier.deviceIdentifier
     )
 
-    id :device_must_support_test
+    id :us_core_311_device_must_support_test
 
     def resource_type
       'Device'

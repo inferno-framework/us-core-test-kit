@@ -28,7 +28,7 @@ module USCore
       * Observation.value[x]:valueQuantity
     )
 
-    id :head_circumference_must_support_test
+    id :us_core_311_head_circumference_must_support_test
 
     def resource_type
       'Observation'

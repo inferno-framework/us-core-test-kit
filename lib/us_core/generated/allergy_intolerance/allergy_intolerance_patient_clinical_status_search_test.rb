@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :allergy_intolerance_patient_clinical_status_search_test
+    id :us_core_311_allergy_intolerance_patient_clinical_status_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

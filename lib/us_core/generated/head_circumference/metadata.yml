@@ -296,26 +296,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: head_circumference_patient_code_search_test
+- :id: us_core_311_head_circumference_patient_code_search_test
   :file_name: head_circumference_patient_code_search_test.rb
-- :id: head_circumference_patient_category_date_search_test
+- :id: us_core_311_head_circumference_patient_category_date_search_test
   :file_name: head_circumference_patient_category_date_search_test.rb
-- :id: head_circumference_patient_category_status_search_test
+- :id: us_core_311_head_circumference_patient_category_status_search_test
   :file_name: head_circumference_patient_category_status_search_test.rb
-- :id: head_circumference_patient_code_date_search_test
+- :id: us_core_311_head_circumference_patient_code_date_search_test
   :file_name: head_circumference_patient_code_date_search_test.rb
-- :id: head_circumference_patient_category_search_test
+- :id: us_core_311_head_circumference_patient_category_search_test
   :file_name: head_circumference_patient_category_search_test.rb
-- :id: head_circumference_read_test
+- :id: us_core_311_head_circumference_read_test
   :file_name: head_circumference_read_test.rb
-- :id: head_circumference_provenance_revinclude_search_test
+- :id: us_core_311_head_circumference_provenance_revinclude_search_test
   :file_name: head_circumference_provenance_revinclude_search_test.rb
-- :id: head_circumference_validation_test
+- :id: us_core_311_head_circumference_validation_test
   :file_name: head_circumference_validation_test.rb
-- :id: head_circumference_must_support_test
+- :id: us_core_311_head_circumference_must_support_test
   :file_name: head_circumference_must_support_test.rb
-- :id: head_circumference_reference_resolution_test
+- :id: us_core_311_head_circumference_reference_resolution_test
   :file_name: head_circumference_reference_resolution_test.rb
-:id: head_circumference
+:id: us_core_311_head_circumference
 :file_name: head_circumference_group.rb
 :delayed_references: []

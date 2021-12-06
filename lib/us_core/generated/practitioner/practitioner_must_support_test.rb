@@ -19,7 +19,7 @@ module USCore
       * Practitioner.name.family
     )
 
-    id :practitioner_must_support_test
+    id :us_core_311_practitioner_must_support_test
 
     def resource_type
       'Practitioner'

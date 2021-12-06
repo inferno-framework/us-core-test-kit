@@ -289,30 +289,30 @@
   - http://hl7.org/fhir/StructureDefinition/Patient
   - http://hl7.org/fhir/StructureDefinition/RelatedPerson
 :tests:
-- :id: patient__id_search_test
+- :id: us_core_311_patient__id_search_test
   :file_name: patient_id_search_test.rb
-- :id: patient_identifier_search_test
+- :id: us_core_311_patient_identifier_search_test
   :file_name: patient_identifier_search_test.rb
-- :id: patient_name_search_test
+- :id: us_core_311_patient_name_search_test
   :file_name: patient_name_search_test.rb
-- :id: patient_birthdate_family_search_test
+- :id: us_core_311_patient_birthdate_family_search_test
   :file_name: patient_birthdate_family_search_test.rb
-- :id: patient_family_gender_search_test
+- :id: us_core_311_patient_family_gender_search_test
   :file_name: patient_family_gender_search_test.rb
-- :id: patient_birthdate_name_search_test
+- :id: us_core_311_patient_birthdate_name_search_test
   :file_name: patient_birthdate_name_search_test.rb
-- :id: patient_gender_name_search_test
+- :id: us_core_311_patient_gender_name_search_test
   :file_name: patient_gender_name_search_test.rb
-- :id: patient_read_test
+- :id: us_core_311_patient_read_test
   :file_name: patient_read_test.rb
-- :id: patient_provenance_revinclude_search_test
+- :id: us_core_311_patient_provenance_revinclude_search_test
   :file_name: patient_provenance_revinclude_search_test.rb
-- :id: patient_validation_test
+- :id: us_core_311_patient_validation_test
   :file_name: patient_validation_test.rb
-- :id: patient_must_support_test
+- :id: us_core_311_patient_must_support_test
   :file_name: patient_must_support_test.rb
-- :id: patient_reference_resolution_test
+- :id: us_core_311_patient_reference_resolution_test
   :file_name: patient_reference_resolution_test.rb
-:id: patient
+:id: us_core_311_patient
 :file_name: patient_group.rb
 :delayed_references: []

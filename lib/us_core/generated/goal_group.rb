@@ -67,19 +67,19 @@ fail if any attempted read fails.
 
     )
 
-    id :goal
+    id :us_core_311_goal
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'goal', 'metadata.yml')))
     end
 
-    test from: :goal_patient_search_test
-    test from: :goal_patient_lifecycle_status_search_test
-    test from: :goal_patient_target_date_search_test
-    test from: :goal_read_test
-    test from: :goal_provenance_revinclude_search_test
-    test from: :goal_validation_test
-    test from: :goal_must_support_test
-    test from: :goal_reference_resolution_test
+    test from: :us_core_311_goal_patient_search_test
+    test from: :us_core_311_goal_patient_lifecycle_status_search_test
+    test from: :us_core_311_goal_patient_target_date_search_test
+    test from: :us_core_311_goal_read_test
+    test from: :us_core_311_goal_provenance_revinclude_search_test
+    test from: :us_core_311_goal_validation_test
+    test from: :us_core_311_goal_must_support_test
+    test from: :us_core_311_goal_reference_resolution_test
   end
 end

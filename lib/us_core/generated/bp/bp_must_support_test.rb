@@ -23,7 +23,7 @@ module USCore
       * Observation.subject
     )
 
-    id :bp_must_support_test
+    id :us_core_311_bp_must_support_test
 
     def resource_type
       'Observation'

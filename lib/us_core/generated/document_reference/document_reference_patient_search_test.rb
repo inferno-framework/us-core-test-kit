@@ -24,7 +24,7 @@ response will be used for subsequent tests.
 
     )
 
-    id :document_reference_patient_search_test
+    id :us_core_311_document_reference_patient_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

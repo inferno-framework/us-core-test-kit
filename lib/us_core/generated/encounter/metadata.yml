@@ -330,31 +330,31 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Encounter
 :tests:
-- :id: encounter_read_test
+- :id: us_core_311_encounter_read_test
   :file_name: encounter_read_test.rb
-- :id: encounter_patient_search_test
+- :id: us_core_311_encounter_patient_search_test
   :file_name: encounter_patient_search_test.rb
-- :id: encounter__id_search_test
+- :id: us_core_311_encounter__id_search_test
   :file_name: encounter_id_search_test.rb
-- :id: encounter_identifier_search_test
+- :id: us_core_311_encounter_identifier_search_test
   :file_name: encounter_identifier_search_test.rb
-- :id: encounter_class_patient_search_test
+- :id: us_core_311_encounter_class_patient_search_test
   :file_name: encounter_class_patient_search_test.rb
-- :id: encounter_patient_status_search_test
+- :id: us_core_311_encounter_patient_status_search_test
   :file_name: encounter_patient_status_search_test.rb
-- :id: encounter_patient_type_search_test
+- :id: us_core_311_encounter_patient_type_search_test
   :file_name: encounter_patient_type_search_test.rb
-- :id: encounter_date_patient_search_test
+- :id: us_core_311_encounter_date_patient_search_test
   :file_name: encounter_date_patient_search_test.rb
-- :id: encounter_provenance_revinclude_search_test
+- :id: us_core_311_encounter_provenance_revinclude_search_test
   :file_name: encounter_provenance_revinclude_search_test.rb
-- :id: encounter_validation_test
+- :id: us_core_311_encounter_validation_test
   :file_name: encounter_validation_test.rb
-- :id: encounter_must_support_test
+- :id: us_core_311_encounter_must_support_test
   :file_name: encounter_must_support_test.rb
-- :id: encounter_reference_resolution_test
+- :id: us_core_311_encounter_reference_resolution_test
   :file_name: encounter_reference_resolution_test.rb
-:id: encounter
+:id: us_core_311_encounter
 :file_name: encounter_group.rb
 :delayed_references:
 - :path: participant.individual

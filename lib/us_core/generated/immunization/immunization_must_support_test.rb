@@ -19,7 +19,7 @@ module USCore
       * Immunization.vaccineCode
     )
 
-    id :immunization_must_support_test
+    id :us_core_311_immunization_must_support_test
 
     def resource_type
       'Immunization'

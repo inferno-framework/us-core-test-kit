@@ -17,7 +17,7 @@ fail if their code/system are not found in the valueset.
 
     )
 
-    id :care_plan_validation_test
+    id :us_core_311_care_plan_validation_test
 
     def resource_type
       'CarePlan'

@@ -302,26 +302,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: bodyheight_patient_code_search_test
+- :id: us_core_311_bodyheight_patient_code_search_test
   :file_name: bodyheight_patient_code_search_test.rb
-- :id: bodyheight_patient_category_date_search_test
+- :id: us_core_311_bodyheight_patient_category_date_search_test
   :file_name: bodyheight_patient_category_date_search_test.rb
-- :id: bodyheight_patient_category_status_search_test
+- :id: us_core_311_bodyheight_patient_category_status_search_test
   :file_name: bodyheight_patient_category_status_search_test.rb
-- :id: bodyheight_patient_code_date_search_test
+- :id: us_core_311_bodyheight_patient_code_date_search_test
   :file_name: bodyheight_patient_code_date_search_test.rb
-- :id: bodyheight_patient_category_search_test
+- :id: us_core_311_bodyheight_patient_category_search_test
   :file_name: bodyheight_patient_category_search_test.rb
-- :id: bodyheight_read_test
+- :id: us_core_311_bodyheight_read_test
   :file_name: bodyheight_read_test.rb
-- :id: bodyheight_provenance_revinclude_search_test
+- :id: us_core_311_bodyheight_provenance_revinclude_search_test
   :file_name: bodyheight_provenance_revinclude_search_test.rb
-- :id: bodyheight_validation_test
+- :id: us_core_311_bodyheight_validation_test
   :file_name: bodyheight_validation_test.rb
-- :id: bodyheight_must_support_test
+- :id: us_core_311_bodyheight_must_support_test
   :file_name: bodyheight_must_support_test.rb
-- :id: bodyheight_reference_resolution_test
+- :id: us_core_311_bodyheight_reference_resolution_test
   :file_name: bodyheight_reference_resolution_test.rb
-:id: bodyheight
+:id: us_core_311_bodyheight
 :file_name: bodyheight_group.rb
 :delayed_references: []

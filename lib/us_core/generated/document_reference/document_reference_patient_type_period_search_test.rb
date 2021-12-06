@@ -16,7 +16,7 @@ none are returned, the test is skipped.
 
     )
 
-    id :document_reference_patient_type_period_search_test
+    id :us_core_311_document_reference_patient_type_period_search_test
 
     input :patient_ids,
       title: 'Patient IDs',

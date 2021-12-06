@@ -30,7 +30,7 @@ module USCore
       * Encounter.type
     )
 
-    id :encounter_must_support_test
+    id :us_core_311_encounter_must_support_test
 
     def resource_type
       'Encounter'

@@ -187,22 +187,22 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
-- :id: immunization_patient_search_test
+- :id: us_core_311_immunization_patient_search_test
   :file_name: immunization_patient_search_test.rb
-- :id: immunization_patient_date_search_test
+- :id: us_core_311_immunization_patient_date_search_test
   :file_name: immunization_patient_date_search_test.rb
-- :id: immunization_patient_status_search_test
+- :id: us_core_311_immunization_patient_status_search_test
   :file_name: immunization_patient_status_search_test.rb
-- :id: immunization_read_test
+- :id: us_core_311_immunization_read_test
   :file_name: immunization_read_test.rb
-- :id: immunization_provenance_revinclude_search_test
+- :id: us_core_311_immunization_provenance_revinclude_search_test
   :file_name: immunization_provenance_revinclude_search_test.rb
-- :id: immunization_validation_test
+- :id: us_core_311_immunization_validation_test
   :file_name: immunization_validation_test.rb
-- :id: immunization_must_support_test
+- :id: us_core_311_immunization_must_support_test
   :file_name: immunization_must_support_test.rb
-- :id: immunization_reference_resolution_test
+- :id: us_core_311_immunization_reference_resolution_test
   :file_name: immunization_reference_resolution_test.rb
-:id: immunization
+:id: us_core_311_immunization
 :file_name: immunization_group.rb
 :delayed_references: []

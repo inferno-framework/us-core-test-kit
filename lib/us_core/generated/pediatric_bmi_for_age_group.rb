@@ -71,21 +71,21 @@ fail if any attempted read fails.
 
     )
 
-    id :pediatric_bmi_for_age
+    id :us_core_311_pediatric_bmi_for_age
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_bmi_for_age', 'metadata.yml')))
     end
 
-    test from: :pediatric_bmi_for_age_patient_code_search_test
-    test from: :pediatric_bmi_for_age_patient_category_date_search_test
-    test from: :pediatric_bmi_for_age_patient_category_status_search_test
-    test from: :pediatric_bmi_for_age_patient_code_date_search_test
-    test from: :pediatric_bmi_for_age_patient_category_search_test
-    test from: :pediatric_bmi_for_age_read_test
-    test from: :pediatric_bmi_for_age_provenance_revinclude_search_test
-    test from: :pediatric_bmi_for_age_validation_test
-    test from: :pediatric_bmi_for_age_must_support_test
-    test from: :pediatric_bmi_for_age_reference_resolution_test
+    test from: :us_core_311_pediatric_bmi_for_age_patient_code_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_patient_category_date_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_patient_category_status_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_patient_code_date_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_patient_category_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_read_test
+    test from: :us_core_311_pediatric_bmi_for_age_provenance_revinclude_search_test
+    test from: :us_core_311_pediatric_bmi_for_age_validation_test
+    test from: :us_core_311_pediatric_bmi_for_age_must_support_test
+    test from: :us_core_311_pediatric_bmi_for_age_reference_resolution_test
   end
 end

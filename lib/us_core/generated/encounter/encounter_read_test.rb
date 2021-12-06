@@ -7,7 +7,7 @@ module USCore
     title 'Server returns correct Encounter resource from Encounter read interaction'
     description 'A server SHALL support the Encounter read interaction.'
 
-    id :encounter_read_test
+    id :us_core_311_encounter_read_test
 
     def resource_type
       'Encounter'
