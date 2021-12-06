@@ -68,6 +68,10 @@ fail if any attempted read fails.
 
     id :allergy_intolerance
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'allergy_intolerance', 'metadata.yml')))
+    end
+
     test from: :allergy_intolerance_patient_search_test
     test from: :allergy_intolerance_patient_clinical_status_search_test
     test from: :allergy_intolerance_read_test

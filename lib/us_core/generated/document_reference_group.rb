@@ -77,6 +77,10 @@ fail if any attempted read fails.
 
     id :document_reference
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'document_reference', 'metadata.yml')))
+    end
+
     test from: :document_reference_patient_search_test
     test from: :document_reference__id_search_test
     test from: :document_reference_patient_type_period_search_test

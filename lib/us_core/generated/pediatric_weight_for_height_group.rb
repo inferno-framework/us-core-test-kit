@@ -73,6 +73,10 @@ fail if any attempted read fails.
 
     id :pediatric_weight_for_height
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_weight_for_height', 'metadata.yml')))
+    end
+
     test from: :pediatric_weight_for_height_patient_code_search_test
     test from: :pediatric_weight_for_height_patient_category_date_search_test
     test from: :pediatric_weight_for_height_patient_category_status_search_test

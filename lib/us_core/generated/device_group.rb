@@ -68,6 +68,10 @@ fail if any attempted read fails.
 
     id :device
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'device', 'metadata.yml')))
+    end
+
     test from: :device_patient_search_test
     test from: :device_patient_type_search_test
     test from: :device_read_test

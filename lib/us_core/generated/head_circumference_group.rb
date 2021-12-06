@@ -73,6 +73,10 @@ fail if any attempted read fails.
 
     id :head_circumference
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference', 'metadata.yml')))
+    end
+
     test from: :head_circumference_patient_code_search_test
     test from: :head_circumference_patient_category_date_search_test
     test from: :head_circumference_patient_category_status_search_test

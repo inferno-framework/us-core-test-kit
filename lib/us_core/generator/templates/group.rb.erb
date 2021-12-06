@@ -8,6 +8,10 @@ module USCore
     )
 
     id :<%= group_id %>
+
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml')))
+    end
 <% test_id_list.each do |id| %>
     test from: :<%= id %><% end %>
   end

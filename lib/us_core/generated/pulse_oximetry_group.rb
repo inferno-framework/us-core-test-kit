@@ -73,6 +73,10 @@ fail if any attempted read fails.
 
     id :pulse_oximetry
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pulse_oximetry', 'metadata.yml')))
+    end
+
     test from: :pulse_oximetry_patient_code_search_test
     test from: :pulse_oximetry_patient_category_date_search_test
     test from: :pulse_oximetry_patient_category_status_search_test

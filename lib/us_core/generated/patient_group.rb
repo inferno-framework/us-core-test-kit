@@ -77,6 +77,10 @@ fail if any attempted read fails.
 
     id :patient
 
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'patient', 'metadata.yml')))
+    end
+
     test from: :patient__id_search_test
     test from: :patient_identifier_search_test
     test from: :patient_name_search_test
