@@ -7,10 +7,17 @@ module USCore
 
     title 'Server returns valid results for Patient search by _id'
     description %(
-      A server SHALL support searching by _id on the Patient resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+A server SHALL support searching by
+_id on the Patient resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+Because this is the first search of the sequence, resources in the
+response will be used for subsequent tests.
+
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+
+    )
 
     id :patient__id_search_test
 

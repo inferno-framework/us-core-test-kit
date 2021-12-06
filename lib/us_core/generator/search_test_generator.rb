@@ -163,6 +163,14 @@ module USCore
         "[#{quoted_strings.join(', ')}]"
       end
 
+      def test_reference_variants?
+        first_search? && search_param_names.include?('patient')
+      end
+
+      def test_medication_inclusion?
+        resource_type == 'MedicationRequest'
+      end
+
       def search_properties
         {}.tap do |properties|
           properties[:first_search] = 'true' if first_search?
@@ -171,9 +179,9 @@ module USCore
           properties[:search_param_names] = search_param_names_array
           properties[:saves_delayed_references] = 'true' if saves_delayed_references?
           properties[:possible_status_search] = 'true' if possible_status_search?
-          properties[:test_medication_inclusion] = 'true' if resource_type == 'MedicationRequest'
+          properties[:test_medication_inclusion] = 'true' if test_medication_inclusion?
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
-          properties[:test_reference_variants] = 'true' if first_search? && search_param_names.include?('patient')
+          properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
         end
       end
@@ -192,6 +200,52 @@ module USCore
           id: test_id,
           file_name: base_output_file_name
         )
+      end
+
+      def reference_search_description
+        return '' unless test_reference_variants?
+
+        <<~REFERENCE_SEARCH_DESCRIPTION
+        This test verifies that the server supports searching by reference using
+        the form `patient=[id]` as well as `patient=Patient/[id]`. The two
+        different forms are expected to return the same number of results. US
+        Core requires that both forms are supported by US Core responders.
+        REFERENCE_SEARCH_DESCRIPTION
+      end
+
+      def first_search_description
+        return '' unless first_search?
+
+        <<~FIRST_SEARCH_DESCRIPTION
+        Because this is the first search of the sequence, resources in the
+        response will be used for subsequent tests.
+        FIRST_SEARCH_DESCRIPTION
+      end
+
+      def medication_inclusion_description
+        return '' unless test_medication_inclusion?
+
+        <<~MEDICATION_INCLUSION_DESCRIPTION
+        If any MedicationRequest resources use external references to
+        Medications, the search will be repeated with
+        `_include=MedicationRequest:medication`.
+        MEDICATION_INCLUSION_DESCRIPTION
+      end
+
+      def description
+        # TODO: description for POST searches
+        <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
+        A server #{conformance_expectation} support searching by
+        #{search_param_name_string} on the #{resource_type} resource. This test
+        will pass if resources are returned and match the search criteria. If
+        none are returned, the test is skipped.
+
+        #{medication_inclusion_description}
+        #{reference_search_description}
+        #{first_search_description}
+
+        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+        DESCRIPTION
       end
     end
   end

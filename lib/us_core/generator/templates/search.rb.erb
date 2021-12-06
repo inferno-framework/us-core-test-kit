@@ -7,11 +7,8 @@ module USCore
 
     title 'Server returns valid results for <%= resource_type %> search by <%= search_param_name_string %>'
     description %(
-      A server <%= conformance_expectation %> support searching by <%=
-      search_param_name_string %> on the <%= resource_type %> resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+<%= description %>
+    )
 
     id :<%= test_id %>
 <% if needs_patient_id? %>

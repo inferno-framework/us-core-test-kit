@@ -7,10 +7,14 @@ module USCore
 
     title 'Server returns valid results for AllergyIntolerance search by patient + clinical-status'
     description %(
-      A server SHOULD support searching by patient + clinical-status on the AllergyIntolerance resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+A server SHOULD support searching by
+patient + clinical-status on the AllergyIntolerance resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+
+    )
 
     id :allergy_intolerance_patient_clinical_status_search_test
 

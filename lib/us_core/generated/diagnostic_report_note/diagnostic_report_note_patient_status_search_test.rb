@@ -7,10 +7,14 @@ module USCore
 
     title 'Server returns valid results for DiagnosticReport search by patient + status'
     description %(
-      A server SHOULD support searching by patient + status on the DiagnosticReport resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+A server SHOULD support searching by
+patient + status on the DiagnosticReport resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+
+    )
 
     id :diagnostic_report_note_patient_status_search_test
 

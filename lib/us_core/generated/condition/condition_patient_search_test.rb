@@ -7,10 +7,22 @@ module USCore
 
     title 'Server returns valid results for Condition search by patient'
     description %(
-      A server SHALL support searching by patient on the Condition resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+A server SHALL support searching by
+patient on the Condition resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+This test verifies that the server supports searching by reference using
+the form `patient=[id]` as well as `patient=Patient/[id]`. The two
+different forms are expected to return the same number of results. US
+Core requires that both forms are supported by US Core responders.
+
+Because this is the first search of the sequence, resources in the
+response will be used for subsequent tests.
+
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+
+    )
 
     id :condition_patient_search_test
 

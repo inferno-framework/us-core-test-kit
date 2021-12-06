@@ -7,10 +7,18 @@ module USCore
 
     title 'Server returns valid results for MedicationRequest search by patient + intent + authoredon'
     description %(
-      A server SHOULD support searching by patient + intent + authoredon on the MedicationRequest resource. This
-      test will pass if resources are returned and match the search criteria. If
-      none are returned, the test is skipped'
-    %)
+A server SHOULD support searching by
+patient + intent + authoredon on the MedicationRequest resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+If any MedicationRequest resources use external references to
+Medications, the search will be repeated with
+`_include=MedicationRequest:medication`.
+
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+
+    )
 
     id :medication_request_patient_intent_authoredon_search_test
 
