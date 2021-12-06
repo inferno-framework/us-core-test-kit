@@ -2,8 +2,10 @@
 <% end %>
 module USCore
   class <%= class_name %> < Inferno::TestGroup
-    title '<%= Naming.upper_camel_case_for_profile(group_metadata) %> Tests'
-    # description ''
+    title '<%= title %> Tests'
+    description %(
+<%= description %>
+    )
 
     id :<%= group_id %>
 <% test_id_list.each do |id| %>

@@ -11,7 +11,7 @@ module Inferno
           logger.info("#{status} in #{elapsed.in_milliseconds} ms")
           return unless body.present?
 
-          body = body.is_a?(Array) ? body.first : body
+          body = body.is_a?(Array) ? body.join : body
 
           if body.length > 100
             logger.info("#{body[0..100]}...")
