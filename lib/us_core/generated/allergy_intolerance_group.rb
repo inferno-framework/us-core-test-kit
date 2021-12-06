@@ -14,7 +14,7 @@ module USCore
 
 The US Core AllergyIntolerance sequence verifies that the system under test is
 able to provide correct responses for AllergyIntolerance queries. These queries
-must contain resources conforming to the US  Core AllergyIntolerance Profile as
+must contain resources conforming to the US Core AllergyIntolerance Profile as
 specified in the US Core v3.1.1 Implementation Guide.
 
 # Testing Methodology
@@ -52,7 +52,7 @@ elements.
 
 ## Profile Validation
 Each resource returned from the first search is expected to conform to
-the [US  Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance). Each element is checked against
+the [US Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance). Each element is checked against
 teminology binding and cardinality requirements.
 
 Elements with a required binding are validated against their bound

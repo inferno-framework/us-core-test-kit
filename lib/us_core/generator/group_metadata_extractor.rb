@@ -174,7 +174,7 @@ module USCore
       end
 
       def profile_name
-        profile.title
+        profile.title.gsub('  ', ' ')
       end
 
       def title

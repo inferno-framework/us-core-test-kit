@@ -5,7 +5,9 @@ module USCore
     include USCore::ValidationTest
 
     title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'
-    # description ''
+    description %(
+<%= description %>
+    )
 
     id :<%= test_id %>
 

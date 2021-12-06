@@ -7,7 +7,7 @@
   :reformatted_version: v311
   :resource: AllergyIntolerance
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
-  :profile_name: US  Core AllergyIntolerance Profile
+  :profile_name: US Core AllergyIntolerance Profile
   :title: AllergyIntolerance
   :interactions:
   - :code: create
