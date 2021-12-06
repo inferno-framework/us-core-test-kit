@@ -102,6 +102,8 @@ module USCore
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
+      filter_devices(resources_returned) if resource_type == 'Device'
+
       if first_search?
         all_scratch_resources.concat(resources_returned).uniq!
         scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
@@ -121,6 +123,15 @@ module USCore
       perform_search_with_system(params, patient_id) if token_search_params.present?
 
       resources_returned
+    end
+
+    def filter_devices(resources)
+      codes_to_include = implantable_device_codes&.split(',')&.map(&:strip)
+      return resources if codes_to_include.blank?
+
+      resources.select! do |resource|
+        resource&.type&.coding&.any? { |coding| codes_to_include.include?(coding.code) }
+      end
     end
 
     def search_and_check_response(params)

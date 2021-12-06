@@ -134,8 +134,6 @@ RSpec.describe USCore::SearchTest do
       let(:medication_request) do
         FHIR::MedicationRequest.new(
           id: 'def',
-          # status: 'active',
-          # intent: 'order',
           medicationReference: {
             reference: medication_id
           },
@@ -208,8 +206,95 @@ RSpec.describe USCore::SearchTest do
         expect(test_scratch[:medication_resources][:contained]).to include(medication)
         expect(test_scratch[:medication_resources][patient_id]).to include(medication)
       end
+    end
+  end
 
+  describe 'search with device filtering' do
+    context 'when a list of codes is provided' do
+      let(:patient_id) { '123' }
+      let(:implantable_device_code1) { 'code1' }
+      let(:implantable_device_code2) { 'code2' }
+      let(:non_implantable_device_code) { 'code3' }
+      let(:device_codes) { [implantable_device_code1, implantable_device_code2, non_implantable_device_code] }
+      let(:devices) do
+        device_codes.map do |code|
+          FHIR::Device.new(
+            id: 'abc',
+            patient: {
+              reference: "Patient/#{patient_id}"
+            },
+            type: {
+              coding: [{ code: code }]
+            }
+          )
+        end
+      end
+      let(:device_search_test) do
+        Class.new(Inferno::Test) do
+          include USCore::SearchTest
 
+          def properties
+            @properties ||= USCore::SearchTestProperties.new(
+              resource_type: 'Device',
+              search_param_names: ['patient'],
+              first_search: true
+            )
+          end
+
+          def self.metadata
+            @metadata ||=
+              USCore::Generator::GroupMetadata.new(
+                YAML.load_file(
+                  File.join(
+                    __dir__,
+                    '..',
+                    'fixtures',
+                    'device_metadata.yml'
+                  )
+                )
+              )
+          end
+
+          def scratch_resources
+            scratch[:device_resources] ||= {}
+          end
+
+          fhir_client { url :url }
+          input :url, :patient_ids, :implantable_device_codes
+
+          run do
+            run_search_test
+          end
+        end
+      end
+      let(:bundle) do
+        entries = devices.map do |device|
+          { resource: device }
+        end
+        FHIR::Bundle.new(entry: entries)
+      end
+      let(:test_scratch) { {} }
+
+      before do
+        Inferno::Repositories::Tests.new.insert(device_search_test)
+        allow_any_instance_of(device_search_test)
+          .to receive(:scratch).and_return(test_scratch)
+      end
+
+      it 'only stores devices matching those codes' do
+        # Match any request that doesn't contain '_include'
+        stub_request(:get, "#{url}/Device?patient=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+
+        implantable_devices = devices[0..1]
+        non_implantable_device = devices.last
+        code_input = "#{implantable_device_code1}, #{implantable_device_code2}"
+        result = run(device_search_test, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
+
+        expect(result.result).to eq('pass')
+        expect(test_scratch[:device_resources][:all]).to eq(implantable_devices)
+        expect(test_scratch[:device_resources][:all]).to_not include(non_implantable_device)
+      end
     end
   end
 end

@@ -16,6 +16,12 @@ module USCore
       title: 'Patient IDs',
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
       default: '85,355'
+<% end %><% if resource_type == 'Device' %>
+    input :implantable_device_codes,
+      title: 'Implantable Device Type Code',
+      description: 'Enter the code for an Implantable Device type, or multiple codes separated by commas. '\
+                   'If blank, Inferno will validate all Device resources against the Implantable Device profile',
+      optional: true
 <% end %>
     def properties
       @properties ||= SearchTestProperties.new(

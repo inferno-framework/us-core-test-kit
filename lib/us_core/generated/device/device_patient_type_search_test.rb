@@ -23,6 +23,12 @@ none are returned, the test is skipped.
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
       default: '85,355'
 
+    input :implantable_device_codes,
+      title: 'Implantable Device Type Code',
+      description: 'Enter the code for an Implantable Device type, or multiple codes separated by commas. '\
+                   'If blank, Inferno will validate all Device resources against the Implantable Device profile',
+      optional: true
+
     def properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Device',
