@@ -35,7 +35,6 @@ module USCore
       generate_suites
 
       # TODO: These won't be generated, but we need them:
-      # - CapabilityStatement group
       # - DAR group
       # - Clinical Notes Guidance
     end

@@ -1,5 +1,5 @@
 RSpec.describe USCore::SearchTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core') }
+  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_311') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
   let(:url) { 'http://example.com/fhir' }
