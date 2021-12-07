@@ -36,7 +36,6 @@ module USCore
 
       # TODO: These won't be generated, but we need them:
       # - DAR group
-      # - Clinical Notes Guidance
     end
 
     def extract_metadata

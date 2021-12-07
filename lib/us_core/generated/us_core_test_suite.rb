@@ -1,4 +1,5 @@
 require_relative '../custom_groups/capability_statement_group'
+require_relative '../custom_groups/clinical_notes_guidance_group'
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -93,5 +94,6 @@ module USCore
     group from: :us_core_311_organization
     group from: :us_core_311_practitioner
     group from: :us_core_311_provenance
+    group from: :us_core_311_clinical_notes_guidance
   end
 end

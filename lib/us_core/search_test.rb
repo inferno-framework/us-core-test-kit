@@ -134,7 +134,7 @@ module USCore
       end
     end
 
-    def search_and_check_response(params)
+    def search_and_check_response(params, resource_type = self.resource_type)
       fhir_search resource_type, params: params
 
       check_search_response
@@ -251,7 +251,12 @@ module USCore
       search_variant_test_records[:token_variants] = true
     end
 
-    def perform_search_with_status(original_params, patient_id)
+    def perform_search_with_status(
+          original_params,
+          patient_id,
+          status_search_values: self.status_search_values,
+          resource_type: self.resource_type
+        )
       assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
       # TODO: warn about documenting status requirements
       status_search_values.flat_map do |status_value|
@@ -259,7 +264,7 @@ module USCore
 
         search_and_check_response(search_params)
 
-        entries = resource.entry.select { |entry| entry.resource.resourceType == 'Observation' }
+        entries = resource.entry.select { |entry| entry.resource.resourceType == resource_type }
 
         if entries.present?
           original_params.merge!('status': status_value)
@@ -391,7 +396,12 @@ module USCore
       "Please use patients with more information"
     end
 
-    def fetch_all_bundled_resources(reply_handler: nil, max_pages: 20, additional_resource_types: [])
+    def fetch_all_bundled_resources(
+          reply_handler: nil,
+          max_pages: 20,
+          additional_resource_types: [],
+          resource_type: self.resource_type
+        )
       page_count = 1
       resources = []
       bundle = resource
