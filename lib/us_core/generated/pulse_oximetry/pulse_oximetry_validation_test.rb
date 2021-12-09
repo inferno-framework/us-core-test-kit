@@ -4,6 +4,7 @@ module USCore
   class PulseOximetryValidationTest < Inferno::Test
     include USCore::ValidationTest
 
+    id :us_core_311_pulse_oximetry_validation_test
     title 'Observation resources returned during previous tests conform to the US Core Pulse Oximetry Profile'
     description %(
 This test verifies resources returned from the first search conform to
@@ -16,8 +17,7 @@ to the bound ValueSet. Quantity, Coding, and code element bindings will
 fail if their code/system are not found in the valueset.
 
     )
-
-    id :us_core_311_pulse_oximetry_validation_test
+    output :dar_code_found, :dar_extension_found
 
     def resource_type
       'Observation'

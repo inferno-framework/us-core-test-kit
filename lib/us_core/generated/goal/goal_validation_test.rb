@@ -4,6 +4,7 @@ module USCore
   class GoalValidationTest < Inferno::Test
     include USCore::ValidationTest
 
+    id :us_core_311_goal_validation_test
     title 'Goal resources returned during previous tests conform to the US Core Goal Profile'
     description %(
 This test verifies resources returned from the first search conform to
@@ -16,8 +17,7 @@ to the bound ValueSet. Quantity, Coding, and code element bindings will
 fail if their code/system are not found in the valueset.
 
     )
-
-    id :us_core_311_goal_validation_test
+    output :dar_code_found, :dar_extension_found
 
     def resource_type
       'Goal'

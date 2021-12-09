@@ -4,12 +4,12 @@ module USCore
   class <%= class_name %> < Inferno::Test
     include USCore::ValidationTest
 
+    id :<%= test_id %>
     title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'
     description %(
 <%= description %>
     )
-
-    id :<%= test_id %>
+    output :dar_code_found, :dar_extension_found
 
     def resource_type
       '<%= resource_type %>'
