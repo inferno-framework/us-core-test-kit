@@ -85,7 +85,7 @@ module USCore
 
         begin
           # TODO: this request isn't persisted
-          resolved_resource = reference.read
+          resolved_resource = reference.read(fhir_client)
         rescue ClientException => e
           # report error if the resource is a US Core resource type
           messages << {
