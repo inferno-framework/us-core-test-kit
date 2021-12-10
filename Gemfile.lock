@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     us_core_test_kit (0.0.1)
-      inferno_core (= 0.0.8.pre2)
+      inferno_core (= 0.0.8)
 
 GEM
   remote: https://rubygems.org/
@@ -134,7 +134,7 @@ GEM
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    inferno_core (0.0.8.pre2)
+    inferno_core (0.0.8)
       activesupport (~> 6.1)
       blueprinter (= 0.25.2)
       dotenv (~> 2.7)
