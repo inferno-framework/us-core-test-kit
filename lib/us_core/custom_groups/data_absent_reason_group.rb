@@ -13,6 +13,7 @@ module USCore
       specified method of representing missing data was observed in the earlier
       tests.
     )
+    run_as_group
 
     test do
       title 'Server represents missing data with the DataAbsentReason Extension'

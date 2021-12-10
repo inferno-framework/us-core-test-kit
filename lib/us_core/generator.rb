@@ -33,9 +33,6 @@ module USCore
       generate_groups
 
       generate_suites
-
-      # TODO: These won't be generated, but we need them:
-      # - DAR group
     end
 
     def extract_metadata

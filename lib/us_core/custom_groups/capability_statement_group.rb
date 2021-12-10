@@ -42,6 +42,7 @@ module USCore
       * List of resources supported
       * List of queries parameters supported
     )
+    run_as_group
 
     test from: :us_core_311_conformance_support
     test from: :us_core_311_fhir_version

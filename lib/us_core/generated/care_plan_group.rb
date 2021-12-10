@@ -69,6 +69,7 @@ fail if any attempted read fails.
     )
 
     id :us_core_311_care_plan
+    run_as_group
 
     def self.metadata
       @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'care_plan', 'metadata.yml')))

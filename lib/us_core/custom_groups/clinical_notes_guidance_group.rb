@@ -35,6 +35,7 @@ module USCore
       DiagnosticReport and DocumentReference by representing the same attachment
       url.
     )
+    run_as_group
 
     test do
       include SearchTest
