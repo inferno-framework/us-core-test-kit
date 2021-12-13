@@ -15,6 +15,11 @@ none are returned, the test is skipped.
 Because this is the first search of the sequence, resources in the
 response will be used for subsequent tests.
 
+Additionally, this test will check that GET and POST search methods
+return the same number of results. Search by POST is required by the
+FHIR R4 specification, and these tests interpret search by GET as a
+requirement of US Core v3.1.1.
+
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
 
     )

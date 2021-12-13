@@ -23,9 +23,6 @@ module USCore
       fhir_read resource_type, id
 
       assert_response_status(200)
-      # TODO: DAR checks
-      # reply_handler&.call(resource)
-
       assert_resource_type(resource_type)
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
 

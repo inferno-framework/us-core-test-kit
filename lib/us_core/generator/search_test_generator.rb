@@ -171,6 +171,10 @@ module USCore
         resource_type == 'MedicationRequest'
       end
 
+      def test_post_search?
+        first_search?
+      end
+
       def search_properties
         {}.tap do |properties|
           properties[:first_search] = 'true' if first_search?
@@ -233,8 +237,18 @@ module USCore
         MEDICATION_INCLUSION_DESCRIPTION
       end
 
+      def post_search_description
+        return '' unless test_post_search?
+
+        <<~POST_SEARCH_DESCRIPTION
+        Additionally, this test will check that GET and POST search methods
+        return the same number of results. Search by POST is required by the
+        FHIR R4 specification, and these tests interpret search by GET as a
+        requirement of US Core v3.1.1.
+        POST_SEARCH_DESCRIPTION
+      end
+
       def description
-        # TODO: description for POST searches
         <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
         A server #{conformance_expectation} support searching by
         #{search_param_name_string} on the #{resource_type} resource. This test
@@ -244,6 +258,7 @@ module USCore
         #{medication_inclusion_description}
         #{reference_search_description}
         #{first_search_description}
+        #{post_search_description}
 
         [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
         DESCRIPTION
