@@ -1,0 +1,134 @@
+---
+:name: us_core_practitioner
+:class_name: USCorev311PractitionerSequence
+:version: v3.1.1
+:reformatted_version: v311
+:resource: Practitioner
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+:profile_name: US Core Practitioner Profile
+:title: Practitioner
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - name
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - identifier
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :name:
+    :path: name
+    :full_path: Practitioner.name
+    :comparators: {}
+    :values: []
+    :type: HumanName
+    :contains_multiple: true
+    :multiple_or: MAY
+  :identifier:
+    :path: identifier
+    :full_path: Practitioner.identifier
+    :comparators: {}
+    :values: []
+    :type: Identifier
+    :contains_multiple: true
+    :multiple_or: MAY
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :name: Practitioner.identifier:NPI
+    :path: identifier
+    :discriminator:
+      :type: patternIdentifier
+      :path: ''
+      :system: http://hl7.org/fhir/sid/us-npi
+  :elements:
+  - :path: identifier
+  - :path: identifier.system
+  - :path: identifier.value
+  - :path: name
+  - :path: name.family
+:mandatory_elements:
+- Practitioner.identifier
+- Practitioner.identifier.system
+- Practitioner.identifier.value
+- Practitioner.name
+- Practitioner.name.family
+- Practitioner.qualification.code
+:bindings:
+- :type: code
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: language
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/identifier-use
+  :path: identifier.use
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/identifier-type
+  :path: identifier.type
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/name-use
+  :path: name.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/administrative-gender
+  :path: gender
+- :type: CodeableConcept
+  :strength: example
+  :system: http://terminology.hl7.org/ValueSet/v2-2.7-0360
+  :path: qualification.code
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: communication
+:references:
+- :path: Practitioner.identifier.assigner
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Practitioner.qualification.issuer
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+:tests:
+- :id: us_core_311_practitioner_read_test
+  :file_name: practitioner_read_test.rb
+- :id: us_core_311_practitioner_name_search_test
+  :file_name: practitioner_name_search_test.rb
+- :id: us_core_311_practitioner_identifier_search_test
+  :file_name: practitioner_identifier_search_test.rb
+- :id: us_core_311_practitioner_validation_test
+  :file_name: practitioner_validation_test.rb
+- :id: us_core_311_practitioner_must_support_test
+  :file_name: practitioner_must_support_test.rb
+- :id: us_core_311_practitioner_reference_resolution_test
+  :file_name: practitioner_reference_resolution_test.rb
+:id: us_core_311_practitioner
+:file_name: practitioner_group.rb
+:delayed_references: []

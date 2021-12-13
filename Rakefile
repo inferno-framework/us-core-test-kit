@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-byebug'
+
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
@@ -8,8 +11,18 @@ end
 namespace :db do
   desc 'Apply changes to the database'
   task :migrate do
-    require 'inferno'
+    require 'inferno/config/application'
+    require 'inferno/utils/migration'
+    Inferno::Utils::Migration.new.run
+  end
+end
 
-    Inferno::Application.start(:db)
+namespace :us_core do
+  desc 'Generate tests'
+  task :generate do
+    require_relative 'lib/us_core/generator'
+    generator = USCore::Generator.new
+
+    generator.generate
   end
 end

@@ -1,0 +1,45 @@
+require_relative '../custom_groups/capability_statement_group'
+require_relative '../custom_groups/clinical_notes_guidance_group'
+require_relative '../custom_groups/data_absent_reason_group'
+<% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% end %>
+module USCore
+  class <%= class_name %> < Inferno::TestSuite
+    title '<%= title %>'
+    VALIDATION_MESSAGE_FILTERS = [
+      %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
+      %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
+      /is not a valid Target for this element \(must be one of \[\]\)$/, # This is fixed in FHIR Validator v5.3.8
+      /^vs-1: if Observation\.effective\[x\] is dateTime and has a value then that value shall be precise to the day/, # Invalid invariant in FHIR v4.0.1
+      /^us-core-1: Datetime must be at least to day/ # Invalid invariant in US Core v3.1.1
+    ].freeze
+
+    validator do
+      url ENV.fetch('VALIDATOR_URL', 'http://validator_service:4567')
+      exclude_message do |message|
+        VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
+      end
+    end
+
+    id :<%= suite_id %>
+
+    input :url,
+      title: 'FHIR Endpoint',
+      description: 'URL of the FHIR endpoint',
+      default: 'https://inferno.healthit.gov/reference-server/r4'
+    input :bearer_token,
+      title: 'Bearer Token',
+      default: 'SAMPLE_TOKEN'
+
+    fhir_client do
+      url :url
+      bearer_token :bearer_token
+    end
+
+    group from: :us_core_311_capability_statement
+<% group_id_list.each do |id| %>
+    group from: :<%= id %><% end %>
+    group from: :us_core_311_clinical_notes_guidance
+    group from: :us_core_311_data_absent_reason
+  end
+end
