@@ -25,7 +25,8 @@ response will be used for subsequent tests.
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Practitioner',
-        search_param_names: ['name']
+        search_param_names: ['name'],
+        test_post_search: true
       )
     end
 

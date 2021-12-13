@@ -183,6 +183,7 @@ module USCore
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
           properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
+          properties[:test_post_search] = 'true' if first_search?
         end
       end
 

@@ -10,7 +10,8 @@ module USCore
       :test_medication_inclusion,
       :token_search_params,
       :test_reference_variants,
-      :params_with_comparators
+      :params_with_comparators,
+      :test_post_search
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }
@@ -45,6 +46,10 @@ module USCore
 
     def test_reference_variants?
       !!test_reference_variants
+    end
+
+    def test_post_search?
+      !!test_post_search
     end
   end
 end

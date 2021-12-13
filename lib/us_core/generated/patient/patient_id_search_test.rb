@@ -30,7 +30,8 @@ response will be used for subsequent tests.
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Patient',
-        search_param_names: ['_id']
+        search_param_names: ['_id'],
+        test_post_search: true
       )
     end
 

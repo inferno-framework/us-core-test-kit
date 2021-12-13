@@ -38,7 +38,8 @@ response will be used for subsequent tests.
         resource_type: 'CareTeam',
         search_param_names: ['patient', 'status'],
         saves_delayed_references: true,
-        test_reference_variants: true
+        test_reference_variants: true,
+        test_post_search: true
       )
     end
 

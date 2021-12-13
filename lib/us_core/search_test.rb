@@ -17,6 +17,7 @@ module USCore
                    :fixed_value_search?,
                    :possible_status_search?,
                    :test_medication_inclusion?,
+                   :test_post_search?,
                    :token_search_params,
                    :test_reference_variants?,
                    :params_with_comparators
@@ -117,12 +118,29 @@ module USCore
 
       return resources_returned if all_search_variants_tested?
 
-      # TODO: handle search variants: POST
+      perform_post_search(resources_returned, params) if test_post_search?
       test_medication_inclusion(resources_returned, params, patient_id) if test_medication_inclusion?
       perform_reference_with_type_search(params, resources_returned.count) if test_reference_variants?
       perform_search_with_system(params, patient_id) if token_search_params.present?
 
       resources_returned
+    end
+
+    def perform_post_search(get_search_resources, params)
+      fhir_search resource_type, params: params, search_method: :post
+
+      check_search_response
+
+      post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+      get_resource_count = get_search_resources.length
+      post_resource_count = post_search_resources.length
+
+      search_variant_test_records[:post_variant] = true
+
+      assert get_resource_count == post_resource_count,
+             "Expected search by POST to return the same results as search by GET, " \
+             "but GET search returned #{get_resource_count} resources, and POST search " \
+             "returned #{post_resource_count} resources."
     end
 
     def filter_devices(resources)
@@ -152,6 +170,7 @@ module USCore
 
     def initial_search_variant_test_records
       {}.tap do |records|
+        records[:post_variant] = false if test_post_search?
         records[:medication_inclusion] = false if test_medication_inclusion?
         records[:reference_variants] = false if test_reference_variants?
         records[:token_variants] = false if token_search_params.present?

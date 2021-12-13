@@ -37,7 +37,8 @@ response will be used for subsequent tests.
         resource_type: 'Procedure',
         search_param_names: ['patient'],
         possible_status_search: true,
-        test_reference_variants: true
+        test_reference_variants: true,
+        test_post_search: true
       )
     end
 

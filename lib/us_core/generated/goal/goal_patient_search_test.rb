@@ -36,7 +36,8 @@ response will be used for subsequent tests.
         first_search: true,
         resource_type: 'Goal',
         search_param_names: ['patient'],
-        test_reference_variants: true
+        test_reference_variants: true,
+        test_post_search: true
       )
     end
 

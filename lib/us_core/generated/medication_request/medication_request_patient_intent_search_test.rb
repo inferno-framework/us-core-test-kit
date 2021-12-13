@@ -44,7 +44,8 @@ response will be used for subsequent tests.
         saves_delayed_references: true,
         possible_status_search: true,
         test_medication_inclusion: true,
-        test_reference_variants: true
+        test_reference_variants: true,
+        test_post_search: true
       )
     end
 
