@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     us_core_test_kit (0.0.1)
-      inferno_core (= 0.1.0)
+      inferno_core (~> 0.1.0)
 
 GEM
   remote: https://rubygems.org/
