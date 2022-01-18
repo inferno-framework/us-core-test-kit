@@ -23,7 +23,7 @@ none are returned, the test is skipped.
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
       default: '85,355'
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Goal',
         search_param_names: ['patient', 'lifecycle-status']

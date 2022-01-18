@@ -8,7 +8,7 @@ module USCore
     include DateSearchValidation
     include FHIRResourceNavigation
 
-    def_delegators 'self.class', :metadata, :provenance_metadata
+    def_delegators 'self.class', :metadata, :provenance_metadata, :properties
     def_delegators 'properties',
                    :resource_type,
                    :search_param_names,
