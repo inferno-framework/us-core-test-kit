@@ -23,7 +23,7 @@ module USCore
                    'If blank, Inferno will validate all Device resources against the Implantable Device profile',
       optional: true
 <% end %>
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
 <%= search_test_properties_string %>
       )

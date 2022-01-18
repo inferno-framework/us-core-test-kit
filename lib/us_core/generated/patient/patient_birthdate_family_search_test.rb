@@ -18,7 +18,7 @@ none are returned, the test is skipped.
 
     id :us_core_311_patient_birthdate_family_search_test
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Patient',
         search_param_names: ['birthdate', 'family']

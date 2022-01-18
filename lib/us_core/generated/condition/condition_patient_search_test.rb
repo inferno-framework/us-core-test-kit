@@ -36,11 +36,12 @@ requirement of US Core v3.1.1.
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
       default: '85,355'
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Condition',
         search_param_names: ['patient'],
+        possible_status_search: true,
         test_reference_variants: true,
         test_post_search: true
       )

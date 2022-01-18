@@ -42,7 +42,7 @@ requirement of US Core v3.1.1.
                    'If blank, Inferno will validate all Device resources against the Implantable Device profile',
       optional: true
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Device',

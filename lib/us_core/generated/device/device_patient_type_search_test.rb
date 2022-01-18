@@ -29,7 +29,7 @@ none are returned, the test is skipped.
                    'If blank, Inferno will validate all Device resources against the Implantable Device profile',
       optional: true
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Device',
         search_param_names: ['patient', 'type'],

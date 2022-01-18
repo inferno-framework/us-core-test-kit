@@ -37,7 +37,7 @@ module USCore
 
     def extract_metadata
       self.ig_metadata = IGMetadataExtractor.new(ig_resources).extract
-      File.open('metadata.yml', 'w') do |file|
+      File.open(File.join(__dir__, 'generated', 'metadata.yml'), 'w') do |file|
         file.write(YAML.dump(ig_metadata.to_hash))
       end
     end

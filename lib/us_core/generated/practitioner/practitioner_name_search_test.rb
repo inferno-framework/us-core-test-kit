@@ -26,7 +26,7 @@ requirement of US Core v3.1.1.
 
     id :us_core_311_practitioner_name_search_test
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         first_search: true,
         resource_type: 'Practitioner',

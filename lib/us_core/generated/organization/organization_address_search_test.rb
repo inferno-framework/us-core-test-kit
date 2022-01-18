@@ -18,7 +18,7 @@ none are returned, the test is skipped.
 
     id :us_core_311_organization_address_search_test
 
-    def properties
+    def self.properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'Organization',
         search_param_names: ['address']
