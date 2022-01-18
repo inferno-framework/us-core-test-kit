@@ -34,6 +34,7 @@ require_relative 'provenance_group'
 module USCore
   class USCoreTestSuite < Inferno::TestSuite
     title 'US Core 3.1.1'
+
     VALIDATION_MESSAGE_FILTERS = [
       %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
       %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
@@ -41,6 +42,12 @@ module USCore
       /^vs-1: if Observation\.effective\[x\] is dateTime and has a value then that value shall be precise to the day/, # Invalid invariant in FHIR v4.0.1
       /^us-core-1: Datetime must be at least to day/ # Invalid invariant in US Core v3.1.1
     ].freeze
+
+    def self.metadata
+      @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'))[:groups].map do |raw_metadata|
+          Generator::GroupMetadata.new(raw_metadata)
+        end
+    end
 
     validator do
       url ENV.fetch('VALIDATOR_URL', 'http://validator_service:4567')
