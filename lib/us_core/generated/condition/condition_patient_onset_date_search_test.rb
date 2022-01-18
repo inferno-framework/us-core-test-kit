@@ -27,6 +27,7 @@ none are returned, the test is skipped.
       @properties ||= SearchTestProperties.new(
         resource_type: 'Condition',
         search_param_names: ['patient', 'onset-date'],
+        possible_status_search: true,
         params_with_comparators: ['onset-date']
       )
     end

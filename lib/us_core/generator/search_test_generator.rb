@@ -140,7 +140,8 @@ module USCore
       end
 
       def possible_status_search?
-        !search_metadata[:names].include?('status') && group_metadata.search_definitions.key?(:status)
+        !search_metadata[:names].any? { |name| name.include? 'status' } &&
+          group_metadata.search_definitions.keys.any? { |key| key.to_s.include? 'status' }
       end
 
       def token_search_params

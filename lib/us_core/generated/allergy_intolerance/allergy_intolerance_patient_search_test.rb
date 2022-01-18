@@ -41,6 +41,7 @@ requirement of US Core v3.1.1.
         first_search: true,
         resource_type: 'AllergyIntolerance',
         search_param_names: ['patient'],
+        possible_status_search: true,
         test_reference_variants: true,
         test_post_search: true
       )

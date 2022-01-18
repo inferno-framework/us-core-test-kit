@@ -279,21 +279,26 @@ module USCore
       assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
       # TODO: warn about documenting status requirements
       status_search_values.flat_map do |status_value|
-        search_params = original_params.merge('status': status_value)
+        search_params = original_params.merge("#{status_search_param_name}": status_value)
 
         search_and_check_response(search_params)
 
         entries = resource.entry.select { |entry| entry.resource.resourceType == resource_type }
 
         if entries.present?
-          original_params.merge!('status': status_value)
+          original_params.merge!("#{status_search_param_name}": status_value)
           break
         end
       end
     end
 
+    def status_search_param_name
+      @status_search_param_name ||=
+        metadata.search_definitions.keys.find { |key| key.to_s.include? 'status' }
+    end
+
     def status_search_values
-      definition = metadata.search_definitions[:status]
+      definition = metadata.search_definitions[status_search_param_name]
       return [] if definition.blank?
 
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : [definition[:values]]
