@@ -17,6 +17,7 @@ none are returned, the test is skipped.
     )
 
     id :us_core_311_document_reference_patient_status_search_test
+    optional
 
     input :patient_ids,
       title: 'Patient IDs',

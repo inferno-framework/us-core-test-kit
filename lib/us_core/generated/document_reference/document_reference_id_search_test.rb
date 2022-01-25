@@ -17,7 +17,6 @@ none are returned, the test is skipped.
     )
 
     id :us_core_311_document_reference__id_search_test
-
     def self.properties
       @properties ||= SearchTestProperties.new(
         resource_type: 'DocumentReference',

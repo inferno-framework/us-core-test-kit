@@ -17,6 +17,7 @@ none are returned, the test is skipped.
     )
 
     id :us_core_311_encounter_identifier_search_test
+    optional
 
     def self.properties
       @properties ||= SearchTestProperties.new(

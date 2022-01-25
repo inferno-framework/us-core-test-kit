@@ -30,7 +30,6 @@ requirement of US Core v3.1.1.
     )
 
     id :us_core_311_resprate_patient_code_search_test
-
     input :patient_ids,
       title: 'Patient IDs',
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',

@@ -21,6 +21,7 @@ Medications, the search will be repeated with
     )
 
     id :us_core_311_medication_request_patient_intent_authoredon_search_test
+    optional
 
     input :patient_ids,
       title: 'Patient IDs',

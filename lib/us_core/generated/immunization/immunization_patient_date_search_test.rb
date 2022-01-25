@@ -17,6 +17,7 @@ none are returned, the test is skipped.
     )
 
     id :us_core_311_immunization_patient_date_search_test
+    optional
 
     input :patient_ids,
       title: 'Patient IDs',
