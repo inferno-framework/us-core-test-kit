@@ -9,7 +9,7 @@ module USCore
 
     run do
       server_version = fhir_client.detect_version.to_s.upcase
-      assert server_version == 'R4', 'Server is using FHIR version #{server_version} rather than R4'
+      assert server_version == 'R4', "Server is using FHIR version #{server_version} rather than R4"
     end
   end
 end
