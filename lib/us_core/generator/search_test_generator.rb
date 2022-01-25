@@ -126,10 +126,9 @@ module USCore
           end
       end
 
-      # def patient_id_param?(param)
-      #   param[:name] == 'patient' ||
-      #     (resource_type == 'Patient' && param[:name] == '_id')
-      # end
+      def optional?
+        conformance_expectation != 'SHALL'
+      end
 
       def search_definition(name)
         group_metadata.search_definitions[name.to_sym]

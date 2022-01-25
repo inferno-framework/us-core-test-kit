@@ -17,7 +17,6 @@ none are returned, the test is skipped.
     )
 
     id :us_core_311_heartrate_patient_category_date_search_test
-
     input :patient_ids,
       title: 'Patient IDs',
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',

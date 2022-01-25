@@ -21,7 +21,6 @@ Medications, the search will be repeated with
     )
 
     id :us_core_311_medication_request_patient_intent_status_search_test
-
     input :patient_ids,
       title: 'Patient IDs',
       description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',

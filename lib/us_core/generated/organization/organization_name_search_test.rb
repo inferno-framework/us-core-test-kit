@@ -25,7 +25,6 @@ requirement of US Core v3.1.1.
     )
 
     id :us_core_311_organization_name_search_test
-
     def self.properties
       @properties ||= SearchTestProperties.new(
         first_search: true,
