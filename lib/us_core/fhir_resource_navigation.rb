@@ -5,9 +5,12 @@ module USCore
       return elements if path.blank?
 
       paths = path.split('.')
+      segment = paths.first
+      remaining_path = paths.drop(1).join('.')
 
       elements.flat_map do |element|
-        resolve_path(element&.send(paths.first), paths.drop(1).join('.'))
+        child = get_next_value(element, segment)
+        resolve_path(child, remaining_path)
       end.compact
     end
 
@@ -27,25 +30,33 @@ module USCore
 
       no_elements_present =
         elements.none? do |element|
-        child = element.send(segment)
+        child = get_next_value(element, segment)
 
         child.present? || child == false
       end
 
       return nil if no_elements_present
 
+      remaining_path = path_segments.join('.')
+
       elements.each do |element|
-        child = element.send(segment)
+        child = get_next_value(element, segment)
         element_found =
           if block_given?
-            find_a_value_at(child, path_segments.join('.')) { |value_found| yield(value_found) }
+            find_a_value_at(child, remaining_path) { |value_found| yield(value_found) }
           else
-            find_a_value_at(child, path_segments.join('.'))
+            find_a_value_at(child, remaining_path)
           end
 
         return element_found if element_found.present? || element_found == false
       end
 
+      nil
+    end
+
+    def get_next_value(element, property)
+      element.send(property)
+    rescue NoMethodError
       nil
     end
   end
