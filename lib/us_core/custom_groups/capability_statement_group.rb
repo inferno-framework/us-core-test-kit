@@ -1,3 +1,4 @@
+require 'tls_test_kit'
 require_relative 'capability_statement/conformance_support_test'
 require_relative 'capability_statement/fhir_version_test'
 require_relative 'capability_statement/json_support_test'
@@ -44,6 +45,16 @@ module USCore
     )
     run_as_group
 
+    test from: :tls_version_test,
+         id: :standalone_auth_tls,
+         title: 'FHIR server secured by transport layer security',
+         description: %(
+           Systems **SHALL** use TLS version 1.2 or higher for all transmissions
+           not taking place over a secure network connection.
+         ),
+         config: {
+           options: {  minimum_allowed_version: OpenSSL::SSL::TLS1_2_VERSION }
+         }
     test from: :us_core_311_conformance_support
     test from: :us_core_311_fhir_version
     test from: :us_core_311_json_support
