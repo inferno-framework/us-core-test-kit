@@ -61,13 +61,15 @@ module USCore
       title: 'FHIR Endpoint',
       description: 'URL of the FHIR endpoint',
       default: 'https://inferno.healthit.gov/reference-server/r4'
-    input :bearer_token,
-      title: 'Bearer Token',
-      default: 'SAMPLE_TOKEN'
+    input :smart_credentials,
+      title: 'OAuth Credentials',
+      type: :oauth_credentials,
+      optional: true,
+      default: JSON.generate(access_token: 'SAMPLE_TOKEN')
 
     fhir_client do
       url :url
-      bearer_token :bearer_token
+      oauth_credentials :smart_credentials
     end
 
     group from: :us_core_311_capability_statement
