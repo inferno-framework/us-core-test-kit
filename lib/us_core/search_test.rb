@@ -581,21 +581,24 @@ module USCore
               address&.country&.downcase&.start_with?(search_value_downcase)
             end
           when 'CodeableConcept'
+            # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD 
+            # treat tokens in a case-insensitive manner, on the grounds that including undesired data has 
+            # less safety implications than excluding desired behavior". 
             codings = values_found.flat_map(&:coding)
             if search_value.include? '|'
               system = search_value.split('|').first
               code = search_value.split('|').last
-              codings&.any? { |coding| coding.system == system && coding.code == code }
+              codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
-              codings&.any? { |coding| coding.code == search_value }
+              codings&.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Coding'
             if search_value.include? '|'
               system = search_value.split('|').first
               code = search_value.split('|').last
-              values_found.any? { |coding| coding.system == system && coding.code == code }
+              values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
-              values_found.any? { |coding| coding.code == search_value }
+              values_found.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Identifier'
             if search_value.include? '|'
