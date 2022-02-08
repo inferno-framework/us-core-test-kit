@@ -5,7 +5,7 @@ module USCore
   class ClinicalNotesGuidanceGroup < Inferno::TestGroup
     id :us_core_311_clinical_notes_guidance
     title 'Clinical Notes Guidance'
-    short_descripton 'Verify DiagnosticReport and DocumentReference resources support the US Core Clinical Notes Guidance.'
+    short_description 'Verify DiagnosticReport and DocumentReference resources support the US Core Clinical Notes Guidance.'
     description %(
       The #{title} Sequence tests DiagnosticReport and DocumentReference
       resources associated with the provided patient. The resources returned
