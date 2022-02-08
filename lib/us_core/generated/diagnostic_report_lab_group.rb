@@ -13,6 +13,7 @@ require_relative 'diagnostic_report_lab/diagnostic_report_lab_reference_resoluti
 module USCore
   class DiagnosticReportLabGroup < Inferno::TestGroup
     title 'DiagnosticReport for Laboratory Results Reporting Tests'
+    short_description 'Verify support for the server capabilities required by the US Core DiagnosticReport Profile for Laboratory Results Reporting.'
     description %(
 # Background
 

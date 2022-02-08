@@ -12,6 +12,7 @@ require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_refere
 module USCore
   class PediatricWeightForHeightGroup < Inferno::TestGroup
     title 'Pediatric Weight for Height Observation Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Pediatric Weight for Height Observation Profile.'
     description %(
 # Background
 

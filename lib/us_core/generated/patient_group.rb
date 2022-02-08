@@ -14,6 +14,7 @@ require_relative 'patient/patient_reference_resolution_test'
 module USCore
   class PatientGroup < Inferno::TestGroup
     title 'Patient Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Patient Profile.'
     description %(
 # Background
 

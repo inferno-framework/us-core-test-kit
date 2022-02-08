@@ -12,6 +12,7 @@ require_relative 'bodytemp/bodytemp_reference_resolution_test'
 module USCore
   class BodytempGroup < Inferno::TestGroup
     title 'Observation Body Temperature Tests'
+    short_description 'Verify support for the server capabilities required by the Observation Body Temperature Profile.'
     description %(
 # Background
 

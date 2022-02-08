@@ -12,6 +12,7 @@ require_relative 'head_circumference/head_circumference_reference_resolution_tes
 module USCore
   class HeadCircumferenceGroup < Inferno::TestGroup
     title 'Pediatric Head Occipital-frontal Circumference Percentile Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile.'
     description %(
 # Background
 

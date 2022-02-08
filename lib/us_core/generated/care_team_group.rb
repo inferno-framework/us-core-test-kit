@@ -8,6 +8,7 @@ require_relative 'care_team/care_team_reference_resolution_test'
 module USCore
   class CareTeamGroup < Inferno::TestGroup
     title 'CareTeam Tests'
+    short_description 'Verify support for the server capabilities required by the US Core CareTeam Profile.'
     description %(
 # Background
 

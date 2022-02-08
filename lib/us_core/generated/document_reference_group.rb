@@ -14,6 +14,7 @@ require_relative 'document_reference/document_reference_reference_resolution_tes
 module USCore
   class DocumentReferenceGroup < Inferno::TestGroup
     title 'DocumentReference Tests'
+    short_description 'Verify support for the server capabilities required by the US Core DocumentReference Profile.'
     description %(
 # Background
 

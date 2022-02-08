@@ -14,6 +14,7 @@ require_relative 'encounter/encounter_reference_resolution_test'
 module USCore
   class EncounterGroup < Inferno::TestGroup
     title 'Encounter Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Encounter Profile.'
     description %(
 # Background
 

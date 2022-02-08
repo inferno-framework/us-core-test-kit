@@ -1,7 +1,8 @@
 module USCore
   class DataAbsentReasonGroup < Inferno::TestGroup
-    title 'Missing Data Tests'
     id :us_core_311_data_absent_reason
+    title 'Missing Data Tests'
+    short_description 'Verify that the server is capable of representing missing data.'
 
     description %(
       The [US Core Missing Data

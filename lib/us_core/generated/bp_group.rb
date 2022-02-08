@@ -12,6 +12,7 @@ require_relative 'bp/bp_reference_resolution_test'
 module USCore
   class BpGroup < Inferno::TestGroup
     title 'Observation Blood Pressure Tests'
+    short_description 'Verify support for the server capabilities required by the Observation Blood Pressure Profile.'
     description %(
 # Background
 

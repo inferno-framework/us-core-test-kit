@@ -7,6 +7,8 @@
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference
 :profile_name: US Core DocumentReference Profile
 :title: DocumentReference
+:short_description: Verify support for the server capabilities required by the US
+  Core DocumentReference Profile.
 :interactions:
 - :code: create
   :expectation: SHALL

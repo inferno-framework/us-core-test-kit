@@ -12,6 +12,7 @@ require_relative 'smokingstatus/smokingstatus_reference_resolution_test'
 module USCore
   class SmokingstatusGroup < Inferno::TestGroup
     title 'Smoking Status Observation Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Smoking Status Observation Profile.'
     description %(
 # Background
 

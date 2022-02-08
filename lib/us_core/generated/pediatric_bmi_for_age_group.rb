@@ -12,6 +12,7 @@ require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_reference_resoluti
 module USCore
   class PediatricBmiForAgeGroup < Inferno::TestGroup
     title 'Pediatric BMI for Age Observation Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Pediatric BMI for Age Observation Profile.'
     description %(
 # Background
 

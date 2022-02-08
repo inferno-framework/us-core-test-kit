@@ -9,6 +9,7 @@ require_relative 'allergy_intolerance/allergy_intolerance_reference_resolution_t
 module USCore
   class AllergyIntoleranceGroup < Inferno::TestGroup
     title 'AllergyIntolerance Tests'
+    short_description 'Verify support for the server capabilities required by the US Core AllergyIntolerance Profile.'
     description %(
 # Background
 
