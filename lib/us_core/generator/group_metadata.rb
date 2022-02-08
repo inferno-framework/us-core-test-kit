@@ -10,6 +10,7 @@ module USCore
         :profile_url,
         :profile_name,
         :title,
+        :short_description,
         :interactions,
         :operations,
         :searches,

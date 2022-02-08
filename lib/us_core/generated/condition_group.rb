@@ -12,6 +12,7 @@ require_relative 'condition/condition_reference_resolution_test'
 module USCore
   class ConditionGroup < Inferno::TestGroup
     title 'Condition Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Condition Profile.'
     description %(
 # Background
 

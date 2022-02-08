@@ -42,6 +42,10 @@ module USCore
         group_metadata.title
       end
 
+      def short_description
+        group_metadata.short_description
+      end
+
       def output_file_name
         File.join(__dir__, '..', 'generated', base_output_file_name)
       end

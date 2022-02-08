@@ -12,6 +12,7 @@ require_relative 'bodyheight/bodyheight_reference_resolution_test'
 module USCore
   class BodyheightGroup < Inferno::TestGroup
     title 'Observation Body Height Tests'
+    short_description 'Verify support for the server capabilities required by the Observation Body Height Profile.'
     description %(
 # Background
 

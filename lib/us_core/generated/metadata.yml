@@ -9,6 +9,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
   :profile_name: US Core AllergyIntolerance Profile
   :title: AllergyIntolerance
+  :short_description: Verify support for the server capabilities required by the US
+    Core AllergyIntolerance Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -145,9 +147,9 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev311CareplanSequence
@@ -157,6 +159,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan
   :profile_name: US Core CarePlan Profile
   :title: CarePlan
+  :short_description: Verify support for the server capabilities required by the US
+    Core CarePlan Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -420,9 +424,9 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev311CareteamSequence
@@ -432,6 +436,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
   :profile_name: US Core CareTeam Profile
   :title: CareTeam
+  :short_description: Verify support for the server capabilities required by the US
+    Core CareTeam Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -541,9 +547,9 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: participant.member
     :resources:
@@ -557,6 +563,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
   :profile_name: US Core Condition Profile
   :title: Condition
+  :short_description: Verify support for the server capabilities required by the US
+    Core Condition Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -753,9 +761,9 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev311ImplantableDeviceSequence
@@ -765,6 +773,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device
   :profile_name: US Core Implantable Device Profile
   :title: Implantable Device
+  :short_description: Verify support for the server capabilities required by the US
+    Core Implantable Device Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -1881,9 +1891,9 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev311DiagnosticreportNoteSequence
@@ -1893,6 +1903,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note
   :profile_name: US Core DiagnosticReport Profile for Report and Note exchange
   :title: DiagnosticReport for Report and Note exchange
+  :short_description: Verify support for the server capabilities required by the US
+    Core DiagnosticReport Profile for Report and Note exchange.
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -3095,9 +3107,9 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: encounter
     :resources:
@@ -3114,6 +3126,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab
   :profile_name: US Core DiagnosticReport Profile for Laboratory Results Reporting
   :title: DiagnosticReport for Laboratory Results Reporting
+  :short_description: Verify support for the server capabilities required by the US
+    Core DiagnosticReport Profile for Laboratory Results Reporting.
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -4325,9 +4339,9 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: performer
     :resources:
@@ -4341,6 +4355,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference
   :profile_name: US Core DocumentReference Profile
   :title: DocumentReference
+  :short_description: Verify support for the server capabilities required by the US
+    Core DocumentReference Profile.
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -4646,9 +4662,9 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: author
     :resources:
@@ -4668,6 +4684,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   :profile_name: US Core Encounter Profile
   :title: Encounter
+  :short_description: Verify support for the server capabilities required by the US
+    Core Encounter Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -4990,9 +5008,9 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: participant.individual
     :resources:
@@ -5005,6 +5023,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal
   :profile_name: US Core Goal Profile
   :title: Goal
+  :short_description: Verify support for the server capabilities required by the US
+    Core Goal Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5142,7 +5162,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system:
+    :system: 
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -5169,9 +5189,9 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev311ImmunizationSequence
@@ -5181,6 +5201,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
   :profile_name: US Core Immunization Profile
   :title: Immunization
+  :short_description: Verify support for the server capabilities required by the US
+    Core Immunization Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5360,9 +5382,9 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev311LocationSequence
@@ -5372,6 +5394,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
   :profile_name: US Core Location Profile
   :title: Location
+  :short_description: Verify support for the server capabilities required by the US
+    Core Location Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5589,9 +5613,9 @@
   - :path: Location.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: managingOrganization
     :resources:
@@ -5604,6 +5628,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication
   :profile_name: US Core Medication Profile
   :title: Medication
+  :short_description: Verify support for the server capabilities required by the US
+    Core Medication Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5658,9 +5684,9 @@
   - :path: Medication.manufacturer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_medicationrequest
   :class_name: USCorev311MedicationrequestSequence
@@ -5670,6 +5696,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest
   :profile_name: US Core MedicationRequest Profile
   :title: MedicationRequest
+  :short_description: Verify support for the server capabilities required by the US
+    Core MedicationRequest Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5938,9 +5966,9 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: requester
     :resources:
@@ -5954,6 +5982,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus
   :profile_name: US Core Smoking Status Observation Profile
   :title: Smoking Status Observation
+  :short_description: Verify support for the server capabilities required by the US
+    Core Smoking Status Observation Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -6078,7 +6108,7 @@
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -6211,9 +6241,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
@@ -6223,6 +6253,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height
   :profile_name: US Core Pediatric Weight for Height Observation Profile
   :title: Pediatric Weight for Height Observation
+  :short_description: Verify support for the server capabilities required by the US
+    Core Pediatric Weight for Height Observation Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -6339,7 +6371,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -6510,9 +6542,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_observation_lab
   :class_name: USCorev311ObservationLabSequence
@@ -6522,6 +6554,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
   :profile_name: US Core Laboratory Result Observation Profile
   :title: Laboratory Result Observation
+  :short_description: Verify support for the server capabilities required by the US
+    Core Laboratory Result Observation Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7637,7 +7671,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -7774,9 +7808,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
@@ -7786,6 +7820,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age
   :profile_name: US Core Pediatric BMI for Age Observation Profile
   :title: Pediatric BMI for Age Observation
+  :short_description: Verify support for the server capabilities required by the US
+    Core Pediatric BMI for Age Observation Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7902,7 +7938,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -8073,9 +8109,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev311PulseOximetrySequence
@@ -8085,6 +8121,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry
   :profile_name: US Core Pulse Oximetry Profile
   :title: Pulse Oximetry
+  :short_description: Verify support for the server capabilities required by the US
+    Core Pulse Oximetry Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8202,7 +8240,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -8461,9 +8499,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
@@ -8474,6 +8512,8 @@
   :profile_name: US Core Pediatric Head Occipital-frontal Circumference Percentile
     Profile
   :title: Pediatric Head Occipital-frontal Circumference Percentile
+  :short_description: Verify support for the server capabilities required by the US
+    Core Pediatric Head Occipital-frontal Circumference Percentile Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8590,7 +8630,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -8761,9 +8801,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: bodyheight
   :class_name: BodyheightSequence
@@ -8773,6 +8813,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodyheight
   :profile_name: Observation Body Height Profile
   :title: Observation Body Height
+  :short_description: Verify support for the server capabilities required by the Observation
+    Body Height Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8889,7 +8931,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -9066,9 +9108,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: bodytemp
   :class_name: BodytempSequence
@@ -9078,6 +9120,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodytemp
   :profile_name: Observation Body Temperature Profile
   :title: Observation Body Temperature
+  :short_description: Verify support for the server capabilities required by the Observation
+    Body Temperature Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9194,7 +9238,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -9371,9 +9415,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: bp
   :class_name: BpSequence
@@ -9383,6 +9427,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/bp
   :profile_name: Observation Blood Pressure Profile
   :title: Observation Blood Pressure
+  :short_description: Verify support for the server capabilities required by the Observation
+    Blood Pressure Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9499,7 +9545,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -9700,9 +9746,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: bodyweight
   :class_name: BodyweightSequence
@@ -9712,6 +9758,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodyweight
   :profile_name: Observation Body Weight Profile
   :title: Observation Body Weight
+  :short_description: Verify support for the server capabilities required by the Observation
+    Body Weight Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9828,7 +9876,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -10005,9 +10053,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: heartrate
   :class_name: HeartrateSequence
@@ -10017,6 +10065,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/heartrate
   :profile_name: Observation Heart Rate Profile
   :title: Observation Heart Rate
+  :short_description: Verify support for the server capabilities required by the Observation
+    Heart Rate Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10133,7 +10183,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -10307,9 +10357,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: resprate
   :class_name: ResprateSequence
@@ -10319,6 +10369,8 @@
   :profile_url: http://hl7.org/fhir/StructureDefinition/resprate
   :profile_name: Observation Respiratory Rate Profile
   :title: Observation Respiratory Rate
+  :short_description: Verify support for the server capabilities required by the Observation
+    Respiratory Rate Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10435,7 +10487,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: 
   :must_supports:
     :extensions: []
     :slices:
@@ -10609,9 +10661,9 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev311OrganizationSequence
@@ -10621,6 +10673,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   :profile_name: US Core Organization Profile
   :title: Organization
+  :short_description: Verify support for the server capabilities required by the US
+    Core Organization Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10740,9 +10794,9 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev311PatientSequence
@@ -10752,6 +10806,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :profile_name: US Core Patient Profile
   :title: Patient
+  :short_description: Verify support for the server capabilities required by the US
+    Core Patient Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11033,9 +11089,9 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev311PractitionerSequence
@@ -11045,6 +11101,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :profile_name: US Core Practitioner Profile
   :title: Practitioner
+  :short_description: Verify support for the server capabilities required by the US
+    Core Practitioner Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11154,9 +11212,9 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev311PractitionerroleSequence
@@ -11166,6 +11224,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :profile_name: US Core PractitionerRole Profile
   :title: PractitionerRole
+  :short_description: Verify support for the server capabilities required by the US
+    Core PractitionerRole Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11399,9 +11459,9 @@
   - :path: PractitionerRole.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: practitioner
     :resources:
@@ -11417,6 +11477,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure
   :profile_name: US Core Procedure Profile
   :title: Procedure
+  :short_description: Verify support for the server capabilities required by the US
+    Core Procedure Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -12649,9 +12711,9 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev311ProvenanceSequence
@@ -12661,6 +12723,8 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance
   :profile_name: US Core Provenance Profile
   :title: Provenance
+  :short_description: Verify support for the server capabilities required by the US
+    Core Provenance Profile.
   :interactions:
   - :code: create
     :expectation: MAY
@@ -12816,9 +12880,9 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
+  :tests: 
+  :id: 
+  :file_name: 
   :delayed_references:
   - :path: agent.who
     :resources:

@@ -33,6 +33,7 @@ module USCore
             profile_url: profile_url,
             profile_name: profile_name,
             title: title,
+            short_description: short_description,
             interactions: interactions,
             operations: operations,
             searches: searches,
@@ -179,6 +180,10 @@ module USCore
 
       def title
         profile.title.gsub(/US\s*Core\s*/, '').gsub(/\s*Profile/, '').strip
+      end
+
+      def short_description
+        "Verify support for the server capabilities required by the #{profile_name}."
       end
 
       def interactions

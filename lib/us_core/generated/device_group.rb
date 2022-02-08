@@ -9,6 +9,7 @@ require_relative 'device/device_reference_resolution_test'
 module USCore
   class DeviceGroup < Inferno::TestGroup
     title 'Implantable Device Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Implantable Device Profile.'
     description %(
 # Background
 

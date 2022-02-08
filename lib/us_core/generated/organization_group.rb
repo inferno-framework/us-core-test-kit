@@ -8,6 +8,7 @@ require_relative 'organization/organization_reference_resolution_test'
 module USCore
   class OrganizationGroup < Inferno::TestGroup
     title 'Organization Tests'
+    short_description 'Verify support for the server capabilities required by the US Core Organization Profile.'
     description %(
 # Background
 

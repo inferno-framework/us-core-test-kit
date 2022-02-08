@@ -8,6 +8,7 @@ module USCore
   class CapabilityStatementGroup < Inferno::TestGroup
     id :us_core_311_capability_statement
     title 'Capability Statement'
+    short_description 'Retrieve information about supported server functionality using the FHIR capabilties interaction.'
     description %(
       # Background
       The #{title} Sequence tests a FHIR server's ability to formally describe
