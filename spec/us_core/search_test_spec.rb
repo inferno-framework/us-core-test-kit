@@ -302,4 +302,92 @@ RSpec.describe USCore::SearchTest do
       end
     end
   end
+
+  describe 'search multiple-or' do
+    let(:multiple_or_search_test) do
+      Class.new(Inferno::Test) do
+        include USCore::SearchTest
+
+        def properties
+          @properties ||= USCore::SearchTestProperties.new(
+            resource_type: 'MedicationRequest',
+            search_param_names: ['patient', 'intent'],
+            multiple_or_search_params: ['intent']
+          )
+        end
+
+        def self.metadata
+          @metadata ||=
+            USCore::Generator::GroupMetadata.new(
+              YAML.load_file(
+                File.join(
+                  __dir__,
+                  '..',
+                  'fixtures',
+                  'medication_inclusion_metadata.yml'
+                )
+              )
+            )
+        end
+
+        def scratch_resources
+          scratch[:medication_request] ||= {}
+        end
+
+        fhir_client { url :url }
+        input :url, :patient_ids
+
+        run do
+          run_search_test
+        end
+      end
+    end
+    let(:patient_id) { '123' }
+    let(:medication_request_order) do
+      FHIR::MedicationRequest.new(
+        status: 'active',
+        intent: 'order',
+        subject: {
+          reference: "Patient/#{patient_id}"
+        }
+      )
+    end
+    let(:medication_request_plan) do
+      FHIR::MedicationRequest.new(
+        status: 'active',
+        intent: 'plan',
+        subject: {
+          reference: "Patient/#{patient_id}"
+        }
+      )
+    end
+    let(:bundle_order) do
+      FHIR::Bundle.new(entry: [{resource: medication_request_order}])
+    end
+    let(:bundle_plan) do
+      FHIR::Bundle.new(entry: [{resource: medication_request_plan}])
+    end
+
+    before do
+      Inferno::Repositories::Tests.new.insert(multiple_or_search_test)
+      allow_any_instance_of(multiple_or_search_test)
+        .to receive(:scratch_resources).and_return(
+              {
+                all: [medication_request_order],
+                patient_id => [medication_request_order]
+              }
+            )
+    end
+
+    it 'fails if multiple-or search test does not return all existing values' do
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
+        .to_return(status: 200, body: bundle_order.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option")
+        .to_return(status: 200, body: bundle_plan.to_json)
+      result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
+
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to eq("Could not find order values from intent in any of the resources returned for Patient/#{patient_id}")
+    end
+  end
 end
