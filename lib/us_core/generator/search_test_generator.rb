@@ -154,6 +154,17 @@ module USCore
         array_of_strings(token_search_params)
       end
 
+      def required_multiple_or_search_params
+        @multiple_or_search_params ||=
+          search_param_names.select do |name|
+            search_definition(name)[:multiple_or] == 'SHALL'
+          end
+      end
+
+      def required_multiple_or_search_params_string
+        array_of_strings(required_multiple_or_search_params)
+      end
+
       def required_comparators_string
         array_of_strings(required_comparators.keys)
       end
@@ -187,6 +198,7 @@ module USCore
           properties[:token_search_params] = token_search_params_string if token_search_params.present?
           properties[:test_reference_variants] = 'true' if test_reference_variants?
           properties[:params_with_comparators] = required_comparators_string if required_comparators.present?
+          properties[:multiple_or_search_params] = required_multiple_or_search_params_string if required_multiple_or_search_params.present?
           properties[:test_post_search] = 'true' if first_search?
         end
       end

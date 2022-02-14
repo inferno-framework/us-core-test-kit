@@ -38,7 +38,7 @@ module USCore
       title: 'OAuth Credentials',
       type: :oauth_credentials,
       optional: true,
-      default: Inferno::DSL::OAuthCredentials.new(access_token: 'SAMPLE_TOKEN')
+      default: Inferno::DSL::OAuthCredentials.new(access_token: 'SAMPLE_TOKEN').to_s
 
     fhir_client do
       url :url
