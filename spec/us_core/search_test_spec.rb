@@ -343,29 +343,31 @@ RSpec.describe USCore::SearchTest do
       end
     end
     let(:patient_id) { '123' }
-    let(:medication_request_order) do
+    let(:intent_1) { 'order' }
+    let(:intent_2) { 'plan' }
+    let(:medication_request_1) do
       FHIR::MedicationRequest.new(
         status: 'active',
-        intent: 'order',
+        intent: intent_1,
         subject: {
           reference: "Patient/#{patient_id}"
         }
       )
     end
-    let(:medication_request_plan) do
+    let(:medication_request_2) do
       FHIR::MedicationRequest.new(
         status: 'active',
-        intent: 'plan',
+        intent: intent_2,
         subject: {
           reference: "Patient/#{patient_id}"
         }
       )
     end
-    let(:bundle_order) do
-      FHIR::Bundle.new(entry: [{resource: medication_request_order}])
+    let(:bundle_1) do
+      FHIR::Bundle.new(entry: [{resource: medication_request_1}])
     end
-    let(:bundle_plan) do
-      FHIR::Bundle.new(entry: [{resource: medication_request_plan}])
+    let(:bundle_2) do
+      FHIR::Bundle.new(entry: [{resource: medication_request_2}])
     end
 
     before do
@@ -373,17 +375,19 @@ RSpec.describe USCore::SearchTest do
       allow_any_instance_of(multiple_or_search_test)
         .to receive(:scratch_resources).and_return(
               {
-                all: [medication_request_order],
-                patient_id => [medication_request_order]
+                all: [medication_request_1, medication_request_2],
+                patient_id => [medication_request_1, medication_request_2]
               }
             )
     end
 
     it 'fails if multiple-or search test does not return all existing values' do
-      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
-        .to_return(status: 200, body: bundle_order.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=#{intent_1}")
+        .to_return(status: 200, body: bundle_1.to_json)
+        stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=#{intent_2}")
+        .to_return(status: 200, body: bundle_2.to_json)
       stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option")
-        .to_return(status: 200, body: bundle_plan.to_json)
+        .to_return(status: 200, body: bundle_2.to_json)
       result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
 
       expect(result.result).to eq('fail')
