@@ -384,8 +384,6 @@ RSpec.describe USCore::SearchTest do
     it 'fails if multiple-or search test does not return all existing values' do
       stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=#{intent_1}")
         .to_return(status: 200, body: bundle_1.to_json)
-      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=#{intent_2}")
-        .to_return(status: 200, body: bundle_2.to_json)
       stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option")
         .to_return(status: 200, body: bundle_2.to_json)
       result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
