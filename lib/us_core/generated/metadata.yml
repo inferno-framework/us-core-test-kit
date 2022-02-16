@@ -5142,7 +5142,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system: 
+    :system:
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -6078,7 +6078,7 @@
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -6339,7 +6339,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -7637,7 +7637,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -7902,7 +7902,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -8202,7 +8202,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -8590,7 +8590,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -8889,7 +8889,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -9194,7 +9194,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -9499,7 +9499,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -9828,7 +9828,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -10133,7 +10133,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
@@ -10435,7 +10435,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts:
   :must_supports:
     :extensions: []
     :slices:
