@@ -341,7 +341,10 @@ module USCore
           missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
         end
 
-        missing_value_message = missing_values.reject { |_k, v| v.empty? }.map { |k, v| "#{v.join(',')} values from #{k}" }.join(' and ')
+        missing_value_message = missing_values
+          .reject { |_param_name, missing_value| missing_value.empty? }
+          .map { |param_name, missing_value| "#{missing_value.join(',')} values from #{param_name}" }
+          .join(' and ')
 
         assert missing_value_message.blank?, "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
 
