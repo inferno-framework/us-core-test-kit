@@ -315,7 +315,7 @@ module USCore
     def perform_multiple_or_search_test
       resolved_one = false
 
-      all_search_params.flat_map do |patient_id, params_list|
+      all_search_params.each do |patient_id, params_list|
         search_params = params_list.first
         existing_values = {}
         missing_values = {}
