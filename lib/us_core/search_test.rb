@@ -316,6 +316,8 @@ module USCore
       resolved_one = false
 
       all_search_params.each do |patient_id, params_list|
+        next unless params_list.present?
+        
         search_params = params_list.first
         existing_values = {}
         missing_values = {}
