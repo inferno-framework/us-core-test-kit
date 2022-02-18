@@ -28,7 +28,8 @@ none are returned, the test is skipped.
       @properties ||= SearchTestProperties.new(
         resource_type: 'CarePlan',
         search_param_names: ['patient', 'category', 'status'],
-        token_search_params: ['category']
+        token_search_params: ['category'],
+        multiple_or_search_params: ['status']
       )
     end
 

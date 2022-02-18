@@ -33,7 +33,8 @@ Medications, the search will be repeated with
         resource_type: 'MedicationRequest',
         search_param_names: ['patient', 'intent', 'encounter'],
         possible_status_search: true,
-        test_medication_inclusion: true
+        test_medication_inclusion: true,
+        multiple_or_search_params: ['intent']
       )
     end
 

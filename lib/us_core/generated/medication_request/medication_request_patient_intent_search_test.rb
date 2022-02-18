@@ -49,6 +49,7 @@ requirement of US Core v3.1.1.
         possible_status_search: true,
         test_medication_inclusion: true,
         test_reference_variants: true,
+        multiple_or_search_params: ['intent'],
         test_post_search: true
       )
     end

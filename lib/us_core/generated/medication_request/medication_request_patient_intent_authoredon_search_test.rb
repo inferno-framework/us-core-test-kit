@@ -34,7 +34,8 @@ Medications, the search will be repeated with
         search_param_names: ['patient', 'intent', 'authoredon'],
         possible_status_search: true,
         test_medication_inclusion: true,
-        params_with_comparators: ['authoredon']
+        params_with_comparators: ['authoredon'],
+        multiple_or_search_params: ['intent']
       )
     end
 

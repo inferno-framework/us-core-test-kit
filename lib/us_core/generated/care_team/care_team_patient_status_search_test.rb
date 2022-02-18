@@ -43,6 +43,7 @@ requirement of US Core v3.1.1.
         search_param_names: ['patient', 'status'],
         saves_delayed_references: true,
         test_reference_variants: true,
+        multiple_or_search_params: ['status'],
         test_post_search: true
       )
     end

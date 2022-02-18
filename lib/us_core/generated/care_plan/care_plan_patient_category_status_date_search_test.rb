@@ -29,7 +29,8 @@ none are returned, the test is skipped.
         resource_type: 'CarePlan',
         search_param_names: ['patient', 'category', 'status', 'date'],
         token_search_params: ['category'],
-        params_with_comparators: ['date']
+        params_with_comparators: ['date'],
+        multiple_or_search_params: ['status']
       )
     end
 

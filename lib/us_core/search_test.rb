@@ -20,7 +20,8 @@ module USCore
                    :test_post_search?,
                    :token_search_params,
                    :test_reference_variants?,
-                   :params_with_comparators
+                   :params_with_comparators,
+                   :multiple_or_search_params
 
     def all_search_params
       @all_search_params ||=
@@ -87,6 +88,8 @@ module USCore
         end
 
       skip_if resources_returned.empty?, no_resources_skip_message
+
+      perform_multiple_or_search_test if multiple_or_search_params.present?
     end
 
     def perform_search(params, patient_id)
@@ -298,10 +301,57 @@ module USCore
     end
 
     def status_search_values
-      definition = metadata.search_definitions[status_search_param_name]
+      default_search_values(status_search_param_name)
+    end
+
+    def default_search_values(param_name)
+      definition = metadata.search_definitions[param_name]
       return [] if definition.blank?
 
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : [definition[:values]]
+    end
+
+
+    def perform_multiple_or_search_test
+      resolved_one = false
+
+      all_search_params.each do |patient_id, params_list|
+        next unless params_list.present?
+        
+        search_params = params_list.first
+        existing_values = {}
+        missing_values = {}
+
+        multiple_or_search_params.each do |param_name|
+          search_value = default_search_values(param_name.to_sym)
+          search_params = search_params.merge("#{param_name}" => search_value)
+          existing_values[param_name.to_sym] = scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
+        end
+
+        # skip patient without multiple-or values
+        next if existing_values.values.any?(&:empty?)
+
+        resolved_one = true
+
+        search_and_check_response(search_params)
+
+        resources_returned =
+          fetch_all_bundled_resources
+            .select { |resource| resource.resourceType == resource_type }
+
+        multiple_or_search_params.each do |param_name|
+          missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
+        end
+
+        missing_value_message = missing_values
+          .reject { |_param_name, missing_value| missing_value.empty? }
+          .map { |param_name, missing_value| "#{missing_value.join(',')} values from #{param_name}" }
+          .join(' and ')
+
+        assert missing_value_message.blank?, "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
+
+        break if resolved_one
+      end
     end
 
     def test_medication_inclusion(medication_requests, params, patient_id)
