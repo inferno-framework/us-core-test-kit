@@ -191,7 +191,6 @@
     :fixed_value: http://unitsofmeasure.org
   - :path: value[x].code
     :fixed_value: "%"
-  - :path: dataAbsentReason
   - :path: component
   - :path: component.code
   - :path: component.code.coding.code
@@ -207,7 +206,6 @@
   - :path: component.value[x].unit
   - :path: component.value[x].code
     :fixed_value: "%"
-  - :path: component.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

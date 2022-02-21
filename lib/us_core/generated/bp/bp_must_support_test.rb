@@ -17,7 +17,15 @@ module USCore
       * Observation.category.coding.system
       * Observation.category:VSCat
       * Observation.code
-      * Observation.dataAbsentReason
+      * Observation.component
+      * Observation.component.code
+      * Observation.component.value[x]
+      * Observation.component.value[x].code
+      * Observation.component.value[x].system
+      * Observation.component.value[x].unit
+      * Observation.component.value[x].value
+      * Observation.component:DiastolicBP
+      * Observation.component:SystolicBP
       * Observation.effective[x]
       * Observation.status
       * Observation.subject

@@ -1143,7 +1143,6 @@
   - :path: subject
   - :path: effective[x]
   - :path: value[x]
-  - :path: dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

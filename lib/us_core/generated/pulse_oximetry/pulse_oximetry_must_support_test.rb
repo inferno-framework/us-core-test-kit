@@ -25,7 +25,6 @@ module USCore
       * Observation.component.code
       * Observation.component.code.coding.code
       * Observation.component.code.coding.code
-      * Observation.component.dataAbsentReason
       * Observation.component.value[x]
       * Observation.component.value[x].code
       * Observation.component.value[x].code
@@ -34,7 +33,6 @@ module USCore
       * Observation.component.value[x].value
       * Observation.component:Concentration
       * Observation.component:FlowRate
-      * Observation.dataAbsentReason
       * Observation.effective[x]
       * Observation.status
       * Observation.subject
