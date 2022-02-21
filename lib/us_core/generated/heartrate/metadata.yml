@@ -162,7 +162,6 @@
     :fixed_value: http://unitsofmeasure.org
   - :path: value[x].code
     :fixed_value: "/min"
-  - :path: dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

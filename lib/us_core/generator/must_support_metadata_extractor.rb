@@ -17,8 +17,12 @@ module USCore
         }
       end
 
+      # exclude component from vital sign profiles except observation-bp and observation-pulse-ox
+      # observation-bp is excluded by profile.name != 'observation-bp'
+      # observation-plux-ox is excluded by profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns'
       def vital_signs_component?(element)
         profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns' &&
+          profile.name != 'observation-bp' &&
           element.path.include?('component')
       end
 
@@ -26,8 +30,11 @@ module USCore
         profile.name == 'observation-bp' && element.path.include?('Observation.value[x]')
       end
 
-      def pediatric_data_absent_reason?(element)
-        profile.name.include?('Pediatric') && element.path == 'Observation.dataAbsentReason'
+      # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
+      # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
+      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles      
+      def data_absent_reason?(element)
+        profile.type == 'Observation' && ['Observation.dataAbsentReason', 'Observation.component.dataAbsentReason'].include?(element.path)
       end
 
       def all_must_support_elements
@@ -35,7 +42,7 @@ module USCore
           .select { |element| element.mustSupport }
           .reject do |element|
             # TODO: Can special cases be moved out of here?
-            vital_signs_component?(element) || blood_pressure_value?(element) || pediatric_data_absent_reason?(element)
+            vital_signs_component?(element) || blood_pressure_value?(element) || data_absent_reason?(element)
           end
       end
 

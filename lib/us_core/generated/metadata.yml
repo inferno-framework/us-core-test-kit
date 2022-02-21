@@ -7689,7 +7689,6 @@
     - :path: subject
     - :path: effective[x]
     - :path: value[x]
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -8304,7 +8303,6 @@
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
       :fixed_value: "%"
-    - :path: dataAbsentReason
     - :path: component
     - :path: component.code
     - :path: component.code.coding.code
@@ -8320,7 +8318,6 @@
     - :path: component.value[x].unit
     - :path: component.value[x].code
       :fixed_value: "%"
-    - :path: component.dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -8966,7 +8963,6 @@
     - :path: value[x].system
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9273,7 +9269,6 @@
     - :path: value[x].system
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9558,6 +9553,24 @@
           :value: vital-signs
         - :path: coding.system
           :value: http://terminology.hl7.org/CodeSystem/observation-category
+    - :name: Observation.component:SystolicBP
+      :path: component
+      :discriminator:
+        :type: value
+        :values:
+        - :path: code.coding.code
+          :value: 8480-6
+        - :path: code.coding.system
+          :value: http://loinc.org
+    - :name: Observation.component:DiastolicBP
+      :path: component
+      :discriminator:
+        :type: value
+        :values:
+        - :path: code.coding.code
+          :value: 8462-4
+        - :path: code.coding.system
+          :value: http://loinc.org
     :elements:
     - :path: status
     - :path: category
@@ -9569,7 +9582,15 @@
     - :path: code
     - :path: subject
     - :path: effective[x]
-    - :path: dataAbsentReason
+    - :path: component
+    - :path: component.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component.value[x].code
+      :fixed_value: mm[Hg]
+    - :path: component.code
+    - :path: component.value[x]
+    - :path: component.value[x].value
+    - :path: component.value[x].unit
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9911,7 +9932,6 @@
     - :path: value[x].system
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10219,7 +10239,6 @@
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
       :fixed_value: "/min"
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10523,7 +10542,6 @@
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
       :fixed_value: "/min"
-    - :path: dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category

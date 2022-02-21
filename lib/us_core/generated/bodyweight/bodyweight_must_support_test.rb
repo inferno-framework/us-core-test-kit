@@ -17,7 +17,6 @@ module USCore
       * Observation.category.coding.system
       * Observation.category:VSCat
       * Observation.code
-      * Observation.dataAbsentReason
       * Observation.effective[x]
       * Observation.status
       * Observation.subject

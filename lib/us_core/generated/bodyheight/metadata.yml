@@ -161,7 +161,6 @@
   - :path: value[x].system
     :fixed_value: http://unitsofmeasure.org
   - :path: value[x].code
-  - :path: dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

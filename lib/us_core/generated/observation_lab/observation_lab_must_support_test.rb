@@ -14,7 +14,6 @@ module USCore
       * Observation.category
       * Observation.category:Laboratory
       * Observation.code
-      * Observation.dataAbsentReason
       * Observation.effective[x]
       * Observation.status
       * Observation.subject
