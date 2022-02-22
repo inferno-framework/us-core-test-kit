@@ -127,7 +127,7 @@ module USCore
       end
 
       def optional?
-        conformance_expectation != 'SHALL'
+        conformance_expectation != 'SHALL' || !search_metadata[:must_support_or_mandatory] 
       end
 
       def search_definition(name)
