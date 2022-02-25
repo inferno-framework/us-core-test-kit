@@ -32,8 +32,7 @@ requirement of US Core v3.1.1.
     id :us_core_311_device_patient_search_test
     input :patient_ids,
       title: 'Patient IDs',
-      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
-      default: '85,355'
+      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
 
     input :implantable_device_codes,
       title: 'Implantable Device Type Code',

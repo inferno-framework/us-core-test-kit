@@ -62,8 +62,7 @@ module USCore
       )
       input :patient_ids,
             title: 'Patient IDs',
-            description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
-            default: '85,355'
+            description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
 
       REQUIRED_TYPES = ['11488-4', '18842-5', '34117-2', '28570-0', '11506-3'].freeze
       REQUIRED_CATEGORIES = ['LP29708-2', 'LP7839-6', 'LP29684-5'].freeze

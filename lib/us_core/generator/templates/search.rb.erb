@@ -15,8 +15,7 @@ module USCore
 <% end %><% if needs_patient_id? %>
     input :patient_ids,
       title: 'Patient IDs',
-      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
-      default: '85,355'
+      description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
 <% end %><% if resource_type == 'Device' %>
     input :implantable_device_codes,
       title: 'Implantable Device Type Code',

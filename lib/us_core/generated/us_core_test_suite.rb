@@ -60,13 +60,11 @@ module USCore
 
     input :url,
       title: 'FHIR Endpoint',
-      description: 'URL of the FHIR endpoint',
-      default: 'https://inferno.healthit.gov/reference-server/r4'
+      description: 'URL of the FHIR endpoint'
     input :smart_credentials,
       title: 'OAuth Credentials',
       type: :oauth_credentials,
-      optional: true,
-      default: Inferno::DSL::OAuthCredentials.new(access_token: 'SAMPLE_TOKEN').to_s
+      optional: true
 
     fhir_client do
       url :url
