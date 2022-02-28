@@ -1,4 +1,5 @@
 require 'inferno/dsl/oauth_credentials'
+require_relative '../version'
 require_relative '../custom_groups/capability_statement_group'
 require_relative '../custom_groups/clinical_notes_guidance_group'
 require_relative '../custom_groups/data_absent_reason_group'
@@ -35,6 +36,7 @@ require_relative 'provenance_group'
 module USCore
   class USCoreTestSuite < Inferno::TestSuite
     title 'US Core 3.1.1'
+    version VERSION
 
     VALIDATION_MESSAGE_FILTERS = [
       %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},

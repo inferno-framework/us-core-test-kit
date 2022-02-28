@@ -1,4 +1,4 @@
-require_relative '../us_core/generated/resource_list'
+require_relative '../us_core_test_kit/generated/resource_list'
 
 module USCore
   module ReferenceResolutionTest
