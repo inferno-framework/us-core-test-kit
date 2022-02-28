@@ -20,8 +20,8 @@ end
 namespace :us_core do
   desc 'Generate tests'
   task :generate do
-    require_relative 'lib/us_core/generator'
-    generator = USCore::Generator.new
+    require_relative 'lib/us_core_test_kit/generator'
+    generator = USCoreTestKit::Generator.new
 
     generator.generate
   end
