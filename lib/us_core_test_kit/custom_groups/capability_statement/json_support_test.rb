@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class JSONSupportTest < Inferno::Test
     id :us_core_311_json_support
     title 'FHIR server capability states JSON support'

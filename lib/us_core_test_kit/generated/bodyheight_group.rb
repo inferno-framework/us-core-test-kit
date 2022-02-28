@@ -9,7 +9,7 @@ require_relative 'bodyheight/bodyheight_validation_test'
 require_relative 'bodyheight/bodyheight_must_support_test'
 require_relative 'bodyheight/bodyheight_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class BodyheightGroup < Inferno::TestGroup
     title 'Observation Body Height Tests'
     short_description 'Verify support for the server capabilities required by the Observation Body Height Profile.'

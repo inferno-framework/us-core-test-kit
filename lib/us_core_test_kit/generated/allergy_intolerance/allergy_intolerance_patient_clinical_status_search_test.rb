@@ -1,9 +1,9 @@
 require_relative '../../search_test'
 require_relative '../../generator/group_metadata'
 
-module USCore
+module USCoreTestKit
   class AllergyIntolerancePatientClinicalStatusSearchTest < Inferno::Test
-    include USCore::SearchTest
+    include USCoreTestKit::SearchTest
 
     title 'Server returns valid results for AllergyIntolerance search by patient + clinical-status'
     description %(

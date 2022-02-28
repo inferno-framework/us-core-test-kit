@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class ConditionValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_condition_validation_test
     title 'Condition resources returned during previous tests conform to the US Core Condition Profile'

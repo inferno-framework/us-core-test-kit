@@ -3,7 +3,7 @@ require_relative 'provenance/provenance_validation_test'
 require_relative 'provenance/provenance_must_support_test'
 require_relative 'provenance/provenance_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ProvenanceGroup < Inferno::TestGroup
     title 'Provenance Tests'
     short_description 'Verify support for the server capabilities required by the US Core Provenance Profile.'

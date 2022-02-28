@@ -5,7 +5,7 @@ require_relative '../custom_groups/clinical_notes_guidance_group'
 require_relative '../custom_groups/data_absent_reason_group'
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
-module USCore
+module USCoreTestKit
   class <%= class_name %> < Inferno::TestSuite
     title '<%= title %>'
     version VERSION

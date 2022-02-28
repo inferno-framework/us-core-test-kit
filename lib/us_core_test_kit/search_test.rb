@@ -2,7 +2,7 @@ require_relative 'date_search_validation'
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
 
-module USCore
+module USCoreTestKit
   module SearchTest
     extend Forwardable
     include DateSearchValidation

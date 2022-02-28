@@ -9,7 +9,7 @@ require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_valida
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_must_support_test'
 require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class PediatricWeightForHeightGroup < Inferno::TestGroup
     title 'Pediatric Weight for Height Observation Tests'
     short_description 'Verify support for the server capabilities required by the US Core Pediatric Weight for Height Observation Profile.'

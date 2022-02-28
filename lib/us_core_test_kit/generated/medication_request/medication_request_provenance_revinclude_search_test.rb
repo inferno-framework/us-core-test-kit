@@ -1,9 +1,9 @@
 require_relative '../../search_test'
 require_relative '../../generator/group_metadata'
 
-module USCore
+module USCoreTestKit
   class MedicationRequestProvenanceRevincludeSearchTest < Inferno::Test
-    include USCore::SearchTest
+    include USCoreTestKit::SearchTest
 
     title 'Server returns Provenance resources from MedicationRequest search by patient + intent + revInclude:Provenance:target'
     description %(

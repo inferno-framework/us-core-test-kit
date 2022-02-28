@@ -1,8 +1,8 @@
 require_relative '../../reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class DiagnosticReportNoteReferenceResolutionTest < Inferno::Test
-    include USCore::ReferenceResolutionTest
+    include USCoreTestKit::ReferenceResolutionTest
 
     title 'Every reference within DiagnosticReport resources can be read'
     description %(

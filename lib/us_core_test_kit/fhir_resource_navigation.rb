@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   module FHIRResourceNavigation
     def resolve_path(elements, path)
       elements = Array.wrap(elements)

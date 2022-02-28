@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class PatientValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_patient_validation_test
     title 'Patient resources returned during previous tests conform to the US Core Patient Profile'

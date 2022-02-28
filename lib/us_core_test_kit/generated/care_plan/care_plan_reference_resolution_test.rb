@@ -1,8 +1,8 @@
 require_relative '../../reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class CarePlanReferenceResolutionTest < Inferno::Test
-    include USCore::ReferenceResolutionTest
+    include USCoreTestKit::ReferenceResolutionTest
 
     title 'Every reference within CarePlan resources can be read'
     description %(

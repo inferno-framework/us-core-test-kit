@@ -9,7 +9,7 @@ require_relative 'bodyweight/bodyweight_validation_test'
 require_relative 'bodyweight/bodyweight_must_support_test'
 require_relative 'bodyweight/bodyweight_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class BodyweightGroup < Inferno::TestGroup
     title 'Observation Body Weight Tests'
     short_description 'Verify support for the server capabilities required by the Observation Body Weight Profile.'

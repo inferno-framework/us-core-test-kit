@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class ConformanceSupportTest < Inferno::Test
     id :us_core_311_conformance_support
     title 'FHIR Server supports the conformance interaction'

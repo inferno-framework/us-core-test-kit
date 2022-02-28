@@ -1,6 +1,6 @@
 <% test_file_list.each do |file_name| %>require_relative '<%= profile_identifier %>/<%= file_name %>'
 <% end %>
-module USCore
+module USCoreTestKit
   class <%= class_name %> < Inferno::TestGroup
     title '<%= title %> Tests'
     short_description '<%= short_description %>'

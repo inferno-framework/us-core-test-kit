@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class Generator
     module SpecialCases
       RESOURCES_TO_EXCLUDE = [

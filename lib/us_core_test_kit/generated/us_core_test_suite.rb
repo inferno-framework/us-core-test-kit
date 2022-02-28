@@ -33,7 +33,7 @@ require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'provenance_group'
 
-module USCore
+module USCoreTestKit
   class USCoreTestSuite < Inferno::TestSuite
     title 'US Core 3.1.1'
     version VERSION

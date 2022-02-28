@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class PractitionerValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_practitioner_validation_test
     title 'Practitioner resources returned during previous tests conform to the US Core Practitioner Profile'

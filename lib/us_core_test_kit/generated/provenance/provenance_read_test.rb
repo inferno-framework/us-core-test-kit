@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class ProvenanceReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct Provenance resource from Provenance read interaction'
     description 'A server SHALL support the Provenance read interaction.'

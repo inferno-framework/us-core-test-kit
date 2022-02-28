@@ -13,7 +13,7 @@ require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
 require_relative 'generator/validation_test_generator'
 
-module USCore
+module USCoreTestKit
   class Generator
     attr_accessor :ig_resources, :ig_metadata
 

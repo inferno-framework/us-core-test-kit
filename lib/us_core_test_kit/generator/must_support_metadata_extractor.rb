@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractor
       attr_accessor :profile_elements, :profile, :resource

@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class ProcedureReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct Procedure resource from Procedure read interaction'
     description 'A server SHALL support the Procedure read interaction.'

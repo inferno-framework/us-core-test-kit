@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class CareTeamReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct CareTeam resource from CareTeam read interaction'
     description 'A server SHALL support the CareTeam read interaction.'

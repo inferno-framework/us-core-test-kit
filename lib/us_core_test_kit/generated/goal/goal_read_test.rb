@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class GoalReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct Goal resource from Goal read interaction'
     description 'A server SHALL support the Goal read interaction.'

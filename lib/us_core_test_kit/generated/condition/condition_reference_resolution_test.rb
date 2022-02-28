@@ -1,8 +1,8 @@
 require_relative '../../reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ConditionReferenceResolutionTest < Inferno::Test
-    include USCore::ReferenceResolutionTest
+    include USCoreTestKit::ReferenceResolutionTest
 
     title 'Every reference within Condition resources can be read'
     description %(

@@ -1,9 +1,9 @@
 require_relative '../../search_test'
 require_relative '../../generator/group_metadata'
 
-module USCore
+module USCoreTestKit
   class ProcedurePatientCodeDateSearchTest < Inferno::Test
-    include USCore::SearchTest
+    include USCoreTestKit::SearchTest
 
     title 'Server returns valid results for Procedure search by patient + code + date'
     description %(

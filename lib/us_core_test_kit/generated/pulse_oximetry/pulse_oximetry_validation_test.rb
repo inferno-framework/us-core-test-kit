@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class PulseOximetryValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_pulse_oximetry_validation_test
     title 'Observation resources returned during previous tests conform to the US Core Pulse Oximetry Profile'

@@ -9,7 +9,7 @@ require_relative 'observation_lab/observation_lab_validation_test'
 require_relative 'observation_lab/observation_lab_must_support_test'
 require_relative 'observation_lab/observation_lab_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ObservationLabGroup < Inferno::TestGroup
     title 'Laboratory Result Observation Tests'
     short_description 'Verify support for the server capabilities required by the US Core Laboratory Result Observation Profile.'

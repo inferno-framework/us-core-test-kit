@@ -9,7 +9,7 @@ require_relative 'medication_request/medication_validation_test'
 require_relative 'medication_request/medication_request_must_support_test'
 require_relative 'medication_request/medication_request_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class MedicationRequestGroup < Inferno::TestGroup
     title 'MedicationRequest Tests'
     short_description 'Verify support for the server capabilities required by the US Core MedicationRequest Profile.'

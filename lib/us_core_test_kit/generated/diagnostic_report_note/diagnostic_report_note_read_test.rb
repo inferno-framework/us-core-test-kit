@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class DiagnosticReportNoteReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct DiagnosticReport resource from DiagnosticReport read interaction'
     description 'A server SHALL support the DiagnosticReport read interaction.'

@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class PediatricWeightForHeightValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_pediatric_weight_for_height_validation_test
     title 'Observation resources returned during previous tests conform to the US Core Pediatric Weight for Height Observation Profile'

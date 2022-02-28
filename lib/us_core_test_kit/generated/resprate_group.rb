@@ -9,7 +9,7 @@ require_relative 'resprate/resprate_validation_test'
 require_relative 'resprate/resprate_must_support_test'
 require_relative 'resprate/resprate_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ResprateGroup < Inferno::TestGroup
     title 'Observation Respiratory Rate Tests'
     short_description 'Verify support for the server capabilities required by the Observation Respiratory Rate Profile.'

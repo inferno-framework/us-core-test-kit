@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class PediatricWeightForHeightReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct Observation resource from Observation read interaction'
     description 'A server SHALL support the Observation read interaction.'

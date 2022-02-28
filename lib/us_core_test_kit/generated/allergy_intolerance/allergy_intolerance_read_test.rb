@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class AllergyIntoleranceReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct AllergyIntolerance resource from AllergyIntolerance read interaction'
     description 'A server SHALL support the AllergyIntolerance read interaction.'

@@ -1,4 +1,4 @@
-RSpec.describe USCore::SearchTest do
+RSpec.describe USCoreTestKit::SearchTest do
   let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_311') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
@@ -22,10 +22,10 @@ RSpec.describe USCore::SearchTest do
   describe 'search requiring status' do
     let(:status_search_test) do
       Class.new(Inferno::Test) do
-        include USCore::SearchTest
+        include USCoreTestKit::SearchTest
 
         def properties
-          @properties ||= USCore::SearchTestProperties.new(
+          @properties ||= USCoreTestKit::SearchTestProperties.new(
             resource_type: 'Observation',
             search_param_names: ['patient'],
             possible_status_search: true
@@ -34,7 +34,7 @@ RSpec.describe USCore::SearchTest do
 
         def self.metadata
           @metadata ||=
-            USCore::Generator::GroupMetadata.new(
+            USCoreTestKit::Generator::GroupMetadata.new(
               YAML.load_file(
                 File.join(
                   __dir__,
@@ -152,10 +152,10 @@ RSpec.describe USCore::SearchTest do
       end
       let(:medication_request_search_test) do
         Class.new(Inferno::Test) do
-          include USCore::SearchTest
+          include USCoreTestKit::SearchTest
 
           def properties
-            @properties ||= USCore::SearchTestProperties.new(
+            @properties ||= USCoreTestKit::SearchTestProperties.new(
               resource_type: 'MedicationRequest',
               search_param_names: ['patient'],
               possible_status_search: true,
@@ -165,7 +165,7 @@ RSpec.describe USCore::SearchTest do
 
           def self.metadata
             @metadata ||=
-              USCore::Generator::GroupMetadata.new(
+              USCoreTestKit::Generator::GroupMetadata.new(
                 YAML.load_file(
                   File.join(
                     __dir__,
@@ -236,10 +236,10 @@ RSpec.describe USCore::SearchTest do
       end
       let(:device_search_test) do
         Class.new(Inferno::Test) do
-          include USCore::SearchTest
+          include USCoreTestKit::SearchTest
 
           def properties
-            @properties ||= USCore::SearchTestProperties.new(
+            @properties ||= USCoreTestKit::SearchTestProperties.new(
               resource_type: 'Device',
               search_param_names: ['patient'],
               first_search: true
@@ -248,7 +248,7 @@ RSpec.describe USCore::SearchTest do
 
           def self.metadata
             @metadata ||=
-              USCore::Generator::GroupMetadata.new(
+              USCoreTestKit::Generator::GroupMetadata.new(
                 YAML.load_file(
                   File.join(
                     __dir__,
@@ -306,10 +306,10 @@ RSpec.describe USCore::SearchTest do
   describe 'search multiple-or' do
     let(:multiple_or_search_test) do
       Class.new(Inferno::Test) do
-        include USCore::SearchTest
+        include USCoreTestKit::SearchTest
 
         def properties
-          @properties ||= USCore::SearchTestProperties.new(
+          @properties ||= USCoreTestKit::SearchTestProperties.new(
             resource_type: 'MedicationRequest',
             search_param_names: ['patient', 'intent'],
             multiple_or_search_params: ['intent']
@@ -318,7 +318,7 @@ RSpec.describe USCore::SearchTest do
 
         def self.metadata
           @metadata ||=
-            USCore::Generator::GroupMetadata.new(
+            USCoreTestKit::Generator::GroupMetadata.new(
               YAML.load_file(
                 File.join(
                   __dir__,

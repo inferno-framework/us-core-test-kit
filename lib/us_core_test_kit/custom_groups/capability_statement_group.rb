@@ -4,7 +4,7 @@ require_relative 'capability_statement/fhir_version_test'
 require_relative 'capability_statement/json_support_test'
 require_relative 'capability_statement/profile_support_test'
 
-module USCore
+module USCoreTestKit
   class CapabilityStatementGroup < Inferno::TestGroup
     id :us_core_311_capability_statement
     title 'Capability Statement'

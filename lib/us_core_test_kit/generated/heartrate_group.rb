@@ -9,7 +9,7 @@ require_relative 'heartrate/heartrate_validation_test'
 require_relative 'heartrate/heartrate_must_support_test'
 require_relative 'heartrate/heartrate_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class HeartrateGroup < Inferno::TestGroup
     title 'Observation Heart Rate Tests'
     short_description 'Verify support for the server capabilities required by the Observation Heart Rate Profile.'

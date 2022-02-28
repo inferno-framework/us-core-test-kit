@@ -11,7 +11,7 @@ require_relative 'document_reference/document_reference_validation_test'
 require_relative 'document_reference/document_reference_must_support_test'
 require_relative 'document_reference/document_reference_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class DocumentReferenceGroup < Inferno::TestGroup
     title 'DocumentReference Tests'
     short_description 'Verify support for the server capabilities required by the US Core DocumentReference Profile.'

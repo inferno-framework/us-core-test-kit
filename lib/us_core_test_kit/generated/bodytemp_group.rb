@@ -9,7 +9,7 @@ require_relative 'bodytemp/bodytemp_validation_test'
 require_relative 'bodytemp/bodytemp_must_support_test'
 require_relative 'bodytemp/bodytemp_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class BodytempGroup < Inferno::TestGroup
     title 'Observation Body Temperature Tests'
     short_description 'Verify support for the server capabilities required by the Observation Body Temperature Profile.'

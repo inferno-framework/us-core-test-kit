@@ -2,7 +2,7 @@ require_relative 'lib/us_core_test_kit/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'us_core_test_kit'
-  spec.version       = USCore::VERSION
+  spec.version       = USCoreTestKit::VERSION
   spec.authors       = ['Stephen MacVicar']
   spec.email         = ['inferno@groups.mitre.org']
   spec.summary       = 'US Core Inferno tests'

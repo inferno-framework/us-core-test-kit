@@ -10,7 +10,7 @@ require_relative 'diagnostic_report_lab/diagnostic_report_lab_validation_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_must_support_test'
 require_relative 'diagnostic_report_lab/diagnostic_report_lab_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class DiagnosticReportLabGroup < Inferno::TestGroup
     title 'DiagnosticReport for Laboratory Results Reporting Tests'
     short_description 'Verify support for the server capabilities required by the US Core DiagnosticReport Profile for Laboratory Results Reporting.'

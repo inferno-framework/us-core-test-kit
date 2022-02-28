@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class DocumentReferenceValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_document_reference_validation_test
     title 'DocumentReference resources returned during previous tests conform to the US Core DocumentReference Profile'

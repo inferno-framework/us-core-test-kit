@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class CareTeamValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_care_team_validation_test
     title 'CareTeam resources returned during previous tests conform to the US Core CareTeam Profile'

@@ -4,7 +4,7 @@ require 'rubygems/package'
 require 'zlib'
 require_relative 'ig_resources'
 
-module USCore
+module USCoreTestKit
   class Generator
     class IGLoader
       def ig_resources

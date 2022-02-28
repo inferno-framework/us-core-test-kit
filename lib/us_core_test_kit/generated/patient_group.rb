@@ -11,7 +11,7 @@ require_relative 'patient/patient_validation_test'
 require_relative 'patient/patient_must_support_test'
 require_relative 'patient/patient_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class PatientGroup < Inferno::TestGroup
     title 'Patient Tests'
     short_description 'Verify support for the server capabilities required by the US Core Patient Profile.'

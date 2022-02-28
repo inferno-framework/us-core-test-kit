@@ -1,7 +1,7 @@
 require_relative 'naming'
 require_relative 'special_cases'
 
-module USCore
+module USCoreTestKit
   class Generator
     class ReferenceResolutionTestGenerator
       class << self

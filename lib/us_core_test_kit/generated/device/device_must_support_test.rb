@@ -1,8 +1,8 @@
 require_relative '../../must_support_test'
 
-module USCore
+module USCoreTestKit
   class DeviceMustSupportTest < Inferno::Test
-    include USCore::MustSupportTest
+    include USCoreTestKit::MustSupportTest
 
     title 'All must support elements are provided in the Device resources returned'
     description %(

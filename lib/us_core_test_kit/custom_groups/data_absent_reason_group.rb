@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class DataAbsentReasonGroup < Inferno::TestGroup
     id :us_core_311_data_absent_reason
     title 'Missing Data Tests'

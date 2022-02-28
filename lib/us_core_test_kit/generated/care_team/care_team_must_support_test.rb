@@ -1,8 +1,8 @@
 require_relative '../../must_support_test'
 
-module USCore
+module USCoreTestKit
   class CareTeamMustSupportTest < Inferno::Test
-    include USCore::MustSupportTest
+    include USCoreTestKit::MustSupportTest
 
     title 'All must support elements are provided in the CareTeam resources returned'
     description %(

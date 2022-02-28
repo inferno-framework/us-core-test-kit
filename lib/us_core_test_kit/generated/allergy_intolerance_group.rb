@@ -6,7 +6,7 @@ require_relative 'allergy_intolerance/allergy_intolerance_validation_test'
 require_relative 'allergy_intolerance/allergy_intolerance_must_support_test'
 require_relative 'allergy_intolerance/allergy_intolerance_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class AllergyIntoleranceGroup < Inferno::TestGroup
     title 'AllergyIntolerance Tests'
     short_description 'Verify support for the server capabilities required by the US Core AllergyIntolerance Profile.'

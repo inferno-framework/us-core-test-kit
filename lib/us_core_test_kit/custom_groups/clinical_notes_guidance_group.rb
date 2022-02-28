@@ -1,7 +1,7 @@
 # coding: utf-8
 require_relative '../search_test'
 
-module USCore
+module USCoreTestKit
   class ClinicalNotesGuidanceGroup < Inferno::TestGroup
     id :us_core_311_clinical_notes_guidance
     title 'Clinical Notes Guidance'

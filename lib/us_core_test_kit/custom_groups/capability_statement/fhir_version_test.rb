@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class FHIRVersionTest < Inferno::Test
     id :us_core_311_fhir_version
     title 'Server is using FHIR R4'

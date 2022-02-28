@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class MedicationRequestReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct MedicationRequest resource from MedicationRequest read interaction'
     description 'A server SHALL support the MedicationRequest read interaction.'

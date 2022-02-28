@@ -1,8 +1,8 @@
 require_relative '../../reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class PatientReferenceResolutionTest < Inferno::Test
-    include USCore::ReferenceResolutionTest
+    include USCoreTestKit::ReferenceResolutionTest
 
     title 'Every reference within Patient resources can be read'
     description %(

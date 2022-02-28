@@ -7,7 +7,7 @@ require_relative 'immunization/immunization_validation_test'
 require_relative 'immunization/immunization_must_support_test'
 require_relative 'immunization/immunization_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ImmunizationGroup < Inferno::TestGroup
     title 'Immunization Tests'
     short_description 'Verify support for the server capabilities required by the US Core Immunization Profile.'

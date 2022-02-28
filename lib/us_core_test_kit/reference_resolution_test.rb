@@ -1,6 +1,6 @@
 require_relative '../us_core_test_kit/generated/resource_list'
 
-module USCore
+module USCoreTestKit
   module ReferenceResolutionTest
     include ResourceList
 

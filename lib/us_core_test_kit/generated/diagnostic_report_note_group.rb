@@ -10,7 +10,7 @@ require_relative 'diagnostic_report_note/diagnostic_report_note_validation_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_must_support_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class DiagnosticReportNoteGroup < Inferno::TestGroup
     title 'DiagnosticReport for Report and Note exchange Tests'
     short_description 'Verify support for the server capabilities required by the US Core DiagnosticReport Profile for Report and Note exchange.'

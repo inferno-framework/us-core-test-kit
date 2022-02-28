@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class <%= class_name %> < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :<%= test_id %>
     title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'

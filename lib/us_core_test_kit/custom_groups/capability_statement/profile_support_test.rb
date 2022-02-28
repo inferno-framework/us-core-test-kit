@@ -1,4 +1,4 @@
-module USCore
+module USCoreTestKit
   class ProfileSupportTest < Inferno::Test
     id :us_core_311_profile_support
     title 'Capability Statement lists support for required US Core Profiles'

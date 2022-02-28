@@ -1,6 +1,6 @@
 require_relative 'search_definition_metadata_extractor'
 
-module USCore
+module USCoreTestKit
   class Generator
     class SearchMetadataExtractor
       COMBO_EXTENSION_URL =

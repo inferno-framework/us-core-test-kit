@@ -7,7 +7,7 @@ require_relative 'goal/goal_validation_test'
 require_relative 'goal/goal_must_support_test'
 require_relative 'goal/goal_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class GoalGroup < Inferno::TestGroup
     title 'Goal Tests'
     short_description 'Verify support for the server capabilities required by the US Core Goal Profile.'

@@ -8,7 +8,7 @@ require_relative 'procedure/procedure_validation_test'
 require_relative 'procedure/procedure_must_support_test'
 require_relative 'procedure/procedure_reference_resolution_test'
 
-module USCore
+module USCoreTestKit
   class ProcedureGroup < Inferno::TestGroup
     title 'Procedure Tests'
     short_description 'Verify support for the server capabilities required by the US Core Procedure Profile.'

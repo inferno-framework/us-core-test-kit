@@ -1,8 +1,8 @@
 require_relative '../../validation_test'
 
-module USCore
+module USCoreTestKit
   class AllergyIntoleranceValidationTest < Inferno::Test
-    include USCore::ValidationTest
+    include USCoreTestKit::ValidationTest
 
     id :us_core_311_allergy_intolerance_validation_test
     title 'AllergyIntolerance resources returned during previous tests conform to the US Core AllergyIntolerance Profile'

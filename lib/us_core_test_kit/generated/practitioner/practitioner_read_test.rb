@@ -1,8 +1,8 @@
 require_relative '../../read_test'
 
-module USCore
+module USCoreTestKit
   class PractitionerReadTest < Inferno::Test
-    include USCore::ReadTest
+    include USCoreTestKit::ReadTest
 
     title 'Server returns correct Practitioner resource from Practitioner read interaction'
     description 'A server SHALL support the Practitioner read interaction.'
