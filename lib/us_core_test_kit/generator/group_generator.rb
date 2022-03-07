@@ -5,17 +5,18 @@ module USCoreTestKit
   class Generator
     class GroupGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.ordered_groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
-            .each { |group| new(group).generate }
+            .each { |group| new(group, base_output_dir).generate }
         end
       end
 
-      attr_accessor :group_metadata
+      attr_accessor :group_metadata, :base_output_dir
 
-      def initialize(group_metadata)
+      def initialize(group_metadata, base_output_dir)
         self.group_metadata = group_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -47,11 +48,11 @@ module USCoreTestKit
       end
 
       def output_file_name
-        File.join(__dir__, '..', 'generated', base_output_file_name)
+        File.join(base_output_dir, base_output_file_name)
       end
 
       def metadata_file_name
-        File.join(__dir__, '..', 'generated', profile_identifier, base_metadata_file_name)
+        File.join(base_output_dir, profile_identifier, base_metadata_file_name)
       end
 
       def profile_identifier

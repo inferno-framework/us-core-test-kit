@@ -5,21 +5,22 @@ module USCoreTestKit
   class Generator
     class SearchTestGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
             .select { |group| group.searches.present? }
             .each do |group|
-              group.searches.each { |search| new(group, search).generate }
+              group.searches.each { |search| new(group, search, base_output_dir).generate }
             end
         end
       end
 
-      attr_accessor :group_metadata, :search_metadata
+      attr_accessor :group_metadata, :search_metadata, :base_output_dir
 
-      def initialize(group_metadata, search_metadata)
+      def initialize(group_metadata, search_metadata, base_output_dir)
         self.group_metadata = group_metadata
         self.search_metadata = search_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -35,7 +36,7 @@ module USCoreTestKit
       end
 
       def output_file_directory
-        File.join(__dir__, '..', 'generated', profile_identifier)
+        File.join(base_output_dir, profile_identifier)
       end
 
       def output_file_name

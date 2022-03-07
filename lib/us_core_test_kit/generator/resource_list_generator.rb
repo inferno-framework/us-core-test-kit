@@ -2,11 +2,11 @@ module USCoreTestKit
   class Generator
     class ResourceListGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           @ig_metadata = ig_metadata
 
-          FileUtils.mkdir_p(output_file_directory)
-          File.open(output_file_name, 'w') { |f| f.write(output) }
+          FileUtils.mkdir_p(base_output_dir)
+          File.open(File.join(base_output_dir, base_output_file_name), 'w') { |f| f.write(output) }
         end
 
         def resource_list
@@ -31,14 +31,6 @@ module USCoreTestKit
 
         def base_output_file_name
           "resource_list.rb"
-        end
-
-        def output_file_directory
-          File.join(__dir__, '..', 'generated')
-        end
-
-        def output_file_name
-          File.join(output_file_directory, base_output_file_name)
         end
       end
     end

@@ -37,9 +37,15 @@ module USCoreTestKit
 
     def extract_metadata
       self.ig_metadata = IGMetadataExtractor.new(ig_resources).extract
-      File.open(File.join(__dir__, 'generated', 'metadata.yml'), 'w') do |file|
+
+      FileUtils.mkdir_p(base_output_dir)
+      File.open(File.join(base_output_dir, 'metadata.yml'), 'w') do |file|
         file.write(YAML.dump(ig_metadata.to_hash))
       end
+    end
+
+    def base_output_dir
+      File.join(__dir__, 'generated', ig_metadata.ig_version)
     end
 
     def load_ig_package
@@ -48,39 +54,39 @@ module USCoreTestKit
     end
 
     def generate_resource_list
-      ResourceListGenerator.generate(ig_metadata)
+      ResourceListGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_reference_resolution_tests
-      ReferenceResolutionTestGenerator.generate(ig_metadata)
+      ReferenceResolutionTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_must_support_tests
-      MustSupportTestGenerator.generate(ig_metadata)
+      MustSupportTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_validation_tests
-      ValidationTestGenerator.generate(ig_metadata)
+      ValidationTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_read_tests
-      ReadTestGenerator.generate(ig_metadata)
+      ReadTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_search_tests
-      SearchTestGenerator.generate(ig_metadata)
+      SearchTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_provenance_revinclude_search_tests
-      ProvenanceRevincludeSearchTestGenerator.generate(ig_metadata)
+      ProvenanceRevincludeSearchTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_groups
-      GroupGenerator.generate(ig_metadata)
+      GroupGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_suites
-      SuiteGenerator.generate(ig_metadata)
+      SuiteGenerator.generate(ig_metadata, base_output_dir)
     end
   end
 end

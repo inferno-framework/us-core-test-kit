@@ -5,15 +5,16 @@ module USCoreTestKit
   class Generator
     class SuiteGenerator
       class << self
-        def generate(ig_metadata)
-          new(ig_metadata).generate
+        def generate(ig_metadata, base_output_dir)
+          new(ig_metadata, base_output_dir).generate
         end
       end
 
-      attr_accessor :ig_metadata
+      attr_accessor :ig_metadata, :base_output_dir
 
-      def initialize(ig_metadata)
+      def initialize(ig_metadata, base_output_dir)
         self.ig_metadata = ig_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -33,7 +34,7 @@ module USCoreTestKit
       end
 
       def output_file_name
-        File.join(__dir__, '..', 'generated', base_output_file_name)
+        File.join(base_output_dir, base_output_file_name)
       end
 
       def suite_id

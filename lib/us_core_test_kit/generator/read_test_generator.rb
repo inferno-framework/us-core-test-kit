@@ -5,11 +5,11 @@ module USCoreTestKit
   class Generator
     class ReadTestGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
             .select { |group| read_interaction(group).present? }
-            .each { |group| new(group).generate }
+            .each { |group| new(group, base_output_dir).generate }
         end
 
         def read_interaction(group_metadata)
@@ -17,10 +17,11 @@ module USCoreTestKit
         end
       end
 
-      attr_accessor :group_metadata
+      attr_accessor :group_metadata, :base_output_dir
 
-      def initialize(group_metadata)
+      def initialize(group_metadata, base_output_dir)
         self.group_metadata = group_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -36,7 +37,7 @@ module USCoreTestKit
       end
 
       def output_file_directory
-        File.join(__dir__, '..', 'generated', profile_identifier)
+        File.join(base_output_dir, profile_identifier)
       end
 
       def output_file_name
