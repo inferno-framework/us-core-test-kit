@@ -72,6 +72,10 @@ module USCoreTestKit
         "#{Naming.upper_camel_case_for_profile(group_metadata)}ValidationTest"
       end
 
+      def module_name
+        "USCore#{group_metadata.reformatted_version.upcase}"
+      end
+
       def resource_type
         group_metadata.resource
       end

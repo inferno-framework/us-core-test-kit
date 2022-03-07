@@ -33,6 +33,10 @@ module USCoreTestKit
         "USCoreTestSuite"
       end
 
+      def module_name
+        "USCore#{ig_metadata.reformatted_version.upcase}"
+      end
+
       def output_file_name
         File.join(base_output_dir, base_output_file_name)
       end

@@ -17,6 +17,10 @@ module USCoreTestKit
           resource_list.map { |resource| "      '#{resource}'" }.join(",\n")
         end
 
+        def module_name
+          "USCore#{@ig_metadata.reformatted_version.upcase}"
+        end
+
         def read_interaction(group_metadata)
           group_metadata.interactions.find { |interaction| interaction[:code] == 'read' }
         end

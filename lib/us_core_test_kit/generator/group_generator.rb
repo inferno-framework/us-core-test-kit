@@ -39,6 +39,10 @@ module USCoreTestKit
         "#{Naming.upper_camel_case_for_profile(group_metadata)}Group"
       end
 
+      def module_name
+        "USCore#{group_metadata.reformatted_version.upcase}"
+      end
+
       def title
         group_metadata.title
       end

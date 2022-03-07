@@ -1,26 +1,28 @@
 require_relative '../../validation_test'
 
 module USCoreTestKit
-  class <%= class_name %> < Inferno::Test
-    include USCoreTestKit::ValidationTest
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::Test
+      include USCoreTestKit::ValidationTest
 
-    id :<%= test_id %>
-    title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'
-    description %(
-<%= description %>
-    )
-    output :dar_code_found, :dar_extension_found
+      id :<%= test_id %>
+      title '<%= resource_type %> resources returned during previous tests conform to the <%= profile_name %>'
+      description %(
+  <%= description %>
+      )
+      output :dar_code_found, :dar_extension_found
 
-    def resource_type
-      '<%= resource_type %>'
-    end
+      def resource_type
+        '<%= resource_type %>'
+      end
 
-    def scratch_resources
-      scratch[:<%= profile_identifier %>_resources] ||= {}
-    end
+      def scratch_resources
+        scratch[:<%= profile_identifier %>_resources] ||= {}
+      end
 
-    run do
-      perform_validation_test(scratch_resources[:all] || [], '<%= profile_url %>')
+      run do
+        perform_validation_test(scratch_resources[:all] || [], '<%= profile_url %>')
+      end
     end
   end
 end
