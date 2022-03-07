@@ -11,15 +11,15 @@ module USCoreTestKit
     def perform_reference_resolution_test(resources)
       skip_if resources.blank?, no_resources_skip_message
 
-      if missing_references(resources).length.zero?
+      if unresolved_references(resources).length.zero?
         pass
       end
 
-      skip "Could not resolve Must Support references #{missing_reference_strings.join(', ')}"
+      skip "Could not resolve Must Support references #{unresolved_references_strings.join(', ')}"
     end
 
-    def missing_reference_strings
-      missing_references.map { |element_definition| element_definition[:path]}
+    def unresolved_references_strings
+      unresolved_references.map { |element_definition| element_definition[:path]}
     end
 
     def record_resolved_reference(reference)
@@ -39,15 +39,26 @@ module USCoreTestKit
       metadata.must_supports[:elements].select{ |element_definition| element_definition[:type].any? { |type| type == 'Reference'} }
     end
 
-    def missing_references(resources = [])
-      @missing_references ||=
+    def unresolved_references(resources = [])
+      @unresolved_references ||=
         must_support_references.select do |element_definition|
           path = element_definition[:path]
-          resources.none? do |resource|
-            find_a_value_at(resource, path) do |value|
-              value.class != FHIR::Reference || validate_reference_resolution(resource, value)
+
+          found_one_reference = false
+
+          resolve_one_reference = resources.any? do |resource|
+            value_found = find_a_value_at(resource, path) do |value|
+              value.class == FHIR::Reference
             end
+
+            next if value_found.nil?
+
+            found_one_reference = true
+
+            validate_reference_resolution(resource, value_found)
           end
+
+          found_one_reference && !resolve_one_reference
         end
     end
 
