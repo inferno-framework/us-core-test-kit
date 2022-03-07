@@ -126,11 +126,23 @@
       :system: http://hl7.org/fhir/us/core/CodeSystem/careplan-category
   :elements:
   - :path: text
+    :type:
+    - Narrative
   - :path: text.status
+    :type:
+    - code
   - :path: status
+    :type:
+    - code
   - :path: intent
+    :type:
+    - code
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
 :mandatory_elements:
 - CarePlan.text
 - CarePlan.text.status

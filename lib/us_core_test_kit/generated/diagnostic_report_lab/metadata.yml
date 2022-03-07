@@ -1144,13 +1144,30 @@
       :system: http://terminology.hl7.org/CodeSystem/v2-0074
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: effective[x]
+    :type:
+    - dateTime
+    - Period
   - :path: issued
+    :type:
+    - instant
   - :path: performer
+    :type:
+    - Reference
   - :path: result
+    :type:
+    - Reference
 :mandatory_elements:
 - DiagnosticReport.status
 - DiagnosticReport.category

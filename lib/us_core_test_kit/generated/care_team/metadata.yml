@@ -67,10 +67,20 @@
   :slices: []
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: subject
+    :type:
+    - Reference
   - :path: participant
+    :type:
+    - BackboneElement
   - :path: participant.role
+    :type:
+    - CodeableConcept
   - :path: participant.member
+    :type:
+    - Reference
 :mandatory_elements:
 - CareTeam.subject
 - CareTeam.participant

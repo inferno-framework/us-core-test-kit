@@ -133,15 +133,37 @@
   :slices: []
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: intent
+    :type:
+    - code
   - :path: reported[x]
+    :type:
+    - boolean
+    - Reference
   - :path: medication[x]
+    :type:
+    - CodeableConcept
+    - Reference
   - :path: subject
+    :type:
+    - Reference
   - :path: encounter
+    :type:
+    - Reference
   - :path: authoredOn
+    :type:
+    - dateTime
   - :path: requester
+    :type:
+    - Reference
   - :path: dosageInstruction
+    :type:
+    - Dosage
   - :path: dosageInstruction.text
+    :type:
+    - string
 :mandatory_elements:
 - MedicationRequest.status
 - MedicationRequest.intent

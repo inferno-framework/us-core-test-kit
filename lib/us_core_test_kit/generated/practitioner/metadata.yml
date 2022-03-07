@@ -71,10 +71,20 @@
       :system: http://hl7.org/fhir/sid/us-npi
   :elements:
   - :path: identifier
+    :type:
+    - Identifier
   - :path: identifier.system
+    :type:
+    - uri
   - :path: identifier.value
+    :type:
+    - string
   - :path: name
+    :type:
+    - HumanName
   - :path: name.family
+    :type:
+    - string
 :mandatory_elements:
 - Practitioner.identifier
 - Practitioner.identifier.system

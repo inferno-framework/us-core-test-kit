@@ -74,11 +74,23 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
+      :type:
+      - CodeableConcept
     - :path: verificationStatus
+      :type:
+      - CodeableConcept
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: patient
+      :type:
+      - Reference
     - :path: reaction
+      :type:
+      - BackboneElement
     - :path: reaction.manifestation
+      :type:
+      - CodeableConcept
   :mandatory_elements:
   - AllergyIntolerance.code
   - AllergyIntolerance.patient
@@ -278,11 +290,23 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/careplan-category
     :elements:
     - :path: text
+      :type:
+      - Narrative
     - :path: text.status
+      :type:
+      - code
     - :path: status
+      :type:
+      - code
     - :path: intent
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
   :mandatory_elements:
   - CarePlan.text
   - CarePlan.text.status
@@ -496,10 +520,20 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: subject
+      :type:
+      - Reference
     - :path: participant
+      :type:
+      - BackboneElement
     - :path: participant.role
+      :type:
+      - CodeableConcept
     - :path: participant.member
+      :type:
+      - Reference
   :mandatory_elements:
   - CareTeam.subject
   - CareTeam.participant
@@ -685,10 +719,20 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
+      :type:
+      - CodeableConcept
     - :path: verificationStatus
+      :type:
+      - CodeableConcept
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -1833,14 +1877,32 @@
     :slices: []
     :elements:
     - :path: udiCarrier
+      :type:
+      - BackboneElement
     - :path: udiCarrier.deviceIdentifier
+      :type:
+      - string
     - :path: distinctIdentifier
+      :type:
+      - string
     - :path: manufactureDate
+      :type:
+      - dateTime
     - :path: expirationDate
+      :type:
+      - dateTime
     - :path: lotNumber
+      :type:
+      - string
     - :path: serialNumber
+      :type:
+      - string
     - :path: type
+      :type:
+      - CodeableConcept
     - :path: patient
+      :type:
+      - Reference
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
   - Device.deviceName.name
@@ -3035,14 +3097,33 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: encounter
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: issued
+      :type:
+      - instant
     - :path: performer
+      :type:
+      - Reference
     - :path: presentedForm
+      :type:
+      - Attachment
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -4262,13 +4343,30 @@
         :system: http://terminology.hl7.org/CodeSystem/v2-0074
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: issued
+      :type:
+      - instant
     - :path: performer
+      :type:
+      - Reference
     - :path: result
+      :type:
+      - Reference
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -4556,20 +4654,50 @@
     :slices: []
     :elements:
     - :path: identifier
+      :type:
+      - Identifier
     - :path: status
+      :type:
+      - code
     - :path: type
+      :type:
+      - CodeableConcept
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: date
+      :type:
+      - instant
     - :path: author
+      :type:
+      - Reference
     - :path: custodian
+      :type:
+      - Reference
     - :path: content
+      :type:
+      - BackboneElement
     - :path: content.attachment
+      :type:
+      - Attachment
     - :path: content.attachment.contentType
+      :type:
+      - code
     - :path: content.format
+      :type:
+      - Coding
     - :path: context
+      :type:
+      - BackboneElement
     - :path: context.encounter
+      :type:
+      - Reference
     - :path: context.period
+      :type:
+      - Period
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -4845,22 +4973,56 @@
     :slices: []
     :elements:
     - :path: identifier
+      :type:
+      - Identifier
     - :path: identifier.system
+      :type:
+      - uri
     - :path: identifier.value
+      :type:
+      - string
     - :path: status
+      :type:
+      - code
     - :path: class
+      :type:
+      - Coding
     - :path: type
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: participant
+      :type:
+      - BackboneElement
     - :path: participant.type
+      :type:
+      - CodeableConcept
     - :path: participant.period
+      :type:
+      - Period
     - :path: participant.individual
+      :type:
+      - Reference
     - :path: period
+      :type:
+      - Period
     - :path: reasonCode
+      :type:
+      - CodeableConcept
     - :path: hospitalization
+      :type:
+      - BackboneElement
     - :path: hospitalization.dischargeDisposition
+      :type:
+      - CodeableConcept
     - :path: location
+      :type:
+      - BackboneElement
     - :path: location.location
+      :type:
+      - Reference
   :mandatory_elements:
   - Encounter.identifier.system
   - Encounter.identifier.value
@@ -5120,9 +5282,17 @@
         :code: Date
     :elements:
     - :path: lifecycleStatus
+      :type:
+      - code
     - :path: description
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: target
+      :type:
+      - BackboneElement
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -5287,11 +5457,24 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: statusReason
+      :type:
+      - CodeableConcept
     - :path: vaccineCode
+      :type:
+      - CodeableConcept
     - :path: patient
+      :type:
+      - Reference
     - :path: occurrence[x]
+      :type:
+      - dateTime
+      - string
     - :path: primarySource
+      :type:
+      - boolean
   :mandatory_elements:
   - Immunization.status
   - Immunization.vaccineCode
@@ -5550,14 +5733,32 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: name
+      :type:
+      - string
     - :path: telecom
+      :type:
+      - ContactPoint
     - :path: address
+      :type:
+      - Address
     - :path: address.line
+      :type:
+      - string
     - :path: address.city
+      :type:
+      - string
     - :path: address.state
+      :type:
+      - string
     - :path: address.postalCode
+      :type:
+      - string
     - :path: managingOrganization
+      :type:
+      - Reference
   :mandatory_elements:
   - Location.name
   - Location.position.longitude
@@ -5660,6 +5861,8 @@
     :slices: []
     :elements:
     - :path: code
+      :type:
+      - CodeableConcept
   :mandatory_elements:
   - Medication.code
   - Medication.ingredient.item[x]
@@ -5822,15 +6025,37 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: intent
+      :type:
+      - code
     - :path: reported[x]
+      :type:
+      - boolean
+      - Reference
     - :path: medication[x]
+      :type:
+      - CodeableConcept
+      - Reference
     - :path: subject
+      :type:
+      - Reference
     - :path: encounter
+      :type:
+      - Reference
     - :path: authoredOn
+      :type:
+      - dateTime
     - :path: requester
+      :type:
+      - Reference
     - :path: dosageInstruction
+      :type:
+      - Dosage
     - :path: dosageInstruction.text
+      :type:
+      - string
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
@@ -6119,9 +6344,17 @@
         :code: CodeableConcept
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: issued
+      :type:
+      - instant
   :mandatory_elements:
   - Observation.status
   - Observation.code
@@ -6391,22 +6624,49 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: 77606-2
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -7684,11 +7944,34 @@
         :system: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
+      - CodeableConcept
+      - string
+      - boolean
+      - integer
+      - Range
+      - Ratio
+      - SampledData
+      - time
+      - dateTime
+      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -7957,22 +8240,49 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: 59576-9
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -8282,41 +8592,94 @@
           :value: http://loinc.org
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: code.coding
+      :type:
+      - Coding
     - :path: code.coding.system
+      :type:
+      - uri
       :fixed_value: http://loinc.org
     - :path: code.coding.code
+      :type:
+      - code
       :fixed_value: 59408-5
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "%"
     - :path: component
+      :type:
+      - BackboneElement
     - :path: component.code
+      :type:
+      - CodeableConcept
     - :path: component.code.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: 3151-8
     - :path: component.value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
+      :type:
+      - code
       :fixed_value: L/min
     - :path: component.code.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: 3150-0
     - :path: component.value[x]
+      :type:
+      - Quantity
     - :path: component.value[x].value
+      :type:
+      - decimal
     - :path: component.value[x].unit
+      :type:
+      - string
     - :path: component.value[x].code
+      :type:
+      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -8647,22 +9010,49 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: 8289-1
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -8948,21 +9338,48 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9254,21 +9671,48 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9573,24 +10017,55 @@
           :value: http://loinc.org
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: component
+      :type:
+      - BackboneElement
     - :path: component.value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
+      :type:
+      - code
       :fixed_value: mm[Hg]
     - :path: component.code
+      :type:
+      - CodeableConcept
     - :path: component.value[x]
+      :type:
+      - Quantity
     - :path: component.value[x].value
+      :type:
+      - decimal
     - :path: component.value[x].unit
+      :type:
+      - string
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9917,21 +10392,48 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10223,21 +10725,48 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
@@ -10526,21 +11055,48 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: category
+      :type:
+      - CodeableConcept
     - :path: category.coding
+      :type:
+      - Coding
     - :path: category.coding.system
+      :type:
+      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
+      :type:
+      - code
       :fixed_value: vital-signs
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: effective[x]
+      :type:
+      - dateTime
+      - Period
     - :path: value[x]
+      :type:
+      - Quantity
     - :path: value[x].value
+      :type:
+      - decimal
     - :path: value[x].unit
+      :type:
+      - string
     - :path: value[x].system
+      :type:
+      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
+      :type:
+      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
@@ -10755,17 +11311,41 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
+      :type:
+      - Identifier
     - :path: identifier.system
+      :type:
+      - uri
     - :path: identifier.value
+      :type:
+      - string
     - :path: active
+      :type:
+      - boolean
     - :path: name
+      :type:
+      - string
     - :path: telecom
+      :type:
+      - ContactPoint
     - :path: address
+      :type:
+      - Address
     - :path: address.line
+      :type:
+      - string
     - :path: address.city
+      :type:
+      - string
     - :path: address.state
+      :type:
+      - string
     - :path: address.postalCode
+      :type:
+      - string
     - :path: address.country
+      :type:
+      - string
   :mandatory_elements:
   - Organization.active
   - Organization.name
@@ -10963,25 +11543,65 @@
     :slices: []
     :elements:
     - :path: identifier
+      :type:
+      - Identifier
     - :path: identifier.system
+      :type:
+      - uri
     - :path: identifier.value
+      :type:
+      - string
     - :path: name
+      :type:
+      - HumanName
     - :path: name.family
+      :type:
+      - string
     - :path: name.given
+      :type:
+      - string
     - :path: telecom
+      :type:
+      - ContactPoint
     - :path: telecom.system
+      :type:
+      - code
     - :path: telecom.value
+      :type:
+      - string
     - :path: telecom.use
+      :type:
+      - code
     - :path: gender
+      :type:
+      - code
     - :path: birthDate
+      :type:
+      - date
     - :path: address
+      :type:
+      - Address
     - :path: address.line
+      :type:
+      - string
     - :path: address.city
+      :type:
+      - string
     - :path: address.state
+      :type:
+      - string
     - :path: address.postalCode
+      :type:
+      - string
     - :path: address.period
+      :type:
+      - Period
     - :path: communication
+      :type:
+      - BackboneElement
     - :path: communication.language
+      :type:
+      - CodeableConcept
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
@@ -11183,10 +11803,20 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
+      :type:
+      - Identifier
     - :path: identifier.system
+      :type:
+      - uri
     - :path: identifier.value
+      :type:
+      - string
     - :path: name
+      :type:
+      - HumanName
     - :path: name.family
+      :type:
+      - string
   :mandatory_elements:
   - Practitioner.identifier
   - Practitioner.identifier.system
@@ -11422,14 +12052,32 @@
     :slices: []
     :elements:
     - :path: practitioner
+      :type:
+      - Reference
     - :path: organization
+      :type:
+      - Reference
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: specialty
+      :type:
+      - CodeableConcept
     - :path: location
+      :type:
+      - Reference
     - :path: telecom
+      :type:
+      - ContactPoint
     - :path: telecom.system
+      :type:
+      - code
     - :path: telecom.value
+      :type:
+      - string
     - :path: endpoint
+      :type:
+      - Reference
   :mandatory_elements:
   - PractitionerRole.practitioner
   - PractitionerRole.organization
@@ -12601,9 +13249,18 @@
     :slices: []
     :elements:
     - :path: status
+      :type:
+      - code
     - :path: code
+      :type:
+      - CodeableConcept
     - :path: subject
+      :type:
+      - Reference
     - :path: performed[x]
+      :type:
+      - dateTime
+      - Period
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
@@ -12787,14 +13444,30 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type
     :elements:
     - :path: target
+      :type:
+      - Reference
     - :path: recorded
+      :type:
+      - instant
     - :path: agent
+      :type:
+      - BackboneElement
     - :path: agent.type
+      :type:
+      - CodeableConcept
     - :path: agent.who
+      :type:
+      - Reference
     - :path: agent.onBehalfOf
+      :type:
+      - Reference
     - :path: agent.type.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: author
     - :path: agent.type.coding.code
+      :type:
+      - CodeableConcept
       :fixed_value: transmitter
   :mandatory_elements:
   - Provenance.target
