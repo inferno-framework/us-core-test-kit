@@ -1,11 +1,5 @@
-require_relative 'generated/resource_list'
-require_relative 'fhir_resource_navigation'
-
 module USCoreTestKit
   module ReferenceResolutionTest
-    extend Forwardable
-    include FHIRResourceNavigation
-
     def_delegators 'self.class', :metadata
 
     def perform_reference_resolution_test(resources)
@@ -79,13 +73,13 @@ module USCoreTestKit
           return false
         end
       end
-        
+
       reference_type = reference.resource_type
 
       begin
         # TODO: this request isn't persisted
         resolved_resource = reference.read(fhir_client)
-      rescue ClientException 
+      rescue ClientException
         return false
       end
 

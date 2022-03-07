@@ -1,9 +1,11 @@
-require_relative '../../reference_resolution_test'
+require_relative '../../../reference_resolution_test'
+require_relative '../resource_list'
 
 module USCoreTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
       include USCoreTestKit::ReferenceResolutionTest
+      include ResourceList
 
       title 'Every reference within <%= resource_type %> resources can be read'
       description %(
