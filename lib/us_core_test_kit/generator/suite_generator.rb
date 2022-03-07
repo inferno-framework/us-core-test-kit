@@ -38,11 +38,11 @@ module USCoreTestKit
       end
 
       def suite_id
-        'us_core_311'
+        "us_core_#{ig_metadata.reformatted_version}"
       end
 
       def title
-        'US Core 3.1.1'
+        "US Core #{ig_metadata.ig_version}"
       end
 
       def generate

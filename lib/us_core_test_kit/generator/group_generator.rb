@@ -60,7 +60,7 @@ module USCoreTestKit
       end
 
       def group_id
-        "us_core_311_#{profile_identifier}"
+        "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}"
       end
 
       def resource_type

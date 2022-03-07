@@ -65,7 +65,7 @@ module USCoreTestKit
       end
 
       def test_id
-        "us_core_311_#{profile_identifier}_validation_test"
+        "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}_validation_test"
       end
 
       def class_name
