@@ -45,7 +45,7 @@ module USCoreTestKit
           path = element_definition[:path]
           resources.none? do |resource|
             find_a_value_at(resource, path) do |value|
-              validate_reference_resolution(resource, value)
+              value.class != FHIR::Reference || validate_reference_resolution(resource, value)
             end
           end
         end
