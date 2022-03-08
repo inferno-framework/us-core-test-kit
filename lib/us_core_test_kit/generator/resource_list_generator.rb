@@ -7,7 +7,6 @@ module USCoreTestKit
 
           FileUtils.mkdir_p(base_output_dir)
           File.open(File.join(base_output_dir, base_output_file_name), 'w') { |f| f.write(output) }
-          @output = nil
         end
 
         def resource_list          
@@ -31,7 +30,7 @@ module USCoreTestKit
         end
 
         def output
-          @output ||= ERB.new(template).result(binding)
+          ERB.new(template).result(binding)
         end
 
         def base_output_file_name
