@@ -3,7 +3,6 @@ module USCoreTestKit
     class ResourceListGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
-          binding.pry
           @ig_metadata = ig_metadata
 
           FileUtils.mkdir_p(base_output_dir)
@@ -32,7 +31,6 @@ module USCoreTestKit
         end
 
         def output
-          binding.pry
           @output ||= ERB.new(template).result(binding)
         end
 
