@@ -49,6 +49,10 @@ module USCoreTestKit
         "US Core #{ig_metadata.ig_version}"
       end
 
+      def validator_env_name
+        "#{ig_metadata.reformatted_version.upcase}_VALIDATOR_URL"
+      end
+
       def generate
         File.open(output_file_name, 'w') { |f| f.write(output) }
       end

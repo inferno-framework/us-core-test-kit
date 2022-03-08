@@ -7,6 +7,12 @@ require_relative 'ig_resources'
 module USCoreTestKit
   class Generator
     class IGLoader
+      attr_accessor :base_ig_directory
+
+      def initialize(base_ig_directory)
+        self.base_ig_directory = base_ig_directory
+      end
+
       def ig_resources
         @ig_resources ||= IGResources.new
       end
@@ -17,7 +23,7 @@ module USCoreTestKit
       end
 
       def load_ig
-        tar = Gem::Package::TarReader.new(Zlib::GzipReader.open(File.join(__dir__, '..', 'igs', 'package.tgz')))
+        tar = Gem::Package::TarReader.new(Zlib::GzipReader.open(File.join(base_ig_directory, 'package.tgz')))
 
         tar.each do |entry|
           next if entry.directory?
@@ -43,7 +49,7 @@ module USCoreTestKit
       end
 
       def load_standalone_resources
-        Dir.glob(File.join(__dir__, '..', 'igs', '*.json')).each do |file_path|
+        Dir.glob(File.join(base_ig_directory, '*.json')).each do |file_path|
           begin
             resource = FHIR.from_contents(File.read(file_path))
             next if resource.nil?

@@ -15,9 +15,27 @@ require_relative 'generator/validation_test_generator'
 
 module USCoreTestKit
   class Generator
-    attr_accessor :ig_resources, :ig_metadata
+    def self.generate
+      base_ig_directory = File.join(Dir.pwd, 'lib', 'us_core_test_kit', 'igs')
+      ig_directories =
+        Dir.entries(base_ig_directory)
+          .reject { |path| path.start_with? '.' }
+          .map { |path| File.join(base_ig_directory, path) }
+          .select { |path| File.directory? path }
+
+      ig_directories.each do |ig_directory|
+        new(ig_directory).generate
+      end
+    end
+
+    attr_accessor :ig_resources, :ig_metadata, :ig_directory
+
+    def initialize(ig_directory)
+      self.ig_directory = ig_directory
+    end
 
     def generate
+      puts "Generating tests for IG in #{ig_directory}"
       load_ig_package
       extract_metadata
       generate_resource_list
@@ -50,7 +68,7 @@ module USCoreTestKit
 
     def load_ig_package
       FHIR.logger = Logger.new('/dev/null')
-      self.ig_resources = IGLoader.new.load
+      self.ig_resources = IGLoader.new(ig_directory).load
     end
 
     def generate_resource_list
