@@ -1,0 +1,352 @@
+---
+:name: resprate
+:class_name: ResprateSequence
+:version: v3.1.1
+:reformatted_version: v311
+:resource: Observation
+:profile_url: http://hl7.org/fhir/StructureDefinition/resprate
+:profile_name: Observation Respiratory Rate Profile
+:title: Observation Respiratory Rate
+:short_description: Verify support for the server capabilities required by the Observation
+  Respiratory Rate Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - code
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - category
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :path: subject
+    :full_path: Observation.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :category:
+    :path: category
+    :full_path: Observation.category
+    :comparators: {}
+    :values:
+    - vital-signs
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :path: effective
+    :full_path: Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :path: status
+    :full_path: Observation.status
+    :comparators: {}
+    :values:
+    - registered
+    - preliminary
+    - final
+    - amended
+    - corrected
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+  :code:
+    :path: code
+    :full_path: Observation.code
+    :comparators: {}
+    :values:
+    - 9279-1
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts:
+:must_supports:
+  :extensions: []
+  :slices:
+  - :name: Observation.value[x]:valueQuantity
+    :path: value[x]
+    :discriminator:
+      :type: type
+      :code: Quantity
+  - :name: Observation.category:VSCat
+    :path: category
+    :discriminator:
+      :type: value
+      :values:
+      - :path: coding.code
+        :value: vital-signs
+      - :path: coding.system
+        :value: http://terminology.hl7.org/CodeSystem/observation-category
+  :elements:
+  - :path: status
+    :type:
+    - code
+  - :path: category
+    :type:
+    - CodeableConcept
+  - :path: category.coding
+    :type:
+    - Coding
+  - :path: category.coding.system
+    :type:
+    - uri
+    :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
+  - :path: category.coding.code
+    :type:
+    - code
+    :fixed_value: vital-signs
+  - :path: code
+    :type:
+    - CodeableConcept
+  - :path: subject
+    :type:
+    - Reference
+  - :path: effective[x]
+    :type:
+    - dateTime
+    - Period
+  - :path: value[x]
+    :type:
+    - Quantity
+  - :path: value[x].value
+    :type:
+    - decimal
+  - :path: value[x].unit
+    :type:
+    - string
+  - :path: value[x].system
+    :type:
+    - uri
+    :fixed_value: http://unitsofmeasure.org
+  - :path: value[x].code
+    :type:
+    - code
+    :fixed_value: "/min"
+:mandatory_elements:
+- Observation.status
+- Observation.category
+- Observation.category
+- Observation.category.coding
+- Observation.category.coding.system
+- Observation.category.coding.code
+- Observation.code
+- Observation.code.coding
+- Observation.code.coding.system
+- Observation.code.coding.code
+- Observation.subject
+- Observation.effective[x]
+- Observation.value[x].value
+- Observation.value[x].unit
+- Observation.value[x].system
+- Observation.value[x].code
+- Observation.component.code
+:bindings:
+- :type: code
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: language
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/observation-status
+  :path: status
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/observation-category
+  :path: category
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/observation-category
+  :path: category
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-vitalsignresult
+  :path: code
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/quantity-comparator
+  :path: value.comparator
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
+  :path: dataAbsentReason
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
+  :path: interpretation
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/body-site
+  :path: bodySite
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/observation-methods
+  :path: method
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
+  :path: referenceRange.type
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
+  :path: referenceRange.appliesTo
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-vitalsignresult
+  :path: component.code
+- :type: Quantity
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
+  :path: component.value
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
+  :path: component.dataAbsentReason
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
+  :path: component.interpretation
+:references:
+- :path: Observation.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/CarePlan
+  - http://hl7.org/fhir/StructureDefinition/DeviceRequest
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+  - http://hl7.org/fhir/StructureDefinition/MedicationRequest
+  - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+- :path: Observation.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+  - http://hl7.org/fhir/StructureDefinition/MedicationDispense
+  - http://hl7.org/fhir/StructureDefinition/MedicationStatement
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+  - http://hl7.org/fhir/StructureDefinition/Immunization
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+- :path: Observation.subject
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+- :path: Observation.focus
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource
+- :path: Observation.encounter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+- :path: Observation.performer
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/Organization
+  - http://hl7.org/fhir/StructureDefinition/CareTeam
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+- :path: Observation.specimen
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Specimen
+- :path: Observation.device
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+  - http://hl7.org/fhir/StructureDefinition/DeviceMetric
+- :path: Observation.hasMember
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  - http://hl7.org/fhir/StructureDefinition/vitalsigns
+- :path: Observation.derivedFrom
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+  - http://hl7.org/fhir/StructureDefinition/Media
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  - http://hl7.org/fhir/StructureDefinition/vitalsigns
+:tests:
+- :id: us_core_v311_resprate_patient_code_search_test
+  :file_name: resprate_patient_code_search_test.rb
+- :id: us_core_v311_resprate_patient_category_date_search_test
+  :file_name: resprate_patient_category_date_search_test.rb
+- :id: us_core_v311_resprate_patient_category_status_search_test
+  :file_name: resprate_patient_category_status_search_test.rb
+- :id: us_core_v311_resprate_patient_code_date_search_test
+  :file_name: resprate_patient_code_date_search_test.rb
+- :id: us_core_v311_resprate_patient_category_search_test
+  :file_name: resprate_patient_category_search_test.rb
+- :id: us_core_v311_resprate_read_test
+  :file_name: resprate_read_test.rb
+- :id: us_core_v311_resprate_provenance_revinclude_search_test
+  :file_name: resprate_provenance_revinclude_search_test.rb
+- :id: us_core_v311_resprate_validation_test
+  :file_name: resprate_validation_test.rb
+- :id: us_core_v311_resprate_must_support_test
+  :file_name: resprate_must_support_test.rb
+- :id: us_core_v311_resprate_reference_resolution_test
+  :file_name: resprate_reference_resolution_test.rb
+:id: us_core_v311_resprate
+:file_name: resprate_group.rb
+:delayed_references: []
