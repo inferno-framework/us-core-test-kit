@@ -144,7 +144,7 @@ module USCoreTestKit
         The US Core #{title} sequence verifies that the system under test is
         able to provide correct responses for #{resource_type} queries. These queries
         must contain resources conforming to the #{profile_name} as
-        specified in the US Core v3.1.1 Implementation Guide.
+        specified in the US Core #{group_metadata.version} Implementation Guide.
 
         # Testing Methodology
         #{search_description}
