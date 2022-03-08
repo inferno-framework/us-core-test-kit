@@ -101,6 +101,13 @@ module USCoreTestKit
                   code: pattern_element.patternCodeableConcept.coding.first.code,
                   system: pattern_element.patternCodeableConcept.coding.first.system
                 }
+              elsif pattern_element.patternCoding.present?
+                {
+                  type: 'patternCoding',
+                  path: discriminator_path,
+                  code: pattern_element.patternCoding.code,
+                  system: pattern_element.patternCoding.system
+                }                
               elsif pattern_element.patternIdentifier.present?
                 {
                   type: 'patternIdentifier',

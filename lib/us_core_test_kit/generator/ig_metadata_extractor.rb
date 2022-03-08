@@ -29,16 +29,18 @@ module USCoreTestKit
       # The US Core Server Capability Statement does not list support for the
       # required vital signs profiles, so they need to be added
       def add_vital_signs_profiles
-        ig_resources.capability_statement.rest.first.resource
-          .find { |resource| resource.type == 'Observation' }
-          .supportedProfile.concat [
-            'http://hl7.org/fhir/StructureDefinition/bodyheight',
-            'http://hl7.org/fhir/StructureDefinition/bodytemp',
-            'http://hl7.org/fhir/StructureDefinition/bp',
-            'http://hl7.org/fhir/StructureDefinition/bodyweight',
-            'http://hl7.org/fhir/StructureDefinition/heartrate',
-            'http://hl7.org/fhir/StructureDefinition/resprate'
-          ]
+        if ig_resources.ig.version == "3.1.1"
+          ig_resources.capability_statement.rest.first.resource
+            .find { |resource| resource.type == 'Observation' }
+            .supportedProfile.concat [
+              'http://hl7.org/fhir/StructureDefinition/bodyheight',
+              'http://hl7.org/fhir/StructureDefinition/bodytemp',
+              'http://hl7.org/fhir/StructureDefinition/bp',
+              'http://hl7.org/fhir/StructureDefinition/bodyweight',
+              'http://hl7.org/fhir/StructureDefinition/heartrate',
+              'http://hl7.org/fhir/StructureDefinition/resprate'
+            ]
+        end
       end
 
       def add_metadata_from_resources

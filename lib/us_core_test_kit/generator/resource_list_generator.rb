@@ -3,13 +3,15 @@ module USCoreTestKit
     class ResourceListGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
+          binding.pry
           @ig_metadata = ig_metadata
 
           FileUtils.mkdir_p(base_output_dir)
           File.open(File.join(base_output_dir, base_output_file_name), 'w') { |f| f.write(output) }
+          @output = nil
         end
 
-        def resource_list
+        def resource_list          
           @ig_metadata.groups.map(&:resource).uniq
         end
 
@@ -30,6 +32,7 @@ module USCoreTestKit
         end
 
         def output
+          binding.pry
           @output ||= ERB.new(template).result(binding)
         end
 
