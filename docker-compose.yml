@@ -6,16 +6,20 @@ services:
     volumes:
       - ./data:/opt/inferno/data
     depends_on:
-      - validator_service
+      - v311_validator_service
+      - v400_validator_service
   v311_validator_service:
     image: infernocommunity/fhir-validator-service
-    # Update this path to match your directory structure
     volumes:
       - ./lib/us_core_test_kit/igs:/home/igs/v311
+  v400_validator_service:
+    image: infernocommunity/fhir-validator-service
+    volumes:
+      - ./lib/us_core_test_kit/igs:/home/igs/v400
   fhir_validator_app:
     image: infernocommunity/fhir-validator-app
     depends_on:
-      - validator_service
+      - v311_validator_service
     environment:
       EXTERNAL_VALIDATOR_URL: http://localhost/validatorapi
       VALIDATOR_BASE_PATH: /validator
