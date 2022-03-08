@@ -1,40 +1,28 @@
-require_relative '../us_core_test_kit/generated/resource_list'
+require_relative 'generated/resource_list'
+require_relative 'fhir_resource_navigation'
 
 module USCoreTestKit
   module ReferenceResolutionTest
-    include ResourceList
+    extend Forwardable
+    include FHIRResourceNavigation
+
+    def_delegators 'self.class', :metadata
 
     def perform_reference_resolution_test(resources)
       skip_if resources.blank?, no_resources_skip_message
 
-      self.resolution_count = 0
-
-      resources.each do |resource|
-        break if resolution_count >= max_resolutions
-
-        validate_reference_resolutions(resource)
+      if unresolved_references(resources).length.zero?
+        pass
       end
 
-      messages.uniq!
-      errors_found = messages.any? { |message| message[:type] == 'error' }
-
-      assert !errors_found, "Inferno was unable to resolve all US Core references"
+      skip "Could not resolve Must Support references #{unresolved_references_strings.join(', ')}"
     end
 
-    def max_resolutions
-      50
-    end
-
-    def resolution_count
-      @resolution_count
-    end
-
-    def resolution_count=(count)
-      @resolution_count = count
+    def unresolved_references_strings
+      unresolved_references.map { |element_definition| element_definition[:path]}
     end
 
     def record_resolved_reference(reference)
-      self.resolution_count += 1
       resolved_references.add?(reference.reference)
     end
 
@@ -47,64 +35,65 @@ module USCoreTestKit
       'Please use patients with more information.'
     end
 
-    def validate_reference_resolutions(resource)
-      problems = []
+    def must_support_references
+      metadata.must_supports[:elements].select{ |element_definition| element_definition[:type].any? { |type| type == 'Reference'} }
+    end
 
-      resource.each_element do |reference, meta, path|
-        next if meta['type'] != 'Reference'
-        next if reference.reference.blank?
-        next if resolved_references.include?(reference.reference)
-        break if resolution_count >= max_resolutions
+    def unresolved_references(resources = [])
+      @unresolved_references ||=
+        must_support_references.select do |element_definition|
+          path = element_definition[:path]
 
-        if reference.contained?
-          # if reference_id is blank it is referring to itself, so we know it exists
-          next if reference.reference_id.blank?
+          found_one_reference = false
 
-          unless resource.contained.any? { |contained_resource| contained_resource&.id == reference.reference_id }
-            messages << {
-              type: 'error',
-              message: "#{path} has contained reference to id '#{reference.reference_id}' that does not exist"
-            }
+          resolve_one_reference = resources.any? do |resource|
+            value_found = find_a_value_at(resource, path) do |value|
+              value.class == FHIR::Reference
+            end
+
+            next if value_found.nil?
+
+            found_one_reference = true
+
+            validate_reference_resolution(resource, value_found)
           end
 
-          next
+          found_one_reference && !resolve_one_reference
         end
+    end
 
-        # Should potentially update valid? method in fhir_dstu2_models
-        # to check for this type of thing
-        # e.g. "patient/54520" is invalid (fhir_client resource_class method would expect "Patient/54520")
-        if reference.relative?
-          begin
-            reference.resource_class
-          rescue NameError
-            problems << "#{path} has invalid resource type in reference: #{reference.type}"
-            next
-          end
-        end
-        reference_type = reference.resource_type
+    def validate_reference_resolution(resource, reference)
+      return true if resolved_references.include?(reference.reference)
 
+      if reference.contained?
+        # if reference_id is blank it is referring to itself, so we know it exists
+        return true if reference.reference_id.blank?
+
+        return resource.contained.any? { |contained_resource| contained_resource&.id == reference.reference_id }
+      end
+
+      if reference.relative?
         begin
-          # TODO: this request isn't persisted
-          resolved_resource = reference.read(fhir_client)
-        rescue ClientException => e
-          # report error if the resource is a US Core resource type
-          messages << {
-            type: 'error',
-            message: "#{path} did not resolve: #{e}"
-          } if RESOURCE_LIST.include?(reference_type)
-
-          next
+          reference.resource_class
+        rescue NameError
+          return false
         end
+      end
+        
+      reference_type = reference.resource_type
 
-        if resolved_resource&.resourceType == reference_type
-          record_resolved_reference(reference)
-        else
-          messages << {
-            type: 'error',
-            message: "Expected #{reference.reference} to refer to a #{reference_type} resource, " \
-                     "but found a #{resolved_resource&.resourceType} resource."
-          }
-        end
+      begin
+        # TODO: this request isn't persisted
+        resolved_resource = reference.read(fhir_client)
+      rescue ClientException 
+        return false
+      end
+
+      if resolved_resource&.resourceType == reference_type
+        record_resolved_reference(reference)
+        return true
+      else
+        return false
       end
     end
   end

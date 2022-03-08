@@ -208,20 +208,50 @@
   :slices: []
   :elements:
   - :path: identifier
+    :type:
+    - Identifier
   - :path: status
+    :type:
+    - code
   - :path: type
+    :type:
+    - CodeableConcept
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: date
+    :type:
+    - instant
   - :path: author
+    :type:
+    - Reference
   - :path: custodian
+    :type:
+    - Reference
   - :path: content
+    :type:
+    - BackboneElement
   - :path: content.attachment
+    :type:
+    - Attachment
   - :path: content.attachment.contentType
+    :type:
+    - code
   - :path: content.format
+    :type:
+    - Coding
   - :path: context
+    :type:
+    - BackboneElement
   - :path: context.encounter
+    :type:
+    - Reference
   - :path: context.period
+    :type:
+    - Period
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

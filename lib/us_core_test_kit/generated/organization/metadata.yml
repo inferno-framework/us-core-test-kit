@@ -71,17 +71,41 @@
       :system: http://hl7.org/fhir/sid/us-npi
   :elements:
   - :path: identifier
+    :type:
+    - Identifier
   - :path: identifier.system
+    :type:
+    - uri
   - :path: identifier.value
+    :type:
+    - string
   - :path: active
+    :type:
+    - boolean
   - :path: name
+    :type:
+    - string
   - :path: telecom
+    :type:
+    - ContactPoint
   - :path: address
+    :type:
+    - Address
   - :path: address.line
+    :type:
+    - string
   - :path: address.city
+    :type:
+    - string
   - :path: address.state
+    :type:
+    - string
   - :path: address.postalCode
+    :type:
+    - string
   - :path: address.country
+    :type:
+    - string
 :mandatory_elements:
 - Organization.active
 - Organization.name

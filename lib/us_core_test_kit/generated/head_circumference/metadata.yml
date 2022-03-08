@@ -146,22 +146,49 @@
         :value: http://terminology.hl7.org/CodeSystem/observation-category
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: category.coding
+    :type:
+    - Coding
   - :path: category.coding.system
+    :type:
+    - uri
     :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
   - :path: category.coding.code
+    :type:
+    - code
     :fixed_value: vital-signs
   - :path: code.coding.code
+    :type:
+    - CodeableConcept
     :fixed_value: 8289-1
   - :path: subject
+    :type:
+    - Reference
   - :path: effective[x]
+    :type:
+    - dateTime
+    - Period
   - :path: value[x]
+    :type:
+    - Quantity
   - :path: value[x].value
+    :type:
+    - decimal
   - :path: value[x].unit
+    :type:
+    - string
   - :path: value[x].system
+    :type:
+    - uri
     :fixed_value: http://unitsofmeasure.org
   - :path: value[x].code
+    :type:
+    - code
     :fixed_value: "%"
 :mandatory_elements:
 - Observation.status

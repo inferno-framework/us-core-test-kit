@@ -53,14 +53,30 @@
       :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type
   :elements:
   - :path: target
+    :type:
+    - Reference
   - :path: recorded
+    :type:
+    - instant
   - :path: agent
+    :type:
+    - BackboneElement
   - :path: agent.type
+    :type:
+    - CodeableConcept
   - :path: agent.who
+    :type:
+    - Reference
   - :path: agent.onBehalfOf
+    :type:
+    - Reference
   - :path: agent.type.coding.code
+    :type:
+    - CodeableConcept
     :fixed_value: author
   - :path: agent.type.coding.code
+    :type:
+    - CodeableConcept
     :fixed_value: transmitter
 :mandatory_elements:
 - Provenance.target

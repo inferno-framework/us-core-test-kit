@@ -144,9 +144,17 @@
       :code: CodeableConcept
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: issued
+    :type:
+    - instant
 :mandatory_elements:
 - Observation.status
 - Observation.code

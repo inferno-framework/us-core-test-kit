@@ -129,10 +129,20 @@
   :slices: []
   :elements:
   - :path: clinicalStatus
+    :type:
+    - CodeableConcept
   - :path: verificationStatus
+    :type:
+    - CodeableConcept
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
 :mandatory_elements:
 - Condition.category
 - Condition.code

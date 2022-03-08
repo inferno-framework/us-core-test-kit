@@ -201,7 +201,8 @@ module USCoreTestKit
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", '')
+            path: current_element.path.gsub("#{resource}.", ''),
+            type: current_element.type.map { |type| type.code}
           }.tap do |current_metadata|
             path = current_element.path.gsub("#{resource}.", '')
             current_metadata[:path] = path

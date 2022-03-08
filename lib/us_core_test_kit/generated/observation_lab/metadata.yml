@@ -1138,11 +1138,34 @@
       :system: http://terminology.hl7.org/CodeSystem/observation-category
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: effective[x]
+    :type:
+    - dateTime
+    - Period
   - :path: value[x]
+    :type:
+    - Quantity
+    - CodeableConcept
+    - string
+    - boolean
+    - integer
+    - Range
+    - Ratio
+    - SampledData
+    - time
+    - dateTime
+    - Period
 :mandatory_elements:
 - Observation.status
 - Observation.category

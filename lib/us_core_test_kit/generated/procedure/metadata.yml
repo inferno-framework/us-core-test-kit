@@ -1113,9 +1113,18 @@
   :slices: []
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: performed[x]
+    :type:
+    - dateTime
+    - Period
 :mandatory_elements:
 - Procedure.status
 - Procedure.code

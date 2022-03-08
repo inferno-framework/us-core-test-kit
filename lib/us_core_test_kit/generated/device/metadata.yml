@@ -1067,14 +1067,32 @@
   :slices: []
   :elements:
   - :path: udiCarrier
+    :type:
+    - BackboneElement
   - :path: udiCarrier.deviceIdentifier
+    :type:
+    - string
   - :path: distinctIdentifier
+    :type:
+    - string
   - :path: manufactureDate
+    :type:
+    - dateTime
   - :path: expirationDate
+    :type:
+    - dateTime
   - :path: lotNumber
+    :type:
+    - string
   - :path: serialNumber
+    :type:
+    - string
   - :path: type
+    :type:
+    - CodeableConcept
   - :path: patient
+    :type:
+    - Reference
 :mandatory_elements:
 - Device.udiCarrier.deviceIdentifier
 - Device.deviceName.name

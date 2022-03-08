@@ -1139,14 +1139,33 @@
   :slices: []
   :elements:
   - :path: status
+    :type:
+    - code
   - :path: category
+    :type:
+    - CodeableConcept
   - :path: code
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: encounter
+    :type:
+    - Reference
   - :path: effective[x]
+    :type:
+    - dateTime
+    - Period
   - :path: issued
+    :type:
+    - instant
   - :path: performer
+    :type:
+    - Reference
   - :path: presentedForm
+    :type:
+    - Attachment
 :mandatory_elements:
 - DiagnosticReport.status
 - DiagnosticReport.category

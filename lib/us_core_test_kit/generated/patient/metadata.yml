@@ -146,25 +146,65 @@
   :slices: []
   :elements:
   - :path: identifier
+    :type:
+    - Identifier
   - :path: identifier.system
+    :type:
+    - uri
   - :path: identifier.value
+    :type:
+    - string
   - :path: name
+    :type:
+    - HumanName
   - :path: name.family
+    :type:
+    - string
   - :path: name.given
+    :type:
+    - string
   - :path: telecom
+    :type:
+    - ContactPoint
   - :path: telecom.system
+    :type:
+    - code
   - :path: telecom.value
+    :type:
+    - string
   - :path: telecom.use
+    :type:
+    - code
   - :path: gender
+    :type:
+    - code
   - :path: birthDate
+    :type:
+    - date
   - :path: address
+    :type:
+    - Address
   - :path: address.line
+    :type:
+    - string
   - :path: address.city
+    :type:
+    - string
   - :path: address.state
+    :type:
+    - string
   - :path: address.postalCode
+    :type:
+    - string
   - :path: address.period
+    :type:
+    - Period
   - :path: communication
+    :type:
+    - BackboneElement
   - :path: communication.language
+    :type:
+    - CodeableConcept
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system

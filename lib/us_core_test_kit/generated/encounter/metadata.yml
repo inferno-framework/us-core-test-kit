@@ -168,22 +168,56 @@
   :slices: []
   :elements:
   - :path: identifier
+    :type:
+    - Identifier
   - :path: identifier.system
+    :type:
+    - uri
   - :path: identifier.value
+    :type:
+    - string
   - :path: status
+    :type:
+    - code
   - :path: class
+    :type:
+    - Coding
   - :path: type
+    :type:
+    - CodeableConcept
   - :path: subject
+    :type:
+    - Reference
   - :path: participant
+    :type:
+    - BackboneElement
   - :path: participant.type
+    :type:
+    - CodeableConcept
   - :path: participant.period
+    :type:
+    - Period
   - :path: participant.individual
+    :type:
+    - Reference
   - :path: period
+    :type:
+    - Period
   - :path: reasonCode
+    :type:
+    - CodeableConcept
   - :path: hospitalization
+    :type:
+    - BackboneElement
   - :path: hospitalization.dischargeDisposition
+    :type:
+    - CodeableConcept
   - :path: location
+    :type:
+    - BackboneElement
   - :path: location.location
+    :type:
+    - Reference
 :mandatory_elements:
 - Encounter.identifier.system
 - Encounter.identifier.value

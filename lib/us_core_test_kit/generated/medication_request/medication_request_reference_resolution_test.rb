@@ -6,8 +6,8 @@ module USCoreTestKit
 
     title 'Every reference within MedicationRequest resources can be read'
     description %(
-      This test will attempt to read the first 50 references found in the
-      resources from the first search. The test will fail if Inferno fails to
+      This test will attempt to read MustSupport references found in the
+      resources from the first search. The test will skip if Inferno fails to
       read any of those references.
     )
 
@@ -15,6 +15,10 @@ module USCoreTestKit
 
     def resource_type
       'MedicationRequest'
+    end
+
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
     end
 
     def scratch_resources
