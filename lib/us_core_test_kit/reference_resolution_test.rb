@@ -1,5 +1,7 @@
 module USCoreTestKit
   module ReferenceResolutionTest
+    extend Forwardable
+
     def_delegators 'self.class', :metadata
 
     def perform_reference_resolution_test(resources)
