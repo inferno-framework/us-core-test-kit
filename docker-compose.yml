@@ -7,15 +7,15 @@ services:
       - ./data:/opt/inferno/data
     depends_on:
       - v311_validator_service
-      - v400_validator_service
+      # - v400_validator_service
   v311_validator_service:
     image: infernocommunity/fhir-validator-service
     volumes:
       - ./lib/us_core_test_kit/igs:/home/igs/v311
-  v400_validator_service:
-    image: infernocommunity/fhir-validator-service
-    volumes:
-      - ./lib/us_core_test_kit/igs:/home/igs/v400
+  # v400_validator_service:
+  #   image: infernocommunity/fhir-validator-service
+  #   volumes:
+  #     - ./lib/us_core_test_kit/igs:/home/igs/v400
   fhir_validator_app:
     image: infernocommunity/fhir-validator-app
     depends_on:
