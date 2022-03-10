@@ -32,7 +32,6 @@ module USCoreTestKit
       * Observation.effective[x]
       * Observation.status
       * Observation.subject
-      * Observation.value[x]
       )
 
       id :us_core_v400_blood_pressure_must_support_test

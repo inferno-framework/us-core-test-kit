@@ -182,19 +182,6 @@
     :type:
     - dateTime
     - Period
-  - :path: value[x]
-    :type:
-    - Quantity
-    - CodeableConcept
-    - string
-    - boolean
-    - integer
-    - Range
-    - Ratio
-    - SampledData
-    - time
-    - dateTime
-    - Period
   - :path: component
     :type:
     - BackboneElement

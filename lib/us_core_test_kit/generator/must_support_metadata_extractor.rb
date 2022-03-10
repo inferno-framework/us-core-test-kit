@@ -33,7 +33,7 @@ module USCoreTestKit
       end
 
       def blood_pressure_value?(element)
-        profile.name == 'observation-bp' && element.path.include?('Observation.value[x]')
+        is_blood_pressure? && element.path.include?('Observation.value[x]')
       end
 
       # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
