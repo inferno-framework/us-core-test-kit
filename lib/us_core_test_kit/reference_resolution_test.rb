@@ -1,6 +1,9 @@
+require_relative 'fhir_resource_navigation'
+
 module USCoreTestKit
   module ReferenceResolutionTest
     extend Forwardable
+    include FHIRResourceNavigation
 
     def_delegators 'self.class', :metadata
 

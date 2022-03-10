@@ -94,6 +94,11 @@ module USCoreTestKit
           find_a_value_at(element, coding_path) do |coding|
             coding.code == discriminator[:code] && coding.system == discriminator[:system]
           end
+        when 'patternCoding'
+          coding_path = discriminator[:path].present? ? discriminator[:path] : ''
+          find_a_value_at(element, coding_path) do |coding|
+            coding.code == discriminator[:code] && coding.system == discriminator[:system]
+          end
         when 'patternIdentifier'
           find_a_value_at(element, discriminator[:path]) { |identifier| identifier.system == discriminator[:system] }
         when 'value'
