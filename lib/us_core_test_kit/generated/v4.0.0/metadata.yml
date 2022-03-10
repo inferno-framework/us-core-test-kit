@@ -8372,25 +8372,6 @@
       :type:
       - code
       :fixed_value: kg/m2
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -8718,25 +8699,6 @@
     - :path: value[x].code
       :type:
       - code
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9068,25 +9030,6 @@
     - :path: value[x].code
       :type:
       - code
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9418,25 +9361,6 @@
     - :path: value[x].code
       :type:
       - code
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9768,25 +9692,6 @@
     - :path: value[x].code
       :type:
       - code
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10119,25 +10024,6 @@
       :type:
       - code
       :fixed_value: "/min"
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10466,25 +10352,6 @@
       :type:
       - code
       :fixed_value: "%"
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10814,25 +10681,6 @@
       :type:
       - code
       :fixed_value: "%"
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -11161,25 +11009,6 @@
       :type:
       - code
       :fixed_value: "%"
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -11467,20 +11296,6 @@
         :path: ''
         :code: 2708-6
         :system: http://loinc.org
-    - :name: Observation.component:FlowRate
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3151-8
-        :system: http://loinc.org
-    - :name: Observation.component:Concentration
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3150-0
-        :system: http://loinc.org
     - :name: Observation.category:VSCat
       :path: category
       :discriminator:
@@ -11534,41 +11349,6 @@
       - time
       - dateTime
       - Period
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
-      :fixed_value: 3151-8
-    - :path: component.value[x].system
-      :type:
-      - uri
-      :fixed_value: http://unitsofmeasure.org
-    - :path: component.value[x].code
-      :type:
-      - code
-      :fixed_value: L/min
-    - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
-      :fixed_value: 3150-0
-    - :path: component.value[x]
-      :type:
-      - Quantity
-    - :path: component.value[x].value
-      :type:
-      - decimal
-    - :path: component.value[x].unit
-      :type:
-      - string
-    - :path: component.value[x].code
-      :type:
-      - code
-      :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -11933,25 +11713,6 @@
       :type:
       - code
       :fixed_value: "/min"
-    - :path: component
-      :type:
-      - BackboneElement
-    - :path: component.code
-      :type:
-      - CodeableConcept
-    - :path: component.value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
   - Observation.category

@@ -17,13 +17,19 @@ module USCoreTestKit
         }
       end
 
+      def is_vital_sign?
+        ['http://hl7.org/fhir/StructureDefinition/vitalsigns', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'].include?(profile.baseDefinition)
+      end
+
+      def is_blood_pressure?
+        ['observation-bp', 'USCoreBloodPressureProfile'].include?(profile.name)
+      end
+
       # exclude component from vital sign profiles except observation-bp and observation-pulse-ox
       # observation-bp is excluded by profile.name != 'observation-bp'
       # observation-plux-ox is excluded by profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns'
       def vital_signs_component?(element)
-        profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns' &&
-          profile.name != 'observation-bp' &&
-          element.path.include?('component')
+        is_vital_sign? && !is_blood_pressure? && element.path.include?('component')
       end
 
       def blood_pressure_value?(element)
@@ -101,7 +107,7 @@ module USCoreTestKit
                   code: pattern_element.patternCodeableConcept.coding.first.code,
                   system: pattern_element.patternCodeableConcept.coding.first.system
                 }
-              elsif pattern_element.patternCoding.present?
+              elsif pattern_element.patternCoding.present?  
                 {
                   type: 'patternCoding',
                   path: discriminator_path,

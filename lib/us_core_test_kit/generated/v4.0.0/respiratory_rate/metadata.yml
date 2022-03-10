@@ -190,25 +190,6 @@
     :type:
     - code
     :fixed_value: "/min"
-  - :path: component
-    :type:
-    - BackboneElement
-  - :path: component.code
-    :type:
-    - CodeableConcept
-  - :path: component.value[x]
-    :type:
-    - Quantity
-    - CodeableConcept
-    - string
-    - boolean
-    - integer
-    - Range
-    - Ratio
-    - SampledData
-    - time
-    - dateTime
-    - Period
 :mandatory_elements:
 - Observation.status
 - Observation.category

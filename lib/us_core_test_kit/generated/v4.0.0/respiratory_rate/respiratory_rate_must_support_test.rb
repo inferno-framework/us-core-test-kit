@@ -18,9 +18,6 @@ module USCoreTestKit
       * Observation.category.coding.system
       * Observation.category:VSCat
       * Observation.code.coding.code
-      * Observation.component
-      * Observation.component.code
-      * Observation.component.value[x]
       * Observation.effective[x]
       * Observation.status
       * Observation.subject
