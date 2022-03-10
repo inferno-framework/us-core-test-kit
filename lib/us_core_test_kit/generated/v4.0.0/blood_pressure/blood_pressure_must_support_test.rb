@@ -21,7 +21,6 @@ module USCoreTestKit
       * Observation.component
       * Observation.component.code
       * Observation.component.code.coding.code
-      * Observation.component.code.coding.code
       * Observation.component.value[x]
       * Observation.component.value[x].code
       * Observation.component.value[x].system

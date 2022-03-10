@@ -72,6 +72,7 @@ module USCoreTestKit
         element_names = group_metadata.must_supports[:elements].map { |slice| "#{resource_type}.#{slice[:path]}" }
         extension_names = group_metadata.must_supports[:extensions].map { |slice| slice[:id] }
         (slice_names + element_names + extension_names)
+          .uniq
           .sort
           .map { |name| "      * #{name}" }
           .join("\n")
