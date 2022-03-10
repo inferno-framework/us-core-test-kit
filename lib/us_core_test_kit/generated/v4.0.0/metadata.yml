@@ -7885,12 +7885,6 @@
       :comparators: {}
       :values:
       - 85354-9
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -8292,12 +8286,6 @@
       :comparators: {}
       :values:
       - 39156-5
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -8645,12 +8633,6 @@
       :comparators: {}
       :values:
       - 9843-4
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -9001,12 +8983,6 @@
       :comparators: {}
       :values:
       - 8302-2
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -9357,12 +9333,6 @@
       :comparators: {}
       :values:
       - 29463-7
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -9713,12 +9683,6 @@
       :comparators: {}
       :values:
       - 8310-5
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -10069,12 +10033,6 @@
       :comparators: {}
       :values:
       - 8867-4
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -10422,11 +10380,6 @@
       :comparators: {}
       :values:
       - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -10775,11 +10728,6 @@
       :comparators: {}
       :values:
       - 8289-1
-      - 59576-9
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -11127,11 +11075,6 @@
       :comparators: {}
       :values:
       - 77606-2
-      - 59576-9
-      - 8289-1
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -11904,12 +11847,6 @@
       :comparators: {}
       :values:
       - 9279-1
-      - 59576-9
-      - 8289-1
-      - 77606-2
-      - 59408-5
-      - 3150-0
-      - 3151-8
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD

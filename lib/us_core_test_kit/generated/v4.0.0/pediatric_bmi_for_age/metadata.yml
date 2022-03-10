@@ -103,11 +103,6 @@
     :comparators: {}
     :values:
     - 59576-9
-    - 8289-1
-    - 77606-2
-    - 59408-5
-    - 3150-0
-    - 3151-8
     :type: CodeableConcept
     :contains_multiple: false
     :multiple_or: SHOULD
