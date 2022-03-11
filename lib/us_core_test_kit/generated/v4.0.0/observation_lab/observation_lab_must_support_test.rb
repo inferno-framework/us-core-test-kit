@@ -15,10 +15,12 @@ module USCoreTestKit
         * Observation.category
       * Observation.category:Laboratory
       * Observation.code
-      * Observation.effective[x]
+      * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject
-      * Observation.value[x]
+      * Observation.valueCodeableConcept
+      * Observation.valueQuantity
+      * Observation.valueString
       )
 
       id :us_core_v400_observation_lab_must_support_test

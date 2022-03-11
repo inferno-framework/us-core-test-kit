@@ -15,7 +15,7 @@ module USCoreTestKit
         * DiagnosticReport.category
       * DiagnosticReport.category:LaboratorySlice
       * DiagnosticReport.code
-      * DiagnosticReport.effective[x]
+      * DiagnosticReport.effectiveDateTime
       * DiagnosticReport.issued
       * DiagnosticReport.performer
       * DiagnosticReport.result

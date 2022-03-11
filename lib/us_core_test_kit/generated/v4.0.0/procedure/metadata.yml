@@ -1121,13 +1121,8 @@
   - :path: subject
     :type:
     - Reference
-  - :path: performed[x]
-    :type:
-    - dateTime
-    - Period
-    - string
-    - Age
-    - Range
+  - :path: performedDateTime
+    :original_path: performed[x]
 :mandatory_elements:
 - Procedure.status
 - Procedure.code

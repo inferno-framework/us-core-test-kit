@@ -126,7 +126,7 @@
 :include_params: []
 :revincludes:
 - Provenance:target
-:required_concepts: 
+:required_concepts: []
 :must_supports:
   :extensions: []
   :slices:
@@ -178,10 +178,8 @@
   - :path: subject
     :type:
     - Reference
-  - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
+  - :path: effectiveDateTime
+    :original_path: effective[x]
   - :path: component
     :type:
     - BackboneElement
@@ -192,11 +190,13 @@
     :type:
     - CodeableConcept
     :fixed_value: 8480-6
-  - :path: component.value[x].system
+  - :path: component.valueQuantity.system
+    :original_path: component.value[x].system
     :type:
     - uri
     :fixed_value: http://unitsofmeasure.org
-  - :path: component.value[x].code
+  - :path: component.valueQuantity.code
+    :original_path: component.value[x].code
     :type:
     - code
     :fixed_value: mm[Hg]
@@ -204,13 +204,16 @@
     :type:
     - CodeableConcept
     :fixed_value: 8462-4
-  - :path: component.value[x]
+  - :path: component.valueQuantity
+    :original_path: component.value[x]
     :type:
     - Quantity
-  - :path: component.value[x].value
+  - :path: component.valueQuantity.value
+    :original_path: component.value[x].value
     :type:
     - decimal
-  - :path: component.value[x].unit
+  - :path: component.valueQuantity.unit
+    :original_path: component.value[x].unit
     :type:
     - string
 :mandatory_elements:

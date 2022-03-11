@@ -141,10 +141,14 @@
   - :path: category
     :type:
     - CodeableConcept
-  - :path: reported[x]
+  - :path: reportedBoolean
+    :original_path: reported[x]
+  - :path: reportedReference
+    :original_path: reported[x]
     :type:
-    - boolean
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: medication[x]
     :type:
     - CodeableConcept
@@ -161,6 +165,8 @@
   - :path: requester
     :type:
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: dosageInstruction
     :type:
     - Dosage

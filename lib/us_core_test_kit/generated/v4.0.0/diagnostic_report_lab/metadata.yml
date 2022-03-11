@@ -1155,16 +1155,16 @@
   - :path: subject
     :type:
     - Reference
-  - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
+  - :path: effectiveDateTime
+    :original_path: effective[x]
   - :path: issued
     :type:
     - instant
   - :path: performer
     :type:
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: result
     :type:
     - Reference

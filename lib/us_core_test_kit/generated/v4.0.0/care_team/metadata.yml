@@ -81,6 +81,8 @@
   - :path: participant.member
     :type:
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
 :mandatory_elements:
 - CareTeam.subject
 - CareTeam.participant

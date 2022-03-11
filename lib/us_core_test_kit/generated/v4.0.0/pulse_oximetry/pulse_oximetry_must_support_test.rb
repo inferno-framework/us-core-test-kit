@@ -21,10 +21,10 @@ module USCoreTestKit
       * Observation.code.coding
       * Observation.code.coding:O2Sat
       * Observation.code.coding:PulseOx
-      * Observation.effective[x]
+      * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject
-      * Observation.value[x]
+      * Observation.valueQuantity
       )
 
       id :us_core_v400_pulse_oximetry_must_support_test

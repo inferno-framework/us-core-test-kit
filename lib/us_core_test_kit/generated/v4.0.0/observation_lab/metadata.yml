@@ -1125,7 +1125,7 @@
 :include_params: []
 :revincludes:
 - Provenance:target
-:required_concepts: 
+:required_concepts: []
 :must_supports:
   :extensions: []
   :slices:
@@ -1149,25 +1149,14 @@
   - :path: subject
     :type:
     - Reference
-  - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
-    - Timing
-    - instant
-  - :path: value[x]
-    :type:
-    - Quantity
-    - CodeableConcept
-    - string
-    - boolean
-    - integer
-    - Range
-    - Ratio
-    - SampledData
-    - time
-    - dateTime
-    - Period
+  - :path: effectiveDateTime
+    :original_path: effective[x]
+  - :path: valueQuantity
+    :original_path: value[x]
+  - :path: valueCodeableConcept
+    :original_path: value[x]
+  - :path: valueString
+    :original_path: value[x]
 :mandatory_elements:
 - Observation.status
 - Observation.category

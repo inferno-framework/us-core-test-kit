@@ -18,10 +18,10 @@ module USCoreTestKit
       * Observation.category.coding.system
       * Observation.category:VSCat
       * Observation.code
-      * Observation.effective[x]
+      * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject
-      * Observation.value[x]
+      * Observation.valueQuantity
       )
 
       id :us_core_v400_vital_signs_must_support_test

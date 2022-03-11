@@ -200,6 +200,8 @@
   - :path: participant.individual
     :type:
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: period
     :type:
     - Period
@@ -209,6 +211,8 @@
   - :path: reasonReference
     :type:
     - Reference
+    :target_profile:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
   - :path: hospitalization
     :type:
     - BackboneElement

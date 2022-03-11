@@ -126,7 +126,7 @@
 :include_params: []
 :revincludes:
 - Provenance:target
-:required_concepts: 
+:required_concepts: []
 :must_supports:
   :extensions: []
   :slices:
@@ -169,10 +169,8 @@
   - :path: subject
     :type:
     - Reference
-  - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
+  - :path: effectiveDateTime
+    :original_path: effective[x]
   - :path: value[x]
     :type:
     - Quantity

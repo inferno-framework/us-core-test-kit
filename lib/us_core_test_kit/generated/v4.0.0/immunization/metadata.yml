@@ -104,10 +104,8 @@
   - :path: patient
     :type:
     - Reference
-  - :path: occurrence[x]
-    :type:
-    - dateTime
-    - string
+  - :path: occurrenceDateTime
+    :original_path: occurrence[x]
   - :path: primarySource
     :type:
     - boolean

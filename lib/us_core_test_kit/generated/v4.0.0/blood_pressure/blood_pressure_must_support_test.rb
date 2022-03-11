@@ -21,14 +21,14 @@ module USCoreTestKit
       * Observation.component
       * Observation.component.code
       * Observation.component.code.coding.code
-      * Observation.component.value[x]
-      * Observation.component.value[x].code
-      * Observation.component.value[x].system
-      * Observation.component.value[x].unit
-      * Observation.component.value[x].value
+      * Observation.component.valueQuantity
+      * Observation.component.valueQuantity.code
+      * Observation.component.valueQuantity.system
+      * Observation.component.valueQuantity.unit
+      * Observation.component.valueQuantity.value
       * Observation.component:diastolic
       * Observation.component:systolic
-      * Observation.effective[x]
+      * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject
       )

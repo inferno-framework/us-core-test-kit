@@ -77,7 +77,7 @@ module USCoreTestKit
       end
 
       def to_hash
-        ATTRIBUTES.each_with_object({}) { |key, hash| hash[key] = send(key) }
+        ATTRIBUTES.each_with_object({}) { |key, hash| hash[key] = send(key) unless send(key).nil? }
       end
 
       def add_delayed_references(delayed_profiles, ig_resources)

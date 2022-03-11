@@ -13,7 +13,7 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Procedure.code
-      * Procedure.performed[x]
+      * Procedure.performedDateTime
       * Procedure.status
       * Procedure.subject
       )

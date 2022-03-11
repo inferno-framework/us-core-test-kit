@@ -62,8 +62,10 @@ module USCoreTestKit
               value_without_extensions =
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
 
+                require 'pry';require 'pry-byebug';binding.pry if element_definition[:type_must_support].present?
               (value_without_extensions.present? || value_without_extensions == false) &&
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
+                
             end
 
             # Note that false.present? => false, which is why we need to add this extra check

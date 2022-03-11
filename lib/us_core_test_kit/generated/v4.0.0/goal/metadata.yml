@@ -111,10 +111,8 @@
   - :path: target
     :type:
     - BackboneElement
-  - :path: target.due[x]
-    :type:
-    - date
-    - Duration
+  - :path: target.dueDate
+    :original_path: target.due[x]
 :mandatory_elements:
 - Goal.lifecycleStatus
 - Goal.description

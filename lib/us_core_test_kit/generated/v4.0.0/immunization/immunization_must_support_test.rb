@@ -12,7 +12,7 @@ module USCoreTestKit
         Statement. This test will look through the Immunization resources
         found previously for the following must support elements:
 
-        * Immunization.occurrence[x]
+        * Immunization.occurrenceDateTime
       * Immunization.patient
       * Immunization.primarySource
       * Immunization.status

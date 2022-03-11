@@ -159,9 +159,6 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev400CareplanSequence
@@ -451,9 +448,6 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev400CareteamSequence
@@ -537,6 +531,8 @@
     - :path: participant.member
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :mandatory_elements:
   - CareTeam.subject
   - CareTeam.participant
@@ -587,9 +583,6 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: participant.member
     :resources:
@@ -813,9 +806,6 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev400ImplantableDeviceSequence
@@ -1958,9 +1948,6 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev400DiagnosticreportLabSequence
@@ -3118,16 +3105,16 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: issued
       :type:
       - instant
     - :path: performer
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: result
       :type:
       - Reference
@@ -3203,9 +3190,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: performer
     :resources:
@@ -4365,16 +4349,17 @@
     - :path: encounter
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: issued
       :type:
       - instant
     - :path: performer
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: presentedForm
       :type:
       - Attachment
@@ -4444,9 +4429,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: encounter
     :resources:
@@ -4685,6 +4667,8 @@
     - :path: author
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: content
       :type:
       - BackboneElement
@@ -4801,9 +4785,6 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: author
     :resources:
@@ -5014,6 +4995,8 @@
     - :path: participant.individual
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: period
       :type:
       - Period
@@ -5023,6 +5006,8 @@
     - :path: reasonReference
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
     - :path: hospitalization
       :type:
       - BackboneElement
@@ -5187,9 +5172,6 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: participant.individual
     :resources:
@@ -5310,10 +5292,8 @@
     - :path: target
       :type:
       - BackboneElement
-    - :path: target.due[x]
-      :type:
-      - date
-      - Duration
+    - :path: target.dueDate
+      :original_path: target.due[x]
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -5380,9 +5360,6 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev400ImmunizationSequence
@@ -5489,10 +5466,8 @@
     - :path: patient
       :type:
       - Reference
-    - :path: occurrence[x]
-      :type:
-      - dateTime
-      - string
+    - :path: occurrenceDateTime
+      :original_path: occurrence[x]
     - :path: primarySource
       :type:
       - boolean
@@ -5586,9 +5561,6 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev400LocationSequence
@@ -5777,9 +5749,6 @@
   - :path: Location.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: managingOrganization
     :resources:
@@ -5850,9 +5819,6 @@
   - :path: Medication.manufacturer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_medicationrequest
   :class_name: USCorev400MedicationrequestSequence
@@ -5996,10 +5962,14 @@
     - :path: category
       :type:
       - CodeableConcept
-    - :path: reported[x]
+    - :path: reportedBoolean
+      :original_path: reported[x]
+    - :path: reportedReference
+      :original_path: reported[x]
       :type:
-      - boolean
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: medication[x]
       :type:
       - CodeableConcept
@@ -6016,6 +5986,8 @@
     - :path: requester
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: dosageInstruction
       :type:
       - Dosage
@@ -6159,9 +6131,6 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: encounter
     :resources:
@@ -7297,7 +7266,7 @@
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -7321,25 +7290,14 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
-      - Timing
-      - instant
-    - :path: value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: valueQuantity
+      :original_path: value[x]
+    - :path: valueCodeableConcept
+      :original_path: value[x]
+    - :path: valueString
+      :original_path: value[x]
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -7458,9 +7416,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_vital_signs
   :class_name: USCorev400VitalSignsSequence
@@ -7593,7 +7548,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -7630,23 +7585,10 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
-    - :path: value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: valueQuantity
+      :original_path: value[x]
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -7777,9 +7719,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_blood_pressure
   :class_name: USCorev400BloodPressureSequence
@@ -7907,7 +7846,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -7959,10 +7898,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: component
       :type:
       - BackboneElement
@@ -7973,11 +7910,13 @@
       :type:
       - CodeableConcept
       :fixed_value: 8480-6
-    - :path: component.value[x].system
+    - :path: component.valueQuantity.system
+      :original_path: component.value[x].system
       :type:
       - uri
       :fixed_value: http://unitsofmeasure.org
-    - :path: component.value[x].code
+    - :path: component.valueQuantity.code
+      :original_path: component.value[x].code
       :type:
       - code
       :fixed_value: mm[Hg]
@@ -7985,13 +7924,16 @@
       :type:
       - CodeableConcept
       :fixed_value: 8462-4
-    - :path: component.value[x]
+    - :path: component.valueQuantity
+      :original_path: component.value[x]
       :type:
       - Quantity
-    - :path: component.value[x].value
+    - :path: component.valueQuantity.value
+      :original_path: component.value[x].value
       :type:
       - decimal
-    - :path: component.value[x].unit
+    - :path: component.valueQuantity.unit
+      :original_path: component.value[x].unit
       :type:
       - string
   :mandatory_elements:
@@ -8165,9 +8107,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_bmi
   :class_name: USCorev400BmiSequence
@@ -8295,7 +8234,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8338,10 +8277,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -8493,9 +8430,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_head_circumference
   :class_name: USCorev400HeadCircumferenceSequence
@@ -8623,7 +8557,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8666,10 +8600,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -8824,9 +8756,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_body_height
   :class_name: USCorev400BodyHeightSequence
@@ -8954,7 +8883,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8997,10 +8926,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -9155,9 +9082,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_body_weight
   :class_name: USCorev400BodyWeightSequence
@@ -9285,7 +9209,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9328,10 +9252,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -9486,9 +9408,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_body_temperature
   :class_name: USCorev400BodyTemperatureSequence
@@ -9616,7 +9535,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9659,10 +9578,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -9817,9 +9734,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_heart_rate
   :class_name: USCorev400HeartRateSequence
@@ -9947,7 +9861,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9990,10 +9904,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -10145,9 +10057,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
@@ -10275,7 +10184,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10318,10 +10227,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -10473,9 +10380,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
@@ -10604,7 +10508,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10647,10 +10551,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -10802,9 +10704,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
@@ -10932,7 +10831,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10975,10 +10874,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -11130,9 +11027,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev400PulseOximetrySequence
@@ -11265,7 +11159,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -11319,23 +11213,10 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
-    - :path: value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: valueQuantity
+      :original_path: value[x]
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -11506,9 +11387,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_respiratory_rate
   :class_name: USCorev400RespiratoryRateSequence
@@ -11636,7 +11514,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -11679,10 +11557,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
+    - :path: effectiveDateTime
+      :original_path: effective[x]
     - :path: value[x]
       :type:
       - Quantity
@@ -11834,9 +11710,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_smokingstatus
   :class_name: USCorev400SmokingstatusSequence
@@ -11960,7 +11833,7 @@
       :multiple_or: MAY
   :include_params: *3
   :revincludes: *4
-  :required_concepts: 
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -12120,9 +11993,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev400OrganizationSequence
@@ -12292,9 +12162,6 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev400PatientSequence
@@ -12615,9 +12482,6 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev400PractitionerSequence
@@ -12748,9 +12612,6 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev400PractitionerroleSequence
@@ -13011,9 +12872,6 @@
   - :path: PractitionerRole.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: practitioner
     :resources:
@@ -14143,13 +14001,8 @@
     - :path: subject
       :type:
       - Reference
-    - :path: performed[x]
-      :type:
-      - dateTime
-      - Period
-      - string
-      - Age
-      - Range
+    - :path: performedDateTime
+      :original_path: performed[x]
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
@@ -14275,9 +14128,6 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev400ProvenanceSequence
@@ -14350,6 +14200,8 @@
     - :path: agent.who
       :type:
       - Reference
+      :target_profile:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: agent.onBehalfOf
       :type:
       - Reference
@@ -14471,9 +14323,6 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests: 
-  :id: 
-  :file_name: 
   :delayed_references:
   - :path: agent.who
     :resources:

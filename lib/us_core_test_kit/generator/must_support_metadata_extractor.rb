@@ -211,22 +211,94 @@ module USCoreTestKit
         end
       end
 
+      def type_must_support_extension?(extensions)
+        extensions&.any? do |extension|
+          extension.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support' &&
+          extension.valueBoolean
+        end
+      end   
+
+      def save_type_code?(type)
+        ['Reference'].include?(type.code)
+      end
+
+      def get_type_must_support_metadata(current_metadata, current_element)
+        type_must_support_metadata = []
+
+        current_element.type.each do |type| 
+          if type_must_support_extension?(type.extension) 
+
+            metadata =
+            {
+              path: "#{current_metadata[:path].delete_suffix('[x]')}#{type.code.upcase_first}",
+              original_path: current_metadata[:path]
+            }
+
+            metadata[:type] = [type.code] if save_type_code?(type)
+
+            handle_type_must_support_target_profile(type, metadata) if type.code == 'Reference'
+
+            type_must_support_metadata << metadata
+          end
+        end
+
+        type_must_support_metadata
+      end
+
+      def handle_type_must_support_target_profile(type, metadata)
+        index = 0
+        target_profile = []
+
+        type.source_hash['_targetProfile']&.each do |hash|
+          element = FHIR::Element.new(hash)
+          target_profile << type.targetProfile[index] if type_must_support_extension?(element.extension)
+          index += 1
+        end
+
+        metadata[:target_profile] = target_profile if target_profile.present?
+      end
+
+      def handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
+        choice_element_metadata = must_support_elements_metadata.find do |metadata| 
+          metadata[:original_path].present? && 
+          current_metadata[:path].include?( metadata[:original_path] ) 
+        end
+
+        if choice_element_metadata.present?
+          current_metadata[:original_path] = current_metadata[:path]
+          current_metadata[:path] = current_metadata[:path].sub(choice_element_metadata[:original_path], choice_element_metadata[:path])
+        end
+      end
+
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", ''),
-            type: current_element.type.map { |type| type.code}
+            path: current_element.path.gsub("#{resource}.", '')            
           }.tap do |current_metadata|
-            path = current_element.path.gsub("#{resource}.", '')
-            current_metadata[:path] = path
+            #path = current_element.path.gsub("#{resource}.", '')
+            #current_metadata[:path] = path
 
-            handle_fixed_values(current_metadata, current_element)
+            type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
-            must_support_elements_metadata.delete_if do |metadata|
-              metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
+            if type_must_support_metadata.any?
+              must_support_elements_metadata.concat(type_must_support_metadata)
+            else
+              handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
+              current_metadata[:type] = current_element.type.map { |type| type.code }  
+              handle_type_must_support_target_profile(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
+
+              handle_fixed_values(current_metadata, current_element)
+
+              must_support_elements_metadata.delete_if do |metadata|
+                metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
+              end
+
+              #supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
+              #current_metadata[:type] = supported_type if supported_type.present?
+
+
+              must_support_elements_metadata << current_metadata
             end
-
-            must_support_elements_metadata << current_metadata
           end
         end.uniq
       end

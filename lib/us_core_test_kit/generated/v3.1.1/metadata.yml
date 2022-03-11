@@ -159,9 +159,6 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev311CareplanSequence
@@ -448,9 +445,6 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev311CareteamSequence
@@ -581,9 +575,6 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: participant.member
     :resources:
@@ -805,9 +796,6 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev311ImplantableDeviceSequence
@@ -1953,9 +1941,6 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev311DiagnosticreportNoteSequence
@@ -3188,9 +3173,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: encounter
     :resources:
@@ -4437,9 +4419,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: performer
     :resources:
@@ -4790,9 +4769,6 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: author
     :resources:
@@ -5170,9 +5146,6 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: participant.individual
     :resources:
@@ -5332,7 +5305,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system:
+    :system: 
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -5359,9 +5332,6 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev311ImmunizationSequence
@@ -5565,9 +5535,6 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev311LocationSequence
@@ -5814,9 +5781,6 @@
   - :path: Location.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: managingOrganization
     :resources:
@@ -5887,9 +5851,6 @@
   - :path: Medication.manufacturer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_medicationrequest
   :class_name: USCorev311MedicationrequestSequence
@@ -6191,9 +6152,6 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: requester
     :resources:
@@ -6333,7 +6291,7 @@
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -6474,9 +6432,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
@@ -6604,7 +6559,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -6802,9 +6757,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_observation_lab
   :class_name: USCorev311ObservationLabSequence
@@ -7931,7 +7883,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8090,9 +8042,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
@@ -8220,7 +8169,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8418,9 +8367,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev311PulseOximetrySequence
@@ -8549,7 +8495,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8859,9 +8805,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
@@ -8990,7 +8933,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9188,9 +9131,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodyheight
   :class_name: BodyheightSequence
@@ -9318,7 +9258,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9521,9 +9461,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodytemp
   :class_name: BodytempSequence
@@ -9651,7 +9588,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9854,9 +9791,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bp
   :class_name: BpSequence
@@ -9984,7 +9918,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10242,9 +10176,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodyweight
   :class_name: BodyweightSequence
@@ -10372,7 +10303,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10575,9 +10506,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: heartrate
   :class_name: HeartrateSequence
@@ -10705,7 +10633,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10905,9 +10833,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: resprate
   :class_name: ResprateSequence
@@ -11035,7 +10960,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -11235,9 +11160,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev311OrganizationSequence
@@ -11392,9 +11314,6 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev311PatientSequence
@@ -11727,9 +11646,6 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev311PractitionerSequence
@@ -11860,9 +11776,6 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev311PractitionerroleSequence
@@ -12125,9 +12038,6 @@
   - :path: PractitionerRole.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: practitioner
     :resources:
@@ -13386,9 +13296,6 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev311ProvenanceSequence
@@ -13571,9 +13478,6 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: agent.who
     :resources:

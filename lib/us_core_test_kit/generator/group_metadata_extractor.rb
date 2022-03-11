@@ -59,7 +59,7 @@ module USCoreTestKit
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
             path = search_definitions[name.to_sym][:full_path]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
-              full_must_support_path = "#{resource}.#{element[:path]}"
+              full_must_support_path = "#{resource}.#{element[:original_path] || element[:path]}"
 
               # allow for non-choice, choice types, and _id
               name == '_id' || full_must_support_path == path || full_must_support_path == "#{path}[x]"
@@ -230,7 +230,7 @@ module USCoreTestKit
       def required_concepts
         # The base FHIR vital signs profile has a required binding that isn't
         # relevant for any of its child profiles
-        return if resource == 'Observation'
+        return [] if resource == 'Observation'
 
         profile_elements
           .select { |element| element.type&.any? { |type| type.code == 'CodeableConcept' } }

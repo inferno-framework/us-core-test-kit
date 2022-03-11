@@ -18,7 +18,7 @@ module USCoreTestKit
       * Observation.category.coding.system
       * Observation.category:VSCat
       * Observation.code.coding.code
-      * Observation.effective[x]
+      * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject
       * Observation.value[x]
