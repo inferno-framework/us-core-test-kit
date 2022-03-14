@@ -284,7 +284,11 @@ module USCoreTestKit
               must_support_elements_metadata.concat(type_must_support_metadata)
             else
               handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
+
+              #supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
+              #current_metadata[:type] = supported_type if supported_type.present?
               current_metadata[:type] = current_element.type.map { |type| type.code }  
+              
               handle_type_must_support_target_profile(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
@@ -292,10 +296,6 @@ module USCoreTestKit
               must_support_elements_metadata.delete_if do |metadata|
                 metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
               end
-
-              #supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
-              #current_metadata[:type] = supported_type if supported_type.present?
-
 
               must_support_elements_metadata << current_metadata
             end

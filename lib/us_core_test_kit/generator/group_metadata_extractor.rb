@@ -59,10 +59,10 @@ module USCoreTestKit
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
             path = search_definitions[name.to_sym][:full_path]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
-              full_must_support_path = "#{resource}.#{element[:original_path] || element[:path]}"
+              full_must_support_path = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
 
               # allow for non-choice, choice types, and _id
-              name == '_id' || full_must_support_path == path || full_must_support_path == "#{path}[x]"
+              name == '_id' || full_must_support_path.include?(path) || full_must_support_path.include?("#{path}[x]")
             end
 
             any_must_support_slices = must_supports[:slices].any? do |slice|

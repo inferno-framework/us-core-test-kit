@@ -45,9 +45,8 @@
   :names:
   - patient
   - target-date
-  :names_not_must_support_or_mandatory:
-  - target-date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :path: subject
