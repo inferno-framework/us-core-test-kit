@@ -5,15 +5,16 @@ module USCoreTestKit
   class Generator
     class SuiteGenerator
       class << self
-        def generate(ig_metadata)
-          new(ig_metadata).generate
+        def generate(ig_metadata, base_output_dir)
+          new(ig_metadata, base_output_dir).generate
         end
       end
 
-      attr_accessor :ig_metadata
+      attr_accessor :ig_metadata, :base_output_dir
 
-      def initialize(ig_metadata)
+      def initialize(ig_metadata, base_output_dir)
         self.ig_metadata = ig_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -32,16 +33,24 @@ module USCoreTestKit
         "USCoreTestSuite"
       end
 
+      def module_name
+        "USCore#{ig_metadata.reformatted_version.upcase}"
+      end
+
       def output_file_name
-        File.join(__dir__, '..', 'generated', base_output_file_name)
+        File.join(base_output_dir, base_output_file_name)
       end
 
       def suite_id
-        'us_core_311'
+        "us_core_#{ig_metadata.reformatted_version}"
       end
 
       def title
-        'US Core 3.1.1'
+        "US Core #{ig_metadata.ig_version}"
+      end
+
+      def validator_env_name
+        "#{ig_metadata.reformatted_version.upcase}_VALIDATOR_URL"
       end
 
       def generate

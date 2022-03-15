@@ -5,21 +5,22 @@ module USCoreTestKit
   class Generator
     class SearchTestGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
             .select { |group| group.searches.present? }
             .each do |group|
-              group.searches.each { |search| new(group, search).generate }
+              group.searches.each { |search| new(group, search, base_output_dir).generate }
             end
         end
       end
 
-      attr_accessor :group_metadata, :search_metadata
+      attr_accessor :group_metadata, :search_metadata, :base_output_dir
 
-      def initialize(group_metadata, search_metadata)
+      def initialize(group_metadata, search_metadata, base_output_dir)
         self.group_metadata = group_metadata
         self.search_metadata = search_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -35,7 +36,7 @@ module USCoreTestKit
       end
 
       def output_file_directory
-        File.join(__dir__, '..', 'generated', profile_identifier)
+        File.join(base_output_dir, profile_identifier)
       end
 
       def output_file_name
@@ -47,7 +48,7 @@ module USCoreTestKit
       end
 
       def test_id
-        "us_core_311_#{profile_identifier}_#{search_identifier}_search_test"
+        "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}_#{search_identifier}_search_test"
       end
 
       def search_identifier
@@ -60,6 +61,10 @@ module USCoreTestKit
 
       def class_name
         "#{Naming.upper_camel_case_for_profile(group_metadata)}#{search_title}SearchTest"
+      end
+
+      def module_name
+        "USCore#{group_metadata.reformatted_version.upcase}"
       end
 
       def resource_type
@@ -203,6 +208,15 @@ module USCoreTestKit
         end
       end
 
+      def url_version
+        case group_metadata.version
+        when 'v3.1.1'
+          'STU3.1.1'
+        when 'v4.0.0'
+          'STU4'
+        end
+      end
+
       def search_test_properties_string
         search_properties
           .map { |key, value| "#{' ' * 8}#{key}: #{value}" }
@@ -256,7 +270,7 @@ module USCoreTestKit
         Additionally, this test will check that GET and POST search methods
         return the same number of results. Search by POST is required by the
         FHIR R4 specification, and these tests interpret search by GET as a
-        requirement of US Core v3.1.1.
+        requirement of US Core #{group_metadata.version}.
         POST_SEARCH_DESCRIPTION
       end
 
@@ -272,7 +286,7 @@ module USCoreTestKit
         #{first_search_description}
         #{post_search_description}
 
-        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/#{url_version}/CapabilityStatement-us-core-server.html)
         DESCRIPTION
       end
     end

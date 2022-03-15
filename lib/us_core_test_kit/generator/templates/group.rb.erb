@@ -1,20 +1,22 @@
 <% test_file_list.each do |file_name| %>require_relative '<%= profile_identifier %>/<%= file_name %>'
 <% end %>
 module USCoreTestKit
-  class <%= class_name %> < Inferno::TestGroup
-    title '<%= title %> Tests'
-    short_description '<%= short_description %>'
-    description %(
-<%= description %>
-    )
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::TestGroup
+      title '<%= title %> Tests'
+      short_description '<%= short_description %>'
+      description %(
+  <%= description %>
+      )
 
-    id :<%= group_id %>
-    run_as_group
+      id :<%= group_id %>
+      run_as_group
 
-    def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml')))
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml')))
+      end
+  <% test_id_list.each do |id| %>
+      test from: :<%= id %><% end %>
     end
-<% test_id_list.each do |id| %>
-    test from: :<%= id %><% end %>
   end
 end

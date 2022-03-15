@@ -1,32 +1,36 @@
-require_relative '../../reference_resolution_test'
+require_relative '../../../reference_resolution_test'
+require_relative '../resource_list'
 
 module USCoreTestKit
-  class <%= class_name %> < Inferno::Test
-    include USCoreTestKit::ReferenceResolutionTest
+  module <%= module_name %>
+    class <%= class_name %> < Inferno::Test
+      include USCoreTestKit::ReferenceResolutionTest
+      include ResourceList
 
-    title 'Every reference within <%= resource_type %> resources can be read'
-    description %(
-      This test will attempt to read MustSupport references found in the
-      resources from the first search. The test will skip if Inferno fails to
-      read any of those references.
-    )
+      title 'Every reference within <%= resource_type %> resources can be read'
+      description %(
+        This test will attempt to read MustSupport references found in the
+        resources from the first search. The test will skip if Inferno fails to
+        read any of those references.
+      )
 
-    id :<%= test_id %>
+      id :<%= test_id %>
 
-    def resource_type
-      '<%= resource_type %>'
-    end
+      def resource_type
+        '<%= resource_type %>'
+      end
 
-    def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
-    end
+      def self.metadata
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml')))
+      end
 
-    def scratch_resources
-      scratch[:<%= profile_identifier %>_resources] ||= {}
-    end
+      def scratch_resources
+        scratch[:<%= profile_identifier %>_resources] ||= {}
+      end
 
-    run do
-      perform_reference_resolution_test(<%= resource_collection_string %>)
+      run do
+        perform_reference_resolution_test(<%= resource_collection_string %>)
+      end
     end
   end
 end

@@ -5,17 +5,18 @@ module USCoreTestKit
   class Generator
     class GroupGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.ordered_groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
-            .each { |group| new(group).generate }
+            .each { |group| new(group, base_output_dir).generate }
         end
       end
 
-      attr_accessor :group_metadata
+      attr_accessor :group_metadata, :base_output_dir
 
-      def initialize(group_metadata)
+      def initialize(group_metadata, base_output_dir)
         self.group_metadata = group_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -38,6 +39,10 @@ module USCoreTestKit
         "#{Naming.upper_camel_case_for_profile(group_metadata)}Group"
       end
 
+      def module_name
+        "USCore#{group_metadata.reformatted_version.upcase}"
+      end
+
       def title
         group_metadata.title
       end
@@ -47,11 +52,11 @@ module USCoreTestKit
       end
 
       def output_file_name
-        File.join(__dir__, '..', 'generated', base_output_file_name)
+        File.join(base_output_dir, base_output_file_name)
       end
 
       def metadata_file_name
-        File.join(__dir__, '..', 'generated', profile_identifier, base_metadata_file_name)
+        File.join(base_output_dir, profile_identifier, base_metadata_file_name)
       end
 
       def profile_identifier
@@ -59,7 +64,7 @@ module USCoreTestKit
       end
 
       def group_id
-        "us_core_311_#{profile_identifier}"
+        "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}"
       end
 
       def resource_type
@@ -139,7 +144,7 @@ module USCoreTestKit
         The US Core #{title} sequence verifies that the system under test is
         able to provide correct responses for #{resource_type} queries. These queries
         must contain resources conforming to the #{profile_name} as
-        specified in the US Core v3.1.1 Implementation Guide.
+        specified in the US Core #{group_metadata.version} Implementation Guide.
 
         # Testing Methodology
         #{search_description}

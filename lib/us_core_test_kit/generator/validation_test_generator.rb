@@ -5,26 +5,27 @@ module USCoreTestKit
   class Generator
     class ValidationTestGenerator
       class << self
-        def generate(ig_metadata)
+        def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
             .reject { |group| SpecialCases.exclude_resource? group.resource }
             .each do |group|
-              new(group).generate
+              new(group, base_output_dir: base_output_dir).generate
               next unless group.resource == 'MedicationRequest'
 
               # The Medication validation test lives in the MedicationRequest
               # group, so we need to pass in that group's metadata
               medication_group_metadata = ig_metadata.groups.find { |group| group.resource == 'Medication' }
-              new(medication_group_metadata, group).generate
+              new(medication_group_metadata, group, base_output_dir: base_output_dir).generate
             end
         end
       end
 
-      attr_accessor :group_metadata, :medication_request_metadata
+      attr_accessor :group_metadata, :medication_request_metadata, :base_output_dir
 
-      def initialize(group_metadata, medication_request_metadata = nil)
+      def initialize(group_metadata, medication_request_metadata = nil, base_output_dir:)
         self.group_metadata = group_metadata
         self.medication_request_metadata = medication_request_metadata
+        self.base_output_dir = base_output_dir
       end
 
       def template
@@ -40,7 +41,7 @@ module USCoreTestKit
       end
 
       def output_file_directory
-        File.join(__dir__, '..', 'generated', directory_name)
+        File.join(base_output_dir, directory_name)
       end
 
       def output_file_name
@@ -64,11 +65,15 @@ module USCoreTestKit
       end
 
       def test_id
-        "us_core_311_#{profile_identifier}_validation_test"
+        "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}_validation_test"
       end
 
       def class_name
         "#{Naming.upper_camel_case_for_profile(group_metadata)}ValidationTest"
+      end
+
+      def module_name
+        "USCore#{group_metadata.reformatted_version.upcase}"
       end
 
       def resource_type
