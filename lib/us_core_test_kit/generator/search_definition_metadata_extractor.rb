@@ -119,7 +119,6 @@ module USCoreTestKit
           values_from_pattern_codeable_concept          
           ).uniq.presence || values_from_value_set_binding
         ).presence || values_from_resource_metadata
-        #binding.pry if values.include?('59408-5')
         values
       end
 

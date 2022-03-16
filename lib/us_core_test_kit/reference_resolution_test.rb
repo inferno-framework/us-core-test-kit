@@ -35,7 +35,7 @@ module USCoreTestKit
     end
 
     def must_support_references
-      metadata.must_supports[:elements].select{ |element_definition| element_definition[:type].any? { |type| type == 'Reference'} }
+      metadata.must_supports[:elements].select{ |element_definition| element_definition[:type]&.any? { |type| type == 'Reference'} }
     end
 
     def unresolved_references(resources = [])

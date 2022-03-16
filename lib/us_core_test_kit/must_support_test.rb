@@ -14,7 +14,7 @@ module USCoreTestKit
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
-      if (missing_elements(resources) + missing_slices(resources)).length.zero?
+      if (missing_elements(resources) + missing_slices(resources) + missing_extensions(resources)).length.zero?
         pass
       end
 
@@ -62,7 +62,6 @@ module USCoreTestKit
               value_without_extensions =
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
 
-                require 'pry';require 'pry-byebug';binding.pry if element_definition[:type_must_support].present?
               (value_without_extensions.present? || value_without_extensions == false) &&
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
                 
