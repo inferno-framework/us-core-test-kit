@@ -16,7 +16,6 @@ require_relative 'goal_group'
 require_relative 'immunization_group'
 require_relative 'medication_request_group'
 require_relative 'observation_lab_group'
-require_relative 'vital_signs_group'
 require_relative 'blood_pressure_group'
 require_relative 'bmi_group'
 require_relative 'head_circumference_group'
@@ -92,7 +91,6 @@ module USCoreTestKit
       group from: :us_core_v400_immunization
       group from: :us_core_v400_medication_request
       group from: :us_core_v400_observation_lab
-      group from: :us_core_v400_vital_signs
       group from: :us_core_v400_blood_pressure
       group from: :us_core_v400_bmi
       group from: :us_core_v400_head_circumference

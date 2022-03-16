@@ -7,7 +7,7 @@ module USCoreTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .reject { |group| SpecialCases.exclude_resource? group.resource }
+            .reject { |group| SpecialCases.exclude_group? group }
             .each { |group| new(group, base_output_dir).generate }
         end
       end
