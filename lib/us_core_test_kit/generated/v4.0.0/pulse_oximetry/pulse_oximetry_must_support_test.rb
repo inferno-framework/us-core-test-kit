@@ -21,6 +21,16 @@ module USCoreTestKit
       * Observation.code.coding
       * Observation.code.coding:O2Sat
       * Observation.code.coding:PulseOx
+      * Observation.component
+      * Observation.component.code
+      * Observation.component.code.coding.code
+      * Observation.component.valueQuantity
+      * Observation.component.valueQuantity.code
+      * Observation.component.valueQuantity.system
+      * Observation.component.valueQuantity.unit
+      * Observation.component.valueQuantity.value
+      * Observation.component:Concentration
+      * Observation.component:FlowRate
       * Observation.effectiveDateTime
       * Observation.status
       * Observation.subject

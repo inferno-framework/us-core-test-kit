@@ -20,6 +20,9 @@ module USCoreTestKit
       * Patient.address.state
       * Patient.birthDate
       * Patient.communication.language
+      * Patient.extension:birthsex
+      * Patient.extension:ethnicity
+      * Patient.extension:race
       * Patient.gender
       * Patient.identifier
       * Patient.identifier.system
@@ -27,6 +30,9 @@ module USCoreTestKit
       * Patient.name
       * Patient.name.family
       * Patient.name.given
+      * Patient.name.suffix
+      * Patient.name.use
+      * Patient.telecom
       * Patient.telecom.system
       * Patient.telecom.use
       * Patient.telecom.value

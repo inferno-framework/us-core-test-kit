@@ -10,15 +10,22 @@ module USCoreTestKit
       end
 
       def must_supports
-        {
+        @must_supports = {
           extensions: must_support_extensions,
           slices: must_support_slices,
           elements: must_support_elements
         }
+
+        handle_special_cases
+
+        @must_supports
       end
 
       def is_vital_sign?
-        ['http://hl7.org/fhir/StructureDefinition/vitalsigns', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'].include?(profile.baseDefinition)
+        [
+          'http://hl7.org/fhir/StructureDefinition/vitalsigns', 
+          'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
+        ].include?(profile.baseDefinition)
       end
 
       def is_blood_pressure?
@@ -26,10 +33,11 @@ module USCoreTestKit
       end
 
       # exclude component from vital sign profiles except observation-bp and observation-pulse-ox
-      # observation-bp is excluded by profile.name != 'observation-bp'
-      # observation-plux-ox is excluded by profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns'
       def vital_signs_component?(element)
-        is_vital_sign? && !is_blood_pressure? && element.path.include?('component')
+        is_vital_sign? && 
+        !is_blood_pressure? && 
+        profile.name != 'USCorePulseOximetryProfile' && 
+        element.path.include?('component')
       end
 
       def blood_pressure_value?(element)
@@ -40,7 +48,8 @@ module USCoreTestKit
       # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
       # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles      
       def data_absent_reason?(element)
-        profile.type == 'Observation' && ['Observation.dataAbsentReason', 'Observation.component.dataAbsentReason'].include?(element.path)
+        profile.type == 'Observation' && 
+        ['Observation.dataAbsentReason', 'Observation.component.dataAbsentReason'].include?(element.path)
       end
 
       def all_must_support_elements
@@ -48,7 +57,9 @@ module USCoreTestKit
           .select { |element| element.mustSupport }
           .reject do |element|
             # TODO: Can special cases be moved out of here?
-            vital_signs_component?(element) || blood_pressure_value?(element) || data_absent_reason?(element)
+            vital_signs_component?(element) || 
+            blood_pressure_value?(element) || 
+            data_absent_reason?(element)
           end
       end
 
@@ -285,9 +296,9 @@ module USCoreTestKit
             else
               handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
 
-              #supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
-              #current_metadata[:type] = supported_type if supported_type.present?
-              current_metadata[:type] = current_element.type.map { |type| type.code }  
+              supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
+              current_metadata[:type] = supported_type if supported_type.present?
+              #current_metadata[:type] = current_element.type.map { |type| type.code }  
               
               handle_type_must_support_target_profile(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 
@@ -301,6 +312,49 @@ module USCoreTestKit
             end
           end
         end.uniq
+      end
+
+      def handle_special_cases
+        add_device_distinct_identifier
+        add_patient_uscdi_elements
+      end
+
+      def add_device_distinct_identifier
+        if profile.version == '4.0.0' && profile.type == 'Device'
+          # FHIR-36303 US Core 4.0.0 mistakenly removed MS from Device.distinctIdentifier
+          # This will be fixed in US Core 5.0.0
+          @must_supports[:elements] << {
+            path: 'distinctIdentifier'
+          }
+        end
+      end
+
+      def add_patient_uscdi_elements
+        if profile.version != '3.1.1' && profile.type == 'Patient'
+          #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:race',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:ethnicity',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity'
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:birthsex',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex'
+          }
+          @must_supports[:elements] << {
+            path: 'telecom'
+          }
+          @must_supports[:elements] << {
+            path: 'name.suffix'
+          }
+          @must_supports[:elements] << {
+            path: 'name.use',
+            fixed_value: 'old'
+          }
+        end
       end
     end
   end

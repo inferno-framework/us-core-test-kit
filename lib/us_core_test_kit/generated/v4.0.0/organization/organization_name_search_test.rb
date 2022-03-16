@@ -26,8 +26,6 @@ requirement of US Core v4.0.0.
       )
 
       id :us_core_v400_organization_name_search_test
-      optional
-  
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,

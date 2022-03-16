@@ -65,16 +65,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Observation.subject
+    :path:
+    - subject
+    :full_path:
+    - Observation.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: Observation.category
+    :path:
+    - category
+    :full_path:
+    - Observation.category
     :comparators: {}
     :values:
     - vital-signs
@@ -82,8 +86,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :path: effective
-    :full_path: Observation.effective
+    :path:
+    - effective
+    :full_path:
+    - Observation.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -99,8 +105,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Observation.status
+    :path:
+    - status
+    :full_path:
+    - Observation.status
     :comparators: {}
     :values:
     - registered
@@ -115,8 +123,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: Observation.code
+    :path:
+    - code
+    :full_path:
+    - Observation.code
     :comparators: {}
     :values:
     - 85354-9
@@ -159,58 +169,28 @@
         :value: http://loinc.org
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: category.coding
-    :type:
-    - Coding
   - :path: category.coding.system
-    :type:
-    - uri
     :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
   - :path: category.coding.code
-    :type:
-    - code
     :fixed_value: vital-signs
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
   - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
   - :path: component
-    :type:
-    - BackboneElement
   - :path: component.value[x].system
-    :type:
-    - uri
     :fixed_value: http://unitsofmeasure.org
   - :path: component.value[x].code
-    :type:
-    - code
     :fixed_value: mm[Hg]
   - :path: component.code
-    :type:
-    - CodeableConcept
   - :path: component.value[x]
-    :type:
-    - Quantity
   - :path: component.value[x].value
-    :type:
-    - decimal
   - :path: component.value[x].unit
-    :type:
-    - string
 :mandatory_elements:
 - Observation.status
-- Observation.category
 - Observation.category
 - Observation.category.coding
 - Observation.category.coding.system
@@ -221,17 +201,6 @@
 - Observation.code.coding.code
 - Observation.subject
 - Observation.effective[x]
-- Observation.component
-- Observation.component.code
-- Observation.component
-- Observation.component.code
-- Observation.component.code.coding
-- Observation.component.code.coding.system
-- Observation.component.code.coding.code
-- Observation.component.value[x].value
-- Observation.component.value[x].unit
-- Observation.component.value[x].system
-- Observation.component.value[x].code
 - Observation.component
 - Observation.component.code
 - Observation.component.code.coding

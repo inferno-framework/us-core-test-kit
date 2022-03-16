@@ -76,24 +76,30 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path: id
-    :full_path: DocumentReference.id
+    :path:
+    - id
+    :full_path:
+    - DocumentReference.id
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :path: subject
-    :full_path: DocumentReference.subject
+    :path:
+    - subject
+    :full_path:
+    - DocumentReference.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: DocumentReference.category
+    :path:
+    - category
+    :full_path:
+    - DocumentReference.category
     :comparators: {}
     :values:
     - 11369-6
@@ -145,8 +151,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: DocumentReference.status
+    :path:
+    - status
+    :full_path:
+    - DocumentReference.status
     :comparators: {}
     :values:
     - current
@@ -156,8 +164,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :type:
-    :path: type
-    :full_path: DocumentReference.type
+    :path:
+    - type
+    :full_path:
+    - DocumentReference.type
     :comparators: {}
     :values:
     - UNK
@@ -165,8 +175,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :period:
-    :path: context.period
-    :full_path: DocumentReference.context.period
+    :path:
+    - context.period
+    :full_path:
+    - DocumentReference.context.period
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -182,8 +194,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path: date
-    :full_path: DocumentReference.date
+    :path:
+    - date
+    :full_path:
+    - DocumentReference.date
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -208,49 +222,27 @@
   :slices: []
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: status
-    :type:
-    - code
   - :path: type
-    :type:
-    - CodeableConcept
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
   - :path: date
-    :type:
-    - instant
   - :path: author
     :type:
     - Reference
     :target_profile:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: content
-    :type:
-    - BackboneElement
   - :path: content.attachment
-    :type:
-    - Attachment
   - :path: content.attachment.contentType
-    :type:
-    - code
   - :path: content.format
-    :type:
-    - Coding
   - :path: context
-    :type:
-    - BackboneElement
   - :path: context.encounter
     :type:
     - Reference
   - :path: context.period
-    :type:
-    - Period
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

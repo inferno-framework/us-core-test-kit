@@ -49,16 +49,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: patient
-    :full_path: Immunization.patient
+    :path:
+    - patient
+    :full_path:
+    - Immunization.patient
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Immunization.status
+    :path:
+    - status
+    :full_path:
+    - Immunization.status
     :comparators: {}
     :values:
     - completed
@@ -68,8 +72,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path: occurrence
-    :full_path: Immunization.occurrence
+    :path:
+    - occurrence
+    :full_path:
+    - Immunization.occurrence
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -93,22 +99,14 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: statusReason
-    :type:
-    - CodeableConcept
   - :path: vaccineCode
-    :type:
-    - CodeableConcept
   - :path: patient
     :type:
     - Reference
   - :path: occurrenceDateTime
     :original_path: occurrence[x]
   - :path: primarySource
-    :type:
-    - boolean
 :mandatory_elements:
 - Immunization.status
 - Immunization.vaccineCode

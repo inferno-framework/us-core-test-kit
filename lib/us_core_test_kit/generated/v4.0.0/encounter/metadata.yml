@@ -71,32 +71,40 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path: id
-    :full_path: Encounter.id
+    :path:
+    - id
+    :full_path:
+    - Encounter.id
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :path: identifier
-    :full_path: Encounter.identifier
+    :path:
+    - identifier
+    :full_path:
+    - Encounter.identifier
     :comparators: {}
     :values: []
     :type: Identifier
     :contains_multiple: true
     :multiple_or: MAY
   :patient:
-    :path: subject
-    :full_path: Encounter.subject
+    :path:
+    - subject
+    :full_path:
+    - Encounter.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path: period
-    :full_path: Encounter.period
+    :path:
+    - period
+    :full_path:
+    - Encounter.period
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -112,8 +120,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Encounter.status
+    :path:
+    - status
+    :full_path:
+    - Encounter.status
     :comparators: {}
     :values:
     - planned
@@ -129,8 +139,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :class:
-    :path: class
-    :full_path: Encounter.class
+    :path:
+    - class
+    :full_path:
+    - Encounter.class
     :comparators: {}
     :values:
     - AMB
@@ -148,8 +160,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :path: type
-    :full_path: Encounter.type
+    :path:
+    - type
+    :full_path:
+    - Encounter.type
     :comparators: {}
     :values:
     - ADMS
@@ -168,60 +182,32 @@
   :slices: []
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: identifier.system
-    :type:
-    - uri
   - :path: identifier.value
-    :type:
-    - string
   - :path: status
-    :type:
-    - code
   - :path: class
-    :type:
-    - Coding
   - :path: type
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
   - :path: participant
-    :type:
-    - BackboneElement
   - :path: participant.type
-    :type:
-    - CodeableConcept
   - :path: participant.period
-    :type:
-    - Period
   - :path: participant.individual
     :type:
     - Reference
     :target_profile:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: period
-    :type:
-    - Period
   - :path: reasonCode
-    :type:
-    - CodeableConcept
   - :path: reasonReference
     :type:
     - Reference
     :target_profile:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
   - :path: hospitalization
-    :type:
-    - BackboneElement
   - :path: hospitalization.dischargeDisposition
-    :type:
-    - CodeableConcept
   - :path: location
-    :type:
-    - BackboneElement
   - :path: location.location
     :type:
     - Reference

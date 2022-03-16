@@ -69,16 +69,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: DiagnosticReport.subject
+    :path:
+    - subject
+    :full_path:
+    - DiagnosticReport.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :path: code
-    :full_path: DiagnosticReport.code
+    :path:
+    - code
+    :full_path:
+    - DiagnosticReport.code
     :comparators: {}
     :values:
     - 1-8
@@ -1085,8 +1089,10 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :path: effective
-    :full_path: DiagnosticReport.effective
+    :path:
+    - effective
+    :full_path:
+    - DiagnosticReport.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -1102,8 +1108,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: DiagnosticReport.category
+    :path:
+    - category
+    :full_path:
+    - DiagnosticReport.category
     :comparators: {}
     :values:
     - LP29684-5
@@ -1113,8 +1121,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: DiagnosticReport.status
+    :path:
+    - status
+    :full_path:
+    - DiagnosticReport.status
     :comparators: {}
     :values:
     - registered
@@ -1139,14 +1149,8 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
@@ -1156,8 +1160,6 @@
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: issued
-    :type:
-    - instant
   - :path: performer
     :type:
     - Reference
@@ -1165,8 +1167,6 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: presentedForm
-    :type:
-    - Attachment
 :mandatory_elements:
 - DiagnosticReport.status
 - DiagnosticReport.category

@@ -65,16 +65,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Observation.subject
+    :path:
+    - subject
+    :full_path:
+    - Observation.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: Observation.category
+    :path:
+    - category
+    :full_path:
+    - Observation.category
     :comparators: {}
     :values:
     - vital-signs
@@ -82,8 +86,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Observation.status
+    :path:
+    - status
+    :full_path:
+    - Observation.status
     :comparators: {}
     :values:
     - registered
@@ -98,8 +104,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: Observation.code
+    :path:
+    - code
+    :full_path:
+    - Observation.code
     :comparators: {}
     :values:
     - 85354-9
@@ -107,8 +115,10 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :path: effective
-    :full_path: Observation.effective
+    :path:
+    - effective
+    :full_path:
+    - Observation.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -155,25 +165,13 @@
         :value: http://terminology.hl7.org/CodeSystem/observation-category
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: category.coding
-    :type:
-    - Coding
   - :path: category.coding.system
-    :type:
-    - uri
     :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
   - :path: category.coding.code
-    :type:
-    - code
     :fixed_value: vital-signs
   - :path: code.coding.code
-    :type:
-    - CodeableConcept
     :fixed_value: 85354-9
   - :path: subject
     :type:
@@ -181,44 +179,25 @@
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: component
-    :type:
-    - BackboneElement
   - :path: component.code
-    :type:
-    - CodeableConcept
   - :path: component.code.coding.code
-    :type:
-    - CodeableConcept
     :fixed_value: 8480-6
   - :path: component.valueQuantity.system
     :original_path: component.value[x].system
-    :type:
-    - uri
     :fixed_value: http://unitsofmeasure.org
   - :path: component.valueQuantity.code
     :original_path: component.value[x].code
-    :type:
-    - code
     :fixed_value: mm[Hg]
   - :path: component.code.coding.code
-    :type:
-    - CodeableConcept
     :fixed_value: 8462-4
   - :path: component.valueQuantity
     :original_path: component.value[x]
-    :type:
-    - Quantity
   - :path: component.valueQuantity.value
     :original_path: component.value[x].value
-    :type:
-    - decimal
   - :path: component.valueQuantity.unit
     :original_path: component.value[x].unit
-    :type:
-    - string
 :mandatory_elements:
 - Observation.status
-- Observation.category
 - Observation.category
 - Observation.category.coding
 - Observation.category.coding.system
@@ -226,14 +205,6 @@
 - Observation.code
 - Observation.subject
 - Observation.effective[x]
-- Observation.component
-- Observation.component.code
-- Observation.component
-- Observation.component.code
-- Observation.component.value[x].value
-- Observation.component.value[x].unit
-- Observation.component.value[x].system
-- Observation.component.value[x].code
 - Observation.component
 - Observation.component.code
 - Observation.component.value[x].value

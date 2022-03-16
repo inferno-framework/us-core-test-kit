@@ -71,32 +71,40 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path: id
-    :full_path: Patient.id
+    :path:
+    - id
+    :full_path:
+    - Patient.id
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :path: identifier
-    :full_path: Patient.identifier
+    :path:
+    - identifier
+    :full_path:
+    - Patient.identifier
     :comparators: {}
     :values: []
     :type: Identifier
     :contains_multiple: true
     :multiple_or: MAY
   :name:
-    :path: name
-    :full_path: Patient.name
+    :path:
+    - name
+    :full_path:
+    - Patient.name
     :comparators: {}
     :values: []
     :type: HumanName
     :contains_multiple: true
     :multiple_or: MAY
   :birthdate:
-    :path: birthDate
-    :full_path: Patient.birthDate
+    :path:
+    - birthDate
+    :full_path:
+    - Patient.birthDate
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -112,16 +120,20 @@
     :contains_multiple: false
     :multiple_or: MAY
   :family:
-    :path: name.family
-    :full_path: Patient.name.family
+    :path:
+    - name.family
+    :full_path:
+    - Patient.name.family
     :comparators: {}
     :values: []
     :type: string
     :contains_multiple: false
     :multiple_or: MAY
   :gender:
-    :path: gender
-    :full_path: Patient.gender
+    :path:
+    - gender
+    :full_path:
+    - Patient.gender
     :comparators: {}
     :values:
     - male
@@ -146,65 +158,25 @@
   :slices: []
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: identifier.system
-    :type:
-    - uri
   - :path: identifier.value
-    :type:
-    - string
   - :path: name
-    :type:
-    - HumanName
   - :path: name.family
-    :type:
-    - string
   - :path: name.given
-    :type:
-    - string
   - :path: telecom
-    :type:
-    - ContactPoint
   - :path: telecom.system
-    :type:
-    - code
   - :path: telecom.value
-    :type:
-    - string
   - :path: telecom.use
-    :type:
-    - code
   - :path: gender
-    :type:
-    - code
   - :path: birthDate
-    :type:
-    - date
   - :path: address
-    :type:
-    - Address
   - :path: address.line
-    :type:
-    - string
   - :path: address.city
-    :type:
-    - string
   - :path: address.state
-    :type:
-    - string
   - :path: address.postalCode
-    :type:
-    - string
   - :path: address.period
-    :type:
-    - Period
   - :path: communication
-    :type:
-    - BackboneElement
   - :path: communication.language
-    :type:
-    - CodeableConcept
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system

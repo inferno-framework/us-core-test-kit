@@ -12,7 +12,8 @@ module USCoreTestKit
         Statement. This test will look through the Device resources
         found previously for the following must support elements:
 
-        * Device.expirationDate
+        * Device.distinctIdentifier
+      * Device.expirationDate
       * Device.lotNumber
       * Device.manufactureDate
       * Device.patient

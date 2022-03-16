@@ -69,16 +69,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: DiagnosticReport.subject
+    :path:
+    - subject
+    :full_path:
+    - DiagnosticReport.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: DiagnosticReport.category
+    :path:
+    - category
+    :full_path:
+    - DiagnosticReport.category
     :comparators: {}
     :values:
     - LP29684-5
@@ -88,8 +92,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :path: effective
-    :full_path: DiagnosticReport.effective
+    :path:
+    - effective
+    :full_path:
+    - DiagnosticReport.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -105,8 +111,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: DiagnosticReport.status
+    :path:
+    - status
+    :full_path:
+    - DiagnosticReport.status
     :comparators: {}
     :values:
     - registered
@@ -123,8 +131,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: DiagnosticReport.code
+    :path:
+    - code
+    :full_path:
+    - DiagnosticReport.code
     :comparators: {}
     :values:
     - 1-8
@@ -1139,14 +1149,8 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
@@ -1154,18 +1158,11 @@
     :type:
     - Reference
   - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
   - :path: issued
-    :type:
-    - instant
   - :path: performer
     :type:
     - Reference
   - :path: presentedForm
-    :type:
-    - Attachment
 :mandatory_elements:
 - DiagnosticReport.status
 - DiagnosticReport.category

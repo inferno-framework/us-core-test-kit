@@ -45,16 +45,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: AllergyIntolerance.patient
+      :path:
+      - patient
+      :full_path:
+      - AllergyIntolerance.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :path: clinicalStatus
-      :full_path: AllergyIntolerance.clinicalStatus
+      :path:
+      - clinicalStatus
+      :full_path:
+      - AllergyIntolerance.clinicalStatus
       :comparators: {}
       :values:
       - active
@@ -74,23 +78,13 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
-      :type:
-      - CodeableConcept
     - :path: verificationStatus
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: patient
       :type:
       - Reference
     - :path: reaction
-      :type:
-      - BackboneElement
     - :path: reaction.manifestation
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - AllergyIntolerance.code
   - AllergyIntolerance.patient
@@ -223,16 +217,20 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: CarePlan.subject
+      :path:
+      - subject
+      :full_path:
+      - CarePlan.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: CarePlan.category
+      :path:
+      - category
+      :full_path:
+      - CarePlan.category
       :comparators: {}
       :values:
       - assess-plan
@@ -240,8 +238,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: CarePlan.status
+      :path:
+      - status
+      :full_path:
+      - CarePlan.status
       :comparators: {}
       :values:
       - draft
@@ -255,8 +255,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :date:
-      :path: period
-      :full_path: CarePlan.period
+      :path:
+      - period
+      :full_path:
+      - CarePlan.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -287,20 +289,10 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/careplan-category
     :elements:
     - :path: text
-      :type:
-      - Narrative
     - :path: text.status
-      :type:
-      - code
     - :path: status
-      :type:
-      - code
     - :path: intent
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
@@ -310,7 +302,6 @@
   - CarePlan.text.div
   - CarePlan.status
   - CarePlan.intent
-  - CarePlan.category
   - CarePlan.category
   - CarePlan.subject
   - CarePlan.activity.detail.status
@@ -485,16 +476,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: CareTeam.subject
+      :path:
+      - subject
+      :full_path:
+      - CareTeam.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: CareTeam.status
+      :path:
+      - status
+      :full_path:
+      - CareTeam.status
       :comparators: {}
       :values:
       - proposed
@@ -514,17 +509,11 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: subject
       :type:
       - Reference
     - :path: participant
-      :type:
-      - BackboneElement
     - :path: participant.role
-      :type:
-      - CodeableConcept
     - :path: participant.member
       :type:
       - Reference
@@ -643,16 +632,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Condition.subject
+      :path:
+      - subject
+      :full_path:
+      - Condition.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :path: onsetDateTime
-      :full_path: Condition.onsetDateTime
+      :path:
+      - onsetDateTime
+      :full_path:
+      - Condition.onsetDateTime
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -668,8 +661,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Condition.category
+      :path:
+      - category
+      :full_path:
+      - Condition.category
       :comparators: {}
       :values:
       - health-concern
@@ -677,8 +672,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :clinical-status:
-      :path: clinicalStatus
-      :full_path: Condition.clinicalStatus
+      :path:
+      - clinicalStatus
+      :full_path:
+      - Condition.clinicalStatus
       :comparators: {}
       :values:
       - active
@@ -691,8 +688,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path: code
-      :full_path: Condition.code
+      :path:
+      - code
+      :full_path:
+      - Condition.code
       :comparators: {}
       :values:
       - '160245001'
@@ -710,17 +709,9 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
-      :type:
-      - CodeableConcept
     - :path: verificationStatus
-      :type:
-      - CodeableConcept
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
@@ -841,16 +832,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: Device.patient
+      :path:
+      - patient
+      :full_path:
+      - Device.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: Device.type
+      :path:
+      - type
+      :full_path:
+      - Device.type
       :comparators: {}
       :values:
       - '156009'
@@ -1865,29 +1860,13 @@
     :slices: []
     :elements:
     - :path: udiCarrier
-      :type:
-      - BackboneElement
     - :path: udiCarrier.deviceIdentifier
-      :type:
-      - string
     - :path: distinctIdentifier
-      :type:
-      - string
     - :path: manufactureDate
-      :type:
-      - dateTime
     - :path: expirationDate
-      :type:
-      - dateTime
     - :path: lotNumber
-      :type:
-      - string
     - :path: serialNumber
-      :type:
-      - string
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: patient
       :type:
       - Reference
@@ -2012,16 +1991,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: DiagnosticReport.subject
+      :path:
+      - subject
+      :full_path:
+      - DiagnosticReport.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DiagnosticReport.category
+      :path:
+      - category
+      :full_path:
+      - DiagnosticReport.category
       :comparators: {}
       :values:
       - LP29684-5
@@ -2031,8 +2014,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
+      :path:
+      - effective
+      :full_path:
+      - DiagnosticReport.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2048,8 +2033,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DiagnosticReport.status
+      :path:
+      - status
+      :full_path:
+      - DiagnosticReport.status
       :comparators: {}
       :values:
       - registered
@@ -2066,8 +2053,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: DiagnosticReport.code
+      :path:
+      - code
+      :full_path:
+      - DiagnosticReport.code
       :comparators: {}
       :values:
       - 1-8
@@ -3082,14 +3071,8 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
@@ -3097,18 +3080,11 @@
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: issued
-      :type:
-      - instant
     - :path: performer
       :type:
       - Reference
     - :path: presentedForm
-      :type:
-      - Attachment
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -3251,16 +3227,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: DiagnosticReport.subject
+      :path:
+      - subject
+      :full_path:
+      - DiagnosticReport.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DiagnosticReport.category
+      :path:
+      - category
+      :full_path:
+      - DiagnosticReport.category
       :comparators: {}
       :values:
       - LAB
@@ -3268,8 +3248,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
+      :path:
+      - effective
+      :full_path:
+      - DiagnosticReport.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -3285,8 +3267,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DiagnosticReport.status
+      :path:
+      - status
+      :full_path:
+      - DiagnosticReport.status
       :comparators: {}
       :values:
       - registered
@@ -3303,8 +3287,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: DiagnosticReport.code
+      :path:
+      - code
+      :full_path:
+      - DiagnosticReport.code
       :comparators: {}
       :values:
       - 1-8
@@ -4325,24 +4311,13 @@
         :system: http://terminology.hl7.org/CodeSystem/v2-0074
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: issued
-      :type:
-      - instant
     - :path: performer
       :type:
       - Reference
@@ -4351,7 +4326,6 @@
       - Reference
   :mandatory_elements:
   - DiagnosticReport.status
-  - DiagnosticReport.category
   - DiagnosticReport.category
   - DiagnosticReport.code
   - DiagnosticReport.subject
@@ -4501,24 +4475,30 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: DocumentReference.id
+      :path:
+      - id
+      :full_path:
+      - DocumentReference.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :path: subject
-      :full_path: DocumentReference.subject
+      :path:
+      - subject
+      :full_path:
+      - DocumentReference.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: DocumentReference.type
+      :path:
+      - type
+      :full_path:
+      - DocumentReference.type
       :comparators: {}
       :values:
       - UNK
@@ -4526,8 +4506,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :period:
-      :path: context.period
-      :full_path: DocumentReference.context.period
+      :path:
+      - context.period
+      :full_path:
+      - DocumentReference.context.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4543,8 +4525,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DocumentReference.category
+      :path:
+      - category
+      :full_path:
+      - DocumentReference.category
       :comparators: {}
       :values:
       - 11369-6
@@ -4596,8 +4580,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: date
-      :full_path: DocumentReference.date
+      :path:
+      - date
+      :full_path:
+      - DocumentReference.date
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4613,8 +4599,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DocumentReference.status
+      :path:
+      - status
+      :full_path:
+      - DocumentReference.status
       :comparators: {}
       :values:
       - current
@@ -4633,23 +4621,13 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: status
-      :type:
-      - code
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: date
-      :type:
-      - instant
     - :path: author
       :type:
       - Reference
@@ -4657,26 +4635,14 @@
       :type:
       - Reference
     - :path: content
-      :type:
-      - BackboneElement
     - :path: content.attachment
-      :type:
-      - Attachment
     - :path: content.attachment.contentType
-      :type:
-      - code
     - :path: content.format
-      :type:
-      - Coding
     - :path: context
-      :type:
-      - BackboneElement
     - :path: context.encounter
       :type:
       - Reference
     - :path: context.period
-      :type:
-      - Period
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -4852,32 +4818,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: Encounter.id
+      :path:
+      - id
+      :full_path:
+      - Encounter.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Encounter.identifier
+      :path:
+      - identifier
+      :full_path:
+      - Encounter.identifier
       :comparators: {}
       :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
-      :path: subject
-      :full_path: Encounter.subject
+      :path:
+      - subject
+      :full_path:
+      - Encounter.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :class:
-      :path: class
-      :full_path: Encounter.class
+      :path:
+      - class
+      :full_path:
+      - Encounter.class
       :comparators: {}
       :values:
       - AMB
@@ -4895,8 +4869,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Encounter.status
+      :path:
+      - status
+      :full_path:
+      - Encounter.status
       :comparators: {}
       :values:
       - planned
@@ -4912,8 +4888,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: Encounter.type
+      :path:
+      - type
+      :full_path:
+      - Encounter.type
       :comparators: {}
       :values:
       - ADMS
@@ -4924,8 +4902,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: period
-      :full_path: Encounter.period
+      :path:
+      - period
+      :full_path:
+      - Encounter.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4949,53 +4929,25 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: status
-      :type:
-      - code
     - :path: class
-      :type:
-      - Coding
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: participant
-      :type:
-      - BackboneElement
     - :path: participant.type
-      :type:
-      - CodeableConcept
     - :path: participant.period
-      :type:
-      - Period
     - :path: participant.individual
       :type:
       - Reference
     - :path: period
-      :type:
-      - Period
     - :path: reasonCode
-      :type:
-      - CodeableConcept
     - :path: hospitalization
-      :type:
-      - BackboneElement
     - :path: hospitalization.dischargeDisposition
-      :type:
-      - CodeableConcept
     - :path: location
-      :type:
-      - BackboneElement
     - :path: location.location
       :type:
       - Reference
@@ -5200,16 +5152,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Goal.subject
+      :path:
+      - subject
+      :full_path:
+      - Goal.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :lifecycle-status:
-      :path: lifecycleStatus
-      :full_path: Goal.lifecycleStatus
+      :path:
+      - lifecycleStatus
+      :full_path:
+      - Goal.lifecycleStatus
       :comparators: {}
       :values:
       - proposed
@@ -5225,8 +5181,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :path: target.dueDate
-      :full_path: Goal.target.dueDate
+      :path:
+      - target.dueDate
+      :full_path:
+      - Goal.target.dueDate
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5255,17 +5213,11 @@
         :code: Date
     :elements:
     - :path: lifecycleStatus
-      :type:
-      - code
     - :path: description
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: target
-      :type:
-      - BackboneElement
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -5383,16 +5335,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: Immunization.patient
+      :path:
+      - patient
+      :full_path:
+      - Immunization.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path: occurrence
-      :full_path: Immunization.occurrence
+      :path:
+      - occurrence
+      :full_path:
+      - Immunization.occurrence
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5408,8 +5364,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Immunization.status
+      :path:
+      - status
+      :full_path:
+      - Immunization.status
       :comparators: {}
       :values:
       - completed
@@ -5427,24 +5385,13 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: statusReason
-      :type:
-      - CodeableConcept
     - :path: vaccineCode
-      :type:
-      - CodeableConcept
     - :path: patient
       :type:
       - Reference
     - :path: occurrence[x]
-      :type:
-      - dateTime
-      - string
     - :path: primarySource
-      :type:
-      - boolean
   :mandatory_elements:
   - Immunization.status
   - Immunization.vaccineCode
@@ -5594,32 +5541,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Location.name
+      :path:
+      - name
+      :full_path:
+      - Location.name
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path: address
-      :full_path: Location.address
+      :path:
+      - address
+      :full_path:
+      - Location.address
       :comparators: {}
       :values: []
       :type: Address
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
-      :path: address.city
-      :full_path: Location.address.city
+      :path:
+      - address.city
+      :full_path:
+      - Location.address.city
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
-      :path: address.state
-      :full_path: Location.address.state
+      :path:
+      - address.state
+      :full_path:
+      - Location.address.state
       :comparators: {}
       :values:
       - AK
@@ -5685,8 +5640,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
-      :path: address.postalCode
-      :full_path: Location.address.postalCode
+      :path:
+      - address.postalCode
+      :full_path:
+      - Location.address.postalCode
       :comparators: {}
       :values: []
       :type: string
@@ -5700,29 +5657,13 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: name
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: managingOrganization
       :type:
       - Reference
@@ -5825,8 +5766,6 @@
     :slices: []
     :elements:
     - :path: code
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - Medication.code
   - Medication.ingredient.item[x]
@@ -5912,16 +5851,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: MedicationRequest.subject
+      :path:
+      - subject
+      :full_path:
+      - MedicationRequest.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :intent:
-      :path: intent
-      :full_path: MedicationRequest.intent
+      :path:
+      - intent
+      :full_path:
+      - MedicationRequest.intent
       :comparators: {}
       :values:
       - proposal
@@ -5936,16 +5879,20 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :encounter:
-      :path: encounter
-      :full_path: MedicationRequest.encounter
+      :path:
+      - encounter
+      :full_path:
+      - MedicationRequest.encounter
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :authoredon:
-      :path: authoredOn
-      :full_path: MedicationRequest.authoredOn
+      :path:
+      - authoredOn
+      :full_path:
+      - MedicationRequest.authoredOn
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5961,8 +5908,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: MedicationRequest.status
+      :path:
+      - status
+      :full_path:
+      - MedicationRequest.status
       :comparators: {}
       :values:
       - active
@@ -5986,18 +5935,12 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: intent
-      :type:
-      - code
     - :path: reported[x]
       :type:
-      - boolean
       - Reference
     - :path: medication[x]
       :type:
-      - CodeableConcept
       - Reference
     - :path: subject
       :type:
@@ -6006,17 +5949,11 @@
       :type:
       - Reference
     - :path: authoredOn
-      :type:
-      - dateTime
     - :path: requester
       :type:
       - Reference
     - :path: dosageInstruction
-      :type:
-      - Dosage
     - :path: dosageInstruction.text
-      :type:
-      - string
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
@@ -6228,16 +6165,20 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - social-history
@@ -6253,8 +6194,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6270,8 +6213,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - final
@@ -6280,8 +6225,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 72166-2
@@ -6302,23 +6249,16 @@
         :code: CodeableConcept
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: issued
-      :type:
-      - instant
   :mandatory_elements:
   - Observation.status
   - Observation.code
   - Observation.subject
   - Observation.issued
-  - Observation.value[x]
   - Observation.value[x]
   - Observation.component.code
   :bindings:
@@ -6499,16 +6439,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -6516,8 +6460,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6533,8 +6479,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -6549,8 +6497,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 77606-2
@@ -6579,53 +6529,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 77606-2
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -6824,16 +6748,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - laboratory
@@ -6841,8 +6769,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6858,8 +6788,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -6874,8 +6806,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 1-8
@@ -7896,37 +7830,15 @@
         :system: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.code
   - Observation.subject
@@ -8109,16 +8021,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8126,8 +8042,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8143,8 +8061,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8159,8 +8079,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 59576-9
@@ -8189,53 +8111,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 59576-9
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -8434,16 +8330,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8451,8 +8351,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8468,8 +8370,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8484,8 +8388,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 2708-6
@@ -8538,106 +8444,51 @@
           :value: http://loinc.org
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: code.coding
-      :type:
-      - Coding
     - :path: code.coding.system
-      :type:
-      - uri
       :fixed_value: http://loinc.org
     - :path: code.coding.code
-      :type:
-      - code
       :fixed_value: 59408-5
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
     - :path: component
-      :type:
-      - BackboneElement
     - :path: component.code
-      :type:
-      - CodeableConcept
     - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 3151-8
     - :path: component.value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: L/min
     - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 3150-0
     - :path: component.value[x]
-      :type:
-      - Quantity
     - :path: component.value[x].value
-      :type:
-      - decimal
     - :path: component.value[x].unit
-      :type:
-      - string
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
   - Observation.category.coding.code
   - Observation.code
-  - Observation.code.coding
-  - Observation.code.coding.system
-  - Observation.code.coding.code
   - Observation.code.coding
   - Observation.code.coding.system
   - Observation.code.coding.code
@@ -8647,12 +8498,6 @@
   - Observation.value[x].unit
   - Observation.value[x].system
   - Observation.value[x].code
-  - Observation.component.code
-  - Observation.component.code
-  - Observation.component.value[x].value
-  - Observation.component.value[x].unit
-  - Observation.component.value[x].system
-  - Observation.component.value[x].code
   - Observation.component.code
   - Observation.component.value[x].value
   - Observation.component.value[x].unit
@@ -8873,16 +8718,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8890,8 +8739,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8907,8 +8758,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8923,8 +8776,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 8289-1
@@ -8953,53 +8808,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 8289-1
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9198,16 +9027,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9215,8 +9048,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9232,8 +9067,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9248,8 +9085,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 8302-2
@@ -9278,51 +9117,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9528,16 +9341,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9545,8 +9362,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9562,8 +9381,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9578,8 +9399,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 8310-5
@@ -9608,51 +9431,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9858,16 +9655,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9875,8 +9676,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9892,8 +9695,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9908,8 +9713,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 85354-9
@@ -9951,58 +9758,28 @@
           :value: http://loinc.org
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: component
-      :type:
-      - BackboneElement
     - :path: component.value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: mm[Hg]
     - :path: component.code
-      :type:
-      - CodeableConcept
     - :path: component.value[x]
-      :type:
-      - Quantity
     - :path: component.value[x].value
-      :type:
-      - decimal
     - :path: component.value[x].unit
-      :type:
-      - string
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10013,17 +9790,6 @@
   - Observation.code.coding.code
   - Observation.subject
   - Observation.effective[x]
-  - Observation.component
-  - Observation.component.code
-  - Observation.component
-  - Observation.component.code
-  - Observation.component.code.coding
-  - Observation.component.code.coding.system
-  - Observation.component.code.coding.code
-  - Observation.component.value[x].value
-  - Observation.component.value[x].unit
-  - Observation.component.value[x].system
-  - Observation.component.value[x].code
   - Observation.component
   - Observation.component.code
   - Observation.component.code.coding
@@ -10243,16 +10009,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10260,8 +10030,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10277,8 +10049,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -10293,8 +10067,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 29463-7
@@ -10323,51 +10099,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10573,16 +10323,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10590,8 +10344,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10607,8 +10363,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -10623,8 +10381,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 8867-4
@@ -10653,52 +10413,26 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10900,16 +10634,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :path:
+      - subject
+      :full_path:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :path:
+      - category
+      :full_path:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10917,8 +10655,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :path:
+      - effective
+      :full_path:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10934,8 +10674,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :path:
+      - status
+      :full_path:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -10950,8 +10692,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :path:
+      - code
+      :full_path:
+      - Observation.code
       :comparators: {}
       :values:
       - 9279-1
@@ -10980,52 +10724,26 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -11204,16 +10922,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Organization.name
+      :path:
+      - name
+      :full_path:
+      - Organization.name
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path: address
-      :full_path: Organization.address
+      :path:
+      - address
+      :full_path:
+      - Organization.address
       :comparators: {}
       :values: []
       :type: Address
@@ -11233,41 +10955,17 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: active
-      :type:
-      - boolean
     - :path: name
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: address.country
-      :type:
-      - string
   :mandatory_elements:
   - Organization.active
   - Organization.name
@@ -11387,32 +11085,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: Patient.id
+      :path:
+      - id
+      :full_path:
+      - Patient.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Patient.identifier
+      :path:
+      - identifier
+      :full_path:
+      - Patient.identifier
       :comparators: {}
       :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :name:
-      :path: name
-      :full_path: Patient.name
+      :path:
+      - name
+      :full_path:
+      - Patient.name
       :comparators: {}
       :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
     :birthdate:
-      :path: birthDate
-      :full_path: Patient.birthDate
+      :path:
+      - birthDate
+      :full_path:
+      - Patient.birthDate
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11428,16 +11134,20 @@
       :contains_multiple: false
       :multiple_or: MAY
     :family:
-      :path: name.family
-      :full_path: Patient.name.family
+      :path:
+      - name.family
+      :full_path:
+      - Patient.name.family
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :gender:
-      :path: gender
-      :full_path: Patient.gender
+      :path:
+      - gender
+      :full_path:
+      - Patient.gender
       :comparators: {}
       :values:
       - male
@@ -11462,65 +11172,25 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: name
-      :type:
-      - HumanName
     - :path: name.family
-      :type:
-      - string
     - :path: name.given
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: telecom.system
-      :type:
-      - code
     - :path: telecom.value
-      :type:
-      - string
     - :path: telecom.use
-      :type:
-      - code
     - :path: gender
-      :type:
-      - code
     - :path: birthDate
-      :type:
-      - date
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: address.period
-      :type:
-      - Period
     - :path: communication
-      :type:
-      - BackboneElement
     - :path: communication.language
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
@@ -11690,16 +11360,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Practitioner.name
+      :path:
+      - name
+      :full_path:
+      - Practitioner.name
       :comparators: {}
       :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Practitioner.identifier
+      :path:
+      - identifier
+      :full_path:
+      - Practitioner.identifier
       :comparators: {}
       :values: []
       :type: Identifier
@@ -11719,20 +11393,10 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: name
-      :type:
-      - HumanName
     - :path: name.family
-      :type:
-      - string
   :mandatory_elements:
   - Practitioner.identifier
   - Practitioner.identifier.system
@@ -11820,8 +11484,10 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :specialty:
-      :path: specialty
-      :full_path: PractitionerRole.specialty
+      :path:
+      - specialty
+      :full_path:
+      - PractitionerRole.specialty
       :comparators: {}
       :values:
       - '408467006'
@@ -11943,8 +11609,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :practitioner:
-      :path: practitioner
-      :full_path: PractitionerRole.practitioner
+      :path:
+      - practitioner
+      :full_path:
+      - PractitionerRole.practitioner
       :comparators: {}
       :values: []
       :type: Reference
@@ -11971,23 +11639,13 @@
       :type:
       - Reference
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: specialty
-      :type:
-      - CodeableConcept
     - :path: location
       :type:
       - Reference
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: telecom.system
-      :type:
-      - code
     - :path: telecom.value
-      :type:
-      - string
     - :path: endpoint
       :type:
       - Reference
@@ -12102,16 +11760,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Procedure.subject
+      :path:
+      - subject
+      :full_path:
+      - Procedure.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path: performed
-      :full_path: Procedure.performed
+      :path:
+      - performed
+      :full_path:
+      - Procedure.performed
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -12127,8 +11789,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Procedure.status
+      :path:
+      - status
+      :full_path:
+      - Procedure.status
       :comparators: {}
       :values:
       - preparation
@@ -12143,8 +11807,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Procedure.code
+      :path:
+      - code
+      :full_path:
+      - Procedure.code
       :comparators: {}
       :values:
       - '104001'
@@ -13159,18 +12825,11 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
       :type:
       - Reference
     - :path: performed[x]
-      :type:
-      - dateTime
-      - Period
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
@@ -13354,14 +13013,8 @@
       :type:
       - Reference
     - :path: recorded
-      :type:
-      - instant
     - :path: agent
-      :type:
-      - BackboneElement
     - :path: agent.type
-      :type:
-      - CodeableConcept
     - :path: agent.who
       :type:
       - Reference
@@ -13369,12 +13022,8 @@
       :type:
       - Reference
     - :path: agent.type.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: author
     - :path: agent.type.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: transmitter
   :mandatory_elements:
   - Provenance.target
@@ -13382,9 +13031,6 @@
   - Provenance.agent
   - Provenance.agent.who
   - Provenance.agent.type
-  - Provenance.agent.who
-  - Provenance.agent.type
-  - Provenance.agent.who
   - Provenance.entity.role
   - Provenance.entity.what
   :bindings:

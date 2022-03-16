@@ -56,17 +56,9 @@
     :type:
     - Reference
   - :path: target.reference
-    :type:
-    - string
   - :path: recorded
-    :type:
-    - instant
   - :path: agent
-    :type:
-    - BackboneElement
   - :path: agent.type
-    :type:
-    - CodeableConcept
   - :path: agent.who
     :type:
     - Reference
@@ -76,12 +68,8 @@
     :type:
     - Reference
   - :path: agent.type.coding.code
-    :type:
-    - CodeableConcept
     :fixed_value: author
   - :path: agent.type.coding.code
-    :type:
-    - CodeableConcept
     :fixed_value: transmitter
 :mandatory_elements:
 - Provenance.target
@@ -90,9 +78,6 @@
 - Provenance.agent
 - Provenance.agent.who
 - Provenance.agent.type
-- Provenance.agent.who
-- Provenance.agent.type
-- Provenance.agent.who
 - Provenance.entity.role
 - Provenance.entity.what
 :bindings:

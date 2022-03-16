@@ -59,16 +59,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: MedicationRequest.subject
+    :path:
+    - subject
+    :full_path:
+    - MedicationRequest.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :intent:
-    :path: intent
-    :full_path: MedicationRequest.intent
+    :path:
+    - intent
+    :full_path:
+    - MedicationRequest.intent
     :comparators: {}
     :values:
     - proposal
@@ -83,16 +87,20 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :encounter:
-    :path: encounter
-    :full_path: MedicationRequest.encounter
+    :path:
+    - encounter
+    :full_path:
+    - MedicationRequest.encounter
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :authoredon:
-    :path: authoredOn
-    :full_path: MedicationRequest.authoredOn
+    :path:
+    - authoredOn
+    :full_path:
+    - MedicationRequest.authoredOn
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -108,8 +116,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: MedicationRequest.status
+    :path:
+    - status
+    :full_path:
+    - MedicationRequest.status
     :comparators: {}
     :values:
     - active
@@ -133,18 +143,12 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: intent
-    :type:
-    - code
   - :path: reported[x]
     :type:
-    - boolean
     - Reference
   - :path: medication[x]
     :type:
-    - CodeableConcept
     - Reference
   - :path: subject
     :type:
@@ -153,17 +157,11 @@
     :type:
     - Reference
   - :path: authoredOn
-    :type:
-    - dateTime
   - :path: requester
     :type:
     - Reference
   - :path: dosageInstruction
-    :type:
-    - Dosage
   - :path: dosageInstruction.text
-    :type:
-    - string
 :mandatory_elements:
 - MedicationRequest.status
 - MedicationRequest.intent

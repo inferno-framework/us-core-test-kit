@@ -67,16 +67,20 @@
   :must_support_or_mandatory: false
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Observation.subject
+    :path:
+    - subject
+    :full_path:
+    - Observation.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: Observation.category
+    :path:
+    - category
+    :full_path:
+    - Observation.category
     :comparators: {}
     :values:
     - social-history
@@ -84,8 +88,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Observation.status
+    :path:
+    - status
+    :full_path:
+    - Observation.status
     :comparators: {}
     :values:
     - final
@@ -94,8 +100,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: Observation.code
+    :path:
+    - code
+    :full_path:
+    - Observation.code
     :comparators: {}
     :values:
     - 72166-2
@@ -103,8 +111,10 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :path: effective
-    :full_path: Observation.effective
+    :path:
+    - effective
+    :full_path:
+    - Observation.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -145,26 +155,17 @@
       :code: CodeableConcept
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
 :mandatory_elements:
 - Observation.status
 - Observation.category
-- Observation.category
 - Observation.code
 - Observation.subject
 - Observation.effective[x]
-- Observation.effective[x]
-- Observation.value[x]
 - Observation.value[x]
 - Observation.component.code
 :bindings:

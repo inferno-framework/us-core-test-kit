@@ -49,16 +49,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Goal.subject
+    :path:
+    - subject
+    :full_path:
+    - Goal.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :lifecycle-status:
-    :path: lifecycleStatus
-    :full_path: Goal.lifecycleStatus
+    :path:
+    - lifecycleStatus
+    :full_path:
+    - Goal.lifecycleStatus
     :comparators: {}
     :values:
     - proposed
@@ -74,8 +78,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :target-date:
-    :path: target.dueDate
-    :full_path: Goal.target.dueDate
+    :path:
+    - target.dueDate
+    :full_path:
+    - Goal.target.dueDate
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -104,17 +110,11 @@
       :code: Date
   :elements:
   - :path: lifecycleStatus
-    :type:
-    - code
   - :path: description
-    :type:
-    - CodeableConcept
   - :path: subject
     :type:
     - Reference
   - :path: target
-    :type:
-    - BackboneElement
 :mandatory_elements:
 - Goal.lifecycleStatus
 - Goal.description
