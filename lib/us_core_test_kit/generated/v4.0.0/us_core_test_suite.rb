@@ -25,7 +25,7 @@ require_relative 'body_weight_group'
 require_relative 'body_temperature_group'
 require_relative 'heart_rate_group'
 require_relative 'pediatric_bmi_for_age_group'
-require_relative 'head_circumference_group'
+require_relative 'head_circumference_percentile_group'
 require_relative 'pediatric_weight_for_height_group'
 require_relative 'pulse_oximetry_group'
 require_relative 'respiratory_rate_group'
@@ -101,7 +101,7 @@ module USCoreTestKit
       group from: :us_core_v400_body_temperature
       group from: :us_core_v400_heart_rate
       group from: :us_core_v400_pediatric_bmi_for_age
-      group from: :us_core_v400_head_circumference
+      group from: :us_core_v400_head_circumference_percentile
       group from: :us_core_v400_pediatric_weight_for_height
       group from: :us_core_v400_pulse_oximetry
       group from: :us_core_v400_respiratory_rate

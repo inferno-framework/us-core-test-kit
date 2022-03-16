@@ -1,15 +1,15 @@
 require_relative '../../../validation_test'
 
 module USCoreTestKit
-  module USCoreV400
-    class HeadCircumferenceValidationTest < Inferno::Test
+  module USCoreV311
+    class HeadCircumferencePercentileValidationTest < Inferno::Test
       include USCoreTestKit::ValidationTest
 
-      id :us_core_v400_head_circumference_validation_test
-      title 'Observation resources returned during previous tests conform to the US Core Head Circumference Profile'
+      id :us_core_v311_head_circumference_percentile_validation_test
+      title 'Observation resources returned during previous tests conform to the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile'
       description %(
   This test verifies resources returned from the first search conform to
-the [US Core Head Circumference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference).
+the [US Core Pediatric Head Occipital-frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile).
 
 It verifies the presence of mandatory elements and that elements with
 required bindings contain appropriate values. CodeableConcept element
@@ -25,11 +25,11 @@ fail if their code/system are not found in the valueset.
       end
 
       def scratch_resources
-        scratch[:head_circumference_resources] ||= {}
+        scratch[:head_circumference_percentile_resources] ||= {}
       end
 
       run do
-        perform_validation_test(scratch_resources[:all] || [], 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference')
+        perform_validation_test(scratch_resources[:all] || [], 'http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile')
       end
     end
   end

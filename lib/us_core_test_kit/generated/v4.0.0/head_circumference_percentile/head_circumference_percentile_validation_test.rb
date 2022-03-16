@@ -1,11 +1,11 @@
 require_relative '../../../validation_test'
 
 module USCoreTestKit
-  module USCoreV311
-    class HeadCircumferenceValidationTest < Inferno::Test
+  module USCoreV400
+    class HeadCircumferencePercentileValidationTest < Inferno::Test
       include USCoreTestKit::ValidationTest
 
-      id :us_core_v311_head_circumference_validation_test
+      id :us_core_v400_head_circumference_percentile_validation_test
       title 'Observation resources returned during previous tests conform to the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile'
       description %(
   This test verifies resources returned from the first search conform to
@@ -25,7 +25,7 @@ fail if their code/system are not found in the valueset.
       end
 
       def scratch_resources
-        scratch[:head_circumference_resources] ||= {}
+        scratch[:head_circumference_percentile_resources] ||= {}
       end
 
       run do

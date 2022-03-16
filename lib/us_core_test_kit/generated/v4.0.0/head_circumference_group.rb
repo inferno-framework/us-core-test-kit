@@ -12,14 +12,14 @@ require_relative 'head_circumference/head_circumference_reference_resolution_tes
 module USCoreTestKit
   module USCoreV400
     class HeadCircumferenceGroup < Inferno::TestGroup
-      title 'Pediatric Head Occipital-frontal Circumference Percentile Tests'
-      short_description 'Verify support for the server capabilities required by the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile.'
+      title 'Head Circumference Tests'
+      short_description 'Verify support for the server capabilities required by the US Core Head Circumference Profile.'
       description %(
   # Background
 
-The US Core Pediatric Head Occipital-frontal Circumference Percentile sequence verifies that the system under test is
+The US Core Head Circumference sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
-must contain resources conforming to the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile as
+must contain resources conforming to the US Core Head Circumference Profile as
 specified in the US Core v4.0.0 Implementation Guide.
 
 # Testing Methodology
@@ -59,7 +59,7 @@ elements.
 
 ## Profile Validation
 Each resource returned from the first search is expected to conform to
-the [US Core Pediatric Head Occipital-frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile). Each element is checked against
+the [US Core Head Circumference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference). Each element is checked against
 teminology binding and cardinality requirements.
 
 Elements with a required binding are validated against their bound

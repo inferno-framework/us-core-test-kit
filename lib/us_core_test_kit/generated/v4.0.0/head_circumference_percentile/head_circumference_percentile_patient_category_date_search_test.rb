@@ -2,8 +2,8 @@ require_relative '../../../search_test'
 require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
-  module USCoreV311
-    class HeadCircumferencePatientCategoryDateSearchTest < Inferno::Test
+  module USCoreV400
+    class HeadCircumferencePercentilePatientCategoryDateSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns valid results for Observation search by patient + category + date'
@@ -13,11 +13,11 @@ patient + category + date on the Observation resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
-[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU4/CapabilityStatement-us-core-server.html)
 
       )
 
-      id :us_core_v311_head_circumference_patient_category_date_search_test
+      id :us_core_v400_head_circumference_percentile_patient_category_date_search_test
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
@@ -37,7 +37,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:head_circumference_resources] ||= {}
+        scratch[:head_circumference_percentile_resources] ||= {}
       end
 
       run do

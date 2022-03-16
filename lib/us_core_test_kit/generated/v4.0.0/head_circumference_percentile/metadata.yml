@@ -1,8 +1,8 @@
 ---
 :name: head_occipital_frontal_circumference_percentile
 :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
-:version: v3.1.1
-:reformatted_version: v311
+:version: v4.0.0
+:reformatted_version: v400
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile
 :profile_name: US Core Pediatric Head Occipital-frontal Circumference Percentile Profile
@@ -36,13 +36,6 @@
   - code
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -61,6 +54,13 @@
   :names:
   - patient
   - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -84,25 +84,6 @@
     - vital-signs
     :type: CodeableConcept
     :contains_multiple: true
-    :multiple_or: MAY
-  :date:
-    :path:
-    - effective
-    :full_path:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
-    :contains_multiple: false
     :multiple_or: MAY
   :status:
     :path:
@@ -133,6 +114,25 @@
     :type: CodeableConcept
     :contains_multiple: false
     :multiple_or: SHOULD
+  :date:
+    :path:
+    - effective
+    :full_path:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -167,7 +167,8 @@
   - :path: subject
     :type:
     - Reference
-  - :path: effective[x]
+  - :path: effectiveDateTime
+    :original_path: effective[x]
   - :path: value[x]
   - :path: value[x].value
   - :path: value[x].unit
@@ -208,7 +209,7 @@
   :path: category
 - :type: CodeableConcept
   :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/observation-vitalsignresult
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
   :path: code
 - :type: code
   :strength: required
@@ -240,10 +241,10 @@
   :path: referenceRange.appliesTo
 - :type: CodeableConcept
   :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/observation-vitalsignresult
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
   :path: component.code
 - :type: Quantity
-  :strength: required
+  :strength: extensible
   :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
   :path: component.value
 - :type: CodeableConcept
@@ -309,26 +310,26 @@
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
   - http://hl7.org/fhir/StructureDefinition/vitalsigns
 :tests:
-- :id: us_core_v311_head_circumference_patient_code_search_test
-  :file_name: head_circumference_patient_code_search_test.rb
-- :id: us_core_v311_head_circumference_patient_category_date_search_test
-  :file_name: head_circumference_patient_category_date_search_test.rb
-- :id: us_core_v311_head_circumference_patient_category_status_search_test
-  :file_name: head_circumference_patient_category_status_search_test.rb
-- :id: us_core_v311_head_circumference_patient_code_date_search_test
-  :file_name: head_circumference_patient_code_date_search_test.rb
-- :id: us_core_v311_head_circumference_patient_category_search_test
-  :file_name: head_circumference_patient_category_search_test.rb
-- :id: us_core_v311_head_circumference_read_test
-  :file_name: head_circumference_read_test.rb
-- :id: us_core_v311_head_circumference_provenance_revinclude_search_test
-  :file_name: head_circumference_provenance_revinclude_search_test.rb
-- :id: us_core_v311_head_circumference_validation_test
-  :file_name: head_circumference_validation_test.rb
-- :id: us_core_v311_head_circumference_must_support_test
-  :file_name: head_circumference_must_support_test.rb
-- :id: us_core_v311_head_circumference_reference_resolution_test
-  :file_name: head_circumference_reference_resolution_test.rb
-:id: us_core_v311_head_circumference
-:file_name: head_circumference_group.rb
+- :id: us_core_v400_head_circumference_percentile_patient_code_search_test
+  :file_name: head_circumference_percentile_patient_code_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_patient_category_status_search_test
+  :file_name: head_circumference_percentile_patient_category_status_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_patient_code_date_search_test
+  :file_name: head_circumference_percentile_patient_code_date_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_patient_category_search_test
+  :file_name: head_circumference_percentile_patient_category_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_patient_category_date_search_test
+  :file_name: head_circumference_percentile_patient_category_date_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_read_test
+  :file_name: head_circumference_percentile_read_test.rb
+- :id: us_core_v400_head_circumference_percentile_provenance_revinclude_search_test
+  :file_name: head_circumference_percentile_provenance_revinclude_search_test.rb
+- :id: us_core_v400_head_circumference_percentile_validation_test
+  :file_name: head_circumference_percentile_validation_test.rb
+- :id: us_core_v400_head_circumference_percentile_must_support_test
+  :file_name: head_circumference_percentile_must_support_test.rb
+- :id: us_core_v400_head_circumference_percentile_reference_resolution_test
+  :file_name: head_circumference_percentile_reference_resolution_test.rb
+:id: us_core_v400_head_circumference_percentile
+:file_name: head_circumference_percentile_group.rb
 :delayed_references: []
