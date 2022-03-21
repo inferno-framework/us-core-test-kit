@@ -7,11 +7,17 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'Every reference within MedicationRequest resources can be read'
+      title 'MustSupport reference within MedicationRequest resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
-        resources from the first search. The test will skip if Inferno fails to
-        read any of those references.
+        resources from the first search. This test will look through the MedicationRequest resources
+        found previously for the following must support elements:
+
+        * MedicationRequest.encounter
+      * MedicationRequest.medication[x]
+      * MedicationRequest.reported[x]
+      * MedicationRequest.requester
+      * MedicationRequest.subject
       )
 
       id :us_core_v311_medication_request_reference_resolution_test

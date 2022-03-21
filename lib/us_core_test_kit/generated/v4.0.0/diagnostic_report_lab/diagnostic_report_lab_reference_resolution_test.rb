@@ -7,11 +7,15 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'Every reference within DiagnosticReport resources can be read'
+      title 'MustSupport reference within DiagnosticReport resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
-        resources from the first search. The test will skip if Inferno fails to
-        read any of those references.
+        resources from the first search. This test will look through the DiagnosticReport resources
+        found previously for the following must support elements:
+
+        * DiagnosticReport.performer
+      * DiagnosticReport.result
+      * DiagnosticReport.subject
       )
 
       id :us_core_v400_diagnostic_report_lab_reference_resolution_test

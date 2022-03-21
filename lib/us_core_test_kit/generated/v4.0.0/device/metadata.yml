@@ -1072,6 +1072,7 @@
   :elements:
   - :path: udiCarrier
   - :path: udiCarrier.deviceIdentifier
+  - :path: udiCarrier.carrierHRF
   - :path: manufactureDate
   - :path: expirationDate
   - :path: lotNumber

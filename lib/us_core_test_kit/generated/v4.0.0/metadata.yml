@@ -1871,6 +1871,7 @@
     :elements:
     - :path: udiCarrier
     - :path: udiCarrier.deviceIdentifier
+    - :path: udiCarrier.carrierHRF
     - :path: manufactureDate
     - :path: expirationDate
     - :path: lotNumber
@@ -13958,6 +13959,7 @@
       - Reference
       :target_profile:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: agent.onBehalfOf
       :type:
       - Reference

@@ -7,11 +7,13 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'Every reference within Device resources can be read'
+      title 'MustSupport reference within Device resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
-        resources from the first search. The test will skip if Inferno fails to
-        read any of those references.
+        resources from the first search. This test will look through the Device resources
+        found previously for the following must support elements:
+
+        * Device.patient
       )
 
       id :us_core_v311_device_reference_resolution_test

@@ -63,6 +63,15 @@ module USCoreTestKit
         'scratch_resources[:all]'
       end
 
+      def must_support_reference_list_string
+        element_names = group_metadata.must_supports[:elements]
+          .select { |element| element[:type]&.include?('Reference') }
+          .map { |element| "      * #{resource_type}.#{element[:path]}" }
+          .uniq
+          .sort
+          .join("\n")
+      end
+
       def generate
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }

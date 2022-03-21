@@ -20,6 +20,7 @@ module USCoreTestKit
       * Device.serialNumber
       * Device.type
       * Device.udiCarrier
+      * Device.udiCarrier.carrierHRF
       * Device.udiCarrier.deviceIdentifier
       )
 

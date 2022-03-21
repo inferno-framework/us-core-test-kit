@@ -116,17 +116,6 @@ module USCoreTestKit
 
       def handle_special_cases
         set_first_search
-
-        case profile_url
-        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device'
-          must_supports[:elements].delete_if do |element|
-            ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include? element[:path]
-          end
-        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference'
-          must_supports[:elements].delete_if do |element|
-            ['content.attachment.data', 'content.attachment.url'].include? element[:path]
-          end
-        end
       end
 
       def set_first_search

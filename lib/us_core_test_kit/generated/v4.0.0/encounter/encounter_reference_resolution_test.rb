@@ -7,11 +7,17 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'Every reference within Encounter resources can be read'
+      title 'MustSupport reference within Encounter resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
-        resources from the first search. The test will skip if Inferno fails to
-        read any of those references.
+        resources from the first search. This test will look through the Encounter resources
+        found previously for the following must support elements:
+
+        * Encounter.location.location
+      * Encounter.participant.individual
+      * Encounter.reasonReference
+      * Encounter.serviceProvider
+      * Encounter.subject
       )
 
       id :us_core_v400_encounter_reference_resolution_test
