@@ -57,7 +57,8 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
+    :path: 
+    - subject
     :full_path: MedicationRequest.subject
     :comparators: {}
     :values: []
@@ -65,7 +66,8 @@
     :contains_multiple: false
     :multiple_or: MAY
   :intent:
-    :path: intent
+    :path: 
+    - intent
     :full_path: MedicationRequest.intent
     :comparators: {}
     :values:
@@ -81,7 +83,8 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :encounter:
-    :path: encounter
+    :path: 
+    - encounter
     :full_path: MedicationRequest.encounter
     :comparators: {}
     :values: []
@@ -89,7 +92,8 @@
     :contains_multiple: false
     :multiple_or: MAY
   :authoredon:
-    :path: authoredOn
+    :path: 
+    - authoredOn
     :full_path: MedicationRequest.authoredOn
     :comparators:
       :eq: MAY
@@ -106,7 +110,8 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
+    :path: 
+    - status
     :full_path: MedicationRequest.status
     :comparators: {}
     :values:
