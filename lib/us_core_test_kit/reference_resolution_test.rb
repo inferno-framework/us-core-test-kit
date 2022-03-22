@@ -19,7 +19,13 @@ module USCoreTestKit
     end    
 
     def unresolved_references_strings
-      unresolved_references.map { |missing| "#{missing[:path]}#{"(#{missing[:profile].join('|')})" unless missing[:profile].empty? } " }
+      hash ={}
+      unresolved_references.each do |missing|
+        path = missing[:path]
+        hash[path] = [] unless hash.key?(path)
+        hash[path] << missing[:target_profile] unless missing[:target_profile].empty?
+      end
+      hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.empty? }" }
     end
 
     def all_scratch_resources
@@ -43,41 +49,46 @@ module USCoreTestKit
       metadata.must_supports[:elements].select{ |element_definition| element_definition[:type]&.include?('Reference') }
     end
 
+    def must_support_references_with_target_profile
+      must_support_references.map do | element_definition|
+        result = (element_definition[:target_profile] || ['']).map do |target_profile|
+          {
+            path: element_definition[:path], 
+            target_profile: target_profile
+          }
+        end
+      end.flatten
+    end
+
     def unresolved_references(resources = [])
-      target_profiles = []
       @unresolved_references ||=
-        must_support_references.select do |element_definition|
+        must_support_references_with_target_profile.select do |element_definition|
           path = element_definition[:path]
-          target_profiles = (element_definition[:target_profile] || []).clone
+          target_profile = element_definition[:target_profile]
           invalid_references = Set.new
 
           found_one_reference = false
+          resolved_one_reference = false
+           
 
-          resolve_one_reference = resources.any? do |resource|
-            value_found = find_a_value_at(resource, path) do |value|
-              value.class == FHIR::Reference
-            end
-
-            next if value_found.nil?
+          resolve_one_reference = resources.any? do |resource|   
+            value_found = resolve_path(resource, path)
+            next if value_found.empty?
 
             found_one_reference = true
+            
 
-            validate_reference_resolution(resource, value_found, target_profiles, invalid_references)
+            value_found.any? do |reference|
+              validate_reference_resolution(resource, reference, target_profile, invalid_references)             
+            end
           end
 
           found_one_reference && !resolve_one_reference
         end
-        .map do |element| 
-          {
-            path: element[:path],
-            profile: target_profiles || []
-          }
-        end
     end
 
-    def validate_reference_resolution(resource, reference, target_profiles, invalid_references)
-      return true if resolved_references.include?(reference.reference) && target_profiles.empty?
-      return false if invalid_references.include?(reference.reference) && target_profiles.present?
+    def validate_reference_resolution(resource, reference, target_profile, invalid_references)
+      return true if resolved_references.include?(reference.reference) && target_profile.empty?
 
       if reference.contained?
         # if reference_id is blank it is referring to itself, so we know it exists
@@ -107,11 +118,10 @@ module USCoreTestKit
       end
 
       if resolved_resource&.resourceType == reference_type 
-        if resource_is_valid_with_target_profile?(resolved_resource, target_profiles)
+        if resource_is_valid_with_target_profile?(resolved_resource, target_profile)
           record_resolved_reference(reference)
           return true
         else
-          invalid_references.add?(reference.reference)
           return false
         end
       else
@@ -119,14 +129,9 @@ module USCoreTestKit
       end
     end
 
-    def resource_is_valid_with_target_profile?(resource, target_profiles)
-      return true if target_profiles.empty? 
-      
-      validated_profile_url = target_profiles.find { |profile_url| resource_is_valid?(resource: resource, profile_url: profile_url)}
-
-      target_profiles.delete_if { |profile_url| profile_url == validated_profile_url}
-
-      return validated_profile_url.present?
+    def resource_is_valid_with_target_profile?(resource, target_profile)
+      return true if target_profile.empty?
+      resource_is_valid?(resource: resource, profile_url: target_profile)
     end
   end
 end
