@@ -35,7 +35,7 @@ module USCoreTestKit
       end
 
       run do
-        perform_reference_resolution_test(scratch_resources[:all])
+        perform_reference_resolution_test
       end
     end
   end

@@ -7,18 +7,23 @@ module USCoreTestKit
 
     def_delegators 'self.class', :metadata
 
-    def perform_reference_resolution_test(resources)
-      skip_if resources.blank?, no_resources_skip_message
+    def perform_reference_resolution_test
+      #require 'pry'; require 'pry-byebug'; binding.pry
+      skip_if all_scratch_resources.blank?, no_resources_skip_message
 
-      if unresolved_references(resources).length.zero?
+      if unresolved_references(all_scratch_resources).length.zero?
         pass
       end
 
       skip "Could not resolve Must Support references #{unresolved_references_strings.join(', ')}"
-    end
+    end    
 
     def unresolved_references_strings
       unresolved_references.map { |missing| "#{missing[:path]}#{"(#{missing[:profile].join('|')})" unless missing[:profile].empty? } " }
+    end
+
+    def all_scratch_resources
+      scratch_resources[:all] ||= []
     end
 
     def record_resolved_reference(reference)
@@ -71,7 +76,6 @@ module USCoreTestKit
     end
 
     def validate_reference_resolution(resource, reference, target_profiles, invalid_references)
-      require 'pry'; require 'pry-byebug'; binding.pry
       return true if resolved_references.include?(reference.reference) && target_profiles.empty?
       return false if invalid_references.include?(reference.reference) && target_profiles.present?
 
