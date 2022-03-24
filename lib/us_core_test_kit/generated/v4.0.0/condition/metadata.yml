@@ -85,10 +85,10 @@
   :onset-date:
     :path:
     - onsetDateTime
-    - onsetDateTime
+    - onsetPeriod
     :full_path:
     - Condition.onsetDateTime
-    - Condition.onsetDateTime
+    - Condition.onsetPeriod
     :comparators:
       :eq: MAY
       :ne: MAY

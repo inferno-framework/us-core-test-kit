@@ -37,8 +37,9 @@ module USCoreTestKit
           begin
             path = param.expression.gsub(/.where\((.*)/, '')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
-            as_type = path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.first
-            path.gsub!(/[. ]as[( ]([^)]*)[)]?/, as_type.upcase_first) if as_type.present?
+            path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
+              path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
+            end
             path.split('|')
           end
       end
