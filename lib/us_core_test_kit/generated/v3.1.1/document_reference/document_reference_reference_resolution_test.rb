@@ -13,10 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the DocumentReference resources
         found previously for the following must support elements:
 
-        * DocumentReference.author
-      * DocumentReference.context.encounter
-      * DocumentReference.custodian
-      * DocumentReference.subject
+  
       )
 
       id :us_core_v311_document_reference_reference_resolution_test

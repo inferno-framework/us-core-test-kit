@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Device resources
         found previously for the following must support elements:
 
-        * Device.patient
+  
       )
 
       id :us_core_v400_device_reference_resolution_test

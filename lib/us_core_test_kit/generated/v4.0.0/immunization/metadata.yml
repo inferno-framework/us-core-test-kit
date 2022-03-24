@@ -102,7 +102,7 @@
   - :path: statusReason
   - :path: vaccineCode
   - :path: patient
-    :type:
+    :types:
     - Reference
   - :path: occurrenceDateTime
     :original_path: occurrence[x]

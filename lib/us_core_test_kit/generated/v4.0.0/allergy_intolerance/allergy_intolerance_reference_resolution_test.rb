@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the AllergyIntolerance resources
         found previously for the following must support elements:
 
-        * AllergyIntolerance.patient
+  
       )
 
       id :us_core_v400_allergy_intolerance_reference_resolution_test

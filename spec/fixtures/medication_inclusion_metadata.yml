@@ -145,20 +145,20 @@
   - :path: status
   - :path: intent
   - :path: reported[x]
-    :type:
+    :types:
     - Reference
   - :path: medication[x]
-    :type:
+    :types:
     - Reference
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: encounter
-    :type:
+    :types:
     - Reference
   - :path: authoredOn
   - :path: requester
-    :type:
+    :types:
     - Reference
   - :path: dosageInstruction
   - :path: dosageInstruction.text

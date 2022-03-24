@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Goal resources
         found previously for the following must support elements:
 
-        * Goal.subject
+  
       )
 
       id :us_core_v311_goal_reference_resolution_test

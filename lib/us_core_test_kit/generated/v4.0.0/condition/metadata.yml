@@ -146,7 +146,7 @@
   - :path: category
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - Condition.category

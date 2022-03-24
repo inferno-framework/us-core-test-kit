@@ -13,8 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the CareTeam resources
         found previously for the following must support elements:
 
-        * CareTeam.participant.member
-      * CareTeam.subject
+  
       )
 
       id :us_core_v400_care_team_reference_resolution_test

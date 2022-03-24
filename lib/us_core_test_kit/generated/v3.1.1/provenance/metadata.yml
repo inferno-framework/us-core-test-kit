@@ -53,16 +53,16 @@
       :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type
   :elements:
   - :path: target
-    :type:
+    :types:
     - Reference
   - :path: recorded
   - :path: agent
   - :path: agent.type
   - :path: agent.who
-    :type:
+    :types:
     - Reference
   - :path: agent.onBehalfOf
-    :type:
+    :types:
     - Reference
   - :path: agent.type.coding.code
     :fixed_value: author

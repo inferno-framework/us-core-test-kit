@@ -1152,16 +1152,16 @@
   - :path: category
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: encounter
-    :type:
+    :types:
     - Reference
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: issued
   - :path: performer
-    :type:
+    :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner

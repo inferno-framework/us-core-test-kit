@@ -154,17 +154,17 @@
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: medication[x]
-    :type:
+    :types:
     - Reference
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: encounter
-    :type:
+    :types:
     - Reference
   - :path: authoredOn
   - :path: requester
-    :type:
+    :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner

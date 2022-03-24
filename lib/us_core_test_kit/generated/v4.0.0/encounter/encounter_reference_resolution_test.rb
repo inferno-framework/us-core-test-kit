@@ -13,11 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Encounter resources
         found previously for the following must support elements:
 
-        * Encounter.location.location
-      * Encounter.participant.individual
-      * Encounter.reasonReference
-      * Encounter.serviceProvider
-      * Encounter.subject
+  
       )
 
       id :us_core_v400_encounter_reference_resolution_test

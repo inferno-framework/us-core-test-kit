@@ -139,7 +139,7 @@
   - :path: intent
   - :path: category
   - :path: subject
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - CarePlan.text

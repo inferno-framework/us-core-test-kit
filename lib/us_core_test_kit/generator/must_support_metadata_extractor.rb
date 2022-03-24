@@ -255,8 +255,8 @@ module USCoreTestKit
             else
               handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
 
-              supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
-              current_metadata[:type] = supported_type if supported_type.present?
+              supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
+              current_metadata[:types] = supported_types if supported_types.present?
               
               handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 

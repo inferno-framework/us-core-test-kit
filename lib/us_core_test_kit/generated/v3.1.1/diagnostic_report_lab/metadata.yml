@@ -1157,15 +1157,15 @@
   - :path: category
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effective[x]
   - :path: issued
   - :path: performer
-    :type:
+    :types:
     - Reference
   - :path: result
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - DiagnosticReport.status

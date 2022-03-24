@@ -189,7 +189,7 @@
   - :path: code
   - :path: code.coding
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effectiveDateTime
     :original_path: effective[x]

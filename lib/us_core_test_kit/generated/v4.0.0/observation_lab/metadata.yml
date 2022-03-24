@@ -1151,7 +1151,7 @@
   - :path: category
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effectiveDateTime
     :original_path: effective[x]

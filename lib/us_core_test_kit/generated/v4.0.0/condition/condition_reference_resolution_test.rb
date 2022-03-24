@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Condition resources
         found previously for the following must support elements:
 
-        * Condition.subject
+  
       )
 
       id :us_core_v400_condition_reference_resolution_test

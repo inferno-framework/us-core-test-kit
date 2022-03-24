@@ -165,7 +165,7 @@
   - :path: code.coding.code
     :fixed_value: 77606-2
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effective[x]
   - :path: value[x]

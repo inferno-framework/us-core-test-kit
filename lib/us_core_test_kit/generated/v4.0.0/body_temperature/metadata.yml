@@ -165,7 +165,7 @@
   - :path: code.coding.code
     :fixed_value: 8310-5
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effectiveDateTime
     :original_path: effective[x]

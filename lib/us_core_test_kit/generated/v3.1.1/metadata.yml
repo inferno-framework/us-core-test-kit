@@ -81,7 +81,7 @@
     - :path: verificationStatus
     - :path: code
     - :path: patient
-      :type:
+      :types:
       - Reference
     - :path: reaction
     - :path: reaction.manifestation
@@ -294,7 +294,7 @@
     - :path: intent
     - :path: category
     - :path: subject
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - CarePlan.text
@@ -510,12 +510,12 @@
     :elements:
     - :path: status
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: participant
     - :path: participant.role
     - :path: participant.member
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - CareTeam.subject
@@ -713,7 +713,7 @@
     - :path: category
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Condition.category
@@ -1868,7 +1868,7 @@
     - :path: serialNumber
     - :path: type
     - :path: patient
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
@@ -3074,15 +3074,15 @@
     - :path: category
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: encounter
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: issued
     - :path: performer
-      :type:
+      :types:
       - Reference
     - :path: presentedForm
   :mandatory_elements:
@@ -4314,15 +4314,15 @@
     - :path: category
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: issued
     - :path: performer
-      :type:
+      :types:
       - Reference
     - :path: result
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - DiagnosticReport.status
@@ -4625,14 +4625,14 @@
     - :path: type
     - :path: category
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: date
     - :path: author
-      :type:
+      :types:
       - Reference
     - :path: custodian
-      :type:
+      :types:
       - Reference
     - :path: content
     - :path: content.attachment
@@ -4640,7 +4640,7 @@
     - :path: content.format
     - :path: context
     - :path: context.encounter
-      :type:
+      :types:
       - Reference
     - :path: context.period
   :mandatory_elements:
@@ -4935,13 +4935,13 @@
     - :path: class
     - :path: type
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: participant
     - :path: participant.type
     - :path: participant.period
     - :path: participant.individual
-      :type:
+      :types:
       - Reference
     - :path: period
     - :path: reasonCode
@@ -4949,7 +4949,7 @@
     - :path: hospitalization.dischargeDisposition
     - :path: location
     - :path: location.location
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Encounter.identifier.system
@@ -5215,7 +5215,7 @@
     - :path: lifecycleStatus
     - :path: description
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: target
   :mandatory_elements:
@@ -5388,7 +5388,7 @@
     - :path: statusReason
     - :path: vaccineCode
     - :path: patient
-      :type:
+      :types:
       - Reference
     - :path: occurrence[x]
     - :path: primarySource
@@ -5665,7 +5665,7 @@
     - :path: address.state
     - :path: address.postalCode
     - :path: managingOrganization
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Location.name
@@ -5937,20 +5937,20 @@
     - :path: status
     - :path: intent
     - :path: reported[x]
-      :type:
+      :types:
       - Reference
     - :path: medication[x]
-      :type:
+      :types:
       - Reference
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: encounter
-      :type:
+      :types:
       - Reference
     - :path: authoredOn
     - :path: requester
-      :type:
+      :types:
       - Reference
     - :path: dosageInstruction
     - :path: dosageInstruction.text
@@ -6251,7 +6251,7 @@
     - :path: status
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: issued
   :mandatory_elements:
@@ -6538,7 +6538,7 @@
     - :path: code.coding.code
       :fixed_value: 77606-2
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -7833,7 +7833,7 @@
     - :path: category
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -8120,7 +8120,7 @@
     - :path: code.coding.code
       :fixed_value: 59576-9
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -8457,7 +8457,7 @@
     - :path: code.coding.code
       :fixed_value: 59408-5
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -8817,7 +8817,7 @@
     - :path: code.coding.code
       :fixed_value: 8289-1
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -9125,7 +9125,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -9439,7 +9439,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -9766,7 +9766,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: component
@@ -10107,7 +10107,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -10421,7 +10421,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -10732,7 +10732,7 @@
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
     - :path: value[x]
@@ -11633,21 +11633,21 @@
     :slices: []
     :elements:
     - :path: practitioner
-      :type:
+      :types:
       - Reference
     - :path: organization
-      :type:
+      :types:
       - Reference
     - :path: code
     - :path: specialty
     - :path: location
-      :type:
+      :types:
       - Reference
     - :path: telecom
     - :path: telecom.system
     - :path: telecom.value
     - :path: endpoint
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - PractitionerRole.practitioner
@@ -12827,7 +12827,7 @@
     - :path: status
     - :path: code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: performed[x]
   :mandatory_elements:
@@ -13010,16 +13010,16 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type
     :elements:
     - :path: target
-      :type:
+      :types:
       - Reference
     - :path: recorded
     - :path: agent
     - :path: agent.type
     - :path: agent.who
-      :type:
+      :types:
       - Reference
     - :path: agent.onBehalfOf
-      :type:
+      :types:
       - Reference
     - :path: agent.type.coding.code
       :fixed_value: author

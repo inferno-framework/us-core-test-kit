@@ -177,7 +177,7 @@
     :fixed_value: vital-signs
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effective[x]
   - :path: component

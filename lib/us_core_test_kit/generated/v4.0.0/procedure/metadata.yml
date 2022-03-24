@@ -1123,7 +1123,7 @@
   - :path: status
   - :path: code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: performedDateTime
     :original_path: performed[x]

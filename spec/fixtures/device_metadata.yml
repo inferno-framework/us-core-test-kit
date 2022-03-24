@@ -1079,7 +1079,7 @@
   - :path: serialNumber
   - :path: type
   - :path: patient
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - Device.udiCarrier.deviceIdentifier

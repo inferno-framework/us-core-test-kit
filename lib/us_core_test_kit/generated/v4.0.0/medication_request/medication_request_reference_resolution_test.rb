@@ -13,11 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the MedicationRequest resources
         found previously for the following must support elements:
 
-        * MedicationRequest.encounter
-      * MedicationRequest.medication[x]
-      * MedicationRequest.reportedReference
-      * MedicationRequest.requester
-      * MedicationRequest.subject
+        * MedicationRequest.reportedReference
       )
 
       id :us_core_v400_medication_request_reference_resolution_test

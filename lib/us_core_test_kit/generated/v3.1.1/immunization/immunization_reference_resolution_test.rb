@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Immunization resources
         found previously for the following must support elements:
 
-        * Immunization.patient
+  
       )
 
       id :us_core_v311_immunization_reference_resolution_test

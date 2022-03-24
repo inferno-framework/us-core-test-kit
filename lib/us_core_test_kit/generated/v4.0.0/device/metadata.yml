@@ -1079,7 +1079,7 @@
   - :path: serialNumber
   - :path: type
   - :path: patient
-    :type:
+    :types:
     - Reference
   - :path: distinctIdentifier
 :mandatory_elements:

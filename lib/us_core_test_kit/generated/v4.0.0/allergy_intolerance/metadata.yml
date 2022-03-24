@@ -79,7 +79,7 @@
   - :path: verificationStatus
   - :path: code
   - :path: patient
-    :type:
+    :types:
     - Reference
   - :path: reaction
   - :path: reaction.manifestation

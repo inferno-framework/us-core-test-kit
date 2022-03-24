@@ -226,11 +226,11 @@
   - :path: type
   - :path: category
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: date
   - :path: author
-    :type:
+    :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
@@ -240,7 +240,7 @@
   - :path: content.format
   - :path: context
   - :path: context.encounter
-    :type:
+    :types:
     - Reference
   - :path: context.period
 :mandatory_elements:

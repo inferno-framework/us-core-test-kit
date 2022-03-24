@@ -13,7 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the Observation resources
         found previously for the following must support elements:
 
-        * Observation.subject
+  
       )
 
       id :us_core_v311_bp_reference_resolution_test

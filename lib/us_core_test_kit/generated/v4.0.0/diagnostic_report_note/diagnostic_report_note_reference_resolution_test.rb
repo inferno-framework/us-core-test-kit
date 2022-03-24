@@ -13,9 +13,7 @@ module USCoreTestKit
         resources from the first search. This test will look through the DiagnosticReport resources
         found previously for the following must support elements:
 
-        * DiagnosticReport.encounter
-      * DiagnosticReport.performer
-      * DiagnosticReport.subject
+  
       )
 
       id :us_core_v400_diagnostic_report_note_reference_resolution_test

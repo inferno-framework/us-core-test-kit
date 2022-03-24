@@ -226,14 +226,14 @@
   - :path: type
   - :path: category
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: date
   - :path: author
-    :type:
+    :types:
     - Reference
   - :path: custodian
-    :type:
+    :types:
     - Reference
   - :path: content
   - :path: content.attachment
@@ -241,7 +241,7 @@
   - :path: content.format
   - :path: context
   - :path: context.encounter
-    :type:
+    :types:
     - Reference
   - :path: context.period
 :mandatory_elements:

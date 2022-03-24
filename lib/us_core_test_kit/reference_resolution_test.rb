@@ -37,7 +37,7 @@ module USCoreTestKit
     end
 
     def must_support_references
-      metadata.must_supports[:elements].select { |element_definition| element_definition[:type]&.include?('Reference') }
+      metadata.must_supports[:elements].select { |element_definition| element_definition[:types]&.include?('Reference') }
     end
 
     def must_support_references_with_target_profile

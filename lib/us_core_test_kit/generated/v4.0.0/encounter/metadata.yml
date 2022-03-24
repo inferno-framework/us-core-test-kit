@@ -188,20 +188,20 @@
   - :path: class
   - :path: type
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: participant
   - :path: participant.type
   - :path: participant.period
   - :path: participant.individual
-    :type:
+    :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: period
   - :path: reasonCode
   - :path: reasonReference
-    :type:
+    :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
@@ -209,10 +209,10 @@
   - :path: hospitalization.dischargeDisposition
   - :path: location
   - :path: location.location
-    :type:
+    :types:
     - Reference
   - :path: serviceProvider
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - Encounter.identifier.system
