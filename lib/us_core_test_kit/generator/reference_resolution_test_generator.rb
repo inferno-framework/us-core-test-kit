@@ -59,6 +59,10 @@ module USCoreTestKit
         group_metadata.resource
       end
 
+      def resource_collection_string
+        'scratch_resources[:all]'
+      end
+      
       def must_support_reference_list_string
         element_names = group_metadata.must_supports[:elements]
           .select { |element| element[:type]&.include?('Reference') }

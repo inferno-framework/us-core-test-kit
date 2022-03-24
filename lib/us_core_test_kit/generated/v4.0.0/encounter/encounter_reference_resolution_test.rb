@@ -7,7 +7,7 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'MustSupport reference within Encounter resources can be read'
+      title 'MustSupport references within Encounter resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
         resources from the first search. This test will look through the Encounter resources
@@ -35,7 +35,7 @@ module USCoreTestKit
       end
 
       run do
-        perform_reference_resolution_test
+        perform_reference_resolution_test(scratch_resources[:all])
       end
     end
   end

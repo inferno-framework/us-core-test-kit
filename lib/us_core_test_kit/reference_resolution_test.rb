@@ -7,10 +7,10 @@ module USCoreTestKit
 
     def_delegators 'self.class', :metadata
 
-    def perform_reference_resolution_test
-      skip_if all_scratch_resources.blank?, no_resources_skip_message
+    def perform_reference_resolution_test(resources)
+      skip_if resources.blank?, no_resources_skip_message
 
-      pass if unresolved_references(all_scratch_resources).length.zero?
+      pass if unresolved_references(resources).length.zero?
 
       skip "Could not resolve Must Support references #{unresolved_references_strings.join(', ')}"
     end
@@ -21,10 +21,6 @@ module USCoreTestKit
           hash[missing[:path]] << missing[:target_profile] 
         end
       unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
-    end
-
-    def all_scratch_resources
-      scratch_resources[:all] ||= []
     end
 
     def record_resolved_reference(reference)

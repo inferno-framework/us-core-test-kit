@@ -50,7 +50,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         input :url
 
         run do
-          perform_reference_resolution_test
+          perform_reference_resolution_test(scratch_resources[:all])
         end
       end
     end
