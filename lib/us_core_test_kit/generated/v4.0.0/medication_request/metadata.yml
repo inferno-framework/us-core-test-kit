@@ -151,7 +151,7 @@
     :original_path: reported[x]
     :type:
     - Reference
-    :target_profile:
+    :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: medication[x]
     :type:
@@ -166,7 +166,7 @@
   - :path: requester
     :type:
     - Reference
-    :target_profile:
+    :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: dosageInstruction
   - :path: dosageInstruction.text

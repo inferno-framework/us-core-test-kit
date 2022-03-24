@@ -209,7 +209,7 @@ module USCoreTestKit
 
             metadata[:type] = [type.code] if save_type_code?(type)
 
-            handle_type_must_support_target_profile(type, metadata) if type.code == 'Reference'
+            handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
 
             type_must_support_metadata << metadata
           end
@@ -218,17 +218,17 @@ module USCoreTestKit
         type_must_support_metadata
       end
 
-      def handle_type_must_support_target_profile(type, metadata)
+      def handle_type_must_support_target_profiles(type, metadata)
         index = 0
-        target_profile = []
+        target_profiles = []
 
         type.source_hash['_targetProfile']&.each do |hash|
           element = FHIR::Element.new(hash)
-          target_profile << type.targetProfile[index] if type_must_support_extension?(element.extension)
+          target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
           index += 1
         end
 
-        metadata[:target_profile] = target_profile if target_profile.present?
+        metadata[:target_profiles] = target_profiles if target_profiles.present?
       end
 
       def handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
@@ -262,7 +262,7 @@ module USCoreTestKit
               current_metadata[:type] = supported_type if supported_type.present?
               #current_metadata[:type] = current_element.type.map { |type| type.code }  
               
-              handle_type_must_support_target_profile(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
+              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
 
@@ -396,7 +396,7 @@ module USCoreTestKit
         # This will be fixed in US Core 5.0.0
         if profile.type == 'Provenance'
           target_element = @must_supports[:elements].find { |element| element[:path] == 'agent.who'}
-          target_element[:target_profile] << 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
+          target_element[:target_profiles] << 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
         end
       end
 

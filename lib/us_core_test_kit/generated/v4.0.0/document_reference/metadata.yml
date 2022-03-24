@@ -232,7 +232,7 @@
   - :path: author
     :type:
     - Reference
-    :target_profile:
+    :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: content
   - :path: content.attachment

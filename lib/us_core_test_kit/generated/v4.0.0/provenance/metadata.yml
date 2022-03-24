@@ -62,7 +62,7 @@
   - :path: agent.who
     :type:
     - Reference
-    :target_profile:
+    :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: agent.onBehalfOf

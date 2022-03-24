@@ -518,7 +518,7 @@
     - :path: participant.member
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :mandatory_elements:
   - CareTeam.subject
@@ -3098,7 +3098,7 @@
     - :path: performer
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: result
       :type:
@@ -4343,7 +4343,7 @@
     - :path: performer
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: presentedForm
@@ -4655,7 +4655,7 @@
     - :path: author
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: content
     - :path: content.attachment
@@ -4967,14 +4967,14 @@
     - :path: participant.individual
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: period
     - :path: reasonCode
     - :path: reasonReference
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
     - :path: hospitalization
     - :path: hospitalization.dischargeDisposition
@@ -5924,7 +5924,7 @@
       :original_path: reported[x]
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: medication[x]
       :type:
@@ -5939,7 +5939,7 @@
     - :path: requester
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: dosageInstruction
     - :path: dosageInstruction.text
@@ -13957,7 +13957,7 @@
     - :path: agent.who
       :type:
       - Reference
-      :target_profile:
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: agent.onBehalfOf

@@ -133,7 +133,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       expect(result.result_message).to eq('Could not resolve Must Support references encounter')
     end
 
-    it 'skips if one MS references with MS target_profile cannot be validated' do
+    it 'skips if one MS references with MS target_profiles cannot be validated' do
       allow_any_instance_of(reference_resolution_test)
         .to receive(:resource_is_valid?)
           .and_return(false)
