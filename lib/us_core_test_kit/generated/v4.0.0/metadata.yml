@@ -4660,12 +4660,18 @@
     - :path: content
     - :path: content.attachment
     - :path: content.attachment.contentType
+    - :path: content.attachment.data
+    - :path: content.attachment.url
     - :path: content.format
     - :path: context
     - :path: context.encounter
       :types:
       - Reference
     - :path: context.period
+    :choices:
+    - :paths:
+      - content.attachment.data
+      - content.attachment.url
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -4985,6 +4991,13 @@
     - :path: serviceProvider
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+    - :paths:
+      - location.location
+      - serviceProvider
   :mandatory_elements:
   - Encounter.identifier.system
   - Encounter.identifier.value
@@ -5943,6 +5956,10 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: dosageInstruction
     - :path: dosageInstruction.text
+    :choices:
+    - :paths:
+      - reportedBoolean
+      - reportedReference
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent

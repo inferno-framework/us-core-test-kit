@@ -238,12 +238,18 @@
   - :path: content
   - :path: content.attachment
   - :path: content.attachment.contentType
+  - :path: content.attachment.data
+  - :path: content.attachment.url
   - :path: content.format
   - :path: context
   - :path: context.encounter
     :types:
     - Reference
   - :path: context.period
+  :choices:
+  - :paths:
+    - content.attachment.data
+    - content.attachment.url
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

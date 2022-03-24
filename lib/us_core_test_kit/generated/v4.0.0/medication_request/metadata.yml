@@ -170,6 +170,10 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: dosageInstruction
   - :path: dosageInstruction.text
+  :choices:
+  - :paths:
+    - reportedBoolean
+    - reportedReference
 :mandatory_elements:
 - MedicationRequest.status
 - MedicationRequest.intent

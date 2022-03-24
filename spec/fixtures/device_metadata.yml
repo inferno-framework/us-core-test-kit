@@ -1072,6 +1072,8 @@
   :elements:
   - :path: udiCarrier
   - :path: udiCarrier.deviceIdentifier
+  - :path: udiCarrier.carrierAIDC
+  - :path: udiCarrier.carrierHRF
   - :path: distinctIdentifier
   - :path: manufactureDate
   - :path: expirationDate
@@ -1081,6 +1083,10 @@
   - :path: patient
     :types:
     - Reference
+  :choices:
+  - :paths:
+    - udiCarrier.carrierAIDC
+    - udiCarrier.carrierHRF
 :mandatory_elements:
 - Device.udiCarrier.deviceIdentifier
 - Device.deviceName.name
