@@ -80,6 +80,8 @@ module USCoreTestKit
             choice_paths[:paths].any? { |path| @missing_elements.none? { |element| element[:path] == path } }
         end
       end
+
+      @missing_elements
     end
 
     def must_support_slices

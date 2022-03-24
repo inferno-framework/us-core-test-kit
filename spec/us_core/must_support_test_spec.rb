@@ -105,6 +105,5 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       result = run(must_support_test, url: url)
       expect(result.result).to eq('pass')
     end
-
   end
 end
