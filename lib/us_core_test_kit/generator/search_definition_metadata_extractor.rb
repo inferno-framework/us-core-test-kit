@@ -189,7 +189,7 @@ module USCoreTestKit
         path.each do |current_path|
           current_metadata = fhir_metadata(current_path)
 
-          unless current_metadata&.dig('valid_codes').blank?
+          if current_metadata&.dig('valid_codes').present?
             values = values + current_metadata['valid_codes'].values.flatten 
           end
         end
