@@ -192,7 +192,7 @@ module USCoreTestKit
       end   
 
       def save_type_code?(type)
-        ['Reference'].include?(type.code)
+        'Reference' == type.code
       end
 
       def get_type_must_support_metadata(current_metadata, current_element)
