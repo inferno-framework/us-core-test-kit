@@ -80,20 +80,20 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       Inferno::Repositories::Tests.new.insert(must_support_test)
     end
 
-    it 'fails if server supports none of the choice' do    
+    it 'fails if server supports none of the choice' do
       allow_any_instance_of(must_support_test)
         .to receive(:scratch_resources).and_return(
               {
                 all: [device]
               }
             )
-      
+
       result = run(must_support_test, url: url)
       expect(result.result).to eq('skip')
       expect(result.result_message).to include('udiCarrier.carrierAIDC, udiCarrier.carrierHRF')
     end
 
-    it 'passes if server supports at least one of the choice' do 
+    it 'passes if server supports at least one of the choice' do
       device.udiCarrier.first.carrierHRF = '(01)43069338026389(11)000302(17)250317(10)1134(21)842026117977'
       allow_any_instance_of(must_support_test)
         .to receive(:scratch_resources).and_return(
@@ -101,7 +101,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
                 all: [device]
               }
             )
-      
+
       result = run(must_support_test, url: url)
       expect(result.result).to eq('pass')
     end

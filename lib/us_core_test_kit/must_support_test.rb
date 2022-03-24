@@ -64,16 +64,16 @@ module USCoreTestKit
 
               (value_without_extensions.present? || value_without_extensions == false) &&
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
-                
+
             end
 
             # Note that false.present? => false, which is why we need to add this extra check
             value_found.present? || value_found == false
           end
         end
-      
+
       if metadata.must_supports[:choices].present?
-        @missing_elements.delete_if do |element| 
+        @missing_elements.delete_if do |element|
           choice_paths = metadata.must_supports[:choices].find { |choice| choice[:paths].include?(element[:path]) }
 
           choice_paths.present? &&
