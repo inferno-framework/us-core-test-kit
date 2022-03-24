@@ -49,9 +49,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - Goal.subject
     :comparators: {}
     :values: []
@@ -59,9 +59,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :lifecycle-status:
-    :path:
+    :paths:
     - lifecycleStatus
-    :full_path:
+    :full_paths:
     - Goal.lifecycleStatus
     :comparators: {}
     :values:
@@ -78,9 +78,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :target-date:
-    :path:
+    :paths:
     - target.dueDate
-    :full_path:
+    :full_paths:
     - Goal.target.dueDate
     :comparators:
       :eq: MAY

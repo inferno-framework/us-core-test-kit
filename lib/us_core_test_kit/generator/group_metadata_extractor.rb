@@ -57,11 +57,11 @@ module USCoreTestKit
       def mark_mandatory_and_must_support_searches
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
-            full_path = search_definitions[name.to_sym][:full_path]
+            full_paths = search_definitions[name.to_sym][:full_paths]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
               full_must_support_path = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
 
-              full_path.any? do |path|
+              full_paths.any? do |path|
                 # allow for non-choice, choice types, and _id
                 name == '_id' || full_must_support_path.include?(path) || full_must_support_path.include?("#{path}[x]")
               end
@@ -71,14 +71,14 @@ module USCoreTestKit
               # only handle type slices because that is all we need for now
               if slice[:discriminator] && slice[:discriminator][:type] == 'type'
                 full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
-                full_path.include?(full_must_support_path)
+                full_paths.include?(full_must_support_path)
               else
                 false
               end
             end
 
             any_mandatory_elements = mandatory_elements.any? do |element|
-              full_path.include?(element)
+              full_paths.include?(element)
             end
 
             any_must_support_elements || any_must_support_slices || any_mandatory_elements

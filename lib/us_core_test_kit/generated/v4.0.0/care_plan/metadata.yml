@@ -62,9 +62,9 @@
   :must_support_or_mandatory: false
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - CarePlan.subject
     :comparators: {}
     :values: []
@@ -72,9 +72,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path:
+    :paths:
     - category
-    :full_path:
+    :full_paths:
     - CarePlan.category
     :comparators: {}
     :values:
@@ -83,9 +83,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path:
+    :paths:
     - status
-    :full_path:
+    :full_paths:
     - CarePlan.status
     :comparators: {}
     :values:
@@ -100,9 +100,9 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :date:
-    :path:
+    :paths:
     - period
-    :full_path:
+    :full_paths:
     - CarePlan.period
     :comparators:
       :eq: MAY

@@ -62,9 +62,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - Condition.subject
     :comparators: {}
     :values: []
@@ -72,9 +72,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :onset-date:
-    :path:
+    :paths:
     - onsetDateTime
-    :full_path:
+    :full_paths:
     - Condition.onsetDateTime
     :comparators:
       :eq: MAY
@@ -91,9 +91,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path:
+    :paths:
     - category
-    :full_path:
+    :full_paths:
     - Condition.category
     :comparators: {}
     :values:
@@ -102,9 +102,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :clinical-status:
-    :path:
+    :paths:
     - clinicalStatus
-    :full_path:
+    :full_paths:
     - Condition.clinicalStatus
     :comparators: {}
     :values:
@@ -118,9 +118,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :path:
+    :paths:
     - code
-    :full_path:
+    :full_paths:
     - Condition.code
     :comparators: {}
     :values:

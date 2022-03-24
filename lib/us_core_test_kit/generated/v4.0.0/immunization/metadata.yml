@@ -49,9 +49,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - patient
-    :full_path:
+    :full_paths:
     - Immunization.patient
     :comparators: {}
     :values: []
@@ -59,9 +59,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path:
+    :paths:
     - status
-    :full_path:
+    :full_paths:
     - Immunization.status
     :comparators: {}
     :values:
@@ -72,9 +72,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path:
+    :paths:
     - occurrence
-    :full_path:
+    :full_paths:
     - Immunization.occurrence
     :comparators:
       :eq: MAY

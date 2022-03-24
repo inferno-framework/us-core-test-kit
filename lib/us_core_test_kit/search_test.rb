@@ -219,8 +219,8 @@ module USCoreTestKit
         next if search_variant_test_records[:comparator_searches].include? name
 
         required_comparators(name).each do |comparator|
-          path = search_param_path(name).first
-          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
+          paths = search_param_paths(name).first
+          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
           search_and_check_response(params_with_comparator)
@@ -444,13 +444,13 @@ module USCoreTestKit
       name == 'patient' || (name == '_id' && resource_type == 'Patient')
     end
 
-    def search_param_path(name)
-      path = metadata.search_definitions[name.to_sym][:path]
-      if path.first =='class' 
-        path[0] = 'local_class'
+    def search_param_paths(name)
+      paths = metadata.search_definitions[name.to_sym][:paths]
+      if paths.first =='class' 
+        paths[0] = 'local_class'
       end
       
-      path
+      paths
     end
 
     def all_search_params_present?(params)
@@ -521,9 +521,9 @@ module USCoreTestKit
     end
 
     def search_param_value(name, patient_id, include_system: false)
-      path_ary = search_param_path(name)
+      paths = search_param_paths(name)
       search_value = nil
-      path_ary.each do |path|
+      paths.each do |path|
         element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
 
         search_value =
@@ -604,12 +604,12 @@ module USCoreTestKit
 
     def check_resource_against_params(resource, params)
       params.each do |name, search_value|
-        path_list = search_param_path(name)
+        paths = search_param_paths(name)
 
         match_found = false
         values_found = []
 
-        path_list.each do |path|
+        paths.each do |path|
           type = metadata.search_definitions[name.to_sym][:type]
           values_found =
             resolve_path(resource, path)

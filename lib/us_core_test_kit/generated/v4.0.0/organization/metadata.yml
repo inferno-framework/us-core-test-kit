@@ -42,10 +42,10 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :path:
+    :paths:
     - name
     - alias
-    :full_path:
+    :full_paths:
     - Organization.name
     - Organization.alias
     :comparators: {}
@@ -54,9 +54,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :address:
-    :path:
+    :paths:
     - address
-    :full_path:
+    :full_paths:
     - Organization.address
     :comparators: {}
     :values: []

@@ -38,9 +38,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - CareTeam.subject
     :comparators: {}
     :values: []
@@ -48,9 +48,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path:
+    :paths:
     - status
-    :full_path:
+    :full_paths:
     - CareTeam.status
     :comparators: {}
     :values:

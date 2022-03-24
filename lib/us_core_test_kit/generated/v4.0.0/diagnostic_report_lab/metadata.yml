@@ -69,9 +69,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - DiagnosticReport.subject
     :comparators: {}
     :values: []
@@ -79,9 +79,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :path:
+    :paths:
     - code
-    :full_path:
+    :full_paths:
     - DiagnosticReport.code
     :comparators: {}
     :values:
@@ -1089,9 +1089,9 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :path:
+    :paths:
     - effective
-    :full_path:
+    :full_paths:
     - DiagnosticReport.effective
     :comparators:
       :eq: MAY
@@ -1108,9 +1108,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path:
+    :paths:
     - category
-    :full_path:
+    :full_paths:
     - DiagnosticReport.category
     :comparators: {}
     :values:
@@ -1119,9 +1119,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path:
+    :paths:
     - status
-    :full_path:
+    :full_paths:
     - DiagnosticReport.status
     :comparators: {}
     :values:

@@ -42,9 +42,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :path:
+    :paths:
     - name
-    :full_path:
+    :full_paths:
     - Practitioner.name
     :comparators: {}
     :values: []
@@ -52,9 +52,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :identifier:
-    :path:
+    :paths:
     - identifier
-    :full_path:
+    :full_paths:
     - Practitioner.identifier
     :comparators: {}
     :values: []

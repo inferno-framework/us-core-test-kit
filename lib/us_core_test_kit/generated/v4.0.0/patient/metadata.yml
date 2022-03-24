@@ -71,9 +71,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path:
+    :paths:
     - id
-    :full_path:
+    :full_paths:
     - Patient.id
     :comparators: {}
     :values: []
@@ -81,9 +81,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :path:
+    :paths:
     - identifier
-    :full_path:
+    :full_paths:
     - Patient.identifier
     :comparators: {}
     :values: []
@@ -91,9 +91,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :name:
-    :path:
+    :paths:
     - name
-    :full_path:
+    :full_paths:
     - Patient.name
     :comparators: {}
     :values: []
@@ -101,9 +101,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :family:
-    :path:
+    :paths:
     - name.family
-    :full_path:
+    :full_paths:
     - Patient.name.family
     :comparators: {}
     :values: []
@@ -111,9 +111,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :gender:
-    :path:
+    :paths:
     - gender
-    :full_path:
+    :full_paths:
     - Patient.gender
     :comparators: {}
     :values:
@@ -125,9 +125,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :birthdate:
-    :path:
+    :paths:
     - birthDate
-    :full_path:
+    :full_paths:
     - Patient.birthDate
     :comparators:
       :eq: MAY

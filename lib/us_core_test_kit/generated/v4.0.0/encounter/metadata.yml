@@ -71,9 +71,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path:
+    :paths:
     - id
-    :full_path:
+    :full_paths:
     - Encounter.id
     :comparators: {}
     :values: []
@@ -81,9 +81,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :path:
+    :paths:
     - identifier
-    :full_path:
+    :full_paths:
     - Encounter.identifier
     :comparators: {}
     :values: []
@@ -91,9 +91,9 @@
     :contains_multiple: true
     :multiple_or: MAY
   :patient:
-    :path:
+    :paths:
     - subject
-    :full_path:
+    :full_paths:
     - Encounter.subject
     :comparators: {}
     :values: []
@@ -101,9 +101,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path:
+    :paths:
     - period
-    :full_path:
+    :full_paths:
     - Encounter.period
     :comparators:
       :eq: MAY
@@ -120,9 +120,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path:
+    :paths:
     - status
-    :full_path:
+    :full_paths:
     - Encounter.status
     :comparators: {}
     :values:
@@ -139,9 +139,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :class:
-    :path:
+    :paths:
     - class
-    :full_path:
+    :full_paths:
     - Encounter.class
     :comparators: {}
     :values:
@@ -160,9 +160,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :path:
+    :paths:
     - type
-    :full_path:
+    :full_paths:
     - Encounter.type
     :comparators: {}
     :values:

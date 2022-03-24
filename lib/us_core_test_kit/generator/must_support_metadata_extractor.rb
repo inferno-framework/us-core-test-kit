@@ -248,9 +248,6 @@ module USCoreTestKit
           {
             path: current_element.path.gsub("#{resource}.", '')            
           }.tap do |current_metadata|
-            #path = current_element.path.gsub("#{resource}.", '')
-            #current_metadata[:path] = path
-
             type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
             if type_must_support_metadata.any?
@@ -260,7 +257,6 @@ module USCoreTestKit
 
               supported_type = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
               current_metadata[:type] = supported_type if supported_type.present?
-              #current_metadata[:type] = current_element.type.map { |type| type.code }  
               
               handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 

@@ -45,9 +45,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - patient
-      :full_path:
+      :full_paths:
       - AllergyIntolerance.patient
       :comparators: {}
       :values: []
@@ -55,9 +55,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :path:
+      :paths:
       - clinicalStatus
-      :full_path:
+      :full_paths:
       - AllergyIntolerance.clinicalStatus
       :comparators: {}
       :values:
@@ -217,9 +217,9 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - CarePlan.subject
       :comparators: {}
       :values: []
@@ -227,9 +227,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - CarePlan.category
       :comparators: {}
       :values:
@@ -238,9 +238,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - CarePlan.status
       :comparators: {}
       :values:
@@ -255,9 +255,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :date:
-      :path:
+      :paths:
       - period
-      :full_path:
+      :full_paths:
       - CarePlan.period
       :comparators:
         :eq: MAY
@@ -477,9 +477,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - CareTeam.subject
       :comparators: {}
       :values: []
@@ -487,9 +487,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - CareTeam.status
       :comparators: {}
       :values:
@@ -639,9 +639,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Condition.subject
       :comparators: {}
       :values: []
@@ -649,9 +649,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Condition.code
       :comparators: {}
       :values:
@@ -660,10 +660,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :path:
+      :paths:
       - onsetDateTime
       - onsetPeriod
-      :full_path:
+      :full_paths:
       - Condition.onsetDateTime
       - Condition.onsetPeriod
       :comparators:
@@ -681,9 +681,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :path:
+      :paths:
       - clinicalStatus
-      :full_path:
+      :full_paths:
       - Condition.clinicalStatus
       :comparators: {}
       :values:
@@ -697,9 +697,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Condition.category
       :comparators: {}
       :values:
@@ -842,9 +842,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - patient
-      :full_path:
+      :full_paths:
       - Device.patient
       :comparators: {}
       :values: []
@@ -852,9 +852,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path:
+      :paths:
       - type
-      :full_path:
+      :full_paths:
       - Device.type
       :comparators: {}
       :values:
@@ -2002,9 +2002,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - DiagnosticReport.subject
       :comparators: {}
       :values: []
@@ -2012,9 +2012,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - DiagnosticReport.code
       :comparators: {}
       :values:
@@ -3022,9 +3022,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - DiagnosticReport.effective
       :comparators:
         :eq: MAY
@@ -3041,9 +3041,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - DiagnosticReport.category
       :comparators: {}
       :values:
@@ -3052,9 +3052,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - DiagnosticReport.status
       :comparators: {}
       :values:
@@ -3250,9 +3250,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - DiagnosticReport.subject
       :comparators: {}
       :values: []
@@ -3260,9 +3260,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - DiagnosticReport.code
       :comparators: {}
       :values:
@@ -4270,9 +4270,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - DiagnosticReport.effective
       :comparators:
         :eq: MAY
@@ -4289,9 +4289,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - DiagnosticReport.category
       :comparators: {}
       :values:
@@ -4302,9 +4302,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - DiagnosticReport.status
       :comparators: {}
       :values:
@@ -4499,9 +4499,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path:
+      :paths:
       - id
-      :full_path:
+      :full_paths:
       - DocumentReference.id
       :comparators: {}
       :values: []
@@ -4509,9 +4509,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - DocumentReference.subject
       :comparators: {}
       :values: []
@@ -4519,9 +4519,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - DocumentReference.category
       :comparators: {}
       :values:
@@ -4574,9 +4574,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - DocumentReference.status
       :comparators: {}
       :values:
@@ -4587,9 +4587,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :type:
-      :path:
+      :paths:
       - type
-      :full_path:
+      :full_paths:
       - DocumentReference.type
       :comparators: {}
       :values:
@@ -4598,9 +4598,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :period:
-      :path:
+      :paths:
       - context.period
-      :full_path:
+      :full_paths:
       - DocumentReference.context.period
       :comparators:
         :eq: MAY
@@ -4617,9 +4617,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path:
+      :paths:
       - date
-      :full_path:
+      :full_paths:
       - DocumentReference.date
       :comparators:
         :eq: MAY
@@ -4842,9 +4842,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path:
+      :paths:
       - id
-      :full_path:
+      :full_paths:
       - Encounter.id
       :comparators: {}
       :values: []
@@ -4852,9 +4852,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path:
+      :paths:
       - identifier
-      :full_path:
+      :full_paths:
       - Encounter.identifier
       :comparators: {}
       :values: []
@@ -4862,9 +4862,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Encounter.subject
       :comparators: {}
       :values: []
@@ -4872,9 +4872,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path:
+      :paths:
       - period
-      :full_path:
+      :full_paths:
       - Encounter.period
       :comparators:
         :eq: MAY
@@ -4891,9 +4891,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Encounter.status
       :comparators: {}
       :values:
@@ -4910,9 +4910,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :class:
-      :path:
+      :paths:
       - class
-      :full_path:
+      :full_paths:
       - Encounter.class
       :comparators: {}
       :values:
@@ -4931,9 +4931,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path:
+      :paths:
       - type
-      :full_path:
+      :full_paths:
       - Encounter.type
       :comparators: {}
       :values:
@@ -5192,9 +5192,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Goal.subject
       :comparators: {}
       :values: []
@@ -5202,9 +5202,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :lifecycle-status:
-      :path:
+      :paths:
       - lifecycleStatus
-      :full_path:
+      :full_paths:
       - Goal.lifecycleStatus
       :comparators: {}
       :values:
@@ -5221,9 +5221,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :path:
+      :paths:
       - target.dueDate
-      :full_path:
+      :full_paths:
       - Goal.target.dueDate
       :comparators:
         :eq: MAY
@@ -5372,9 +5372,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - patient
-      :full_path:
+      :full_paths:
       - Immunization.patient
       :comparators: {}
       :values: []
@@ -5382,9 +5382,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Immunization.status
       :comparators: {}
       :values:
@@ -5395,9 +5395,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path:
+      :paths:
       - occurrence
-      :full_path:
+      :full_paths:
       - Immunization.occurrence
       :comparators:
         :eq: MAY
@@ -5579,10 +5579,10 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path:
+      :paths:
       - name
       - alias
-      :full_path:
+      :full_paths:
       - Location.name
       - Location.alias
       :comparators: {}
@@ -5591,9 +5591,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path:
+      :paths:
       - address
-      :full_path:
+      :full_paths:
       - Location.address
       :comparators: {}
       :values: []
@@ -5601,9 +5601,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
-      :path:
+      :paths:
       - address.city
-      :full_path:
+      :full_paths:
       - Location.address.city
       :comparators: {}
       :values: []
@@ -5611,9 +5611,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
-      :path:
+      :paths:
       - address.state
-      :full_path:
+      :full_paths:
       - Location.address.state
       :comparators: {}
       :values: []
@@ -5621,9 +5621,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
-      :path:
+      :paths:
       - address.postalCode
-      :full_path:
+      :full_paths:
       - Location.address.postalCode
       :comparators: {}
       :values: []
@@ -5832,9 +5832,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - MedicationRequest.subject
       :comparators: {}
       :values: []
@@ -5842,9 +5842,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :intent:
-      :path:
+      :paths:
       - intent
-      :full_path:
+      :full_paths:
       - MedicationRequest.intent
       :comparators: {}
       :values:
@@ -5860,9 +5860,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :authoredon:
-      :path:
+      :paths:
       - authoredOn
-      :full_path:
+      :full_paths:
       - MedicationRequest.authoredOn
       :comparators:
         :eq: MAY
@@ -5879,9 +5879,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :encounter:
-      :path:
+      :paths:
       - encounter
-      :full_path:
+      :full_paths:
       - MedicationRequest.encounter
       :comparators: {}
       :values: []
@@ -5889,9 +5889,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - MedicationRequest.status
       :comparators: {}
       :values:
@@ -6155,9 +6155,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -6165,9 +6165,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -6176,9 +6176,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -6194,9 +6194,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -7204,9 +7204,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -7435,9 +7435,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -7445,9 +7445,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -7456,9 +7456,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -7474,9 +7474,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -7490,9 +7490,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -7735,9 +7735,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -7745,9 +7745,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -7756,9 +7756,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -7774,9 +7774,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -7785,9 +7785,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -8094,9 +8094,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -8104,9 +8104,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -8115,9 +8115,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -8133,9 +8133,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -8144,9 +8144,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -8404,9 +8404,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -8414,9 +8414,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -8425,9 +8425,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -8443,9 +8443,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -8454,9 +8454,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -8717,9 +8717,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -8727,9 +8727,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -8738,9 +8738,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -8756,9 +8756,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -8767,9 +8767,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -9030,9 +9030,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -9040,9 +9040,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -9051,9 +9051,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -9069,9 +9069,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -9080,9 +9080,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -9343,9 +9343,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -9353,9 +9353,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -9364,9 +9364,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -9382,9 +9382,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -9393,9 +9393,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -9656,9 +9656,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -9666,9 +9666,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -9677,9 +9677,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -9695,9 +9695,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -9706,9 +9706,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -9966,9 +9966,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -9976,9 +9976,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -9987,9 +9987,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -10005,9 +10005,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -10016,9 +10016,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -10277,9 +10277,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -10287,9 +10287,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -10298,9 +10298,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -10316,9 +10316,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -10327,9 +10327,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -10587,9 +10587,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -10597,9 +10597,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -10608,9 +10608,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -10626,9 +10626,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -10637,9 +10637,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -10897,9 +10897,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -10907,9 +10907,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -10918,9 +10918,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -10936,9 +10936,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -10948,9 +10948,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -11276,9 +11276,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -11286,9 +11286,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -11297,9 +11297,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -11315,9 +11315,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -11326,9 +11326,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -11588,9 +11588,9 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Observation.subject
       :comparators: {}
       :values: []
@@ -11598,9 +11598,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path:
+      :paths:
       - category
-      :full_path:
+      :full_paths:
       - Observation.category
       :comparators: {}
       :values:
@@ -11609,9 +11609,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Observation.status
       :comparators: {}
       :values:
@@ -11621,9 +11621,9 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Observation.code
       :comparators: {}
       :values:
@@ -11632,9 +11632,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - effective
-      :full_path:
+      :full_paths:
       - Observation.effective
       :comparators:
         :eq: MAY
@@ -11847,10 +11847,10 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path:
+      :paths:
       - name
       - alias
-      :full_path:
+      :full_paths:
       - Organization.name
       - Organization.alias
       :comparators: {}
@@ -11859,9 +11859,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path:
+      :paths:
       - address
-      :full_path:
+      :full_paths:
       - Organization.address
       :comparators: {}
       :values: []
@@ -12022,9 +12022,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path:
+      :paths:
       - id
-      :full_path:
+      :full_paths:
       - Patient.id
       :comparators: {}
       :values: []
@@ -12032,9 +12032,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path:
+      :paths:
       - identifier
-      :full_path:
+      :full_paths:
       - Patient.identifier
       :comparators: {}
       :values: []
@@ -12042,9 +12042,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :name:
-      :path:
+      :paths:
       - name
-      :full_path:
+      :full_paths:
       - Patient.name
       :comparators: {}
       :values: []
@@ -12052,9 +12052,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :family:
-      :path:
+      :paths:
       - name.family
-      :full_path:
+      :full_paths:
       - Patient.name.family
       :comparators: {}
       :values: []
@@ -12062,9 +12062,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :gender:
-      :path:
+      :paths:
       - gender
-      :full_path:
+      :full_paths:
       - Patient.gender
       :comparators: {}
       :values:
@@ -12076,9 +12076,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :birthdate:
-      :path:
+      :paths:
       - birthDate
-      :full_path:
+      :full_paths:
       - Patient.birthDate
       :comparators:
         :eq: MAY
@@ -12299,9 +12299,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path:
+      :paths:
       - name
-      :full_path:
+      :full_paths:
       - Practitioner.name
       :comparators: {}
       :values: []
@@ -12309,9 +12309,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
-      :path:
+      :paths:
       - identifier
-      :full_path:
+      :full_paths:
       - Practitioner.identifier
       :comparators: {}
       :values: []
@@ -12423,9 +12423,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :specialty:
-      :path:
+      :paths:
       - specialty
-      :full_path:
+      :full_paths:
       - PractitionerRole.specialty
       :comparators: {}
       :values:
@@ -12548,9 +12548,9 @@
       :contains_multiple: true
       :multiple_or: MAY
     :practitioner:
-      :path:
+      :paths:
       - practitioner
-      :full_path:
+      :full_paths:
       - PractitionerRole.practitioner
       :comparators: {}
       :values: []
@@ -12697,9 +12697,9 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path:
+      :paths:
       - subject
-      :full_path:
+      :full_paths:
       - Procedure.subject
       :comparators: {}
       :values: []
@@ -12707,9 +12707,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path:
+      :paths:
       - code
-      :full_path:
+      :full_paths:
       - Procedure.code
       :comparators: {}
       :values:
@@ -13717,9 +13717,9 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :path:
+      :paths:
       - performed
-      :full_path:
+      :full_paths:
       - Procedure.performed
       :comparators:
         :eq: MAY
@@ -13736,9 +13736,9 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path:
+      :paths:
       - status
-      :full_path:
+      :full_paths:
       - Procedure.status
       :comparators: {}
       :values:

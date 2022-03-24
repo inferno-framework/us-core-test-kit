@@ -43,9 +43,9 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path:
+    :paths:
     - patient
-    :full_path:
+    :full_paths:
     - Device.patient
     :comparators: {}
     :values: []
@@ -53,9 +53,9 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :path:
+    :paths:
     - type
-    :full_path:
+    :full_paths:
     - Device.type
     :comparators: {}
     :values:

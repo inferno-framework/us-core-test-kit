@@ -6,7 +6,7 @@ RSpec.describe USCoreTestKit::Generator::SearchDefinitionMetadataExtractor do
   # if this test file grows, this will likely break and more stubbing and setup will be required
   subject { described_class.new("test", "nothing", "nope", "no") }
 
-  describe '#full_path' do
+  describe '#full_paths' do
     let(:param) do
       ig_resource = double()
       allow(ig_resource).to receive(:expression).and_return(expression)
@@ -20,7 +20,7 @@ RSpec.describe USCoreTestKit::Generator::SearchDefinitionMetadataExtractor do
         allow(subject).to receive(:param).and_return(param)
 
         expected = ["Condition.onsetDateTime"]
-        expect(subject.full_path).to eq(expected)
+        expect(subject.full_paths).to eq(expected)
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe USCoreTestKit::Generator::SearchDefinitionMetadataExtractor do
         allow(subject).to receive(:param).and_return(param)
 
         expected = ["Condition.onsetPeriod"]
-        expect(subject.full_path).to eq(expected)
+        expect(subject.full_paths).to eq(expected)
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe USCoreTestKit::Generator::SearchDefinitionMetadataExtractor do
         allow(subject).to receive(:param).and_return(param)
 
         expected = ["Condition.onsetDateTime","Condition.onsetPeriod"]
-        expect(subject.full_path).to eq(expected)
+        expect(subject.full_paths).to eq(expected)
       end
     end
 

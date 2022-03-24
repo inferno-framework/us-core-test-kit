@@ -13,8 +13,8 @@ module USCoreTestKit
       def search_definition
         @search_definition ||=
           {
-            path: path,
-            full_path: full_path,
+            paths: paths,
+            full_paths: full_paths,
             comparators: comparators,
             values: values,
             type: type,
@@ -32,8 +32,8 @@ module USCoreTestKit
         param.source_hash
       end
 
-      def full_path
-        @full_path ||=
+      def full_paths
+        @full_paths ||=
           begin
             path = param.expression.gsub(/.where\((.*)/, '')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
@@ -44,13 +44,13 @@ module USCoreTestKit
           end
       end
 
-      def path
-        @path ||= full_path.map { |a_path| a_path.gsub("#{resource}.", '') }
+      def paths
+        @paths ||= full_paths.map { |a_path| a_path.gsub("#{resource}.", '') }
       end
 
       def profile_element
         @profile_element ||=
-          profile_elements.find { |element| full_path.include?(element.id) }
+          profile_elements.find { |element| full_paths.include?(element.id) }
       end
 
       def comparator_expectation_extensions
@@ -127,7 +127,7 @@ module USCoreTestKit
         return [] unless contains_multiple?
 
         profile_elements.select do |element|
-          full_path.include?(element.path) &&
+          full_paths.include?(element.path) &&
             element.sliceName.present? &&
             element.patternCodeableConcept.present?
         end
@@ -186,7 +186,7 @@ module USCoreTestKit
       def values_from_resource_metadata
         values = []
 
-        path.each do |current_path|
+        paths.each do |current_path|
           current_metadata = fhir_metadata(current_path)
 
           if current_metadata&.dig('valid_codes').present?
