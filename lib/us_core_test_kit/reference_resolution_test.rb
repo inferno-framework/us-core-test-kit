@@ -16,13 +16,11 @@ module USCoreTestKit
     end
 
     def unresolved_references_strings
-      hash = {}
-      unresolved_references.each do |missing|
-        path = missing[:path]
-        hash[path] = [] unless hash.key?(path)
-        hash[path] << missing[:target_profile] unless missing[:target_profile].empty?
-      end
-      hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.empty?}" }
+      unresolved_reference_hash =
+        unresolved_references.each_with_object(Hash.new { |hash, key| hash[key] = [] }) do |missing, hash|
+          hash[missing[:path]] << missing[:target_profile] 
+        end
+      unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
     end
 
     def all_scratch_resources
