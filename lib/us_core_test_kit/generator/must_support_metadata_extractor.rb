@@ -80,13 +80,13 @@ module USCoreTestKit
                   code: pattern_element.patternCodeableConcept.coding.first.code,
                   system: pattern_element.patternCodeableConcept.coding.first.system
                 }
-              elsif pattern_element.patternCoding.present?  
+              elsif pattern_element.patternCoding.present?
                 {
                   type: 'patternCoding',
                   path: discriminator_path,
                   code: pattern_element.patternCoding.code,
                   system: pattern_element.patternCoding.system
-                }                
+                }
               elsif pattern_element.patternIdentifier.present?
                 {
                   type: 'patternIdentifier',
@@ -189,33 +189,26 @@ module USCoreTestKit
           extension.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support' &&
           extension.valueBoolean
         end
-      end   
+      end
 
       def save_type_code?(type)
         'Reference' == type.code
       end
 
       def get_type_must_support_metadata(current_metadata, current_element)
-        type_must_support_metadata = []
-
-        current_element.type.each do |type| 
-          if type_must_support_extension?(type.extension) 
-
+        current_element.type.map do |type|
+          if type_must_support_extension?(type.extension)
             metadata =
             {
               path: "#{current_metadata[:path].delete_suffix('[x]')}#{type.code.upcase_first}",
               original_path: current_metadata[:path]
             }
-
             metadata[:type] = [type.code] if save_type_code?(type)
-
             handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
 
-            type_must_support_metadata << metadata
+            metadata
           end
-        end
-
-        type_must_support_metadata
+        end.compact
       end
 
       def handle_type_must_support_target_profiles(type, metadata)
@@ -232,9 +225,9 @@ module USCoreTestKit
       end
 
       def handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
-        choice_element_metadata = must_support_elements_metadata.find do |metadata| 
-          metadata[:original_path].present? && 
-          current_metadata[:path].include?( metadata[:original_path] ) 
+        choice_element_metadata = must_support_elements_metadata.find do |metadata|
+          metadata[:original_path].present? &&
+          current_metadata[:path].include?( metadata[:original_path] )
         end
 
         if choice_element_metadata.present?
@@ -246,7 +239,7 @@ module USCoreTestKit
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", '')            
+            path: current_element.path.gsub("#{resource}.", '')
           }.tap do |current_metadata|
             type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
@@ -255,9 +248,9 @@ module USCoreTestKit
             else
               handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
 
-              supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }             
+              supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
               current_metadata[:types] = supported_types if supported_types.present?
-              
+
               handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
@@ -292,7 +285,7 @@ module USCoreTestKit
 
       def is_vital_sign?
         [
-          'http://hl7.org/fhir/StructureDefinition/vitalsigns', 
+          'http://hl7.org/fhir/StructureDefinition/vitalsigns',
           'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
         ].include?(profile.baseDefinition)
       end
@@ -324,7 +317,7 @@ module USCoreTestKit
 
       # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
       # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
-      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles     
+      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles
       def remove_observation_data_absent_reason
         if profile.type == 'Observation'
           @must_supports[:elements].delete_if do |element|
