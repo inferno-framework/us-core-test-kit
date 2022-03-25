@@ -272,7 +272,7 @@ module USCoreTestKit
         end.uniq
       end
 
-      # SPECIAL CASES
+      # Start SPECIAL CASE Handling
 
       def handle_special_cases
         remove_vital_sign_component
@@ -396,6 +396,8 @@ module USCoreTestKit
         end
       end
 
+    # End SPECIAL CASE Handling
+    
     end
   end
 end
