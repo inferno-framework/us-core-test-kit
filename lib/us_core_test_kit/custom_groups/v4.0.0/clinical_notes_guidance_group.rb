@@ -44,7 +44,7 @@ module USCoreTestKit
       test do
         include SearchTest
 
-        id :us_core_311_clinical_note_types
+        id :us_core_400_clinical_note_types
         title 'Server demonstrates support for the required DocumentReference types and DiagnosticReport categories.'
         description %(
           [The US Core Clinical Notes
@@ -170,7 +170,7 @@ module USCoreTestKit
       end
 
       test do
-        id :us_core_311_clinical_note_attachments
+        id :us_core_400_clinical_note_attachments
         title 'DiagnosticReport and DocumentReference reference the same attachment'
         description %(
           All presentedForms urls referenced in DiagnosticReports shall have
