@@ -40,12 +40,12 @@ module USCoreTestKit
       run_as_group
 
       test from: :us_core_clinical_note_types do
-        config(
-         options: { required_types: ['11488-4', '18842-5', '34117-2', '28570-0', '11506-3', '18748-4', '11502-2', '11526-1'].freeze }
-        )
-       end
+       config(
+        options: { required_types: ['11488-4', '18842-5', '34117-2', '28570-0', '11506-3'].freeze }
+       )
+      end
 
-      #test from: :us_core_clinical_note_attachment
+      test from: :us_core_clinical_note_attachments
     end
   end
 end
