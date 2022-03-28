@@ -143,7 +143,6 @@ module USCoreTestKit
         end
 
         run do
-          require 'pry'; require 'pry-byebug'; binding.pry
           missing_types = REQUIRED_TYPES.dup
           missing_categories = REQUIRED_CATEGORIES.dup
 
