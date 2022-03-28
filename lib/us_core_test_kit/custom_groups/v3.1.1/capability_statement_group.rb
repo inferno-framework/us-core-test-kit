@@ -7,7 +7,7 @@ require_relative '../capability_statement/profile_support_test'
 module USCoreTestKit
   module USCoreV311
     class CapabilityStatementGroup < Inferno::TestGroup
-      id :us_core_311_capability_statement
+      id :us_core_v311_capability_statement
       title 'Capability Statement'
       short_description 'Retrieve information about supported server functionality using the FHIR capabilties interaction.'
       description %(
@@ -101,9 +101,9 @@ module USCoreTestKit
       test from: :us_core_json_support
 
       test from: :us_core_profile_support do
-        config: {
+        config(
           options: { target_profiles: PROFILES }
-        }
+        )
       end
     end
   end
