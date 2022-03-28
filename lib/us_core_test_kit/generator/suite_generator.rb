@@ -71,6 +71,14 @@ module USCoreTestKit
         @group_file_list ||=
           groups.map { |group| group.file_name.delete_suffix('.rb') }
       end
+
+      def clinical_notes_guidance_group
+        "../../custom_groups/#{ig_metadata.ig_version}/clinical_notes_guidance_group"
+      end
+
+      def clinical_notes_guidance_id
+        "us_core_#{ig_metadata.reformatted_version}_clinical_notes_guidance"
+      end
     end
   end
 end
