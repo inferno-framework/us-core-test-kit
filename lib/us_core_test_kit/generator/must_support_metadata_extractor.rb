@@ -316,9 +316,10 @@ module USCoreTestKit
         end
       end
 
-      # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
+      # ONC and US Core 4.0.0 both clarified that health IT developers that always provide HL7 FHIR "observation" values
       # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
-      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles
+      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles and observation lab profile
+      # Smoking status profile does not have MS on dataAbsentReason. It is safe to use profile.type == 'Observation'
       def remove_observation_data_absent_reason
         if profile.type == 'Observation'
           @must_supports[:elements].delete_if do |element|
@@ -345,7 +346,7 @@ module USCoreTestKit
 
       def add_must_support_choices
         choices = []
-        
+
         choices << {paths: ['content.attachment.data', 'content.attachment.url']} if profile.type == 'DocumentReference'
 
         case profile.version
