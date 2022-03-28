@@ -6,24 +6,7 @@ module USCoreTestKit
 
     id :us_core_clinical_note_types
     title 'Server demonstrates support for the required DocumentReference types and DiagnosticReport categories.'
-    description %(
-      [The US Core Clinical Notes
-      Guidance](https://hl7.org/fhir/us/core/STU3.1.1/clinical-notes-guidance.html)
-      states that systems SHALL support the following five "Common Clinical
-      Notes":
 
-      * Consultation Note (11488-4)
-      * Discharge Summary (18842-5)
-      * History & Physical Note (34117-2)
-      * Procedures Note (28570-0)
-      * Progress Note (11506-3)
-
-      and three DiagnosticReport categories:
-
-      * Cardiology (LP29708-2)
-      * Pathology (LP7839-6)
-      * Radiology (LP29684-5)
-    )
     input :patient_ids,
           title: 'Patient IDs',
           description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'

@@ -12,7 +12,7 @@ module USCoreTestKit
         The #{title} Sequence tests DiagnosticReport and DocumentReference
         resources associated with the provided patient. The resources returned
         will be checked for consistency against the [US Core Clinical Notes
-        Guidance](https://www.hl7.org/fhir/us/core/clinical-notes-guidance.html)
+        Guidance](https://hl7.org/fhir/us/core/STU3.1.1/clinical-notes-guidance.html)
 
         In this set of tests, Inferno serves as a FHIR client that attempts to
         access the different types of Clinical Notes specified in the guidance.
