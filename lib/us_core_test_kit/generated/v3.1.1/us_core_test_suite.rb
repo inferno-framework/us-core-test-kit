@@ -105,7 +105,7 @@ module USCoreTestKit
       group from: :us_core_v311_organization
       group from: :us_core_v311_practitioner
       group from: :us_core_v311_provenance
-      group from: :us_core_311_clinical_notes_guidance
+      group from: :us_core_v311_clinical_notes_guidance
       group from: :us_core_311_data_absent_reason
     end
   end
