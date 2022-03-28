@@ -265,7 +265,7 @@ module USCoreTestKit
         end.uniq
       end
 
-      # Start SPECIAL CASE Handling
+      #### SPECIAL CASE ####
 
       def handle_special_cases
         remove_vital_sign_component
@@ -388,9 +388,6 @@ module USCoreTestKit
           target_element[:target_profiles] << 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
         end
       end
-
-    # End SPECIAL CASE Handling
-    
     end
   end
 end
