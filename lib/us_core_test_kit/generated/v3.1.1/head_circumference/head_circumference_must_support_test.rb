@@ -2,7 +2,7 @@ require_relative '../../../must_support_test'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentileMustSupportTest < Inferno::Test
+    class HeadCircumferenceMustSupportTest < Inferno::Test
       include USCoreTestKit::MustSupportTest
 
       title 'All must support elements are provided in the Observation resources returned'
@@ -29,7 +29,7 @@ module USCoreTestKit
       * Observation.value[x]:valueQuantity
       )
 
-      id :us_core_v311_head_circumference_percentile_must_support_test
+      id :us_core_v311_head_circumference_must_support_test
 
       def resource_type
         'Observation'
@@ -40,7 +40,7 @@ module USCoreTestKit
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       run do

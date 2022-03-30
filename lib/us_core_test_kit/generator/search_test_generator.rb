@@ -132,7 +132,7 @@ module USCoreTestKit
       end
 
       def optional?
-        conformance_expectation != 'SHALL' || !search_metadata[:must_support_or_mandatory] 
+        conformance_expectation != 'SHALL' || !search_metadata[:must_support_or_mandatory]
       end
 
       def search_definition(name)

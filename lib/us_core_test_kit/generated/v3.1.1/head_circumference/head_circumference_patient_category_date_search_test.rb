@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentilePatientCategoryDateSearchTest < Inferno::Test
+    class HeadCircumferencePatientCategoryDateSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns valid results for Observation search by patient + category + date'
@@ -17,7 +17,7 @@ none are returned, the test is skipped.
 
       )
 
-      id :us_core_v311_head_circumference_percentile_patient_category_date_search_test
+      id :us_core_v311_head_circumference_patient_category_date_search_test
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
@@ -37,7 +37,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       run do

@@ -3,13 +3,13 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentilePatientCategorySearchTest < Inferno::Test
+    class HeadCircumferencePatientCodeDateSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
-      title 'Server returns valid results for Observation search by patient + category'
+      title 'Server returns valid results for Observation search by patient + code + date'
       description %(
-  A server SHALL support searching by
-patient + category on the Observation resource. This test
+  A server SHOULD support searching by
+patient + code + date on the Observation resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
@@ -17,7 +17,9 @@ none are returned, the test is skipped.
 
       )
 
-      id :us_core_v311_head_circumference_percentile_patient_category_search_test
+      id :us_core_v311_head_circumference_patient_code_date_search_test
+      optional
+  
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
@@ -25,9 +27,10 @@ none are returned, the test is skipped.
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Observation',
-        search_param_names: ['patient', 'category'],
+        search_param_names: ['patient', 'code', 'date'],
         possible_status_search: true,
-        token_search_params: ['category']
+        token_search_params: ['code'],
+        params_with_comparators: ['date']
         )
       end
 
@@ -36,7 +39,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       run do

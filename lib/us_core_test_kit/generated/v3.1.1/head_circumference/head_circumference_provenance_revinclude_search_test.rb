@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentileProvenanceRevincludeSearchTest < Inferno::Test
+    class HeadCircumferenceProvenanceRevincludeSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns Provenance resources from Observation search by patient + code + revInclude:Provenance:target'
@@ -14,7 +14,7 @@ module USCoreTestKit
         will pass if a Provenance resource is found in the response.
       %)
 
-      id :us_core_v311_head_circumference_percentile_provenance_revinclude_search_test
+      id :us_core_v311_head_circumference_provenance_revinclude_search_test
   
       input :patient_ids,
         title: 'Patient IDs',
@@ -38,7 +38,7 @@ module USCoreTestKit
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       def scratch_provenance_resources
