@@ -13,8 +13,8 @@ module USCoreTestKit
       def search_definition
         @search_definition ||=
           {
-            path: path,
-            full_path: full_path,
+            paths: paths,
+            full_paths: full_paths,
             comparators: comparators,
             values: values,
             type: type,
@@ -32,24 +32,25 @@ module USCoreTestKit
         param.source_hash
       end
 
-      def full_path
-        @full_path ||=
+      def full_paths
+        @full_paths ||=
           begin
             path = param.expression.gsub(/.where\((.*)/, '')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
-            as_type = path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.first
-            path.gsub!(/[. ]as[( ]([^)]*)[)]?/, as_type.upcase_first) if as_type.present?
-            path
+            path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
+              path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
+            end
+            path.split('|')
           end
       end
 
-      def path
-        @path ||= full_path.gsub("#{resource}.", '')
+      def paths
+        @paths ||= full_paths.map { |a_path| a_path.gsub("#{resource}.", '') }
       end
 
       def profile_element
         @profile_element ||=
-          profile_elements.find { |element| element.id == full_path }
+          profile_elements.find { |element| full_paths.include?(element.id) }
       end
 
       def comparator_expectation_extensions
@@ -111,19 +112,22 @@ module USCoreTestKit
       end
 
       def values
-        (
+        values = (
+          (
           values_from_slices +
           values_from_fixed_codes +
-          values_from_pattern_codeable_concept +
-          values_from_value_set_binding
-        ).uniq.presence || values_from_resource_metadata
+          values_from_pattern_coding +
+          values_from_pattern_codeable_concept          
+          ).uniq.presence || values_from_value_set_binding
+        ).presence || values_from_resource_metadata
+        values
       end
 
       def slices
         return [] unless contains_multiple?
 
         profile_elements.select do |element|
-          element.path == full_path &&
+          full_paths.include?(element.path) &&
             element.sliceName.present? &&
             element.patternCodeableConcept.present?
         end
@@ -141,6 +145,14 @@ module USCoreTestKit
         profile_elements
           .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
           .map { |element| element.fixedCode }
+      end
+
+      def values_from_pattern_coding
+        return [] unless type == 'CodeableConcept'
+
+        profile_elements
+          .select { |element| element.path == "#{profile_element.path}.coding" && element.patternCoding.present? }
+          .map { |element| element.patternCoding.code }        
       end
 
       def values_from_pattern_codeable_concept
@@ -167,14 +179,22 @@ module USCoreTestKit
         bound_systems.flat_map { |system| system.concept.map { |code| code.code } }.uniq
       end
 
-      def fhir_metadata
-        FHIR.const_get(resource)::METADATA[path.gsub("#{resource}.", '')]
+      def fhir_metadata(current_path)
+        FHIR.const_get(resource)::METADATA[current_path]
       end
 
       def values_from_resource_metadata
-        return [] if fhir_metadata&.dig('valid_codes').blank?
+        values = []
 
-        fhir_metadata['valid_codes'].values.flatten
+        paths.each do |current_path|
+          current_metadata = fhir_metadata(current_path)
+
+          if current_metadata&.dig('valid_codes').present?
+            values = values + current_metadata['valid_codes'].values.flatten 
+          end
+        end
+
+        values
       end
     end
   end

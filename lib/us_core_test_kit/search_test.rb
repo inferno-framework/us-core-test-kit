@@ -219,8 +219,8 @@ module USCoreTestKit
         next if search_variant_test_records[:comparator_searches].include? name
 
         required_comparators(name).each do |comparator|
-          path = search_param_path(name)
-          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
+          paths = search_param_paths(name).first
+          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
           search_and_check_response(params_with_comparator)
@@ -444,9 +444,13 @@ module USCoreTestKit
       name == 'patient' || (name == '_id' && resource_type == 'Patient')
     end
 
-    def search_param_path(name)
-      path = metadata.search_definitions[name.to_sym][:path]
-      path == 'class' ? 'local_class' : path
+    def search_param_paths(name)
+      paths = metadata.search_definitions[name.to_sym][:paths]
+      if paths.first =='class' 
+        paths[0] = 'local_class'
+      end
+      
+      paths
     end
 
     def all_search_params_present?(params)
@@ -517,52 +521,59 @@ module USCoreTestKit
     end
 
     def search_param_value(name, patient_id, include_system: false)
-      path = search_param_path(name)
-      element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
-      search_value =
-        case element
-        when FHIR::Period
-          if element.start.present?
-            'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
-          else
-            end_datetime = get_fhir_datetime_range(element.end)[:end]
-            'lt' + (end_datetime + 1).xmlschema
-          end
-        when FHIR::Reference
-          element.reference
-        when FHIR::CodeableConcept
-          if include_system
-            coding =
-              find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-            coding.present? ? "#{coding.system}|#{coding.code}" : nil
-          else
-            find_a_value_at(element, 'coding.code')
-          end
-        when FHIR::Identifier
-          if include_system
-            identifier = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |identifier|
-              identifier.value.present? && identifier.system.present?
+      paths = search_param_paths(name)
+      search_value = nil
+      paths.each do |path|
+        element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
+
+        search_value =
+          case element
+          when FHIR::Period
+            if element.start.present?
+              'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
+            else
+              end_datetime = get_fhir_datetime_range(element.end)[:end]
+              'lt' + (end_datetime + 1).xmlschema
             end
-            identifier.present? ? "#{identifier.system}|#{identifier.value}" : nil
-          else
-            element.value
-          end
-        when FHIR::Coding
-          if include_system
-            coding = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |coding|
-              coding.code.present? && coding.system.present?
+          when FHIR::Reference
+            element.reference
+          when FHIR::CodeableConcept
+            if include_system
+              coding =
+                find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+              coding.present? ? "#{coding.system}|#{coding.code}" : nil
+            else
+              find_a_value_at(element, 'coding.code')
             end
-            coding.present? ? "#{coding.system}|#{coding.code}" : nil
+          when FHIR::Identifier
+            if include_system
+              identifier = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |identifier|
+                identifier.value.present? && identifier.system.present?
+              end
+              identifier.present? ? "#{identifier.system}|#{identifier.value}" : nil
+            else
+              element.value
+            end
+          when FHIR::Coding
+            if include_system
+              coding = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |coding|
+                coding.code.present? && coding.system.present?
+              end
+              coding.present? ? "#{coding.system}|#{coding.code}" : nil
+            else
+              element.code
+            end
+          when FHIR::HumanName
+            element.family || element.given&.first || element.text
+          when FHIR::Address
+            element.text || element.city || element.state || element.postalCode || element.country
           else
-            element.code
+            element
           end
-        when FHIR::HumanName
-          element.family || element.given&.first || element.text
-        when FHIR::Address
-          element.text || element.city || element.state || element.postalCode || element.country
-        else
-          element
-        end
+
+          break if search_value.present?
+      end
+
       escaped_value = search_value&.gsub(',', '\\,')
       escaped_value
     end
@@ -593,88 +604,96 @@ module USCoreTestKit
 
     def check_resource_against_params(resource, params)
       params.each do |name, search_value|
-        path = search_param_path(name)
-        type = metadata.search_definitions[name.to_sym][:type]
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-              if value.is_a? FHIR::Reference
-                value.reference
-              else
-                value
-              end
-            end
+        paths = search_param_paths(name)
 
-        match_found =
-          case type
-          when 'Period', 'date', 'instant', 'dateTime'
-            values_found.any? { |date| validate_date_search(search_value, date) }
-          when 'HumanName'
-            # When a string search parameter refers to the types HumanName and Address,
-            # the search covers the elements of type string, and does not cover elements such as use and period
-            # https://www.hl7.org/fhir/search.html#string
-            search_value_downcase = search_value.downcase
-            values_found.any? do |name|
-              name&.text&.downcase&.start_with?(search_value_downcase) ||
-                name&.family&.downcase&.start_with?(search_value_downcase) ||
-                name&.given&.any? { |given| given.downcase.start_with?(search_value_downcase) } ||
-                name&.prefix&.any? { |prefix| prefix.downcase.start_with?(search_value_downcase) } ||
-                name&.suffix&.any? { |suffix| suffix.downcase.start_with?(search_value_downcase) }
-            end
-          when 'Address'
-            search_value_downcase = search_value.downcase
-            values_found.any? do |address|
-              address&.text&.downcase&.start_with?(search_value_downcase) ||
-              address&.city&.downcase&.start_with?(search_value_downcase) ||
-              address&.state&.downcase&.start_with?(search_value_downcase) ||
-              address&.postalCode&.downcase&.start_with?(search_value_downcase) ||
-              address&.country&.downcase&.start_with?(search_value_downcase)
-            end
-          when 'CodeableConcept'
-            # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD 
-            # treat tokens in a case-insensitive manner, on the grounds that including undesired data has 
-            # less safety implications than excluding desired behavior". 
-            codings = values_found.flat_map(&:coding)
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
-              codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
-            else
-              codings&.any? { |coding| coding.code&.casecmp?(search_value) }
-            end
-          when 'Coding'
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
-              values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
-            else
-              values_found.any? { |coding| coding.code&.casecmp?(search_value) }
-            end
-          when 'Identifier'
-            if search_value.include? '|'
-              values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
-            else
-              values_found.any? { |identifier| identifier.value == search_value }
-            end
-          when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
-            values_found.any? do |value_found|
-              searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
-            end
-          else
-            # searching by patient requires special case because we are searching by a resource identifier
-            # references can also be URL's, so we made need to resolve those url's
-            if ['subject', 'patient'].include? name.to_s
-              id = search_value.split('Patient/').last
-              possible_values = [id, 'Patient/' + id, "#{url}/Patient/\#{id}"]
-              values_found.any? do |reference|
-                possible_values.include? reference
+        match_found = false
+        values_found = []
+
+        paths.each do |path|
+          type = metadata.search_definitions[name.to_sym][:type]
+          values_found =
+            resolve_path(resource, path)
+              .map do |value|
+                if value.is_a? FHIR::Reference
+                  value.reference
+                else
+                  value
+                end
+              end
+
+          match_found =
+            case type
+            when 'Period', 'date', 'instant', 'dateTime'
+              values_found.any? { |date| validate_date_search(search_value, date) }
+            when 'HumanName'
+              # When a string search parameter refers to the types HumanName and Address,
+              # the search covers the elements of type string, and does not cover elements such as use and period
+              # https://www.hl7.org/fhir/search.html#string
+              search_value_downcase = search_value.downcase
+              values_found.any? do |name|
+                name&.text&.downcase&.start_with?(search_value_downcase) ||
+                  name&.family&.downcase&.start_with?(search_value_downcase) ||
+                  name&.given&.any? { |given| given.downcase.start_with?(search_value_downcase) } ||
+                  name&.prefix&.any? { |prefix| prefix.downcase.start_with?(search_value_downcase) } ||
+                  name&.suffix&.any? { |suffix| suffix.downcase.start_with?(search_value_downcase) }
+              end
+            when 'Address'
+              search_value_downcase = search_value.downcase
+              values_found.any? do |address|
+                address&.text&.downcase&.start_with?(search_value_downcase) ||
+                address&.city&.downcase&.start_with?(search_value_downcase) ||
+                address&.state&.downcase&.start_with?(search_value_downcase) ||
+                address&.postalCode&.downcase&.start_with?(search_value_downcase) ||
+                address&.country&.downcase&.start_with?(search_value_downcase)
+              end
+            when 'CodeableConcept'
+              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD 
+              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has 
+              # less safety implications than excluding desired behavior". 
+              codings = values_found.flat_map(&:coding)
+              if search_value.include? '|'
+                system = search_value.split('|').first
+                code = search_value.split('|').last
+                codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
+              else
+                codings&.any? { |coding| coding.code&.casecmp?(search_value) }
+              end
+            when 'Coding'
+              if search_value.include? '|'
+                system = search_value.split('|').first
+                code = search_value.split('|').last
+                values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
+              else
+                values_found.any? { |coding| coding.code&.casecmp?(search_value) }
+              end
+            when 'Identifier'
+              if search_value.include? '|'
+                values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
+              else
+                values_found.any? { |identifier| identifier.value == search_value }
+              end
+            when 'string'
+              searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+              values_found.any? do |value_found|
+                searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
               end
             else
-              search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
-              values_found.any? { |value_found| search_values.include? value_found }
+              # searching by patient requires special case because we are searching by a resource identifier
+              # references can also be URL's, so we made need to resolve those url's
+              if ['subject', 'patient'].include? name.to_s
+                id = search_value.split('Patient/').last
+                possible_values = [id, 'Patient/' + id, "#{url}/Patient/\#{id}"]
+                values_found.any? do |reference|
+                  possible_values.include? reference
+                end
+              else
+                search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+                values_found.any? { |value_found| search_values.include? value_found }
+              end
             end
-          end
+          
+          break if match_found
+        end
 
         assert match_found,
                "#{resource_type}/#{resource.id} did not match the search parameters:\n" \

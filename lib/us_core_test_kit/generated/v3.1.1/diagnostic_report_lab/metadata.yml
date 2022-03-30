@@ -69,16 +69,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: DiagnosticReport.subject
+    :paths:
+    - subject
+    :full_paths:
+    - DiagnosticReport.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: DiagnosticReport.category
+    :paths:
+    - category
+    :full_paths:
+    - DiagnosticReport.category
     :comparators: {}
     :values:
     - LAB
@@ -86,8 +90,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :path: effective
-    :full_path: DiagnosticReport.effective
+    :paths:
+    - effective
+    :full_paths:
+    - DiagnosticReport.effective
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -103,8 +109,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: DiagnosticReport.status
+    :paths:
+    - status
+    :full_paths:
+    - DiagnosticReport.status
     :comparators: {}
     :values:
     - registered
@@ -121,8 +129,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: DiagnosticReport.code
+    :paths:
+    - code
+    :full_paths:
+    - DiagnosticReport.code
     :comparators: {}
     :values:
     - 1-8
@@ -1144,33 +1154,21 @@
       :system: http://terminology.hl7.org/CodeSystem/v2-0074
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: effective[x]
-    :type:
-    - dateTime
-    - Period
   - :path: issued
-    :type:
-    - instant
   - :path: performer
-    :type:
+    :types:
     - Reference
   - :path: result
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - DiagnosticReport.status
-- DiagnosticReport.category
 - DiagnosticReport.category
 - DiagnosticReport.code
 - DiagnosticReport.subject

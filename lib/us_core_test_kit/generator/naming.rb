@@ -41,7 +41,7 @@ module USCoreTestKit
           resource = group_metadata.resource
           return resource.underscore unless resource_has_multiple_profiles?(resource)
 
-          return 'head_circumference' if group_metadata.profile_url == HEAD_CIRCUMFERENCE
+          return 'head_circumference_percentile' if group_metadata.profile_url == HEAD_CIRCUMFERENCE
 
           group_metadata.name
             .delete_prefix('us_core_')

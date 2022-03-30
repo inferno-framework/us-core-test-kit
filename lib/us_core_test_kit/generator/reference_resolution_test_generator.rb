@@ -7,7 +7,7 @@ module USCoreTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .reject { |group| SpecialCases.exclude_resource? group.resource }
+            .reject { |group| SpecialCases.exclude_group? group }
             .each { |group| new(group, base_output_dir).generate }
         end
       end
@@ -61,6 +61,15 @@ module USCoreTestKit
 
       def resource_collection_string
         'scratch_resources[:all]'
+      end
+      
+      def must_support_reference_list_string
+        element_names = group_metadata.must_supports[:elements]
+          .select { |element| element[:type]&.include?('Reference') }
+          .map { |element| "      * #{resource_type}.#{element[:path]}" }
+          .uniq
+          .sort
+          .join("\n")
       end
 
       def generate

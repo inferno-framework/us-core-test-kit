@@ -10,40 +10,19 @@ module USCoreTestKit
       end
 
       def must_supports
-        {
+        @must_supports = {
           extensions: must_support_extensions,
           slices: must_support_slices,
           elements: must_support_elements
         }
-      end
 
-      # exclude component from vital sign profiles except observation-bp and observation-pulse-ox
-      # observation-bp is excluded by profile.name != 'observation-bp'
-      # observation-plux-ox is excluded by profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns'
-      def vital_signs_component?(element)
-        profile.baseDefinition == 'http://hl7.org/fhir/StructureDefinition/vitalsigns' &&
-          profile.name != 'observation-bp' &&
-          element.path.include?('component')
-      end
+        handle_special_cases
 
-      def blood_pressure_value?(element)
-        profile.name == 'observation-bp' && element.path.include?('Observation.value[x]')
-      end
-
-      # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
-      # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
-      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles      
-      def data_absent_reason?(element)
-        profile.type == 'Observation' && ['Observation.dataAbsentReason', 'Observation.component.dataAbsentReason'].include?(element.path)
+        @must_supports
       end
 
       def all_must_support_elements
-        profile_elements
-          .select { |element| element.mustSupport }
-          .reject do |element|
-            # TODO: Can special cases be moved out of here?
-            vital_signs_component?(element) || blood_pressure_value?(element) || data_absent_reason?(element)
-          end
+        profile_elements.select { |element| element.mustSupport }
       end
 
       def must_support_extension_elements
@@ -100,6 +79,13 @@ module USCoreTestKit
                   path: discriminator_path,
                   code: pattern_element.patternCodeableConcept.coding.first.code,
                   system: pattern_element.patternCodeableConcept.coding.first.system
+                }
+              elsif pattern_element.patternCoding.present?
+                {
+                  type: 'patternCoding',
+                  path: discriminator_path,
+                  code: pattern_element.patternCoding.code,
+                  system: pattern_element.patternCoding.system
                 }
               elsif pattern_element.patternIdentifier.present?
                 {
@@ -198,24 +184,209 @@ module USCoreTestKit
         end
       end
 
+      def type_must_support_extension?(extensions)
+        extensions&.any? do |extension|
+          extension.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support' &&
+          extension.valueBoolean
+        end
+      end
+
+      def save_type_code?(type)
+        'Reference' == type.code
+      end
+
+      def get_type_must_support_metadata(current_metadata, current_element)
+        current_element.type.map do |type|
+          if type_must_support_extension?(type.extension)
+            metadata =
+            {
+              path: "#{current_metadata[:path].delete_suffix('[x]')}#{type.code.upcase_first}",
+              original_path: current_metadata[:path]
+            }
+            metadata[:type] = [type.code] if save_type_code?(type)
+            handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
+
+            metadata
+          end
+        end.compact
+      end
+
+      def handle_type_must_support_target_profiles(type, metadata)
+        index = 0
+        target_profiles = []
+
+        type.source_hash['_targetProfile']&.each do |hash|
+          element = FHIR::Element.new(hash)
+          target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+          index += 1
+        end
+
+        metadata[:target_profiles] = target_profiles if target_profiles.present?
+      end
+
+      def handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
+        choice_element_metadata = must_support_elements_metadata.find do |metadata|
+          metadata[:original_path].present? &&
+          current_metadata[:path].include?( metadata[:original_path] )
+        end
+
+        if choice_element_metadata.present?
+          current_metadata[:original_path] = current_metadata[:path]
+          current_metadata[:path] = current_metadata[:path].sub(choice_element_metadata[:original_path], choice_element_metadata[:path])
+        end
+      end
+
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", ''),
-            type: current_element.type.map { |type| type.code}
+            path: current_element.path.gsub("#{resource}.", '')
           }.tap do |current_metadata|
-            path = current_element.path.gsub("#{resource}.", '')
-            current_metadata[:path] = path
+            type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
-            handle_fixed_values(current_metadata, current_element)
+            if type_must_support_metadata.any?
+              must_support_elements_metadata.concat(type_must_support_metadata)
+            else
+              handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
 
-            must_support_elements_metadata.delete_if do |metadata|
-              metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
+              supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
+              current_metadata[:types] = supported_types if supported_types.present?
+
+              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
+
+              handle_fixed_values(current_metadata, current_element)
+
+              must_support_elements_metadata.delete_if do |metadata|
+                metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
+              end
+
+              must_support_elements_metadata << current_metadata
             end
-
-            must_support_elements_metadata << current_metadata
           end
         end.uniq
+      end
+
+      #### SPECIAL CASE ####
+
+      def handle_special_cases
+        remove_vital_sign_component
+        remove_blood_pressure_value
+        remove_observation_data_absent_reason
+        remove_document_reference_attachment_data_url
+
+        case profile.version
+        when '3.1.1'
+          remove_device_carrier
+        when '4.0.0'
+          add_device_distinct_identifier
+          add_patient_uscdi_elements
+          add_provenance_agent_who
+        end
+      end
+
+      def is_vital_sign?
+        [
+          'http://hl7.org/fhir/StructureDefinition/vitalsigns',
+          'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
+        ].include?(profile.baseDefinition)
+      end
+
+      def is_blood_pressure?
+        ['observation-bp', 'USCoreBloodPressureProfile'].include?(profile.name)
+      end
+
+      # Exclude Observation.component from vital sign profiles except observation-bp and observation-pulse-ox
+      def remove_vital_sign_component
+        if is_vital_sign? && !is_blood_pressure? && profile.name != 'USCorePulseOximetryProfile'
+          @must_supports[:elements].delete_if do |element|
+            element[:path].start_with?('component')
+          end
+        end
+      end
+
+      # Exclude Observation.value[x] from observation-bp
+      def remove_blood_pressure_value
+        if is_blood_pressure?
+          @must_supports[:elements].delete_if do |element|
+            element[:path].start_with?('value[x]') || element[:original_path]&.start_with?('value[x]')
+          end
+          @must_supports[:slices].delete_if do |slice|
+            slice[:path].start_with?('value[x]')
+          end
+        end
+      end
+
+      # ONC clarified that health IT developers that always provide HL7 FHIR "observation" values
+      # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
+      # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles
+      def remove_observation_data_absent_reason
+        if profile.type == 'Observation'
+          @must_supports[:elements].delete_if do |element|
+            ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
+          end
+        end
+      end
+
+      def remove_device_carrier
+        if profile.type == 'Device'
+          @must_supports[:elements].delete_if do |element|
+            ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include?(element[:path])
+          end
+        end
+      end
+
+      def remove_document_reference_attachment_data_url
+        if profile.type == 'DocumentReference'
+          @must_supports[:elements].delete_if do |element|
+            ['content.attachment.data', 'content.attachment.url'].include?(element[:path])
+          end
+        end
+      end
+
+      def add_device_distinct_identifier
+        if profile.type == 'Device'
+          # FHIR-36303 US Core 4.0.0 mistakenly removed MS from Device.distinctIdentifier
+          # This will be fixed in US Core 5.0.0
+          @must_supports[:elements] << {
+            path: 'distinctIdentifier'
+          }
+        end
+      end
+
+      def add_patient_uscdi_elements
+        if profile.type == 'Patient'
+          #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:race',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:ethnicity',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity'
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:birthsex',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex'
+          }
+          @must_supports[:elements] << {
+            path: 'telecom'
+          }
+          @must_supports[:elements] << {
+            path: 'name.suffix'
+          }
+          @must_supports[:elements] << {
+            path: 'name.use',
+            fixed_value: 'old'
+          }
+        end
+      end
+
+      def add_provenance_agent_who
+        # FHIR-36344 US Core 4.0.0 mistakenly not lable us-core-organization as MS for Provenance.agent.who
+        # This will be fixed in US Core 5.0.0
+        if profile.type == 'Provenance'
+          target_element = @must_supports[:elements].find { |element| element[:path] == 'agent.who'}
+          target_element[:target_profiles] << 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
+        end
       end
     end
   end

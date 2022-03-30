@@ -76,24 +76,30 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :path: id
-    :full_path: DocumentReference.id
+    :paths:
+    - id
+    :full_paths:
+    - DocumentReference.id
     :comparators: {}
     :values: []
     :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :path: subject
-    :full_path: DocumentReference.subject
+    :paths:
+    - subject
+    :full_paths:
+    - DocumentReference.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :path: type
-    :full_path: DocumentReference.type
+    :paths:
+    - type
+    :full_paths:
+    - DocumentReference.type
     :comparators: {}
     :values:
     - UNK
@@ -101,8 +107,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :period:
-    :path: context.period
-    :full_path: DocumentReference.context.period
+    :paths:
+    - context.period
+    :full_paths:
+    - DocumentReference.context.period
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -118,8 +126,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: DocumentReference.category
+    :paths:
+    - category
+    :full_paths:
+    - DocumentReference.category
     :comparators: {}
     :values:
     - 11369-6
@@ -171,8 +181,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :path: date
-    :full_path: DocumentReference.date
+    :paths:
+    - date
+    :full_paths:
+    - DocumentReference.date
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -188,8 +200,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: DocumentReference.status
+    :paths:
+    - status
+    :full_paths:
+    - DocumentReference.status
     :comparators: {}
     :values:
     - current
@@ -208,50 +222,28 @@
   :slices: []
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: status
-    :type:
-    - code
   - :path: type
-    :type:
-    - CodeableConcept
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: date
-    :type:
-    - instant
   - :path: author
-    :type:
+    :types:
     - Reference
   - :path: custodian
-    :type:
+    :types:
     - Reference
   - :path: content
-    :type:
-    - BackboneElement
   - :path: content.attachment
-    :type:
-    - Attachment
   - :path: content.attachment.contentType
-    :type:
-    - code
   - :path: content.format
-    :type:
-    - Coding
   - :path: context
-    :type:
-    - BackboneElement
   - :path: context.encounter
-    :type:
+    :types:
     - Reference
   - :path: context.period
-    :type:
-    - Period
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

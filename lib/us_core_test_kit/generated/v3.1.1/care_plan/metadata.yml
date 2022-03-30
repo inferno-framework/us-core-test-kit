@@ -62,16 +62,20 @@
   :must_support_or_mandatory: false
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: CarePlan.subject
+    :paths:
+    - subject
+    :full_paths:
+    - CarePlan.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: CarePlan.category
+    :paths:
+    - category
+    :full_paths:
+    - CarePlan.category
     :comparators: {}
     :values:
     - assess-plan
@@ -79,8 +83,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: CarePlan.status
+    :paths:
+    - status
+    :full_paths:
+    - CarePlan.status
     :comparators: {}
     :values:
     - draft
@@ -94,8 +100,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :date:
-    :path: period
-    :full_path: CarePlan.period
+    :paths:
+    - period
+    :full_paths:
+    - CarePlan.period
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -126,22 +134,12 @@
       :system: http://hl7.org/fhir/us/core/CodeSystem/careplan-category
   :elements:
   - :path: text
-    :type:
-    - Narrative
   - :path: text.status
-    :type:
-    - code
   - :path: status
-    :type:
-    - code
   - :path: intent
-    :type:
-    - code
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: subject
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - CarePlan.text
@@ -149,7 +147,6 @@
 - CarePlan.text.div
 - CarePlan.status
 - CarePlan.intent
-- CarePlan.category
 - CarePlan.category
 - CarePlan.subject
 - CarePlan.activity.detail.status

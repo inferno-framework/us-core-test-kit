@@ -62,16 +62,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Condition.subject
+    :paths:
+    - subject
+    :full_paths:
+    - Condition.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :onset-date:
-    :path: onsetDateTime
-    :full_path: Condition.onsetDateTime
+    :paths:
+    - onsetDateTime
+    :full_paths:
+    - Condition.onsetDateTime
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -87,8 +91,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :path: category
-    :full_path: Condition.category
+    :paths:
+    - category
+    :full_paths:
+    - Condition.category
     :comparators: {}
     :values:
     - health-concern
@@ -96,8 +102,10 @@
     :contains_multiple: true
     :multiple_or: MAY
   :clinical-status:
-    :path: clinicalStatus
-    :full_path: Condition.clinicalStatus
+    :paths:
+    - clinicalStatus
+    :full_paths:
+    - Condition.clinicalStatus
     :comparators: {}
     :values:
     - active
@@ -110,8 +118,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :path: code
-    :full_path: Condition.code
+    :paths:
+    - code
+    :full_paths:
+    - Condition.code
     :comparators: {}
     :values:
     - '160245001'
@@ -129,19 +139,11 @@
   :slices: []
   :elements:
   - :path: clinicalStatus
-    :type:
-    - CodeableConcept
   - :path: verificationStatus
-    :type:
-    - CodeableConcept
   - :path: category
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - Condition.category

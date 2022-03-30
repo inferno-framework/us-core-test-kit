@@ -7,7 +7,7 @@ module USCoreTestKit
       class << self
         def generate(ig_metadata, base_output_dir)
           ig_metadata.groups
-            .reject { |group| SpecialCases.exclude_resource? group.resource }
+            .reject { |group| SpecialCases.exclude_group? group }
             .each { |group| new(group, base_output_dir).generate }
         end
       end
@@ -72,6 +72,7 @@ module USCoreTestKit
         element_names = group_metadata.must_supports[:elements].map { |slice| "#{resource_type}.#{slice[:path]}" }
         extension_names = group_metadata.must_supports[:extensions].map { |slice| slice[:id] }
         (slice_names + element_names + extension_names)
+          .uniq
           .sort
           .map { |name| "      * #{name}" }
           .join("\n")

@@ -45,16 +45,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: AllergyIntolerance.patient
+      :paths:
+      - patient
+      :full_paths:
+      - AllergyIntolerance.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :path: clinicalStatus
-      :full_path: AllergyIntolerance.clinicalStatus
+      :paths:
+      - clinicalStatus
+      :full_paths:
+      - AllergyIntolerance.clinicalStatus
       :comparators: {}
       :values:
       - active
@@ -74,23 +78,13 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
-      :type:
-      - CodeableConcept
     - :path: verificationStatus
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: patient
-      :type:
+      :types:
       - Reference
     - :path: reaction
-      :type:
-      - BackboneElement
     - :path: reaction.manifestation
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - AllergyIntolerance.code
   - AllergyIntolerance.patient
@@ -159,9 +153,6 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev311CareplanSequence
@@ -226,16 +217,20 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: CarePlan.subject
+      :paths:
+      - subject
+      :full_paths:
+      - CarePlan.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: CarePlan.category
+      :paths:
+      - category
+      :full_paths:
+      - CarePlan.category
       :comparators: {}
       :values:
       - assess-plan
@@ -243,8 +238,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: CarePlan.status
+      :paths:
+      - status
+      :full_paths:
+      - CarePlan.status
       :comparators: {}
       :values:
       - draft
@@ -258,8 +255,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :date:
-      :path: period
-      :full_path: CarePlan.period
+      :paths:
+      - period
+      :full_paths:
+      - CarePlan.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -290,22 +289,12 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/careplan-category
     :elements:
     - :path: text
-      :type:
-      - Narrative
     - :path: text.status
-      :type:
-      - code
     - :path: status
-      :type:
-      - code
     - :path: intent
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - CarePlan.text
@@ -313,7 +302,6 @@
   - CarePlan.text.div
   - CarePlan.status
   - CarePlan.intent
-  - CarePlan.category
   - CarePlan.category
   - CarePlan.subject
   - CarePlan.activity.detail.status
@@ -448,9 +436,6 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev311CareteamSequence
@@ -491,16 +476,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: CareTeam.subject
+      :paths:
+      - subject
+      :full_paths:
+      - CareTeam.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: CareTeam.status
+      :paths:
+      - status
+      :full_paths:
+      - CareTeam.status
       :comparators: {}
       :values:
       - proposed
@@ -520,19 +509,13 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: participant
-      :type:
-      - BackboneElement
     - :path: participant.role
-      :type:
-      - CodeableConcept
     - :path: participant.member
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - CareTeam.subject
@@ -581,9 +564,6 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: participant.member
     :resources:
@@ -652,16 +632,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Condition.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Condition.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :path: onsetDateTime
-      :full_path: Condition.onsetDateTime
+      :paths:
+      - onsetDateTime
+      :full_paths:
+      - Condition.onsetDateTime
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -677,8 +661,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Condition.category
+      :paths:
+      - category
+      :full_paths:
+      - Condition.category
       :comparators: {}
       :values:
       - health-concern
@@ -686,8 +672,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :clinical-status:
-      :path: clinicalStatus
-      :full_path: Condition.clinicalStatus
+      :paths:
+      - clinicalStatus
+      :full_paths:
+      - Condition.clinicalStatus
       :comparators: {}
       :values:
       - active
@@ -700,8 +688,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :path: code
-      :full_path: Condition.code
+      :paths:
+      - code
+      :full_paths:
+      - Condition.code
       :comparators: {}
       :values:
       - '160245001'
@@ -719,19 +709,11 @@
     :slices: []
     :elements:
     - :path: clinicalStatus
-      :type:
-      - CodeableConcept
     - :path: verificationStatus
-      :type:
-      - CodeableConcept
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Condition.category
@@ -805,9 +787,6 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev311ImplantableDeviceSequence
@@ -853,16 +832,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: Device.patient
+      :paths:
+      - patient
+      :full_paths:
+      - Device.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: Device.type
+      :paths:
+      - type
+      :full_paths:
+      - Device.type
       :comparators: {}
       :values:
       - '156009'
@@ -1877,31 +1860,15 @@
     :slices: []
     :elements:
     - :path: udiCarrier
-      :type:
-      - BackboneElement
     - :path: udiCarrier.deviceIdentifier
-      :type:
-      - string
     - :path: distinctIdentifier
-      :type:
-      - string
     - :path: manufactureDate
-      :type:
-      - dateTime
     - :path: expirationDate
-      :type:
-      - dateTime
     - :path: lotNumber
-      :type:
-      - string
     - :path: serialNumber
-      :type:
-      - string
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: patient
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
@@ -1953,9 +1920,6 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev311DiagnosticreportNoteSequence
@@ -2027,16 +1991,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: DiagnosticReport.subject
+      :paths:
+      - subject
+      :full_paths:
+      - DiagnosticReport.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DiagnosticReport.category
+      :paths:
+      - category
+      :full_paths:
+      - DiagnosticReport.category
       :comparators: {}
       :values:
       - LP29684-5
@@ -2046,8 +2014,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
+      :paths:
+      - effective
+      :full_paths:
+      - DiagnosticReport.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2063,8 +2033,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DiagnosticReport.status
+      :paths:
+      - status
+      :full_paths:
+      - DiagnosticReport.status
       :comparators: {}
       :values:
       - registered
@@ -2081,8 +2053,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: DiagnosticReport.code
+      :paths:
+      - code
+      :full_paths:
+      - DiagnosticReport.code
       :comparators: {}
       :values:
       - 1-8
@@ -3097,33 +3071,20 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: encounter
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: issued
-      :type:
-      - instant
     - :path: performer
-      :type:
+      :types:
       - Reference
     - :path: presentedForm
-      :type:
-      - Attachment
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -3188,9 +3149,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: encounter
     :resources:
@@ -3269,16 +3227,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: DiagnosticReport.subject
+      :paths:
+      - subject
+      :full_paths:
+      - DiagnosticReport.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DiagnosticReport.category
+      :paths:
+      - category
+      :full_paths:
+      - DiagnosticReport.category
       :comparators: {}
       :values:
       - LAB
@@ -3286,8 +3248,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: DiagnosticReport.effective
+      :paths:
+      - effective
+      :full_paths:
+      - DiagnosticReport.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -3303,8 +3267,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DiagnosticReport.status
+      :paths:
+      - status
+      :full_paths:
+      - DiagnosticReport.status
       :comparators: {}
       :values:
       - registered
@@ -3321,8 +3287,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: DiagnosticReport.code
+      :paths:
+      - code
+      :full_paths:
+      - DiagnosticReport.code
       :comparators: {}
       :values:
       - 1-8
@@ -4343,33 +4311,21 @@
         :system: http://terminology.hl7.org/CodeSystem/v2-0074
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: issued
-      :type:
-      - instant
     - :path: performer
-      :type:
+      :types:
       - Reference
     - :path: result
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - DiagnosticReport.status
-  - DiagnosticReport.category
   - DiagnosticReport.category
   - DiagnosticReport.code
   - DiagnosticReport.subject
@@ -4437,9 +4393,6 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: performer
     :resources:
@@ -4522,24 +4475,30 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: DocumentReference.id
+      :paths:
+      - id
+      :full_paths:
+      - DocumentReference.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :path: subject
-      :full_path: DocumentReference.subject
+      :paths:
+      - subject
+      :full_paths:
+      - DocumentReference.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: DocumentReference.type
+      :paths:
+      - type
+      :full_paths:
+      - DocumentReference.type
       :comparators: {}
       :values:
       - UNK
@@ -4547,8 +4506,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :period:
-      :path: context.period
-      :full_path: DocumentReference.context.period
+      :paths:
+      - context.period
+      :full_paths:
+      - DocumentReference.context.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4564,8 +4525,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: DocumentReference.category
+      :paths:
+      - category
+      :full_paths:
+      - DocumentReference.category
       :comparators: {}
       :values:
       - 11369-6
@@ -4617,8 +4580,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: date
-      :full_path: DocumentReference.date
+      :paths:
+      - date
+      :full_paths:
+      - DocumentReference.date
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4634,8 +4599,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: DocumentReference.status
+      :paths:
+      - status
+      :full_paths:
+      - DocumentReference.status
       :comparators: {}
       :values:
       - current
@@ -4654,50 +4621,28 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: status
-      :type:
-      - code
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: date
-      :type:
-      - instant
     - :path: author
-      :type:
+      :types:
       - Reference
     - :path: custodian
-      :type:
+      :types:
       - Reference
     - :path: content
-      :type:
-      - BackboneElement
     - :path: content.attachment
-      :type:
-      - Attachment
     - :path: content.attachment.contentType
-      :type:
-      - code
     - :path: content.format
-      :type:
-      - Coding
     - :path: context
-      :type:
-      - BackboneElement
     - :path: context.encounter
-      :type:
+      :types:
       - Reference
     - :path: context.period
-      :type:
-      - Period
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -4790,9 +4735,6 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: author
     :resources:
@@ -4876,32 +4818,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: Encounter.id
+      :paths:
+      - id
+      :full_paths:
+      - Encounter.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Encounter.identifier
+      :paths:
+      - identifier
+      :full_paths:
+      - Encounter.identifier
       :comparators: {}
       :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
-      :path: subject
-      :full_path: Encounter.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Encounter.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :class:
-      :path: class
-      :full_path: Encounter.class
+      :paths:
+      - class
+      :full_paths:
+      - Encounter.class
       :comparators: {}
       :values:
       - AMB
@@ -4919,8 +4869,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Encounter.status
+      :paths:
+      - status
+      :full_paths:
+      - Encounter.status
       :comparators: {}
       :values:
       - planned
@@ -4936,8 +4888,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :path: type
-      :full_path: Encounter.type
+      :paths:
+      - type
+      :full_paths:
+      - Encounter.type
       :comparators: {}
       :values:
       - ADMS
@@ -4948,8 +4902,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: period
-      :full_path: Encounter.period
+      :paths:
+      - period
+      :full_paths:
+      - Encounter.period
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4973,55 +4929,27 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: status
-      :type:
-      - code
     - :path: class
-      :type:
-      - Coding
     - :path: type
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: participant
-      :type:
-      - BackboneElement
     - :path: participant.type
-      :type:
-      - CodeableConcept
     - :path: participant.period
-      :type:
-      - Period
     - :path: participant.individual
-      :type:
+      :types:
       - Reference
     - :path: period
-      :type:
-      - Period
     - :path: reasonCode
-      :type:
-      - CodeableConcept
     - :path: hospitalization
-      :type:
-      - BackboneElement
     - :path: hospitalization.dischargeDisposition
-      :type:
-      - CodeableConcept
     - :path: location
-      :type:
-      - BackboneElement
     - :path: location.location
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Encounter.identifier.system
@@ -5170,9 +5098,6 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: participant.individual
     :resources:
@@ -5227,16 +5152,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Goal.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Goal.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :lifecycle-status:
-      :path: lifecycleStatus
-      :full_path: Goal.lifecycleStatus
+      :paths:
+      - lifecycleStatus
+      :full_paths:
+      - Goal.lifecycleStatus
       :comparators: {}
       :values:
       - proposed
@@ -5252,8 +5181,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :path: target.dueDate
-      :full_path: Goal.target.dueDate
+      :paths:
+      - target.dueDate
+      :full_paths:
+      - Goal.target.dueDate
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5282,17 +5213,11 @@
         :code: Date
     :elements:
     - :path: lifecycleStatus
-      :type:
-      - code
     - :path: description
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: target
-      :type:
-      - BackboneElement
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -5332,7 +5257,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system:
+    :system: 
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -5359,9 +5284,6 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev311ImmunizationSequence
@@ -5413,16 +5335,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: patient
-      :full_path: Immunization.patient
+      :paths:
+      - patient
+      :full_paths:
+      - Immunization.patient
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path: occurrence
-      :full_path: Immunization.occurrence
+      :paths:
+      - occurrence
+      :full_paths:
+      - Immunization.occurrence
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5438,8 +5364,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Immunization.status
+      :paths:
+      - status
+      :full_paths:
+      - Immunization.status
       :comparators: {}
       :values:
       - completed
@@ -5457,24 +5385,13 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: statusReason
-      :type:
-      - CodeableConcept
     - :path: vaccineCode
-      :type:
-      - CodeableConcept
     - :path: patient
-      :type:
+      :types:
       - Reference
     - :path: occurrence[x]
-      :type:
-      - dateTime
-      - string
     - :path: primarySource
-      :type:
-      - boolean
   :mandatory_elements:
   - Immunization.status
   - Immunization.vaccineCode
@@ -5565,9 +5482,6 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev311LocationSequence
@@ -5627,32 +5541,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Location.name
+      :paths:
+      - name
+      :full_paths:
+      - Location.name
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path: address
-      :full_path: Location.address
+      :paths:
+      - address
+      :full_paths:
+      - Location.address
       :comparators: {}
       :values: []
       :type: Address
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
-      :path: address.city
-      :full_path: Location.address.city
+      :paths:
+      - address.city
+      :full_paths:
+      - Location.address.city
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
-      :path: address.state
-      :full_path: Location.address.state
+      :paths:
+      - address.state
+      :full_paths:
+      - Location.address.state
       :comparators: {}
       :values:
       - AK
@@ -5718,8 +5640,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
-      :path: address.postalCode
-      :full_path: Location.address.postalCode
+      :paths:
+      - address.postalCode
+      :full_paths:
+      - Location.address.postalCode
       :comparators: {}
       :values: []
       :type: string
@@ -5733,31 +5657,15 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: name
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: managingOrganization
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - Location.name
@@ -5814,9 +5722,6 @@
   - :path: Location.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: managingOrganization
     :resources:
@@ -5861,8 +5766,6 @@
     :slices: []
     :elements:
     - :path: code
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - Medication.code
   - Medication.ingredient.item[x]
@@ -5887,9 +5790,6 @@
   - :path: Medication.manufacturer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_medicationrequest
   :class_name: USCorev311MedicationrequestSequence
@@ -5951,16 +5851,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: MedicationRequest.subject
+      :paths:
+      - subject
+      :full_paths:
+      - MedicationRequest.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :intent:
-      :path: intent
-      :full_path: MedicationRequest.intent
+      :paths:
+      - intent
+      :full_paths:
+      - MedicationRequest.intent
       :comparators: {}
       :values:
       - proposal
@@ -5975,16 +5879,20 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :encounter:
-      :path: encounter
-      :full_path: MedicationRequest.encounter
+      :paths:
+      - encounter
+      :full_paths:
+      - MedicationRequest.encounter
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :authoredon:
-      :path: authoredOn
-      :full_path: MedicationRequest.authoredOn
+      :paths:
+      - authoredOn
+      :full_paths:
+      - MedicationRequest.authoredOn
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6000,8 +5908,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: MedicationRequest.status
+      :paths:
+      - status
+      :full_paths:
+      - MedicationRequest.status
       :comparators: {}
       :values:
       - active
@@ -6025,37 +5935,25 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: intent
-      :type:
-      - code
     - :path: reported[x]
-      :type:
-      - boolean
+      :types:
       - Reference
     - :path: medication[x]
-      :type:
-      - CodeableConcept
+      :types:
       - Reference
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: encounter
-      :type:
+      :types:
       - Reference
     - :path: authoredOn
-      :type:
-      - dateTime
     - :path: requester
-      :type:
+      :types:
       - Reference
     - :path: dosageInstruction
-      :type:
-      - Dosage
     - :path: dosageInstruction.text
-      :type:
-      - string
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
@@ -6191,9 +6089,6 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: requester
     :resources:
@@ -6270,16 +6165,20 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - social-history
@@ -6295,8 +6194,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6312,8 +6213,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - final
@@ -6322,8 +6225,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 72166-2
@@ -6333,7 +6238,7 @@
   :include_params: &3 []
   :revincludes: &4
   - Provenance:target
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -6344,23 +6249,16 @@
         :code: CodeableConcept
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: issued
-      :type:
-      - instant
   :mandatory_elements:
   - Observation.status
   - Observation.code
   - Observation.subject
   - Observation.issued
-  - Observation.value[x]
   - Observation.value[x]
   - Observation.component.code
   :bindings:
@@ -6474,9 +6372,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
@@ -6544,16 +6439,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -6561,8 +6460,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6578,8 +6479,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -6594,8 +6497,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 77606-2
@@ -6604,7 +6509,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -6624,53 +6529,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 77606-2
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -6802,9 +6681,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_observation_lab
   :class_name: USCorev311ObservationLabSequence
@@ -6872,16 +6748,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - laboratory
@@ -6889,8 +6769,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6906,8 +6788,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -6922,8 +6806,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 1-8
@@ -7931,7 +7817,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -7944,37 +7830,15 @@
         :system: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
-      - CodeableConcept
-      - string
-      - boolean
-      - integer
-      - Range
-      - Ratio
-      - SampledData
-      - time
-      - dateTime
-      - Period
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.code
   - Observation.subject
@@ -8090,9 +7954,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
@@ -8160,16 +8021,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8177,8 +8042,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8194,8 +8061,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8210,8 +8079,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 59576-9
@@ -8220,7 +8091,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8240,53 +8111,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 59576-9
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -8418,9 +8263,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev311PulseOximetrySequence
@@ -8488,16 +8330,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8505,8 +8351,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8522,8 +8370,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8538,8 +8388,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 2708-6
@@ -8549,7 +8401,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -8592,106 +8444,51 @@
           :value: http://loinc.org
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: code.coding
-      :type:
-      - Coding
     - :path: code.coding.system
-      :type:
-      - uri
       :fixed_value: http://loinc.org
     - :path: code.coding.code
-      :type:
-      - code
       :fixed_value: 59408-5
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
     - :path: component
-      :type:
-      - BackboneElement
     - :path: component.code
-      :type:
-      - CodeableConcept
     - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 3151-8
     - :path: component.value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: L/min
     - :path: component.code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 3150-0
     - :path: component.value[x]
-      :type:
-      - Quantity
     - :path: component.value[x].value
-      :type:
-      - decimal
     - :path: component.value[x].unit
-      :type:
-      - string
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
   - Observation.category.coding.code
   - Observation.code
-  - Observation.code.coding
-  - Observation.code.coding.system
-  - Observation.code.coding.code
   - Observation.code.coding
   - Observation.code.coding.system
   - Observation.code.coding.code
@@ -8701,12 +8498,6 @@
   - Observation.value[x].unit
   - Observation.value[x].system
   - Observation.value[x].code
-  - Observation.component.code
-  - Observation.component.code
-  - Observation.component.value[x].value
-  - Observation.component.value[x].unit
-  - Observation.component.value[x].system
-  - Observation.component.value[x].code
   - Observation.component.code
   - Observation.component.value[x].value
   - Observation.component.value[x].unit
@@ -8859,9 +8650,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
@@ -8930,16 +8718,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -8947,8 +8739,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8964,8 +8758,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -8980,8 +8776,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 8289-1
@@ -8990,7 +8788,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9010,53 +8808,27 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: 8289-1
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9188,9 +8960,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodyheight
   :class_name: BodyheightSequence
@@ -9258,16 +9027,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9275,8 +9048,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9292,8 +9067,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9308,8 +9085,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 8302-2
@@ -9318,7 +9097,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9338,51 +9117,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9521,9 +9274,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodytemp
   :class_name: BodytempSequence
@@ -9591,16 +9341,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9608,8 +9362,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9625,8 +9381,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9641,8 +9399,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 8310-5
@@ -9651,7 +9411,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -9671,51 +9431,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -9854,9 +9588,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bp
   :class_name: BpSequence
@@ -9924,16 +9655,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -9941,8 +9676,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9958,8 +9695,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -9974,8 +9713,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 85354-9
@@ -9984,7 +9725,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10017,58 +9758,28 @@
           :value: http://loinc.org
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: component
-      :type:
-      - BackboneElement
     - :path: component.value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: component.value[x].code
-      :type:
-      - code
       :fixed_value: mm[Hg]
     - :path: component.code
-      :type:
-      - CodeableConcept
     - :path: component.value[x]
-      :type:
-      - Quantity
     - :path: component.value[x].value
-      :type:
-      - decimal
     - :path: component.value[x].unit
-      :type:
-      - string
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10079,17 +9790,6 @@
   - Observation.code.coding.code
   - Observation.subject
   - Observation.effective[x]
-  - Observation.component
-  - Observation.component.code
-  - Observation.component
-  - Observation.component.code
-  - Observation.component.code.coding
-  - Observation.component.code.coding.system
-  - Observation.component.code.coding.code
-  - Observation.component.value[x].value
-  - Observation.component.value[x].unit
-  - Observation.component.value[x].system
-  - Observation.component.value[x].code
   - Observation.component
   - Observation.component.code
   - Observation.component.code.coding
@@ -10242,9 +9942,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: bodyweight
   :class_name: BodyweightSequence
@@ -10312,16 +10009,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10329,8 +10030,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10346,8 +10049,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -10362,8 +10067,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 29463-7
@@ -10372,7 +10079,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10392,51 +10099,25 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10575,9 +10256,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: heartrate
   :class_name: HeartrateSequence
@@ -10645,16 +10323,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10662,8 +10344,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10679,8 +10363,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -10695,8 +10381,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 8867-4
@@ -10705,7 +10393,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -10725,52 +10413,26 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -10905,9 +10567,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: resprate
   :class_name: ResprateSequence
@@ -10975,16 +10634,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Observation.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :path: category
-      :full_path: Observation.category
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
       :comparators: {}
       :values:
       - vital-signs
@@ -10992,8 +10655,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :path: effective
-      :full_path: Observation.effective
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11009,8 +10674,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Observation.status
+      :paths:
+      - status
+      :full_paths:
+      - Observation.status
       :comparators: {}
       :values:
       - registered
@@ -11025,8 +10692,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Observation.code
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
       :comparators: {}
       :values:
       - 9279-1
@@ -11035,7 +10704,7 @@
       :multiple_or: SHOULD
   :include_params: *3
   :revincludes: *4
-  :required_concepts:
+  :required_concepts: []
   :must_supports:
     :extensions: []
     :slices:
@@ -11055,52 +10724,26 @@
           :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: category
-      :type:
-      - CodeableConcept
     - :path: category.coding
-      :type:
-      - Coding
     - :path: category.coding.system
-      :type:
-      - uri
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
     - :path: category.coding.code
-      :type:
-      - code
       :fixed_value: vital-signs
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: effective[x]
-      :type:
-      - dateTime
-      - Period
     - :path: value[x]
-      :type:
-      - Quantity
     - :path: value[x].value
-      :type:
-      - decimal
     - :path: value[x].unit
-      :type:
-      - string
     - :path: value[x].system
-      :type:
-      - uri
       :fixed_value: http://unitsofmeasure.org
     - :path: value[x].code
-      :type:
-      - code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
-  - Observation.category
   - Observation.category
   - Observation.category.coding
   - Observation.category.coding.system
@@ -11235,9 +10878,6 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev311OrganizationSequence
@@ -11282,16 +10922,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Organization.name
+      :paths:
+      - name
+      :full_paths:
+      - Organization.name
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :path: address
-      :full_path: Organization.address
+      :paths:
+      - address
+      :full_paths:
+      - Organization.address
       :comparators: {}
       :values: []
       :type: Address
@@ -11311,41 +10955,17 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: active
-      :type:
-      - boolean
     - :path: name
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: address.country
-      :type:
-      - string
   :mandatory_elements:
   - Organization.active
   - Organization.name
@@ -11392,9 +11012,6 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev311PatientSequence
@@ -11468,32 +11085,40 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :path: id
-      :full_path: Patient.id
+      :paths:
+      - id
+      :full_paths:
+      - Patient.id
       :comparators: {}
       :values: []
       :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Patient.identifier
+      :paths:
+      - identifier
+      :full_paths:
+      - Patient.identifier
       :comparators: {}
       :values: []
       :type: Identifier
       :contains_multiple: true
       :multiple_or: MAY
     :name:
-      :path: name
-      :full_path: Patient.name
+      :paths:
+      - name
+      :full_paths:
+      - Patient.name
       :comparators: {}
       :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
     :birthdate:
-      :path: birthDate
-      :full_path: Patient.birthDate
+      :paths:
+      - birthDate
+      :full_paths:
+      - Patient.birthDate
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11509,16 +11134,20 @@
       :contains_multiple: false
       :multiple_or: MAY
     :family:
-      :path: name.family
-      :full_path: Patient.name.family
+      :paths:
+      - name.family
+      :full_paths:
+      - Patient.name.family
       :comparators: {}
       :values: []
       :type: string
       :contains_multiple: false
       :multiple_or: MAY
     :gender:
-      :path: gender
-      :full_path: Patient.gender
+      :paths:
+      - gender
+      :full_paths:
+      - Patient.gender
       :comparators: {}
       :values:
       - male
@@ -11543,65 +11172,25 @@
     :slices: []
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: name
-      :type:
-      - HumanName
     - :path: name.family
-      :type:
-      - string
     - :path: name.given
-      :type:
-      - string
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: telecom.system
-      :type:
-      - code
     - :path: telecom.value
-      :type:
-      - string
     - :path: telecom.use
-      :type:
-      - code
     - :path: gender
-      :type:
-      - code
     - :path: birthDate
-      :type:
-      - date
     - :path: address
-      :type:
-      - Address
     - :path: address.line
-      :type:
-      - string
     - :path: address.city
-      :type:
-      - string
     - :path: address.state
-      :type:
-      - string
     - :path: address.postalCode
-      :type:
-      - string
     - :path: address.period
-      :type:
-      - Period
     - :path: communication
-      :type:
-      - BackboneElement
     - :path: communication.language
-      :type:
-      - CodeableConcept
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
@@ -11727,9 +11316,6 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev311PractitionerSequence
@@ -11774,16 +11360,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :path: name
-      :full_path: Practitioner.name
+      :paths:
+      - name
+      :full_paths:
+      - Practitioner.name
       :comparators: {}
       :values: []
       :type: HumanName
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
-      :path: identifier
-      :full_path: Practitioner.identifier
+      :paths:
+      - identifier
+      :full_paths:
+      - Practitioner.identifier
       :comparators: {}
       :values: []
       :type: Identifier
@@ -11803,20 +11393,10 @@
         :system: http://hl7.org/fhir/sid/us-npi
     :elements:
     - :path: identifier
-      :type:
-      - Identifier
     - :path: identifier.system
-      :type:
-      - uri
     - :path: identifier.value
-      :type:
-      - string
     - :path: name
-      :type:
-      - HumanName
     - :path: name.family
-      :type:
-      - string
   :mandatory_elements:
   - Practitioner.identifier
   - Practitioner.identifier.system
@@ -11860,9 +11440,6 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev311PractitionerroleSequence
@@ -11907,8 +11484,10 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :specialty:
-      :path: specialty
-      :full_path: PractitionerRole.specialty
+      :paths:
+      - specialty
+      :full_paths:
+      - PractitionerRole.specialty
       :comparators: {}
       :values:
       - '408467006'
@@ -12030,8 +11609,10 @@
       :contains_multiple: true
       :multiple_or: MAY
     :practitioner:
-      :path: practitioner
-      :full_path: PractitionerRole.practitioner
+      :paths:
+      - practitioner
+      :full_paths:
+      - PractitionerRole.practitioner
       :comparators: {}
       :values: []
       :type: Reference
@@ -12052,31 +11633,21 @@
     :slices: []
     :elements:
     - :path: practitioner
-      :type:
+      :types:
       - Reference
     - :path: organization
-      :type:
+      :types:
       - Reference
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: specialty
-      :type:
-      - CodeableConcept
     - :path: location
-      :type:
+      :types:
       - Reference
     - :path: telecom
-      :type:
-      - ContactPoint
     - :path: telecom.system
-      :type:
-      - code
     - :path: telecom.value
-      :type:
-      - string
     - :path: endpoint
-      :type:
+      :types:
       - Reference
   :mandatory_elements:
   - PractitionerRole.practitioner
@@ -12125,9 +11696,6 @@
   - :path: PractitionerRole.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: practitioner
     :resources:
@@ -12192,16 +11760,20 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :path: subject
-      :full_path: Procedure.subject
+      :paths:
+      - subject
+      :full_paths:
+      - Procedure.subject
       :comparators: {}
       :values: []
       :type: Reference
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :path: performed
-      :full_path: Procedure.performed
+      :paths:
+      - performed
+      :full_paths:
+      - Procedure.performed
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -12217,8 +11789,10 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :path: status
-      :full_path: Procedure.status
+      :paths:
+      - status
+      :full_paths:
+      - Procedure.status
       :comparators: {}
       :values:
       - preparation
@@ -12233,8 +11807,10 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :path: code
-      :full_path: Procedure.code
+      :paths:
+      - code
+      :full_paths:
+      - Procedure.code
       :comparators: {}
       :values:
       - '104001'
@@ -13249,18 +12825,11 @@
     :slices: []
     :elements:
     - :path: status
-      :type:
-      - code
     - :path: code
-      :type:
-      - CodeableConcept
     - :path: subject
-      :type:
+      :types:
       - Reference
     - :path: performed[x]
-      :type:
-      - dateTime
-      - Period
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
@@ -13386,9 +12955,6 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
-  :tests:
-  :id:
-  :file_name:
   :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev311ProvenanceSequence
@@ -13444,30 +13010,20 @@
         :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type
     :elements:
     - :path: target
-      :type:
+      :types:
       - Reference
     - :path: recorded
-      :type:
-      - instant
     - :path: agent
-      :type:
-      - BackboneElement
     - :path: agent.type
-      :type:
-      - CodeableConcept
     - :path: agent.who
-      :type:
+      :types:
       - Reference
     - :path: agent.onBehalfOf
-      :type:
+      :types:
       - Reference
     - :path: agent.type.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: author
     - :path: agent.type.coding.code
-      :type:
-      - CodeableConcept
       :fixed_value: transmitter
   :mandatory_elements:
   - Provenance.target
@@ -13475,9 +13031,6 @@
   - Provenance.agent
   - Provenance.agent.who
   - Provenance.agent.type
-  - Provenance.agent.who
-  - Provenance.agent.type
-  - Provenance.agent.who
   - Provenance.entity.role
   - Provenance.entity.what
   :bindings:
@@ -13571,9 +13124,6 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
-  :tests:
-  :id:
-  :file_name:
   :delayed_references:
   - :path: agent.who
     :resources:

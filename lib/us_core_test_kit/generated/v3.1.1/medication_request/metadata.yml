@@ -59,16 +59,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: MedicationRequest.subject
+    :paths:
+    - subject
+    :full_paths:
+    - MedicationRequest.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :intent:
-    :path: intent
-    :full_path: MedicationRequest.intent
+    :paths:
+    - intent
+    :full_paths:
+    - MedicationRequest.intent
     :comparators: {}
     :values:
     - proposal
@@ -83,16 +87,20 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :encounter:
-    :path: encounter
-    :full_path: MedicationRequest.encounter
+    :paths:
+    - encounter
+    :full_paths:
+    - MedicationRequest.encounter
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :authoredon:
-    :path: authoredOn
-    :full_path: MedicationRequest.authoredOn
+    :paths:
+    - authoredOn
+    :full_paths:
+    - MedicationRequest.authoredOn
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -108,8 +116,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: MedicationRequest.status
+    :paths:
+    - status
+    :full_paths:
+    - MedicationRequest.status
     :comparators: {}
     :values:
     - active
@@ -133,37 +143,25 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: intent
-    :type:
-    - code
   - :path: reported[x]
-    :type:
-    - boolean
+    :types:
     - Reference
   - :path: medication[x]
-    :type:
-    - CodeableConcept
+    :types:
     - Reference
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: encounter
-    :type:
+    :types:
     - Reference
   - :path: authoredOn
-    :type:
-    - dateTime
   - :path: requester
-    :type:
+    :types:
     - Reference
   - :path: dosageInstruction
-    :type:
-    - Dosage
   - :path: dosageInstruction.text
-    :type:
-    - string
 :mandatory_elements:
 - MedicationRequest.status
 - MedicationRequest.intent

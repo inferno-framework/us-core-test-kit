@@ -43,16 +43,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: patient
-    :full_path: AllergyIntolerance.patient
+    :paths:
+    - patient
+    :full_paths:
+    - AllergyIntolerance.patient
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :clinical-status:
-    :path: clinicalStatus
-    :full_path: AllergyIntolerance.clinicalStatus
+    :paths:
+    - clinicalStatus
+    :full_paths:
+    - AllergyIntolerance.clinicalStatus
     :comparators: {}
     :values:
     - active
@@ -72,23 +76,13 @@
   :slices: []
   :elements:
   - :path: clinicalStatus
-    :type:
-    - CodeableConcept
   - :path: verificationStatus
-    :type:
-    - CodeableConcept
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: patient
-    :type:
+    :types:
     - Reference
   - :path: reaction
-    :type:
-    - BackboneElement
   - :path: reaction.manifestation
-    :type:
-    - CodeableConcept
 :mandatory_elements:
 - AllergyIntolerance.code
 - AllergyIntolerance.patient

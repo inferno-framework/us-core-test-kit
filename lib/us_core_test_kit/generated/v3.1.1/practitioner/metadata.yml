@@ -42,16 +42,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :path: name
-    :full_path: Practitioner.name
+    :paths:
+    - name
+    :full_paths:
+    - Practitioner.name
     :comparators: {}
     :values: []
     :type: HumanName
     :contains_multiple: true
     :multiple_or: MAY
   :identifier:
-    :path: identifier
-    :full_path: Practitioner.identifier
+    :paths:
+    - identifier
+    :full_paths:
+    - Practitioner.identifier
     :comparators: {}
     :values: []
     :type: Identifier
@@ -71,20 +75,10 @@
       :system: http://hl7.org/fhir/sid/us-npi
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: identifier.system
-    :type:
-    - uri
   - :path: identifier.value
-    :type:
-    - string
   - :path: name
-    :type:
-    - HumanName
   - :path: name.family
-    :type:
-    - string
 :mandatory_elements:
 - Practitioner.identifier
 - Practitioner.identifier.system

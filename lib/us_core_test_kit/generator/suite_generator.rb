@@ -59,7 +59,7 @@ module USCoreTestKit
 
       def groups
         ig_metadata.ordered_groups
-          .reject { |group| SpecialCases.exclude_resource? group.resource }
+          .reject { |group| SpecialCases.exclude_group? group }
       end
 
       def group_id_list

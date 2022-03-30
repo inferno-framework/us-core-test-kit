@@ -56,16 +56,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: Procedure.subject
+    :paths:
+    - subject
+    :full_paths:
+    - Procedure.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :path: performed
-    :full_path: Procedure.performed
+    :paths:
+    - performed
+    :full_paths:
+    - Procedure.performed
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -81,8 +85,10 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: Procedure.status
+    :paths:
+    - status
+    :full_paths:
+    - Procedure.status
     :comparators: {}
     :values:
     - preparation
@@ -97,8 +103,10 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :path: code
-    :full_path: Procedure.code
+    :paths:
+    - code
+    :full_paths:
+    - Procedure.code
     :comparators: {}
     :values:
     - '104001'
@@ -1113,18 +1121,11 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: code
-    :type:
-    - CodeableConcept
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: performed[x]
-    :type:
-    - dateTime
-    - Period
 :mandatory_elements:
 - Procedure.status
 - Procedure.code

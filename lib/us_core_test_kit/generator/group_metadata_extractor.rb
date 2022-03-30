@@ -57,26 +57,28 @@ module USCoreTestKit
       def mark_mandatory_and_must_support_searches
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
-            path = search_definitions[name.to_sym][:full_path]
+            full_paths = search_definitions[name.to_sym][:full_paths]
             any_must_support_elements = (must_supports[:elements]).any? do |element|
-              full_must_support_path = "#{resource}.#{element[:path]}"
+              full_must_support_paths = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
 
-              # allow for non-choice, choice types, and _id
-              name == '_id' || full_must_support_path == path || full_must_support_path == "#{path}[x]"
+              full_paths.any? do |path|
+                # allow for non-choice, choice types, and _id
+                name == '_id' || full_must_support_paths.include?(path) || full_must_support_paths.include?("#{path}[x]")
+              end
             end
 
             any_must_support_slices = must_supports[:slices].any? do |slice|
               # only handle type slices because that is all we need for now
               if slice[:discriminator] && slice[:discriminator][:type] == 'type'
                 full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
-                full_must_support_path == path
+                full_paths.include?(full_must_support_path)
               else
                 false
               end
             end
 
             any_mandatory_elements = mandatory_elements.any? do |element|
-              element == path
+              full_paths.include?(element)
             end
 
             any_must_support_elements || any_must_support_slices || any_mandatory_elements
@@ -114,17 +116,6 @@ module USCoreTestKit
 
       def handle_special_cases
         set_first_search
-
-        case profile_url
-        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device'
-          must_supports[:elements].delete_if do |element|
-            ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include? element[:path]
-          end
-        when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference'
-          must_supports[:elements].delete_if do |element|
-            ['content.attachment.data', 'content.attachment.url'].include? element[:path]
-          end
-        end
       end
 
       def set_first_search
@@ -230,7 +221,7 @@ module USCoreTestKit
       def required_concepts
         # The base FHIR vital signs profile has a required binding that isn't
         # relevant for any of its child profiles
-        return if resource == 'Observation'
+        return [] if resource == 'Observation'
 
         profile_elements
           .select { |element| element.type&.any? { |type| type.code == 'CodeableConcept' } }
@@ -263,6 +254,7 @@ module USCoreTestKit
           profile_elements
             .select { |element| element.min.positive? }
             .map { |element| element.path }
+            .uniq
       end
 
       def references

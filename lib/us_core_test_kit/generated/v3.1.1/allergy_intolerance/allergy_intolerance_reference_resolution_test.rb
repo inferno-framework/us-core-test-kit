@@ -7,11 +7,13 @@ module USCoreTestKit
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
-      title 'Every reference within AllergyIntolerance resources can be read'
+      title 'MustSupport references within AllergyIntolerance resources can be read'
       description %(
         This test will attempt to read MustSupport references found in the
-        resources from the first search. The test will skip if Inferno fails to
-        read any of those references.
+        resources from the first search. This test will look through the AllergyIntolerance resources
+        found previously for the following must support elements:
+
+  
       )
 
       id :us_core_v311_allergy_intolerance_reference_resolution_test

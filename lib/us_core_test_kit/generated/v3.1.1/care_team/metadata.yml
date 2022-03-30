@@ -38,16 +38,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: subject
-    :full_path: CareTeam.subject
+    :paths:
+    - subject
+    :full_paths:
+    - CareTeam.subject
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :path: status
-    :full_path: CareTeam.status
+    :paths:
+    - status
+    :full_paths:
+    - CareTeam.status
     :comparators: {}
     :values:
     - proposed
@@ -67,19 +71,13 @@
   :slices: []
   :elements:
   - :path: status
-    :type:
-    - code
   - :path: subject
-    :type:
+    :types:
     - Reference
   - :path: participant
-    :type:
-    - BackboneElement
   - :path: participant.role
-    :type:
-    - CodeableConcept
   - :path: participant.member
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - CareTeam.subject

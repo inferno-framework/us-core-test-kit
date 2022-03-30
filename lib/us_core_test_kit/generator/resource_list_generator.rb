@@ -9,7 +9,7 @@ module USCoreTestKit
           File.open(File.join(base_output_dir, base_output_file_name), 'w') { |f| f.write(output) }
         end
 
-        def resource_list
+        def resource_list          
           @ig_metadata.groups.map(&:resource).uniq
         end
 
@@ -30,7 +30,7 @@ module USCoreTestKit
         end
 
         def output
-          @output ||= ERB.new(template).result(binding)
+          ERB.new(template).result(binding)
         end
 
         def base_output_file_name

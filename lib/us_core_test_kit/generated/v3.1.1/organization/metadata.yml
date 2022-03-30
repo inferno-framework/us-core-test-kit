@@ -42,16 +42,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :path: name
-    :full_path: Organization.name
+    :paths:
+    - name
+    :full_paths:
+    - Organization.name
     :comparators: {}
     :values: []
     :type: string
     :contains_multiple: false
     :multiple_or: MAY
   :address:
-    :path: address
-    :full_path: Organization.address
+    :paths:
+    - address
+    :full_paths:
+    - Organization.address
     :comparators: {}
     :values: []
     :type: Address
@@ -71,41 +75,17 @@
       :system: http://hl7.org/fhir/sid/us-npi
   :elements:
   - :path: identifier
-    :type:
-    - Identifier
   - :path: identifier.system
-    :type:
-    - uri
   - :path: identifier.value
-    :type:
-    - string
   - :path: active
-    :type:
-    - boolean
   - :path: name
-    :type:
-    - string
   - :path: telecom
-    :type:
-    - ContactPoint
   - :path: address
-    :type:
-    - Address
   - :path: address.line
-    :type:
-    - string
   - :path: address.city
-    :type:
-    - string
   - :path: address.state
-    :type:
-    - string
   - :path: address.postalCode
-    :type:
-    - string
   - :path: address.country
-    :type:
-    - string
 :mandatory_elements:
 - Organization.active
 - Organization.name

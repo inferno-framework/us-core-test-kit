@@ -43,16 +43,20 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :path: patient
-    :full_path: Device.patient
+    :paths:
+    - patient
+    :full_paths:
+    - Device.patient
     :comparators: {}
     :values: []
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :path: type
-    :full_path: Device.type
+    :paths:
+    - type
+    :full_paths:
+    - Device.type
     :comparators: {}
     :values:
     - '156009'
@@ -1067,31 +1071,15 @@
   :slices: []
   :elements:
   - :path: udiCarrier
-    :type:
-    - BackboneElement
   - :path: udiCarrier.deviceIdentifier
-    :type:
-    - string
   - :path: distinctIdentifier
-    :type:
-    - string
   - :path: manufactureDate
-    :type:
-    - dateTime
   - :path: expirationDate
-    :type:
-    - dateTime
   - :path: lotNumber
-    :type:
-    - string
   - :path: serialNumber
-    :type:
-    - string
   - :path: type
-    :type:
-    - CodeableConcept
   - :path: patient
-    :type:
+    :types:
     - Reference
 :mandatory_elements:
 - Device.udiCarrier.deviceIdentifier
