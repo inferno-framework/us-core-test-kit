@@ -28,22 +28,22 @@ module USCoreTestKit
           has_custodian = docref.custodian.present?
 
           if provenances.present?
-            has_agent_who = provenances.any? do |provenance|
+            has_agent = provenances.any? do |provenance|
               provenance.target.any? { |target| target.reference.end_with?("DocumentReference/#{docref.id}") } &&
-              provenance.agent&.any? { |agent| agent.who.present? }
+              provenance.agent.any? { |agent| agent.who.present? || agent.onBehalfOf.present? }
             end
           end
 
 
-          unless has_custodian || has_agent_who
+          unless has_custodian || has_agent
             messages << {
               type: 'error',
-              message: "DocumentReference/#{docref.id} does not have DocumentReference.custodian or Provenance.agent.who"
+              message: "DocumentReference/#{docref.id} does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
             }
           end
         end
 
-        assert !messages.any?, "Resource does not have DocumentReference.custodian"
+        assert !messages.any?, "Resource does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
       end
     end
   end
