@@ -18,6 +18,7 @@ module USCoreTestKit
 
       run do
         resources = scratch_resources[:all] || []
+        provenances = scratch_provenance_resources[:all] || []
 
         skip_if resources.blank?,
                 'No DocumentReference resources appeart to be available. ' \
@@ -26,10 +27,18 @@ module USCoreTestKit
         scratch_resources[:all].each_with_index do |docref, index|
           has_custodian = docref.custodian.present?
 
-          unless has_custodian
+          if provenances.present?
+            has_agent_who = provenances.any? do |provenance|
+              provenance.target.any? { |target| target.reference.include?("DocumentReference/#{docref.id}")} &&
+              provenance.agent&.any? { |agent| agent.who.present? }
+            end
+          end
+
+
+          unless has_custodian || has_agent_who
             messages << {
               type: 'error',
-              message: "DocumentReference/#{docref.id} does not have DocumentReference.custodian"
+              message: "DocumentReference/#{docref.id} does not have DocumentReference.custodian or Provenance.agent.who"
             }
           end
         end

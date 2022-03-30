@@ -5,6 +5,15 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
   let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v400') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:documentreference) { FHIR::DocumentReference.new(id: '1') }
+  let(:provenance) { FHIR::Provenance.new(
+      id: '1',
+      target: [
+        FHIR::Reference.new(reference: 'DocumentReference/1')
+      ],
+      agent: []
+    )
+  }
 
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
@@ -20,28 +29,26 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
     Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
   end
 
+
   it 'skips if no DocumentReference saved' do
     allow_any_instance_of(document_reference_custodian_test)
-    .to receive(:scratch_resources).and_return({})
+      .to receive(:scratch_resources).and_return({})
 
     result = run(document_reference_custodian_test)
     expect(result.result).to eq('skip')
   end
 
   it 'passes if no DocumentReference.custodian presents' do
-    allow_any_instance_of(document_reference_custodian_test)
-    .to receive(:scratch_resources).and_return(
-      {
-        all: [
-          FHIR::DocumentReference.new(
-            id: '1',
-            custodian: FHIR::Reference.new(
-              reference: 'Oganization/1'
-            )
-          )
-        ]
-      }
+    documentreference.custodian = FHIR::Reference.new(
+      reference: 'Oganization/1'
     )
+
+    allow_any_instance_of(document_reference_custodian_test)
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [ documentreference ]
+        }
+      )
 
     result = run(document_reference_custodian_test)
     expect(result.result).to eq('pass')
@@ -49,18 +56,36 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
 
   it 'fails if no DocumentReference.custodian is not present' do
     allow_any_instance_of(document_reference_custodian_test)
-    .to receive(:scratch_resources).and_return(
-      {
-        all: [
-          FHIR::DocumentReference.new(
-            id: '1'
-          )
-        ]
-      }
-    )
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [ documentreference ]
+        }
+      )
 
     result = run(document_reference_custodian_test)
     expect(result.result).to eq('fail')
     expect(result.result_message).to eq('Resource does not have DocumentReference.custodian')
+  end
+
+  it 'passes if no Provenance.agent.who presents' do
+    allow_any_instance_of(document_reference_custodian_test)
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [ documentreference ]
+        }
+      )
+
+    provenance.agent << FHIR::Provenance::Agent.new(who: FHIR::Reference.new(reference: 'Organization/1'))
+
+    allow_any_instance_of(document_reference_custodian_test)
+      .to receive(:scratch_provenance_resources).and_return(
+        {
+          all: [ provenance ]
+        }
+      )
+
+    result = run(document_reference_custodian_test)
+    binding.pry
+    expect(result.result).to eq('pass')
   end
 end
