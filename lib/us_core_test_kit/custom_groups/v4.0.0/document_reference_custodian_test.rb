@@ -29,7 +29,7 @@ module USCoreTestKit
 
           if provenances.present?
             has_agent_who = provenances.any? do |provenance|
-              provenance.target.any? { |target| target.reference.include?("DocumentReference/#{docref.id}")} &&
+              provenance.target.any? { |target| target.reference.end_with?("DocumentReference/#{docref.id}") } &&
               provenance.agent&.any? { |agent| agent.who.present? }
             end
           end

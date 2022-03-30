@@ -85,7 +85,30 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
       )
 
     result = run(document_reference_custodian_test)
-    binding.pry
     expect(result.result).to eq('pass')
+  end
+
+  it 'fails if no Provenance.target does not have this DocumentReference' do
+    allow_any_instance_of(document_reference_custodian_test)
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [ documentreference ]
+        }
+      )
+
+    provenance.target = [
+      FHIR::Reference.new(reference: 'DocumentReference/100')
+    ]
+    provenance.agent << FHIR::Provenance::Agent.new(who: FHIR::Reference.new(reference: 'Organization/1'))
+
+    allow_any_instance_of(document_reference_custodian_test)
+      .to receive(:scratch_provenance_resources).and_return(
+        {
+          all: [ provenance ]
+        }
+      )
+
+    result = run(document_reference_custodian_test)
+    expect(result.result).to eq('fail')
   end
 end
