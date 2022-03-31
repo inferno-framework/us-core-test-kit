@@ -24,7 +24,7 @@ module USCoreTestKit
                 'No DocumentReference resources appeart to be available. ' \
                 'Please use patients with more information.'
 
-        scratch_resources[:all].each_with_index do |docref, index|
+        scratch_resources[:all].each do |docref|
           has_custodian = docref.custodian.present?
 
           if provenances.present?
