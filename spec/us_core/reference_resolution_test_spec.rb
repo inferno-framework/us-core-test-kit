@@ -25,6 +25,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(true)
         expect(test.resolved_references).to include(reference_string)
+        expect(test.requests.length).to eq(0)
       end
     end
 
@@ -37,6 +38,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         reference = resource.encounter
 
         expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.requests.length).to eq(0)
       end
 
       it 'returns false if the contained resource is not present' do
@@ -50,6 +52,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           FHIR::Observation.new(encounter: { reference: reference_string }, contained: [FHIR::Encounter.new(id: '456')])
 
         expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.requests.length).to eq(0)
       end
     end
 
@@ -69,6 +72,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         expect(test.validate_reference_resolution(resource, reference)).to be(true)
         expect(request).to have_been_made.once
         expect(test.resolved_references).to include(reference_string)
+        expect(test.requests.length).to eq(1)
       end
 
       it 'returns false if the reference can not be resolved' do
@@ -78,6 +82,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(false)
         expect(request).to have_been_made.once
+        expect(test.requests.length).to eq(1)
       end
     end
 
@@ -96,6 +101,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(true)
         expect(request).to have_been_made.once
+        expect(test.requests.length).to eq(1)
       end
 
       it 'returns false if the reference can not be resolved' do
@@ -105,6 +111,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(false)
         expect(request).to have_been_made.once
+        expect(test.requests.length).to eq(1)
       end
     end
 
@@ -123,6 +130,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(true)
         expect(request).to have_been_made.once
+        expect(test.requests.length).to eq(1)
       end
 
       it 'returns false if the reference can not be resolved' do
@@ -132,6 +140,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference)).to be(false)
         expect(request).to have_been_made.once
+        expect(test.requests.length).to eq(1)
       end
     end
   end
