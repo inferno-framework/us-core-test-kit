@@ -38,7 +38,7 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
     expect(result.result).to eq('skip')
   end
 
-  it 'passes if no DocumentReference.custodian presents' do
+  it 'passes if DocumentReference.custodian presents' do
     documentreference.custodian = FHIR::Reference.new(
       reference: 'Oganization/1'
     )
@@ -87,7 +87,7 @@ RSpec.describe USCoreTestKit::USCoreV400::DocumentReferenceCustodianTest do
     expect(result.result).to eq('pass')
   end
 
-  it 'fails if no Provenance.target does not have this DocumentReference' do
+  it 'fails if Provenance.target does not include DocumentReference/1' do
     allow_any_instance_of(document_reference_custodian_test)
       .to receive(:scratch_resources).and_return(
         {
