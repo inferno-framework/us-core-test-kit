@@ -682,7 +682,7 @@ module USCoreTestKit
               # references can also be URL's, so we made need to resolve those url's
               if ['subject', 'patient'].include? name.to_s
                 id = search_value.split('Patient/').last
-                possible_values = [id, 'Patient/' + id, "#{url}/Patient/\#{id}"]
+                possible_values = [id, "Patient/#{id}", "#{url}/Patient/#{id}"]
                 values_found.any? do |reference|
                   possible_values.include? reference
                 end
