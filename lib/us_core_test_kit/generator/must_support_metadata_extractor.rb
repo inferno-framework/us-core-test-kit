@@ -271,12 +271,9 @@ module USCoreTestKit
         remove_vital_sign_component
         remove_blood_pressure_value
         remove_observation_data_absent_reason
-        #remove_document_reference_attachment_data_url
         add_must_support_choices
 
         case profile.version
-        when '3.1.1'
-          #remove_device_carrier
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
@@ -345,7 +342,7 @@ module USCoreTestKit
 
       def add_must_support_choices
         choices = []
-        
+
         choices << {paths: ['content.attachment.data', 'content.attachment.url']} if profile.type == 'DocumentReference'
 
         case profile.version
