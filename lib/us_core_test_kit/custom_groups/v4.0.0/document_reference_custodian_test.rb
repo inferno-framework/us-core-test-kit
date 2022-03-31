@@ -36,10 +36,8 @@ module USCoreTestKit
 
 
           unless has_custodian || has_agent
-            messages << {
-              type: 'error',
-              message: "DocumentReference/#{docref.id} does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
-            }
+            add_message('error',
+                        "DocumentReference/#{docref.id} does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf")
           end
         end
 

@@ -88,10 +88,15 @@ module USCoreTestKit
       end
 
       def add_special_tests
-        group_metadata.add_test(
-          id: 'us_core_v400_document_reference_custodian_test',
-          file_name: '../../custom_groups/v4.0.0/document_reference_custodian_test.rb'
-        ) if group_metadata.resource == 'DocumentReference' && group_metadata.reformatted_version == 'v400'
+        return unless group_metadata.reformatted_version == 'v400'
+
+        case group_metadata.resource
+        when 'DocumentReference'
+          group_metadata.add_test(
+            id: 'us_core_v400_document_reference_custodian_test',
+            file_name: '../../custom_groups/v4.0.0/document_reference_custodian_test.rb'
+          )
+        end
       end
 
       def test_id_list
