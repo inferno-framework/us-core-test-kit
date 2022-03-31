@@ -80,10 +80,18 @@ module USCoreTestKit
       end
 
       def generate
+        add_special_tests
         File.open(output_file_name, 'w') { |f| f.write(output) }
         group_metadata.id = group_id
         group_metadata.file_name = base_output_file_name
         File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
+      end
+
+      def add_special_tests
+        group_metadata.add_test(
+          id: 'us_core_v400_document_reference_custodian_test',
+          file_name: '../../custom_groups/v4.0.0/document_reference_custodian_test.rb'
+        ) if group_metadata.resource == 'DocumentReference' && group_metadata.reformatted_version == 'v400'
       end
 
       def test_id_list
@@ -93,7 +101,10 @@ module USCoreTestKit
 
       def test_file_list
         @test_file_list ||=
-          group_metadata.tests.map { |test| test[:file_name].delete_suffix('.rb') }
+          group_metadata.tests.map do |test|
+            name_without_suffix = test[:file_name].delete_suffix('.rb')
+            name_without_suffix.start_with?('..') ? name_without_suffix : "#{profile_identifier}/#{name_without_suffix}"
+          end
       end
 
       def required_searches
