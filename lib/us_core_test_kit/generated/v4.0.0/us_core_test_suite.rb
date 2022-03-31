@@ -1,7 +1,7 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative '../../version'
 require_relative '../../custom_groups/capability_statement_group'
-require_relative '../../custom_groups/clinical_notes_guidance_group'
+require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
@@ -77,7 +77,7 @@ module USCoreTestKit
       end
 
       group from: :us_core_311_capability_statement
-  
+
       group from: :us_core_v400_patient
       group from: :us_core_v400_allergy_intolerance
       group from: :us_core_v400_care_plan
@@ -109,7 +109,7 @@ module USCoreTestKit
       group from: :us_core_v400_organization
       group from: :us_core_v400_practitioner
       group from: :us_core_v400_provenance
-      group from: :us_core_311_clinical_notes_guidance
+      group from: :us_core_v400_clinical_notes_guidance
       group from: :us_core_311_data_absent_reason
     end
   end
