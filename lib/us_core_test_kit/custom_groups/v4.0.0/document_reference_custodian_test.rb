@@ -43,7 +43,7 @@ module USCoreTestKit
           end
         end
 
-        assert !messages.any?, "Resource does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
+        assert messages.blank?, "Resource does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
       end
     end
   end
