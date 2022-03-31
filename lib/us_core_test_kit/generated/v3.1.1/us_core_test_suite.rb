@@ -20,7 +20,7 @@ require_relative 'pediatric_weight_for_height_group'
 require_relative 'observation_lab_group'
 require_relative 'pediatric_bmi_for_age_group'
 require_relative 'pulse_oximetry_group'
-require_relative 'head_circumference_percentile_group'
+require_relative 'head_circumference_group'
 require_relative 'bodyheight_group'
 require_relative 'bodytemp_group'
 require_relative 'bp_group'
@@ -75,7 +75,7 @@ module USCoreTestKit
       end
 
       group from: :us_core_v311_capability_statement
-
+  
       group from: :us_core_v311_patient
       group from: :us_core_v311_allergy_intolerance
       group from: :us_core_v311_care_plan
@@ -93,7 +93,7 @@ module USCoreTestKit
       group from: :us_core_v311_observation_lab
       group from: :us_core_v311_pediatric_bmi_for_age
       group from: :us_core_v311_pulse_oximetry
-      group from: :us_core_v311_head_circumference_percentile
+      group from: :us_core_v311_head_circumference
       group from: :us_core_v311_bodyheight
       group from: :us_core_v311_bodytemp
       group from: :us_core_v311_bp

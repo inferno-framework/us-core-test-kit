@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentilePatientCodeSearchTest < Inferno::Test
+    class HeadCircumferencePatientCodeSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns valid results for Observation search by patient + code'
@@ -30,7 +30,7 @@ requirement of US Core v3.1.1.
 
       )
 
-      id :us_core_v311_head_circumference_percentile_patient_code_search_test
+      id :us_core_v311_head_circumference_patient_code_search_test
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
@@ -53,7 +53,7 @@ requirement of US Core v3.1.1.
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       run do

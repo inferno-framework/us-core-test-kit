@@ -2,20 +2,20 @@ require_relative '../../../read_test'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentileReadTest < Inferno::Test
+    class HeadCircumferenceReadTest < Inferno::Test
       include USCoreTestKit::ReadTest
 
       title 'Server returns correct Observation resource from Observation read interaction'
       description 'A server SHALL support the Observation read interaction.'
 
-      id :us_core_v311_head_circumference_percentile_read_test
+      id :us_core_v311_head_circumference_read_test
 
       def resource_type
         'Observation'
       end
 
       def scratch_resources
-        scratch[:head_circumference_percentile_resources] ||= {}
+        scratch[:head_circumference_resources] ||= {}
       end
 
       run do

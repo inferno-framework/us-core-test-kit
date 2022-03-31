@@ -1,17 +1,17 @@
-require_relative 'head_circumference_percentile/head_circumference_percentile_patient_code_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_patient_category_date_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_patient_category_status_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_patient_code_date_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_patient_category_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_read_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_provenance_revinclude_search_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_validation_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_must_support_test'
-require_relative 'head_circumference_percentile/head_circumference_percentile_reference_resolution_test'
+require_relative 'head_circumference/head_circumference_patient_code_search_test'
+require_relative 'head_circumference/head_circumference_patient_category_date_search_test'
+require_relative 'head_circumference/head_circumference_patient_category_status_search_test'
+require_relative 'head_circumference/head_circumference_patient_code_date_search_test'
+require_relative 'head_circumference/head_circumference_patient_category_search_test'
+require_relative 'head_circumference/head_circumference_read_test'
+require_relative 'head_circumference/head_circumference_provenance_revinclude_search_test'
+require_relative 'head_circumference/head_circumference_validation_test'
+require_relative 'head_circumference/head_circumference_must_support_test'
+require_relative 'head_circumference/head_circumference_reference_resolution_test'
 
 module USCoreTestKit
   module USCoreV311
-    class HeadCircumferencePercentileGroup < Inferno::TestGroup
+    class HeadCircumferenceGroup < Inferno::TestGroup
       title 'Pediatric Head Occipital-frontal Circumference Percentile Tests'
       short_description 'Verify support for the server capabilities required by the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile.'
       description %(
@@ -73,23 +73,23 @@ fail if any attempted read fails.
 
       )
 
-      id :us_core_v311_head_circumference_percentile
+      id :us_core_v311_head_circumference
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference_percentile', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference', 'metadata.yml')))
       end
   
-      test from: :us_core_v311_head_circumference_percentile_patient_code_search_test
-      test from: :us_core_v311_head_circumference_percentile_patient_category_date_search_test
-      test from: :us_core_v311_head_circumference_percentile_patient_category_status_search_test
-      test from: :us_core_v311_head_circumference_percentile_patient_code_date_search_test
-      test from: :us_core_v311_head_circumference_percentile_patient_category_search_test
-      test from: :us_core_v311_head_circumference_percentile_read_test
-      test from: :us_core_v311_head_circumference_percentile_provenance_revinclude_search_test
-      test from: :us_core_v311_head_circumference_percentile_validation_test
-      test from: :us_core_v311_head_circumference_percentile_must_support_test
-      test from: :us_core_v311_head_circumference_percentile_reference_resolution_test
+      test from: :us_core_v311_head_circumference_patient_code_search_test
+      test from: :us_core_v311_head_circumference_patient_category_date_search_test
+      test from: :us_core_v311_head_circumference_patient_category_status_search_test
+      test from: :us_core_v311_head_circumference_patient_code_date_search_test
+      test from: :us_core_v311_head_circumference_patient_category_search_test
+      test from: :us_core_v311_head_circumference_read_test
+      test from: :us_core_v311_head_circumference_provenance_revinclude_search_test
+      test from: :us_core_v311_head_circumference_validation_test
+      test from: :us_core_v311_head_circumference_must_support_test
+      test from: :us_core_v311_head_circumference_reference_resolution_test
     end
   end
 end
