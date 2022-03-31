@@ -271,11 +271,9 @@ module USCoreTestKit
         remove_vital_sign_component
         remove_blood_pressure_value
         remove_observation_data_absent_reason
-        remove_document_reference_attachment_data_url
+        add_must_support_choices
 
         case profile.version
-        when '3.1.1'
-          remove_device_carrier
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
@@ -340,6 +338,27 @@ module USCoreTestKit
             ['content.attachment.data', 'content.attachment.url'].include?(element[:path])
           end
         end
+      end
+
+      def add_must_support_choices
+        choices = []
+
+        choices << {paths: ['content.attachment.data', 'content.attachment.url']} if profile.type == 'DocumentReference'
+
+        case profile.version
+        when '3.1.1'
+          choices << {paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF']} if profile.type == 'Device'
+        when '4.0.0'
+          case profile.type
+          when 'Encounter'
+            choices << {paths: ['reasonCode', 'reasonReference']}
+            choices << {paths: ['location.location', 'serviceProvider']}
+          when 'MedicationRequest'
+            choices << {paths: ['reportedBoolean', 'reportedReference']}
+          end
+        end
+
+        @must_supports[:choices] = choices if choices.present?
       end
 
       def add_device_distinct_identifier

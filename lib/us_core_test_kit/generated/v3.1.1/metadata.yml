@@ -1861,6 +1861,8 @@
     :elements:
     - :path: udiCarrier
     - :path: udiCarrier.deviceIdentifier
+    - :path: udiCarrier.carrierAIDC
+    - :path: udiCarrier.carrierHRF
     - :path: distinctIdentifier
     - :path: manufactureDate
     - :path: expirationDate
@@ -1870,6 +1872,10 @@
     - :path: patient
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - udiCarrier.carrierAIDC
+      - udiCarrier.carrierHRF
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
   - Device.deviceName.name
@@ -4637,12 +4643,18 @@
     - :path: content
     - :path: content.attachment
     - :path: content.attachment.contentType
+    - :path: content.attachment.data
+    - :path: content.attachment.url
     - :path: content.format
     - :path: context
     - :path: context.encounter
       :types:
       - Reference
     - :path: context.period
+    :choices:
+    - :paths:
+      - content.attachment.data
+      - content.attachment.url
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
