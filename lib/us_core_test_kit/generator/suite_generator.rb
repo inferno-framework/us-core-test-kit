@@ -72,11 +72,19 @@ module USCoreTestKit
           groups.map { |group| group.file_name.delete_suffix('.rb') }
       end
 
-      def clinical_notes_guidance_group
+      def capability_statement_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/capability_statement_group"
+      end
+
+      def capability_statement_group_id
+        "us_core_#{ig_metadata.reformatted_version}_capability_statement"
+      end
+
+      def clinical_notes_guidance_file_name
         "../../custom_groups/#{ig_metadata.ig_version}/clinical_notes_guidance_group"
       end
 
-      def clinical_notes_guidance_id
+      def clinical_notes_guidance_group_id
         "us_core_#{ig_metadata.reformatted_version}_clinical_notes_guidance"
       end
     end
