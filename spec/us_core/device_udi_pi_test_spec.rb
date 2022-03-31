@@ -8,7 +8,8 @@ RSpec.describe USCoreTestKit::USCoreV400::DeviceUdiPiTest do
   let(:device) {
     FHIR::Device.new(
       id: '1',
-      udiCarrier: [ FHIR::Device::UdiCarrier.new(carrierHRF: 'udi') ]
+      udiCarrier: [ FHIR::Device::UdiCarrier.new(carrierHRF: 'udi') ],
+      distinctIdentifier: 'udi-pi-distinct-identifier'
     )
   }
 
@@ -50,6 +51,8 @@ RSpec.describe USCoreTestKit::USCoreV400::DeviceUdiPiTest do
   end
 
   it 'fails if Device has UDI information but does not have UDI-PI elements' do
+    device.distinctIdentifier = nil
+
     allow_any_instance_of(document_reference_custodian_test)
       .to receive(:scratch_resources).and_return(
         {
@@ -62,8 +65,6 @@ RSpec.describe USCoreTestKit::USCoreV400::DeviceUdiPiTest do
   end
 
   it 'passes if Device has UDI information and UDI-PI elements' do
-    device.distinctIdentifier = 'udi-pi-distinct-identifier'
-
     allow_any_instance_of(document_reference_custodian_test)
       .to receive(:scratch_resources).and_return(
         {
