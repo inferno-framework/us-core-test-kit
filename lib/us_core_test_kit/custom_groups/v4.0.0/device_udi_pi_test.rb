@@ -9,7 +9,7 @@ module USCoreTestKit
       )
 
       def scratch_resources
-        scratch[:device] ||= {}
+        scratch[:device_resources] ||= {}
       end
 
       run do
@@ -28,14 +28,12 @@ module USCoreTestKit
               device.serialNumber.present? ||
               device.distinctIdentifier.present?
             )
-            messages << {
-              type: 'error',
-              message: "Device/#{device.id} has UDI information but does not have any UDI-PI elements presented"
-            }
+            add_message('error',
+                        "Device/#{device.id} has UDI information but does not have any UDI-PI elements presented")
           end
         end
 
-        assert !messages.any?, "Resource does not have DocumentReference.custodian, Provenance.agent.who, nor Provenance.agent.onBehalfOf"
+        assert messages.blank?, "Resource has UDI information but does not have any UDI-PI elements presented"
       end
     end
   end
