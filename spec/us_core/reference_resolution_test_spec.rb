@@ -23,7 +23,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       it 'returns true' do
         test.record_resolved_reference(reference)
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
         expect(test.resolved_references).to include(reference_string)
         expect(test.requests.length).to eq(0)
       end
@@ -37,7 +37,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           FHIR::Observation.new(encounter: { reference: reference_string }, contained: [FHIR::Encounter.new(id: '123')])
         reference = resource.encounter
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
         expect(test.requests.length).to eq(0)
       end
 
@@ -46,12 +46,12 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           FHIR::Observation.new(encounter: { reference: reference_string })
         reference = resource.encounter
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(false)
 
         resource =
           FHIR::Observation.new(encounter: { reference: reference_string }, contained: [FHIR::Encounter.new(id: '456')])
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(false)
         expect(test.requests.length).to eq(0)
       end
     end
@@ -69,7 +69,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, "#{base_url}/#{reference_string}")
             .to_return(status: 200, body: referenced_resource.to_json)
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
         expect(request).to have_been_made.once
         expect(test.resolved_references).to include(reference_string)
         expect(test.requests.length).to eq(1)
@@ -80,7 +80,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, "#{base_url}/#{reference_string}")
             .to_return(status: 404, body: '')
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(false)
         expect(request).to have_been_made.once
         expect(test.requests.length).to eq(1)
       end
@@ -99,7 +99,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, reference_string)
             .to_return(status: 200, body: referenced_resource.to_json)
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
         expect(request).to have_been_made.once
         expect(test.requests.length).to eq(1)
       end
@@ -109,7 +109,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, reference_string)
             .to_return(status: 404, body: '')
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(false)
         expect(request).to have_been_made.once
         expect(test.requests.length).to eq(1)
       end
@@ -128,7 +128,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, reference_string)
             .to_return(status: 200, body: referenced_resource.to_json)
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
         expect(request).to have_been_made.once
         expect(test.requests.length).to eq(1)
       end
@@ -138,7 +138,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
           stub_request(:get, reference_string)
             .to_return(status: 404, body: '')
 
-        expect(test.validate_reference_resolution(resource, reference)).to be(false)
+        expect(test.validate_reference_resolution(resource, reference, nil)).to be(false)
         expect(request).to have_been_made.once
         expect(test.requests.length).to eq(1)
       end

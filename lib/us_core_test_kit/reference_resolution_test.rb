@@ -76,7 +76,7 @@ module USCoreTestKit
     end
 
     def validate_reference_resolution(resource, reference, target_profile)
-      return true if resolved_references.include?(reference.reference) && target_profile.empty?
+      return true if resolved_references.include?(reference.reference) && target_profile.blank?
 
       if reference.contained?
         # if reference_id is blank it is referring to itself, so we know it exists
@@ -84,7 +84,7 @@ module USCoreTestKit
 
         return resource.contained.any? do |contained_resource|
             contained_resource&.id == reference.reference_id &&
-              resource_is_valid_with_target_profile?(contained_resource, target_profiles)
+              resource_is_valid_with_target_profile?(contained_resource, target_profile)
           end
       end
 
@@ -123,7 +123,7 @@ module USCoreTestKit
     end
 
     def resource_is_valid_with_target_profile?(resource, target_profile)
-      return true if target_profile.empty?
+      return true if target_profile.blank?
 
       resource_is_valid?(resource: resource, profile_url: target_profile)
     end
