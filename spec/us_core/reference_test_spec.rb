@@ -135,9 +135,9 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
     end
 
     context 'when reference read returns error' do
-      before do           
+      before do
         stub_request(:get, "#{url}/#{encounter_ref}")
-          .to_return(status: 401, body: encounter.to_json)
+          .to_return(status: 401)
       end
 
       it 'skips if one MS references cannot be read' do
@@ -148,7 +148,6 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         expect(result.result).to eq('skip')
         expect(result.result_message).to eq('Could not resolve Must Support references encounter')
       end
-
     end
   end
 end
