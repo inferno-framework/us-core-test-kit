@@ -52,7 +52,7 @@ module USCoreTestKit
     end
 
     def bad_resource_id_message(expected_id)
-      "Expected resource to have id: `#{id}`, but found `#{resource.id}`"
+      "Expected resource to have id: `#{expected_id.inspect}`, but found `#{resource.id.inspect}`"
     end
 
     def resource_class
