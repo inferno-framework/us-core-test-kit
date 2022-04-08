@@ -317,7 +317,7 @@ module USCoreTestKit
 
       all_search_params.each do |patient_id, params_list|
         next unless params_list.present?
-        
+
         search_params = params_list.first
         existing_values = {}
         missing_values = {}
@@ -446,10 +446,10 @@ module USCoreTestKit
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class' 
+      if paths.first =='class'
         paths[0] = 'local_class'
       end
-      
+
       paths
     end
 
@@ -568,7 +568,20 @@ module USCoreTestKit
           when FHIR::Address
             element.text || element.city || element.state || element.postalCode || element.country
           else
-            element
+            if params_with_comparators&.include?(name)
+              # convert date search to greath-than comparator search with correct precision
+              # For all date search parameters:
+              #   Patient.birthDate does not mandate comparators so cannot be converted
+              #   Goal.target-date has day precision
+              #   All others have second + time offset precision
+              if resource_type == 'Goal'
+                "gt#{(DateTime.xmlschema(element)-1).to_date.to_s}"
+              else
+                "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+              end
+            else
+              element
+            end
           end
 
           break if search_value.present?
@@ -647,9 +660,9 @@ module USCoreTestKit
                 address&.country&.downcase&.start_with?(search_value_downcase)
               end
             when 'CodeableConcept'
-              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD 
-              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has 
-              # less safety implications than excluding desired behavior". 
+              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD
+              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
+              # less safety implications than excluding desired behavior".
               codings = values_found.flat_map(&:coding)
               if search_value.include? '|'
                 system = search_value.split('|').first
@@ -691,7 +704,7 @@ module USCoreTestKit
                 values_found.any? { |value_found| search_values.include? value_found }
               end
             end
-          
+
           break if match_found
         end
 
