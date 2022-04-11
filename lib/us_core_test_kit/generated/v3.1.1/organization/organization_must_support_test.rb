@@ -13,18 +13,18 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Organization.active
-      * Organization.address
-      * Organization.address.city
-      * Organization.address.country
-      * Organization.address.line
-      * Organization.address.postalCode
-      * Organization.address.state
-      * Organization.identifier
-      * Organization.identifier.system
-      * Organization.identifier.value
-      * Organization.identifier:NPI
-      * Organization.name
-      * Organization.telecom
+        * Organization.address
+        * Organization.address.city
+        * Organization.address.country
+        * Organization.address.line
+        * Organization.address.postalCode
+        * Organization.address.state
+        * Organization.identifier
+        * Organization.identifier.system
+        * Organization.identifier.value
+        * Organization.identifier:NPI
+        * Organization.name
+        * Organization.telecom
       )
 
       id :us_core_v311_organization_must_support_test

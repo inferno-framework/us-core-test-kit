@@ -13,15 +13,15 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Provenance.agent
-      * Provenance.agent.onBehalfOf
-      * Provenance.agent.type
-      * Provenance.agent.type.coding.code
-      * Provenance.agent.who
-      * Provenance.agent:ProvenanceAuthor
-      * Provenance.agent:ProvenanceTransmitter
-      * Provenance.recorded
-      * Provenance.target
-      * Provenance.target.reference
+        * Provenance.agent.onBehalfOf
+        * Provenance.agent.type
+        * Provenance.agent.type.coding.code
+        * Provenance.agent.who
+        * Provenance.agent:ProvenanceAuthor
+        * Provenance.agent:ProvenanceTransmitter
+        * Provenance.recorded
+        * Provenance.target
+        * Provenance.target.reference
       )
 
       id :us_core_v400_provenance_must_support_test

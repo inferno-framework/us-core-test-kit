@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Observation search by patient + code + date'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 patient + code + date on the Observation resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

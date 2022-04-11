@@ -13,29 +13,29 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Patient.address
-      * Patient.address.city
-      * Patient.address.line
-      * Patient.address.period
-      * Patient.address.postalCode
-      * Patient.address.state
-      * Patient.birthDate
-      * Patient.communication.language
-      * Patient.extension:birthsex
-      * Patient.extension:ethnicity
-      * Patient.extension:race
-      * Patient.gender
-      * Patient.identifier
-      * Patient.identifier.system
-      * Patient.identifier.value
-      * Patient.name
-      * Patient.name.family
-      * Patient.name.given
-      * Patient.name.suffix
-      * Patient.name.use
-      * Patient.telecom
-      * Patient.telecom.system
-      * Patient.telecom.use
-      * Patient.telecom.value
+        * Patient.address.city
+        * Patient.address.line
+        * Patient.address.period
+        * Patient.address.postalCode
+        * Patient.address.state
+        * Patient.birthDate
+        * Patient.communication.language
+        * Patient.extension:birthsex
+        * Patient.extension:ethnicity
+        * Patient.extension:race
+        * Patient.gender
+        * Patient.identifier
+        * Patient.identifier.system
+        * Patient.identifier.value
+        * Patient.name
+        * Patient.name.family
+        * Patient.name.given
+        * Patient.name.suffix
+        * Patient.name.use
+        * Patient.telecom
+        * Patient.telecom.system
+        * Patient.telecom.use
+        * Patient.telecom.value
       )
 
       id :us_core_v400_patient_must_support_test

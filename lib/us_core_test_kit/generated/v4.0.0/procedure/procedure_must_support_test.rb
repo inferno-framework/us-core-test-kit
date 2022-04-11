@@ -13,9 +13,9 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Procedure.code
-      * Procedure.performedDateTime
-      * Procedure.status
-      * Procedure.subject
+        * Procedure.performedDateTime
+        * Procedure.status
+        * Procedure.subject
       )
 
       id :us_core_v400_procedure_must_support_test

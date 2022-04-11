@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for MedicationRequest search by patient + intent'
       description %(
-  A server SHALL support searching by
+A server SHALL support searching by
 patient + intent on the MedicationRequest resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

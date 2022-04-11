@@ -13,15 +13,15 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * MedicationRequest.authoredOn
-      * MedicationRequest.dosageInstruction
-      * MedicationRequest.dosageInstruction.text
-      * MedicationRequest.encounter
-      * MedicationRequest.intent
-      * MedicationRequest.medication[x]
-      * MedicationRequest.reported[x]
-      * MedicationRequest.requester
-      * MedicationRequest.status
-      * MedicationRequest.subject
+        * MedicationRequest.dosageInstruction
+        * MedicationRequest.dosageInstruction.text
+        * MedicationRequest.encounter
+        * MedicationRequest.intent
+        * MedicationRequest.medication[x]
+        * MedicationRequest.reported[x]
+        * MedicationRequest.requester
+        * MedicationRequest.status
+        * MedicationRequest.subject
       )
 
       id :us_core_v311_medication_request_must_support_test

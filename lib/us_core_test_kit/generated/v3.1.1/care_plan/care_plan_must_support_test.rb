@@ -13,12 +13,12 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * CarePlan.category
-      * CarePlan.category:AssessPlan
-      * CarePlan.intent
-      * CarePlan.status
-      * CarePlan.subject
-      * CarePlan.text
-      * CarePlan.text.status
+        * CarePlan.category:AssessPlan
+        * CarePlan.intent
+        * CarePlan.status
+        * CarePlan.subject
+        * CarePlan.text
+        * CarePlan.text.status
       )
 
       id :us_core_v311_care_plan_must_support_test

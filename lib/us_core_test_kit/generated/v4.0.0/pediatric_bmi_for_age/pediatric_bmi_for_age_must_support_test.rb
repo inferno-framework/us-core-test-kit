@@ -13,20 +13,20 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category.coding
-      * Observation.category.coding.code
-      * Observation.category.coding.system
-      * Observation.category:VSCat
-      * Observation.code.coding.code
-      * Observation.effectiveDateTime
-      * Observation.status
-      * Observation.subject
-      * Observation.value[x]
-      * Observation.value[x].code
-      * Observation.value[x].system
-      * Observation.value[x].unit
-      * Observation.value[x].value
-      * Observation.value[x]:valueQuantity
+        * Observation.category.coding
+        * Observation.category.coding.code
+        * Observation.category.coding.system
+        * Observation.category:VSCat
+        * Observation.code.coding.code
+        * Observation.effectiveDateTime
+        * Observation.status
+        * Observation.subject
+        * Observation.value[x]
+        * Observation.value[x].code
+        * Observation.value[x].system
+        * Observation.value[x].unit
+        * Observation.value[x].value
+        * Observation.value[x]:valueQuantity
       )
 
       id :us_core_v400_pediatric_bmi_for_age_must_support_test

@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for AllergyIntolerance search by patient + clinical-status'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 patient + clinical-status on the AllergyIntolerance resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

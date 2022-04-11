@@ -13,14 +13,14 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category:Laboratory
-      * Observation.code
-      * Observation.effectiveDateTime
-      * Observation.status
-      * Observation.subject
-      * Observation.valueCodeableConcept
-      * Observation.valueQuantity
-      * Observation.valueString
+        * Observation.category:Laboratory
+        * Observation.code
+        * Observation.effectiveDateTime
+        * Observation.status
+        * Observation.subject
+        * Observation.valueCodeableConcept
+        * Observation.valueQuantity
+        * Observation.valueString
       )
 
       id :us_core_v400_observation_lab_must_support_test

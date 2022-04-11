@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for DocumentReference search by patient + type + period'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 patient + type + period on the DocumentReference resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

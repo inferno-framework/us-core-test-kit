@@ -13,10 +13,10 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * CareTeam.participant
-      * CareTeam.participant.member
-      * CareTeam.participant.role
-      * CareTeam.status
-      * CareTeam.subject
+        * CareTeam.participant.member
+        * CareTeam.participant.role
+        * CareTeam.status
+        * CareTeam.subject
       )
 
       id :us_core_v400_care_team_must_support_test

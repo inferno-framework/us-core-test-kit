@@ -9,11 +9,13 @@ module USCoreTestKit
 
       title 'MustSupport references within Provenance resources can be read'
       description %(
-        This test will attempt to read MustSupport references found in the
-        resources from the first search. This test will look through the Provenance resources
-        found previously for the following must support elements:
+        This test will attempt to read external references provided within elements
+        marked as 'MustSupport', if any are available.  Elements which may provide
+        external references include:
 
-  
+        * Provenance.agent.onBehalfOf
+        * Provenance.agent.who
+        * Provenance.target
       )
 
       id :us_core_v400_provenance_reference_resolution_test

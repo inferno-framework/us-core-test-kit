@@ -13,11 +13,11 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Immunization.occurrenceDateTime
-      * Immunization.patient
-      * Immunization.primarySource
-      * Immunization.status
-      * Immunization.statusReason
-      * Immunization.vaccineCode
+        * Immunization.patient
+        * Immunization.primarySource
+        * Immunization.status
+        * Immunization.statusReason
+        * Immunization.vaccineCode
       )
 
       id :us_core_v400_immunization_must_support_test

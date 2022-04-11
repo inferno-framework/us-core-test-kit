@@ -13,14 +13,14 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * DiagnosticReport.category
-      * DiagnosticReport.category:LaboratorySlice
-      * DiagnosticReport.code
-      * DiagnosticReport.effective[x]
-      * DiagnosticReport.issued
-      * DiagnosticReport.performer
-      * DiagnosticReport.result
-      * DiagnosticReport.status
-      * DiagnosticReport.subject
+        * DiagnosticReport.category:LaboratorySlice
+        * DiagnosticReport.code
+        * DiagnosticReport.effective[x]
+        * DiagnosticReport.issued
+        * DiagnosticReport.performer
+        * DiagnosticReport.result
+        * DiagnosticReport.status
+        * DiagnosticReport.subject
       )
 
       id :us_core_v311_diagnostic_report_lab_must_support_test

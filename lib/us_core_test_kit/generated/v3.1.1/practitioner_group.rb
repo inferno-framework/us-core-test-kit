@@ -3,7 +3,6 @@ require_relative 'practitioner/practitioner_name_search_test'
 require_relative 'practitioner/practitioner_identifier_search_test'
 require_relative 'practitioner/practitioner_validation_test'
 require_relative 'practitioner/practitioner_must_support_test'
-require_relative 'practitioner/practitioner_reference_resolution_test'
 
 module USCoreTestKit
   module USCoreV311
@@ -62,9 +61,10 @@ ValueSet. If the code/system in the element is not part of the ValueSet,
 then the test will fail.
 
 ## Reference Validation
-Each reference within the resources found from the previous tests must
-resolve. The test will attempt to read each reference found and will
-fail if any attempted read fails.
+At least one instance of each external reference in elements marked as
+"must support" within the resources provided by the system must resolve.
+The test will attempt to read each reference found and will fail if no
+read succeeds.
 
       )
 
@@ -80,7 +80,6 @@ fail if any attempted read fails.
       test from: :us_core_v311_practitioner_identifier_search_test
       test from: :us_core_v311_practitioner_validation_test
       test from: :us_core_v311_practitioner_must_support_test
-      test from: :us_core_v311_practitioner_reference_resolution_test
     end
   end
 end

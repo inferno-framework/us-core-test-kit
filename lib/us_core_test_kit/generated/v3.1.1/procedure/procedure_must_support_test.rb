@@ -13,9 +13,9 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Procedure.code
-      * Procedure.performed[x]
-      * Procedure.status
-      * Procedure.subject
+        * Procedure.performed[x]
+        * Procedure.status
+        * Procedure.subject
       )
 
       id :us_core_v311_procedure_must_support_test

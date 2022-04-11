@@ -13,10 +13,10 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Condition.category
-      * Condition.clinicalStatus
-      * Condition.code
-      * Condition.subject
-      * Condition.verificationStatus
+        * Condition.clinicalStatus
+        * Condition.code
+        * Condition.subject
+        * Condition.verificationStatus
       )
 
       id :us_core_v400_condition_must_support_test

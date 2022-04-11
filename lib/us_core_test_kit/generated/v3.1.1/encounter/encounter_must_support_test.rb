@@ -13,22 +13,22 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Encounter.class
-      * Encounter.hospitalization
-      * Encounter.hospitalization.dischargeDisposition
-      * Encounter.identifier
-      * Encounter.identifier.system
-      * Encounter.identifier.value
-      * Encounter.location
-      * Encounter.location.location
-      * Encounter.participant
-      * Encounter.participant.individual
-      * Encounter.participant.period
-      * Encounter.participant.type
-      * Encounter.period
-      * Encounter.reasonCode
-      * Encounter.status
-      * Encounter.subject
-      * Encounter.type
+        * Encounter.hospitalization
+        * Encounter.hospitalization.dischargeDisposition
+        * Encounter.identifier
+        * Encounter.identifier.system
+        * Encounter.identifier.value
+        * Encounter.location
+        * Encounter.location.location
+        * Encounter.participant
+        * Encounter.participant.individual
+        * Encounter.participant.period
+        * Encounter.participant.type
+        * Encounter.period
+        * Encounter.reasonCode
+        * Encounter.status
+        * Encounter.subject
+        * Encounter.type
       )
 
       id :us_core_v311_encounter_must_support_test

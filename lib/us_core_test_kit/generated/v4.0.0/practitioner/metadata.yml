@@ -133,8 +133,6 @@
   :file_name: practitioner_validation_test.rb
 - :id: us_core_v400_practitioner_must_support_test
   :file_name: practitioner_must_support_test.rb
-- :id: us_core_v400_practitioner_reference_resolution_test
-  :file_name: practitioner_reference_resolution_test.rb
 :id: us_core_v400_practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []

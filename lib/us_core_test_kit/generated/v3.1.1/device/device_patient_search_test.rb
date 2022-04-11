@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Device search by patient'
       description %(
-  A server SHALL support searching by
+A server SHALL support searching by
 patient on the Device resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
