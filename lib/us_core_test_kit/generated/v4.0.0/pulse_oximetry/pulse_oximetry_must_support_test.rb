@@ -13,28 +13,28 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category.coding
-      * Observation.category.coding.code
-      * Observation.category.coding.system
-      * Observation.category:VSCat
-      * Observation.code
-      * Observation.code.coding
-      * Observation.code.coding:O2Sat
-      * Observation.code.coding:PulseOx
-      * Observation.component
-      * Observation.component.code
-      * Observation.component.code.coding.code
-      * Observation.component.valueQuantity
-      * Observation.component.valueQuantity.code
-      * Observation.component.valueQuantity.system
-      * Observation.component.valueQuantity.unit
-      * Observation.component.valueQuantity.value
-      * Observation.component:Concentration
-      * Observation.component:FlowRate
-      * Observation.effectiveDateTime
-      * Observation.status
-      * Observation.subject
-      * Observation.valueQuantity
+        * Observation.category.coding
+        * Observation.category.coding.code
+        * Observation.category.coding.system
+        * Observation.category:VSCat
+        * Observation.code
+        * Observation.code.coding
+        * Observation.code.coding:O2Sat
+        * Observation.code.coding:PulseOx
+        * Observation.component
+        * Observation.component.code
+        * Observation.component.code.coding.code
+        * Observation.component.valueQuantity
+        * Observation.component.valueQuantity.code
+        * Observation.component.valueQuantity.system
+        * Observation.component.valueQuantity.unit
+        * Observation.component.valueQuantity.value
+        * Observation.component:Concentration
+        * Observation.component:FlowRate
+        * Observation.effectiveDateTime
+        * Observation.status
+        * Observation.subject
+        * Observation.valueQuantity
       )
 
       id :us_core_v400_pulse_oximetry_must_support_test

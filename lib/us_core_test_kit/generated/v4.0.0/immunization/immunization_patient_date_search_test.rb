@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Immunization search by patient + date'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 patient + date on the Immunization resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

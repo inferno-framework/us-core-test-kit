@@ -13,11 +13,11 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * AllergyIntolerance.clinicalStatus
-      * AllergyIntolerance.code
-      * AllergyIntolerance.patient
-      * AllergyIntolerance.reaction
-      * AllergyIntolerance.reaction.manifestation
-      * AllergyIntolerance.verificationStatus
+        * AllergyIntolerance.code
+        * AllergyIntolerance.patient
+        * AllergyIntolerance.reaction
+        * AllergyIntolerance.reaction.manifestation
+        * AllergyIntolerance.verificationStatus
       )
 
       id :us_core_v400_allergy_intolerance_must_support_test

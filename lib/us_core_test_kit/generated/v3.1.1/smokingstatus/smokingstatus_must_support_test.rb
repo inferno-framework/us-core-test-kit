@@ -13,10 +13,10 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.code
-      * Observation.issued
-      * Observation.status
-      * Observation.subject
-      * Observation.value[x]:valueCodeableConcept
+        * Observation.issued
+        * Observation.status
+        * Observation.subject
+        * Observation.value[x]:valueCodeableConcept
       )
 
       id :us_core_v311_smokingstatus_must_support_test

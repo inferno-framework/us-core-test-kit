@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Patient search by family + gender'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 family + gender on the Patient resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

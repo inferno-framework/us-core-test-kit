@@ -13,24 +13,24 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category.coding
-      * Observation.category.coding.code
-      * Observation.category.coding.system
-      * Observation.category:VSCat
-      * Observation.code.coding.code
-      * Observation.component
-      * Observation.component.code
-      * Observation.component.code.coding.code
-      * Observation.component.valueQuantity
-      * Observation.component.valueQuantity.code
-      * Observation.component.valueQuantity.system
-      * Observation.component.valueQuantity.unit
-      * Observation.component.valueQuantity.value
-      * Observation.component:diastolic
-      * Observation.component:systolic
-      * Observation.effectiveDateTime
-      * Observation.status
-      * Observation.subject
+        * Observation.category.coding
+        * Observation.category.coding.code
+        * Observation.category.coding.system
+        * Observation.category:VSCat
+        * Observation.code.coding.code
+        * Observation.component
+        * Observation.component.code
+        * Observation.component.code.coding.code
+        * Observation.component.valueQuantity
+        * Observation.component.valueQuantity.code
+        * Observation.component.valueQuantity.system
+        * Observation.component.valueQuantity.unit
+        * Observation.component.valueQuantity.value
+        * Observation.component:diastolic
+        * Observation.component:systolic
+        * Observation.effectiveDateTime
+        * Observation.status
+        * Observation.subject
       )
 
       id :us_core_v400_blood_pressure_must_support_test

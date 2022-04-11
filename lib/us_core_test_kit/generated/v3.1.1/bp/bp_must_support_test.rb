@@ -13,23 +13,23 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category.coding
-      * Observation.category.coding.code
-      * Observation.category.coding.system
-      * Observation.category:VSCat
-      * Observation.code
-      * Observation.component
-      * Observation.component.code
-      * Observation.component.value[x]
-      * Observation.component.value[x].code
-      * Observation.component.value[x].system
-      * Observation.component.value[x].unit
-      * Observation.component.value[x].value
-      * Observation.component:DiastolicBP
-      * Observation.component:SystolicBP
-      * Observation.effective[x]
-      * Observation.status
-      * Observation.subject
+        * Observation.category.coding
+        * Observation.category.coding.code
+        * Observation.category.coding.system
+        * Observation.category:VSCat
+        * Observation.code
+        * Observation.component
+        * Observation.component.code
+        * Observation.component.value[x]
+        * Observation.component.value[x].code
+        * Observation.component.value[x].system
+        * Observation.component.value[x].unit
+        * Observation.component.value[x].value
+        * Observation.component:DiastolicBP
+        * Observation.component:SystolicBP
+        * Observation.effective[x]
+        * Observation.status
+        * Observation.subject
       )
 
       id :us_core_v311_bp_must_support_test

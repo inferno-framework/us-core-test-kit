@@ -13,10 +13,10 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Goal.description
-      * Goal.lifecycleStatus
-      * Goal.subject
-      * Goal.target
-      * Goal.target.due[x]:dueDate
+        * Goal.lifecycleStatus
+        * Goal.subject
+        * Goal.target
+        * Goal.target.due[x]:dueDate
       )
 
       id :us_core_v311_goal_must_support_test

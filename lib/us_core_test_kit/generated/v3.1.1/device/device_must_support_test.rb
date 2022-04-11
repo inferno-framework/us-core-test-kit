@@ -13,16 +13,16 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Device.distinctIdentifier
-      * Device.expirationDate
-      * Device.lotNumber
-      * Device.manufactureDate
-      * Device.patient
-      * Device.serialNumber
-      * Device.type
-      * Device.udiCarrier
-      * Device.udiCarrier.carrierAIDC
-      * Device.udiCarrier.carrierHRF
-      * Device.udiCarrier.deviceIdentifier
+        * Device.expirationDate
+        * Device.lotNumber
+        * Device.manufactureDate
+        * Device.patient
+        * Device.serialNumber
+        * Device.type
+        * Device.udiCarrier
+        * Device.udiCarrier.carrierAIDC
+        * Device.udiCarrier.carrierHRF
+        * Device.udiCarrier.deviceIdentifier
       )
 
       id :us_core_v311_device_must_support_test

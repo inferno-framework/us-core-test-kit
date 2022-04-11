@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Condition search by patient + category'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 patient + category on the Condition resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

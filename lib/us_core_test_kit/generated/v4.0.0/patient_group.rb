@@ -9,7 +9,6 @@ require_relative 'patient/patient_read_test'
 require_relative 'patient/patient_provenance_revinclude_search_test'
 require_relative 'patient/patient_validation_test'
 require_relative 'patient/patient_must_support_test'
-require_relative 'patient/patient_reference_resolution_test'
 
 module USCoreTestKit
   module USCoreV400
@@ -71,9 +70,9 @@ ValueSet. If the code/system in the element is not part of the ValueSet,
 then the test will fail.
 
 ## Reference Validation
-Each reference within the resources found from the previous tests must
-resolve. The test will attempt to read each reference found and will
-fail if any attempted read fails.
+Each external reference in elements marked as "must support" within the
+resources provided by the system must resolve. The test will attempt to
+read each reference found and will fail if any attempted read fails.
 
       )
 
@@ -95,7 +94,6 @@ fail if any attempted read fails.
       test from: :us_core_v400_patient_provenance_revinclude_search_test
       test from: :us_core_v400_patient_validation_test
       test from: :us_core_v400_patient_must_support_test
-      test from: :us_core_v400_patient_reference_resolution_test
     end
   end
 end

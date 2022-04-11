@@ -9,11 +9,11 @@ module USCoreTestKit
 
       title 'MustSupport references within Device resources can be read'
       description %(
-        This test will attempt to read MustSupport references found in the
-        resources from the first search. This test will look through the Device resources
-        found previously for the following must support elements:
+        This test will attempt to read external references provided within elements
+        marked as 'MustSupport', if any are available.  Elements which may provide
+        external references include:
 
-  
+        * Device.patient
       )
 
       id :us_core_v311_device_reference_resolution_test

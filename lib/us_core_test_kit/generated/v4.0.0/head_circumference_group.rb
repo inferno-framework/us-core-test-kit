@@ -67,9 +67,9 @@ ValueSet. If the code/system in the element is not part of the ValueSet,
 then the test will fail.
 
 ## Reference Validation
-Each reference within the resources found from the previous tests must
-resolve. The test will attempt to read each reference found and will
-fail if any attempted read fails.
+Each external reference in elements marked as "must support" within the
+resources provided by the system must resolve. The test will attempt to
+read each reference found and will fail if any attempted read fails.
 
       )
 

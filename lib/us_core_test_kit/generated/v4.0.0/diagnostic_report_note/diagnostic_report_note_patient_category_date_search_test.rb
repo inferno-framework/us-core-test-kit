@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for DiagnosticReport search by patient + category + date'
       description %(
-  A server SHALL support searching by
+A server SHALL support searching by
 patient + category + date on the DiagnosticReport resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

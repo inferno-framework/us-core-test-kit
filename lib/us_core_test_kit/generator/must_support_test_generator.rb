@@ -74,7 +74,7 @@ module USCoreTestKit
         (slice_names + element_names + extension_names)
           .uniq
           .sort
-          .map { |name| "      * #{name}" }
+          .map { |name| "#{' ' * 8}* #{name}" }
           .join("\n")
       end
 

@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server returns valid results for Encounter search by class + patient'
       description %(
-  A server SHOULD support searching by
+A server SHOULD support searching by
 class + patient on the Encounter resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.

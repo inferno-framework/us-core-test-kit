@@ -13,11 +13,11 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Practitioner.identifier
-      * Practitioner.identifier.system
-      * Practitioner.identifier.value
-      * Practitioner.identifier:NPI
-      * Practitioner.name
-      * Practitioner.name.family
+        * Practitioner.identifier.system
+        * Practitioner.identifier.value
+        * Practitioner.identifier:NPI
+        * Practitioner.name
+        * Practitioner.name.family
       )
 
       id :us_core_v400_practitioner_must_support_test

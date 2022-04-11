@@ -13,12 +13,12 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-      * Observation.category:SocialHistory
-      * Observation.code
-      * Observation.effective[x]:effectiveDateTime
-      * Observation.status
-      * Observation.subject
-      * Observation.value[x]:valueCodeableConcept
+        * Observation.category:SocialHistory
+        * Observation.code
+        * Observation.effective[x]:effectiveDateTime
+        * Observation.status
+        * Observation.subject
+        * Observation.value[x]:valueCodeableConcept
       )
 
       id :us_core_v400_smokingstatus_must_support_test

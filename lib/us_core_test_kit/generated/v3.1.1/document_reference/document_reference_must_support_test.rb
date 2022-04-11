@@ -13,22 +13,22 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * DocumentReference.author
-      * DocumentReference.category
-      * DocumentReference.content
-      * DocumentReference.content.attachment
-      * DocumentReference.content.attachment.contentType
-      * DocumentReference.content.attachment.data
-      * DocumentReference.content.attachment.url
-      * DocumentReference.content.format
-      * DocumentReference.context
-      * DocumentReference.context.encounter
-      * DocumentReference.context.period
-      * DocumentReference.custodian
-      * DocumentReference.date
-      * DocumentReference.identifier
-      * DocumentReference.status
-      * DocumentReference.subject
-      * DocumentReference.type
+        * DocumentReference.category
+        * DocumentReference.content
+        * DocumentReference.content.attachment
+        * DocumentReference.content.attachment.contentType
+        * DocumentReference.content.attachment.data
+        * DocumentReference.content.attachment.url
+        * DocumentReference.content.format
+        * DocumentReference.context
+        * DocumentReference.context.encounter
+        * DocumentReference.context.period
+        * DocumentReference.custodian
+        * DocumentReference.date
+        * DocumentReference.identifier
+        * DocumentReference.status
+        * DocumentReference.subject
+        * DocumentReference.type
       )
 
       id :us_core_v311_document_reference_must_support_test

@@ -9,11 +9,11 @@ module USCoreTestKit
 
       title 'MustSupport references within Observation resources can be read'
       description %(
-        This test will attempt to read MustSupport references found in the
-        resources from the first search. This test will look through the Observation resources
-        found previously for the following must support elements:
+        This test will attempt to read external references provided within elements
+        marked as 'MustSupport', if any are available.  Elements which may provide
+        external references include:
 
-  
+        * Observation.subject
       )
 
       id :us_core_v400_pediatric_weight_for_height_reference_resolution_test

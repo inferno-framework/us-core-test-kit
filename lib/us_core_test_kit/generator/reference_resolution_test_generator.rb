@@ -62,17 +62,23 @@ module USCoreTestKit
       def resource_collection_string
         'scratch_resources[:all]'
       end
+
+      def must_support_references
+        group_metadata.must_supports[:elements]
+          .select { |element| element[:types]&.include?('Reference') }
+      end
       
       def must_support_reference_list_string
-        element_names = group_metadata.must_supports[:elements]
-          .select { |element| element[:type]&.include?('Reference') }
-          .map { |element| "      * #{resource_type}.#{element[:path]}" }
+        must_support_references
+          .map { |element| "#{' ' * 8}* #{resource_type}.#{element[:path]}" }
           .uniq
           .sort
           .join("\n")
       end
 
       def generate
+        return if must_support_references.empty?
+
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
 
