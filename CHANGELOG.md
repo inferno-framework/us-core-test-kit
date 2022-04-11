@@ -1,3 +1,10 @@
+# 0.2.1
+
+* Update reference resolution test descriptions in groups to describe the new
+  behavior from v0.2.0.
+* Remove reference resolution tests for resources with no Must Support
+  references.
+
 # 0.2.0
 
 * Add US Core v4.0.0 tests.
