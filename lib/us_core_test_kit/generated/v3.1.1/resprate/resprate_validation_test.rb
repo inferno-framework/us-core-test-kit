@@ -32,7 +32,7 @@ fail if their code/system are not found in the valueset.
       run do
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/StructureDefinition/resprate',
-                                must_demonstrate_resource_type: true)
+                                skip_if_empty: true)
       end
     end
   end

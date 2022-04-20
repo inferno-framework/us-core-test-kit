@@ -5,9 +5,9 @@ module USCoreTestKit
 
     def perform_validation_test(resources,
                                 profile_url,
-                                must_demonstrate_resource_type: true)
+                                skip_if_empty: true)
 
-      skip_if must_demonstrate_resource_type && resources.blank?,
+      skip_if skip_if_empty && resources.blank?,
               "No #{resource_type} resources conforming to the #{profile_url} profile were returned"
 
       omit_if resources.blank?,

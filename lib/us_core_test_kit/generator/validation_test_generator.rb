@@ -84,7 +84,7 @@ module USCoreTestKit
         read_interaction[:expectation]
       end
 
-      def must_demonstrate_resource_type
+      def skip_if_empty
         # Return true if a system must demonstrate at least one example of the resource type.
         # This drives omit vs. skip result statuses in this test.
         resource_type != 'Medication'

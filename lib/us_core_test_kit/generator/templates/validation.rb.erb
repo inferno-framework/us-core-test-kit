@@ -23,7 +23,7 @@ module USCoreTestKit
       run do
         perform_validation_test(scratch_resources[:all] || [],
                                 '<%= profile_url %>',
-                                must_demonstrate_resource_type: <%= must_demonstrate_resource_type %>)
+                                skip_if_empty: <%= skip_if_empty %>)
       end
     end
   end
