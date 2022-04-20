@@ -3,9 +3,15 @@ module USCoreTestKit
     DAR_CODE_SYSTEM_URL = 'http://terminology.hl7.org/CodeSystem/data-absent-reason'.freeze
     DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'.freeze
 
-    def perform_validation_test(resources, profile_url)
-      skip_if resources.blank?,
-              "No #{resource_type} resources conforming to the #{profile_url} profile were returned."
+    def perform_validation_test(resources,
+                                profile_url,
+                                must_demonstrate_resource_type: true)
+
+      skip_if must_demonstrate_resource_type && resources.blank?,
+              "No #{resource_type} resources conforming to the #{profile_url} profile were returned"
+
+      omit_if resources.blank?,
+              "No #{resource_type} resources provided so the #{profile_url} profile does not apply"
 
       resources.each do |resource|
         resource_is_valid?(resource: resource, profile_url: profile_url)

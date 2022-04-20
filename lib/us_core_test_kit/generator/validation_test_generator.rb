@@ -84,6 +84,12 @@ module USCoreTestKit
         read_interaction[:expectation]
       end
 
+      def must_demonstrate_resource_type
+        # Return true if a system must demonstrate at least one example of the resource type.
+        # This drives omit vs. skip result statuses in this test.
+        resource_type != 'Medication'
+      end
+
       def generate
         FileUtils.mkdir_p(output_file_directory)
         File.open(output_file_name, 'w') { |f| f.write(output) }
@@ -121,6 +127,7 @@ module USCoreTestKit
           <<~GENERIC_INTRO
           This test verifies resources returned from the first search conform to
           the [#{profile_name}](#{profile_url}).
+          Systems must demonstrate at least one valid example in order to pass this test.
           GENERIC_INTRO
         end
       end
