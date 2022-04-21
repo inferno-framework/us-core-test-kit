@@ -8,8 +8,9 @@ module USCoreTestKit
       id :us_core_v311_resprate_validation_test
       title 'Observation resources returned during previous tests conform to the Observation Respiratory Rate Profile'
       description %(
-  This test verifies resources returned from the first search conform to
+This test verifies resources returned from the first search conform to
 the [Observation Respiratory Rate Profile](http://hl7.org/fhir/StructureDefinition/resprate).
+Systems must demonstrate at least one valid example in order to pass this test.
 
 It verifies the presence of mandatory elements and that elements with
 required bindings contain appropriate values. CodeableConcept element
@@ -29,7 +30,9 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
-        perform_validation_test(scratch_resources[:all] || [], 'http://hl7.org/fhir/StructureDefinition/resprate')
+        perform_validation_test(scratch_resources[:all] || [],
+                                'http://hl7.org/fhir/StructureDefinition/resprate',
+                                skip_if_empty: true)
       end
     end
   end
