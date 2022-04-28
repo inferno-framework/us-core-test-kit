@@ -34,7 +34,7 @@ module USCoreTestKit
           end
 
           unmatched_urls.map do |url|
-            "#{url} in DiagnosticReport/#{report_attachments[patient_id][url]} for Patient #{patient_id}"
+            "#{url} in DiagnosticReport/#{report_attachments[url]} for Patient #{patient_id}"
           end
         end
 
