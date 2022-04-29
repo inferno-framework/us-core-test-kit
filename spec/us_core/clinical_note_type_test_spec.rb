@@ -3,48 +3,76 @@ require_relative '../../lib/us_core_test_kit/custom_groups/clinical_note_type_te
 RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
-  #let(:clinical_note_type_test) { Inferno::Repositories::Tests.new.find('us_core_clinical_note_types') }
-  let(:runnable) { USCoreTestKit::USCoreV311::USCoreTestSuite.groups
-     .find { |group| group.id.include? 'clinical_notes_guidance'}
-     .tests.find { |test| test.id.include? 'clinical_note_types' }.new }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'us_core_v311') }
-  #let(:tester) {USCoreTestKit::ClinicalNoteTypeTest.new}
+  let(:test_scratch) { {} }
 
-  # let(:diagnostic_report_id) { '200' }
-  # let(:test_scratch) { {} }
-
-  # def run(runnable, inputs = {})
-  #   test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-  #   test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-  #   inputs.each do |name, value|
-  #     session_data_repo.save(
-  #       test_session_id: test_session.id,
-  #       name: name,
-  #       value: value,
-  #       type: runnable.config.input_type(name)
-  #     )
-  #   end
-  #   Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
-  # end
-
-  describe '#diagnostic_report_categories_found' do
-    it 'returns category codes' do
-      #result = run(runnable, {patient_ids: patient_id})
-      result = runnable.diagnostic_report_categories_found(patient_id)
-      require 'pry'; require 'pry-byebug'; binding.pry
-      expect(result.result).to eq('pass')
+  let(:test_class) do
+    Class.new(USCoreTestKit::ClinicalNoteTypeTest) do
+      fhir_client { url 'http://example.com/fhir' }
     end
   end
 
-  # before do
-  #   allow_any_instance_of(clinical_note_type_test)
-  #     .to receive(:scratch).and_return(test_scratch)
-  # end
+  let(:runnable) { test_class.new }
 
-  # it 'passes when all required types are found' do
-  #   result = run(clinical_note_type_test, patient_ids: patient_id)
-  #   require 'pry'; require 'pry-byebug'; binding.pry
-  #   expect(result.result).to eq('pass')
-  # end
+  let(:diagnostic_report_cardiology) {
+    FHIR::DiagnosticReport.new(
+      id: 'cardiology',
+      category: { coding: [{ code: 'LP29708-2' }] },
+      presentedForm: [{ url: "#{url}/Binary/cardiology" }]
+    )
+  }
+
+  let(:diagnostic_report_pathology) {
+    FHIR::DiagnosticReport.new(
+      id: 'pathology',
+      category: { coding: [{ code: 'LP7839-6' }] },
+      presentedForm: [{ url: "#{url}/Binary/pathology" }]
+    )
+  }
+
+  let(:diagnostic_report_radiology) {
+    FHIR::DiagnosticReport.new(
+      id: 'radiology',
+      category: { coding: [{ code: 'LP29684-5' }] },
+      presentedForm: [{ url: "#{url}/Binary/radiology" }]
+    )
+  }
+
+  let(:diagnostic_report_lab) {
+    FHIR::DiagnosticReport.new(
+      id: 'lab',
+      category: { coding: [{ code: 'LAB' }] },
+      presentedForm: [{ url: "#{url}/Binary/lab" }]
+    )
+  }
+
+  let(:diagnostic_report_bundle) {
+    FHIR::Bundle.new(
+      entry: [
+        { resource: diagnostic_report_cardiology},
+        { resource: diagnostic_report_pathology},
+        { resource: diagnostic_report_radiology},
+        { resource: diagnostic_report_lab}
+      ]
+    )
+  }
+
+  describe '#diagnostic_report_categories_found' do
+    before do
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}")
+        .to_return(status: 200, body: diagnostic_report_bundle.to_json)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch).and_return(test_scratch)
+    end
+
+    it 'returns requried category codes' do
+      result = runnable.diagnostic_report_categories_found(patient_id)
+
+      expect(result.length).to be(3)
+      expect((result - ['LP29708-2', 'LP7839-6', 'LP29684-5']).length).to be(0)
+      expect(test_scratch[:diagnostic_report_attachments][patient_id].keys.length).to be(3)
+    end
+  end
 end
