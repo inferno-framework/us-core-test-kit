@@ -14,7 +14,6 @@ module USCoreTestKit
     REQUIRED_CATEGORIES = ['LP29708-2', 'LP7839-6', 'LP29684-5'].freeze
 
     def document_reference_types_found(patient_id)
-
       search_params = { patient: patient_id }
       status_values = ['current,superseded,entered-in-error']
 
