@@ -3,18 +3,13 @@ require_relative '../../lib/us_core_test_kit/custom_groups/clinical_note_type_te
 RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'us_core_v311') }
   let(:test_scratch) { {} }
-
   let(:test_class) do
     Class.new(USCoreTestKit::ClinicalNoteTypeTest) do
       fhir_client { url 'http://example.com/fhir' }
     end
   end
-
   let(:runnable) { test_class.new }
-
   let(:diagnostic_report_cardiology) {
     FHIR::DiagnosticReport.new(
       id: 'cardiology',
@@ -22,7 +17,6 @@ RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
       presentedForm: [{ url: "#{url}/Binary/cardiology" }]
     )
   }
-
   let(:diagnostic_report_pathology) {
     FHIR::DiagnosticReport.new(
       id: 'pathology',
@@ -30,7 +24,6 @@ RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
       presentedForm: [{ url: "#{url}/Binary/pathology" }]
     )
   }
-
   let(:diagnostic_report_radiology) {
     FHIR::DiagnosticReport.new(
       id: 'radiology',
@@ -38,7 +31,6 @@ RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
       presentedForm: [{ url: "#{url}/Binary/radiology" }]
     )
   }
-
   let(:diagnostic_report_lab) {
     FHIR::DiagnosticReport.new(
       id: 'lab',
@@ -46,7 +38,6 @@ RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
       presentedForm: [{ url: "#{url}/Binary/lab" }]
     )
   }
-
   let(:diagnostic_report_bundle) {
     FHIR::Bundle.new(
       entry: [
