@@ -60,10 +60,12 @@ RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
 
     it 'returns requried category codes' do
       result = runnable.diagnostic_report_categories_found(patient_id)
+      attachments = test_scratch[:diagnostic_report_attachments][patient_id].keys
 
       expect(result.length).to be(3)
-      expect((result - ['LP29708-2', 'LP7839-6', 'LP29684-5']).length).to be(0)
-      expect(test_scratch[:diagnostic_report_attachments][patient_id].keys.length).to be(3)
+      expect(result).not_to include('LAB')
+      expect(attachments.length).to be(3)
+      expect(attachments).not_to include("#{url}/Binary/lab")
     end
   end
 end
