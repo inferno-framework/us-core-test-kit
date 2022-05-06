@@ -38,7 +38,7 @@ module USCoreTestKit
       codes_found =
         resources.flat_map do |resource|
           resource.content
-            &.select { |content| !attachments.key? content.attachment&.url}
+            &.select { |content| content.attachment&.url.present? && !attachments.key?(content.attachment&.url) }
             &.each { |content| attachments[content.attachment.url] = resource.id }
 
           resource.type&.coding&.map { |coding| coding.code }
@@ -50,7 +50,6 @@ module USCoreTestKit
     def diagnostic_report_categories_found(patient_id)
       search_params = { patient: patient_id }
       status_values = ['registered,partial,preliminary,final,amended,corrected,appended,cancelled,entered-in-error,unknown']
-
       search_and_check_response(search_params, 'DiagnosticReport')
 
       if response[:status] == 400
@@ -71,11 +70,17 @@ module USCoreTestKit
 
       codes_found =
         resources.flat_map do |resource|
-          resource.presentedForm
-            &.select { |attachment| !attachments.key? attachment&.url}
-            &.each { |attachment| attachments[attachment.url] = resource.id }
+          codes = resource.category&.flat_map do |category|
+            category.coding&.map { |coding| coding.code if REQUIRED_CATEGORIES.include?(coding.code) }
+          end.compact
 
-          resource.category&.flat_map { |category| category.coding&.map { |coding| coding.code } }
+          if codes.present?
+            resource.presentedForm
+              &.select { |attachment| attachment&.url.present? && !attachments.key?(attachment&.url) }
+              &.each { |attachment| attachments[attachment.url] = resource.id }
+          end
+
+          codes
         end
 
       codes_found.compact.uniq
