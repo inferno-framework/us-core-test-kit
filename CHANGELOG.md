@@ -1,3 +1,9 @@
+# 0.2.2
+
+* Omit medication resource validation if no medication resources provided.
+* Fix failure when Clinical Note Reference test finds non-matched reference.
+* Update Clinical Note Type test to not save attachment without url and filter DiagnosticReport with required categories only.
+
 # 0.2.1
 
 * Update reference resolution test descriptions in groups to describe the new
