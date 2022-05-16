@@ -30,8 +30,8 @@ module USCoreTestKit
         * Patient.name
         * Patient.name.family
         * Patient.name.given
+        * Patient.name.period.end
         * Patient.name.suffix
-        * Patient.name.use
         * Patient.telecom
         * Patient.telecom.system
         * Patient.telecom.use
