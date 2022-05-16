@@ -395,8 +395,7 @@ module USCoreTestKit
             path: 'name.suffix'
           }
           @must_supports[:elements] << {
-            path: 'name.use',
-            fixed_value: 'old'
+            path: 'name.period.end'
           }
           @must_supports[:elements] << {
             path: 'name.period.end'
