@@ -568,16 +568,18 @@ module USCoreTestKit
           when FHIR::Address
             element.text || element.city || element.state || element.postalCode || element.country
           else
-            if params_with_comparators&.include?(name)
+            if metadata.search_definitions[name.to_sym][:type] == 'date' && params_with_comparators&.include?(name)
               # convert date search to greath-than comparator search with correct precision
               # For all date search parameters:
               #   Patient.birthDate does not mandate comparators so cannot be converted
               #   Goal.target-date has day precision
               #   All others have second + time offset precision
-              if resource_type == 'Goal'
-                "gt#{(DateTime.xmlschema(element)-1).to_date.to_s}"
-              else
+              if /^\d{4}$/.match?(element) || # YYYY
+                 /^\d{4}-\d{2}$/.match?(element) || # YYYY-MM
+                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYYY-MM-DD
                 "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+              else
+                element
               end
             else
               element
