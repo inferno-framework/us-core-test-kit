@@ -36,8 +36,16 @@ module USCoreTestKit
       end
     end
 
+    def include_uscdi_only_test
+      config.options[:include_uscdi_only_test] == true
+    end
+
     def must_support_extensions
-      metadata.must_supports[:extensions]
+      if include_uscdi_only_test
+        metadata.must_supports[:extensions]
+      else
+        metadata.must_supports[:extensions].select{ |extension| !extension[:uscdi_only] }
+      end
     end
 
     def missing_extensions(resources = [])
@@ -50,7 +58,11 @@ module USCoreTestKit
     end
 
     def must_support_elements
-      metadata.must_supports[:elements]
+      if include_uscdi_only_test
+        metadata.must_supports[:elements]
+      else
+        metadata.must_supports[:elements].select{ |element| !element[:uscdi_only] }
+      end
     end
 
     def missing_elements(resources = [])
@@ -85,7 +97,11 @@ module USCoreTestKit
     end
 
     def must_support_slices
-      metadata.must_supports[:slices]
+      if include_uscdi_only_test
+        metadata.must_supports[:slices]
+      else
+        metadata.must_supports[:slices].select{ |slice| !slice[:uscdi_only] }
+      end
     end
 
     def missing_slices(resources = [])

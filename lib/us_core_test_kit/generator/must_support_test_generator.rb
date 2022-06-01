@@ -68,9 +68,36 @@ module USCoreTestKit
       end
 
       def must_support_list_string
-        slice_names = group_metadata.must_supports[:slices].map { |slice| slice[:name] }
-        element_names = group_metadata.must_supports[:elements].map { |slice| "#{resource_type}.#{slice[:path]}" }
-        extension_names = group_metadata.must_supports[:extensions].map { |slice| slice[:id] }
+        build_must_support_list_string(false)
+      end
+
+      def uscdi_list_string
+        build_must_support_list_string(true)
+      end
+
+      def nil_to_false(element)
+        element.nil? ? false : element
+      end
+
+      def build_must_support_list_string(uscdi_only)
+        slice_names = group_metadata.must_supports[:slices]
+          .select { |slice| nil_to_false(slice[:uscdi_only]) == uscdi_only }
+          .map { |slice| slice[:name] }
+
+        element_names = group_metadata.must_supports[:elements]
+          .select { |element| nil_to_false(element[:uscdi_only]) == uscdi_only }
+          .map { |element| "#{resource_type}.#{element[:path]}" }
+
+        extension_names = group_metadata.must_supports[:extensions]
+          .select { |extension| nil_to_false(extension[:uscdi_only]) == uscdi_only }
+          .map { |extension| extension[:id] }
+
+        group_metadata.must_supports[:choices]&.each do |choice|
+          next unless nil_to_false(choice[:uscdi_only]) == uscdi_only
+          choice[:paths].each { |path| element_names.delete("#{resource_type}.#{path}") }
+          element_names << choice[:paths].map { |path| "#{resource_type}.#{path}" }.join(' or ')
+        end
+
         (slice_names + element_names + extension_names)
           .uniq
           .sort

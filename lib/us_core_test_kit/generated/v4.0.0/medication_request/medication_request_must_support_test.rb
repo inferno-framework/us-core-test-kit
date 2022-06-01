@@ -19,8 +19,7 @@ module USCoreTestKit
         * MedicationRequest.encounter
         * MedicationRequest.intent
         * MedicationRequest.medication[x]
-        * MedicationRequest.reportedBoolean
-        * MedicationRequest.reportedReference
+        * MedicationRequest.reportedBoolean or MedicationRequest.reportedReference
         * MedicationRequest.requester
         * MedicationRequest.status
         * MedicationRequest.subject
