@@ -32,7 +32,7 @@ module USCoreTestKit
         * Patient.name.given
         * Patient.name.period.end
         * Patient.name.suffix
-        * Patient.telecom
+        * Patient.name.use
         * Patient.telecom.system
         * Patient.telecom.use
         * Patient.telecom.value
