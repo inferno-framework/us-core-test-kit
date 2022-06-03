@@ -12143,10 +12143,14 @@
     - :path: address.postalCode
     - :path: address.period
     - :path: communication.language
-    - :path: telecom
     - :path: name.suffix
     - :path: name.use
       :fixed_value: old
+    - :path: name.period.end
+    :choices:
+    - :paths:
+      - name.period.end
+      - name.use
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
