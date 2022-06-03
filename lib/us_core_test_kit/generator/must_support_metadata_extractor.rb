@@ -358,7 +358,8 @@ module USCoreTestKit
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
             choices << {
-              paths: ['name.period.end', 'name.use']
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
             }
           end
         end
@@ -381,26 +382,36 @@ module USCoreTestKit
           #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
           @must_supports[:extensions] << {
             id: 'Patient.extension:race',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
+            uscdi_only: true
           }
           @must_supports[:extensions] << {
             id: 'Patient.extension:ethnicity',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity'
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
+            uscdi_only: true
           }
           @must_supports[:extensions] << {
             id: 'Patient.extension:birthsex',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex'
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+            uscdi_only: true
           }
           @must_supports[:elements] << {
-            path: 'name.suffix'
+            path: 'name.suffix',
+            uscdi_only: true
           }
           @must_supports[:elements] << {
             path: 'name.use',
-            fixed_value: 'old'
+            fixed_value: 'old',
+            uscdi_only: true
           }
           @must_supports[:elements] << {
-            path: 'name.period.end'
+            path: 'name.period.end',
+            uscdi_only: true
           }
+          @must_supports[:elements].each do |element|
+            path = element[:path]
+            element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
+          end
         end
       end
 
