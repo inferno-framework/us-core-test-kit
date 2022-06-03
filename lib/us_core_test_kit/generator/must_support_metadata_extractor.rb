@@ -408,6 +408,14 @@ module USCoreTestKit
             path: 'name.period.end',
             uscdi_only: true
           }
+          @must_supports[:elements] << {
+            path: 'telecom',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'communication',
+            uscdi_only: true
+          }
           @must_supports[:elements].each do |element|
             path = element[:path]
             element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')

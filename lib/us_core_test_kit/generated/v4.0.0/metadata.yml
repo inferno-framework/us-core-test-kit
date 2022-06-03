@@ -5307,7 +5307,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system:
+    :system: 
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -12156,6 +12156,10 @@
       :fixed_value: old
       :uscdi_only: true
     - :path: name.period.end
+      :uscdi_only: true
+    - :path: telecom
+      :uscdi_only: true
+    - :path: communication
       :uscdi_only: true
     :choices:
     - :paths:
