@@ -131,7 +131,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
-  describe 'search with Encounter status' do
+  describe 'search with Encounter status with optional multiple-or requirement' do
     let(:patient_id) { '123' }
     let(:test_class) do
       Class.new(USCoreTestKit::USCoreV400::EncounterDatePatientSearchTest) do
@@ -166,16 +166,32 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
 
     it 'succeeds if a 400 is received with an OperationOutcome and the status search succeeds' do
-      statuses = 'registered,preliminary,final,amended,corrected,cancelled,entered-in-error,unknown'
-      stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00")
+      requests = []
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00")
         .to_return(status: 400, body: FHIR::OperationOutcome.new.to_json)
-      stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=unknown")
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=planned")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=arrived")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=triaged")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=in-progress")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=onleave")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=finished")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=cancelled")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=entered-in-error")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=unknown")
         .to_return(status: 200, body: FHIR::Bundle.new.to_json)
 
       result = run(test_class, patient_ids: patient_id, url: url)
 
-      require 'pry'; require 'pry-byebug'; binding.pry
-      expect(result.result).to eq('pass')
+      expect(result.result).to eq('skip')
+      expect(requests).to all(have_been_made.once)
     end
   end
 
