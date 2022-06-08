@@ -308,7 +308,7 @@ module USCoreTestKit
       definition = metadata.search_definitions[param_name]
       return [] if definition.blank?
 
-      definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : [definition[:values]]
+      definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : Array.wrap(definition[:values])
     end
 
 
@@ -317,7 +317,7 @@ module USCoreTestKit
 
       all_search_params.each do |patient_id, params_list|
         next unless params_list.present?
-        
+
         search_params = params_list.first
         existing_values = {}
         missing_values = {}
@@ -446,10 +446,10 @@ module USCoreTestKit
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class' 
+      if paths.first =='class'
         paths[0] = 'local_class'
       end
-      
+
       paths
     end
 
@@ -647,9 +647,9 @@ module USCoreTestKit
                 address&.country&.downcase&.start_with?(search_value_downcase)
               end
             when 'CodeableConcept'
-              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD 
-              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has 
-              # less safety implications than excluding desired behavior". 
+              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD
+              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
+              # less safety implications than excluding desired behavior".
               codings = values_found.flat_map(&:coding)
               if search_value.include? '|'
                 system = search_value.split('|').first
@@ -691,7 +691,7 @@ module USCoreTestKit
                 values_found.any? { |value_found| search_values.include? value_found }
               end
             end
-          
+
           break if match_found
         end
 

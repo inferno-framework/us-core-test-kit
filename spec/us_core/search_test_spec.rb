@@ -131,6 +131,71 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
+  describe 'search with Encounter status with optional multiple-or requirement' do
+    let(:patient_id) { '123' }
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV400::EncounterDatePatientSearchTest) do
+        fhir_client { url :url }
+        input :url, :patient_ids
+      end
+    end
+    let(:encounter) do
+      FHIR::Encounter.new(
+        status: 'finished',
+        period: {
+          start: '2021-12-08T16:35:11.000Z',
+          end: '2022-02-07T17:51:00.000Z'
+        },
+        subject: {
+          reference: "Patient/#{patient_id}"
+        }
+      )
+    end
+    let(:bundle) do
+      FHIR::Bundle.new(entry: [{resource: encounter}])
+    end
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+              {
+                all: [encounter],
+                patient_id => [encounter]
+              }
+            )
+    end
+
+    it 'succeeds if a 400 is received with an OperationOutcome and the status search succeeds' do
+      requests = []
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00")
+        .to_return(status: 400, body: FHIR::OperationOutcome.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=planned")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=arrived")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=triaged")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=in-progress")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=onleave")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=finished")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=cancelled")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=entered-in-error")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      requests << stub_request(:get, "#{url}/Encounter?patient=#{patient_id}&date=gt2021-12-07T16:35:11%2B00:00&status=unknown")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+
+      expect(result.result).to eq('skip')
+      expect(requests).to all(have_been_made.once)
+    end
+  end
+
+
   describe 'search with medication inclusion' do
     context 'when the medication resources are contained' do
       let(:patient_id) { '123' }
