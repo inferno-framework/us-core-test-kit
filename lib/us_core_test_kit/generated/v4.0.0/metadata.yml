@@ -12119,10 +12119,13 @@
     :extensions:
     - :id: Patient.extension:race
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+      :uscdi_only: true
     - :id: Patient.extension:ethnicity
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
+      :uscdi_only: true
     - :id: Patient.extension:birthsex
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
+      :uscdi_only: true
     :slices: []
     :elements:
     - :path: identifier
@@ -12132,8 +12135,11 @@
     - :path: name.family
     - :path: name.given
     - :path: telecom.system
+      :uscdi_only: true
     - :path: telecom.value
+      :uscdi_only: true
     - :path: telecom.use
+      :uscdi_only: true
     - :path: gender
     - :path: birthDate
     - :path: address
@@ -12143,14 +12149,23 @@
     - :path: address.postalCode
     - :path: address.period
     - :path: communication.language
+      :uscdi_only: true
     - :path: name.suffix
+      :uscdi_only: true
     - :path: name.use
       :fixed_value: old
+      :uscdi_only: true
     - :path: name.period.end
+      :uscdi_only: true
+    - :path: telecom
+      :uscdi_only: true
+    - :path: communication
+      :uscdi_only: true
     :choices:
     - :paths:
       - name.period.end
       - name.use
+      :uscdi_only: true
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
