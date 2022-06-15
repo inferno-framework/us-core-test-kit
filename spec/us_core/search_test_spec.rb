@@ -519,7 +519,7 @@ RSpec.describe USCoreTestKit::SearchTest do
       end
     end
 
-    context 'with datetime precision' do
+    context 'with dateTime precision' do
       let(:test_class) do
         Class.new(USCoreTestKit::USCoreV400::ImmunizationPatientDateSearchTest) do
           fhir_client { url :url }
