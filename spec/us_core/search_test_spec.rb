@@ -457,4 +457,249 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(result.result_message).to eq("Could not find order values from intent in any of the resources returned for Patient/#{patient_id}")
     end
   end
+
+  describe 'search date/dateTime precision' do
+    let(:patient_id) { '123' }
+    context 'with date precision' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV400::GoalPatientTargetDateSearchTest) do
+          fhir_client { url :url }
+          input :url
+        end
+      end
+      let(:goal_year) do
+        FHIR::Goal.new(
+          id: 'year',
+          subject: {
+            reference: "Patient/#{patient_id}"
+          },
+          target: [
+            { dueDate: '2020' }
+          ]
+        )
+      end
+      let(:goal_date) do
+        FHIR::Goal.new(
+          id: 'date',
+          subject: {
+            reference: "Patient/#{patient_id}"
+          },
+          target: [
+            { dueDate: '2020-03-04' }
+          ]
+        )
+      end
+      let(:goal_datetime) do
+          FHIR::Goal.new(
+            id: 'datetime',
+            subject: {
+              reference: "Patient/#{patient_id}"
+            },
+            target: [
+              { dueDate: '2020-03-04T13:01:01-04:00' }
+            ]
+          )
+      end
+
+      let(:bundle_year) { FHIR::Bundle.new(entry: [ {resource: goal_year} ]) }
+      let(:bundle_date) { FHIR::Bundle.new(entry: [ {resource: goal_date} ]) }
+      let(:bundle_datetime) { FHIR::Bundle.new(entry: [ {resource: goal_datetime} ]) }
+
+      it 'uses comparator search if value is year' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [goal_year],
+              patient_id => [goal_year]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=2020")
+          .to_return(status: 200, body: bundle_year.to_json)
+
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=gt2019-12-31T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=ge2019-12-31T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=lt2020-01-02T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=le2020-01-02T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).not_to have_been_made
+        expect(result.result).to eq('pass')
+      end
+
+      it 'searches date if value is date' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [goal_date],
+              patient_id => [goal_date]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=2020-03-04")
+          .to_return(status: 200, body: bundle_date.to_json)
+
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=gt2020-03-03T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=ge2020-03-03T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=lt2020-03-05T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=le2020-03-05T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).to have_been_made.once
+        expect(result.result).to eq('pass')
+      end
+
+      it 'searches second+offset if value is dateTime' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [goal_datetime],
+              patient_id => [goal_datetime]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=2020-03-04T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=gt2020-03-03T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=ge2020-03-03T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=lt2020-03-05T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Goal?patient=#{patient_id}&target-date=le2020-03-05T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).to have_been_made.once
+        expect(result.result).to eq('pass')
+      end
+    end
+
+    context 'with dateTime precision' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV400::ImmunizationPatientDateSearchTest) do
+          fhir_client { url :url }
+          input :url
+        end
+      end
+      let(:immunization_year) do
+        FHIR::Immunization.new(
+          id: 'year',
+          patient: {
+            reference: "Patient/#{patient_id}"
+          },
+          occurrenceDateTime: '2020'
+        )
+      end
+      let(:immunization_date) do
+        FHIR::Immunization.new(
+          id: 'date',
+          patient: {
+            reference: "Patient/#{patient_id}"
+          },
+          occurrenceDateTime: '2020-03-04'
+        )
+      end
+      let(:immunization_datetime) do
+          FHIR::Immunization.new(
+            id: 'datetime',
+            patient: {
+              reference: "Patient/#{patient_id}"
+            },
+            occurrenceDateTime: '2020-03-04T13:01:01-04:00'
+          )
+      end
+
+      let(:bundle_year) { FHIR::Bundle.new(entry: [ {resource: immunization_year} ]) }
+      let(:bundle_date) { FHIR::Bundle.new(entry: [ {resource: immunization_date} ]) }
+      let(:bundle_datetime) { FHIR::Bundle.new(entry: [ {resource: immunization_datetime} ]) }
+
+      it 'uses comparator search if value is year' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [immunization_year],
+              patient_id => [immunization_year]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=2020")
+          .to_return(status: 200, body: bundle_year.to_json)
+
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=gt2019-12-31T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=ge2019-12-31T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=lt2020-01-02T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=le2020-01-02T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_year.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).not_to have_been_made
+        expect(result.result).to eq('pass')
+      end
+
+      it 'uses comparator search if value is date' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [immunization_date],
+              patient_id => [immunization_date]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=2020-03-04")
+          .to_return(status: 200, body: bundle_date.to_json)
+
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=gt2020-03-03T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=ge2020-03-03T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=lt2020-03-05T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=le2020-03-05T00:00:00%2B00:00")
+          .to_return(status: 200, body: bundle_date.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).not_to have_been_made.once
+        expect(result.result).to eq('pass')
+      end
+
+      it 'searches second+offset if value is dateTime' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [immunization_datetime],
+              patient_id => [immunization_datetime]
+            }
+          )
+
+        request = stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=2020-03-04T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=gt2020-03-03T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=ge2020-03-03T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=lt2020-03-05T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+        stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=le2020-03-05T13:01:01-04:00")
+          .to_return(status: 200, body: bundle_datetime.to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+        expect(request).to have_been_made.once
+        expect(result.result).to eq('pass')
+      end
+    end
+  end
 end
