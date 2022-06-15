@@ -462,7 +462,7 @@ RSpec.describe USCoreTestKit::SearchTest do
           .to_return(status: 200, body: bundle_year.to_json)
 
         result = run(test_class, patient_ids: patient_id, url: url)
-        expect(request).not_to have_been_made.once
+        expect(request).not_to have_been_made
         expect(result.result).to eq('pass')
       end
 
