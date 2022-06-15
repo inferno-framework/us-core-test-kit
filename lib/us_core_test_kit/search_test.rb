@@ -515,7 +515,6 @@ module USCoreTestKit
       paths = search_param_paths(name)
       search_value = nil
       paths.each do |path|
-            #require 'pry'; require 'pry-byebug'; binding.pry
         element =  find_a_value_at(scratch_resources_for_patient(patient_id), path)
 
         search_value =
