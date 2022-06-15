@@ -504,15 +504,6 @@ module USCoreTestKit
         page_count += 1
       end
 
-      valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
-
-      all_valid_resource_types =
-        resources.all? { |entry| valid_resource_types.include? entry.resourceType }
-
-      assert all_valid_resource_types,
-             "All resources returned must be of the type: #{valid_resource_types.join(', ')}"
-
       resources
     end
 
