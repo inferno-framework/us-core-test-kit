@@ -277,7 +277,6 @@ module USCoreTestKit
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
-          add_provenance_agent_who
         end
       end
 
@@ -420,15 +419,6 @@ module USCoreTestKit
             path = element[:path]
             element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
           end
-        end
-      end
-
-      def add_provenance_agent_who
-        # FHIR-36344 US Core 4.0.0 mistakenly not lable us-core-organization as MS for Provenance.agent.who
-        # This will be fixed in US Core 5.0.0
-        if profile.type == 'Provenance'
-          target_element = @must_supports[:elements].find { |element| element[:path] == 'agent.who'}
-          target_element[:target_profiles] << 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
         end
       end
     end
