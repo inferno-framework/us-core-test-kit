@@ -31,7 +31,7 @@ module USCoreTestKit
             if fixed_value_search?
               fixed_value_search_param_values.map { |value| fixed_value_search_params(value, patient_id) }
             else
-              [search_params_with_values(patient_id)]
+              [search_params_with_values(search_param_names, patient_id)]
             end
           new_params.reject! do |params|
             params.any? { |_key, value| value.blank? }
@@ -221,6 +221,7 @@ module USCoreTestKit
         required_comparators(name).each do |comparator|
           paths = search_param_paths(name).first
           date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
+          require 'pry'; require 'pry-byebug'; binding.pry
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
           search_and_check_response(params_with_comparator)
@@ -256,9 +257,7 @@ module USCoreTestKit
     def perform_search_with_system(params, patient_id)
       return if search_variant_test_records[:token_variants]
 
-      new_search_params = token_search_params.each_with_object({}) do |name, search_params|
-        search_params[name] = search_param_value(name, patient_id, include_system: true)
-      end
+      new_search_params = search_params_with_values(token_search_params, patient_id)
       return if new_search_params.any? { |_name, value| value.blank? }
 
       search_params = params.merge(new_search_params)
@@ -423,11 +422,25 @@ module USCoreTestKit
       end
     end
 
-    def search_params_with_values(patient_id)
-      search_param_names.each_with_object({}) do |name, params|
-        value = patient_id_param?(name) ? patient_id : search_param_value(name, patient_id)
-        params[name] = value
+    def search_params_with_values(search_param_names, patient_id)
+      new_params = {}
+
+      resources = scratch_resources_for_patient(patient_id)
+
+      if resources.empty? && patient_id_param?(search_param_names.first)
+        new_params[search_param_names.first] = patient_id
+      else
+        resources.each do |resource|
+          new_params = search_param_names.each_with_object({}) do |name, params|
+            value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
+            params[name] = value if value.present?
+          end
+
+          break if new_params.keys.length == search_param_names.length
+        end
       end
+
+      new_params
     end
 
     def patient_id_list
@@ -511,11 +524,11 @@ module USCoreTestKit
       "Could not resolve next bundle: #{link}"
     end
 
-    def search_param_value(name, patient_id, include_system: false)
+    def search_param_value(name, resource, include_system: false)
       paths = search_param_paths(name)
       search_value = nil
       paths.each do |path|
-        element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
+        element = find_a_value_at(resource, path) { |element| element_has_valid_value?(element, include_system) }
 
         search_value =
           case element
@@ -537,23 +550,9 @@ module USCoreTestKit
               find_a_value_at(element, 'coding.code')
             end
           when FHIR::Identifier
-            if include_system
-              identifier = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |identifier|
-                identifier.value.present? && identifier.system.present?
-              end
-              identifier.present? ? "#{identifier.system}|#{identifier.value}" : nil
-            else
-              element.value
-            end
+            include_system ? "#{element.system}|#{element.value}" : element.value
           when FHIR::Coding
-            if include_system
-              coding = find_a_value_at(scratch_resources_for_patient(patient_id), path) do |coding|
-                coding.code.present? && coding.system.present?
-              end
-              coding.present? ? "#{coding.system}|#{coding.code}" : nil
-            else
-              element.code
-            end
+            include_system ? "#{element.system}|#{element.code}" : element.code
           when FHIR::HumanName
             element.family || element.given&.first || element.text
           when FHIR::Address
@@ -584,6 +583,31 @@ module USCoreTestKit
 
       escaped_value = search_value&.gsub(',', '\\,')
       escaped_value
+    end
+
+    def element_has_valid_value?(element, include_system)
+      case element
+      when FHIR::Reference
+        element.reference.present?
+      when FHIR::CodeableConcept
+        if include_system
+          coding =
+            find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+          coding.present?
+        else
+          find_a_value_at(element, 'coding.code').present?
+        end
+      when FHIR::Identifier
+        include_system ? element.value.present? && element.system.present? : element.value.present?
+      when FHIR::Coding
+        include_system ? element.code.present? && element.system.present? : element.present?
+      when FHIR::HumanName
+        (element.family || element.given&.first || element.text).present?
+      when FHIR::Address
+        (element.text || element.city || element.state || element.postalCode || element.country).present?
+      else
+        true
+      end
     end
 
     def save_resource_reference(resource_type, reference)

@@ -703,56 +703,139 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
-  describe '#search_param_value' do
-    let(:test) { USCoreTestKit::USCoreV311::PatientNameSearchTest.new }
-    let(:search_value) {'family_name'}
-
-    it 'returns search value from the first of name array' do
-      patient = FHIR::Patient.new(
-        name: [
+  describe '#search_params_with_values' do
+    let(:test_class) { USCoreTestKit::USCoreV311::DocumentReferencePatientCategoryDateSearchTest }
+    let(:test) { test_class.new }
+    let(:patient_id) {'123'}
+    let(:category_code) {'something-else'}
+    let(:date) {'2020-05-14T11:02:00+05:00'}
+    let(:resource_with_category) {
+      FHIR::DocumentReference.new(
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
           {
-            family: search_value,
-            given: [
-              'first_name'
-            ]
-          }
-        ]
-      )
-
-      allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
-        .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
-
-      element = test.search_param_value('name', '123')
-
-      expect(element).to eq(search_value)
-    end
-
-    it 'returns search value from the first none-DAR name of name array' do
-      patient = FHIR::Patient.new(
-        name: [
-          {
-            extension: [
+            coding: [
               {
-                url: 'http://hl7.org/fhir/StructureDefinition/data-absent-reason',
-                valueCode: 'unknown'
+                code: 'clinical-note'
               }
             ]
-          },
-          {
-            family: search_value,
-            given: [
-              'first_name'
-            ]
           }
         ]
       )
+    }
+    let(:resource_with_category_date) {
+      FHIR::DocumentReference.new(
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
+          {
+            coding: [
+              {
+                code: category_code
+              }
+            ]
+          }
+        ],
+        date: date
+      )
+    }
 
-      allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
-        .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
+    it 'returns search values from the same resource' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient).and_return([
+          resource_with_category,
+          resource_with_category_date
+        ])
 
-      element = test.search_param_value('name', '123')
+      params = test.search_params_with_values(test.search_param_names, patient_id)
 
-      expect(element).to eq(search_value)
+      expect(params).not_to be_empty
+      expect(params['patient']).to eq(patient_id)
+      expect(params['category']).to eq(category_code)
+      expect(params['date']).to eq(date)
+    end
+  end
+
+  describe '#search_param_value' do
+    context 'Array element having DAR extension' do
+      let(:test_class) { USCoreTestKit::USCoreV311::PatientNameSearchTest }
+      let(:test) { test_class.new }
+      let(:search_value) {'family_name'}
+      let(:patient) {
+        FHIR::Patient.new(
+          name: [
+            {
+              extension: [
+                {
+                  url: 'http://hl7.org/fhir/StructureDefinition/data-absent-reason',
+                  valueCode: 'unknown'
+                }
+              ]
+            },
+            {
+              family: search_value,
+              given: [
+                'first_name'
+              ]
+            }
+          ]
+        )
+      }
+
+      it 'returns search value from the first none-DAR name of name array' do
+        element = test.search_param_value('name', Array.wrap(patient))
+
+        expect(element).to eq(search_value)
+      end
+    end
+
+    context 'CodeablcConcept with text only' do
+      let(:test_class) { USCoreTestKit::USCoreV311::DiagnosticReportLabPatientCategorySearchTest }
+      let(:test) { test_class.new }
+
+      it 'returns nil if category has text only' do
+        diagnostic_report = FHIR::DiagnosticReport.new(
+          category: [
+            {
+              text: 'Lab Report'
+            }
+          ]
+        )
+
+        element = test.search_param_value('category', Array.wrap(diagnostic_report))
+
+        expect(element).to be_nil
+      end
+
+      it 'returns code value if category has one coding with code' do
+        diagnostic_report = FHIR::DiagnosticReport.new(
+          category: [
+            {
+              text: 'This is a display text'
+            },
+            {
+              coding: [
+                {
+                  display: 'This is a display text'
+                },
+                {
+                  code: 'LAB',
+                  system: 'http://terminology.hl7.org/CodeSystem/v2-0074'
+                }
+              ]
+            }
+          ]
+        )
+
+        element = test.search_param_value('category', Array.wrap(diagnostic_report))
+        element_with_system = test.search_param_value('category', Array.wrap(diagnostic_report), include_system: true)
+
+        expect(element).to eq('LAB')
+        expect(element_with_system).to eq('http://terminology.hl7.org/CodeSystem/v2-0074|LAB')
+      end
     end
   end
 end
