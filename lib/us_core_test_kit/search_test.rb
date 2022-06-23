@@ -515,7 +515,7 @@ module USCoreTestKit
       paths = search_param_paths(name)
       search_value = nil
       paths.each do |path|
-        element =  find_a_value_at(scratch_resources_for_patient(patient_id), path)
+        element = find_a_value_at(scratch_resources_for_patient(patient_id), path)
 
         search_value =
           case element

@@ -704,7 +704,7 @@ RSpec.describe USCoreTestKit::SearchTest do
   end
 
   describe '#search_param_value' do
-    let(:tester) { USCoreTestKit::USCoreV311::PatientNameSearchTest.new }
+    let(:test) { USCoreTestKit::USCoreV311::PatientNameSearchTest.new }
     let(:search_value) {'family_name'}
 
     it 'returns search value from the first of name array' do
@@ -722,7 +722,7 @@ RSpec.describe USCoreTestKit::SearchTest do
       allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
         .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
 
-      element = tester.search_param_value('name', '123')
+      element = test.search_param_value('name', '123')
 
       expect(element).to eq(search_value)
     end
@@ -750,7 +750,7 @@ RSpec.describe USCoreTestKit::SearchTest do
       allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
         .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
 
-      element = tester.search_param_value('name', '123')
+      element = test.search_param_value('name', '123')
 
       expect(element).to eq(search_value)
     end

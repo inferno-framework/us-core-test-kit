@@ -22,10 +22,11 @@ module USCoreTestKit
       elements = Array.wrap(element)
 
       if path.empty?
-        elements.reject! do |el|
-          el.respond_to?(:extension) &&
-          el.extension.any? { |ext| ext.url == DAR_EXTENSION_URL}
-        end unless include_dar
+        unless include_dar
+          elements.reject! do |el|
+            el.respond_to?(:extension) && el.extension.any? { |ext| ext.url == DAR_EXTENSION_URL}
+          end
+        end
 
         return elements.find { |el| yield(el) } if block_given?
 
