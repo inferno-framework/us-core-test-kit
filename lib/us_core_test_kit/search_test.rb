@@ -82,6 +82,8 @@ module USCoreTestKit
       # TODO: skip if not supported?
       skip_if !any_valid_search_params?(all_search_params), unable_to_resolve_params_message
 
+      require 'pry'; require 'pry-byebug'; binding.pry
+
       resources_returned =
         all_search_params.flat_map do |patient_id, params_list|
           params_list.flat_map { |params| perform_search(params, patient_id) }
@@ -221,7 +223,6 @@ module USCoreTestKit
         required_comparators(name).each do |comparator|
           paths = search_param_paths(name).first
           date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
-          require 'pry'; require 'pry-byebug'; binding.pry
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
           search_and_check_response(params_with_comparator)
@@ -423,24 +424,24 @@ module USCoreTestKit
     end
 
     def search_params_with_values(search_param_names, patient_id)
-      new_params = {}
+      #new_params = {}
 
       resources = scratch_resources_for_patient(patient_id)
 
-      if resources.empty? && patient_id_param?(search_param_names.first)
-        new_params[search_param_names.first] = patient_id
-      else
-        resources.each do |resource|
-          new_params = search_param_names.each_with_object({}) do |name, params|
+      # if resources.empty? && patient_id_param?(search_param_names.first)
+      #   new_params[search_param_names.first] = patient_id
+      # else
+        resources.each_with_object({}) do |resource, params|
+          results = search_param_names.each_with_object({}) do |name, params|
             value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
             params[name] = value if value.present?
           end
 
-          break if new_params.keys.length == search_param_names.length
+          params.merge!(results)
+          return params if results.keys.length == search_param_names.length
         end
-      end
+      #end
 
-      new_params
     end
 
     def patient_id_list

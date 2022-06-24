@@ -752,6 +752,7 @@ RSpec.describe USCoreTestKit::SearchTest do
 
       params = test.search_params_with_values(test.search_param_names, patient_id)
 
+      require 'pry'; require 'pry-byebug'; binding.pry
       expect(params).not_to be_empty
       expect(params['patient']).to eq(patient_id)
       expect(params['category']).to eq(category_code)
