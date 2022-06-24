@@ -23,7 +23,7 @@ module USCoreTestKit
 
       if path.empty?
         unless include_dar
-          elements.reject! do |el|
+          elements = elements.reject do |el|
             el.respond_to?(:extension) && el.extension.any? { |ext| ext.url == DAR_EXTENSION_URL}
           end
         end
