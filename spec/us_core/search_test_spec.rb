@@ -299,44 +299,46 @@ RSpec.describe USCoreTestKit::SearchTest do
           )
         end
       end
-      let(:device_search_test) do
-        Class.new(Inferno::Test) do
-          include USCoreTestKit::SearchTest
+      # let(:device_search_test) do
+      #   Class.new(Inferno::Test) do
+      #     include USCoreTestKit::SearchTest
 
-          def properties
-            @properties ||= USCoreTestKit::SearchTestProperties.new(
-              resource_type: 'Device',
-              search_param_names: ['patient'],
-              first_search: true
-            )
-          end
+      #     def properties
+      #       @properties ||= USCoreTestKit::SearchTestProperties.new(
+      #         resource_type: 'Device',
+      #         search_param_names: ['patient'],
+      #         first_search: true
+      #       )
+      #     end
 
-          def self.metadata
-            @metadata ||=
-              USCoreTestKit::Generator::GroupMetadata.new(
-                YAML.load_file(
-                  File.join(
-                    __dir__,
-                    '..',
-                    'fixtures',
-                    'device_metadata.yml'
-                  )
-                )
-              )
-          end
+      #     def self.metadata
+      #       @metadata ||=
+      #         USCoreTestKit::Generator::GroupMetadata.new(
+      #           YAML.load_file(
+      #             File.join(
+      #               __dir__,
+      #               '..',
+      #               'fixtures',
+      #               'device_metadata.yml'
+      #             )
+      #           )
+      #         )
+      #     end
 
-          def scratch_resources
-            scratch[:device_resources] ||= {}
-          end
+      #     def scratch_resources
+      #       scratch[:device_resources] ||= {}
+      #     end
 
-          fhir_client { url :url }
-          input :url, :patient_ids, :implantable_device_codes
+      #     fhir_client { url :url }
+      #     input :url, :patient_ids, :implantable_device_codes
 
-          run do
-            run_search_test
-          end
-        end
-      end
+      #     run do
+      #       run_search_test
+      #     end
+      #   end
+      # end
+
+      let(:device_search_test) {USCoreTestKit::USCoreV311::DevicePatientSearchTest}
       let(:bundle) do
         entries = devices.map do |device|
           { resource: device }
@@ -359,8 +361,9 @@ RSpec.describe USCoreTestKit::SearchTest do
         implantable_devices = devices[0..1]
         non_implantable_device = devices.last
         code_input = "#{implantable_device_code1}, #{implantable_device_code2}"
-        result = run(device_search_test, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
+        result = run(device_search_test, patient_ids: patient_id, implantable_device_codes: code_input)
 
+        require 'pry'; require 'pry-byebug'; binding.pry
         expect(result.result).to eq('pass')
         expect(test_scratch[:device_resources][:all]).to eq(implantable_devices)
         expect(test_scratch[:device_resources][:all]).to_not include(non_implantable_device)

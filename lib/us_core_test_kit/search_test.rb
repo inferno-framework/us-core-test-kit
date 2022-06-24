@@ -82,8 +82,6 @@ module USCoreTestKit
       # TODO: skip if not supported?
       skip_if !any_valid_search_params?(all_search_params), unable_to_resolve_params_message
 
-      require 'pry'; require 'pry-byebug'; binding.pry
-
       resources_returned =
         all_search_params.flat_map do |patient_id, params_list|
           params_list.flat_map { |params| perform_search(params, patient_id) }
@@ -431,16 +429,19 @@ module USCoreTestKit
       # if resources.empty? && patient_id_param?(search_param_names.first)
       #   new_params[search_param_names.first] = patient_id
       # else
-        resources.each_with_object({}) do |resource, params|
+        params = resources.each_with_object({}) do |resource, params|
           results = search_param_names.each_with_object({}) do |name, params|
             value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
             params[name] = value if value.present?
           end
 
+          #require 'pry'; require 'pry-byebug'; binding.pry
           params.merge!(results)
           return params if results.keys.length == search_param_names.length
         end
       #end
+      #require 'pry'; require 'pry-byebug'; binding.pry
+      params
 
     end
 
