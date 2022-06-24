@@ -424,8 +424,6 @@ module USCoreTestKit
     def search_params_with_values(search_param_names, patient_id)
       resources = scratch_resources_for_patient(patient_id)
 
-      # This is first search. The saved resource is empty.
-      #if first_search?
       if resources.empty?
         return search_param_names.each_with_object({}) do |name, params|
           value = patient_id_param?(name) ? patient_id : nil
@@ -433,17 +431,19 @@ module USCoreTestKit
         end
       end
 
-      params_with_value = resources.each_with_object({}) do |resource, params|
-        results = search_param_names.each_with_object({}) do |name, params|
+      params_with_partial_value = resources.each_with_object({}) do |resource, params|
+        results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
           value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
           params[name] = value
         end
 
-        params.merge!(results)
+        params.merge!(results_from_one_resource)
 
         # stop if all parameter values are found
         return params if params.all? { |_key, value| value.present? }
       end
+
+      params_with_partial_value
     end
 
     def patient_id_list
