@@ -422,27 +422,28 @@ module USCoreTestKit
     end
 
     def search_params_with_values(search_param_names, patient_id)
-      #new_params = {}
-
       resources = scratch_resources_for_patient(patient_id)
 
-      # if resources.empty? && patient_id_param?(search_param_names.first)
-      #   new_params[search_param_names.first] = patient_id
-      # else
-        params = resources.each_with_object({}) do |resource, params|
-          results = search_param_names.each_with_object({}) do |name, params|
-            value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
-            params[name] = value if value.present?
-          end
-
-          #require 'pry'; require 'pry-byebug'; binding.pry
-          params.merge!(results)
-          return params if results.keys.length == search_param_names.length
+      # This is first search. The saved resource is empty.
+      #if first_search?
+      if resources.empty?
+        return search_param_names.each_with_object({}) do |name, params|
+          value = patient_id_param?(name) ? patient_id : nil
+          params[name] = value
         end
-      #end
-      #require 'pry'; require 'pry-byebug'; binding.pry
-      params
+      end
 
+      params_with_value = resources.each_with_object({}) do |resource, params|
+        results = search_param_names.each_with_object({}) do |name, params|
+          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
+          params[name] = value
+        end
+
+        params.merge!(results)
+
+        # stop if all parameter values are found
+        return params if params.all? { |_key, value| value.present? }
+      end
     end
 
     def patient_id_list

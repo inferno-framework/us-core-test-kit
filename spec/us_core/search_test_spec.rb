@@ -299,46 +299,44 @@ RSpec.describe USCoreTestKit::SearchTest do
           )
         end
       end
-      # let(:device_search_test) do
-      #   Class.new(Inferno::Test) do
-      #     include USCoreTestKit::SearchTest
+      let(:device_search_test) do
+        Class.new(Inferno::Test) do
+          include USCoreTestKit::SearchTest
 
-      #     def properties
-      #       @properties ||= USCoreTestKit::SearchTestProperties.new(
-      #         resource_type: 'Device',
-      #         search_param_names: ['patient'],
-      #         first_search: true
-      #       )
-      #     end
+          def properties
+            @properties ||= USCoreTestKit::SearchTestProperties.new(
+              resource_type: 'Device',
+              search_param_names: ['patient'],
+              first_search: true
+            )
+          end
 
-      #     def self.metadata
-      #       @metadata ||=
-      #         USCoreTestKit::Generator::GroupMetadata.new(
-      #           YAML.load_file(
-      #             File.join(
-      #               __dir__,
-      #               '..',
-      #               'fixtures',
-      #               'device_metadata.yml'
-      #             )
-      #           )
-      #         )
-      #     end
+          def self.metadata
+            @metadata ||=
+              USCoreTestKit::Generator::GroupMetadata.new(
+                YAML.load_file(
+                  File.join(
+                    __dir__,
+                    '..',
+                    'fixtures',
+                    'device_metadata.yml'
+                  )
+                )
+              )
+          end
 
-      #     def scratch_resources
-      #       scratch[:device_resources] ||= {}
-      #     end
+          def scratch_resources
+            scratch[:device_resources] ||= {}
+          end
 
-      #     fhir_client { url :url }
-      #     input :url, :patient_ids, :implantable_device_codes
+          fhir_client { url :url }
+          input :url, :patient_ids, :implantable_device_codes
 
-      #     run do
-      #       run_search_test
-      #     end
-      #   end
-      # end
-
-      let(:device_search_test) {USCoreTestKit::USCoreV311::DevicePatientSearchTest}
+          run do
+            run_search_test
+          end
+        end
+      end
       let(:bundle) do
         entries = devices.map do |device|
           { resource: device }
@@ -361,9 +359,8 @@ RSpec.describe USCoreTestKit::SearchTest do
         implantable_devices = devices[0..1]
         non_implantable_device = devices.last
         code_input = "#{implantable_device_code1}, #{implantable_device_code2}"
-        result = run(device_search_test, patient_ids: patient_id, implantable_device_codes: code_input)
+        result = run(device_search_test, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
 
-        require 'pry'; require 'pry-byebug'; binding.pry
         expect(result.result).to eq('pass')
         expect(test_scratch[:device_resources][:all]).to eq(implantable_devices)
         expect(test_scratch[:device_resources][:all]).to_not include(non_implantable_device)
@@ -706,10 +703,57 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
+  describe '#all_search_params' do
+    let(:test_class) { USCoreTestKit::USCoreV311::DocumentReferencePatientCategoryDateSearchTest }
+    let(:test) { test_class.new }
+    let(:patient_id) {'123'}
+    let(:patient_no_resource) {'no-resource'}
+    let(:category_code) {'clinical-note'}
+    let(:date) {'2020-05-14T11:02:00+05:00'}
+    let(:resource_with_category_date) {
+      FHIR::DocumentReference.new(
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
+          {
+            coding: [
+              {
+                code: category_code
+              }
+            ]
+          }
+        ],
+        date: date
+      )
+    }
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            patient_no_resource => [],
+            patient_id => [resource_with_category_date]
+          }
+        )
+      allow_any_instance_of(test_class)
+        .to receive(:patient_id_list).and_return([patient_no_resource, patient_id])
+    end
+
+    it 'handles patient with or without resources' do
+      params = test.all_search_params
+
+      expect(params).not_to be_empty
+      expect(params[patient_no_resource]).to be_empty
+      expect(params[patient_id]).not_to be_empty
+    end
+  end
+
   describe '#search_params_with_values' do
     let(:test_class) { USCoreTestKit::USCoreV311::DocumentReferencePatientCategoryDateSearchTest }
     let(:test) { test_class.new }
     let(:patient_id) {'123'}
+    let(:patient_no_resource) {'456'}
     let(:category_code) {'something-else'}
     let(:date) {'2020-05-14T11:02:00+05:00'}
     let(:resource_with_category) {
@@ -755,11 +799,24 @@ RSpec.describe USCoreTestKit::SearchTest do
 
       params = test.search_params_with_values(test.search_param_names, patient_id)
 
-      require 'pry'; require 'pry-byebug'; binding.pry
       expect(params).not_to be_empty
       expect(params['patient']).to eq(patient_id)
       expect(params['category']).to eq(category_code)
       expect(params['date']).to eq(date)
+    end
+
+    it 'handles patient without resources' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient).and_return([])
+
+      patient_id = 'no_resource'
+
+      params = test.search_params_with_values(test.search_param_names, patient_id)
+
+      expect(params).not_to be_empty
+      expect(params['patient']).to eq(patient_id)
+      expect(params['category']).to be_nil
+      expect(params['date']).to be_nil
     end
   end
 
