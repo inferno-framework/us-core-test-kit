@@ -603,7 +603,7 @@ module USCoreTestKit
       when FHIR::Identifier
         include_system ? element.value.present? && element.system.present? : element.value.present?
       when FHIR::Coding
-        include_system ? element.code.present? && element.system.present? : element.present?
+        include_system ? element.code.present? && element.system.present? : element.code.present?
       when FHIR::HumanName
         (element.family || element.given&.first || element.text).present?
       when FHIR::Address
