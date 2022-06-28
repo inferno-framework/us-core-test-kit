@@ -702,4 +702,57 @@ RSpec.describe USCoreTestKit::SearchTest do
       end
     end
   end
+
+  describe '#search_param_value' do
+    let(:test) { USCoreTestKit::USCoreV311::PatientNameSearchTest.new }
+    let(:search_value) {'family_name'}
+
+    it 'returns search value from the first of name array' do
+      patient = FHIR::Patient.new(
+        name: [
+          {
+            family: search_value,
+            given: [
+              'first_name'
+            ]
+          }
+        ]
+      )
+
+      allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
+        .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
+
+      element = test.search_param_value('name', '123')
+
+      expect(element).to eq(search_value)
+    end
+
+    it 'returns search value from the first none-DAR name of name array' do
+      patient = FHIR::Patient.new(
+        name: [
+          {
+            extension: [
+              {
+                url: 'http://hl7.org/fhir/StructureDefinition/data-absent-reason',
+                valueCode: 'unknown'
+              }
+            ]
+          },
+          {
+            family: search_value,
+            given: [
+              'first_name'
+            ]
+          }
+        ]
+      )
+
+      allow_any_instance_of(USCoreTestKit::USCoreV311::PatientNameSearchTest)
+        .to receive(:scratch_resources_for_patient).and_return(Array.wrap(patient))
+
+      element = test.search_param_value('name', '123')
+
+      expect(element).to eq(search_value)
+    end
+  end
 end
