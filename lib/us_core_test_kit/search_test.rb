@@ -256,7 +256,7 @@ module USCoreTestKit
     def perform_search_with_system(params, patient_id)
       return if search_variant_test_records[:token_variants]
 
-      new_search_params = search_params_with_values(token_search_params, patient_id)
+      new_search_params = search_params_with_values(token_search_params, patient_id, include_system: true)
       return if new_search_params.any? { |_name, value| value.blank? }
 
       search_params = params.merge(new_search_params)
@@ -421,7 +421,7 @@ module USCoreTestKit
       end
     end
 
-    def search_params_with_values(search_param_names, patient_id)
+    def search_params_with_values(search_param_names, patient_id, include_system: false)
       resources = scratch_resources_for_patient(patient_id)
 
       if resources.empty?
@@ -433,7 +433,7 @@ module USCoreTestKit
 
       params_with_partial_value = resources.each_with_object({}) do |resource, params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
-          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource)
+          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource, include_system: include_system)
           params[name] = value
         end
 
