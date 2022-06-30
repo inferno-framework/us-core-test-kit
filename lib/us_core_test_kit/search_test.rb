@@ -431,16 +431,16 @@ module USCoreTestKit
         end
       end
 
-      params_with_partial_value = resources.each_with_object({}) do |resource, params|
+      params_with_partial_value = resources.each_with_object({}) do |resource, outer_params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
           value = patient_id_param?(name) ? patient_id : search_param_value(name, resource, include_system: include_system)
           params[name] = value
         end
 
-        params.merge!(results_from_one_resource)
+        outer_params.merge!(results_from_one_resource)
 
         # stop if all parameter values are found
-        return params if params.all? { |_key, value| value.present? }
+        return outer_params if outer_params.all? { |_key, value| value.present? }
       end
 
       params_with_partial_value
@@ -548,7 +548,7 @@ module USCoreTestKit
             if include_system
               coding =
                 find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-              coding.present? ? "#{coding.system}|#{coding.code}" : nil
+              "#{coding.system}|#{coding.code}"
             else
               find_a_value_at(element, 'coding.code')
             end
