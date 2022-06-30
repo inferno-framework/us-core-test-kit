@@ -474,7 +474,7 @@ module USCoreTestKit
     end
 
     def no_resources_skip_message(resource_type = self.resource_type)
-      msg = "No #{resource_type} resources appear to be available "
+      msg = "No #{resource_type} resources appear to be available"
 
       if (resource_type == 'Device' && implantable_device_codes.present?)
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
