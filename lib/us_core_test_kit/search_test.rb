@@ -243,11 +243,11 @@ module USCoreTestKit
       new_search_params = params.merge('patient' => "Patient/#{params['patient']}")
       search_and_check_response(new_search_params)
 
-      reference_with_type_search_results = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+      reference_with_type_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_devices(reference_with_type_search_results) if resource_type == 'Device'
+      filter_devices(reference_with_type_resources) if resource_type == 'Device'
 
-      new_resource_count = reference_with_type_search_results.count
+      new_resource_count = reference_with_type_resources.count
 
       assert new_resource_count == resource_count,
              "Expected search by `#{params['patient']}` to to return the same results as searching " \
