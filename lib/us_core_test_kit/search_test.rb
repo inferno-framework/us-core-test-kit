@@ -135,6 +135,9 @@ module USCoreTestKit
       check_search_response
 
       post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+
+      filter_devices(post_search_resources) if resource_type == 'Device'
+
       get_resource_count = get_search_resources.length
       post_resource_count = post_search_resources.length
 
@@ -240,10 +243,11 @@ module USCoreTestKit
       new_search_params = params.merge('patient' => "Patient/#{params['patient']}")
       search_and_check_response(new_search_params)
 
-      new_resource_count =
-        fetch_all_bundled_resources
-          .select { |resource| resource.resourceType == resource_type }
-          .count
+      reference_with_type_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+
+      filter_devices(reference_with_type_resources) if resource_type == 'Device'
+
+      new_resource_count = reference_with_type_resources.count
 
       assert new_resource_count == resource_count,
              "Expected search by `#{params['patient']}` to to return the same results as searching " \
@@ -486,8 +490,13 @@ module USCoreTestKit
     end
 
     def no_resources_skip_message(resource_type = self.resource_type)
-      "No #{resource_type} resources appear to be available. " \
-      "Please use patients with more information"
+      msg = "No #{resource_type} resources appear to be available"
+
+      if (resource_type == 'Device' && implantable_device_codes.present?)
+        msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
+      end
+
+      msg + ". Please use patients with more information"
     end
 
     def fetch_all_bundled_resources(

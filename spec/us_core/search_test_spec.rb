@@ -299,42 +299,10 @@ RSpec.describe USCoreTestKit::SearchTest do
           )
         end
       end
-      let(:device_search_test) do
-        Class.new(Inferno::Test) do
-          include USCoreTestKit::SearchTest
-
-          def properties
-            @properties ||= USCoreTestKit::SearchTestProperties.new(
-              resource_type: 'Device',
-              search_param_names: ['patient'],
-              first_search: true
-            )
-          end
-
-          def self.metadata
-            @metadata ||=
-              USCoreTestKit::Generator::GroupMetadata.new(
-                YAML.load_file(
-                  File.join(
-                    __dir__,
-                    '..',
-                    'fixtures',
-                    'device_metadata.yml'
-                  )
-                )
-              )
-          end
-
-          def scratch_resources
-            scratch[:device_resources] ||= {}
-          end
-
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV311::DevicePatientSearchTest) do
           fhir_client { url :url }
           input :url, :patient_ids, :implantable_device_codes
-
-          run do
-            run_search_test
-          end
         end
       end
       let(:bundle) do
@@ -346,24 +314,35 @@ RSpec.describe USCoreTestKit::SearchTest do
       let(:test_scratch) { {} }
 
       before do
-        Inferno::Repositories::Tests.new.insert(device_search_test)
-        allow_any_instance_of(device_search_test)
+        allow_any_instance_of(test_class)
           .to receive(:scratch).and_return(test_scratch)
+
+        stub_request(:get, "#{url}/Device?patient=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:get, "#{url}/Device?patient=Patient/#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:post, "#{url}/Device/_search")
+          .with(body: {"patient"=>patient_id})
+          .to_return(status: 200, body: bundle.to_json)
       end
 
       it 'only stores devices matching those codes' do
-        # Match any request that doesn't contain '_include'
-        stub_request(:get, "#{url}/Device?patient=#{patient_id}")
-          .to_return(status: 200, body: bundle.to_json)
-
         implantable_devices = devices[0..1]
         non_implantable_device = devices.last
         code_input = "#{implantable_device_code1}, #{implantable_device_code2}"
-        result = run(device_search_test, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
+        result = run(test_class, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
 
         expect(result.result).to eq('pass')
         expect(test_scratch[:device_resources][:all]).to eq(implantable_devices)
         expect(test_scratch[:device_resources][:all]).to_not include(non_implantable_device)
+      end
+
+      it 'skips if no device matches code input' do
+        code_input = 'something_else'
+        result = run(test_class, patient_ids: patient_id, url: url, implantable_device_codes: code_input)
+
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('Device Type Code filter: something_else')
       end
     end
   end
