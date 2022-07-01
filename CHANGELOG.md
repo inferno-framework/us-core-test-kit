@@ -1,3 +1,15 @@
+# 0.2.3
+
+* Update testing logic for Patient's previous name MustSupport test.
+* Separate USCDI requirements into 'Additional USCDI requirements' section.
+* Fix logic in search test when generating search values for Encounter status search.
+* Add logic for increased date and time precision in date search tests.
+* Remove validation of resource types returned in the Bundles returned by search requests.
+* Allow search value extraction from array element when first item is DAR extension.
+* Remove US Core Organization Profile from must support checking of Provenance.agent.who.
+* Improve search value generation by extracting values from one resource, if possible.
+* Alter device search to filter returned resources by Device Type Code input.
+
 # 0.2.2
 
 * Omit medication resource validation if no medication resources provided.
