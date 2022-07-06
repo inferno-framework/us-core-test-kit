@@ -529,6 +529,20 @@ module USCoreTestKit
         page_count += 1
       end
 
+      valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
+      valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
+
+      invalid_resource_types =
+        resources.reject { |entry| valid_resource_types.include? entry.resourceType }
+                 .map(&:resourceType)
+                 .uniq
+
+      if invalid_resource_types.any?
+        info "Received resource type(s) #{invalid_resource_types.join(', ')} in search bundle, " \
+             "but only expected resource types #{valid_resource_types.join(', ')}. " + \
+             "This is unusual but allowed if the server believes additional resource types are relevant."
+      end
+
       resources
     end
 
