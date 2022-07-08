@@ -1,3 +1,9 @@
+# 0.2.4
+
+* Add info message when resource with an unexpected type is included in the
+  Bundle response to a search.
+* Update validation message filters.
+
 # 0.2.3
 
 * Update testing logic for Patient's previous name MustSupport test.
