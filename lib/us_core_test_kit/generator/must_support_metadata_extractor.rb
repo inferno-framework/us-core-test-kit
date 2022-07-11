@@ -277,6 +277,8 @@ module USCoreTestKit
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
+        when '5.0.1'
+          add_patient_uscdi_elements
         end
       end
 
@@ -377,11 +379,55 @@ module USCoreTestKit
       end
 
       def add_patient_uscdi_elements
-        if profile.type == 'Patient'
-          #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+        return if profile.type != 'Patient'
+
+        #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:race',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
+          uscdi_only: true
+        }
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:ethnicity',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
+          uscdi_only: true
+        }
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:birthsex',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.suffix',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.use',
+          fixed_value: 'old',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.period.end',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'telecom',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'communication',
+          uscdi_only: true
+        }
+        @must_supports[:elements].each do |element|
+          path = element[:path]
+          element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
+        end
+
+
+        if profile.version == '5.0.1'
           @must_supports[:extensions] << {
-            id: 'Patient.extension:race',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
+            id: 'Patient.extension:genderIdentity',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
             uscdi_only: true
           }
           @must_supports[:extensions] << {
