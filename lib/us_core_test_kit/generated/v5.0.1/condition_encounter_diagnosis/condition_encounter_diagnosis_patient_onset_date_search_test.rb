@@ -3,13 +3,13 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionPatientAbatementDateSearchTest < Inferno::Test
+    class ConditionEncounterDiagnosisPatientOnsetDateSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
-      title 'Server returns valid results for Condition search by patient + abatement-date'
+      title 'Server returns valid results for Condition search by patient + onset-date'
       description %(
 A server SHOULD support searching by
-patient + abatement-date on the Condition resource. This test
+patient + onset-date on the Condition resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
@@ -17,7 +17,7 @@ none are returned, the test is skipped.
 
       )
 
-      id :us_core_v501_condition_patient_abatement_date_search_test
+      id :us_core_v501_condition_encounter_diagnosis_patient_onset_date_search_test
       optional
   
       input :patient_ids,
@@ -27,9 +27,9 @@ none are returned, the test is skipped.
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Condition',
-        search_param_names: ['patient', 'abatement-date'],
+        search_param_names: ['patient', 'onset-date'],
         possible_status_search: true,
-        params_with_comparators: ['abatement-date']
+        params_with_comparators: ['onset-date']
         )
       end
 
@@ -38,7 +38,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_encounter_diagnosis_resources] ||= {}
       end
 
       run do
