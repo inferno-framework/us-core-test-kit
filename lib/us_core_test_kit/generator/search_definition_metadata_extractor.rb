@@ -117,7 +117,7 @@ module USCoreTestKit
           values_from_slices +
           values_from_fixed_codes +
           values_from_pattern_coding +
-          values_from_pattern_codeable_concept          
+          values_from_pattern_codeable_concept
           ).uniq.presence || values_from_value_set_binding
         ).presence || values_from_resource_metadata
         values
@@ -152,7 +152,7 @@ module USCoreTestKit
 
         profile_elements
           .select { |element| element.path == "#{profile_element.path}.coding" && element.patternCoding.present? }
-          .map { |element| element.patternCoding.code }        
+          .map { |element| element.patternCoding.code }
       end
 
       def values_from_pattern_codeable_concept
@@ -190,7 +190,7 @@ module USCoreTestKit
           current_metadata = fhir_metadata(current_path)
 
           if current_metadata&.dig('valid_codes').present?
-            values = values + current_metadata['valid_codes'].values.flatten 
+            values = values + current_metadata['valid_codes'].values.flatten
           end
         end
 

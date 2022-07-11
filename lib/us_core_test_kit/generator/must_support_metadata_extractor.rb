@@ -94,7 +94,8 @@ module USCoreTestKit
                   system: pattern_element.patternIdentifier.system
                 }
               else
-                raise StandardError, 'Unsupported discriminator pattern type'
+                # TODO: tempoaray fix for pattern slicing without pattern[x]. FHIR-1624
+                #raise StandardError, 'Unsupported discriminator pattern type'
               end
           end
         end
@@ -251,7 +252,8 @@ module USCoreTestKit
               supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
               current_metadata[:types] = supported_types if supported_types.present?
 
-              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
+              binding.pry if current_element.type.empty?
+              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first&.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
 
