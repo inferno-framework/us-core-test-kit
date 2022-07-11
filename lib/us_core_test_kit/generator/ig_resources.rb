@@ -32,7 +32,9 @@ module USCoreTestKit
       end
 
       def search_param_by_resource_and_name(resource, name)
-        normalized_name = name.to_s == '_id' ? 'id' : name.to_s
+        #normalized_name = name.to_s == '_id' ? 'id' : name.to_s
+        normalized_name = name.to_s
+        normalized_name = normalized_name.start_with?('_') ? normalized_name[1..] : normalized_name
 
         resources_by_type['SearchParameter']
           .find { |param| param.id == "us-core-#{resource.downcase}-#{normalized_name}" }

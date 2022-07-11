@@ -1,0 +1,765 @@
+---
+:name: us_core_observation_clinical_test
+:class_name: USCorev501ObservationClinicalTestSequence
+:version: v5.0.1
+:reformatted_version: v501
+:resource: Observation
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test
+:profile_name: US Core Observation Clinical Test Result Profile
+:title: Observation Clinical Test Result
+:short_description: Verify support for the server capabilities required by the US
+  Core Observation Clinical Test Result Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - code
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - category
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Observation.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :category:
+    :paths:
+    - category
+    :full_paths:
+    - Observation.category
+    :comparators: {}
+    :values:
+    - clinical-test
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 34534-8
+    - 8897-1
+    - 8894-8
+    - 8625-6
+    - 8633-0
+    - 8634-8
+    - 8636-3
+    - 8626-4
+    - 8632-2
+    - 8638-9
+    - 8601-7
+    - 92846-5
+    - 18754-2
+    - 34552-0
+    - 18010-9
+    - 18018-2
+    - 20307-5
+    - 29468-6
+    - 18083-6
+    - 18085-1
+    - 29442-1
+    - 29430-6
+    - 8806-2
+    - 29434-8
+    - 18147-9
+    - 18750-0
+    - 78950-3
+    - 78951-1
+    - 78952-9
+    - 78953-7
+    - 78954-5
+    - 78955-2
+    - 78956-0
+    - 78957-8
+    - 82654-5
+    - 82652-9
+    - 82651-1
+    - 59282-4
+    - 46213-5
+    - 78895-0
+    - 78897-6
+    - 78898-4
+    - 78899-2
+    - 78900-8
+    - 78901-6
+    - 78902-4
+    - 78903-2
+    - 78904-0
+    - 78905-7
+    - 78906-5
+    - 78907-3
+    - 78908-1
+    - 78909-9
+    - 78910-7
+    - 78911-5
+    - 78912-3
+    - 78913-1
+    - 80227-2
+    - 80228-0
+    - 80229-8
+    - 78896-8
+    - 64098-7
+    - 83311-1
+    - 46383-6
+    - 24701-5
+    - 38263-0
+    - 80934-3
+    - 80954-1
+    - 80948-3
+    - 80940-0
+    - 80953-3
+    - 80947-5
+    - 80939-2
+    - 38262-2
+    - 38266-3
+    - 80956-6
+    - 80950-9
+    - 80942-6
+    - 80955-8
+    - 80949-1
+    - 80941-8
+    - 38261-4
+    - 38264-8
+    - 80933-5
+    - 46278-8
+    - 80946-7
+    - 80938-4
+    - 46279-6
+    - 80945-9
+    - 80937-6
+    - 24966-4
+    - 38267-1
+    - 24890-6
+    - 38265-5
+    - 80932-7
+    - 80952-5
+    - 80944-2
+    - 80936-8
+    - 80951-7
+    - 80943-4
+    - 80935-0
+    - 97100-2
+    - 28016-4
+    - 51393-7
+    - 97101-0
+    - 18746-8
+    - 18753-4
+    - 18751-8
+    - 11523-8
+    - 98604-2
+    - 98605-9
+    - 98611-7
+    - 98617-4
+    - 98622-4
+    - 98627-3
+    - 98632-3
+    - 98637-2
+    - 98642-2
+    - 98647-1
+    - 98652-1
+    - 18749-2
+    - 29754-9
+    - 92050-4
+    - 98495-5
+    - 79731-6
+    - 79730-8
+    - 79732-4
+    - 98496-3
+    - 79894-2
+    - 79800-9
+    - 79794-4
+    - 79791-0
+    - 79792-8
+    - 79793-6
+    - 79773-8
+    - 79777-9
+    - 79781-1
+    - 79786-0
+    - 79774-6
+    - 79778-7
+    - 79782-9
+    - 79785-2
+    - 79775-3
+    - 79779-5
+    - 79783-7
+    - 79787-8
+    - 79776-1
+    - 79780-3
+    - 79784-5
+    - 79788-6
+    - 79789-4
+    - 79790-2
+    - 79795-1
+    - 79797-7
+    - 79796-9
+    - 79798-5
+    - 96189-6
+    - 96190-4
+    - 96191-2
+    - 96192-0
+    - 96193-8
+    - 96194-6
+    - 96195-3
+    - 96196-1
+    - 96197-9
+    - 96198-7
+    - 96199-5
+    - 96200-1
+    - 96201-9
+    - 96202-7
+    - 96205-0
+    - 96206-8
+    - 96207-6
+    - 96208-4
+    - 96209-2
+    - 96210-0
+    - 96211-8
+    - 96212-6
+    - 96213-4
+    - 96214-2
+    - 96215-9
+    - 96216-7
+    - 96217-5
+    - 96218-3
+    - 96219-1
+    - 96220-9
+    - 95298-6
+    - 28975-1
+    - 28985-0
+    - 28977-7
+    - 28987-6
+    - 95300-0
+    - 28974-4
+    - 28984-3
+    - 28976-9
+    - 28986-8
+    - 28978-5
+    - 28988-4
+    - 79813-2
+    - 79814-0
+    - 95302-6
+    - 95305-9
+    - 95303-4
+    - 95306-7
+    - 95304-2
+    - 95307-5
+    - 95309-1
+    - 95311-7
+    - 95301-8
+    - 8642-1
+    - 8640-5
+    - 95314-1
+    - 95315-8
+    - 95316-6
+    - 95317-4
+    - 28983-5
+    - 28993-4
+    - 28994-2
+    - 28996-7
+    - 28995-9
+    - 28997-5
+    - 95308-3
+    - 95310-9
+    - 95299-4
+    - 28980-1
+    - 28990-0
+    - 28982-7
+    - 28992-6
+    - 28979-3
+    - 28989-2
+    - 28981-9
+    - 28991-8
+    - 95318-2
+    - 95319-0
+    - 95320-8
+    - 95321-6
+    - 95322-4
+    - 95323-2
+    - 95324-0
+    - 95326-5
+    - 95327-3
+    - 95328-1
+    - 28814-2
+    - 28810-0
+    - 28812-6
+    - 28815-9
+    - 28811-8
+    - 28813-4
+    - 95329-9
+    - 28793-8
+    - 28802-7
+    - 95330-7
+    - 28796-1
+    - 28805-0
+    - 95331-5
+    - 95332-3
+    - 95333-1
+    - 95334-9
+    - 95335-6
+    - 95336-4
+    - 95337-2
+    - 95338-0
+    - 95339-8
+    - 95340-6
+    - 95341-4
+    - 95342-2
+    - 95343-0
+    - 95344-8
+    - 95345-5
+    - 95346-3
+    - 95347-1
+    - 95348-9
+    - 28792-0
+    - 28782-1
+    - 28789-6
+    - 95349-7
+    - 28799-5
+    - 95350-5
+    - 96227-4
+    - 96229-0
+    - 96228-2
+    - 96230-8
+    - 96231-6
+    - 96238-1
+    - 96239-9
+    - 96240-7
+    - 96241-5
+    - 96232-4
+    - 96233-2
+    - 96234-0
+    - 96235-7
+    - 79898-3
+    - 79841-3
+    - 79837-1
+    - 79833-0
+    - 79829-8
+    - 79838-9
+    - 79834-8
+    - 79830-6
+    - 79839-7
+    - 79835-5
+    - 79831-4
+    - 79840-5
+    - 79836-3
+    - 79832-2
+    - 57119-0
+    - 57108-3
+    - 57109-1
+    - 57110-9
+    - 57111-7
+    - 57112-5
+    - 57113-3
+    - 57114-1
+    - 57115-8
+    - 57116-6
+    - 57117-4
+    - 57118-2
+    - 96246-4
+    - 96236-5
+    - 96237-3
+    - 96242-3
+    - 96243-1
+    - 96244-9
+    - 96245-6
+    - 79895-9
+    - 79854-6
+    - 79850-4
+    - 79846-2
+    - 79842-1
+    - 79851-2
+    - 79847-0
+    - 79843-9
+    - 79852-0
+    - 79848-8
+    - 79844-7
+    - 79853-8
+    - 79849-6
+    - 79845-4
+    - 79896-7
+    - 79764-7
+    - 79892-6
+    - 79893-4
+    - 98497-1
+    - 98498-9
+    - 98499-7
+    - 98500-2
+    - 98501-0
+    - 98502-8
+    - 98503-6
+    - 98504-4
+    - 98505-1
+    - 98506-9
+    - 65893-0
+    - 65897-1
+    - 98507-7
+    - 98508-5
+    - 98509-3
+    - 98510-1
+    - 98511-9
+    - 98512-7
+    - 98513-5
+    - 79908-0
+    - 77199-8
+    - 89015-2
+    - 91375-6
+    - 89024-4
+    - 91379-8
+    - 89016-0
+    - 91373-1
+    - 89018-6
+    - 89020-2
+    - 89022-8
+    - 91377-2
+    - 89026-9
+    - 89028-5
+    - 91374-9
+    - 89025-1
+    - 91378-0
+    - 89017-8
+    - 91372-3
+    - 89019-4
+    - 89021-0
+    - 89023-6
+    - 91376-4
+    - 89027-7
+    - 89029-3
+    - 18744-3
+    - 81459-0
+    - 90568-7
+    - 90565-3
+    - 90557-0
+    - 90563-8
+    - 90559-6
+    - 90560-4
+    - 90552-1
+    - 90553-9
+    - 90561-2
+    - 90555-4
+    - 90556-2
+    - 90564-6
+    - 90558-8
+    - 90562-0
+    - 90566-1
+    - 90554-7
+    - 90567-9
+    - 81458-2
+    - 81440-0
+    - 81441-8
+    - 81456-6
+    - 81457-4
+    - 81452-5
+    - 81453-3
+    - 81450-9
+    - 81451-7
+    - 81454-1
+    - 81455-8
+    - 81448-3
+    - 81449-1
+    - 81446-7
+    - 81447-5
+    - 81444-2
+    - 81445-9
+    - 81443-4
+    - 81442-6
+    - 80525-9
+    - 80519-2
+    - 80526-7
+    - 80523-4
+    - 80520-0
+    - 80524-2
+    - 80522-6
+    - 9197-5
+    - 80521-8
+    - 45033-8
+    - 44974-4
+    - 8910-2
+    - 8911-0
+    - 44964-5
+    - 44963-7
+    - 44970-2
+    - 39129-2
+    - 44972-8
+    - 44966-0
+    - 44967-8
+    - 8884-9
+    - 44962-9
+    - 44961-1
+    - 69428-1
+    - 44965-2
+    - 44976-9
+    - 18523-1
+    - 18524-9
+    - 18525-6
+    - 44973-6
+    - 9952-3
+    - 9953-1
+    - 65681-9
+    - 44975-1
+    - 18535-5
+    - 18537-1
+    - 44968-6
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Observation.status
+    :comparators: {}
+    :values:
+    - registered
+    - preliminary
+    - final
+    - amended
+    - corrected
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :name: Observation.category:clinical-test
+    :path: category
+    :discriminator:
+      :type: patternCodeableConcept
+      :path: ''
+      :code: clinical-test
+      :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-observation-category
+  :elements:
+  - :path: status
+  - :path: category
+  - :path: code
+  - :path: subject
+    :types:
+    - Reference
+  - :path: effectiveDateTime
+    :original_path: effective[x]
+  - :path: valueQuantity
+    :original_path: value[x]
+  - :path: valueCodeableConcept
+    :original_path: value[x]
+  - :path: valueString
+    :original_path: value[x]
+:mandatory_elements:
+- Observation.status
+- Observation.category
+- Observation.code
+- Observation.subject
+- Observation.component.code
+:bindings:
+- :type: code
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/languages
+  :path: language
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/observation-status
+  :path: status
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/observation-category
+  :path: category
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/observation-category
+  :path: category
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-test-codes
+  :path: code
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
+  :path: dataAbsentReason
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
+  :path: interpretation
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/body-site
+  :path: bodySite
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/observation-methods
+  :path: method
+- :type: CodeableConcept
+  :strength: preferred
+  :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
+  :path: referenceRange.type
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
+  :path: referenceRange.appliesTo
+- :type: CodeableConcept
+  :strength: example
+  :system: http://hl7.org/fhir/ValueSet/observation-codes
+  :path: component.code
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
+  :path: component.dataAbsentReason
+- :type: CodeableConcept
+  :strength: extensible
+  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
+  :path: component.interpretation
+:references:
+- :path: Observation.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/CarePlan
+  - http://hl7.org/fhir/StructureDefinition/DeviceRequest
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+  - http://hl7.org/fhir/StructureDefinition/MedicationRequest
+  - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+- :path: Observation.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+  - http://hl7.org/fhir/StructureDefinition/MedicationDispense
+  - http://hl7.org/fhir/StructureDefinition/MedicationStatement
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+  - http://hl7.org/fhir/StructureDefinition/Immunization
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+- :path: Observation.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Observation.focus
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource
+- :path: Observation.encounter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+- :path: Observation.performer
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/Organization
+  - http://hl7.org/fhir/StructureDefinition/CareTeam
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+- :path: Observation.specimen
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Specimen
+- :path: Observation.device
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+  - http://hl7.org/fhir/StructureDefinition/DeviceMetric
+- :path: Observation.hasMember
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+- :path: Observation.derivedFrom
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+  - http://hl7.org/fhir/StructureDefinition/Media
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+:tests:
+- :id: us_core_v501_observation_clinical_test_patient_code_search_test
+  :file_name: observation_clinical_test_patient_code_search_test.rb
+- :id: us_core_v501_observation_clinical_test_patient_category_date_search_test
+  :file_name: observation_clinical_test_patient_category_date_search_test.rb
+- :id: us_core_v501_observation_clinical_test_patient_code_date_search_test
+  :file_name: observation_clinical_test_patient_code_date_search_test.rb
+- :id: us_core_v501_observation_clinical_test_patient_category_search_test
+  :file_name: observation_clinical_test_patient_category_search_test.rb
+- :id: us_core_v501_observation_clinical_test_patient_category_status_search_test
+  :file_name: observation_clinical_test_patient_category_status_search_test.rb
+- :id: us_core_v501_observation_clinical_test_read_test
+  :file_name: observation_clinical_test_read_test.rb
+- :id: us_core_v501_observation_clinical_test_provenance_revinclude_search_test
+  :file_name: observation_clinical_test_provenance_revinclude_search_test.rb
+- :id: us_core_v501_observation_clinical_test_validation_test
+  :file_name: observation_clinical_test_validation_test.rb
+- :id: us_core_v501_observation_clinical_test_must_support_test
+  :file_name: observation_clinical_test_must_support_test.rb
+- :id: us_core_v501_observation_clinical_test_reference_resolution_test
+  :file_name: observation_clinical_test_reference_resolution_test.rb
+:id: us_core_v501_observation_clinical_test
+:file_name: observation_clinical_test_group.rb
+:delayed_references: []
