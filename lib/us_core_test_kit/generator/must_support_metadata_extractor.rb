@@ -153,7 +153,6 @@ module USCoreTestKit
                   element.path == "#{current_element.path}.#{discriminator.path}"
               end
 
-              binding.pry if fixed_element.nil?
               {
                 path: discriminator.path,
                 value: fixed_element.fixedUri || fixed_element.fixedCode
@@ -252,7 +251,6 @@ module USCoreTestKit
               supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
               current_metadata[:types] = supported_types if supported_types.present?
 
-              binding.pry if current_element.type.empty?
               handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first&.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
