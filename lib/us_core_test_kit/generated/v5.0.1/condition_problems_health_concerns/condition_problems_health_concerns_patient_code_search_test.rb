@@ -3,13 +3,13 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionPatientCategorySearchTest < Inferno::Test
+    class ConditionProblemsHealthConcernsPatientCodeSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
-      title 'Server returns valid results for Condition search by patient + category'
+      title 'Server returns valid results for Condition search by patient + code'
       description %(
 A server SHOULD support searching by
-patient + category on the Condition resource. This test
+patient + code on the Condition resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
@@ -17,7 +17,7 @@ none are returned, the test is skipped.
 
       )
 
-      id :us_core_v501_condition_patient_category_search_test
+      id :us_core_v501_condition_problems_health_concerns_patient_code_search_test
       optional
   
       input :patient_ids,
@@ -27,9 +27,9 @@ none are returned, the test is skipped.
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Condition',
-        search_param_names: ['patient', 'category'],
+        search_param_names: ['patient', 'code'],
         possible_status_search: true,
-        token_search_params: ['category']
+        token_search_params: ['code']
         )
       end
 
@@ -38,7 +38,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_problems_health_concerns_resources] ||= {}
       end
 
       run do

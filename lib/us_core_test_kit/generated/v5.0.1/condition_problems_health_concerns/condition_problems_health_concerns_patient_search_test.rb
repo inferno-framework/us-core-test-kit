@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionPatientSearchTest < Inferno::Test
+    class ConditionProblemsHealthConcernsPatientSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns valid results for Condition search by patient'
@@ -30,7 +30,7 @@ requirement of US Core v5.0.1.
 
       )
 
-      id :us_core_v501_condition_patient_search_test
+      id :us_core_v501_condition_problems_health_concerns_patient_search_test
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
@@ -51,7 +51,7 @@ requirement of US Core v5.0.1.
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_problems_health_concerns_resources] ||= {}
       end
 
       run do

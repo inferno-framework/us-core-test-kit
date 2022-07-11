@@ -1,14 +1,14 @@
 ---
-:name: us_core_condition_problems_health_concerns
-:class_name: USCorev501ConditionProblemsHealthConcernsSequence
+:name: us_core_condition_encounter_diagnosis
+:class_name: USCorev501ConditionEncounterDiagnosisSequence
 :version: v5.0.1
 :reformatted_version: v501
 :resource: Condition
-:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns
-:profile_name: US Core Condition Problems and Health Concerns Profile
-:title: Condition Problems and Health Concerns
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis
+:profile_name: US Core Condition Encounter Diagnosis Profile
+:title: Condition Encounter Diagnosis
 :short_description: Verify support for the server capabilities required by the US
-  Core Condition Problems and Health Concerns Profile.
+  Core Condition Encounter Diagnosis Profile.
 :interactions:
 - :code: create
   :expectation: MAY
@@ -59,9 +59,8 @@
   - patient
   - category
   - encounter
-  :names_not_must_support_or_mandatory:
-  - encounter
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -155,7 +154,7 @@
     - Condition.category
     :comparators: {}
     :values:
-    - sdoh
+    - encounter-diagnosis
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -231,7 +230,6 @@
 :required_concepts:
 - clinicalStatus
 - verificationStatus
-- category
 :must_supports:
   :extensions:
   - :id: Condition.extension:assertedDate
@@ -239,20 +237,20 @@
   :slices:
   - :name: Condition.category:us-core
     :path: category
-    :discriminator: 
-  - :name: Condition.category:sdoh
-    :path: category
     :discriminator:
       :type: patternCodeableConcept
       :path: ''
-      :code: sdoh
-      :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-tags
+      :code: encounter-diagnosis
+      :system: http://terminology.hl7.org/CodeSystem/condition-category
   :elements:
   - :path: clinicalStatus
   - :path: verificationStatus
   - :path: category
   - :path: code
   - :path: subject
+    :types:
+    - Reference
+  - :path: encounter
     :types:
     - Reference
   - :path: onsetDateTime
@@ -280,10 +278,6 @@
 - :type: CodeableConcept
   :strength: extensible
   :system: http://hl7.org/fhir/ValueSet/condition-category
-  :path: category
-- :type: CodeableConcept
-  :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-problem-or-health-concern
   :path: category
 - :type: CodeableConcept
   :strength: extensible
@@ -319,7 +313,7 @@
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 - :path: Condition.encounter
   :profiles:
-  - http://hl7.org/fhir/StructureDefinition/Encounter
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
 - :path: Condition.recorder
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Practitioner
@@ -341,34 +335,34 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: us_core_v501_condition_patient_search_test
-  :file_name: condition_patient_search_test.rb
-- :id: us_core_v501_condition_patient_abatement_date_search_test
-  :file_name: condition_patient_abatement_date_search_test.rb
-- :id: us_core_v501_condition_patient_asserted_date_search_test
-  :file_name: condition_patient_asserted_date_search_test.rb
-- :id: us_core_v501_condition_patient_code_search_test
-  :file_name: condition_patient_code_search_test.rb
-- :id: us_core_v501_condition_patient_category_encounter_search_test
-  :file_name: condition_patient_category_encounter_search_test.rb
-- :id: us_core_v501_condition_patient_category_search_test
-  :file_name: condition_patient_category_search_test.rb
-- :id: us_core_v501_condition_patient_recorded_date_search_test
-  :file_name: condition_patient_recorded_date_search_test.rb
-- :id: us_core_v501_condition_patient_onset_date_search_test
-  :file_name: condition_patient_onset_date_search_test.rb
-- :id: us_core_v501_condition_patient_clinical_status_search_test
-  :file_name: condition_patient_clinical_status_search_test.rb
-- :id: us_core_v501_condition_read_test
-  :file_name: condition_read_test.rb
-- :id: us_core_v501_condition_provenance_revinclude_search_test
-  :file_name: condition_provenance_revinclude_search_test.rb
-- :id: us_core_v501_condition_validation_test
-  :file_name: condition_validation_test.rb
-- :id: us_core_v501_condition_must_support_test
-  :file_name: condition_must_support_test.rb
-- :id: us_core_v501_condition_reference_resolution_test
-  :file_name: condition_reference_resolution_test.rb
-:id: us_core_v501_condition
-:file_name: condition_group.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_search_test
+  :file_name: condition_encounter_diagnosis_patient_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_abatement_date_search_test
+  :file_name: condition_encounter_diagnosis_patient_abatement_date_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_asserted_date_search_test
+  :file_name: condition_encounter_diagnosis_patient_asserted_date_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_code_search_test
+  :file_name: condition_encounter_diagnosis_patient_code_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_category_encounter_search_test
+  :file_name: condition_encounter_diagnosis_patient_category_encounter_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_category_search_test
+  :file_name: condition_encounter_diagnosis_patient_category_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_recorded_date_search_test
+  :file_name: condition_encounter_diagnosis_patient_recorded_date_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_onset_date_search_test
+  :file_name: condition_encounter_diagnosis_patient_onset_date_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_patient_clinical_status_search_test
+  :file_name: condition_encounter_diagnosis_patient_clinical_status_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_read_test
+  :file_name: condition_encounter_diagnosis_read_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_provenance_revinclude_search_test
+  :file_name: condition_encounter_diagnosis_provenance_revinclude_search_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_validation_test
+  :file_name: condition_encounter_diagnosis_validation_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_must_support_test
+  :file_name: condition_encounter_diagnosis_must_support_test.rb
+- :id: us_core_v501_condition_encounter_diagnosis_reference_resolution_test
+  :file_name: condition_encounter_diagnosis_reference_resolution_test.rb
+:id: us_core_v501_condition_encounter_diagnosis
+:file_name: condition_encounter_diagnosis_group.rb
 :delayed_references: []

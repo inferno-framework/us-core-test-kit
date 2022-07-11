@@ -7,8 +7,8 @@ require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
 require_relative 'care_team_group'
-require_relative 'condition_group'
-require_relative 'condition_group'
+require_relative 'condition_encounter_diagnosis_group'
+require_relative 'condition_problems_health_concerns_group'
 require_relative 'device_group'
 require_relative 'diagnostic_report_note_group'
 require_relative 'diagnostic_report_lab_group'
@@ -91,8 +91,8 @@ module USCoreTestKit
       group from: :us_core_v501_allergy_intolerance
       group from: :us_core_v501_care_plan
       group from: :us_core_v501_care_team
-      group from: :us_core_v501_condition
-      group from: :us_core_v501_condition
+      group from: :us_core_v501_condition_encounter_diagnosis
+      group from: :us_core_v501_condition_problems_health_concerns
       group from: :us_core_v501_device
       group from: :us_core_v501_diagnostic_report_note
       group from: :us_core_v501_diagnostic_report_lab

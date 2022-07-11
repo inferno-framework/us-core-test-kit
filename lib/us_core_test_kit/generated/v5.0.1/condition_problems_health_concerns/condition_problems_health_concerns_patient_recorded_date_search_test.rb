@@ -3,13 +3,13 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionPatientAssertedDateSearchTest < Inferno::Test
+    class ConditionProblemsHealthConcernsPatientRecordedDateSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
-      title 'Server returns valid results for Condition search by patient + asserted-date'
+      title 'Server returns valid results for Condition search by patient + recorded-date'
       description %(
 A server SHOULD support searching by
-patient + asserted-date on the Condition resource. This test
+patient + recorded-date on the Condition resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
@@ -17,7 +17,7 @@ none are returned, the test is skipped.
 
       )
 
-      id :us_core_v501_condition_patient_asserted_date_search_test
+      id :us_core_v501_condition_problems_health_concerns_patient_recorded_date_search_test
       optional
   
       input :patient_ids,
@@ -27,9 +27,9 @@ none are returned, the test is skipped.
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'Condition',
-        search_param_names: ['patient', 'asserted-date'],
+        search_param_names: ['patient', 'recorded-date'],
         possible_status_search: true,
-        params_with_comparators: ['asserted-date']
+        params_with_comparators: ['recorded-date']
         )
       end
 
@@ -38,7 +38,7 @@ none are returned, the test is skipped.
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_problems_health_concerns_resources] ||= {}
       end
 
       run do

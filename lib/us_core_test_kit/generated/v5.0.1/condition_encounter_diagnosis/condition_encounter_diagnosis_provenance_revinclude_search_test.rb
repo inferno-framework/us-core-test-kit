@@ -3,7 +3,7 @@ require_relative '../../../generator/group_metadata'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionProvenanceRevincludeSearchTest < Inferno::Test
+    class ConditionEncounterDiagnosisProvenanceRevincludeSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
       title 'Server returns Provenance resources from Condition search by patient + revInclude:Provenance:target'
@@ -14,7 +14,7 @@ module USCoreTestKit
         will pass if a Provenance resource is found in the response.
       %)
 
-      id :us_core_v501_condition_provenance_revinclude_search_test
+      id :us_core_v501_condition_encounter_diagnosis_provenance_revinclude_search_test
   
       input :patient_ids,
         title: 'Patient IDs',
@@ -36,7 +36,7 @@ module USCoreTestKit
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_encounter_diagnosis_resources] ||= {}
       end
 
       def scratch_provenance_resources

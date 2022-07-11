@@ -3,7 +3,7 @@ require_relative '../resource_list'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionReferenceResolutionTest < Inferno::Test
+    class ConditionProblemsHealthConcernsReferenceResolutionTest < Inferno::Test
       include USCoreTestKit::ReferenceResolutionTest
       include ResourceList
 
@@ -16,7 +16,7 @@ module USCoreTestKit
         * Condition.subject
       )
 
-      id :us_core_v501_condition_reference_resolution_test
+      id :us_core_v501_condition_problems_health_concerns_reference_resolution_test
 
       def resource_type
         'Condition'
@@ -27,7 +27,7 @@ module USCoreTestKit
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_problems_health_concerns_resources] ||= {}
       end
 
       run do

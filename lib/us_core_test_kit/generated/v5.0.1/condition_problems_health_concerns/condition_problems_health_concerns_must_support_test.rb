@@ -2,7 +2,7 @@ require_relative '../../../must_support_test'
 
 module USCoreTestKit
   module USCoreV501
-    class ConditionMustSupportTest < Inferno::Test
+    class ConditionProblemsHealthConcernsMustSupportTest < Inferno::Test
       include USCoreTestKit::MustSupportTest
 
       title 'All must support elements are provided in the Condition resources returned'
@@ -25,7 +25,7 @@ module USCoreTestKit
         * Condition.verificationStatus
       )
 
-      id :us_core_v501_condition_must_support_test
+      id :us_core_v501_condition_problems_health_concerns_must_support_test
 
       def resource_type
         'Condition'
@@ -36,7 +36,7 @@ module USCoreTestKit
       end
 
       def scratch_resources
-        scratch[:condition_resources] ||= {}
+        scratch[:condition_problems_health_concerns_resources] ||= {}
       end
 
       run do
