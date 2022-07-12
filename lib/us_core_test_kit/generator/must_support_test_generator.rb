@@ -90,6 +90,8 @@ module USCoreTestKit
 
         group_metadata.must_supports[:choices]&.each do |choice|
           next unless choice[:uscdi_only].presence == uscdi_only.presence
+          next unless choice.key?(:paths)
+
           choice[:paths].each { |path| element_names.delete("#{resource_type}.#{path}") }
           element_names << choice[:paths].map { |path| "#{resource_type}.#{path}" }.join(' or ')
         end

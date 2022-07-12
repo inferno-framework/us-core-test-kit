@@ -6,22 +6,25 @@ module USCoreTestKit
     class CareTeamProvenanceRevincludeSearchTest < Inferno::Test
       include USCoreTestKit::SearchTest
 
-      title 'Server returns Provenance resources from CareTeam search by role + revInclude:Provenance:target'
+      title 'Server returns Provenance resources from CareTeam search by patient + status + revInclude:Provenance:target'
       description %(
         A server SHALL be capable of supporting _revIncludes:Provenance:target.
 
-        This test will perform a search by role + revInclude:Provenance:target and
+        This test will perform a search by patient + status + revInclude:Provenance:target and
         will pass if a Provenance resource is found in the response.
       %)
 
       id :us_core_v501_care_team_provenance_revinclude_search_test
   
+      input :patient_ids,
+        title: 'Patient IDs',
+        description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
+  
       def properties
         @properties ||= SearchTestProperties.new(
           fixed_value_search: true,
         resource_type: 'CareTeam',
-        search_param_names: ['role'],
-        possible_status_search: true
+        search_param_names: ['patient', 'status']
         )
       end
 

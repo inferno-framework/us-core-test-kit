@@ -363,6 +363,16 @@ module USCoreTestKit
               uscdi_only: true
             }
           end
+        when '5.0.1'
+          case profile.type
+          when 'CareTeam'
+            choices << {
+              target_profiles: [
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
+              ]
+            }
+          end
         end
 
         @must_supports[:choices] = choices if choices.present?

@@ -110,6 +110,8 @@ module USCoreTestKit
           ['patient', 'code']
         elsif resource == 'MedicationRequest'
           ['patient', 'intent']
+        elsif resource == 'CareTeam'
+          ['patient', 'status']
         else
           ['patient']
         end

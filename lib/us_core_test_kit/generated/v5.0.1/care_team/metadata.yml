@@ -30,6 +30,12 @@
   :expectation: MAY
 :operations: []
 :searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :names:
   - role
   :expectation: SHOULD
@@ -39,12 +45,6 @@
   :names:
   - patient
   - role
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -109,6 +109,10 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  :choices:
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
 :mandatory_elements:
 - CareTeam.subject
 - CareTeam.participant
@@ -160,12 +164,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Organization
 :tests:
+- :id: us_core_v501_care_team_patient_status_search_test
+  :file_name: care_team_patient_status_search_test.rb
 - :id: us_core_v501_care_team_role_search_test
   :file_name: care_team_role_search_test.rb
 - :id: us_core_v501_care_team_patient_role_search_test
   :file_name: care_team_patient_role_search_test.rb
-- :id: us_core_v501_care_team_patient_status_search_test
-  :file_name: care_team_patient_status_search_test.rb
 - :id: us_core_v501_care_team_read_test
   :file_name: care_team_read_test.rb
 - :id: us_core_v501_care_team_provenance_revinclude_search_test
