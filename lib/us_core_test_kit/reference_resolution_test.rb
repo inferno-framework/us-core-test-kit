@@ -74,7 +74,6 @@ module USCoreTestKit
           found_one_reference && !resolve_one_reference
         end
 
-      require 'pry'; require 'pry-byebug'; binding.pry
       if metadata.must_supports[:choices].present?
         @unresolved_references.delete_if do |reference|
           choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles].include?(reference[:target_profile]) }
