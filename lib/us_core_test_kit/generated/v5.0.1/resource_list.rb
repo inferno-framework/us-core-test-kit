@@ -9,6 +9,7 @@ module USCoreTestKit
       'Device',
       'DiagnosticReport',
       'DocumentReference',
+      'Encounter',
       'Goal',
       'Immunization',
       'Location',

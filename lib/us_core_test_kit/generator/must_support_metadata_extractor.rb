@@ -372,6 +372,9 @@ module USCoreTestKit
                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
               ]
             }
+          when 'Encounter'
+            choices << { paths: ['reasonCode', 'reasonReference'] }
+            choices << { paths: ['location.location', 'serviceProvider'] }
           end
         end
 
