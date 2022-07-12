@@ -1,6 +1,6 @@
+require_relative 'care_team/care_team_patient_status_search_test'
 require_relative 'care_team/care_team_role_search_test'
 require_relative 'care_team/care_team_patient_role_search_test'
-require_relative 'care_team/care_team_patient_status_search_test'
 require_relative 'care_team/care_team_read_test'
 require_relative 'care_team/care_team_provenance_revinclude_search_test'
 require_relative 'care_team/care_team_validation_test'
@@ -77,9 +77,9 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'care_team', 'metadata.yml')))
       end
   
+      test from: :us_core_v501_care_team_patient_status_search_test
       test from: :us_core_v501_care_team_role_search_test
       test from: :us_core_v501_care_team_patient_role_search_test
-      test from: :us_core_v501_care_team_patient_status_search_test
       test from: :us_core_v501_care_team_read_test
       test from: :us_core_v501_care_team_provenance_revinclude_search_test
       test from: :us_core_v501_care_team_validation_test
