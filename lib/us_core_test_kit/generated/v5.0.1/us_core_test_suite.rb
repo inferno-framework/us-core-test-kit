@@ -13,6 +13,7 @@ require_relative 'device_group'
 require_relative 'diagnostic_report_note_group'
 require_relative 'diagnostic_report_lab_group'
 require_relative 'document_reference_group'
+require_relative 'encounter_group'
 require_relative 'goal_group'
 require_relative 'immunization_group'
 require_relative 'medication_request_group'
@@ -97,6 +98,7 @@ module USCoreTestKit
       group from: :us_core_v501_diagnostic_report_note
       group from: :us_core_v501_diagnostic_report_lab
       group from: :us_core_v501_document_reference
+      group from: :us_core_v501_encounter
       group from: :us_core_v501_goal
       group from: :us_core_v501_immunization
       group from: :us_core_v501_medication_request

@@ -8,7 +8,7 @@ module USCoreTestKit
 
       def initialize(ig_resources)
         self.ig_resources = ig_resources
-        add_vital_signs_profiles
+        add_missing_supported_profiles
         self.metadata = IGMetadata.new
       end
 
@@ -28,8 +28,9 @@ module USCoreTestKit
 
       # The US Core Server Capability Statement does not list support for the
       # required vital signs profiles, so they need to be added
-      def add_vital_signs_profiles
-        if ig_resources.ig.version == "3.1.1"
+      def add_missing_supported_profiles
+        case ig_resources.ig.version
+        when '3.1.1'
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Observation' }
             .supportedProfile.concat [
@@ -39,6 +40,12 @@ module USCoreTestKit
               'http://hl7.org/fhir/StructureDefinition/bodyweight',
               'http://hl7.org/fhir/StructureDefinition/heartrate',
               'http://hl7.org/fhir/StructureDefinition/resprate'
+            ]
+        when '5.0.1'
+          ig_resources.capability_statement.rest.first.resource
+            .find { |resource| resource.type == 'Encounter' }
+            .supportedProfile.concat [
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter'
             ]
         end
       end
