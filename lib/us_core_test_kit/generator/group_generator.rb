@@ -88,7 +88,7 @@ module USCoreTestKit
       end
 
       def add_special_tests
-        return unless group_metadata.reformatted_version == 'v400'
+        return if group_metadata.reformatted_version == 'v311'
 
         case group_metadata.resource
         when 'Device'

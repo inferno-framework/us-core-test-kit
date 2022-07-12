@@ -10,6 +10,7 @@ require_relative 'document_reference/document_reference_provenance_revinclude_se
 require_relative 'document_reference/document_reference_validation_test'
 require_relative 'document_reference/document_reference_must_support_test'
 require_relative 'document_reference/document_reference_reference_resolution_test'
+require_relative '../../custom_groups/v4.0.0/document_reference_custodian_test'
 
 module USCoreTestKit
   module USCoreV501
@@ -97,6 +98,7 @@ read succeeds.
       test from: :us_core_v501_document_reference_validation_test
       test from: :us_core_v501_document_reference_must_support_test
       test from: :us_core_v501_document_reference_reference_resolution_test
+      test from: :us_core_v400_document_reference_custodian_test
     end
   end
 end
