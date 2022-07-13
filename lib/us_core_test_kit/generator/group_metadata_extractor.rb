@@ -93,9 +93,10 @@ module USCoreTestKit
 
       CATEGORY_FIRST_PROFILES = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment'
       ]
 
       def category_first_profile?
