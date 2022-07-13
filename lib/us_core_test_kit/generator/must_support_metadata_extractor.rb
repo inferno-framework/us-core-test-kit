@@ -375,7 +375,10 @@ module USCoreTestKit
           when 'Encounter'
             choices << { paths: ['reasonCode', 'reasonReference'] }
             choices << { paths: ['location.location', 'serviceProvider'] }
+          when 'MedicationRequest'
+            choices << { paths: ['reportedBoolean', 'reportedReference'] }
           end
+
         end
 
         @must_supports[:choices] = choices if choices.present?
