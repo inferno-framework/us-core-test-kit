@@ -5,6 +5,7 @@ module USCoreTestKit
 
     def perform_validation_test(resources,
                                 profile_url,
+                                profile_version,
                                 skip_if_empty: true)
 
       skip_if skip_if_empty && resources.blank?,
@@ -13,14 +14,15 @@ module USCoreTestKit
       omit_if resources.blank?,
               "No #{resource_type} resources provided so the #{profile_url} profile does not apply"
 
+      profile_with_version = "#{profile_url}|#{profile_version}"
       resources.each do |resource|
-        resource_is_valid?(resource: resource, profile_url: profile_url)
+        resource_is_valid?(resource: resource, profile_url: profile_with_version)
         check_for_dar(resource)
       end
 
       errors_found = messages.any? { |message| message[:type] == 'error' }
 
-      assert !errors_found, "Resource does not conform to the profile #{profile_url}"
+      assert !errors_found, "Resource does not conform to the profile #{profile_with_version}"
     end
 
     def check_for_dar(resource)
