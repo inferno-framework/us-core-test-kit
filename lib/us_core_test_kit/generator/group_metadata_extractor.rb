@@ -95,9 +95,12 @@ module USCoreTestKit
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
       ]
 
       def category_first_profile?
