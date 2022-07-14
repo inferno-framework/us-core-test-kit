@@ -32,6 +32,7 @@ module USCoreTestKit
             resource: resource,
             profile_url: profile_url,
             profile_name: profile_name,
+            profile_version: profile_version,
             title: title,
             short_description: short_description,
             interactions: interactions,
@@ -167,6 +168,10 @@ module USCoreTestKit
 
       def profile_name
         profile.title.gsub('  ', ' ')
+      end
+
+      def profile_version
+        profile.version
       end
 
       def title
