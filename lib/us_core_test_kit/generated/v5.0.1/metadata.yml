@@ -13801,7 +13801,7 @@
   - :expectation: SHALL
     :names:
     - patient
-    - code
+    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -13809,6 +13809,12 @@
     - patient
     - category
     - date
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -13816,12 +13822,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -15459,7 +15459,7 @@
   - :expectation: SHALL
     :names:
     - patient
-    - code
+    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -15467,6 +15467,12 @@
     - patient
     - category
     - date
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -15474,12 +15480,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -16738,7 +16738,7 @@
   - :expectation: SHALL
     :names:
     - patient
-    - code
+    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHALL
@@ -16746,6 +16746,12 @@
     - patient
     - category
     - date
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :expectation: SHALL
+    :names:
+    - patient
+    - code
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -16753,12 +16759,6 @@
     - patient
     - code
     - date
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
