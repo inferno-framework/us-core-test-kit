@@ -43,7 +43,8 @@ module USCoreTestKit
           'Organization',
           'Practitioner',
           'PractitionerRole',
-          'Provenance'
+          'Provenance',
+          'RelatedPerson'
         ].freeze
       }
 
