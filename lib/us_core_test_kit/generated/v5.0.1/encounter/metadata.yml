@@ -440,6 +440,7 @@
   :resources:
   - Practitioner
   - PractitionerRole
+  - RelatedPerson
 - :path: serviceProvider
   :resources:
   - Organization
