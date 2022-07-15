@@ -14,7 +14,7 @@ services:
   fhir_validator_app:
     image: infernocommunity/fhir-validator-app
     depends_on:
-      - v311_validator_service
+      - validator_service
     environment:
       EXTERNAL_VALIDATOR_URL: http://localhost/validatorapi
       VALIDATOR_BASE_PATH: /validator
