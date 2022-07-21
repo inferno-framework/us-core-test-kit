@@ -878,4 +878,53 @@ RSpec.describe USCoreTestKit::SearchTest do
       end
     end
   end
+
+  describe '#perform_comparator_searches' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::ImmunizationPatientDateSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_id) { '85' }
+    let(:immunization) {
+      FHIR::Immunization.new(
+        id: 'datetime',
+        patient: {
+          reference: "Patient/#{patient_id}"
+        },
+        occurrenceDateTime: '2020-03-04T13:01:01-04:00'
+      )
+    }
+    let(:bundle) {
+      FHIR::Bundle.new(
+        entry: [
+          { resource: immunization },
+          { resource: FHIR::OperationOutcome.new }
+        ]
+      )
+    }
+
+    it 'passes with additional OperationOutcome entry' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient)
+        .and_return([immunization])
+
+      stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=2020-03-04T13:01:01-04:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=gt2020-03-03T13:01:01-04:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=ge2020-03-03T13:01:01-04:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=lt2020-03-05T13:01:01-04:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Immunization?patient=#{patient_id}&date=le2020-03-05T13:01:01-04:00")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+    end
+
+  end
 end

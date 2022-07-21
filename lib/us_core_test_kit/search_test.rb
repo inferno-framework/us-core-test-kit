@@ -228,8 +228,9 @@ module USCoreTestKit
 
           search_and_check_response(params_with_comparator)
 
-          fetch_all_bundled_resources
-            .each { |resource| check_resource_against_params(resource, params_with_comparator) }
+          fetch_all_bundled_resources.each do |resource| 
+            check_resource_against_params(resource, params_with_comparator) if resource.resourceType == resource_type
+          end
         end
 
         search_variant_test_records[:comparator_searches] << name
