@@ -9,6 +9,7 @@ module USCoreTestKit
         :resource,
         :profile_url,
         :profile_name,
+        :profile_version,
         :title,
         :short_description,
         :interactions,

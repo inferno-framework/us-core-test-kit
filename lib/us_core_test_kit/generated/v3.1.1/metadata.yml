@@ -8,6 +8,7 @@
   :resource: AllergyIntolerance
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
   :profile_name: US Core AllergyIntolerance Profile
+  :profile_version: 3.1.1
   :title: AllergyIntolerance
   :short_description: Verify support for the server capabilities required by the US
     Core AllergyIntolerance Profile.
@@ -161,6 +162,7 @@
   :resource: CarePlan
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan
   :profile_name: US Core CarePlan Profile
+  :profile_version: 3.1.1
   :title: CarePlan
   :short_description: Verify support for the server capabilities required by the US
     Core CarePlan Profile.
@@ -444,6 +446,7 @@
   :resource: CareTeam
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
   :profile_name: US Core CareTeam Profile
+  :profile_version: 3.1.1
   :title: CareTeam
   :short_description: Verify support for the server capabilities required by the US
     Core CareTeam Profile.
@@ -576,6 +579,7 @@
   :resource: Condition
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
   :profile_name: US Core Condition Profile
+  :profile_version: 3.1.1
   :title: Condition
   :short_description: Verify support for the server capabilities required by the US
     Core Condition Profile.
@@ -795,6 +799,7 @@
   :resource: Device
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device
   :profile_name: US Core Implantable Device Profile
+  :profile_version: 3.1.1
   :title: Implantable Device
   :short_description: Verify support for the server capabilities required by the US
     Core Implantable Device Profile.
@@ -1934,6 +1939,7 @@
   :resource: DiagnosticReport
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note
   :profile_name: US Core DiagnosticReport Profile for Report and Note exchange
+  :profile_version: 3.1.1
   :title: DiagnosticReport for Report and Note exchange
   :short_description: Verify support for the server capabilities required by the US
     Core DiagnosticReport Profile for Report and Note exchange.
@@ -3170,6 +3176,7 @@
   :resource: DiagnosticReport
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab
   :profile_name: US Core DiagnosticReport Profile for Laboratory Results Reporting
+  :profile_version: 3.1.1
   :title: DiagnosticReport for Laboratory Results Reporting
   :short_description: Verify support for the server capabilities required by the US
     Core DiagnosticReport Profile for Laboratory Results Reporting.
@@ -4411,6 +4418,7 @@
   :resource: DocumentReference
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference
   :profile_name: US Core DocumentReference Profile
+  :profile_version: 3.1.1
   :title: DocumentReference
   :short_description: Verify support for the server capabilities required by the US
     Core DocumentReference Profile.
@@ -4765,6 +4773,7 @@
   :resource: Encounter
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   :profile_name: US Core Encounter Profile
+  :profile_version: 3.1.1
   :title: Encounter
   :short_description: Verify support for the server capabilities required by the US
     Core Encounter Profile.
@@ -5121,6 +5130,7 @@
   :resource: Goal
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal
   :profile_name: US Core Goal Profile
+  :profile_version: 3.1.1
   :title: Goal
   :short_description: Verify support for the server capabilities required by the US
     Core Goal Profile.
@@ -5269,7 +5279,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system:
+    :system: 
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -5304,6 +5314,7 @@
   :resource: Immunization
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
   :profile_name: US Core Immunization Profile
+  :profile_version: 3.1.1
   :title: Immunization
   :short_description: Verify support for the server capabilities required by the US
     Core Immunization Profile.
@@ -5502,6 +5513,7 @@
   :resource: Location
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
   :profile_name: US Core Location Profile
+  :profile_version: 3.1.1
   :title: Location
   :short_description: Verify support for the server capabilities required by the US
     Core Location Profile.
@@ -5745,6 +5757,7 @@
   :resource: Medication
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication
   :profile_name: US Core Medication Profile
+  :profile_version: 3.1.1
   :title: Medication
   :short_description: Verify support for the server capabilities required by the US
     Core Medication Profile.
@@ -5810,6 +5823,7 @@
   :resource: MedicationRequest
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest
   :profile_name: US Core MedicationRequest Profile
+  :profile_version: 3.1.1
   :title: MedicationRequest
   :short_description: Verify support for the server capabilities required by the US
     Core MedicationRequest Profile.
@@ -6113,6 +6127,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus
   :profile_name: US Core Smoking Status Observation Profile
+  :profile_version: 3.1.1
   :title: Smoking Status Observation
   :short_description: Verify support for the server capabilities required by the US
     Core Smoking Status Observation Profile.
@@ -6392,6 +6407,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height
   :profile_name: US Core Pediatric Weight for Height Observation Profile
+  :profile_version: 3.1.1
   :title: Pediatric Weight for Height Observation
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Weight for Height Observation Profile.
@@ -6701,6 +6717,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
   :profile_name: US Core Laboratory Result Observation Profile
+  :profile_version: 3.1.1
   :title: Laboratory Result Observation
   :short_description: Verify support for the server capabilities required by the US
     Core Laboratory Result Observation Profile.
@@ -7974,6 +7991,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age
   :profile_name: US Core Pediatric BMI for Age Observation Profile
+  :profile_version: 3.1.1
   :title: Pediatric BMI for Age Observation
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric BMI for Age Observation Profile.
@@ -8283,6 +8301,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry
   :profile_name: US Core Pulse Oximetry Profile
+  :profile_version: 3.1.1
   :title: Pulse Oximetry
   :short_description: Verify support for the server capabilities required by the US
     Core Pulse Oximetry Profile.
@@ -8671,6 +8690,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile
   :profile_name: US Core Pediatric Head Occipital-frontal Circumference Percentile
     Profile
+  :profile_version: 3.1.1
   :title: Pediatric Head Occipital-frontal Circumference Percentile
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Head Occipital-frontal Circumference Percentile Profile.
@@ -8980,6 +9000,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodyheight
   :profile_name: Observation Body Height Profile
+  :profile_version: 4.0.1
   :title: Observation Body Height
   :short_description: Verify support for the server capabilities required by the Observation
     Body Height Profile.
@@ -9294,6 +9315,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodytemp
   :profile_name: Observation Body Temperature Profile
+  :profile_version: 4.0.1
   :title: Observation Body Temperature
   :short_description: Verify support for the server capabilities required by the Observation
     Body Temperature Profile.
@@ -9608,6 +9630,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/bp
   :profile_name: Observation Blood Pressure Profile
+  :profile_version: 4.0.1
   :title: Observation Blood Pressure
   :short_description: Verify support for the server capabilities required by the Observation
     Blood Pressure Profile.
@@ -9962,6 +9985,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/bodyweight
   :profile_name: Observation Body Weight Profile
+  :profile_version: 4.0.1
   :title: Observation Body Weight
   :short_description: Verify support for the server capabilities required by the Observation
     Body Weight Profile.
@@ -10276,6 +10300,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/heartrate
   :profile_name: Observation Heart Rate Profile
+  :profile_version: 4.0.1
   :title: Observation Heart Rate
   :short_description: Verify support for the server capabilities required by the Observation
     Heart Rate Profile.
@@ -10587,6 +10612,7 @@
   :resource: Observation
   :profile_url: http://hl7.org/fhir/StructureDefinition/resprate
   :profile_name: Observation Respiratory Rate Profile
+  :profile_version: 4.0.1
   :title: Observation Respiratory Rate
   :short_description: Verify support for the server capabilities required by the Observation
     Respiratory Rate Profile.
@@ -10898,6 +10924,7 @@
   :resource: Organization
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   :profile_name: US Core Organization Profile
+  :profile_version: 3.1.1
   :title: Organization
   :short_description: Verify support for the server capabilities required by the US
     Core Organization Profile.
@@ -11032,6 +11059,7 @@
   :resource: Patient
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :profile_name: US Core Patient Profile
+  :profile_version: 3.1.1
   :title: Patient
   :short_description: Verify support for the server capabilities required by the US
     Core Patient Profile.
@@ -11336,6 +11364,7 @@
   :resource: Practitioner
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :profile_name: US Core Practitioner Profile
+  :profile_version: 3.1.1
   :title: Practitioner
   :short_description: Verify support for the server capabilities required by the US
     Core Practitioner Profile.
@@ -11460,6 +11489,7 @@
   :resource: PractitionerRole
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :profile_name: US Core PractitionerRole Profile
+  :profile_version: 3.1.1
   :title: PractitionerRole
   :short_description: Verify support for the server capabilities required by the US
     Core PractitionerRole Profile.
@@ -11722,6 +11752,7 @@
   :resource: Procedure
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure
   :profile_name: US Core Procedure Profile
+  :profile_version: 3.1.1
   :title: Procedure
   :short_description: Verify support for the server capabilities required by the US
     Core Procedure Profile.
@@ -12975,6 +13006,7 @@
   :resource: Provenance
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance
   :profile_name: US Core Provenance Profile
+  :profile_version: 3.1.1
   :title: Provenance
   :short_description: Verify support for the server capabilities required by the US
     Core Provenance Profile.

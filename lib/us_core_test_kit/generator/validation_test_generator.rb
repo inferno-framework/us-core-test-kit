@@ -64,6 +64,10 @@ module USCoreTestKit
         group_metadata.profile_name
       end
 
+      def profile_version
+        group_metadata.profile_version
+      end
+
       def test_id
         "us_core_#{group_metadata.reformatted_version}_#{profile_identifier}_validation_test"
       end
