@@ -224,7 +224,11 @@
   :slices:
   - :name: DocumentReference.category:us-core
     :path: category
-    :discriminator: 
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values:
+      - clinical-note
   :elements:
   - :path: identifier
   - :path: status

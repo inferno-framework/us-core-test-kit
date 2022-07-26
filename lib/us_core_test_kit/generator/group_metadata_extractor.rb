@@ -253,7 +253,7 @@ module USCoreTestKit
 
       def must_support_metadata_extractor
         @must_support_metadata_extractor ||=
-          MustSupportMetadataExtractor.new(profile_elements, profile, resource)
+          MustSupportMetadataExtractor.new(profile_elements, profile, resource, ig_resources)
       end
 
       def must_supports

@@ -1189,7 +1189,13 @@
   :slices:
   - :name: DiagnosticReport.category:us-core
     :path: category
-    :discriminator: 
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values:
+      - LP29684-5
+      - LP29708-2
+      - LP7839-6
   :elements:
   - :path: status
   - :path: category

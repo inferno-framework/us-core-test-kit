@@ -1165,7 +1165,13 @@
   :slices:
   - :name: ServiceRequest.category:us-core
     :path: category
-    :discriminator: 
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values:
+      - sdoh
+      - '386053000'
+      - '410606002'
   :elements:
   - :path: status
   - :path: intent

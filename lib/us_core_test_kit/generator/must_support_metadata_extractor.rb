@@ -1,12 +1,13 @@
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractor
-      attr_accessor :profile_elements, :profile, :resource
+      attr_accessor :profile_elements, :profile, :resource, :ig_resources
 
-      def initialize(profile_elements, profile, resource)
+      def initialize(profile_elements, profile, resource, ig_resources)
         self.profile_elements = profile_elements
         self.profile = profile
         self.resource = resource
+        self.ig_resources = ig_resources
       end
 
       def must_supports
@@ -93,9 +94,25 @@ module USCoreTestKit
                   path: discriminator_path,
                   system: pattern_element.patternIdentifier.system
                 }
+              elsif pattern_element.binding&.strength == 'required' && 
+                    pattern_element.binding&.valueSet.present?
+
+                value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
+                bound_systems = value_set&.compose&.include&.reject { |code| code.concept.blank? }
+                values = []
+
+                if bound_systems.present?
+                  values = bound_systems&.flat_map { |system| system.concept.map { |code| code.code } }.uniq
+                end
+
+                {
+                  type: 'requiredBinding',
+                  path: discriminator_path,
+                  values: values
+                }
               else
                 # TODO: tempoaray fix for pattern slicing without pattern[x]. FHIR-1624
-                #raise StandardError, 'Unsupported discriminator pattern type'
+                raise StandardError, 'Unsupported discriminator pattern type'
               end
           end
         end
@@ -279,6 +296,7 @@ module USCoreTestKit
           add_patient_uscdi_elements
         when '5.0.1'
           add_patient_uscdi_elements
+          add_document_reference_category_values
         end
       end
 
@@ -395,7 +413,7 @@ module USCoreTestKit
       end
 
       def add_patient_uscdi_elements
-        return if profile.type != 'Patient'
+        return unless profile.type == 'Patient'
 
         #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
         @must_supports[:extensions] << {
@@ -470,6 +488,14 @@ module USCoreTestKit
             uscdi_only: true
           }
         end
+      end
+
+      def add_document_reference_category_values
+        return unless profile.type == 'DocumentReference'
+
+        slice = @must_supports[:slices].find{|slice| slice[:path] == 'category'}
+
+        slice[:discriminator][:values] << 'clinical-note' if slice.present?
       end
     end
   end
