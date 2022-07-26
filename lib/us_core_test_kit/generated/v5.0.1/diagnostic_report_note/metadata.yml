@@ -6,6 +6,7 @@
 :resource: DiagnosticReport
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note
 :profile_name: US Core DiagnosticReport Profile for Report and Note Exchange
+:profile_version: 5.0.1
 :title: DiagnosticReport for Report and Note Exchange
 :short_description: Verify support for the server capabilities required by the US
   Core DiagnosticReport Profile for Report and Note Exchange.

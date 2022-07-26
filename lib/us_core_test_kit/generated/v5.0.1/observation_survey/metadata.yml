@@ -6,6 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
 :profile_name: US Core Observation Survey Profile
+:profile_version: 5.0.1
 :title: Observation Survey
 :short_description: Verify support for the server capabilities required by the US
   Core Observation Survey Profile.
