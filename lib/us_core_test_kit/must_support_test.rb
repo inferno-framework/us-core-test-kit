@@ -145,6 +145,8 @@ module USCoreTestKit
           else
             element.is_a? FHIR.const_get(discriminator[:code])
           end
+        when 'requiredBinding'
+          #TODO: add handling here
         end
       end
     end

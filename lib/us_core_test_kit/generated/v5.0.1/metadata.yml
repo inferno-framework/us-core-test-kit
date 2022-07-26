@@ -1189,7 +1189,12 @@
     :slices:
     - :name: Condition.category:us-core
       :path: category
-      :discriminator: 
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values:
+        - problem-list-item
+        - health-concern
     - :name: Condition.category:sdoh
       :path: category
       :discriminator:
@@ -3616,7 +3621,13 @@
     :slices:
     - :name: DiagnosticReport.category:us-core
       :path: category
-      :discriminator: 
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values:
+        - LP29684-5
+        - LP29708-2
+        - LP7839-6
     :elements:
     - :path: status
     - :path: category
@@ -5196,7 +5207,11 @@
     :slices:
     - :name: DocumentReference.category:us-core
       :path: category
-      :discriminator: 
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values:
+        - clinical-note
     :elements:
     - :path: identifier
     - :path: status
@@ -7542,7 +7557,10 @@
     :slices:
     - :name: MedicationRequest.category:us-core
       :path: category
-      :discriminator: 
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values: []
     :elements:
     - :path: status
     - :path: intent
@@ -22602,7 +22620,13 @@
     :slices:
     - :name: ServiceRequest.category:us-core
       :path: category
-      :discriminator: 
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values:
+        - sdoh
+        - '386053000'
+        - '410606002'
     :elements:
     - :path: status
     - :path: intent

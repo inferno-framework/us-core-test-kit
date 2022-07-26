@@ -145,7 +145,10 @@
   :slices:
   - :name: MedicationRequest.category:us-core
     :path: category
-    :discriminator: 
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values: []
   :elements:
   - :path: status
   - :path: intent
