@@ -32,6 +32,7 @@ fail if their code/system are not found in the valueset.
       run do
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference',
+                                '5.0.1',
                                 skip_if_empty: true)
       end
     end
