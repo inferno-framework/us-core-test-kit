@@ -152,7 +152,8 @@ module USCoreTestKit
             element.is_a? FHIR.const_get(discriminator[:code])
           end
         when 'requiredBinding'
-          #TODO: add handling here
+          coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
+          find_a_value_at(element, coding_path) {|coding| discriminator[:values].include?(coding.code) }
         end
       end
     end
