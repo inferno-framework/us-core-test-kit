@@ -94,7 +94,7 @@ module USCoreTestKit
                   path: discriminator_path,
                   system: pattern_element.patternIdentifier.system
                 }
-              elsif pattern_element.binding&.strength == 'required' && 
+              elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
                 value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
@@ -443,19 +443,6 @@ module USCoreTestKit
           path: 'name.period.end',
           uscdi_only: true
         }
-        @must_supports[:elements] << {
-          path: 'telecom',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
-          path: 'communication',
-          uscdi_only: true
-        }
-        @must_supports[:elements].each do |element|
-          path = element[:path]
-          element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
-        end
-
 
         if profile.version == '5.0.1'
           @must_supports[:extensions] << {
