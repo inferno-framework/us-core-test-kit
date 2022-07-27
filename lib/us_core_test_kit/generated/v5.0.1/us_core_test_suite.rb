@@ -38,7 +38,6 @@ require_relative 'pediatric_bmi_for_age_group'
 require_relative 'head_circumference_percentile_group'
 require_relative 'body_weight_group'
 require_relative 'procedure_group'
-require_relative 'questionnaire_response_group'
 require_relative 'service_request_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
@@ -123,7 +122,6 @@ module USCoreTestKit
       group from: :us_core_v501_head_circumference_percentile
       group from: :us_core_v501_body_weight
       group from: :us_core_v501_procedure
-      group from: :us_core_v501_questionnaire_response
       group from: :us_core_v501_service_request
       group from: :us_core_v501_organization
       group from: :us_core_v501_practitioner
