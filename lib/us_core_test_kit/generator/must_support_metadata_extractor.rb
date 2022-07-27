@@ -111,7 +111,6 @@ module USCoreTestKit
                   values: values
                 }
               else
-                # TODO: tempoaray fix for pattern slicing without pattern[x]. FHIR-1624
                 raise StandardError, 'Unsupported discriminator pattern type'
               end
           end
