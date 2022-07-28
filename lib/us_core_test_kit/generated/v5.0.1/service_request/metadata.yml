@@ -101,11 +101,9 @@
     - ServiceRequest.category
     :comparators: {}
     :values:
-    - '108252007'
-    - '363679005'
-    - '409063005'
-    - '409073007'
-    - '387713003'
+    - sdoh
+    - '386053000'
+    - '410606002'
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
