@@ -86,47 +86,9 @@
     - DiagnosticReport.category
     :comparators: {}
     :values:
-    - AU
-    - BG
-    - BLB
-    - CG
-    - CH
-    - CP
-    - CT
-    - CTH
-    - CUS
-    - EC
-    - EN
-    - GE
-    - HM
-    - ICU
-    - IMM
-    - LAB
-    - MB
-    - MCB
-    - MYC
-    - NMR
-    - NMS
-    - NRS
-    - OSL
-    - OT
-    - OTH
-    - OUS
-    - PF
-    - PHR
-    - PHY
-    - PT
-    - RAD
-    - RC
-    - RT
-    - RUS
-    - RX
-    - SP
-    - SR
-    - TX
-    - VR
-    - VUS
-    - XRC
+    - LP29684-5
+    - LP29708-2
+    - LP7839-6
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY

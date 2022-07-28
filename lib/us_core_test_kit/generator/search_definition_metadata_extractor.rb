@@ -114,11 +114,12 @@ module USCoreTestKit
       def values
         values = (
           (
-          values_from_slices +
-          values_from_fixed_codes +
-          values_from_pattern_coding +
-          values_from_pattern_codeable_concept
-          ).uniq.presence || values_from_value_set_binding
+            values_from_pattern_codeable_concept_slices +
+            values_from_required_binding_slices +
+            values_from_fixed_codes +
+            values_from_pattern_coding +
+            values_from_pattern_codeable_concept
+          ).uniq.presence || values_from_value_set_binding(profile_element)
         ).presence || values_from_resource_metadata
         values
       end
@@ -129,14 +130,25 @@ module USCoreTestKit
         profile_elements.select do |element|
           full_paths.include?(element.path) &&
             element.sliceName.present? &&
-            element.patternCodeableConcept.present?
+            (
+              element.patternCodeableConcept.present? ||
+              element.binding.present? && element.binding.strength == 'required'
+            )
         end
       end
 
-      def values_from_slices
+      def values_from_pattern_codeable_concept_slices
         slices.map do |slice|
-          slice.patternCodeableConcept.coding.first.code
-        end
+          slice.patternCodeableConcept.coding.first.code if slice.patternCodeableConcept.present?
+        end.compact
+      end
+
+      def values_from_required_binding_slices
+        slices.map do |slice|
+          if slice.binding.present? && slice.binding.strength == 'required'
+            values_from_value_set_binding(slice)
+          end
+        end.flatten.compact
       end
 
       def values_from_fixed_codes
@@ -161,19 +173,24 @@ module USCoreTestKit
         [profile_element.patternCodeableConcept.coding.first.code]
       end
 
-      def value_set_binding
-        profile_element&.binding
+      def value_set_binding(the_element)
+        the_element&.binding
       end
 
-      def value_set
-        ig_resources.value_set_by_url(value_set_binding&.valueSet)
+      def value_set(the_element)
+        ig_resources.value_set_by_url(value_set_binding(the_element)&.valueSet)
       end
 
-      def bound_systems
-        value_set&.compose&.include&.reject { |code| code.concept.nil? }
+      def bound_systems(the_element)
+        value_set(the_element)&.compose&.include&.reject { |code| code.concept.nil? }
       end
 
-      def values_from_value_set_binding
+      def values_from_value_set_binding(the_element)
+        #require 'pry'; require 'pry-byebug';
+        #binding.pry if resource == 'DiagnosticReport' && ig_resources.ig.version == '5.0.1' && name == 'category'
+
+        bound_systems = bound_systems(the_element)
+
         return [] if bound_systems.blank?
 
         bound_systems.flat_map { |system| system.concept.map { |code| code.code } }.uniq

@@ -157,6 +157,8 @@
     :comparators: {}
     :values:
     - sdoh
+    - problem-list-item
+    - health-concern
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
