@@ -216,10 +216,10 @@
     :types:
     - Reference
   :choices:
-  - :element_paths:
+  - :paths:
     - reasonCode
     - reasonReference
-  - :element_paths:
+  - :paths:
     - location.location
     - serviceProvider
 :mandatory_elements:

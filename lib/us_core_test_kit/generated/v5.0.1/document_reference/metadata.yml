@@ -255,7 +255,7 @@
     - Reference
   - :path: context.period
   :choices:
-  - :element_paths:
+  - :paths:
     - content.attachment.data
     - content.attachment.url
 :mandatory_elements:
