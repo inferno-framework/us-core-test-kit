@@ -193,7 +193,7 @@
     :fixed_value: old
     :uscdi_only: true
   :choices:
-  - :element_paths:
+  - :paths:
     - name.period.end
     - name.use
 :mandatory_elements:

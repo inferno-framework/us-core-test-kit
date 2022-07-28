@@ -27,6 +27,7 @@ module USCoreTestKit
         * Patient.name
         * Patient.name.family
         * Patient.name.given
+        * Patient.name.period.end or Patient.name.use
         * Patient.telecom.system
         * Patient.telecom.use
         * Patient.telecom.value

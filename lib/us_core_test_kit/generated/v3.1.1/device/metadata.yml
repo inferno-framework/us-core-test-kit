@@ -1085,7 +1085,7 @@
     :types:
     - Reference
   :choices:
-  - :element_paths:
+  - :paths:
     - udiCarrier.carrierAIDC
     - udiCarrier.carrierHRF
 :mandatory_elements:
