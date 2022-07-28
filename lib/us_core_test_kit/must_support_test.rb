@@ -31,17 +31,17 @@ module USCoreTestKit
     def handle_must_support_choices
       missing_elements.delete_if do |element|
         choices = metadata.must_supports[:choices].find { |choice| choice[:paths]&.include?(element[:path]) }
-        is_any_choice_supported?(choices)        
+        is_any_choice_supported?(choices)
       end
 
       missing_extensions.delete_if do |extension|
         choices = metadata.must_supports[:choices].find { |choice| choice[:extension_ids]&.include?(extension[:id]) }
-        is_any_choice_supported?(choices)        
+        is_any_choice_supported?(choices)
       end
 
       missing_slices.delete_if do |slice|
         choices = metadata.must_supports[:choices].find { |choice| choice[:slice_names]&.include?(slice[:name]) }
-        is_any_choice_supported?(choices)        
+        is_any_choice_supported?(choices)
       end
     end
 
@@ -53,7 +53,7 @@ module USCoreTestKit
         choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
         choices[:extension_ids]&.any? { |extension_id| missing_extensions.none? { |extension| extension[:id] == extension_id} } ||
         choices[:slice_names]&.any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name} }
-      )  
+      )
     end
 
     def missing_must_support_strings
@@ -117,15 +117,6 @@ module USCoreTestKit
             value_found.present? || value_found == false
           end
         end
-
-      # if metadata.must_supports[:choices].present?
-      #   @missing_elements.delete_if do |element|
-      #     choice_paths = metadata.must_supports[:choices].find { |choice| choice[:paths].include?(element[:path]) }
-
-      #     choice_paths.present? &&
-      #       choice_paths[:paths].any? { |path| @missing_elements.none? { |element| element[:path] == path } }
-      #   end
-      # end
 
       @missing_elements
     end
