@@ -266,6 +266,11 @@
   - :path: abatementDateTime
     :original_path: abatement[x]
   - :path: recordedDate
+  :choices:
+  - :element_paths:
+    - onsetDate
+    :extension_ids:
+    - Condition.extension:assertedDate
 :mandatory_elements:
 - Condition.category
 - Condition.code

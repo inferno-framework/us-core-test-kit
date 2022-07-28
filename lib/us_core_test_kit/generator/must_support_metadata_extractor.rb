@@ -362,22 +362,20 @@ module USCoreTestKit
       def add_must_support_choices
         choices = []
 
-        choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
+        choices << { element_paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
 
         case profile.version
         when '3.1.1'
-          choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] } if profile.type == 'Device'
+          choices << { element_paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] } if profile.type == 'Device'
         when '4.0.0'
           case profile.type
           when 'Encounter'
-            choices << { paths: ['reasonCode', 'reasonReference'] }
-            choices << { paths: ['location.location', 'serviceProvider'] }
+            choices << { element_paths: ['reasonCode', 'reasonReference'] }
+            choices << { element_paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
-            choices << { paths: ['reportedBoolean', 'reportedReference'] }
+            choices << { element_paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
-            choices << {
-              paths: ['name.period.end', 'name.use'],
-              uscdi_only: true
+            choices << { element_paths: ['name.period.end', 'name.use'],
             }
           end
         when '5.0.1'
@@ -389,11 +387,16 @@ module USCoreTestKit
                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
               ]
             }
+          when 'Condition'
+            choices << { element_paths: ['onsetDate'], extension_ids: ['Condition.extension:assertedDate']}
           when 'Encounter'
-            choices << { paths: ['reasonCode', 'reasonReference'] }
-            choices << { paths: ['location.location', 'serviceProvider'] }
+            choices << { element_paths: ['reasonCode', 'reasonReference'] }
+            choices << { element_paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
-            choices << { paths: ['reportedBoolean', 'reportedReference'] }
+            choices << { element_paths: ['reportedBoolean', 'reportedReference'] }
+          when 'Patient'
+            choices << { element_paths: ['name.period.end', 'name.use'],
+            }            
           end
 
         end

@@ -36,8 +36,9 @@ module USCoreTestKit
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
         * Patient.extension:race
-        * Patient.name.period.end or Patient.name.use
+        * Patient.name.period.end
         * Patient.name.suffix
+        * Patient.name.use
       )
 
       id :us_core_v400_patient_must_support_test
