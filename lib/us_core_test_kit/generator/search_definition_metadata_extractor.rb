@@ -186,9 +186,6 @@ module USCoreTestKit
       end
 
       def values_from_value_set_binding(the_element)
-        #require 'pry'; require 'pry-byebug';
-        #binding.pry if resource == 'DiagnosticReport' && ig_resources.ig.version == '5.0.1' && name == 'category'
-
         bound_systems = bound_systems(the_element)
 
         return [] if bound_systems.blank?
