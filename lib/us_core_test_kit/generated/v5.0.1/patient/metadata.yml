@@ -192,6 +192,10 @@
   - :path: address.use
     :fixed_value: old
     :uscdi_only: true
+  :choices:
+  - :element_paths:
+    - name.period.end
+    - name.use
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system

@@ -1878,7 +1878,7 @@
       :types:
       - Reference
     :choices:
-    - :paths:
+    - :element_paths:
       - udiCarrier.carrierAIDC
       - udiCarrier.carrierHRF
   :mandatory_elements:
@@ -4660,7 +4660,7 @@
       - Reference
     - :path: context.period
     :choices:
-    - :paths:
+    - :element_paths:
       - content.attachment.data
       - content.attachment.url
   :mandatory_elements:

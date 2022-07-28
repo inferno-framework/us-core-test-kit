@@ -172,7 +172,7 @@
   - :path: dosageInstruction
   - :path: dosageInstruction.text
   :choices:
-  - :paths:
+  - :element_paths:
     - reportedBoolean
     - reportedReference
 :mandatory_elements:

@@ -249,10 +249,10 @@
     :types:
     - Reference
   :choices:
-  - :paths:
+  - :element_paths:
     - reasonCode
     - reasonReference
-  - :paths:
+  - :element_paths:
     - location.location
     - serviceProvider
 :mandatory_elements:

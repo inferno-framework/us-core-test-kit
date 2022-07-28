@@ -872,6 +872,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :element_paths:
+      - onsetDate
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -1215,6 +1220,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :element_paths:
+      - onsetDate
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -5238,7 +5248,7 @@
       - Reference
     - :path: context.period
     :choices:
-    - :paths:
+    - :element_paths:
       - content.attachment.data
       - content.attachment.url
   :mandatory_elements:
@@ -5596,10 +5606,10 @@
       :types:
       - Reference
     :choices:
-    - :paths:
+    - :element_paths:
       - reasonCode
       - reasonReference
-    - :paths:
+    - :element_paths:
       - location.location
       - serviceProvider
   :mandatory_elements:
@@ -7591,7 +7601,7 @@
     - :path: dosageInstruction
     - :path: dosageInstruction.text
     :choices:
-    - :paths:
+    - :element_paths:
       - reportedBoolean
       - reportedReference
   :mandatory_elements:
@@ -19079,6 +19089,10 @@
     - :path: address.use
       :fixed_value: old
       :uscdi_only: true
+    :choices:
+    - :element_paths:
+      - name.period.end
+      - name.use
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
