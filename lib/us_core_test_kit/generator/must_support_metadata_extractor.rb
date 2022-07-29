@@ -375,7 +375,9 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
-            choices << { paths: ['name.period.end', 'name.use'],
+            choices << {
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
             }
           end
         when '5.0.1'
@@ -388,8 +390,8 @@ module USCoreTestKit
               ]
             }
           when 'Condition'
-            choices << { 
-              paths: ['onsetDateTime'], 
+            choices << {
+              paths: ['onsetDateTime'],
               extension_ids: ['Condition.extension:assertedDate']
             }
           when 'Encounter'
@@ -398,8 +400,10 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
-            choices << { paths: ['name.period.end', 'name.use'],
-            }            
+            choices << {
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
+            }
           end
 
         end
