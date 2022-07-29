@@ -26,11 +26,11 @@ module USCoreTestKit
         ig_resources.capability_statement.rest.first.resource
       end
 
-      # The US Core Server Capability Statement does not list support for the
-      # required vital signs profiles, so they need to be added
       def add_missing_supported_profiles
         case ig_resources.ig.version
         when '3.1.1'
+          # The US Core v3.1.1 Server Capability Statement does not list support for the
+          # required vital signs profiles, so they need to be added
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Observation' }
             .supportedProfile.concat [
@@ -42,6 +42,7 @@ module USCoreTestKit
               'http://hl7.org/fhir/StructureDefinition/resprate'
             ]
         when '5.0.1'
+          # The US Core v5.0.1 Server Capability Statement does not have supported-profile for Encounter
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Encounter' }
             .supportedProfile.concat [
