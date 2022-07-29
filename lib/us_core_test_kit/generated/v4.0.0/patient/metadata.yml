@@ -190,6 +190,7 @@
   - :paths:
     - name.period.end
     - name.use
+    :uscdi_only: true
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system

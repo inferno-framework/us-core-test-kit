@@ -94,7 +94,7 @@ module USCoreTestKit
                   path: discriminator_path,
                   system: pattern_element.patternIdentifier.system
                 }
-              elsif pattern_element.binding&.strength == 'required' && 
+              elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
                 value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
@@ -375,7 +375,9 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
-            choices << { paths: ['name.period.end', 'name.use'],
+            choices << {
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
             }
           end
         when '5.0.1'
@@ -388,8 +390,8 @@ module USCoreTestKit
               ]
             }
           when 'Condition'
-            choices << { 
-              paths: ['onsetDateTime'], 
+            choices << {
+              paths: ['onsetDateTime'],
               extension_ids: ['Condition.extension:assertedDate']
             }
           when 'Encounter'
@@ -398,8 +400,10 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           when 'Patient'
-            choices << { paths: ['name.period.end', 'name.use'],
-            }            
+            choices << {
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
+            }
           end
 
         end

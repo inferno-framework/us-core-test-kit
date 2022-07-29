@@ -27,7 +27,6 @@ module USCoreTestKit
         * Patient.name
         * Patient.name.family
         * Patient.name.given
-        * Patient.name.period.end or Patient.name.use
         * Patient.telecom.system
         * Patient.telecom.use
         * Patient.telecom.value
@@ -37,9 +36,8 @@ module USCoreTestKit
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
         * Patient.extension:race
-        * Patient.name.period.end
+        * Patient.name.period.end or Patient.name.use
         * Patient.name.suffix
-        * Patient.name.use
       )
 
       id :us_core_v400_patient_must_support_test
