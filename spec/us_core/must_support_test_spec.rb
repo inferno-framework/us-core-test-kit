@@ -248,6 +248,22 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
         expect(result.result).to eq('pass')
       end
+
+      it 'skips if datetime format is not correct' do
+        observation.effectiveDateTime = "not a date time"
+        allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [observation]
+          }
+        )
+
+
+        result = run(test_class)
+
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('Observation.effective[x]:effectiveDateTime')
+      end
     end
   end
 end
