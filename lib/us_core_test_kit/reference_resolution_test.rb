@@ -18,7 +18,7 @@ module USCoreTestKit
     def unresolved_references_strings
       unresolved_reference_hash =
         unresolved_references.each_with_object(Hash.new { |hash, key| hash[key] = [] }) do |missing, hash|
-          hash[missing[:path]] << missing[:target_profile] 
+          hash[missing[:path]] << missing[:target_profile]
         end
       unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
     end
@@ -41,7 +41,7 @@ module USCoreTestKit
     end
 
     def must_support_references_with_target_profile
-      # mapping array of target_profiles to array of {path, target_profile} pair 
+      # mapping array of target_profiles to array of {path, target_profile} pair
       must_support_references.map do |element_definition|
         (element_definition[:target_profiles] || ['']).map do |target_profile|
           {
@@ -73,6 +73,17 @@ module USCoreTestKit
 
           found_one_reference && !resolve_one_reference
         end
+
+      if metadata.must_supports[:choices].present?
+        @unresolved_references.delete_if do |reference|
+          choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles].include?(reference[:target_profile]) }
+
+          choice_profiles.present? &&
+          choice_profiles[:target_profiles].any? { |profile| @unresolved_references.none? { |element| element[:target_profile] == profile } }
+        end
+      end
+
+      @unresolved_references
     end
 
     def validate_reference_resolution(resource, reference, target_profile)

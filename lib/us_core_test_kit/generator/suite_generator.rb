@@ -81,11 +81,19 @@ module USCoreTestKit
       end
 
       def clinical_notes_guidance_file_name
-        "../../custom_groups/#{ig_metadata.ig_version}/clinical_notes_guidance_group"
+        if ig_metadata.ig_version == 'v3.1.1'
+          "../../custom_groups/#{ig_metadata.ig_version}/clinical_notes_guidance_group"
+        else
+          '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
+        end
       end
 
       def clinical_notes_guidance_group_id
-        "us_core_#{ig_metadata.reformatted_version}_clinical_notes_guidance"
+        if ig_metadata.reformatted_version == 'v311'
+          "us_core_#{ig_metadata.reformatted_version}_clinical_notes_guidance"
+        else
+          'us_core_v400_clinical_notes_guidance'
+        end
       end
     end
   end

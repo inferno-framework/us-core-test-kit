@@ -93,9 +93,14 @@ module USCoreTestKit
 
       CATEGORY_FIRST_PROFILES = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
       ]
 
       def category_first_profile?
@@ -110,6 +115,8 @@ module USCoreTestKit
           ['patient', 'code']
         elsif resource == 'MedicationRequest'
           ['patient', 'intent']
+        elsif resource == 'CareTeam'
+          ['patient', 'status']
         else
           ['patient']
         end
@@ -246,7 +253,7 @@ module USCoreTestKit
 
       def must_support_metadata_extractor
         @must_support_metadata_extractor ||=
-          MustSupportMetadataExtractor.new(profile_elements, profile, resource)
+          MustSupportMetadataExtractor.new(profile_elements, profile, resource, ig_resources)
       end
 
       def must_supports

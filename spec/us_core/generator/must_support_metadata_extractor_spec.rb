@@ -24,7 +24,13 @@ RSpec.describe USCoreTestKit::Generator::MustSupportMetadataExtractor do
     allow(profile_element).to receive(:type).and_return([type])
   end
 
-  subject { described_class.new([profile_element], profile, "resourceConstructor") }
+  let(:ig_resources) do
+    ig_resources = double()
+    allow(ig_resources).to receive(:value_set_by_url).and_return(nil)
+    ig_resources
+  end
+
+  subject { described_class.new([profile_element], profile, "resourceConstructor", ig_resources) }
 
   describe "#get_type_must_support_metadata" do
     let(:metadata) do
