@@ -46,8 +46,6 @@ module USCoreTestKit
     end
 
     def is_any_choice_supported? (choices)
-      #require 'pry'; require 'pry-byebug'; binding.pry
-
       choices.present? &&
       (
         choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
