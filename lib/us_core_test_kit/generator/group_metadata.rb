@@ -30,23 +30,14 @@ module USCoreTestKit
       ].freeze
 
       NON_USCDI_RESOURCES = {
-        'v3.1.1' => [
-          'Encounter',
-          'Location',
-          'Organization',
-          'Practitioner',
-          'PractitionerRole',
-          'Provenance'
-        ].freeze,
-        'v5.0.1' => [
-          'Location',
-          'Organization',
-          'Practitioner',
-          'PractitionerRole',
-          'Provenance',
-          'RelatedPerson'
-        ].freeze
-      }
+        'Encounter' => ['v311', 'v400'],
+        'Location' => ['v311', 'v400', 'v501'],
+        'Organization' => ['v311', 'v400', 'v501'],
+        'Practitioner' => ['v311', 'v400', 'v501'],
+        'PractitionerRole' => ['v311', 'v400', 'v501'],
+        'Provenance' => ['v311', 'v400', 'v501'],
+        'RelatedPerson' => ['v501']
+      }.freeze
 
 
       ATTRIBUTES.each { |name| attr_accessor name }
@@ -70,12 +61,7 @@ module USCoreTestKit
       end
 
       def non_uscdi_resource?
-        case version
-        when 'v3.1.1', 'v4.0.0'
-          NON_USCDI_RESOURCES['v3.1.1'].include? resource
-        else
-          NON_USCDI_RESOURCES['v5.0.1'].include? resource
-        end
+        NON_USCDI_RESOURCES.key?(resource) && NON_USCDI_RESOURCES[resource].include?(reformatted_version)
       end
 
       def add_test(id:, file_name:)
