@@ -143,55 +143,127 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   end
 
   describe 'must support test for slices' do
-    let(:care_plan_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_care_plan_must_support_test')}
-    let(:careplan) do
-      FHIR::CarePlan.new(
-        text: { status: 'status' },
-        status: 'status',
-        intent: 'intent',
-        category: [
-          {
+    context 'slicing with pattern' do
+      let(:care_plan_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_care_plan_must_support_test')}
+      let(:careplan) do
+        FHIR::CarePlan.new(
+          text: { status: 'status' },
+          status: 'status',
+          intent: 'intent',
+          category: [
+            {
+              coding: [
+                {
+                  system: 'http://hl7.org/fhir/us/core/CodeSystem/careplan-category',
+                  code: 'assess-plan'
+                }
+              ]
+            }
+          ],
+          subject: {
+            reference: patient_ref
+          }
+        )
+      end
+
+      it 'passes if server suports all MS slices' do
+        allow_any_instance_of(care_plan_must_support_test)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [careplan]
+            }
+          )
+
+
+        result = run(care_plan_must_support_test)
+
+        expect(result.result).to eq('pass')
+      end
+
+      it 'fails if server does not suport one MS extensions' do
+        careplan.category.first.coding.first.code = 'something else'
+        allow_any_instance_of(care_plan_must_support_test)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [careplan]
+            }
+          )
+
+        result = run(care_plan_must_support_test)
+
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('CarePlan.category:AssessPlan')
+      end
+    end
+
+    context 'slicing with type' do
+      let(:test_class) { USCoreTestKit::USCoreV400::SmokingstatusMustSupportTest }
+      let(:observation) {
+        FHIR::Observation.new(
+          status: 'final',
+          category: [
+            {
+              coding: [
+                {
+                  system: 'http://terminology.hl7.org/CodeSystem/observation-category',
+                  code: 'social-history'
+                }
+              ]
+            }
+          ],
+          code: {
             coding: [
               {
-                system: 'http://hl7.org/fhir/us/core/CodeSystem/careplan-category',
-                code: 'assess-plan'
+                system: 'http://loinc.org',
+                code: '72166-2'
+              }
+            ],
+            text: 'Tobacco smoking status'
+          },
+          subject: {
+            reference: 'Patient/902'
+          },
+          effectiveDateTime: '2013-04-23T21:07:05Z',
+          valueCodeableConcept: {
+            coding: [
+              {
+                system: 'http://snomed.info/sct',
+                code: '449868002'
               }
             ]
           }
-        ],
-        subject: {
-          reference: patient_ref
-        }
-      )
-    end
+        )
+      }
 
-    it 'passes if server suports all MS slices' do
-      allow_any_instance_of(care_plan_must_support_test)
+      it 'passes if server suports all MS slices' do
+        allow_any_instance_of(test_class)
         .to receive(:scratch_resources).and_return(
           {
-            all: [careplan]
+            all: [observation]
           }
         )
 
 
-      result = run(care_plan_must_support_test)
+        result = run(test_class)
 
-      expect(result.result).to eq('pass')
-    end
+        expect(result.result).to eq('pass')
+      end
 
-    it 'fails if server does not suport one MS extensions' do
-      careplan.category.first.coding.first.code = 'something else'
-      allow_any_instance_of(care_plan_must_support_test)
+      it 'skips if datetime format is not correct' do
+        observation.effectiveDateTime = "not a date time"
+        allow_any_instance_of(test_class)
         .to receive(:scratch_resources).and_return(
           {
-            all: [careplan]
+            all: [observation]
           }
         )
 
-      result = run(care_plan_must_support_test)
 
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to include('CarePlan.category:AssessPlan')
+        result = run(test_class)
+
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('Observation.effective[x]:effectiveDateTime')
+      end
     end
   end
 end
