@@ -140,6 +140,12 @@ module USCoreTestKit
             rescue ArgumentError
               false
             end
+          when 'DateTime'
+            begin
+              DateTime.parse(element)
+            rescue ArgumentError
+              false
+            end
           when 'String'
             element.is_a? String
           else
