@@ -1,3 +1,13 @@
+# 0.2.5
+
+* Include the profile version in validation calls so a single validator instance
+  can be used for multiple US Core versions.
+* Fix a bug where incorrect resources were being checked in searches with
+  comparators.
+* Remove USCDI-only label from subfields of Patient.telecom and
+  Patient.communication (US Core 4+).
+* Add Must Support test for dateTime slices (US Core 5+).
+
 # 0.2.4
 
 * Add info message when resource with an unexpected type is included in the
