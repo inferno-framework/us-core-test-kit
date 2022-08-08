@@ -33,8 +33,7 @@ module USCoreTestKit
 
       def search_param_by_resource_and_name(resource, name)
         # remove '_' from search parameter name, such as _id or _tag
-        normalized_name = name.to_s
-        normalized_name = normalized_name.start_with?('_') ? normalized_name[1..] : normalized_name
+        normalized_name = normalized_name = name.to_s.delete_prefix('_')
 
         resources_by_type['SearchParameter']
           .find { |param| param.id == "us-core-#{resource.downcase}-#{normalized_name}" }
