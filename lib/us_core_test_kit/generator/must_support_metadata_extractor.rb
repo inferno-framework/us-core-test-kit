@@ -460,27 +460,9 @@ module USCoreTestKit
             url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
             uscdi_only: true
           }
-          @must_supports[:extensions] << {
-            id: 'Patient.extension:ethnicity',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
-            uscdi_only: true
-          }
-          @must_supports[:extensions] << {
-            id: 'Patient.extension:birthsex',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
-            uscdi_only: true
-          }
           @must_supports[:elements] << {
-            path: 'name.suffix',
-            uscdi_only: true
-          }
-          @must_supports[:elements] << {
-            path: 'name.use',
+            path: 'address.use',
             fixed_value: 'old',
-            uscdi_only: true
-          }
-          @must_supports[:elements] << {
-            path: 'name.period.end',
             uscdi_only: true
           }
         end
