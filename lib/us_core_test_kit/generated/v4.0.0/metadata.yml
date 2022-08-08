@@ -12166,8 +12166,11 @@
     - :path: name.family
     - :path: name.given
     - :path: telecom.system
+      :uscdi_only: true
     - :path: telecom.value
+      :uscdi_only: true
     - :path: telecom.use
+      :uscdi_only: true
     - :path: gender
     - :path: birthDate
     - :path: address
@@ -12177,12 +12180,17 @@
     - :path: address.postalCode
     - :path: address.period
     - :path: communication.language
+      :uscdi_only: true
     - :path: name.suffix
       :uscdi_only: true
     - :path: name.use
       :fixed_value: old
       :uscdi_only: true
     - :path: name.period.end
+      :uscdi_only: true
+    - :path: telecom
+      :uscdi_only: true
+    - :path: communication
       :uscdi_only: true
     :choices:
     - :paths:

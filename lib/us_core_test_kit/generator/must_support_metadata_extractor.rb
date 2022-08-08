@@ -453,6 +453,23 @@ module USCoreTestKit
           path: 'name.period.end',
           uscdi_only: true
         }
+        @must_supports[:elements] << {
+          path: 'telecom',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'communication',
+          uscdi_only: true
+        }
+        # Though telecom.system, telecom.value, telecom.use, and communication.language are marked as MustSupport since US Core v4.0.0,
+        # their parent elements telecom, and communication are not MustSupport but listed under "Additional USCDI requirements"
+        # According to the updated FHIR spec that "When a child element is defined as Must Support and the parent element isn't,
+        # a system must support the child if it support the parent, but there's no expectation that the system must support the parent.",
+        # We add uscdi_only tag to these elements
+        @must_supports[:elements].each do |element|
+          path = element[:path]
+          element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
+        end
 
         if profile.version == '5.0.1'
           @must_supports[:extensions] << {
