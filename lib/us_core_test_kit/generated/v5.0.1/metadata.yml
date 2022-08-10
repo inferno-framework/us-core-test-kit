@@ -7724,7 +7724,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
   :profile_name: US Core Laboratory Result Observation Profile
   :profile_version: 5.0.1
-  :title: Laboratory Result Observation
+  :title: Observation Laboratory Result
   :short_description: Verify support for the server capabilities required by the US
     Core Laboratory Result Observation Profile.
   :interactions:
@@ -9363,7 +9363,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate
   :profile_name: US Core Respiratory Rate Profile
   :profile_version: 5.0.1
-  :title: Respiratory Rate
+  :title: Observation Respiratory Rate
   :short_description: Verify support for the server capabilities required by the US
     Core Respiratory Rate Profile.
   :interactions:
@@ -10978,7 +10978,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate
   :profile_name: US Core Heart Rate Profile
   :profile_version: 5.0.1
-  :title: Heart Rate
+  :title: Observation Heart Rate
   :short_description: Verify support for the server capabilities required by the US
     Core Heart Rate Profile.
   :interactions:
@@ -11289,7 +11289,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature
   :profile_name: US Core Body Temperature Profile
   :profile_version: 5.0.1
-  :title: Body Temperature
+  :title: Observation Body Temperature
   :short_description: Verify support for the server capabilities required by the US
     Core Body Temperature Profile.
   :interactions:
@@ -11603,7 +11603,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height
   :profile_name: US Core Pediatric Weight for Height Observation Profile
   :profile_version: 5.0.1
-  :title: Pediatric Weight for Height Observation
+  :title: Observation Pediatric Weight for Height
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Weight for Height Observation Profile.
   :interactions:
@@ -11914,7 +11914,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry
   :profile_name: US Core Pulse Oximetry Profile
   :profile_version: 5.0.1
-  :title: Pulse Oximetry
+  :title: Observation Pulse Oximetry
   :short_description: Verify support for the server capabilities required by the US
     Core Pulse Oximetry Profile.
   :interactions:
@@ -12294,7 +12294,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus
   :profile_name: US Core Smoking Status Observation Profile
   :profile_version: 5.0.1
-  :title: Smoking Status Observation
+  :title: Observation Smoking Status
   :short_description: Verify support for the server capabilities required by the US
     Core Smoking Status Observation Profile.
   :interactions:
@@ -12862,7 +12862,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference
   :profile_name: US Core Head Circumference Profile
   :profile_version: 5.0.1
-  :title: Head Circumference
+  :title: Observation Head Circumference
   :short_description: Verify support for the server capabilities required by the US
     Core Head Circumference Profile.
   :interactions:
@@ -13176,7 +13176,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height
   :profile_name: US Core Body Height Profile
   :profile_version: 5.0.1
-  :title: Body Height
+  :title: Observation Body Height
   :short_description: Verify support for the server capabilities required by the US
     Core Body Height Profile.
   :interactions:
@@ -13490,7 +13490,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi
   :profile_name: US Core BMI Profile
   :profile_version: 5.0.1
-  :title: BMI
+  :title: Observation BMI
   :short_description: Verify support for the server capabilities required by the US
     Core BMI Profile.
   :interactions:
@@ -15102,7 +15102,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure
   :profile_name: US Core Blood Pressure Profile
   :profile_version: 5.0.1
-  :title: Blood Pressure
+  :title: Observation Blood Pressure
   :short_description: Verify support for the server capabilities required by the US
     Core Blood Pressure Profile.
   :interactions:
@@ -17483,7 +17483,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age
   :profile_name: US Core Pediatric BMI for Age Observation Profile
   :profile_version: 5.0.1
-  :title: Pediatric BMI for Age Observation
+  :title: Observation Pediatric BMI for Age
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric BMI for Age Observation Profile.
   :interactions:
@@ -17795,7 +17795,7 @@
   :profile_name: US Core Pediatric Head Occipital-frontal Circumference Percentile
     Profile
   :profile_version: 5.0.1
-  :title: Pediatric Head Occipital-frontal Circumference Percentile
+  :title: Observation Pediatric Head Occipital-frontal Circumference Percentile
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Head Occipital-frontal Circumference Percentile Profile.
   :interactions:
@@ -18106,7 +18106,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight
   :profile_name: US Core Body Weight Profile
   :profile_version: 5.0.1
-  :title: Body Weight
+  :title: Observation Body Weight
   :short_description: Verify support for the server capabilities required by the US
     Core Body Weight Profile.
   :interactions:
@@ -18420,7 +18420,7 @@
   :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs
   :profile_name: US Core Vital Signs Profile
   :profile_version: 5.0.1
-  :title: Vital Signs
+  :title: Observation Vital Signs
   :short_description: Verify support for the server capabilities required by the US
     Core Vital Signs Profile.
   :interactions:

@@ -12,12 +12,12 @@ require_relative 'body_temperature/body_temperature_reference_resolution_test'
 module USCoreTestKit
   module USCoreV501
     class BodyTemperatureGroup < Inferno::TestGroup
-      title 'Body Temperature Tests'
+      title 'Observation Body Temperature Tests'
       short_description 'Verify support for the server capabilities required by the US Core Body Temperature Profile.'
       description %(
   # Background
 
-The US Core Body Temperature sequence verifies that the system under test is
+The US Core Observation Body Temperature sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Body Temperature Profile as
 specified in the US Core v5.0.1 Implementation Guide.

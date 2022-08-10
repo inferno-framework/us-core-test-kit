@@ -12,12 +12,12 @@ require_relative 'pediatric_weight_for_height/pediatric_weight_for_height_refere
 module USCoreTestKit
   module USCoreV501
     class PediatricWeightForHeightGroup < Inferno::TestGroup
-      title 'Pediatric Weight for Height Observation Tests'
+      title 'Observation Pediatric Weight for Height Tests'
       short_description 'Verify support for the server capabilities required by the US Core Pediatric Weight for Height Observation Profile.'
       description %(
   # Background
 
-The US Core Pediatric Weight for Height Observation sequence verifies that the system under test is
+The US Core Observation Pediatric Weight for Height sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Pediatric Weight for Height Observation Profile as
 specified in the US Core v5.0.1 Implementation Guide.

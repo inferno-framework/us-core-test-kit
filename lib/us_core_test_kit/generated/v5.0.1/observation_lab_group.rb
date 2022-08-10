@@ -12,12 +12,12 @@ require_relative 'observation_lab/observation_lab_reference_resolution_test'
 module USCoreTestKit
   module USCoreV501
     class ObservationLabGroup < Inferno::TestGroup
-      title 'Laboratory Result Observation Tests'
+      title 'Observation Laboratory Result Tests'
       short_description 'Verify support for the server capabilities required by the US Core Laboratory Result Observation Profile.'
       description %(
   # Background
 
-The US Core Laboratory Result Observation sequence verifies that the system under test is
+The US Core Observation Laboratory Result sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Laboratory Result Observation Profile as
 specified in the US Core v5.0.1 Implementation Guide.

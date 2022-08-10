@@ -12,12 +12,12 @@ require_relative 'pediatric_bmi_for_age/pediatric_bmi_for_age_reference_resoluti
 module USCoreTestKit
   module USCoreV501
     class PediatricBmiForAgeGroup < Inferno::TestGroup
-      title 'Pediatric BMI for Age Observation Tests'
+      title 'Observation Pediatric BMI for Age Tests'
       short_description 'Verify support for the server capabilities required by the US Core Pediatric BMI for Age Observation Profile.'
       description %(
   # Background
 
-The US Core Pediatric BMI for Age Observation sequence verifies that the system under test is
+The US Core Observation Pediatric BMI for Age sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Pediatric BMI for Age Observation Profile as
 specified in the US Core v5.0.1 Implementation Guide.

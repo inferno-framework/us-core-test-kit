@@ -182,7 +182,13 @@ module USCoreTestKit
       end
 
       def title
-        profile.title.gsub(/US\s*Core\s*/, '').gsub(/\s*Profile/, '').strip
+        title = profile.title.gsub(/US\s*Core\s*/, '').gsub(/\s*Profile/, '').strip
+
+        if (Naming.resources_with_multiple_profiles.include?(resource)) && !title.start_with?(resource) && version != 'v3.1.1'
+          title = resource + ' ' + title.split(resource).map(&:strip).join(' ')
+        end
+
+        title
       end
 
       def short_description

@@ -12,12 +12,12 @@ require_relative 'body_weight/body_weight_reference_resolution_test'
 module USCoreTestKit
   module USCoreV400
     class BodyWeightGroup < Inferno::TestGroup
-      title 'Body Weight Tests'
+      title 'Observation Body Weight Tests'
       short_description 'Verify support for the server capabilities required by the US Core Body Weight Profile.'
       description %(
   # Background
 
-The US Core Body Weight sequence verifies that the system under test is
+The US Core Observation Body Weight sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Body Weight Profile as
 specified in the US Core v4.0.0 Implementation Guide.

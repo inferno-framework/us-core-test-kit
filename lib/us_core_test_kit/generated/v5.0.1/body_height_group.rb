@@ -12,12 +12,12 @@ require_relative 'body_height/body_height_reference_resolution_test'
 module USCoreTestKit
   module USCoreV501
     class BodyHeightGroup < Inferno::TestGroup
-      title 'Body Height Tests'
+      title 'Observation Body Height Tests'
       short_description 'Verify support for the server capabilities required by the US Core Body Height Profile.'
       description %(
   # Background
 
-The US Core Body Height sequence verifies that the system under test is
+The US Core Observation Body Height sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Body Height Profile as
 specified in the US Core v5.0.1 Implementation Guide.

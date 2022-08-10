@@ -12,12 +12,12 @@ require_relative 'bmi/bmi_reference_resolution_test'
 module USCoreTestKit
   module USCoreV501
     class BmiGroup < Inferno::TestGroup
-      title 'BMI Tests'
+      title 'Observation BMI Tests'
       short_description 'Verify support for the server capabilities required by the US Core BMI Profile.'
       description %(
   # Background
 
-The US Core BMI sequence verifies that the system under test is
+The US Core Observation BMI sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core BMI Profile as
 specified in the US Core v5.0.1 Implementation Guide.
