@@ -384,6 +384,7 @@ module USCoreTestKit
           case profile.type
           when 'CareTeam'
             choices << {
+              element_path: 'participant.member',
               target_profiles: [
                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
@@ -404,6 +405,7 @@ module USCoreTestKit
             # and US Core QuestionnaireResponse
             if ['us-core-observation-survey', 'us-core-observation-sdoh-assessment'].include?(profile.id)
               choices << {
+                element_path: 'derivedFrom',
                 target_profiles: [
                   'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
                   'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'

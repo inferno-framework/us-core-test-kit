@@ -65,6 +65,7 @@ module USCoreTestKit
             next if value_found.empty?
 
             found_one_reference = true
+            binding.pry
 
             value_found.any? do |reference|
               validate_reference_resolution(resource, reference, target_profile)
@@ -74,16 +75,26 @@ module USCoreTestKit
           found_one_reference && !resolve_one_reference
         end
 
-      if metadata.must_supports[:choices].present?
-        @unresolved_references.delete_if do |reference|
-          choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles]&.include?(reference[:target_profile]) }
+      handle_target_profile_choices(@unresolved_references)
+      @unresolved_references
+    end
 
-          choice_profiles.present? &&
-          choice_profiles[:target_profiles]&.any? { |profile| @unresolved_references.none? { |element| element[:target_profile] == profile } }
+    def handle_target_profile_choices(unresolved_references)
+      return if unresolved_references.blank? || metadata.must_supports[:choices].blank?
+      unresolved_references.delete_if do |reference|
+        choice_profiles = metadata.must_supports[:choices].find do |choice|
+          choice[:element_path] == reference[:path] &&
+          choice[:target_profiles].include?(reference[:target_profile])
+        end
+
+        choice_profiles.present? &&
+        choice_profiles[:target_profiles].any? do |profile|
+          unresolved_references.none? do |reference|
+            reference[:path] == choice_profiles[:element_path] &&
+            reference[:target_profile] == profile
+          end
         end
       end
-
-      @unresolved_references
     end
 
     def validate_reference_resolution(resource, reference, target_profile)
@@ -136,19 +147,8 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      # Only need to know if the resource is valid.
-      # Calling resource_is_valid? causes validation errors to be logged.
-      validator = find_validator(:default)
-
-      outcome = FHIR::OperationOutcome.new(JSON.parse(validator.validate(resource, target_profile)))
-
-      message_hashes = outcome.issue&.map { |issue| validator.message_hash_from_issue(issue, resource) } || []
-
-      message_hashes.concat(validator.additional_validation_messages(resource, target_profile))
-
-      validator.filter_messages(message_hashes)
-
-      message_hashes.none? { |message_hash| message_hash[:type] == 'error' }
+      binding.pry
+      resource_is_valid?(resource: resource, profile_url: target_profile)
     end
   end
 end

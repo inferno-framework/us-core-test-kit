@@ -234,7 +234,8 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
   :choices:
-  - :target_profiles:
+  - :element_path: derivedFrom
+    :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
 :mandatory_elements:

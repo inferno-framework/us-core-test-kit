@@ -552,7 +552,8 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
     :choices:
-    - :target_profiles:
+    - :element_path: participant.member
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :mandatory_elements:
@@ -9231,7 +9232,8 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
     :choices:
-    - :target_profiles:
+    - :element_path: derivedFrom
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
   :mandatory_elements:
@@ -14976,7 +14978,8 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
     :choices:
-    - :target_profiles:
+    - :element_path: derivedFrom
+      :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
   :mandatory_elements:
