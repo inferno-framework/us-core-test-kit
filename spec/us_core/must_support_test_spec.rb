@@ -266,4 +266,201 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       end
     end
   end
+
+  describe 'must support test for slice with requiredBinding' do
+    let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
+    let(:condition) {
+      FHIR::Condition.new(
+        extension: [
+          {
+            url: 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate',
+            valueDateTime: '2016-08-10'
+          }
+        ],
+        clinicalStatus: {
+          coding: [
+            {
+              system: 'http://terminology.hl7.org/CodeSystem/condition-clinical',
+              code: 'active'
+            }
+          ]
+        },
+        verificationStatus: {
+          coding: [
+            {
+              system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
+              code: 'confirmed'
+            }
+          ]
+        },
+        category: [
+          {
+            coding: [
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                code: 'problem-list-item'
+              }
+            ]
+          },
+          {
+            coding: [
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags',
+                code: 'sdoh'
+              }
+            ]
+          }
+        ],
+        code: {
+          coding: [
+            {
+              system: 'http://snomed.info/sct',
+              code: '445281000124101'
+            }
+          ]
+        },
+        subject: {
+          reference: 'Patient/123',
+        },
+        recordedDate: '2016-08-10T07:15:07-08:00',
+        onsetDateTime: '2016-08-10T07:15:07-08:00',
+        abatementDateTime: '2016-08-10T07:15:07-08:00'
+      )
+    }
+
+    it 'passes if server suports all MS slices' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [condition]
+          }
+        )
+
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips if server does not support category:us-core slice' do
+      condition.category.delete_if { |category| category.coding.first.code == 'problem-list-item' }
+      allow_any_instance_of(test_class)
+      .to receive(:scratch_resources).and_return(
+        {
+          all: [condition]
+        }
+      )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('Condition.category:us-core')
+    end
+  end
+
+  describe 'must support test for choices' do
+    let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
+    let(:condition) {
+      FHIR::Condition.new(
+        extension: [
+          {
+            url: 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate',
+            valueDateTime: '2016-08-10'
+          }
+        ],
+        clinicalStatus: {
+          coding: [
+            {
+              system: 'http://terminology.hl7.org/CodeSystem/condition-clinical',
+              code: 'active'
+            }
+          ]
+        },
+        verificationStatus: {
+          coding: [
+            {
+              system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
+              code: 'confirmed'
+            }
+          ]
+        },
+        category: [
+          {
+            coding: [
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                code: 'problem-list-item'
+              }
+            ]
+          },
+          {
+            coding: [
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags',
+                code: 'sdoh'
+              }
+            ]
+          }
+        ],
+        code: {
+          coding: [
+            {
+              system: 'http://snomed.info/sct',
+              code: '445281000124101'
+            }
+          ]
+        },
+        subject: {
+          reference: 'Patient/123',
+        },
+        recordedDate: '2016-08-10T07:15:07-08:00',
+        onsetDateTime: '2016-08-10T07:15:07-08:00',
+        abatementDateTime: '2016-08-10T07:15:07-08:00'
+      )
+    }
+
+    it 'passes if server suports assertDate extension' do
+      condition.onsetDateTime = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [condition]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'passes if server suports onsetDate' do
+      condition.extension = []
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [condition]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips if server suports none of assertDate extension and onsetDate' do
+      condition.onsetDateTime = nil
+      condition.extension = []
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [condition]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('onsetDateTime')
+      expect(result.result_message).to include('Condition.extension:assertedDate')
+    end
+  end
+
 end

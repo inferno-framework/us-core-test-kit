@@ -4,7 +4,8 @@ module USCoreTestKit
       RESOURCES_TO_EXCLUDE = [
         'Location',
         'Medication',
-        'PractitionerRole'
+        'PractitionerRole',
+        'QuestionnaireResponse'
       ].freeze
 
       PROFILES_TO_EXCLUDE = [

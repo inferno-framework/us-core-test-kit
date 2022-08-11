@@ -1,12 +1,13 @@
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractor
-      attr_accessor :profile_elements, :profile, :resource
+      attr_accessor :profile_elements, :profile, :resource, :ig_resources
 
-      def initialize(profile_elements, profile, resource)
+      def initialize(profile_elements, profile, resource, ig_resources)
         self.profile_elements = profile_elements
         self.profile = profile
         self.resource = resource
+        self.ig_resources = ig_resources
       end
 
       def must_supports
@@ -93,6 +94,22 @@ module USCoreTestKit
                   path: discriminator_path,
                   system: pattern_element.patternIdentifier.system
                 }
+              elsif pattern_element.binding&.strength == 'required' &&
+                    pattern_element.binding&.valueSet.present?
+
+                value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
+                bound_systems = value_set&.compose&.include&.reject { |code| code.concept.blank? }
+                values = []
+
+                if bound_systems.present?
+                  values = bound_systems&.flat_map { |system| system.concept.map { |code| code.code } }.uniq
+                end
+
+                {
+                  type: 'requiredBinding',
+                  path: discriminator_path,
+                  values: values
+                }
               else
                 raise StandardError, 'Unsupported discriminator pattern type'
               end
@@ -152,7 +169,6 @@ module USCoreTestKit
                   element.path == "#{current_element.path}.#{discriminator.path}"
               end
 
-              binding.pry if fixed_element.nil?
               {
                 path: discriminator.path,
                 value: fixed_element.fixedUri || fixed_element.fixedCode
@@ -251,7 +267,7 @@ module USCoreTestKit
               supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
               current_metadata[:types] = supported_types if supported_types.present?
 
-              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first.code == 'Reference'
+              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first&.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
 
@@ -277,6 +293,9 @@ module USCoreTestKit
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
+        when '5.0.1'
+          add_patient_uscdi_elements
+          add_document_reference_category_values
         end
       end
 
@@ -361,6 +380,32 @@ module USCoreTestKit
               uscdi_only: true
             }
           end
+        when '5.0.1'
+          case profile.type
+          when 'CareTeam'
+            choices << {
+              target_profiles: [
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
+              ]
+            }
+          when 'Condition'
+            choices << {
+              paths: ['onsetDateTime'],
+              extension_ids: ['Condition.extension:assertedDate']
+            }
+          when 'Encounter'
+            choices << { paths: ['reasonCode', 'reasonReference'] }
+            choices << { paths: ['location.location', 'serviceProvider'] }
+          when 'MedicationRequest'
+            choices << { paths: ['reportedBoolean', 'reportedReference'] }
+          when 'Patient'
+            choices << {
+              paths: ['name.period.end', 'name.use'],
+              uscdi_only: true
+            }
+          end
+
         end
 
         @must_supports[:choices] = choices if choices.present?
@@ -377,37 +422,75 @@ module USCoreTestKit
       end
 
       def add_patient_uscdi_elements
-        if profile.type == 'Patient'
-          #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+        return unless profile.type == 'Patient'
+
+        #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:race',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
+          uscdi_only: true
+        }
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:ethnicity',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
+          uscdi_only: true
+        }
+        @must_supports[:extensions] << {
+          id: 'Patient.extension:birthsex',
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.suffix',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.use',
+          fixed_value: 'old',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'name.period.end',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'telecom',
+          uscdi_only: true
+        }
+        @must_supports[:elements] << {
+          path: 'communication',
+          uscdi_only: true
+        }
+        # Though telecom.system, telecom.value, telecom.use, and communication.language are marked as MustSupport since US Core v4.0.0,
+        # their parent elements telecom, and communication are not MustSupport but listed under "Additional USCDI requirements"
+        # According to the updated FHIR spec that "When a child element is defined as Must Support and the parent element isn't,
+        # a system must support the child if it support the parent, but there's no expectation that the system must support the parent.",
+        # We add uscdi_only tag to these elements
+        @must_supports[:elements].each do |element|
+          path = element[:path]
+          element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
+        end
+
+        if profile.version == '5.0.1'
           @must_supports[:extensions] << {
-            id: 'Patient.extension:race',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
-            uscdi_only: true
-          }
-          @must_supports[:extensions] << {
-            id: 'Patient.extension:ethnicity',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
-            uscdi_only: true
-          }
-          @must_supports[:extensions] << {
-            id: 'Patient.extension:birthsex',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+            id: 'Patient.extension:genderIdentity',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
             uscdi_only: true
           }
           @must_supports[:elements] << {
-            path: 'name.suffix',
-            uscdi_only: true
-          }
-          @must_supports[:elements] << {
-            path: 'name.use',
+            path: 'address.use',
             fixed_value: 'old',
             uscdi_only: true
           }
-          @must_supports[:elements] << {
-            path: 'name.period.end',
-            uscdi_only: true
-          }
         end
+      end
+
+      def add_document_reference_category_values
+        return unless profile.type == 'DocumentReference'
+
+        slice = @must_supports[:slices].find{|slice| slice[:path] == 'category'}
+
+        slice[:discriminator][:values] << 'clinical-note' if slice.present?
       end
     end
   end

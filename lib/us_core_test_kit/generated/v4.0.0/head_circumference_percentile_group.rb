@@ -12,12 +12,12 @@ require_relative 'head_circumference_percentile/head_circumference_percentile_re
 module USCoreTestKit
   module USCoreV400
     class HeadCircumferencePercentileGroup < Inferno::TestGroup
-      title 'Pediatric Head Occipital-frontal Circumference Percentile Tests'
+      title 'Observation Pediatric Head Occipital-frontal Circumference Percentile Tests'
       short_description 'Verify support for the server capabilities required by the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile.'
       description %(
   # Background
 
-The US Core Pediatric Head Occipital-frontal Circumference Percentile sequence verifies that the system under test is
+The US Core Observation Pediatric Head Occipital-frontal Circumference Percentile sequence verifies that the system under test is
 able to provide correct responses for Observation queries. These queries
 must contain resources conforming to the US Core Pediatric Head Occipital-frontal Circumference Percentile Profile as
 specified in the US Core v4.0.0 Implementation Guide.

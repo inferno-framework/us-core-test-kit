@@ -29,14 +29,16 @@ module USCoreTestKit
         :delayed_references
       ].freeze
 
-      NON_USCDI_RESOURCES = [
-        'Encounter',
-        'Location',
-        'Organization',
-        'Practitioner',
-        'PractitionerRole',
-        'Provenance'
-      ].freeze
+      NON_USCDI_RESOURCES = {
+        'Encounter' => ['v311', 'v400'],
+        'Location' => ['v311', 'v400', 'v501'],
+        'Organization' => ['v311', 'v400', 'v501'],
+        'Practitioner' => ['v311', 'v400', 'v501'],
+        'PractitionerRole' => ['v311', 'v400', 'v501'],
+        'Provenance' => ['v311', 'v400', 'v501'],
+        'RelatedPerson' => ['v501']
+      }.freeze
+
 
       ATTRIBUTES.each { |name| attr_accessor name }
 
@@ -59,7 +61,7 @@ module USCoreTestKit
       end
 
       def non_uscdi_resource?
-        NON_USCDI_RESOURCES.include? resource
+        NON_USCDI_RESOURCES.key?(resource) && NON_USCDI_RESOURCES[resource].include?(reformatted_version)
       end
 
       def add_test(id:, file_name:)

@@ -30,7 +30,7 @@ module USCoreTestKit
 
       class << self
         def resources_with_multiple_profiles
-          ['Observation', 'DiagnosticReport']
+          ['Condition', 'DiagnosticReport', 'Observation']
         end
 
         def resource_has_multiple_profiles?(resource)
