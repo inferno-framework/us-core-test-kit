@@ -65,7 +65,6 @@ module USCoreTestKit
             next if value_found.empty?
 
             found_one_reference = true
-            binding.pry
 
             value_found.any? do |reference|
               validate_reference_resolution(resource, reference, target_profile)
