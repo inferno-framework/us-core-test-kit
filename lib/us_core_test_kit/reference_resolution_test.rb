@@ -147,7 +147,6 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      binding.pry
       resource_is_valid?(resource: resource, profile_url: target_profile)
     end
   end
