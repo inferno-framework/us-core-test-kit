@@ -399,6 +399,17 @@ module USCoreTestKit
             choices << { paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
+          when 'Observation'
+            # FHIR-37794 Server systems are not required to support both US Core Observation Survey
+            # and US Core QuestionnaireResponse
+            if ['us-core-observation-survey', 'us-core-observation-sdoh-assessment'].include?(profile.id)
+              choices << {
+                target_profiles: [
+                  'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
+                  'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
+                ]
+              }
+            end
           when 'Patient'
             choices << {
               paths: ['name.period.end', 'name.use'],
