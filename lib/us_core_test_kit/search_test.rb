@@ -137,7 +137,7 @@ module USCoreTestKit
 
       post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
+      filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
 
       get_resource_count = get_search_resources.length
@@ -261,7 +261,7 @@ module USCoreTestKit
 
       reference_with_type_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
+      filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
 
       new_resource_count = reference_with_type_resources.count
