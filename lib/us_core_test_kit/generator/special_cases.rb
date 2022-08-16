@@ -9,6 +9,7 @@ module USCoreTestKit
       ].freeze
 
       PROFILES_TO_EXCLUDE = [
+        'us_core_observation_survey',
         'us_core_vital_signs'
       ].freeze
 

@@ -30,7 +30,6 @@ require_relative 'observation_sexual_orientation_group'
 require_relative 'head_circumference_group'
 require_relative 'body_height_group'
 require_relative 'bmi_group'
-require_relative 'observation_survey_group'
 require_relative 'blood_pressure_group'
 require_relative 'observation_imaging_group'
 require_relative 'observation_clinical_test_group'
@@ -114,7 +113,6 @@ module USCoreTestKit
       group from: :us_core_v501_head_circumference
       group from: :us_core_v501_body_height
       group from: :us_core_v501_bmi
-      group from: :us_core_v501_observation_survey
       group from: :us_core_v501_blood_pressure
       group from: :us_core_v501_observation_imaging
       group from: :us_core_v501_observation_clinical_test
