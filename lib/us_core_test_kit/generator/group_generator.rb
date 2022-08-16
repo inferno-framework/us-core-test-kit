@@ -71,6 +71,20 @@ module USCoreTestKit
         group_metadata.resource
       end
 
+      def search_validation_resource_type
+        text = "#{resource_type} resources"
+        if resource_type == 'Condition' && group_metadata.reformatted_version == 'v501'
+          case profile_url
+          when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis'
+            text.concat(' with category `encounter-diagnosis`')
+          when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns'
+            text.concat(' with category `problem-list-item | health-concern`')
+          end
+        end
+
+        text
+      end
+
       def profile_name
         group_metadata.profile_name
       end
@@ -149,7 +163,7 @@ module USCoreTestKit
 
         ### Search Validation
         Inferno will retrieve up to the first 20 bundle pages of the reply for
-        #{resource_type} resources and save them for subsequent tests. Each of
+        #{search_validation_resource_type} and save them for subsequent tests. Each of
         these resources is then checked to see if it matches the searched
         parameters in accordance with [FHIR search
         guidelines](https://www.hl7.org/fhir/search.html). The test will fail,

@@ -44,7 +44,7 @@ search. If a value cannot be found this way, the search is skipped.
 
 ### Search Validation
 Inferno will retrieve up to the first 20 bundle pages of the reply for
-Condition resources and save them for subsequent tests. Each of
+Condition resources with category `encounter-diagnosis` and save them for subsequent tests. Each of
 these resources is then checked to see if it matches the searched
 parameters in accordance with [FHIR search
 guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
