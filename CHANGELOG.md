@@ -1,3 +1,7 @@
+# 0.2.0
+
+* Add US Core v5.0.1 tests.
+
 # 0.2.5
 
 * Include the profile version in validation calls so a single validator instance
