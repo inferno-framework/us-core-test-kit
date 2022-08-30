@@ -21,7 +21,7 @@ module USCoreTestKit
         provenances = scratch_provenance_resources[:all] || []
 
         skip_if resources.blank?,
-                'No DocumentReference resources appeart to be available. ' \
+                'No DocumentReference resources appear to be available. ' \
                 'Please use patients with more information.'
 
         resources.each do |docref|

@@ -16,7 +16,7 @@ module USCoreTestKit
         resources = scratch_resources[:all] || []
 
         skip_if resources.blank?,
-                'No Devices resources appeart to be available. ' \
+                'No Devices resources appear to be available. ' \
                 'Please use patients with more information.'
 
         resources.each do |device|
