@@ -191,36 +191,5 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       end
     end
   end
-  describe '#handle_target_profile_choices' do
-    let(:test_class) { USCoreTestKit::USCoreV501::CareTeamReferenceResolutionTest }
-    let(:test) {test_class.new }
 
-    it 'returns empty unresolved_references if at least one of MS reference choices is provided' do
-      unresolved_references = [
-        {
-          path: 'participant.member',
-          target_profile: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
-        }
-      ]
-      test.handle_target_profile_choices(unresolved_references)
-
-      expect(unresolved_references).to be_blank
-    end
-
-    it 'returns unresolved_references if at none MS reference choices is provided' do
-      unresolved_references = [
-        {
-          path: 'participant.member',
-          target_profile: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
-        },
-        {
-          path: 'participant.member',
-          target_profile: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner'
-        }
-      ]
-      test.handle_target_profile_choices(unresolved_references)
-
-      expect(unresolved_references).not_to be_blank
-    end
-  end
 end

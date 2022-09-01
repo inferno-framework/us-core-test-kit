@@ -76,26 +76,16 @@ module USCoreTestKit
 
       handle_target_profile_choices(@unresolved_references)
       @unresolved_references
-    end
+      if metadata.must_supports[:choices].present?
+        @unresolved_references.delete_if do |reference|
+          choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles].include?(reference[:target_profile]) }
 
-    def handle_target_profile_choices(unresolved_references)
-      return if unresolved_references.blank? || metadata.must_supports[:choices].blank?
-
-      unresolved_references.delete_if do |reference|
-        choice_profiles = metadata.must_supports[:choices].find do |choice|
-          choice[:element_path] == reference[:path] &&
-          choice[:target_profiles].include?(reference[:target_profile])
-        end
-
-      @unresolved_references
-        choice_profiles.present? &&
-        choice_profiles[:target_profiles].any? do |profile|
-          unresolved_references.none? do |reference|
-            reference[:path] == choice_profiles[:element_path] &&
-            reference[:target_profile] == profile
-          end
+          choice_profiles.present? &&
+          choice_profiles[:target_profiles].any? { |profile| @unresolved_references.none? { |element| element[:target_profile] == profile } }
         end
       end
+
+      @unresolved_references
     end
 
     def validate_reference_resolution(resource, reference, target_profile)
