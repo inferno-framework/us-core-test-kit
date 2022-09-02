@@ -191,5 +191,4 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       end
     end
   end
-
 end
