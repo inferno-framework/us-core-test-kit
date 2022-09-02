@@ -102,23 +102,23 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
       stub_request(:get, "#{url}/#{patient_ref}")
         .to_return(status: 200, body: patient.to_json)
-                
+
       stub_request(:get, "#{url}/#{practitioner_ref}")
         .to_return(status: 200, body: practitioner.to_json)
-      
+
       stub_request(:get, "#{url}/#{organization_ref}")
         .to_return(status: 200, body: organization.to_json)
     end
 
     context 'when reference read returns ok' do
-      before do           
+      before do
         stub_request(:get, "#{url}/#{encounter_ref}")
           .to_return(status: 200, body: encounter.to_json)
       end
 
       it 'passes if all MS references can be read' do
         allow_any_instance_of(reference_resolution_test)
-          .to receive(:resource_is_valid?).and_return(true)
+          .to receive(:resource_is_valid_with_target_profile?).and_return(true)
 
         result = run(reference_resolution_test, url: url)
         expect(result.result).to eq('pass')
@@ -126,8 +126,8 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
       it 'skips if one MS references with MS target_profiles cannot be validated' do
         allow_any_instance_of(reference_resolution_test)
-          .to receive(:resource_is_valid?).and_return(false)
-        
+          .to receive(:resource_is_valid_with_target_profile?).and_return(false)
+
         result = run(reference_resolution_test, url: url)
         expect(result.result).to eq('skip')
         expect(result.result_message).to include('performer(http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization)')
@@ -142,7 +142,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
       it 'skips if one MS references cannot be read' do
         allow_any_instance_of(reference_resolution_test)
-          .to receive(:resource_is_valid?).and_return(true)
+          .to receive(:resource_is_valid_with_target_profile?).and_return(true)
 
         result = run(reference_resolution_test, url: url)
         expect(result.result).to eq('skip')
