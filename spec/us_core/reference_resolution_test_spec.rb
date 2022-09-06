@@ -152,13 +152,13 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         let(:reference) { resource.encounter }
 
         it 'returns true if the contained resource conforms to the target profile' do
-          allow(test).to receive(:resource_is_valid?).with(resource: contained_resource, profile_url: 'PROFILE').and_return(true)
+          allow(test).to receive(:resource_is_valid_with_target_profile?).with(contained_resource, 'PROFILE').and_return(true)
 
           expect(test.validate_reference_resolution(resource, reference, 'PROFILE')).to be(true)
         end
 
         it 'returns false if the contained resource does not conform to the target profile' do
-          allow(test).to receive(:resource_is_valid?).with(resource: contained_resource, profile_url: 'PROFILE').and_return(false)
+          allow(test).to receive(:resource_is_valid_with_target_profile?).with(contained_resource, 'PROFILE').and_return(false)
 
           expect(test.validate_reference_resolution(resource, reference, 'PROFILE')).to be(false)
         end
@@ -178,13 +178,13 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         end
 
         it 'returns true if the referenced resource conforms to the target profile' do
-          allow(test).to receive(:resource_is_valid?).with(resource: referenced_resource, profile_url: 'PROFILE').and_return(true)
+          allow(test).to receive(:resource_is_valid_with_target_profile?).with(referenced_resource, 'PROFILE').and_return(true)
 
           expect(test.validate_reference_resolution(resource, reference, 'PROFILE')).to be(true)
         end
 
         it 'returns false if the referenced resource does not conform to the target profile' do
-          allow(test).to receive(:resource_is_valid?).with(resource: referenced_resource, profile_url: 'PROFILE').and_return(false)
+          allow(test).to receive(:resource_is_valid_with_target_profile?).with(referenced_resource, 'PROFILE').and_return(false)
 
           expect(test.validate_reference_resolution(resource, reference, 'PROFILE')).to be(false)
         end
