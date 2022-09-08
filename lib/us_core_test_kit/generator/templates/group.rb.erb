@@ -10,7 +10,9 @@ module USCoreTestKit
       )
 
       id :<%= group_id %>
-      run_as_group
+      run_as_group<% if optional? %>
+      optional
+      <% end %>
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml')))

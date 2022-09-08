@@ -93,6 +93,11 @@ module USCoreTestKit
         group_metadata.profile_url
       end
 
+
+      def optional?
+        resource_type == 'QuestionnaireResponse'
+      end
+
       def generate
         add_special_tests
         File.open(output_file_name, 'w') { |f| f.write(output) }
