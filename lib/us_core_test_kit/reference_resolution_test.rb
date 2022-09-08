@@ -76,10 +76,10 @@ module USCoreTestKit
 
       if metadata.must_supports[:choices].present?
         @unresolved_references.delete_if do |reference|
-          choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles].include?(reference[:target_profile]) }
+          choice_profiles = metadata.must_supports[:choices].find { |choice| choice[:target_profiles]&.include?(reference[:target_profile]) }
 
           choice_profiles.present? &&
-          choice_profiles[:target_profiles].any? { |profile| @unresolved_references.none? { |element| element[:target_profile] == profile } }
+          choice_profiles[:target_profiles]&.any? { |profile| @unresolved_references.none? { |element| element[:target_profile] == profile } }
         end
       end
 
