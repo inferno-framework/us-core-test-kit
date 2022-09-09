@@ -20,40 +20,13 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
   end
 
   describe 'reference validation with target profiles' do
-    let(:reference_resolution_test) do
-      Class.new(Inferno::Test) do
-        include USCoreTestKit::ReferenceResolutionTest
-
-        def self.metadata
-          @metadata ||=
-            USCoreTestKit::Generator::GroupMetadata.new(
-              YAML.load_file(
-                File.join(
-                  __dir__,
-                  '..',
-                  'fixtures',
-                  'diagnosticreport_note_metadata.yml'
-                )
-              )
-            )
-        end
-
-        def resource_type
-          'DiagnosticReport'
-        end
-
-        def scratch_resources
-          scratch[:diagnostic_report_note_resources] ||= {}
-        end
-
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV400::DiagnosticReportNoteReferenceResolutionTest) do
         fhir_client { url :url }
         input :url
-
-        run do
-          perform_reference_resolution_test(scratch_resources[:all])
-        end
       end
     end
+
     let(:patient_ref) { 'Patient/85' }
     let(:encounter_ref) { 'Encounter/96' }
     let(:practitioner_ref) { 'Practitioner/88' }
@@ -92,8 +65,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
     end
 
     before do
-      Inferno::Repositories::Tests.new.insert(reference_resolution_test)
-      allow_any_instance_of(reference_resolution_test)
+      allow_any_instance_of(test_class)
         .to receive(:scratch_resources).and_return(
               {
                 all: [diagnostic_report]
@@ -117,18 +89,18 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       end
 
       it 'passes if all MS references can be read' do
-        allow_any_instance_of(reference_resolution_test)
+        allow_any_instance_of(test_class)
           .to receive(:resource_is_valid_with_target_profile?).and_return(true)
 
-        result = run(reference_resolution_test, url: url)
+        result = run(test_class, url: url)
         expect(result.result).to eq('pass')
       end
 
       it 'skips if one MS references with MS target_profiles cannot be validated' do
-        allow_any_instance_of(reference_resolution_test)
+        allow_any_instance_of(test_class)
           .to receive(:resource_is_valid_with_target_profile?).and_return(false)
 
-        result = run(reference_resolution_test, url: url)
+        result = run(test_class, url: url)
         expect(result.result).to eq('skip')
         expect(result.result_message).to include('performer(http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization)')
       end
@@ -141,13 +113,90 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       end
 
       it 'skips if one MS references cannot be read' do
-        allow_any_instance_of(reference_resolution_test)
+        allow_any_instance_of(test_class)
           .to receive(:resource_is_valid_with_target_profile?).and_return(true)
 
-        result = run(reference_resolution_test, url: url)
+        result = run(test_class, url: url)
         expect(result.result).to eq('skip')
         expect(result.result_message).to eq('Could not resolve Must Support references encounter')
       end
+    end
+  end
+
+  describe 'reference validation without target profile' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::DocumentReferenceReferenceResolutionTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:patient) do
+      FHIR::Patient.new(id: '85')
+    end
+    let(:encounter) do
+      FHIR::Encounter.new(id: '96')
+    end
+    let(:practitioner) do
+      FHIR::Practitioner.new(id: '88')
+    end
+    let(:document_reference) do
+      FHIR::DocumentReference.new(
+        subject: {
+          reference: "Patient/#{patient.id}"
+        },
+        author: [
+          {
+            reference: "Practitioner/#{practitioner.id}"
+          }
+        ],
+        custodian:
+        {
+          reference: "Practitioner/#{practitioner.id}"
+        },
+        context: {
+          encounter: {
+            reference: "Encounter/#{encounter.id}"
+          }
+        }
+      )
+    end
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+              {
+                all: [document_reference]
+              }
+            )
+
+      stub_request(:get, "#{url}/Patient/#{patient.id}")
+        .to_return(status: 200, body: patient.to_json)
+
+      stub_request(:get, "#{url}/Practitioner/#{practitioner.id}")
+        .to_return(status: 200, body: practitioner.to_json)
+
+      stub_request(:get, "#{url}/Encounter/#{encounter.id}")
+        .to_return(status: 200, body: encounter.to_json)
+    end
+
+    it 'passes if all MS references can be read' do
+      allow_any_instance_of(test_class)
+        .to receive(:resource_is_valid_with_target_profile?).and_return(true)
+
+      result = run(test_class, url: url)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips if one of MS references does not have reference value' do
+      document_reference.custodian = FHIR::Reference.new(
+        display: 'Example Custodian'
+      )
+
+      allow_any_instance_of(test_class)
+        .to receive(:resource_is_valid_with_target_profile?).and_return(true)
+
+      result = run(test_class, url: url)
+      expect(result.result).to eq('skip')
     end
   end
 end
