@@ -70,9 +70,13 @@ module USCoreTestKit
 
             any_must_support_slices = must_supports[:slices].any? do |slice|
               # only handle type slices because that is all we need for now
+              # for a slice like Observation.effective[x]:effectiveDateTime, the search parameter's expression could be
+              # either Observation.effective or Observation.effectiveDateTime.
               if slice[:discriminator] && slice[:discriminator][:type] == 'type'
                 full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
-                full_paths.include?(full_must_support_path)
+                base_must_support_path = "#{resource}.#{slice[:path].sub('[x]', '')}"
+
+                full_paths.intersection([full_must_support_path,base_must_support_path]).present?
               else
                 false
               end
