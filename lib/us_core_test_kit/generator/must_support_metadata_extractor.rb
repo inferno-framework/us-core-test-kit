@@ -296,6 +296,7 @@ module USCoreTestKit
         when '5.0.1'
           add_patient_uscdi_elements
           add_document_reference_category_values
+          remove_survey_questionnaire_response
         end
       end
 
@@ -491,6 +492,17 @@ module USCoreTestKit
         slice = @must_supports[:slices].find{|slice| slice[:path] == 'category'}
 
         slice[:discriminator][:values] << 'clinical-note' if slice.present?
+      end
+
+      # FHIR-37794 Server systems are not required to support US Core QuestionnaireResponse
+      def remove_survey_questionnaire_response
+        return unless profile.type == 'Observation' &&
+          ['us-core-observation-survey', 'us-core-observation-sdoh-assessment'].include?(profile.id)
+
+        element = @must_supports[:elements].find { |element| element[:path] == 'derivedFrom' }
+        element[:target_profiles].delete_if do |url|
+          url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
+        end
       end
     end
   end
