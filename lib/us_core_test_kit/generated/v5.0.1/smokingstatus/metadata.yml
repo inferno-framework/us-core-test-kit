@@ -42,17 +42,15 @@
   - patient
   - category
   - date
-  :names_not_must_support_or_mandatory:
-  - date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
   - code
   - date
-  :names_not_must_support_or_mandatory:
-  - date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - patient
