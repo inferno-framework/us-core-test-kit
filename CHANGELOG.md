@@ -1,4 +1,15 @@
-# 0.2.0
+# 0.3.1
+
+* Fix a typo when no resources are found.
+* Prevent validation errors from appearing on reference resolution tests.
+* Add optional group for QuestionnaireResponse in US Core 5.
+* Fix a nil-safety issue in reference resolution tests.
+* Remove QuestionnaireResponse from the list of Must Support target profiles for
+  US Core Observation Survey and US Core SDOH Assessment (US Core 5).
+* Fix a bug which incorrectly marked SmokingStatus searches by patient +
+  category + date as optional (US Core 4 & 5).
+
+# 0.3.0
 
 * Add US Core v5.0.1 tests.
 
