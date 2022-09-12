@@ -1,9 +1,10 @@
 # US Core Test Kit
 
 This is an [Inferno](https://github.com/inferno-community/inferno-core) test kit
-for the [US Core Implementation Guide
-v3.1.1](http://hl7.org/fhir/us/core/STU3.1.1/), and [US Core Implementation Guide
-v4.0.0](http://hl7.org/fhir/us/core/STU4/)
+for the US Core Implementation Guide
+[v3.1.1](http://hl7.org/fhir/us/core/STU3.1.1/),
+[v4.0.0](http://hl7.org/fhir/us/core/STU4/), and
+[v5.0.1](http://hl7.org/fhir/us/core/STU5.0.1/)
 
 It is highly recommended that you use [Docker](https://www.docker.com/) to run
 these tests so that you don't have to configure ruby and the FHIR validator
