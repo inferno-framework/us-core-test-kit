@@ -36,7 +36,7 @@ module USCoreTestKit
       range
     end
 
-    def fhir_date_comparer(search_range, target_range, comparator)
+    def fhir_date_comparer(search_range, target_range, comparator, extend_start = false, extend_end = false)
       # Implicitly, a missing lower boundary is "less than" any actual date. A missing upper boundary is "greater than" any actual date.
       case comparator
       when 'eq' # the range of the search value fully contains the range of the target value
@@ -44,13 +44,13 @@ module USCoreTestKit
       when 'ne' # the range of the search value does not fully contain the range of the target value
         target_range[:start].nil? || target_range[:end].nil? || search_range[:start] > target_range[:start] || search_range[:end] < target_range[:end]
       when 'gt' #  the range above the search value intersects (i.e. overlaps) with the range of the target value
-        target_range[:end].nil? || search_range[:end] < target_range[:end]
+        target_range[:end].nil? || search_range[:end] < target_range[:end] || (search_range[:end] < (target_range[:end] + 1) && extend_end)
       when 'lt' # the range below the search value intersects (i.e. overlaps) with the range of the target value
-        target_range[:start].nil? || search_range[:start] > target_range[:start]
+        target_range[:start].nil? || search_range[:start] > target_range[:start] || (search_range[:start] > (target_range[:start] - 1) && extend_start)
       when 'ge'
-        fhir_date_comparer(search_range, target_range, 'gt') || fhir_date_comparer(search_range, target_range, 'eq')
+        fhir_date_comparer(search_range, target_range, 'gt', extend_start, extend_end) || fhir_date_comparer(search_range, target_range, 'eq')
       when 'le'
-        fhir_date_comparer(search_range, target_range, 'lt') || fhir_date_comparer(search_range, target_range, 'eq')
+        fhir_date_comparer(search_range, target_range, 'lt', extend_start, extend_end) || fhir_date_comparer(search_range, target_range, 'eq')
       when 'sa' # the range above the search value contains the range of the target value
         !target_range[:start].nil? && search_range[:end] < target_range[:start]
       when 'eb' # the range below the search value contains the range of the target value
@@ -81,9 +81,11 @@ module USCoreTestKit
       else
         comparator = 'eq'
       end
+      search_is_date = is_date?(search_value)
+      target_is_date = is_date?(target_value)
       search_range = get_fhir_datetime_range(search_value)
       target_range = get_fhir_datetime_range(target_value)
-      fhir_date_comparer(search_range, target_range, comparator)
+      fhir_date_comparer(search_range, target_range, comparator, !search_is_date && target_is_date, !search_is_date && target_is_date)
     end
 
     def validate_period_search(search_value, target_value)
@@ -93,9 +95,14 @@ module USCoreTestKit
       else
         comparator = 'eq'
       end
+      search_is_date = is_date?(search_value)
       search_range = get_fhir_datetime_range(search_value)
       target_range = get_fhir_period_range(target_value)
-      fhir_date_comparer(search_range, target_range, comparator)
+      fhir_date_comparer(search_range, target_range, comparatorm, !search_is_date && is_date?(target_value.start), !search_is_date && is_date?(target_value.end))
+    end
+
+    def is_date?(value)
+     /^\d{4}(-\d{2})?(-\d{2})?$/.match?(value) # YYYY or YYYY-MM or YYYY-MM-DD
     end
   end
 end
