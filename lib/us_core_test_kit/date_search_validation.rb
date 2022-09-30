@@ -98,7 +98,7 @@ module USCoreTestKit
       search_is_date = is_date?(search_value)
       search_range = get_fhir_datetime_range(search_value)
       target_range = get_fhir_period_range(target_value)
-      fhir_date_comparer(search_range, target_range, comparatorm, !search_is_date && is_date?(target_value.start), !search_is_date && is_date?(target_value.end))
+      fhir_date_comparer(search_range, target_range, comparator, !search_is_date && is_date?(target_value.start), !search_is_date && is_date?(target_value.end))
     end
 
     def is_date?(value)
