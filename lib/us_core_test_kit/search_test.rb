@@ -609,9 +609,8 @@ module USCoreTestKit
               #   Patient.birthDate does not mandate comparators so cannot be converted
               #   Goal.target-date has day precision
               #   All others have second + time offset precision
-              if /^\d{4}$/.match?(element) || # YYYY
-                 /^\d{4}-\d{2}$/.match?(element) || # YYYY-MM
-                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYYY-MM-DD AND Resource is NOT Goal
+              if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
+                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
                 "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
               else
                 element
