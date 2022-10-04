@@ -375,11 +375,6 @@ module USCoreTestKit
             choices << { paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
-          when 'Patient'
-            choices << {
-              paths: ['name.period.end', 'name.use'],
-              uscdi_only: true
-            }
           end
         when '5.0.1'
           case profile.type
@@ -400,13 +395,7 @@ module USCoreTestKit
             choices << { paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
-          when 'Patient'
-            choices << {
-              paths: ['name.period.end', 'name.use'],
-              uscdi_only: true
-            }
           end
-
         end
 
         @must_supports[:choices] = choices if choices.present?
@@ -446,11 +435,6 @@ module USCoreTestKit
           uscdi_only: true
         }
         @must_supports[:elements] << {
-          path: 'name.use',
-          fixed_value: 'old',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
           path: 'name.period.end',
           uscdi_only: true
         }
@@ -480,6 +464,11 @@ module USCoreTestKit
           }
           @must_supports[:elements] << {
             path: 'address.use',
+            fixed_value: 'old',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'name.use',
             fixed_value: 'old',
             uscdi_only: true
           }

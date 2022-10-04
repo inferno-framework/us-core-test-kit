@@ -36,8 +36,9 @@ module USCoreTestKit
         * Patient.extension:ethnicity
         * Patient.extension:genderIdentity
         * Patient.extension:race
-        * Patient.name.period.end or Patient.name.use
+        * Patient.name.period.end
         * Patient.name.suffix
+        * Patient.name.use
         * Patient.telecom
         * Patient.telecom.system
         * Patient.telecom.use
