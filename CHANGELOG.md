@@ -1,3 +1,9 @@
+# 0.3.2
+
+* Fix MustSupport requirements for representing a Patient's previous name in US
+  Core 4 & 5.
+* Fix date comparator searches to account for server time zones.
+
 # 0.3.1
 
 * Fix a typo when no resources are found.
