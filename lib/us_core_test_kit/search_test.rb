@@ -106,8 +106,7 @@ module USCoreTestKit
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
-      filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
-      filter_devices(resources_returned) if resource_type == 'Device'
+      filter_results(resources_returned)
 
       if first_search?
         all_scratch_resources.concat(resources_returned).uniq!
@@ -137,8 +136,7 @@ module USCoreTestKit
 
       post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
-      filter_devices(post_search_resources) if resource_type == 'Device'
+      filter_results(post_search_resources)
 
       get_resource_count = get_search_resources.length
       post_resource_count = post_search_resources.length
@@ -149,6 +147,17 @@ module USCoreTestKit
              "Expected search by POST to return the same results as search by GET, " \
              "but GET search returned #{get_resource_count} resources, and POST search " \
              "returned #{post_resource_count} resources."
+    end
+
+    def filter_results(resources)
+      case resource_type
+      when 'Condition'
+        filter_conditions(resources) if metadata.version == 'v5.0.1'
+      when 'Device'
+        filter_devices(resources)
+      when 'Observation'
+        filter_smoking_status(resources)  if metadata.name == 'us_core_smokingstatus'
+      end
     end
 
     def filter_devices(resources)
@@ -168,6 +177,16 @@ module USCoreTestKit
         resource.category.any? do |category|
           category.coding.any? do |coding|
             metadata.search_definitions[:category][:values].include? coding.code
+          end
+        end
+      end
+    end
+
+    def filter_smoking_status(resources)
+      resources.select! do |resource|
+        resource.code.any? do |category|
+          category.coding.any? do |coding|
+            coding.code == '72166-2'
           end
         end
       end
@@ -261,8 +280,7 @@ module USCoreTestKit
 
       reference_with_type_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
-      filter_devices(reference_with_type_resources) if resource_type == 'Device'
+      filter_results(reference_with_type_resources)
 
       new_resource_count = reference_with_type_resources.count
 
