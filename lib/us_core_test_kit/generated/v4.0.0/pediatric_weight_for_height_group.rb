@@ -78,7 +78,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_weight_for_height', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_weight_for_height', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v400_pediatric_weight_for_height_patient_code_search_test

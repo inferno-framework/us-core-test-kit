@@ -31,7 +31,7 @@ module USCoreTestKit
       end
 
       def self.provenance_metadata
-        @provenance_metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '..', 'provenance', 'metadata.yml')))
+        @provenance_metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '..', 'provenance', 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources

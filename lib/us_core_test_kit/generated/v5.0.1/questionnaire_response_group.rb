@@ -81,7 +81,7 @@ read succeeds.
       
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'questionnaire_response', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'questionnaire_response', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_questionnaire_response_patient_search_test

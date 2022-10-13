@@ -80,7 +80,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition_problems_health_concerns', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition_problems_health_concerns', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_condition_problems_health_concerns_patient_search_test

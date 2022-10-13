@@ -42,8 +42,8 @@ module USCoreTestKit
 
       ATTRIBUTES.each { |name| attr_accessor name }
 
-      def initialize(**params)
-        params.each do |key, value|
+      def initialize(metadata)
+        metadata.each do |key, value|
           raise "Unknown attribute #{key}" unless ATTRIBUTES.include? key
 
           instance_variable_set(:"@#{key}", value)

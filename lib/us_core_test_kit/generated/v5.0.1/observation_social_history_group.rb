@@ -78,7 +78,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation_social_history', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation_social_history', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_observation_social_history_patient_category_search_test
