@@ -156,7 +156,7 @@ module USCoreTestKit
       when 'Device'
         filter_devices(resources)
       when 'Observation'
-        filter_smoking_status(resources)  if metadata.name == 'us_core_smokingstatus'
+        filter_smoking_status(resources) if metadata.name == 'us_core_smokingstatus' && search_param_names.include? 'category'
       end
     end
 
