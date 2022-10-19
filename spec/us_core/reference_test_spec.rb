@@ -149,10 +149,6 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
             reference: "Practitioner/#{practitioner.id}"
           }
         ],
-        custodian:
-        {
-          reference: "Practitioner/#{practitioner.id}"
-        },
         context: {
           encounter: {
             reference: "Encounter/#{encounter.id}"
@@ -188,8 +184,8 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
     end
 
     it 'skips if one of MS references does not have reference value' do
-      document_reference.custodian = FHIR::Reference.new(
-        display: 'Example Custodian'
+      document_reference.subject = FHIR::Reference.new(
+        display: 'Example Patient'
       )
 
       allow_any_instance_of(test_class)
