@@ -925,6 +925,65 @@ RSpec.describe USCoreTestKit::SearchTest do
       result = run(test_class, patient_ids: patient_id, url: url)
       expect(result.result).to eq('pass')
     end
+  end
 
+  describe 'search_value contains comma' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::DiagnosticReportNotePatientCategoryDateSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_id) { '85' }
+    let(:diagnostic_report) {
+      FHIR::DiagnosticReport.new(
+        id: '1',
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
+          {
+            "coding":
+            [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.1545.1.7.10.798268.30",
+                "code": "Path,Cyt"
+              }
+            ]
+          }
+        ],
+        effectiveDateTime: '2021-11-24T15:55:00Z',
+      )
+    }
+    let(:bundle) {
+      FHIR::Bundle.new(
+        entry: [
+          { resource: diagnostic_report }
+        ]
+      )
+    }
+
+    it 'passes with comma in search value' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient)
+        .and_return([diagnostic_report])
+
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=2021-11-24T15:55:00Z")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=gt2021-11-23T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=ge2021-11-23T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=lt2021-11-25T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=le2021-11-25T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=urn:oid:1.2.840.114350.1.13.1545.1.7.10.798268.30%7CPath%5C,Cyt&date=2021-11-24T15:55:00Z")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+    end
   end
 end

@@ -677,7 +677,9 @@ module USCoreTestKit
     #### RESULT CHECKING ####
 
     def check_resource_against_params(resource, params)
-      params.each do |name, search_value|
+      params.each do |name, escaped_search_value|
+        #unescape search value
+        search_value = escaped_search_value&.gsub('\\,', ',')
         paths = search_param_paths(name)
 
         match_found = false
