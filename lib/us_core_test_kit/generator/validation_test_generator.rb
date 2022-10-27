@@ -104,9 +104,9 @@ module USCoreTestKit
         }
 
         if resource_type == 'Medication'
-          medication_request_metadata.add_test(test_metadata)
+          medication_request_metadata.add_test(**test_metadata)
         else
-          group_metadata.add_test(test_metadata)
+          group_metadata.add_test(**test_metadata)
         end
       end
 
