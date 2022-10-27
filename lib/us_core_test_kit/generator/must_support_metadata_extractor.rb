@@ -232,8 +232,10 @@ module USCoreTestKit
         target_profiles = []
 
         type.source_hash['_targetProfile']&.each do |hash|
-          element = FHIR::Element.new(hash)
-          target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+          if hash.present?
+            element = FHIR::Element.new(hash)
+            target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+          end
           index += 1
         end
 
