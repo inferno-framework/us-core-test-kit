@@ -1166,10 +1166,7 @@
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values:
-      - sdoh
-      - '386053000'
-      - '410606002'
+      :values: []
   :elements:
   - :path: status
   - :path: intent

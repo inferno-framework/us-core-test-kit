@@ -107,7 +107,7 @@ module USCoreTestKit
                 {
                   type: 'requiredBinding',
                   path: discriminator_path,
-                  values: values
+                  values: []
                 }
               else
                 raise StandardError, 'Unsupported discriminator pattern type'

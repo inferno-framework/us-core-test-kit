@@ -156,7 +156,6 @@
     - Condition.category
     :comparators: {}
     :values:
-    - sdoh
     - problem-list-item
     - health-concern
     :type: CodeableConcept
@@ -245,9 +244,7 @@
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values:
-      - problem-list-item
-      - health-concern
+      :values: []
   - :name: Condition.category:sdoh
     :path: category
     :discriminator:
