@@ -112,15 +112,17 @@ module USCoreTestKit
       end
 
       def values
-        values = (
+        values =
+          values_from_required_binding_slices.presence ||
           (
             values_from_pattern_codeable_concept_slices +
-            values_from_required_binding_slices +
             values_from_fixed_codes +
             values_from_pattern_coding +
             values_from_pattern_codeable_concept
-          ).uniq.presence || values_from_value_set_binding(profile_element)
-        ).presence || values_from_resource_metadata
+          ).uniq.presence ||
+          values_from_value_set_binding(profile_element).presence ||
+          values_from_resource_metadata || []
+
         values
       end
 

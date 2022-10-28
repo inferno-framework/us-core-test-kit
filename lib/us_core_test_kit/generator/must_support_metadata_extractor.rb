@@ -97,18 +97,10 @@ module USCoreTestKit
               elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
-                value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
-                bound_systems = value_set&.compose&.include&.reject { |code| code.concept.blank? }
-                values = []
-
-                if bound_systems.present?
-                  values = bound_systems&.flat_map { |system| system.concept.map { |code| code.code } }.uniq
-                end
-
                 {
                   type: 'requiredBinding',
                   path: discriminator_path,
-                  values: values
+                  values: []
                 }
               else
                 raise StandardError, 'Unsupported discriminator pattern type'

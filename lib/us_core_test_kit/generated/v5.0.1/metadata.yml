@@ -1111,7 +1111,6 @@
       - Condition.category
       :comparators: {}
       :values:
-      - sdoh
       - problem-list-item
       - health-concern
       :type: CodeableConcept
@@ -1199,9 +1198,7 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values:
-        - problem-list-item
-        - health-concern
+        :values: []
     - :name: Condition.category:sdoh
       :path: category
       :discriminator:
@@ -3598,10 +3595,7 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values:
-        - LP29684-5
-        - LP29708-2
-        - LP7839-6
+        :values: []
     :elements:
     - :path: status
     - :path: category
@@ -20993,10 +20987,7 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values:
-        - sdoh
-        - '386053000'
-        - '410606002'
+        :values: []
     :elements:
     - :path: status
     - :path: intent
