@@ -175,8 +175,11 @@ module USCoreTestKit
             element.is_a? FHIR.const_get(discriminator[:code])
           end
         when 'requiredBinding'
+          search_definition = metadata.search_definitions.values.find { |search_definition| search_definition[:paths].include?(path) }
+          target_values = discriminator[:values].presence || ( search_definition.present? ? search_definition[:values] : [] )
+
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
-          find_a_value_at(element, coding_path) {|coding| discriminator[:values].include?(coding.code) }
+          find_a_value_at(element, coding_path) {|coding| target_values.include?(coding.code) }
         end
       end
     end
