@@ -78,7 +78,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference_percentile', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'head_circumference_percentile', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v400_head_circumference_percentile_patient_code_search_test

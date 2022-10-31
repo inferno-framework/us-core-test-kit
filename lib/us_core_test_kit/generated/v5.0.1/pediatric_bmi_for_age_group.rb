@@ -78,7 +78,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_bmi_for_age', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'pediatric_bmi_for_age', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_pediatric_bmi_for_age_patient_code_search_test

@@ -80,7 +80,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'diagnostic_report_note', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'diagnostic_report_note', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v311_diagnostic_report_note_patient_category_search_test

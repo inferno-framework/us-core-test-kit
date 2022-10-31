@@ -74,7 +74,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'immunization', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'immunization', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_immunization_patient_search_test

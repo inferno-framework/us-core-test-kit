@@ -58,7 +58,7 @@ module USCoreTestKit
       ].freeze
 
       def self.metadata
-        @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'))[:groups].map do |raw_metadata|
+        @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
             Generator::GroupMetadata.new(raw_metadata)
           end
       end

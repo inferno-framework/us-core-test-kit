@@ -82,7 +82,7 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'encounter', 'metadata.yml')))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'encounter', 'metadata.yml'), aliases: true))
       end
   
       test from: :us_core_v501_encounter_patient_search_test
