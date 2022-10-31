@@ -1,3 +1,9 @@
+# 0.4.0
+
+* Update to a new version of inferno_core based on Ruby 3 (#83).
+* Fix a bug caused by escaped commas in search parameters (#85).
+* Add support for `fhir_validator_wrapper` version 2.2.0 (#86).
+
 # 0.3.2
 
 * Fix MustSupport requirements for representing a Patient's previous name in US
