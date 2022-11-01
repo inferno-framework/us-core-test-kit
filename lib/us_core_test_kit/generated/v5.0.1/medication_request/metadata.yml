@@ -148,7 +148,11 @@
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values: []
+      :values:
+      - inpatient
+      - outpatient
+      - community
+      - discharge
   :elements:
   - :path: status
   - :path: intent

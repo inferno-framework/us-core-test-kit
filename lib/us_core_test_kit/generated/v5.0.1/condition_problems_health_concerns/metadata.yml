@@ -244,7 +244,9 @@
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values: []
+      :values:
+      - problem-list-item
+      - health-concern
   - :name: Condition.category:sdoh
     :path: category
     :discriminator:

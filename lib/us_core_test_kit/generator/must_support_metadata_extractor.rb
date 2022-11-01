@@ -1,3 +1,5 @@
+require_relative 'value_extractor'
+
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractor
@@ -97,10 +99,15 @@ module USCoreTestKit
               elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
+                value_extractor = ValueExactor.new(ig_resources, resource)
+
+                values = value_extractor.values_from_value_set_binding(pattern_element).presence ||
+                         value_extractor.values_from_resource_metadata([metadata[:path]]) || []
+
                 {
                   type: 'requiredBinding',
                   path: discriminator_path,
-                  values: []
+                  values: values
                 }
               else
                 raise StandardError, 'Unsupported discriminator pattern type'

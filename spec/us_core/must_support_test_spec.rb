@@ -265,94 +265,146 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         expect(result.result_message).to include('Observation.effective[x]:effectiveDateTime')
       end
     end
-  end
 
-  describe 'must support test for slice with requiredBinding' do
-    let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
-    let(:condition) {
-      FHIR::Condition.new(
-        extension: [
-          {
-            url: 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate',
-            valueDateTime: '2016-08-10'
-          }
-        ],
-        clinicalStatus: {
-          coding: [
-            {
-              system: 'http://terminology.hl7.org/CodeSystem/condition-clinical',
-              code: 'active'
-            }
-          ]
-        },
-        verificationStatus: {
-          coding: [
-            {
-              system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
-              code: 'confirmed'
-            }
-          ]
-        },
-        category: [
-          {
-            coding: [
+    context 'slicing with requiredBinding' do
+      context 'Condition ProblemsHealthConcerns' do
+        let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
+        let(:condition) {
+          FHIR::Condition.new(
+            extension: [
               {
-                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
-                code: 'problem-list-item'
+                url: 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate',
+                valueDateTime: '2016-08-10'
               }
-            ]
-          },
-          {
-            coding: [
+            ],
+            clinicalStatus: {
+              coding: [
+                {
+                  system: 'http://terminology.hl7.org/CodeSystem/condition-clinical',
+                  code: 'active'
+                }
+              ]
+            },
+            verificationStatus: {
+              coding: [
+                {
+                  system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
+                  code: 'confirmed'
+                }
+              ]
+            },
+            category: [
               {
-                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags',
-                code: 'sdoh'
+                coding: [
+                  {
+                    system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                    code: 'problem-list-item'
+                  }
+                ]
+              },
+              {
+                coding: [
+                  {
+                    system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags',
+                    code: 'sdoh'
+                  }
+                ]
               }
-            ]
-          }
-        ],
-        code: {
-          coding: [
-            {
-              system: 'http://snomed.info/sct',
-              code: '445281000124101'
-            }
-          ]
-        },
-        subject: {
-          reference: 'Patient/123',
-        },
-        recordedDate: '2016-08-10T07:15:07-08:00',
-        onsetDateTime: '2016-08-10T07:15:07-08:00',
-        abatementDateTime: '2016-08-10T07:15:07-08:00'
-      )
-    }
-
-    it 'passes if server suports all MS slices' do
-      allow_any_instance_of(test_class)
-        .to receive(:scratch_resources).and_return(
-          {
-            all: [condition]
-          }
-        )
-
-
-      result = run(test_class)
-      expect(result.result).to eq('pass')
-    end
-
-    it 'skips if server does not support category:us-core slice' do
-      condition.category.delete_if { |category| category.coding.first.code == 'problem-list-item' }
-      allow_any_instance_of(test_class)
-      .to receive(:scratch_resources).and_return(
-        {
-          all: [condition]
+            ],
+            code: {
+              coding: [
+                {
+                  system: 'http://snomed.info/sct',
+                  code: '445281000124101'
+                }
+              ]
+            },
+            subject: {
+              reference: 'Patient/123',
+            },
+            recordedDate: '2016-08-10T07:15:07-08:00',
+            onsetDateTime: '2016-08-10T07:15:07-08:00',
+            abatementDateTime: '2016-08-10T07:15:07-08:00'
+          )
         }
-      )
 
-      result = run(test_class)
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Condition.category:us-core')
+        it 'passes if server suports all MS slices' do
+          allow_any_instance_of(test_class)
+            .to receive(:scratch_resources).and_return(
+              {
+                all: [condition]
+              }
+            )
+
+
+          result = run(test_class)
+          expect(result.result).to eq('pass')
+        end
+
+        it 'skips if server does not support category:us-core slice' do
+          condition.category.delete_if { |category| category.coding.first.code == 'problem-list-item' }
+          allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [condition]
+            }
+          )
+
+          result = run(test_class)
+          expect(result.result).to eq('skip')
+          expect(result.result_message).to include('Condition.category:us-core')
+        end
+      end
+
+      context 'MedicationRequest' do
+        let(:test_class) { USCoreTestKit::USCoreV501::MedicationRequestMustSupportTest }
+        let(:medication_request_1) {
+          FHIR::MedicationRequest.new(
+            status: 'active',
+            intent: 'order',
+            category: [
+              {
+                coding: [
+                  system: 'http://terminology.hl7.org/CodeSystem/medicationrequest-category',
+                  code: 'outpatient'
+                ]
+              }
+            ],
+            reportedBoolean: false,
+            medicationReference: {
+              reference: 'Medication/m1'
+            },
+            subject: {
+              reference: 'Patient/p1',
+            },
+            encounter: {
+              reference: 'Encounter/e1'
+            },
+            authoredOn: '2021-08-04T00:00:00-04:00',
+            requester: {
+              reference: 'Practitioner/p2'
+            },
+            dosageInstruction: [
+              {
+                text: 'this is a dosage instruction'
+              }
+            ]
+          )
+        }
+
+        it 'passes if server suports all MS slices' do
+          allow_any_instance_of(test_class)
+            .to receive(:scratch_resources).and_return(
+              {
+                all: [medication_request_1]
+              }
+            )
+
+
+          result = run(test_class)
+          expect(result.result).to eq('pass')
+        end
+      end
     end
   end
 
