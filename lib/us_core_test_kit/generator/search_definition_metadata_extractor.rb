@@ -122,7 +122,7 @@ module USCoreTestKit
             values_from_pattern_codeable_concept
           ).uniq.presence ||
           values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata || []
+          values_from_resource_metadata.presence || []
 
         values
       end
