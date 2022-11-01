@@ -102,7 +102,7 @@ module USCoreTestKit
                 value_extractor = ValueExactor.new(ig_resources, resource)
 
                 values = value_extractor.values_from_value_set_binding(pattern_element).presence ||
-                         value_extractor.values_from_resource_metadata([metadata[:path]]) || []
+                         value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
 
                 {
                   type: 'requiredBinding',
