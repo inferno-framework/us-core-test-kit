@@ -115,9 +115,9 @@ module USCoreTestKit
 
       def values
         values =
-          values_from_required_binding_slices.presence ||
           (
             values_from_pattern_codeable_concept_slices +
+            values_from_required_binding_slices +
             values_from_fixed_codes +
             values_from_pattern_coding +
             values_from_pattern_codeable_concept
