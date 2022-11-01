@@ -114,8 +114,7 @@ module USCoreTestKit
       end
 
       def values
-        values =
-          (
+        values = (
             values_from_pattern_codeable_concept_slices +
             values_from_required_binding_slices +
             values_from_fixed_codes +
