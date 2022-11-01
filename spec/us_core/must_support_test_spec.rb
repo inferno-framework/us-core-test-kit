@@ -338,7 +338,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
 
       result = run(test_class)
-      binding.pry
       expect(result.result).to eq('pass')
     end
 
