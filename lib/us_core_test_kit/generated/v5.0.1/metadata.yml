@@ -1199,7 +1199,9 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values: []
+        :values:
+        - problem-list-item
+        - health-concern
     - :name: Condition.category:sdoh
       :path: category
       :discriminator:
@@ -3596,7 +3598,10 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values: []
+        :values:
+        - LP29684-5
+        - LP29708-2
+        - LP7839-6
     :elements:
     - :path: status
     - :path: category
@@ -5180,6 +5185,51 @@
         :type: requiredBinding
         :path: ''
         :values:
+        - 11369-6
+        - 11485-0
+        - 11486-8
+        - 11488-4
+        - 11506-3
+        - 11543-6
+        - 15508-5
+        - 18726-0
+        - 18761-7
+        - 18842-5
+        - 26436-6
+        - 26441-6
+        - 26442-4
+        - 27895-2
+        - 27896-0
+        - 27897-8
+        - 27898-6
+        - 28570-0
+        - 28619-5
+        - 28634-4
+        - 29749-9
+        - 29750-7
+        - 29751-5
+        - 29752-3
+        - 34109-9
+        - 34117-2
+        - 34121-4
+        - 34122-2
+        - 34133-9
+        - 34140-4
+        - 34748-4
+        - 34775-7
+        - 47039-3
+        - 47042-7
+        - 47045-0
+        - 47046-8
+        - 47049-2
+        - 57017-6
+        - 57016-8
+        - 56445-0
+        - 53576-5
+        - 56447-6
+        - 18748-4
+        - 11504-8
+        - 57133-1
         - clinical-note
     :elements:
     - :path: identifier
@@ -20992,7 +21042,10 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values: []
+        :values:
+        - sdoh
+        - '386053000'
+        - '410606002'
     :elements:
     - :path: status
     - :path: intent
