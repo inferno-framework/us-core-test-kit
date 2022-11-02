@@ -121,8 +121,8 @@ module USCoreTestKit
             values_from_pattern_coding +
             values_from_pattern_codeable_concept
           ).uniq.presence ||
-          values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata.presence || []
+          value_extractor.values_from_value_set_binding(profile_element).presence ||
+          value_extractor.values_from_resource_metadata(paths).presence || []
 
         values
       end
@@ -149,7 +149,7 @@ module USCoreTestKit
       def values_from_required_binding_slices
         slices.map do |slice|
           if slice.binding.present? && slice.binding.strength == 'required'
-            values_from_value_set_binding(slice)
+            value_extractor.values_from_value_set_binding(slice)
           end
         end.flatten.compact
       end
@@ -178,18 +178,6 @@ module USCoreTestKit
 
       def value_extractor
         @value_extractor ||= ValueExactor.new(ig_resources, resource)
-      end
-
-      def values_from_value_set_binding(the_element)
-        value_extractor.values_from_value_set_binding(the_element)
-      end
-
-      def fhir_metadata(current_path)
-        FHIR.const_get(resource)::METADATA[current_path]
-      end
-
-      def values_from_resource_metadata
-        value_extractor.values_from_resource_metadata(paths)
       end
     end
   end
