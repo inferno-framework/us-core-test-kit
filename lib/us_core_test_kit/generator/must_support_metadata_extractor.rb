@@ -99,7 +99,7 @@ module USCoreTestKit
               elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
-                value_extractor = ValueExactor.new(ig_resources, resource)
+                value_extractor = ValueExactor.new(ig_resources, resource, profile_elements)
 
                 values = value_extractor.values_from_value_set_binding(pattern_element).presence ||
                          value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
