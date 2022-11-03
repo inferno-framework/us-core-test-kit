@@ -6904,7 +6904,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system: 
+    :system:
     :path: target.detail
   - :type: CodeableConcept
     :strength: example
@@ -7534,7 +7534,11 @@
       :discriminator:
         :type: requiredBinding
         :path: ''
-        :values: []
+        :values:
+        - inpatient
+        - outpatient
+        - community
+        - discharge
     :elements:
     - :path: status
     - :path: intent

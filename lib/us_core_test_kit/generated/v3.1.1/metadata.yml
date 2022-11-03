@@ -5279,7 +5279,7 @@
     :path: target.measure
   - :type: Quantity
     :strength: example
-    :system: 
+    :system:
     :path: target.detail
   - :type: CodeableConcept
     :strength: example

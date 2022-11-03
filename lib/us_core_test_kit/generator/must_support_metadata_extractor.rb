@@ -1,3 +1,5 @@
+require_relative 'value_extractor'
+
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractor
@@ -97,13 +99,10 @@ module USCoreTestKit
               elsif pattern_element.binding&.strength == 'required' &&
                     pattern_element.binding&.valueSet.present?
 
-                value_set = ig_resources.value_set_by_url(pattern_element.binding.valueSet)
-                bound_systems = value_set&.compose&.include&.reject { |code| code.concept.blank? }
-                values = []
+                value_extractor = ValueExactor.new(ig_resources, resource)
 
-                if bound_systems.present?
-                  values = bound_systems&.flat_map { |system| system.concept.map { |code| code.code } }.uniq
-                end
+                values = value_extractor.values_from_value_set_binding(pattern_element).presence ||
+                         value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
 
                 {
                   type: 'requiredBinding',
@@ -482,7 +481,7 @@ module USCoreTestKit
 
         slice = @must_supports[:slices].find{|slice| slice[:path] == 'category'}
 
-        slice[:discriminator][:values] << 'clinical-note' if slice.present?
+        slice[:discriminator][:values] = ['clinical-note'] if slice.present?
       end
 
       # FHIR-37794 Server systems are not required to support US Core QuestionnaireResponse
