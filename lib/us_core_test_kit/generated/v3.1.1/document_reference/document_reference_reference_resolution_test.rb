@@ -15,7 +15,6 @@ module USCoreTestKit
 
         * DocumentReference.author
         * DocumentReference.context.encounter
-        * DocumentReference.custodian
         * DocumentReference.subject
       )
 

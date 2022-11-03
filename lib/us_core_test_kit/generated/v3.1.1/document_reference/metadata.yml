@@ -233,9 +233,6 @@
   - :path: author
     :types:
     - Reference
-  - :path: custodian
-    :types:
-    - Reference
   - :path: content
   - :path: content.attachment
   - :path: content.attachment.contentType

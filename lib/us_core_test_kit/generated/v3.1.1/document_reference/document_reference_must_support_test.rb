@@ -22,7 +22,6 @@ module USCoreTestKit
         * DocumentReference.context
         * DocumentReference.context.encounter
         * DocumentReference.context.period
-        * DocumentReference.custodian
         * DocumentReference.date
         * DocumentReference.identifier
         * DocumentReference.status

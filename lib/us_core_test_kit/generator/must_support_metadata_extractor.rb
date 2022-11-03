@@ -291,6 +291,8 @@ module USCoreTestKit
         add_must_support_choices
 
         case profile.version
+        when '3.1.1'
+          remove_document_reference_custodian
         when '4.0.0'
           add_device_distinct_identifier
           add_patient_uscdi_elements
@@ -349,6 +351,15 @@ module USCoreTestKit
         if profile.type == 'Device'
           @must_supports[:elements].delete_if do |element|
             ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include?(element[:path])
+          end
+        end
+      end
+
+      # US Core clarified that server implmentation is not required to support DocumentReference.custodian (FHIR-28393)
+      def remove_document_reference_custodian
+        if profile.type == 'DocumentReference'
+          @must_supports[:elements].delete_if do |element|
+            element[:path] == 'custodian'
           end
         end
       end
