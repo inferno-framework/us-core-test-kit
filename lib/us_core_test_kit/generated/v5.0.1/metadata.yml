@@ -1111,7 +1111,6 @@
       - Condition.category
       :comparators: {}
       :values:
-      - sdoh
       - problem-list-item
       - health-concern
       - sdoh
