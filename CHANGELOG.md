@@ -1,3 +1,10 @@
+# 0.4.1
+
+* Fix a bug which prevented slices by binding from being correctly identified in
+  MustSupport tests (only affects US Core 5) (#88).
+* Remove DocumentReference.custodian from the MustSupport test in US Core 3.1.1
+  (#84).
+
 # 0.4.0
 
 * Update to a new version of inferno_core based on Ruby 3 (#83).
