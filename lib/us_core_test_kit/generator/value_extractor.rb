@@ -1,7 +1,7 @@
 module USCoreTestKit
   class Generator
     class ValueExactor
-      attr_accessor :ig_resources, :resource, :profile_elements, :profile_element
+      attr_accessor :ig_resources, :resource, :profile_elements
 
       def initialize(ig_resources, resource, profile_elements)
         self.ig_resources = ig_resources
