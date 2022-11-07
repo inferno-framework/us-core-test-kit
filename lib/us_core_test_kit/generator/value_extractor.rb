@@ -43,15 +43,19 @@ module USCoreTestKit
         return [] unless type == 'CodeableConcept'
 
         profile_elements
-          .select { |element| element.path == "#{profile_element.path}.coding" && element.patternCoding.present? }
+          .select do |element|
+            element.path == "#{profile_element.path}.coding" && element.patternCoding.present?
+          end
           .map { |element| element.patternCoding.code }
       end
 
       def values_from_pattern_codeable_concept(profile_element, type)
-        return [] if type != 'CodeableConcept'
+        return [] unless type == 'CodeableConcept'
 
         profile_elements
-          .select { |element| element.path == profile_element.path && element.patternCodeableConcept.present? }
+          .select do |element|
+            element.path == profile_element.path && element.patternCodeableConcept.present?
+          end
           .map { |element| element.patternCodeableConcept.coding.first.code }
       end
 

@@ -129,18 +129,7 @@
     :full_paths:
     - Encounter.class
     :comparators: {}
-    :values:
-    - AMB
-    - EMER
-    - FLD
-    - HH
-    - IMP
-    - ACUTE
-    - NONAC
-    - OBSENC
-    - PRENC
-    - SS
-    - VR
+    :values: []
     :type: Coding
     :contains_multiple: false
     :multiple_or: MAY
@@ -198,11 +187,7 @@
     :full_paths:
     - Encounter.type
     :comparators: {}
-    :values:
-    - ADMS
-    - BD/BM-clin
-    - CCS60
-    - OKI
+    :values: []
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY

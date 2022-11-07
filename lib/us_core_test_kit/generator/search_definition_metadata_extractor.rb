@@ -116,7 +116,15 @@ module USCoreTestKit
       def values
           value_extractor.values_from_slicing(profile_element, type).presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
-          value_extractor.values_from_resource_metadata(paths).presence || []
+          values_from_resource_metadata(paths).presence || []
+      end
+
+      def values_from_resource_metadata(paths)
+        if multiple_or_expectation == 'SHALL' || paths.include?('status')
+          value_extractor.values_from_resource_metadata(paths)
+        else
+          []
+        end
       end
 
       def value_extractor
