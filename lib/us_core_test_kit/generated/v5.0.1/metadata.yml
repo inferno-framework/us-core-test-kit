@@ -1104,7 +1104,6 @@
       :values:
       - problem-list-item
       - health-concern
-      - sdoh
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4001,7 +4000,6 @@
       :comparators: {}
       :values:
       - survey
-      - sdoh
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4669,7 +4667,6 @@
       :comparators: {}
       :values:
       - social-history
-      - sdoh
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY

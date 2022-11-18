@@ -158,7 +158,6 @@
     :values:
     - problem-list-item
     - health-concern
-    - sdoh
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY

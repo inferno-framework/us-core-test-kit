@@ -54,7 +54,7 @@ module USCoreTestKit
 
         profile_elements
           .select do |element|
-            element.path == profile_element.path && element.patternCodeableConcept.present?
+            element.path == profile_element.path && element.patternCodeableConcept.present? && element.min > 0
           end
           .map { |element| element.patternCodeableConcept.coding.first.code }
       end
