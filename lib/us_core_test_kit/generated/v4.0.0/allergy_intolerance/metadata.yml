@@ -59,10 +59,7 @@
     :full_paths:
     - AllergyIntolerance.clinicalStatus
     :comparators: {}
-    :values:
-    - active
-    - inactive
-    - resolved
+    :values: []
     :type: CodeableConcept
     :contains_multiple: false
     :multiple_or: MAY

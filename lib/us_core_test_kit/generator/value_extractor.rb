@@ -1,11 +1,62 @@
 module USCoreTestKit
   class Generator
     class ValueExactor
-      attr_accessor :ig_resources, :resource
+      attr_accessor :ig_resources, :resource, :profile_elements
 
-      def initialize(ig_resources, resource)
+      def initialize(ig_resources, resource, profile_elements)
         self.ig_resources = ig_resources
         self.resource = resource
+        self.profile_elements = profile_elements
+      end
+
+      def values_from_slicing(profile_element, type)
+        (
+          values_from_required_binding(profile_element) +
+          values_from_fixed_codes(profile_element, type) +
+          values_from_pattern_coding(profile_element, type) +
+          values_from_pattern_codeable_concept(profile_element, type)
+        ).uniq
+      end
+
+      def values_from_required_binding(profile_element)
+        return [] unless profile_element&.max == '*'
+
+        profile_elements
+          .select do |element|
+            element.path == profile_element.path && element.binding&.strength == 'required'
+          end
+          .map { |element| values_from_value_set_binding(element) }
+          .flatten.compact
+      end
+
+      def values_from_fixed_codes(profile_element, type)
+        return [] unless type == 'CodeableConcept'
+
+        profile_elements
+          .select do
+            |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present?
+          end
+          .map { |element| element.fixedCode }
+      end
+
+      def values_from_pattern_coding(profile_element, type)
+        return [] unless type == 'CodeableConcept'
+
+        profile_elements
+          .select do |element|
+            element.path == "#{profile_element.path}.coding" && element.patternCoding.present?
+          end
+          .map { |element| element.patternCoding.code }
+      end
+
+      def values_from_pattern_codeable_concept(profile_element, type)
+        return [] unless type == 'CodeableConcept'
+
+        profile_elements
+          .select do |element|
+            element.path == profile_element.path && element.patternCodeableConcept.present?
+          end
+          .map { |element| element.patternCodeableConcept.coding.first.code }
       end
 
       def value_set_binding(the_element)

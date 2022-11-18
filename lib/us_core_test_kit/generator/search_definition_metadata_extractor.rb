@@ -114,70 +114,21 @@ module USCoreTestKit
       end
 
       def values
-        values = (
-            values_from_pattern_codeable_concept_slices +
-            values_from_required_binding_slices +
-            values_from_fixed_codes +
-            values_from_pattern_coding +
-            values_from_pattern_codeable_concept
-          ).uniq.presence ||
+          value_extractor.values_from_slicing(profile_element, type).presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
-          value_extractor.values_from_resource_metadata(paths).presence || []
-
-        values
+          values_from_resource_metadata(paths).presence || []
       end
 
-      def slices
-        return [] unless contains_multiple?
-
-        profile_elements.select do |element|
-          full_paths.include?(element.path) &&
-            element.sliceName.present? &&
-            (
-              element.patternCodeableConcept.present? ||
-              element.binding.present? && element.binding.strength == 'required'
-            )
+      def values_from_resource_metadata(paths)
+        if multiple_or_expectation == 'SHALL' || paths.include?('status')
+          value_extractor.values_from_resource_metadata(paths)
+        else
+          []
         end
       end
 
-      def values_from_pattern_codeable_concept_slices
-        slices.map do |slice|
-          slice.patternCodeableConcept.coding.first.code if slice.patternCodeableConcept.present?
-        end.compact
-      end
-
-      def values_from_required_binding_slices
-        slices.map do |slice|
-          if slice.binding.present? && slice.binding.strength == 'required'
-            value_extractor.values_from_value_set_binding(slice)
-          end
-        end.flatten.compact
-      end
-
-      def values_from_fixed_codes
-        return [] unless type == 'CodeableConcept'
-
-        profile_elements
-          .select { |element| element.path == "#{profile_element.path}.coding.code" && element.fixedCode.present? }
-          .map { |element| element.fixedCode }
-      end
-
-      def values_from_pattern_coding
-        return [] unless type == 'CodeableConcept'
-
-        profile_elements
-          .select { |element| element.path == "#{profile_element.path}.coding" && element.patternCoding.present? }
-          .map { |element| element.patternCoding.code }
-      end
-
-      def values_from_pattern_codeable_concept
-        return [] if type != 'CodeableConcept' || profile_element.patternCodeableConcept.blank?
-
-        [profile_element.patternCodeableConcept.coding.first.code]
-      end
-
       def value_extractor
-        @value_extractor ||= ValueExactor.new(ig_resources, resource)
+        @value_extractor ||= ValueExactor.new(ig_resources, resource, profile_elements)
       end
     end
   end

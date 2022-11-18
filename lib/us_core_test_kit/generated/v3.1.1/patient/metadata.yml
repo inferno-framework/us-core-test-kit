@@ -136,11 +136,7 @@
     :full_paths:
     - Patient.gender
     :comparators: {}
-    :values:
-    - male
-    - female
-    - other
-    - unknown
+    :values: []
     :type: code
     :contains_multiple: false
     :multiple_or: MAY
