@@ -33,15 +33,23 @@ module USCoreTestKit
           .reject { |element| element_has_fixed_value? element }
       end
 
+      def is_required_binding_slice(profile_element)
+        profile_element.sliceName.present? && profile_element.min > 0
+      end
+
       def element_terminology_bindings
         profile_elements_with_bindings.map do |element|
-          {
+          binding = {
             type: element.type.first.code,
             strength: element.binding.strength,
             # Goal.target.detail has an unbound binding
             system: element.binding.valueSet&.split('|')&.first,
             path: element.path.gsub('[x]', '').gsub("#{resource}.", '')
           }
+
+          binding[:required_binding_slice] = true if is_required_binding_slice(element)
+
+          binding
         end
       end
 

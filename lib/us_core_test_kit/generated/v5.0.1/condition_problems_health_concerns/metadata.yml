@@ -283,6 +283,7 @@
   :strength: required
   :system: http://hl7.org/fhir/us/core/ValueSet/us-core-problem-or-health-concern
   :path: category
+  :required_binding_slice: true
 :references:
 - :path: Condition.subject
   :profiles:
