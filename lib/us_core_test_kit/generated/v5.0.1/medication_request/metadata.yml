@@ -202,10 +202,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/medicationrequest-intent
   :path: intent
-- :type: CodeableConcept
-  :strength: required
-  :system: http://hl7.org/fhir/ValueSet/medicationrequest-category
-  :path: category
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/request-priority

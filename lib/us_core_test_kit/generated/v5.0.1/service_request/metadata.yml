@@ -201,10 +201,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/request-intent
   :path: intent
-- :type: CodeableConcept
-  :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category
-  :path: category
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/request-priority

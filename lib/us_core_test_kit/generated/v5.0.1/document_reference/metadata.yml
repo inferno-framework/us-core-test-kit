@@ -235,10 +235,6 @@
   :strength: required
   :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type
   :path: type
-- :type: CodeableConcept
-  :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category
-  :path: category
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/document-relationship-type

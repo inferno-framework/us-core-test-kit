@@ -200,10 +200,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/diagnostic-report-status
   :path: status
-- :type: CodeableConcept
-  :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category
-  :path: category
 :references:
 - :path: DiagnosticReport.basedOn
   :profiles:

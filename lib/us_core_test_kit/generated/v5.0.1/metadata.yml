@@ -1481,10 +1481,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/diagnostic-report-status
     :path: status
-  - :type: CodeableConcept
-    :strength: required
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category
-    :path: category
   :references:
   - :path: DiagnosticReport.basedOn
     :profiles:
@@ -1993,10 +1989,6 @@
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type
     :path: type
-  - :type: CodeableConcept
-    :strength: required
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category
-    :path: category
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/document-relationship-type
@@ -3104,10 +3096,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/medicationrequest-intent
     :path: intent
-  - :type: CodeableConcept
-    :strength: required
-    :system: http://hl7.org/fhir/ValueSet/medicationrequest-category
-    :path: category
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-priority
@@ -9732,10 +9720,6 @@
   - QuestionnaireResponse.authored
   - QuestionnaireResponse.item.linkId
   :bindings:
-  - :type: Coding
-    :strength: required
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-tags
-    :path: meta.tag
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/questionnaire-answers-status
@@ -10070,10 +10054,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-intent
     :path: intent
-  - :type: CodeableConcept
-    :strength: required
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category
-    :path: category
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-priority

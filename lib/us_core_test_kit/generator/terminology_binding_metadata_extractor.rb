@@ -27,15 +27,17 @@ module USCoreTestKit
         end
       end
 
+      def element_has_option_binding_slice(element)
+        element.sliceName.present? && element.min == 0
+      end
+
       def profile_elements_with_bindings
         profile_elements
           .select { |element| element.binding.present? && element.binding.strength == 'required'}
-          .reject { |element| element_has_fixed_value? element }
+          .reject { |element| element_has_fixed_value?(element) || element_has_option_binding_slice(element) }
       end
 
-      def is_required_binding_slice(profile_element)
-        profile_element.sliceName.present? && profile_element.min > 0
-      end
+
 
       def element_terminology_bindings
         profile_elements_with_bindings.map do |element|
@@ -47,7 +49,9 @@ module USCoreTestKit
             path: element.path.gsub('[x]', '').gsub("#{resource}.", '')
           }
 
-          binding[:required_binding_slice] = true if is_required_binding_slice(element)
+          if element.sliceName.present? && element.min > 0
+            binding[:required_binding_slice] = true
+          end
 
           binding
         end
