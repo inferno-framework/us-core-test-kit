@@ -154,10 +154,6 @@
 - CarePlan.activity.detail.status
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/narrative-status
   :path: text.status
@@ -169,38 +165,14 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/care-plan-intent
   :path: intent
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/care-plan-category
-  :path: category
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/care-plan-category
-  :path: category
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/care-plan-activity-outcome
-  :path: activity.outcomeCodeableConcept
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/care-plan-activity-kind
   :path: activity.detail.kind
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-code
-  :path: activity.detail.code
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/clinical-findings
-  :path: activity.detail.reasonCode
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/care-plan-activity-status
   :path: activity.detail.status
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/medication-codes
-  :path: activity.detail.product
 :references:
 - :path: CarePlan.basedOn
   :profiles:

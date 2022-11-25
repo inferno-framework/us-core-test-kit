@@ -113,17 +113,9 @@
 - Practitioner.qualification.code
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/identifier-use
   :path: identifier.use
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/identifier-type
-  :path: identifier.type
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/name-use
@@ -144,22 +136,10 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/address-type
   :path: address.type
-- :type: string
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-  :path: address.state
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/administrative-gender
   :path: gender
-- :type: CodeableConcept
-  :strength: example
-  :system: http://terminology.hl7.org/ValueSet/v2-2.7-0360
-  :path: qualification.code
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: communication
 :references:
 - :path: Practitioner.identifier.assigner
   :profiles:

@@ -117,57 +117,9 @@
 - Immunization.protocolApplied.doseNumber[x]
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/immunization-status
   :path: status
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-status-reason
-  :path: statusReason
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vaccines-cvx
-  :path: vaccineCode
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-origin
-  :path: reportOrigin
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-site
-  :path: site
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-route
-  :path: route
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/immunization-function
-  :path: performer.function
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-reason
-  :path: reasonCode
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-subpotent-reason
-  :path: subpotentReason
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-program-eligibility
-  :path: programEligibility
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-funding-source
-  :path: fundingSource
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/immunization-target-disease
-  :path: protocolApplied.targetDisease
 :references:
 - :path: Immunization.patient
   :profiles:

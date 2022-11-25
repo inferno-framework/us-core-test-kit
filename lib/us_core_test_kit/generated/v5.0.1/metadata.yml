@@ -88,10 +88,6 @@
   - AllergyIntolerance.patient
   - AllergyIntolerance.reaction.manifestation
   :bindings:
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
   - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/allergyintolerance-clinical
@@ -112,26 +108,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality
     :path: criticality
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1186.8
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/substance-code
-    :path: reaction.substance
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: reaction.manifestation
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/reaction-event-severity
     :path: reaction.severity
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/route-codes
-    :path: reaction.exposureRoute
   :references:
   - :path: AllergyIntolerance.patient
     :profiles:
@@ -307,10 +287,6 @@
   - CarePlan.activity.detail.status
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-narrative-status
     :path: text.status
@@ -322,38 +298,14 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/care-plan-intent
     :path: intent
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/care-plan-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/care-plan-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/care-plan-activity-outcome
-    :path: activity.outcomeCodeableConcept
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/care-plan-activity-kind
     :path: activity.detail.kind
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-code
-    :path: activity.detail.code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: activity.detail.reasonCode
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/care-plan-activity-status
     :path: activity.detail.status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medication-codes
-    :path: activity.detail.product
   :references:
   - :path: CarePlan.basedOn
     :profiles:
@@ -559,25 +511,9 @@
   - CareTeam.participant.member
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/care-team-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/care-team-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1099.30
-    :path: participant.role
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: reasonCode
   :references:
   - :path: CareTeam.subject
     :profiles:
@@ -873,10 +809,6 @@
   - Condition.code
   - Condition.subject
   :bindings:
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
   - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/condition-clinical
@@ -885,38 +817,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/condition-ver-status
     :path: verificationStatus
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/condition-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/condition-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/condition-severity
-    :path: severity
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-stage
-    :path: stage.summary
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-stage-type
-    :path: stage.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/manifestation-or-symptom
-    :path: evidence.code
   :references:
   - :path: Condition.subject
     :profiles:
@@ -1216,10 +1116,6 @@
   - Condition.code
   - Condition.subject
   :bindings:
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
   - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/condition-clinical
@@ -1229,41 +1125,9 @@
     :system: http://hl7.org/fhir/ValueSet/condition-ver-status
     :path: verificationStatus
   - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/condition-category
-    :path: category
-  - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-problem-or-health-concern
     :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/condition-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/condition-severity
-    :path: severity
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-stage
-    :path: stage.summary
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-stage-type
-    :path: stage.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/manifestation-or-symptom
-    :path: evidence.code
   :references:
   - :path: Condition.subject
     :profiles:
@@ -1387,10 +1251,6 @@
   - Device.patient
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/udi-entry-type
     :path: udiCarrier.entryType
@@ -1398,18 +1258,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/device-status
     :path: status
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/device-status-reason
-    :path: statusReason
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/device-nametype
     :path: deviceName.type
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/device-kind
-    :path: type
   :references:
   - :path: Device.definition
     :profiles:
@@ -1625,29 +1477,13 @@
   - DiagnosticReport.media.link
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/diagnostic-report-status
     :path: status
   - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/diagnostic-service-sections
-    :path: category
-  - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-category
     :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-report-and-note-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: conclusionCode
   :references:
   - :path: DiagnosticReport.basedOn
     :profiles:
@@ -1873,29 +1709,9 @@
   - DiagnosticReport.media.link
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/diagnostic-report-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/diagnostic-service-sections
-    :path: category
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/diagnostic-service-sections
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-lab-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: conclusionCode
   :references:
   - :path: DiagnosticReport.basedOn
     :profiles:
@@ -2165,10 +1981,6 @@
   - DocumentReference.content.attachment
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/document-reference-status
     :path: status
@@ -2181,10 +1993,6 @@
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type
     :path: type
   - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/document-classcodes
-    :path: category
-  - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category
     :path: category
@@ -2192,34 +2000,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/document-relationship-type
     :path: relatesTo.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/security-labels
-    :path: securityLabel
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/mimetypes
     :path: content.attachment.contentType
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: content.attachment.language
-  - :type: Coding
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/formatcodes
-    :path: content.format
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v3-ActCode
-    :path: context.event
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/c80-facilitycodes
-    :path: context.facilityType
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/c80-practice-codes
-    :path: context.practiceSetting
   :references:
   - :path: DocumentReference.subject
     :profiles:
@@ -2515,17 +2299,9 @@
   - Encounter.location.location
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/identifier-use
     :path: identifier.use
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/identifier-type
-    :path: identifier.type
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/encounter-status
@@ -2534,70 +2310,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/encounter-status
     :path: statusHistory.status
-  - :type: Coding
-    :strength: extensible
-    :system: http://terminology.hl7.org/ValueSet/v3-ActEncounterCode
-    :path: class
-  - :type: Coding
-    :strength: extensible
-    :system: http://terminology.hl7.org/ValueSet/v3-ActEncounterCode
-    :path: classHistory.class
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-encounter-type
-    :path: type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/service-type
-    :path: serviceType
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v3-ActPriority
-    :path: priority
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/encounter-participant-type
-    :path: participant.type
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/encounter-reason
-    :path: reasonCode
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/diagnosis-role
-    :path: diagnosis.use
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/encounter-admit-source
-    :path: hospitalization.admitSource
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v2-0092
-    :path: hospitalization.reAdmission
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/encounter-diet
-    :path: hospitalization.dietPreference
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/encounter-special-courtesy
-    :path: hospitalization.specialCourtesy
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/encounter-special-arrangements
-    :path: hospitalization.specialArrangement
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-discharge-disposition
-    :path: hospitalization.dischargeDisposition
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/encounter-location-status
     :path: location.status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/location-physical-type
-    :path: location.physicalType
   :references:
   - :path: Encounter.identifier.assigner
     :profiles:
@@ -2786,45 +2502,9 @@
   - Goal.subject
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/goal-status
     :path: lifecycleStatus
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/goal-achievement
-    :path: achievementStatus
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/goal-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/goal-priority
-    :path: priority
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-goal-description
-    :path: description
-  - :type: date
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/goal-start-event
-    :path: start
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: target.measure
-  - :type: Quantity
-    :strength: example
-    :system:
-    :path: target.detail
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/clinical-findings
-    :path: outcomeCode
   :references:
   - :path: Goal.subject
     :profiles:
@@ -2966,57 +2646,9 @@
   - Immunization.protocolApplied.doseNumber[x]
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/immunization-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-status-reason
-    :path: statusReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1010.6
-    :path: vaccineCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-origin
-    :path: reportOrigin
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-site
-    :path: site
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-route
-    :path: route
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/immunization-function
-    :path: performer.function
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-reason
-    :path: reasonCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-subpotent-reason
-    :path: subpotentReason
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-program-eligibility
-    :path: programEligibility
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-funding-source
-    :path: fundingSource
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/immunization-target-disease
-    :path: protocolApplied.targetDisease
   :references:
   - :path: Immunization.patient
     :profiles:
@@ -3181,25 +2813,13 @@
   - Location.position.latitude
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/location-status
     :path: status
-  - :type: Coding
-    :strength: preferred
-    :system: http://terminology.hl7.org/ValueSet/v2-0116
-    :path: operationalStatus
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/location-mode
     :path: mode
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://terminology.hl7.org/ValueSet/v3-ServiceDeliveryLocationRoleType
-    :path: type
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/address-use
@@ -3208,14 +2828,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/address-type
     :path: address.type
-  - :type: string
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-    :path: address.state
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/location-physical-type
-    :path: physicalType
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/days-of-week
@@ -3280,21 +2892,9 @@
   - Medication.ingredient.item[x]
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1010.4
-    :path: code
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/medication-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medication-form-codes
-    :path: form
   :references:
   - :path: Medication.manufacturer
     :profiles:
@@ -3496,25 +3096,13 @@
   - MedicationRequest.substitution.allowed[x]
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/medicationrequest-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medicationrequest-status-reason
-    :path: statusReason
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/medicationrequest-intent
     :path: intent
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medicationrequest-category
-    :path: category
   - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/medicationrequest-category
@@ -3523,54 +3111,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-priority
     :path: priority
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1010.4
-    :path: medication
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/performer-role
-    :path: performerType
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-code
-    :path: reasonCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medicationrequest-course-of-therapy
-    :path: courseOfTherapyType
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/additional-instruction-codes
-    :path: dosageInstruction.additionalInstruction
-  - :type: boolean
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medication-as-needed-reason
-    :path: dosageInstruction.asNeeded
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/approach-site-codes
-    :path: dosageInstruction.site
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/route-codes
-    :path: dosageInstruction.route
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/administration-method-codes
-    :path: dosageInstruction.method
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/dose-rate-type
-    :path: dosageInstruction.doseAndRate.type
-  - :type: boolean
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode
-    :path: substitution.allowed
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v3-SubstanceAdminSubstitutionReason
-    :path: substitution.reason
   :references:
   - :path: MedicationRequest.subject
     :profiles:
@@ -3806,61 +3346,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -4155,65 +3643,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-common-sdoh-assessments
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -4465,69 +3897,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -4767,65 +4143,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -5079,69 +4399,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -5389,25 +4653,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
@@ -5416,46 +4664,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/ucum-bodytemp
     :path: value.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -5704,69 +4912,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -6056,97 +5208,17 @@
   - Observation.component.value[x].code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: component.value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: component.value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -6371,65 +5443,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-smoking-status-observation-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.11.20.9.38
-    :path: value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -6649,61 +5665,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-sexual-orientation
-    :path: value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -6951,25 +5915,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
@@ -6978,46 +5926,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/ucum-bodylength
     :path: value.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -7265,25 +6173,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
@@ -7292,46 +6184,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/ucum-bodylength
     :path: value.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -7580,69 +6432,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -7912,97 +6708,17 @@
   - Observation.component.value[x].code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: component.value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: component.value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -8228,61 +6944,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-report-and-note-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -8969,61 +7633,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-test-codes
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-codes
-    :path: component.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -9272,69 +7884,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -9584,69 +8140,13 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
     :path: value.comparator
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -9894,25 +8394,9 @@
   - Observation.component.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/observation-status
     :path: status
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/observation-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: code
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/quantity-comparator
@@ -9921,46 +8405,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/ucum-bodyweight
     :path: value.code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: interpretation
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/observation-methods
-    :path: method
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-    :path: referenceRange.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-    :path: referenceRange.appliesTo
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-    :path: component.code
-  - :type: Quantity
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-    :path: component.value
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-    :path: component.dataAbsentReason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-    :path: component.interpretation
   :references:
   - :path: Observation.basedOn
     :profiles:
@@ -10113,21 +8557,9 @@
   - Organization.name
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/identifier-use
     :path: identifier.use
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/identifier-type
-    :path: identifier.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/organization-type
-    :path: type
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/contact-point-system
@@ -10144,14 +8576,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/address-type
     :path: address.type
-  - :type: string
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-    :path: address.state
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/contactentity-type
-    :path: contact.purpose
   :references:
   - :path: Organization.identifier.assigner
     :profiles:
@@ -10373,17 +8797,9 @@
   - Patient.link.type
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/identifier-use
     :path: identifier.use
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/identifier-type
-    :path: identifier.type
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/name-use
@@ -10408,26 +8824,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/address-type
     :path: address.type
-  - :type: string
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-    :path: address.state
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/marital-status
-    :path: maritalStatus
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/patient-contactrelationship
-    :path: contact.relationship
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/administrative-gender
     :path: contact.gender
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/simple-language
-    :path: communication.language
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/link-type
@@ -10606,17 +9006,9 @@
   - Practitioner.qualification.code
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/identifier-use
     :path: identifier.use
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/identifier-type
-    :path: identifier.type
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/name-use
@@ -10637,22 +9029,10 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/address-type
     :path: address.type
-  - :type: string
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-    :path: address.state
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/administrative-gender
     :path: gender
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v2-2.7-0360
-    :path: qualification.code
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: communication
   :references:
   - :path: Practitioner.identifier.assigner
     :profiles:
@@ -10760,18 +9140,6 @@
   - PractitionerRole.telecom.value
   - PractitionerRole.notAvailable.description
   :bindings:
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-provider-role
-    :path: code
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.1066
-    :path: specialty
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/contact-point-system
@@ -10944,57 +9312,9 @@
   - Procedure.focalDevice.manipulated
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/event-status
     :path: status
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-not-performed-reason
-    :path: statusReason
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-category
-    :path: category
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/performer-role
-    :path: performer.function
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-reason
-    :path: reasonCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-outcome
-    :path: outcome
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/condition-code
-    :path: complication
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-followup
-    :path: followUp
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/device-action
-    :path: focalDevice.action
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/device-kind
-    :path: usedCode
   :references:
   - :path: Procedure.basedOn
     :profiles:
@@ -11143,46 +9463,6 @@
   - Provenance.entity.role
   - Provenance.entity.what
   :bindings:
-  - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: uri
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/resource-types
-    :path: target.type
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://terminology.hl7.org/ValueSet/v3-PurposeOfUse
-    :path: reason
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/provenance-activity-type
-    :path: activity
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-provenance-participant-type
-    :path: agent.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/security-role-type
-    :path: agent.role
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/provenance-agent-type
-    :path: agent.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/security-role-type
-    :path: agent.role
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/provenance-agent-type
-    :path: agent.type
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/security-role-type
-    :path: agent.role
   - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/provenance-entity-role
@@ -11452,29 +9732,13 @@
   - QuestionnaireResponse.item.linkId
   :bindings:
   - :type: Coding
-    :strength: extensible
-    :system: http://hl7.org/fhir/ValueSet/security-labels
-    :path: meta.security
-  - :type: Coding
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/common-tags
-    :path: meta.tag
-  - :type: Coding
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-tags
     :path: meta.tag
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/questionnaire-answers-status
     :path: status
-  - :type: boolean
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/questionnaire-answers
-    :path: item.answer.value
   :references:
   - :path: QuestionnaireResponse.basedOn
     :profiles:
@@ -11595,21 +9859,9 @@
   - RelatedPerson.communication.language
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype
-    :path: relationship
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/administrative-gender
     :path: gender
-  - :type: CodeableConcept
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: communication.language
   :references:
   - :path: RelatedPerson.patient
     :profiles:
@@ -11810,10 +10062,6 @@
   - ServiceRequest.subject
   :bindings:
   - :type: code
-    :strength: preferred
-    :system: http://hl7.org/fhir/ValueSet/languages
-    :path: language
-  - :type: code
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-status
     :path: status
@@ -11822,10 +10070,6 @@
     :system: http://hl7.org/fhir/ValueSet/request-intent
     :path: intent
   - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/servicerequest-category
-    :path: category
-  - :type: CodeableConcept
     :strength: required
     :system: http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category
     :path: category
@@ -11833,34 +10077,6 @@
     :strength: required
     :system: http://hl7.org/fhir/ValueSet/request-priority
     :path: priority
-  - :type: CodeableConcept
-    :strength: extensible
-    :system: http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code
-    :path: code
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/servicerequest-orderdetail
-    :path: orderDetail
-  - :type: boolean
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/medication-as-needed-reason
-    :path: asNeeded
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/participant-role
-    :path: performerType
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://terminology.hl7.org/ValueSet/v3-ServiceDeliveryLocationRoleType
-    :path: locationCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/procedure-reason
-    :path: reasonCode
-  - :type: CodeableConcept
-    :strength: example
-    :system: http://hl7.org/fhir/ValueSet/body-site
-    :path: bodySite
   :references:
   - :path: ServiceRequest.basedOn
     :profiles:

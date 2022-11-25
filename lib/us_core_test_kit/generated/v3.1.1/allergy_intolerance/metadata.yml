@@ -86,10 +86,6 @@
 - AllergyIntolerance.patient
 - AllergyIntolerance.reaction.manifestation
 :bindings:
-- :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
 - :type: CodeableConcept
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/allergyintolerance-clinical
@@ -110,26 +106,10 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality
   :path: criticality
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-allergy-substance
-  :path: code
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/substance-code
-  :path: reaction.substance
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/clinical-findings
-  :path: reaction.manifestation
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/reaction-event-severity
   :path: reaction.severity
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/route-codes
-  :path: reaction.exposureRoute
 :references:
 - :path: AllergyIntolerance.patient
   :profiles:

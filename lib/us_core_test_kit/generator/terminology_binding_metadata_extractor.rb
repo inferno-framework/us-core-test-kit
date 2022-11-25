@@ -29,7 +29,7 @@ module USCoreTestKit
 
       def profile_elements_with_bindings
         profile_elements
-          .select { |element| element.binding.present? }
+          .select { |element| element.binding.present? && element.binding.strength == 'required'}
           .reject { |element| element_has_fixed_value? element }
       end
 

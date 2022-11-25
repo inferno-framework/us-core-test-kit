@@ -137,57 +137,9 @@
 - Procedure.focalDevice.manipulated
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/event-status
   :path: status
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-not-performed-reason
-  :path: statusReason
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-category
-  :path: category
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-procedure-code
-  :path: code
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/performer-role
-  :path: performer.function
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-reason
-  :path: reasonCode
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/body-site
-  :path: bodySite
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-outcome
-  :path: outcome
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/condition-code
-  :path: complication
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/procedure-followup
-  :path: followUp
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/device-action
-  :path: focalDevice.action
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/device-kind
-  :path: usedCode
 :references:
 - :path: Procedure.basedOn
   :profiles:

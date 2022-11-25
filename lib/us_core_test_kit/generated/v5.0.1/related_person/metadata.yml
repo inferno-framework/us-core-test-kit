@@ -84,21 +84,9 @@
 - RelatedPerson.communication.language
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype
-  :path: relationship
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/administrative-gender
   :path: gender
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: communication.language
 :references:
 - :path: RelatedPerson.patient
   :profiles:
