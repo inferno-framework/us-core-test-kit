@@ -27,14 +27,14 @@ module USCoreTestKit
         end
       end
 
-      def element_has_option_binding_slice(element)
+      def element_has_optional_binding_slice(element)
         element.sliceName.present? && element.min == 0
       end
 
       def profile_elements_with_bindings
         profile_elements
           .select { |element| element.binding.present? && element.binding.strength == 'required'}
-          .reject { |element| element_has_fixed_value?(element) || element_has_option_binding_slice(element) }
+          .reject { |element| element_has_fixed_value?(element) || element_has_optional_binding_slice(element) }
       end
 
 
