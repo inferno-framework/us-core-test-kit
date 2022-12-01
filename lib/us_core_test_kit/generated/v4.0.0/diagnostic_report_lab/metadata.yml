@@ -181,29 +181,9 @@
 - DiagnosticReport.media.link
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/diagnostic-report-status
   :path: status
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/diagnostic-service-sections
-  :path: category
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/diagnostic-service-sections
-  :path: category
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-diagnosticreport-lab-codes
-  :path: code
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/clinical-findings
-  :path: conclusionCode
 :references:
 - :path: DiagnosticReport.basedOn
   :profiles:

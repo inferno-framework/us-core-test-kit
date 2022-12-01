@@ -200,30 +200,10 @@
 - QuestionnaireResponse.authored
 - QuestionnaireResponse.item.linkId
 :bindings:
-- :type: Coding
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/security-labels
-  :path: meta.security
-- :type: Coding
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/common-tags
-  :path: meta.tag
-- :type: Coding
-  :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-tags
-  :path: meta.tag
-- :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/questionnaire-answers-status
   :path: status
-- :type: boolean
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/questionnaire-answers
-  :path: item.answer.value
 :references:
 - :path: QuestionnaireResponse.basedOn
   :profiles:

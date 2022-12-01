@@ -192,25 +192,9 @@
 - Observation.component.code
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/observation-status
   :path: status
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/observation-category
-  :path: category
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/observation-category
-  :path: category
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-  :path: code
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/quantity-comparator
@@ -219,46 +203,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/ucum-bodylength
   :path: value.code
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-  :path: dataAbsentReason
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-  :path: interpretation
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/body-site
-  :path: bodySite
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/observation-methods
-  :path: method
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/referencerange-meaning
-  :path: referenceRange.type
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/referencerange-appliesto
-  :path: referenceRange.appliesTo
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-vital-signs
-  :path: component.code
-- :type: Quantity
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/ucum-vitals-common
-  :path: component.value
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/data-absent-reason
-  :path: component.dataAbsentReason
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/observation-interpretation
-  :path: component.interpretation
 :references:
 - :path: Observation.basedOn
   :profiles:

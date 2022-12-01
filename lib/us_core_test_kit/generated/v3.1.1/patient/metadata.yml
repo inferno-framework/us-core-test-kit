@@ -187,17 +187,9 @@
 - Patient.link.type
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/identifier-use
   :path: identifier.use
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/identifier-type
-  :path: identifier.type
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/name-use
@@ -222,26 +214,10 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/address-type
   :path: address.type
-- :type: string
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-  :path: address.state
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/marital-status
-  :path: maritalStatus
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/patient-contactrelationship
-  :path: contact.relationship
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/administrative-gender
   :path: contact.gender
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/simple-language
-  :path: communication.language
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/link-type

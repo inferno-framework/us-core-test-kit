@@ -263,10 +263,6 @@
 - Condition.code
 - Condition.subject
 :bindings:
-- :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
 - :type: CodeableConcept
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/condition-clinical
@@ -275,38 +271,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/condition-ver-status
   :path: verificationStatus
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/condition-category
-  :path: category
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/condition-category
-  :path: category
-- :type: CodeableConcept
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/condition-severity
-  :path: severity
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code
-  :path: code
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/body-site
-  :path: bodySite
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/condition-stage
-  :path: stage.summary
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/condition-stage-type
-  :path: stage.type
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/manifestation-or-symptom
-  :path: evidence.code
 :references:
 - :path: Condition.subject
   :profiles:

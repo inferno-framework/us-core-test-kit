@@ -96,21 +96,9 @@
 - Organization.name
 :bindings:
 - :type: code
-  :strength: preferred
-  :system: http://hl7.org/fhir/ValueSet/languages
-  :path: language
-- :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/identifier-use
   :path: identifier.use
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/identifier-type
-  :path: identifier.type
-- :type: CodeableConcept
-  :strength: example
-  :system: http://hl7.org/fhir/ValueSet/organization-type
-  :path: type
 - :type: code
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/contact-point-system
@@ -127,14 +115,6 @@
   :strength: required
   :system: http://hl7.org/fhir/ValueSet/address-type
   :path: address.type
-- :type: string
-  :strength: extensible
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state
-  :path: address.state
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://hl7.org/fhir/ValueSet/contactentity-type
-  :path: contact.purpose
 :references:
 - :path: Organization.identifier.assigner
   :profiles:
