@@ -15,7 +15,7 @@ module USCoreTestKit
 
     def validate
       # Invariant provenance-1 in US Core 5 causes validation error. See FHIR-39518
-      return validation_messages unless resource.class == FHIR::Provenance
+      return validation_messages unless resource.instance_of?(FHIR::Provenance)
 
       failed_provenance =
         find_a_value_at(resource, 'agent') do |agent|

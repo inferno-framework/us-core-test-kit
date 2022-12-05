@@ -74,7 +74,7 @@ module USCoreTestKit
         end
 
         perform_additional_validation do |resource, profile_url|
-          ProvenanceValidator.validate(resource) if resource.class == FHIR::Provenance
+          ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
         end
       end
 
@@ -94,7 +94,7 @@ module USCoreTestKit
       end
 
       group from: :us_core_v311_capability_statement
-  
+
       group from: :us_core_v311_patient
       group from: :us_core_v311_allergy_intolerance
       group from: :us_core_v311_care_plan
