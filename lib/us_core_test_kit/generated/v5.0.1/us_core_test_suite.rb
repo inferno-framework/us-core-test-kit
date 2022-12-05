@@ -85,7 +85,7 @@ module USCoreTestKit
         end
 
         perform_additional_validation do |resource, profile_url|
-          ProvenanceValidator.validate(resource) if resource.class == FHIR::Provenance
+          ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
         end
       end
 

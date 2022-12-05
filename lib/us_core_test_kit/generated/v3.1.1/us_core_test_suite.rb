@@ -94,7 +94,7 @@ module USCoreTestKit
       end
 
       group from: :us_core_v311_capability_statement
-
+  
       group from: :us_core_v311_patient
       group from: :us_core_v311_allergy_intolerance
       group from: :us_core_v311_care_plan
