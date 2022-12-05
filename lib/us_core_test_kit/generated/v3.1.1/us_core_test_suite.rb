@@ -3,6 +3,7 @@ require_relative '../../version'
 require_relative '../../custom_groups/v3.1.1/capability_statement_group'
 require_relative '../../custom_groups/v3.1.1/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../provenance_validator'
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -56,7 +57,8 @@ module USCoreTestKit
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris$},
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
-        /Observation\.effective\.ofType\(Period\): .*us-core-1:/ # Invalid invariant in US Core v3.1.1
+        /Observation\.effective\.ofType\(Period\): .*us-core-1:/, # Invalid invariant in US Core v3.1.1
+        /Provenance.agent\[\d*\]: Rule provenance-1/ #Invalid invariant in US Core v5.0.1
       ].freeze
 
       def self.metadata
@@ -69,6 +71,10 @@ module USCoreTestKit
         url ENV.fetch('V311_VALIDATOR_URL', 'http://validator_service:4567')
         exclude_message do |message|
           VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
+        end
+
+        perform_additional_validation do |resource, profile_url|
+          ProvenanceValidator.validate(resource) if resource.class == FHIR::Provenance
         end
       end
 
