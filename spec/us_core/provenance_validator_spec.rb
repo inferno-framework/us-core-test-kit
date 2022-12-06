@@ -80,6 +80,7 @@ RSpec.describe USCoreTestKit::ProvenanceValidator do
 
     it 'fails when agent.who is a Device and agent.onBehalfOf does not exists' do
       resource = FHIR::Provenance.new(
+         id: '1',
          agent:[
            {
              who: {
@@ -94,7 +95,7 @@ RSpec.describe USCoreTestKit::ProvenanceValidator do
       expect(result).to be_an(Array)
       expect(result.length).to eq(1)
       expect(result.first[:type]).to eq('error')
-      expect(result.first[:message]).to include('Rule provenance-1')
+      expect(result.first[:message]).to start_with('Provenance/1: Rule provenance-1')
     end
   end
 end

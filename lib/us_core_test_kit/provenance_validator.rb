@@ -23,10 +23,11 @@ module USCoreTestKit
           agent.onBehalfOf.nil?
         end
 
+
       if failed_provenance.present?
         validation_messages << {
           type: 'error',
-          message: "Rule provenance-1: 'onBehalfOf SHALL be present when Provenance.agent.who is a Practitioner or Device' Failed"
+          message: "#{resource.resourceType}/#{resource.id}: Rule provenance-1: 'onBehalfOf SHALL be present when Provenance.agent.who is a Practitioner or Device' Failed"
         }
       end
 
