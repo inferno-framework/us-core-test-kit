@@ -19,6 +19,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         FHIR::Observation.new(encounter: { reference: reference_string })
       end
       let(:reference) { resource.encounter }
+      let(:referenced_resource) { FHIR::Encounter.new(id: '123') }
 
       it 'returns true' do
         target_profile = 'abc'
