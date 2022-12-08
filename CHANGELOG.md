@@ -1,3 +1,15 @@
+# 0.4.2
+
+* Update to support new development workflow (#92).
+* Remove unneeded search values from metadata (#91).
+* Remove optional patternCodeableConcept values from search definition metadata
+  to avoid retrieving resources which conform to a different profile than the
+  one being tested (#93). 
+* Add a description to the generated suites (#89).
+* Update to handle mandatory slices with required bindings in US Core 5 (#94).
+* Update US Core 5 Provenance tests to handle broken provenance-1 constraint
+  (#95).
+
 # 0.4.1
 
 * Fix a bug which prevented slices by binding from being correctly identified in
