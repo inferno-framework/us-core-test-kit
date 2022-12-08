@@ -19,12 +19,14 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
         FHIR::Observation.new(encounter: { reference: reference_string })
       end
       let(:reference) { resource.encounter }
+      let(:referenced_resource) { FHIR::Encounter.new(id: '123') }
 
       it 'returns true' do
-        test.record_resolved_reference(reference)
+        target_profile = 'abc'
+        test.record_resolved_reference(reference, target_profile)
 
-        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
-        expect(test.resolved_references).to include(reference_string)
+        expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(true)
+        expect(test.is_reference_resolved?(reference, target_profile)).to be(true)
         expect(test.requests.length).to eq(0)
       end
     end
@@ -65,13 +67,15 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       let(:referenced_resource) { FHIR::Encounter.new(id: '123') }
 
       it 'returns true if the reference can be resolved' do
+        # set target_profile to be nil to skip calling validator
+        target_profile = nil
         request =
           stub_request(:get, "#{base_url}/#{reference_string}")
             .to_return(status: 200, body: referenced_resource.to_json)
 
-        expect(test.validate_reference_resolution(resource, reference, nil)).to be(true)
+        expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(true)
         expect(request).to have_been_made.once
-        expect(test.resolved_references).to include(reference_string)
+        expect(test.is_reference_resolved?(reference, target_profile)).to be(true)
         expect(test.requests.length).to eq(1)
       end
 
