@@ -61,7 +61,10 @@
       :full_paths:
       - AllergyIntolerance.clinicalStatus
       :comparators: {}
-      :values: []
+      :values:
+      - active
+      - inactive
+      - resolved
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
@@ -761,7 +764,13 @@
       :full_paths:
       - Condition.clinicalStatus
       :comparators: {}
-      :values: []
+      :values:
+      - active
+      - recurrence
+      - relapse
+      - inactive
+      - remission
+      - resolved
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
@@ -1063,7 +1072,13 @@
       :full_paths:
       - Condition.clinicalStatus
       :comparators: {}
-      :values: []
+      :values:
+      - active
+      - recurrence
+      - relapse
+      - inactive
+      - remission
+      - resolved
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
@@ -2459,7 +2474,16 @@
       :full_paths:
       - Goal.lifecycleStatus
       :comparators: {}
-      :values: []
+      :values:
+      - proposed
+      - planned
+      - accepted
+      - active
+      - on-hold
+      - completed
+      - cancelled
+      - entered-in-error
+      - rejected
       :type: code
       :contains_multiple: false
       :multiple_or: MAY
