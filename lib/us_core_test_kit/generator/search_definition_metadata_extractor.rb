@@ -120,7 +120,7 @@ module USCoreTestKit
       end
 
       def values_from_resource_metadata(paths)
-        if multiple_or_expectation == 'SHALL' || paths.include?('status')
+        if multiple_or_expectation == 'SHALL' || paths.any? { |path| path.downcase.include?('status') }
           value_extractor.values_from_resource_metadata(paths)
         else
           []
