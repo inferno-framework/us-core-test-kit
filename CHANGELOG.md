@@ -1,5 +1,10 @@
 # 0.4.2
 
+* Fix status values not being included in metadata for fields whose exact name
+  isn't `status` (e.g. `clinicalStatus`) (#98).
+
+# 0.4.2
+
 * Update to support new development workflow (#92).
 * Remove unneeded search values from metadata (#91).
 * Remove optional patternCodeableConcept values from search definition metadata
