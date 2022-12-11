@@ -68,13 +68,11 @@ module USCoreTestKit
             name: current_element.id,
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
-            binding.pry if profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
             discriminator = discriminators(sliced_element(current_element)).first
             discriminator_path = discriminator.path
             discriminator_path = '' if discriminator_path == '$this'
             pattern_element =
               if discriminator_path.present?
-                binding.pry if profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
                 profile_elements.find { |element| element.id == "#{current_element.id}.#{discriminator_path}" }
               else
                 current_element
@@ -115,7 +113,10 @@ module USCoreTestKit
                   values: values
                 }
               else
-                raise StandardError, 'Unsupported discriminator pattern type'
+                # TODO: US Core will fix the issue in Observation-occupant
+                unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
+                  raise StandardError, 'Unsupported discriminator pattern type'
+                end
               end
           end
         end
