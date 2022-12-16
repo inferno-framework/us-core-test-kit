@@ -303,6 +303,9 @@ module USCoreTestKit
           add_patient_uscdi_elements
           add_document_reference_category_values
           remove_survey_questionnaire_response
+        when '6.0.0-ballot'
+          add_patient_uscdi_elements
+          add_document_reference_category_values
         end
       end
 
