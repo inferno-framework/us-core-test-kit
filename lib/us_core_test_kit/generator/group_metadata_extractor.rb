@@ -107,8 +107,14 @@ module USCoreTestKit
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
       ]
 
+      CATEGORY_FIRST_PROFILES_WITH_VERSION = {
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v600_ballot' ],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v600_ballot' ]
+      }
+
       def category_first_profile?
-        CATEGORY_FIRST_PROFILES.include?(profile_url)
+        CATEGORY_FIRST_PROFILES.include?(profile_url) ||
+        CATEGORY_FIRST_PROFILES_WITH_VERSION[profile_url]&.include?(reformatted_version)
       end
 
       def first_search_params

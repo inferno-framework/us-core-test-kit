@@ -411,6 +411,16 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           end
+        when '6.0.0-ballot'
+          case profile.type
+          when 'CareTeam'
+            choices << {
+              target_profiles: [
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
+              ]
+            }
+          end
         end
 
         @must_supports[:choices] = choices if choices.present?
