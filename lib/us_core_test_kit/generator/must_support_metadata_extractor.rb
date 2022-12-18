@@ -484,7 +484,7 @@ module USCoreTestKit
           element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
         end
 
-        if profile.version == '5.0.1'
+        if ['5.0.1', '6.0.0-ballot'].include?(profile.version)
           @must_supports[:extensions] << {
             id: 'Patient.extension:genderIdentity',
             url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',

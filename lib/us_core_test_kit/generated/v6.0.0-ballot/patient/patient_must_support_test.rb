@@ -29,13 +29,16 @@ module USCoreTestKit
 
         For ONC USCDI requirements, each Patient must support the following additional elements:
 
+        * Patient.address.use
         * Patient.communication
         * Patient.communication.language
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
+        * Patient.extension:genderIdentity
         * Patient.extension:race
         * Patient.name.period.end
         * Patient.name.suffix
+        * Patient.name.use
         * Patient.telecom
         * Patient.telecom.system
         * Patient.telecom.use

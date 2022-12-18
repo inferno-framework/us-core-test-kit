@@ -181,6 +181,9 @@
   - :id: Patient.extension:birthsex
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
     :uscdi_only: true
+  - :id: Patient.extension:genderIdentity
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
+    :uscdi_only: true
   :slices: []
   :elements:
   - :path: identifier
@@ -212,6 +215,12 @@
   - :path: telecom
     :uscdi_only: true
   - :path: communication
+    :uscdi_only: true
+  - :path: address.use
+    :fixed_value: old
+    :uscdi_only: true
+  - :path: name.use
+    :fixed_value: old
     :uscdi_only: true
 :mandatory_elements:
 - Patient.identifier
