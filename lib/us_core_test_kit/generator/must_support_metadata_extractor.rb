@@ -394,7 +394,7 @@ module USCoreTestKit
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
           end
-        when '5.0.1'
+        when '5.0.1', '6.0.0-ballot'
           case profile.type
           when 'CareTeam'
             choices << {
@@ -413,16 +413,6 @@ module USCoreTestKit
             choices << { paths: ['location.location', 'serviceProvider'] }
           when 'MedicationRequest'
             choices << { paths: ['reportedBoolean', 'reportedReference'] }
-          end
-        when '6.0.0-ballot'
-          case profile.type
-          when 'CareTeam'
-            choices << {
-              target_profiles: [
-                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
-                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
-              ]
-            }
           end
         end
 
