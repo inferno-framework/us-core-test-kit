@@ -307,6 +307,7 @@ module USCoreTestKit
           add_patient_uscdi_elements
           add_document_reference_category_values
           add_procedure_uscdi_elements
+          add_service_request_uscdi_elements
         end
       end
 
@@ -518,6 +519,16 @@ module USCoreTestKit
 
         @must_supports[:elements] << {
           path: 'basedOn',
+          types: ['Reference'],
+          uscdi_only: true
+        }
+      end
+
+      def add_service_request_uscdi_elements
+        return unless profile.type == 'ServiceRequest'
+
+        @must_supports[:elements] << {
+          path: 'reasonReference',
           types: ['Reference'],
           uscdi_only: true
         }

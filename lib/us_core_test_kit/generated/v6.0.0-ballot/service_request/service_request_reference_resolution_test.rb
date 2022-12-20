@@ -13,6 +13,7 @@ module USCoreTestKit
         marked as 'MustSupport', if any are available.  Elements which may provide
         external references include:
 
+        * ServiceRequest.reasonReference
         * ServiceRequest.requester
         * ServiceRequest.subject
       )
