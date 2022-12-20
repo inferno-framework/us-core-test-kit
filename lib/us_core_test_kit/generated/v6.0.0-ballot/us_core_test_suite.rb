@@ -42,11 +42,11 @@ require_relative 'pediatric_bmi_for_age_group'
 require_relative 'head_circumference_percentile_group'
 require_relative 'body_weight_group'
 require_relative 'procedure_group'
-require_relative 'related_person_group'
 require_relative 'service_request_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'provenance_group'
+require_relative 'related_person_group'
 require_relative 'specimen_group'
 
 module USCoreTestKit
@@ -148,11 +148,11 @@ module USCoreTestKit
       group from: :us_core_v600_ballot_head_circumference_percentile
       group from: :us_core_v600_ballot_body_weight
       group from: :us_core_v600_ballot_procedure
-      group from: :us_core_v600_ballot_related_person
       group from: :us_core_v600_ballot_service_request
       group from: :us_core_v600_ballot_organization
       group from: :us_core_v600_ballot_practitioner
       group from: :us_core_v600_ballot_provenance
+      group from: :us_core_v600_ballot_related_person
       group from: :us_core_v600_ballot_specimen
       group from: :us_core_v400_clinical_notes_guidance
       group from: :us_core_311_data_absent_reason
