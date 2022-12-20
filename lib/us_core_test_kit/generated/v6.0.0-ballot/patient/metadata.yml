@@ -184,6 +184,12 @@
   - :id: Patient.extension:genderIdentity
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
     :uscdi_only: true
+  - :id: Patient.extension:sex-for-clinical-use
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex-for-clinical-use
+    :uscdi_only: true
+  - :id: Patient.extension:tribalAffiliation
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation
+    :uscdi_only: true
   :slices: []
   :elements:
   - :path: identifier
@@ -218,6 +224,8 @@
     :uscdi_only: true
   - :path: address.use
     :fixed_value: old
+    :uscdi_only: true
+  - :path: deceased[x]
     :uscdi_only: true
   - :path: name.use
     :fixed_value: old
