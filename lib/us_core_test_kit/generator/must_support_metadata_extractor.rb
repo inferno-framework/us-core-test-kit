@@ -306,6 +306,7 @@ module USCoreTestKit
         when '6.0.0-ballot'
           add_patient_uscdi_elements
           add_document_reference_category_values
+          add_medication_request_uscdi_elements
           add_procedure_uscdi_elements
           add_service_request_uscdi_elements
         end
@@ -512,6 +513,16 @@ module USCoreTestKit
         element[:target_profiles].delete_if do |url|
           url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
         end
+      end
+
+      def add_medication_request_uscdi_elements
+        return unless profile.type == 'MedicationRequest'
+
+        @must_supports[:elements] << {
+          path: 'reasonReference',
+          types: ['Reference'],
+          uscdi_only: true
+        }
       end
 
       def add_procedure_uscdi_elements

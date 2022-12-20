@@ -3465,6 +3465,10 @@
     - :path: dispenseRequest
     - :path: dispenseRequest.numberOfRepeatsAllowed
     - :path: dispenseRequest.quantity
+    - :path: reasonReference
+      :types:
+      - Reference
+      :uscdi_only: true
     :choices:
     - :paths:
       - reportedBoolean
