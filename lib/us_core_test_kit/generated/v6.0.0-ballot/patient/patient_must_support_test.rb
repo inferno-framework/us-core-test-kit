@@ -32,10 +32,13 @@ module USCoreTestKit
         * Patient.address.use
         * Patient.communication
         * Patient.communication.language
+        * Patient.deceased[x]
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
         * Patient.extension:genderIdentity
         * Patient.extension:race
+        * Patient.extension:sex-for-clinical-use
+        * Patient.extension:tribalAffiliation
         * Patient.name.period.end
         * Patient.name.suffix
         * Patient.name.use

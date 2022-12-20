@@ -477,7 +477,8 @@ module USCoreTestKit
           element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
         end
 
-        if ['5.0.1', '6.0.0-ballot'].include?(profile.version)
+        case profile.version
+        when '5.0.1'
           @must_supports[:extensions] << {
             id: 'Patient.extension:genderIdentity',
             url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
@@ -486,6 +487,36 @@ module USCoreTestKit
           @must_supports[:elements] << {
             path: 'address.use',
             fixed_value: 'old',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'name.use',
+            fixed_value: 'old',
+            uscdi_only: true
+          }
+        when '6.0.0-ballot'
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:genderIdentity',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
+            uscdi_only: true
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:sex-for-clinical-use',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex-for-clinical-use',
+            uscdi_only: true
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:tribalAffiliation',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'address.use',
+            fixed_value: 'old',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'deceased[x]',
             uscdi_only: true
           }
           @must_supports[:elements] << {
