@@ -13,6 +13,7 @@ module USCoreTestKit
         marked as 'MustSupport', if any are available.  Elements which may provide
         external references include:
 
+        * Procedure.basedOn
         * Procedure.subject
       )
 

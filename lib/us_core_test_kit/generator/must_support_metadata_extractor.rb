@@ -306,6 +306,7 @@ module USCoreTestKit
         when '6.0.0-ballot'
           add_patient_uscdi_elements
           add_document_reference_category_values
+          add_procedure_uscdi_elements
         end
       end
 
@@ -510,6 +511,16 @@ module USCoreTestKit
         element[:target_profiles].delete_if do |url|
           url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
         end
+      end
+
+      def add_procedure_uscdi_elements
+        return unless profile.type == 'Procedure'
+
+        @must_supports[:elements] << {
+          path: 'basedOn',
+          types: ['Reference'],
+          uscdi_only: true
+        }
       end
     end
   end
