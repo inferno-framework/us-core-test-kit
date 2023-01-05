@@ -20,12 +20,48 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       end
       let(:reference) { resource.encounter }
 
-      it 'returns true' do
+      it 'returns true when the resolved resource is valid' do
         target_profile = 'abc'
-        test.record_resolved_reference(reference, target_profile)
+        test.save_resolved_reference(reference, target_profile, is_valid: true)
 
         expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(true)
-        expect(test.is_reference_resolved?(reference, target_profile)).to be(true)
+        expect(test.is_reference_valid?(reference, target_profile)).to be(true)
+        expect(test.requests.length).to eq(0)
+      end
+
+      it 'returns true when the target profile is empty' do
+        target_profile = ''
+        test.save_resolved_reference(reference, target_profile, is_valid: true)
+
+        expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(true)
+        expect(test.is_reference_valid?(reference, target_profile)).to be(true)
+        expect(test.is_reference_invalid?(reference, target_profile)).to be(false)
+        expect(test.requests.length).to eq(0)
+      end
+
+      it 'returns false when the resolved resource is invalid' do
+        target_profile = 'abc'
+        test.save_resolved_reference(reference, target_profile, is_valid: false)
+
+        expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(false)
+        expect(test.is_reference_invalid?(reference, target_profile)).to be(true)
+        expect(test.requests.length).to eq(0)
+      end
+    end
+
+    context 'when the reference is not resovlable' do
+      let(:reference_string) { 'Encounter/123' }
+      let(:resource) do
+        FHIR::Observation.new(encounter: { reference: reference_string })
+      end
+      let(:reference) { resource.encounter }
+
+      it 'returns false' do
+        target_profile = 'abc'
+        test.save_not_resolvable_reference(reference)
+
+        expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(false)
+        expect(test.is_reference_not_resolvable?(reference)).to be(true)
         expect(test.requests.length).to eq(0)
       end
     end
@@ -65,7 +101,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
       let(:reference) { resource.encounter }
       let(:referenced_resource) { FHIR::Encounter.new(id: '123') }
 
-      it 'returns true if the reference can be resolved' do
+      it 'returns true if the reference can be resolved and validated' do
         # set target_profile to be nil to skip calling validator
         target_profile = nil
         request =
@@ -74,7 +110,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         expect(test.validate_reference_resolution(resource, reference, target_profile)).to be(true)
         expect(request).to have_been_made.once
-        expect(test.is_reference_resolved?(reference, target_profile)).to be(true)
+        expect(test.is_reference_valid?(reference, target_profile)).to be(true)
         expect(test.requests.length).to eq(1)
       end
 
