@@ -23,7 +23,56 @@ module USCoreTestKit
       unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
     end
 
-    def record_resolved_reference(reference, target_profile)
+    # References that could not be resolved
+    def not_resolvable_references
+      scratch[:not_resolvable_references] ||= Set.new
+    end
+
+    def is_reference_not_resolvable?(reference)
+      not_resolvable_references.include? (reference.reference)
+    end
+
+    def save_not_resolvable_reference(reference)
+      unless is_reference_not_resolvable?(reference)
+        not_resolvable_references.add(reference.reference)
+      end
+    end
+
+    # Reference that is resolvable but not valid
+    def invalid_references
+      scratch[:invalid_references] ||= Set.new
+    end
+
+    def is_reference_invalid?(reference, target_profile)
+      # If target_profile is not specified, reference is always valid
+      return false if target_profile.blank?
+
+      invalid_references.any? do |item|
+        item[:reference] == reference.reference &&
+        item[:profiles].include?(target_profile)
+      end
+    end
+
+    # Reference that is resolvable and valid
+    def valid_references
+      scratch[:valid_references] ||= Set.new
+    end
+
+    def is_reference_valid?(reference, target_profile)
+      valid_references.any? do |item|
+        item[:reference] == reference.reference &&
+        (
+          target_profile.blank? || item[:profiles].include?(target_profile)
+        )
+      end
+    end
+
+    def save_resolved_reference(reference, target_profile, is_valid:)
+      # If target_profile is not specified, reference is always valid
+      return if !is_valid && target_profile.blank?
+
+      resolved_references = is_valid ? valid_references : invalid_references
+
       saved_reference = resolved_references.find { |item| item[:reference] == reference.reference }
 
       if saved_reference.present?
@@ -39,19 +88,6 @@ module USCoreTestKit
         saved_reference[:profiles] << target_profile if target_profile.present?
         resolved_references.add(saved_reference)
       end
-    end
-
-    def is_reference_resolved?(reference, target_profile)
-      resolved_references.any? do |item|
-        item[:reference] == reference.reference &&
-        (
-          target_profile.blank? || item[:profiles].include?(target_profile)
-        )
-      end
-    end
-
-    def resolved_references
-      scratch[:resolved_references] ||= Set.new
     end
 
     def no_resources_skip_message
@@ -110,7 +146,9 @@ module USCoreTestKit
     end
 
     def validate_reference_resolution(resource, reference, target_profile)
-      return true if is_reference_resolved?(reference, target_profile)
+      return false if is_reference_not_resolvable?(reference)
+      return false if is_reference_invalid?(reference, target_profile)
+      return true if is_reference_valid?(reference, target_profile)
 
       if reference.contained?
         # if reference_id is blank it is referring to itself, so we know it exists
@@ -145,15 +183,19 @@ module USCoreTestKit
         rescue StandardError => e
           Inferno::Application['logger'].error("Unable to resolve reference #{reference.reference}")
           Inferno::Application['logger'].error(e.full_message)
+          save_not_resolvable_reference(reference)
           return false
         end
 
-      return false unless resolved_resource&.resourceType == reference_type && resolved_resource&.id == reference_id
+      if resolved_resource&.resourceType != reference_type || resolved_resource&.id != reference_id
+        save_not_resolvable_reference(reference)
+        return false
+      end
 
-      return false unless resource_is_valid_with_target_profile?(resolved_resource, target_profile)
+      is_valid = resource_is_valid_with_target_profile?(resolved_resource, target_profile)
+      save_resolved_reference(reference, target_profile, is_valid: is_valid)
 
-      record_resolved_reference(reference, target_profile)
-      true
+      is_valid
     end
 
     def resource_is_valid_with_target_profile?(resource, target_profile)
