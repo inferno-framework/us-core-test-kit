@@ -23,8 +23,31 @@ module USCoreTestKit
       unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
     end
 
-    def record_resolved_reference(reference)
-      resolved_references.add?(reference.reference)
+    def record_resolved_reference(reference, target_profile)
+      saved_reference = resolved_references.find { |item| item[:reference] == reference.reference }
+
+      if saved_reference.present?
+        if target_profile.present? && !saved_reference[:profiles].include?(target_profile)
+          saved_reference[:profiles] << target_profile
+        end
+      else
+        saved_reference = {
+          reference: reference.reference,
+          profiles: []
+        }
+
+        saved_reference[:profiles] << target_profile if target_profile.present?
+        resolved_references.add(saved_reference)
+      end
+    end
+
+    def is_reference_resolved?(reference, target_profile)
+      resolved_references.any? do |item|
+        item[:reference] == reference.reference &&
+        (
+          target_profile.blank? || item[:profiles].include?(target_profile)
+        )
+      end
     end
 
     def resolved_references
@@ -87,7 +110,7 @@ module USCoreTestKit
     end
 
     def validate_reference_resolution(resource, reference, target_profile)
-      return true if resolved_references.include?(reference.reference) && target_profile.blank?
+      return true if is_reference_resolved?(reference, target_profile)
 
       if reference.contained?
         # if reference_id is blank it is referring to itself, so we know it exists
@@ -129,7 +152,7 @@ module USCoreTestKit
 
       return false unless resource_is_valid_with_target_profile?(resolved_resource, target_profile)
 
-      record_resolved_reference(reference)
+      record_resolved_reference(reference, target_profile)
       true
     end
 
