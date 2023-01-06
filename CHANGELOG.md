@@ -1,4 +1,11 @@
-# 0.4.2
+# 0.4.4
+
+* Update the title and description of Must Support tests.
+* Update the reference resolution tests to track which profiles a reference was
+  validated against so that those references don't need to be validated multiple
+  times against the same profile.
+
+# 0.4.3
 
 * Fix status values not being included in metadata for fields whose exact name
   isn't `status` (e.g. `clinicalStatus`) (#98).
