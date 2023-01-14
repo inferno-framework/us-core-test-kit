@@ -303,6 +303,8 @@ module USCoreTestKit
           add_patient_uscdi_elements
           add_document_reference_category_values
           remove_survey_questionnaire_response
+        when '6.0.0-ballot'
+          add_patient_uscdi_elements
         end
       end
 
@@ -471,7 +473,7 @@ module USCoreTestKit
           element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
         end
 
-        if profile.version == '5.0.1'
+        if ['5.0.1', '6.0.0-ballot'].include?(profile.version)
           @must_supports[:extensions] << {
             id: 'Patient.extension:genderIdentity',
             url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
@@ -485,6 +487,23 @@ module USCoreTestKit
           @must_supports[:elements] << {
             path: 'name.use',
             fixed_value: 'old',
+            uscdi_only: true
+          }
+        end
+
+        if profile.version == '6.0.0-ballot'
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:tribalAffiliation',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation',
+            uscdi_only: true
+          }
+          @must_supports[:extensions] << {
+            id: 'Patient.extension:sex-for-clinical-use',
+            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex-for-clinical-use',
+            uscdi_only: true
+          }
+          @must_supports[:elements] << {
+            path: 'deceasedDateTime',
             uscdi_only: true
           }
         end

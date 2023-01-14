@@ -81,7 +81,16 @@
     :full_paths:
     - Goal.lifecycleStatus
     :comparators: {}
-    :values: []
+    :values:
+    - proposed
+    - planned
+    - accepted
+    - active
+    - on-hold
+    - completed
+    - cancelled
+    - entered-in-error
+    - rejected
     :type: code
     :contains_multiple: false
     :multiple_or: MAY
