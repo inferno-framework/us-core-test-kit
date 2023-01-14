@@ -278,12 +278,6 @@
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.32
-  :path: value
-  :extensions:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
 :references:
 - :path: Patient.identifier.assigner
   :profiles:
