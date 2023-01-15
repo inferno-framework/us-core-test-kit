@@ -304,7 +304,7 @@ module USCoreTestKit
         when '5.0.1'
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
         when '6.0.0-ballot'
-          MustSupportMetadataExtractorUsCore6::handle_special_cases(profile, @must_supports)
+          MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         end
       end
 

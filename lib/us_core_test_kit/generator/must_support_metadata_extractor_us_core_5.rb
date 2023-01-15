@@ -10,7 +10,6 @@ module USCoreTestKit
         self.must_supports = must_supports
       end
 
-
       def us_core_4_extractor
         @us_core_4_extractor ||= MustSupportMetadataExtractorUsCore4.new(profile, must_supports)
       end
