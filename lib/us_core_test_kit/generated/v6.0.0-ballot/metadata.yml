@@ -503,6 +503,10 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+    :choices:
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :mandatory_elements:
   - CareTeam.subject
   - CareTeam.participant
@@ -803,6 +807,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -1111,6 +1120,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -2460,6 +2474,13 @@
     - :path: serviceProvider
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+    - :paths:
+      - location.location
+      - serviceProvider
   :mandatory_elements:
   - Encounter.identifier.system
   - Encounter.identifier.value
@@ -3483,6 +3504,14 @@
     - :path: dispenseRequest
     - :path: dispenseRequest.numberOfRepeatsAllowed
     - :path: dispenseRequest.quantity
+    - :path: reasonCode
+      :uscdi_only: true
+    - :path: reasonReferene
+      :uscdi_only: true
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
