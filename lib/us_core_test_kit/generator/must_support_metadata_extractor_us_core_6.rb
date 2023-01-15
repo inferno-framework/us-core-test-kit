@@ -3,16 +3,26 @@ require_relative 'must_support_metadata_extractor_us_core_5'
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractorUsCore6
-      def self.handle_special_cases(profile, must_supports)
-        return unless profile.version == '6.0.0-ballot'
+      attr_accessor :profile, :must_supports
 
-        add_must_support_choices(profile, must_supports)
-        add_patient_uscdi_elements(profile, must_supports)
-        add_medicationrequest_uscdi_elements(profile, must_supports)
+      def initialize(profile, must_supports)
+        self.profile = profile
+        self.must_supports = must_supports
       end
 
-      def self.add_must_support_choices(profile, must_supports)
-        MustSupportMetadataExtractorUsCore5::add_must_support_choices(profile, must_supports)
+      def us_core_5_extractor
+        @us_core_5_extractor ||= MustSupportMetadataExtractorUsCore5.new(profile, must_supports)
+      end
+
+      def handle_special_cases
+        add_must_support_choices
+        add_patient_uscdi_elements
+        add_medicationrequest_uscdi_elements
+        us_core_5_extractor.add_document_reference_category_values
+      end
+
+      def add_must_support_choices
+        us_core_5_extractor.add_must_support_choices
 
         choices = []
 
@@ -24,10 +34,10 @@ module USCoreTestKit
         must_supports[:choices] = choices if choices.present?
       end
 
-      def self.add_patient_uscdi_elements(profile, must_supports)
+      def add_patient_uscdi_elements
         return unless profile.type == 'Patient'
 
-        MustSupportMetadataExtractorUsCore5::add_patient_uscdi_elements(profile, must_supports)
+        us_core_5_extractor.add_patient_uscdi_elements
 
         must_supports[:extensions] << {
           id: 'Patient.extension:tribalAffiliation',
@@ -45,7 +55,7 @@ module USCoreTestKit
         }
       end
 
-      def self.add_medicationrequest_uscdi_elements(profile, must_supports)
+      def add_medicationrequest_uscdi_elements
         return unless profile.type == 'MedicationRequest'
 
         must_supports[:elements] << {
