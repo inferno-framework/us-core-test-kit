@@ -118,7 +118,7 @@ module USCoreTestKit
 
       test from: :us_core_profile_support do
         config(
-          options: { target_profiles: PROFILES }
+          options: { us_core_resources: PROFILES.keys }
         )
       end
 
