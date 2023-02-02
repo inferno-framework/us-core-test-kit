@@ -1,3 +1,11 @@
+# 0.4.5
+
+* Update the validator message filter for SMART extensions to support a new
+  validator version.
+* Update the profile support test to no longer issue warnings based on which
+  profiles are supported, and to allow a list of resources which must be
+  supported.
+
 # 0.4.4
 
 * Update the title and description of Must Support tests.
