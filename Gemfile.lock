@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    us_core_test_kit (0.4.4)
+    us_core_test_kit (0.4.5)
       inferno_core (>= 0.4.2)
       tls_test_kit (~> 0.2.0)
 
@@ -170,7 +170,7 @@ GEM
     io-console (0.5.11)
     irb (1.4.2)
       reline (>= 0.3.0)
-    jwt (2.6.0)
+    jwt (2.7.0)
     kramdown (2.4.0)
       rexml
     method_source (1.0.0)
