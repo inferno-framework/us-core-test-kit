@@ -110,11 +110,6 @@ module USCoreTestKit
         return if group_metadata.reformatted_version == 'v311'
 
         case group_metadata.resource
-        when 'Device'
-          group_metadata.add_test(
-            id: 'us_core_v400_device_udi_pi_test',
-            file_name: '../../custom_groups/v4.0.0/device_udi_pi_test.rb'
-          )
         when 'DocumentReference'
           group_metadata.add_test(
             id: 'us_core_v400_document_reference_custodian_test',

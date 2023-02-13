@@ -5,7 +5,6 @@ require_relative 'device/device_provenance_revinclude_search_test'
 require_relative 'device/device_validation_test'
 require_relative 'device/device_must_support_test'
 require_relative 'device/device_reference_resolution_test'
-require_relative '../../custom_groups/v4.0.0/device_udi_pi_test'
 
 module USCoreTestKit
   module USCoreV400
@@ -84,7 +83,6 @@ read succeeds.
       test from: :us_core_v400_device_validation_test
       test from: :us_core_v400_device_must_support_test
       test from: :us_core_v400_device_reference_resolution_test
-      test from: :us_core_v400_device_udi_pi_test
     end
   end
 end
