@@ -25,24 +25,27 @@ module USCoreTestKit
       def add_must_support_choices
         us_core_4_extractor.add_must_support_choices
 
-        choices = []
+        more_choices = []
 
         case profile.type
         when 'CareTeam'
-          choices << {
+          more_choices << {
             target_profiles: [
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
             ]
           }
         when 'Condition'
-          choices << {
+          more_choices << {
             paths: ['onsetDateTime'],
             extension_ids: ['Condition.extension:assertedDate']
           }
         end
 
-        must_supports[:choices] = choices if choices.present?
+        if more_choices.present?
+          must_supports[:choices] ||= []
+          must_supports[:choices].concat(more_choices)
+        end
       end
 
       def add_patient_uscdi_elements
