@@ -28,10 +28,10 @@ module USCoreTestKit
 
       # US Core clarified that server implmentation is not required to support DocumentReference.custodian (FHIR-28393)
       def remove_document_reference_custodian
-        if profile.type == 'DocumentReference'
-          must_supports[:elements].delete_if do |element|
-            element[:path] == 'custodian'
-          end
+        return unless profile.type == 'DocumentReference'
+
+        must_supports[:elements].delete_if do |element|
+          element[:path] == 'custodian'
         end
       end
     end
