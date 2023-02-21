@@ -17,9 +17,9 @@ module USCoreTestKit
       def add_must_support_choices
         choices = []
 
-        choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
-
         case profile.type
+        when 'DocumentReference'
+          choices << { paths: ['content.attachment.data', 'content.attachment.url'] }
         when 'Encounter'
           choices << { paths: ['reasonCode', 'reasonReference'] }
           choices << { paths: ['location.location', 'serviceProvider'] }
