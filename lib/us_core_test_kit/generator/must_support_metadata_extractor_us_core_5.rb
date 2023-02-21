@@ -85,14 +85,9 @@ module USCoreTestKit
 
         slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
 
-        slice[:discriminator][:values].concat(
-          [
-            '108252007',
-            '363679005',
-            '409063005',
-            '409073007',
-            '387713003'
-          ])
+        if slice.present?
+          slice[:discriminator][:values].concat(['108252007', '363679005', '409063005', '409073007', '387713003'])
+        end
       end
 
       # FHIR-37794 Server systems are not required to support US Core QuestionnaireResponse
