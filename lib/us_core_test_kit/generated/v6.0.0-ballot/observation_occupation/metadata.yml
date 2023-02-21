@@ -147,16 +147,6 @@
       :path: ''
       :code: social-history
       :system: http://terminology.hl7.org/CodeSystem/observation-category
-  - :name: Observation.component:industry
-    :path: component
-    :discriminator:
-  - :name: Observation.component:industry.code.coding:86188-0
-    :path: component.code.coding
-    :discriminator:
-      :type: patternCoding
-      :path: ''
-      :code: 86188-0
-      :system: http://loinc.org
   - :name: Observation.effective[x]:effectivePeriod
     :path: effective[x]
     :discriminator:
@@ -167,6 +157,13 @@
     :discriminator:
       :type: type
       :code: CodeableConcept
+  - :name: Observation.component:industry
+    :path: component.code
+    :discriminator:
+      :type: patternCodeableConcept
+      :path: ''
+      :code: 86188-0
+      :system: http://loinc.org
   :elements:
   - :path: status
   - :path: category
