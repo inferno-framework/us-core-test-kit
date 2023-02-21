@@ -19,19 +19,26 @@ module USCoreTestKit
         add_patient_uscdi_elements
         add_medicationrequest_uscdi_elements
         us_core_5_extractor.add_document_reference_category_values
+        # TODO: US Core 6.0.0-ballot version has a bug in Observation Occupation Profile.
+        # Slicing on Observation.component:industry is not correct. See HL7 JIRA FHIR-39608
+        # This is a temparory fix. This method SHALL be removed after US Core 6.0.0 release
+        replace_occupation_industry
       end
 
       def add_must_support_choices
         us_core_5_extractor.add_must_support_choices
 
-        choices = []
+        more_choices = []
 
         case profile.type
         when 'MedicationRequest'
-          choices << { paths: ['reasonCode', 'reasonReference'] }
+          more_choices << { paths: ['reasonCode', 'reasonReference'] }
         end
 
-        must_supports[:choices] = choices if choices.present?
+        if more_choices.present?
+          must_supports[:choices] ||= []
+          must_supports[:choices].concat(more_choices)
+        end
       end
 
       def add_patient_uscdi_elements
@@ -63,8 +70,30 @@ module USCoreTestKit
           uscdi_only: true
         }
         must_supports[:elements] << {
-          path: 'reasonReferene',
+          path: 'reasonReference',
+          types: [ 'Reference' ],
           uscdi_only: true
+        }
+      end
+
+      def replace_occupation_industry
+        # TODO: US Core 6.0.0-ballot version has a bug in Observation Occupation Profile.
+        # Slicing on Observation.component:industry is not correct. See HL7 JIRA FHIR-39608
+        # This is a temparory fix. This method SHALL be removed after US Core 6.0.0 release
+
+        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
+
+        must_supports[:slices].delete_if { |slice| slice[:name].include?('Observation.component:industry') }
+
+        must_supports[:slices] << {
+          name: 'Observation.component:industry',
+          path: 'component.code',
+          discriminator: {
+            type: 'patternCodeableConcept',
+            path: '',
+            code: '86188-0',
+            system: 'http://loinc.org'
+          }
         }
       end
     end

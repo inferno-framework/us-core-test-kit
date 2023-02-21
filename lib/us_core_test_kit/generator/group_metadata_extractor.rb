@@ -104,7 +104,10 @@ module USCoreTestKit
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result'
       ]
 
       def category_first_profile?
