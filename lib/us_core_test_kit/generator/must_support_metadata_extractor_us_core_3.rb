@@ -1,15 +1,19 @@
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractorUsCore3
+      attr_accessor :profile, :must_supports
 
-      def self.handle_special_cases(profile, must_supports)
-        return unless profile.version == '3.1.1'
-
-        add_must_support_choices(profile, must_supports)
-        remove_document_reference_custodian(profile, must_supports)
+      def initialize(profile, must_supports)
+        self.profile = profile
+        self.must_supports = must_supports
       end
 
-      def self.add_must_support_choices(profile, must_supports)
+      def handle_special_cases
+        add_must_support_choices
+        remove_document_reference_custodian
+      end
+
+      def add_must_support_choices
         choices = []
 
         choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
@@ -19,7 +23,7 @@ module USCoreTestKit
       end
 
       # US Core clarified that server implmentation is not required to support DocumentReference.custodian (FHIR-28393)
-      def self.remove_document_reference_custodian(profile, must_supports)
+      def remove_document_reference_custodian
         if profile.type == 'DocumentReference'
           must_supports[:elements].delete_if do |element|
             element[:path] == 'custodian'

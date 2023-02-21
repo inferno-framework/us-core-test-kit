@@ -295,13 +295,13 @@ module USCoreTestKit
 
         case profile.version
         when '3.1.1'
-          MustSupportMetadataExtractorUsCore3::handle_special_cases(profile, @must_supports)
+          MustSupportMetadataExtractorUsCore3.new(profile, @must_supports).handle_special_cases
         when '4.0.0'
-          MustSupportMetadataExtractorUsCore4::handle_special_cases(profile, @must_supports)
+          MustSupportMetadataExtractorUsCore4.new(profile, @must_supports).handle_special_cases
         when '5.0.1'
-          MustSupportMetadataExtractorUsCore5::handle_special_cases(profile, @must_supports)
+          MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
         when '6.0.0-ballot'
-          MustSupportMetadataExtractorUsCore6::handle_special_cases(profile, @must_supports)
+          MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         end
       end
 

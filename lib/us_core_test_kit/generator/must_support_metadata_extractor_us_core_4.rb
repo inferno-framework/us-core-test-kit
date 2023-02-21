@@ -1,15 +1,20 @@
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractorUsCore4
-      def self.handle_special_cases(profile, must_supports)
-        return unless profile.version == '4.0.0'
+      attr_accessor :profile, :must_supports
 
-        add_must_support_choices(profile, must_supports)
-        add_device_distinct_identifier(profile, must_supports)
-        add_patient_uscdi_elements(profile, must_supports)
+      def initialize(profile, must_supports)
+        self.profile = profile
+        self.must_supports = must_supports
       end
 
-      def self.add_must_support_choices(profile, must_supports)
+      def handle_special_cases
+        add_must_support_choices
+        add_device_distinct_identifier
+        add_patient_uscdi_elements
+      end
+
+      def add_must_support_choices
         choices = []
 
         choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
@@ -25,7 +30,7 @@ module USCoreTestKit
         must_supports[:choices] = choices if choices.present?
       end
 
-      def self.add_device_distinct_identifier(profile, must_supports)
+      def add_device_distinct_identifier
         if profile.type == 'Device'
           # FHIR-36303 US Core 4.0.0 mistakenly removed MS from Device.distinctIdentifier
           # This will be fixed in US Core 5.0.0
@@ -35,7 +40,7 @@ module USCoreTestKit
         end
       end
 
-      def self.add_patient_uscdi_elements(profile, must_supports)
+      def add_patient_uscdi_elements
         return unless profile.type == 'Patient'
 
         #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
