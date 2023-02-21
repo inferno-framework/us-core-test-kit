@@ -16,8 +16,12 @@ module USCoreTestKit
       def add_must_support_choices
         choices = []
 
-        choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
-        choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] } if profile.type == 'Device'
+        case profile.type
+        when 'Device'
+          choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] }
+        when 'DocumentReference'
+          choices << { paths: ['content.attachment.data', 'content.attachment.url'] }
+        end
 
         must_supports[:choices] = choices if choices.present?
       end
