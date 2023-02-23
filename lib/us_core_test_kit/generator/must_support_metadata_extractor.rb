@@ -1,4 +1,7 @@
 require_relative 'value_extractor'
+require_relative 'must_support_metadata_extractor_us_core_3'
+require_relative 'must_support_metadata_extractor_us_core_4'
+require_relative 'must_support_metadata_extractor_us_core_5'
 
 module USCoreTestKit
   class Generator
@@ -288,18 +291,14 @@ module USCoreTestKit
         remove_vital_sign_component
         remove_blood_pressure_value
         remove_observation_data_absent_reason
-        add_must_support_choices
 
         case profile.version
         when '3.1.1'
-          remove_document_reference_custodian
+          MustSupportMetadataExtractorUsCore3.new(profile, @must_supports).handle_special_cases
         when '4.0.0'
-          add_device_distinct_identifier
-          add_patient_uscdi_elements
+          MustSupportMetadataExtractorUsCore4.new(profile, @must_supports).handle_special_cases
         when '5.0.1'
-          add_patient_uscdi_elements
-          add_document_reference_category_values
-          remove_survey_questionnaire_response
+          MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
         end
       end
 
@@ -344,165 +343,6 @@ module USCoreTestKit
           @must_supports[:elements].delete_if do |element|
             ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
           end
-        end
-      end
-
-      def remove_device_carrier
-        if profile.type == 'Device'
-          @must_supports[:elements].delete_if do |element|
-            ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'].include?(element[:path])
-          end
-        end
-      end
-
-      # US Core clarified that server implmentation is not required to support DocumentReference.custodian (FHIR-28393)
-      def remove_document_reference_custodian
-        if profile.type == 'DocumentReference'
-          @must_supports[:elements].delete_if do |element|
-            element[:path] == 'custodian'
-          end
-        end
-      end
-
-      def remove_document_reference_attachment_data_url
-        if profile.type == 'DocumentReference'
-          @must_supports[:elements].delete_if do |element|
-            ['content.attachment.data', 'content.attachment.url'].include?(element[:path])
-          end
-        end
-      end
-
-      def add_must_support_choices
-        choices = []
-
-        choices << { paths: ['content.attachment.data', 'content.attachment.url'] } if profile.type == 'DocumentReference'
-
-        case profile.version
-        when '3.1.1'
-          choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] } if profile.type == 'Device'
-        when '4.0.0'
-          case profile.type
-          when 'Encounter'
-            choices << { paths: ['reasonCode', 'reasonReference'] }
-            choices << { paths: ['location.location', 'serviceProvider'] }
-          when 'MedicationRequest'
-            choices << { paths: ['reportedBoolean', 'reportedReference'] }
-          end
-        when '5.0.1'
-          case profile.type
-          when 'CareTeam'
-            choices << {
-              target_profiles: [
-                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
-                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
-              ]
-            }
-          when 'Condition'
-            choices << {
-              paths: ['onsetDateTime'],
-              extension_ids: ['Condition.extension:assertedDate']
-            }
-          when 'Encounter'
-            choices << { paths: ['reasonCode', 'reasonReference'] }
-            choices << { paths: ['location.location', 'serviceProvider'] }
-          when 'MedicationRequest'
-            choices << { paths: ['reportedBoolean', 'reportedReference'] }
-          end
-        end
-
-        @must_supports[:choices] = choices if choices.present?
-      end
-
-      def add_device_distinct_identifier
-        if profile.type == 'Device'
-          # FHIR-36303 US Core 4.0.0 mistakenly removed MS from Device.distinctIdentifier
-          # This will be fixed in US Core 5.0.0
-          @must_supports[:elements] << {
-            path: 'distinctIdentifier'
-          }
-        end
-      end
-
-      def add_patient_uscdi_elements
-        return unless profile.type == 'Patient'
-
-        #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
-        @must_supports[:extensions] << {
-          id: 'Patient.extension:race',
-          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
-          uscdi_only: true
-        }
-        @must_supports[:extensions] << {
-          id: 'Patient.extension:ethnicity',
-          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
-          uscdi_only: true
-        }
-        @must_supports[:extensions] << {
-          id: 'Patient.extension:birthsex',
-          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
-          path: 'name.suffix',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
-          path: 'name.period.end',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
-          path: 'telecom',
-          uscdi_only: true
-        }
-        @must_supports[:elements] << {
-          path: 'communication',
-          uscdi_only: true
-        }
-        # Though telecom.system, telecom.value, telecom.use, and communication.language are marked as MustSupport since US Core v4.0.0,
-        # their parent elements telecom, and communication are not MustSupport but listed under "Additional USCDI requirements"
-        # According to the updated FHIR spec that "When a child element is defined as Must Support and the parent element isn't,
-        # a system must support the child if it support the parent, but there's no expectation that the system must support the parent.",
-        # We add uscdi_only tag to these elements
-        @must_supports[:elements].each do |element|
-          path = element[:path]
-          element[:uscdi_only] = true if path.include?('telecom.') || path.include?('communication.')
-        end
-
-        if profile.version == '5.0.1'
-          @must_supports[:extensions] << {
-            id: 'Patient.extension:genderIdentity',
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
-            uscdi_only: true
-          }
-          @must_supports[:elements] << {
-            path: 'address.use',
-            fixed_value: 'old',
-            uscdi_only: true
-          }
-          @must_supports[:elements] << {
-            path: 'name.use',
-            fixed_value: 'old',
-            uscdi_only: true
-          }
-        end
-      end
-
-      def add_document_reference_category_values
-        return unless profile.type == 'DocumentReference'
-
-        slice = @must_supports[:slices].find{|slice| slice[:path] == 'category'}
-
-        slice[:discriminator][:values] = ['clinical-note'] if slice.present?
-      end
-
-      # FHIR-37794 Server systems are not required to support US Core QuestionnaireResponse
-      def remove_survey_questionnaire_response
-        return unless profile.type == 'Observation' &&
-          ['us-core-observation-survey', 'us-core-observation-sdoh-assessment'].include?(profile.id)
-
-        element = @must_supports[:elements].find { |element| element[:path] == 'derivedFrom' }
-        element[:target_profiles].delete_if do |url|
-          url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
         end
       end
     end
