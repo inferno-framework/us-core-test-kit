@@ -37,7 +37,7 @@ module USCoreTestKit
       def full_paths
         @full_paths ||=
           begin
-            path = param.expression.gsub(/.where\((.*)/, '')
+            path = param.expression.gsub(/.where\(resolve\((.*)/, '')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
             path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
               path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
