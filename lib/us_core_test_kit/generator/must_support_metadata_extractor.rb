@@ -221,7 +221,7 @@ module USCoreTestKit
               path: "#{current_metadata[:path].delete_suffix('[x]')}#{type.code.upcase_first}",
               original_path: current_metadata[:path]
             }
-            metadata[:type] = [type.code] if save_type_code?(type)
+            metadata[:types] = [type.code] if save_type_code?(type)
             handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
 
             metadata
