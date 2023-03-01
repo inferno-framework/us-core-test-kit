@@ -3432,7 +3432,7 @@
       :original_path: reported[x]
     - :path: reportedReference
       :original_path: reported[x]
-      :type:
+      :types:
       - Reference
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
