@@ -1,0 +1,166 @@
+---
+:name: us_core_implantable_device
+:class_name: USCorev600_ballotImplantableDeviceSequence
+:version: v6.0.0-ballot
+:reformatted_version: v600_ballot
+:resource: Device
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device
+:profile_name: US Core Implantable Device Profile
+:profile_version: 6.0.0-ballot
+:title: Implantable Device
+:short_description: Verify support for the server capabilities required by the US
+  Core Implantable Device Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - type
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory:
+  - status
+  :must_support_or_mandatory: false
+:search_definitions:
+  :patient:
+    :paths:
+    - patient
+    :full_paths:
+    - Device.patient
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :type:
+    :paths:
+    - type
+    :full_paths:
+    - Device.type
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Device.status
+    :comparators: {}
+    :values:
+    - active
+    - inactive
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: udiCarrier
+  - :path: udiCarrier.deviceIdentifier
+  - :path: udiCarrier.carrierHRF
+  - :path: distinctIdentifier
+  - :path: manufactureDate
+  - :path: expirationDate
+  - :path: lotNumber
+  - :path: serialNumber
+  - :path: type
+  - :path: patient
+    :types:
+    - Reference
+:mandatory_elements:
+- Device.udiCarrier.deviceIdentifier
+- Device.deviceName.name
+- Device.deviceName.type
+- Device.type
+- Device.specialization.systemType
+- Device.version.value
+- Device.property.type
+- Device.patient
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/udi-entry-type
+  :path: udiCarrier.entryType
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/device-status
+  :path: status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/device-nametype
+  :path: deviceName.type
+:references:
+- :path: Device.definition
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DeviceDefinition
+- :path: Device.patient
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Device.owner
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Device.location
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: Device.parent
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+:tests:
+- :id: us_core_v600_ballot_device_patient_search_test
+  :file_name: device_patient_search_test.rb
+- :id: us_core_v600_ballot_device_patient_type_search_test
+  :file_name: device_patient_type_search_test.rb
+- :id: us_core_v600_ballot_device_patient_status_search_test
+  :file_name: device_patient_status_search_test.rb
+- :id: us_core_v600_ballot_device_read_test
+  :file_name: device_read_test.rb
+- :id: us_core_v600_ballot_device_provenance_revinclude_search_test
+  :file_name: device_provenance_revinclude_search_test.rb
+- :id: us_core_v600_ballot_device_validation_test
+  :file_name: device_validation_test.rb
+- :id: us_core_v600_ballot_device_must_support_test
+  :file_name: device_must_support_test.rb
+- :id: us_core_v600_ballot_device_reference_resolution_test
+  :file_name: device_reference_resolution_test.rb
+- :id: us_core_v400_device_udi_pi_test
+  :file_name: "../../custom_groups/v4.0.0/device_udi_pi_test.rb"
+:id: us_core_v600_ballot_device
+:file_name: device_group.rb
+:delayed_references: []
