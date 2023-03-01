@@ -19,7 +19,6 @@ module USCoreTestKit
         * Patient.address.postalCode
         * Patient.address.state
         * Patient.birthDate
-        * Patient.communication.language
         * Patient.gender
         * Patient.identifier
         * Patient.identifier.system
@@ -27,6 +26,23 @@ module USCoreTestKit
         * Patient.name
         * Patient.name.family
         * Patient.name.given
+
+        For ONC USCDI requirements, each Patient must support the following additional elements:
+
+        * Patient.address.use
+        * Patient.communication
+        * Patient.communication.language
+        * Patient.deceasedDateTime
+        * Patient.extension:birthsex
+        * Patient.extension:ethnicity
+        * Patient.extension:genderIdentity
+        * Patient.extension:race
+        * Patient.extension:sex-for-clinical-use
+        * Patient.extension:tribalAffiliation
+        * Patient.name.period.end
+        * Patient.name.suffix
+        * Patient.name.use
+        * Patient.telecom
         * Patient.telecom.system
         * Patient.telecom.use
         * Patient.telecom.value

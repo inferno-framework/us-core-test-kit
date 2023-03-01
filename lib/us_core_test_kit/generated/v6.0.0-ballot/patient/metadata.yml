@@ -56,9 +56,8 @@
   :names:
   - death-date
   - family
-  :names_not_must_support_or_mandatory:
-  - death-date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - birthdate
@@ -171,7 +170,25 @@
 - Provenance:target
 :required_concepts: []
 :must_supports:
-  :extensions: []
+  :extensions:
+  - :id: Patient.extension:race
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+    :uscdi_only: true
+  - :id: Patient.extension:ethnicity
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
+    :uscdi_only: true
+  - :id: Patient.extension:birthsex
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
+    :uscdi_only: true
+  - :id: Patient.extension:genderIdentity
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
+    :uscdi_only: true
+  - :id: Patient.extension:tribalAffiliation
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation
+    :uscdi_only: true
+  - :id: Patient.extension:sex-for-clinical-use
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex-for-clinical-use
+    :uscdi_only: true
   :slices: []
   :elements:
   - :path: identifier
@@ -181,8 +198,11 @@
   - :path: name.family
   - :path: name.given
   - :path: telecom.system
+    :uscdi_only: true
   - :path: telecom.value
+    :uscdi_only: true
   - :path: telecom.use
+    :uscdi_only: true
   - :path: gender
   - :path: birthDate
   - :path: address
@@ -192,6 +212,23 @@
   - :path: address.postalCode
   - :path: address.period
   - :path: communication.language
+    :uscdi_only: true
+  - :path: name.suffix
+    :uscdi_only: true
+  - :path: name.period.end
+    :uscdi_only: true
+  - :path: telecom
+    :uscdi_only: true
+  - :path: communication
+    :uscdi_only: true
+  - :path: address.use
+    :fixed_value: old
+    :uscdi_only: true
+  - :path: name.use
+    :fixed_value: old
+    :uscdi_only: true
+  - :path: deceasedDateTime
+    :uscdi_only: true
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system

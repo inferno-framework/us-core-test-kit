@@ -233,6 +233,13 @@
   - :path: serviceProvider
     :types:
     - Reference
+  :choices:
+  - :paths:
+    - reasonCode
+    - reasonReference
+  - :paths:
+    - location.location
+    - serviceProvider
 :mandatory_elements:
 - Encounter.identifier.system
 - Encounter.identifier.value
