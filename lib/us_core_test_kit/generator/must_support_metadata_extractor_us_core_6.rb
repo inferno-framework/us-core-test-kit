@@ -16,12 +16,29 @@ module USCoreTestKit
 
       def handle_special_cases
         add_must_support_choices
-        add_patient_uscdi_elements
+        add_uscdi_elements
         add_value_set_expansion
       end
 
       def add_must_support_choices
         us_core_5_extractor.add_must_support_choices
+
+        more_choices = []
+
+        case profile.type
+        when 'MedicationRequest'
+          more_choices << { paths: ['reasonCode', 'reasonReference'] }
+        end
+
+        if more_choices.present?
+          must_supports[:choices] ||= []
+          must_supports[:choices].concat(more_choices)
+        end
+      end
+
+      def add_uscdi_elements
+        add_patient_uscdi_elements
+        add_medicationrequest_uscdi_elements
       end
 
       def add_patient_uscdi_elements
@@ -41,6 +58,20 @@ module USCoreTestKit
         }
         must_supports[:elements] << {
           path: 'deceasedDateTime',
+          uscdi_only: true
+        }
+      end
+
+      def add_medicationrequest_uscdi_elements
+        return unless profile.type == 'MedicationRequest'
+
+        must_supports[:elements] << {
+          path: 'reasonCode',
+          uscdi_only: true
+        }
+        must_supports[:elements] << {
+          path: 'reasonReference',
+          types: [ 'Reference' ],
           uscdi_only: true
         }
       end
