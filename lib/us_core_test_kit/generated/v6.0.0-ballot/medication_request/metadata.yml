@@ -202,6 +202,7 @@
   - :paths:
     - reasonCode
     - reasonReference
+    :uscdi_only: true
 :mandatory_elements:
 - MedicationRequest.status
 - MedicationRequest.intent

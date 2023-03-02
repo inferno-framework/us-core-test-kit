@@ -27,7 +27,10 @@ module USCoreTestKit
 
         case profile.type
         when 'MedicationRequest'
-          more_choices << { paths: ['reasonCode', 'reasonReference'] }
+          more_choices << {
+            paths: ['reasonCode', 'reasonReference'],
+            uscdi_only: true
+          }
         end
 
         if more_choices.present?
