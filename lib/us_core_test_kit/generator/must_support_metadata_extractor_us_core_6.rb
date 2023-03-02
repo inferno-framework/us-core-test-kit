@@ -5,10 +5,14 @@ module USCoreTestKit
     class MustSupportMetadataExtractorUsCore6
       attr_accessor :profile, :must_supports
 
+      US_CORE_CATEGORY = ['sdoh', 'functional-status', 'disability-status', 'cognitive-status']
+
       def initialize(profile, must_supports)
         self.profile = profile
         self.must_supports = must_supports
       end
+
+
 
       def us_core_5_extractor
         @us_core_5_extractor ||= MustSupportMetadataExtractorUsCore5.new(profile, must_supports)
@@ -81,8 +85,19 @@ module USCoreTestKit
 
       def add_value_set_expansion
         us_core_5_extractor.add_document_reference_category_values
+        add_observation_screening_assessment_values
         add_service_request_category_values
         add_simple_observation_category_value
+      end
+
+      def add_observation_screening_assessment_values
+        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment'
+
+        slice = must_supports[:slices].find{|slice| slice[:name] == 'Observation.category:uscore'}
+
+        if slice.present?
+          slice[:discriminator][:values] = US_CORE_CATEGORY
+        end
       end
 
       def add_service_request_category_values
@@ -91,10 +106,9 @@ module USCoreTestKit
         slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
 
         if slice.present?
-          slice[:discriminator][:values].concat([
-            'sdoh', 'functional-status', 'disability-status', 'cognitive-status',
-            '108252007', '363679005', '409063005', '409073007', '387713003'
-          ])
+          slice[:discriminator][:values]
+            .concat(US_CORE_CATEGORY)
+            .concat(['108252007', '363679005', '409063005', '409073007', '387713003'])
         end
       end
 
@@ -104,7 +118,7 @@ module USCoreTestKit
         slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
 
         if slice.present?
-          slice[:discriminator][:values].concat(['sdoh', 'functional-status', 'disability-status', 'cognitive-status'])
+          slice[:discriminator][:values].concat(US_CORE_CATEGORY)
         end
       end
     end
