@@ -12,8 +12,6 @@ module USCoreTestKit
         self.must_supports = must_supports
       end
 
-
-
       def us_core_5_extractor
         @us_core_5_extractor ||= MustSupportMetadataExtractorUsCore5.new(profile, must_supports)
       end
@@ -22,6 +20,10 @@ module USCoreTestKit
         add_must_support_choices
         add_uscdi_elements
         add_value_set_expansion
+        # TODO: US Core 6.0.0-ballot version has a bug in Observation Occupation Profile.
+        # Slicing on Observation.component:industry is not correct. See HL7 JIRA FHIR-39608
+        # This is a temparory fix. This method SHALL be removed after US Core 6.0.0 release
+        replace_occupation_industry
       end
 
       def add_must_support_choices
@@ -120,6 +122,27 @@ module USCoreTestKit
         if slice.present?
           slice[:discriminator][:values].concat(US_CORE_CATEGORY)
         end
+      end
+
+      def replace_occupation_industry
+        # TODO: US Core 6.0.0-ballot version has a bug in Observation Occupation Profile.
+        # Slicing on Observation.component:industry is not correct. See HL7 JIRA FHIR-39608
+        # This is a temparory fix. This method SHALL be removed after US Core 6.0.0 release
+
+        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
+
+        must_supports[:slices].delete_if { |slice| slice[:name].include?('Observation.component:industry') }
+
+        must_supports[:slices] << {
+          name: 'Observation.component:industry',
+          path: 'component.code',
+          discriminator: {
+            type: 'patternCodeableConcept',
+            path: '',
+            code: '86188-0',
+            system: 'http://loinc.org'
+          }
+        }
       end
     end
   end
