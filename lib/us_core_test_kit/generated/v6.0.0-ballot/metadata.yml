@@ -4937,6 +4937,10 @@
         - exam
         - therapy
         - activity
+        - sdoh
+        - functional-status
+        - disability-status
+        - cognitive-status
     :elements:
     - :path: status
     - :path: category
@@ -10327,6 +10331,10 @@
         :values:
         - '386053000'
         - '410606002'
+        - sdoh
+        - functional-status
+        - disability-status
+        - cognitive-status
         - '108252007'
         - '363679005'
         - '409063005'

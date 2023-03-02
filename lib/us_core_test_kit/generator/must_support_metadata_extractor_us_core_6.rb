@@ -80,7 +80,32 @@ module USCoreTestKit
       end
 
       def add_value_set_expansion
-        us_core_5_extractor.add_value_set_expansion
+        us_core_5_extractor.add_document_reference_category_values
+        add_service_request_category_values
+        add_simple_observation_category_value
+      end
+
+      def add_service_request_category_values
+        return unless profile.type == 'ServiceRequest'
+
+        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
+
+        if slice.present?
+          slice[:discriminator][:values].concat([
+            'sdoh', 'functional-status', 'disability-status', 'cognitive-status',
+            '108252007', '363679005', '409063005', '409073007', '387713003'
+          ])
+        end
+      end
+
+      def add_simple_observation_category_value
+        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
+
+        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
+
+        if slice.present?
+          slice[:discriminator][:values].concat(['sdoh', 'functional-status', 'disability-status', 'cognitive-status'])
+        end
       end
     end
   end
