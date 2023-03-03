@@ -2,6 +2,7 @@ require_relative 'value_extractor'
 require_relative 'must_support_metadata_extractor_us_core_3'
 require_relative 'must_support_metadata_extractor_us_core_4'
 require_relative 'must_support_metadata_extractor_us_core_5'
+require_relative 'must_support_metadata_extractor_us_core_6'
 
 module USCoreTestKit
   class Generator
@@ -49,7 +50,7 @@ module USCoreTestKit
       end
 
       def sliced_element(slice)
-        profile_elements.find { |element| element.id == slice.path }
+        profile_elements.find { |element| element.id == slice.path || element.id == slice.id.sub(":#{slice.sliceName}", '') }
       end
 
       def discriminators(slice)
@@ -113,7 +114,10 @@ module USCoreTestKit
                   values: values
                 }
               else
-                raise StandardError, 'Unsupported discriminator pattern type'
+                # TODO: US Core will fix the issue in Observation-occupant
+                unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
+                  raise StandardError, 'Unsupported discriminator pattern type'
+                end
               end
           end
         end
@@ -299,6 +303,8 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore4.new(profile, @must_supports).handle_special_cases
         when '5.0.1'
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
+        when '6.0.0-ballot'
+          MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         end
       end
 

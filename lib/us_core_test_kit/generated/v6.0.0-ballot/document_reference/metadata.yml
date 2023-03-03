@@ -1,0 +1,312 @@
+---
+:name: us_core_documentreference
+:class_name: USCorev600_ballotDocumentreferenceSequence
+:version: v6.0.0-ballot
+:reformatted_version: v600_ballot
+:resource: DocumentReference
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference
+:profile_name: US Core DocumentReference Profile
+:profile_version: 6.0.0-ballot
+:title: DocumentReference
+:short_description: Verify support for the server capabilities required by the US
+  Core DocumentReference Profile.
+:interactions:
+- :code: create
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations:
+- :code: docref
+  :expectation: SHALL
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - type
+  - period
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - type
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - DocumentReference.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+    :multiple_or: MAY
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - DocumentReference.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :category:
+    :paths:
+    - category
+    :full_paths:
+    - DocumentReference.category
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :paths:
+    - date
+    :full_paths:
+    - DocumentReference.date
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: instant
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - DocumentReference.status
+    :comparators: {}
+    :values:
+    - current
+    - superseded
+    - entered-in-error
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+  :type:
+    :paths:
+    - type
+    :full_paths:
+    - DocumentReference.type
+    :comparators: {}
+    :values:
+    - UNK
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :period:
+    :paths:
+    - context.period
+    :full_paths:
+    - DocumentReference.context.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts:
+- type
+- category
+:must_supports:
+  :extensions: []
+  :slices:
+  - :name: DocumentReference.category:us-core
+    :path: category
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values:
+      - clinical-note
+  :elements:
+  - :path: identifier
+  - :path: status
+  - :path: type
+  - :path: category
+  - :path: subject
+    :types:
+    - Reference
+  - :path: date
+  - :path: author
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - :path: content
+  - :path: content.attachment
+  - :path: content.attachment.contentType
+  - :path: content.attachment.data
+  - :path: content.attachment.url
+  - :path: content.format
+  - :path: context
+  - :path: context.encounter
+    :types:
+    - Reference
+  - :path: context.period
+  :choices:
+  - :paths:
+    - content.attachment.data
+    - content.attachment.url
+:mandatory_elements:
+- DocumentReference.status
+- DocumentReference.type
+- DocumentReference.category
+- DocumentReference.subject
+- DocumentReference.relatesTo.code
+- DocumentReference.relatesTo.target
+- DocumentReference.content
+- DocumentReference.content.attachment
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/document-reference-status
+  :path: status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/composition-status
+  :path: docStatus
+- :type: CodeableConcept
+  :strength: required
+  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-type
+  :path: type
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/document-relationship-type
+  :path: relatesTo.code
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/mimetypes
+  :path: content.attachment.contentType
+:references:
+- :path: DocumentReference.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: DocumentReference.author
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  - http://hl7.org/fhir/StructureDefinition/Device
+- :path: DocumentReference.authenticator
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: DocumentReference.custodian
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: DocumentReference.relatesTo.target
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+- :path: DocumentReference.context.encounter
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
+- :path: DocumentReference.context.sourcePatientInfo
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+- :path: DocumentReference.context.related
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource
+:tests:
+- :id: us_core_v600_ballot_document_reference_patient_search_test
+  :file_name: document_reference_patient_search_test.rb
+- :id: us_core_v600_ballot_document_reference__id_search_test
+  :file_name: document_reference_id_search_test.rb
+- :id: us_core_v600_ballot_document_reference_patient_category_date_search_test
+  :file_name: document_reference_patient_category_date_search_test.rb
+- :id: us_core_v600_ballot_document_reference_patient_status_search_test
+  :file_name: document_reference_patient_status_search_test.rb
+- :id: us_core_v600_ballot_document_reference_patient_type_period_search_test
+  :file_name: document_reference_patient_type_period_search_test.rb
+- :id: us_core_v600_ballot_document_reference_patient_category_search_test
+  :file_name: document_reference_patient_category_search_test.rb
+- :id: us_core_v600_ballot_document_reference_patient_type_search_test
+  :file_name: document_reference_patient_type_search_test.rb
+- :id: us_core_v600_ballot_document_reference_read_test
+  :file_name: document_reference_read_test.rb
+- :id: us_core_v600_ballot_document_reference_provenance_revinclude_search_test
+  :file_name: document_reference_provenance_revinclude_search_test.rb
+- :id: us_core_v600_ballot_document_reference_validation_test
+  :file_name: document_reference_validation_test.rb
+- :id: us_core_v600_ballot_document_reference_must_support_test
+  :file_name: document_reference_must_support_test.rb
+- :id: us_core_v600_ballot_document_reference_reference_resolution_test
+  :file_name: document_reference_reference_resolution_test.rb
+- :id: us_core_v400_document_reference_custodian_test
+  :file_name: "../../custom_groups/v4.0.0/document_reference_custodian_test.rb"
+:id: us_core_v600_ballot_document_reference
+:file_name: document_reference_group.rb
+:delayed_references:
+- :path: author
+  :resources:
+  - Practitioner
+  - Organization
+  - PractitionerRole
