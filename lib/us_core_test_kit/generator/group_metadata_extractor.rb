@@ -95,16 +95,19 @@ module USCoreTestKit
 
       ### BEGIN SPECIAL CASES ###
 
-      CATEGORY_FIRST_PROFILES = [
+      CATEGORY_FIRST_PROFILES_VERSION_ALL = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
       ]
 
       CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE = {
@@ -113,8 +116,11 @@ module USCoreTestKit
       }
 
       def category_first_profile?
-        CATEGORY_FIRST_PROFILES.include?(profile_url) ||
-        !CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE[profile_url]&.include?(reformatted_version)
+        CATEGORY_FIRST_PROFILES_VERSION_ALL.include?(profile_url) ||
+        (
+          CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE.key?(profile_url) &&
+          !CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE[profile_url].include?(reformatted_version)
+        )
       end
 
       def first_search_params
