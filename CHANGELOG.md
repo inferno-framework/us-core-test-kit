@@ -1,6 +1,6 @@
 # 0.4.6
 
-* Fix the `ServiceRequest.category` VlaueSet expansion for US Core 5.
+* Fix the `ServiceRequest.category` ValueSet expansion for US Core 5.
 * Remove tests for Device UDI-PI presence from US Core 4 & 5.
 * Fix a bug in US Core 4 and 5 which removed
   `MedicationRequest.reportedReference` from the list of Must Support
