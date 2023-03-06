@@ -154,6 +154,10 @@
       - exam
       - therapy
       - activity
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
   :elements:
   - :path: status
   - :path: category

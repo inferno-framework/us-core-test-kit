@@ -20,7 +20,6 @@ module USCoreTestKit
         * Observation.component.code.coding
         * Observation.component.value[x]
         * Observation.component:industry
-        * Observation.component:industry.code.coding:86188-0
         * Observation.effective[x]:effectivePeriod
         * Observation.status
         * Observation.subject

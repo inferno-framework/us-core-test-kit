@@ -168,6 +168,10 @@
       :values:
       - '386053000'
       - '410606002'
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
       - '108252007'
       - '363679005'
       - '409063005'
