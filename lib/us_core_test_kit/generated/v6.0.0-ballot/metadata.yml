@@ -9821,6 +9821,10 @@
       - Reference
     - :path: performedDateTime
       :original_path: performed[x]
+    - :path: basedOn
+      :types:
+      - Reference
+      :uscdi_only: true
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
