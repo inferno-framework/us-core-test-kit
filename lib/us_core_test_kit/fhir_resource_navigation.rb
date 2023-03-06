@@ -34,7 +34,7 @@ module USCoreTestKit
       end
 
       path_segments = path.split(/(?<!hl7)\./)
-      segment = path_segments.shift.delete_suffix('[x]').to_sym
+      segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').to_sym
 
       no_elements_present =
         elements.none? do |element|
