@@ -34,7 +34,7 @@
 - :expectation: SHALL
   :names:
   - patient
-  - code
+  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHALL
@@ -44,17 +44,17 @@
   - date
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - code
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
   - category
   - status
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -251,14 +251,14 @@
   - http://hl7.org/fhir/StructureDefinition/Media
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
 :tests:
-- :id: us_core_v600_ballot_simple_observation_patient_code_search_test
-  :file_name: simple_observation_patient_code_search_test.rb
-- :id: us_core_v600_ballot_simple_observation_patient_category_date_search_test
-  :file_name: simple_observation_patient_category_date_search_test.rb
-- :id: us_core_v600_ballot_simple_observation_patient_category_status_search_test
-  :file_name: simple_observation_patient_category_status_search_test.rb
 - :id: us_core_v600_ballot_simple_observation_patient_category_search_test
   :file_name: simple_observation_patient_category_search_test.rb
+- :id: us_core_v600_ballot_simple_observation_patient_category_date_search_test
+  :file_name: simple_observation_patient_category_date_search_test.rb
+- :id: us_core_v600_ballot_simple_observation_patient_code_search_test
+  :file_name: simple_observation_patient_code_search_test.rb
+- :id: us_core_v600_ballot_simple_observation_patient_category_status_search_test
+  :file_name: simple_observation_patient_category_status_search_test.rb
 - :id: us_core_v600_ballot_simple_observation_patient_code_date_search_test
   :file_name: simple_observation_patient_code_date_search_test.rb
 - :id: us_core_v600_ballot_simple_observation_read_test

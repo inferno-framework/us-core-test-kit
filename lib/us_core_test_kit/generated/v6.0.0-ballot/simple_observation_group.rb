@@ -1,7 +1,7 @@
-require_relative 'simple_observation/simple_observation_patient_code_search_test'
-require_relative 'simple_observation/simple_observation_patient_category_date_search_test'
-require_relative 'simple_observation/simple_observation_patient_category_status_search_test'
 require_relative 'simple_observation/simple_observation_patient_category_search_test'
+require_relative 'simple_observation/simple_observation_patient_category_date_search_test'
+require_relative 'simple_observation/simple_observation_patient_code_search_test'
+require_relative 'simple_observation/simple_observation_patient_category_status_search_test'
 require_relative 'simple_observation/simple_observation_patient_code_date_search_test'
 require_relative 'simple_observation/simple_observation_read_test'
 require_relative 'simple_observation/simple_observation_provenance_revinclude_search_test'
@@ -28,9 +28,9 @@ This test sequence will first perform each required search associated
 with this resource. This sequence will perform searches with the
 following parameters:
 
-* patient + code
-* patient + category + date
 * patient + category
+* patient + category + date
+* patient + code
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -81,10 +81,10 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'simple_observation', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v600_ballot_simple_observation_patient_code_search_test
-      test from: :us_core_v600_ballot_simple_observation_patient_category_date_search_test
-      test from: :us_core_v600_ballot_simple_observation_patient_category_status_search_test
       test from: :us_core_v600_ballot_simple_observation_patient_category_search_test
+      test from: :us_core_v600_ballot_simple_observation_patient_category_date_search_test
+      test from: :us_core_v600_ballot_simple_observation_patient_code_search_test
+      test from: :us_core_v600_ballot_simple_observation_patient_category_status_search_test
       test from: :us_core_v600_ballot_simple_observation_patient_code_date_search_test
       test from: :us_core_v600_ballot_simple_observation_read_test
       test from: :us_core_v600_ballot_simple_observation_provenance_revinclude_search_test
