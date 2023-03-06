@@ -17,6 +17,7 @@ module USCoreTestKit
 
         Elements which may provide external references include:
 
+        * Procedure.basedOn
         * Procedure.subject
       )
 
