@@ -280,3 +280,4 @@
   :resources:
   - Practitioner
   - Organization
+  - RelatedPerson
