@@ -30,6 +30,10 @@ module USCoreTestKit
         * MedicationRequest.requester
         * MedicationRequest.status
         * MedicationRequest.subject
+
+        For ONC USCDI requirements, each MedicationRequest must support the following additional elements:
+
+        * MedicationRequest.reasonCode or MedicationRequest.reasonReference
       )
 
       id :us_core_v600_ballot_medication_request_must_support_test
