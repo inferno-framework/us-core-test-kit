@@ -48,6 +48,7 @@ module USCoreTestKit
       def add_uscdi_elements
         add_patient_uscdi_elements
         add_medicationrequest_uscdi_elements
+        add_procedure_uscdi_elements
       end
 
       def add_patient_uscdi_elements
@@ -81,6 +82,16 @@ module USCoreTestKit
         must_supports[:elements] << {
           path: 'reasonReference',
           types: [ 'Reference' ],
+          uscdi_only: true
+        }
+      end
+
+      def add_procedure_uscdi_elements
+        return unless profile.type == 'Procedure'
+
+        must_supports[:elements] << {
+          path: 'basedOn',
+          types: ['Reference'],
           uscdi_only: true
         }
       end

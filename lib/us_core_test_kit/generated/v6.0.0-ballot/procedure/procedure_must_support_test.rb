@@ -16,6 +16,10 @@ module USCoreTestKit
         * Procedure.performedDateTime
         * Procedure.status
         * Procedure.subject
+
+        For ONC USCDI requirements, each Procedure must support the following additional elements:
+
+        * Procedure.basedOn
       )
 
       id :us_core_v600_ballot_procedure_must_support_test
