@@ -547,6 +547,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_condition_encounter_diagnosis
   :class_name: USCorev600_ballotConditionEncounterDiagnosisSequence
   :version: v6.0.0-ballot
@@ -1297,6 +1298,7 @@
   - :path: payor
     :resources:
     - Organization
+    - RelatedPerson
 - :name: us_core_implantable_device
   :class_name: USCorev600_ballotImplantableDeviceSequence
   :version: v6.0.0-ballot
@@ -2196,6 +2198,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_encounter
   :class_name: USCorev600_ballotEncounterSequence
   :version: v6.0.0-ballot
@@ -2524,6 +2527,7 @@
     :resources:
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: serviceProvider
     :resources:
     - Organization
@@ -3270,6 +3274,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_medicationrequest
   :class_name: USCorev600_ballotMedicationrequestSequence
   :version: v6.0.0-ballot
@@ -3568,6 +3573,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_observation_lab
   :class_name: USCorev600_ballotObservationLabSequence
   :version: v6.0.0-ballot
@@ -5035,6 +5041,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_heart_rate
   :class_name: USCorev600_ballotHeartRateSequence
   :version: v6.0.0-ballot
@@ -7630,6 +7637,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_blood_pressure
   :class_name: USCorev600_ballotBloodPressureSequence
   :version: v6.0.0-ballot
@@ -10047,6 +10055,7 @@
     - Organization
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: agent.onBehalfOf
     :resources:
     - Organization
@@ -10442,6 +10451,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_specimen
   :class_name: USCorev600_ballotSpecimenSequence
   :version: v6.0.0-ballot
