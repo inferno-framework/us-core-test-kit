@@ -155,6 +155,7 @@
   - Organization
   - Practitioner
   - PractitionerRole
+  - RelatedPerson
 - :path: agent.onBehalfOf
   :resources:
   - Organization
