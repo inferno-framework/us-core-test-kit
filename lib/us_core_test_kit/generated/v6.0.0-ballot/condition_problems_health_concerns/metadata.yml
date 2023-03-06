@@ -31,6 +31,12 @@
   :expectation: MAY
 :operations: []
 :searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :names:
   - patient
   :expectation: SHALL
@@ -67,12 +73,6 @@
   :names_not_must_support_or_mandatory:
   - asserted-date
   :must_support_or_mandatory: false
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -318,6 +318,8 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
+- :id: us_core_v600_ballot_condition_problems_health_concerns_patient_category_search_test
+  :file_name: condition_problems_health_concerns_patient_category_search_test.rb
 - :id: us_core_v600_ballot_condition_problems_health_concerns_patient_search_test
   :file_name: condition_problems_health_concerns_patient_search_test.rb
 - :id: us_core_v600_ballot_condition_problems_health_concerns_patient_onset_date_search_test
@@ -330,8 +332,6 @@
   :file_name: condition_problems_health_concerns_patient_recorded_date_search_test.rb
 - :id: us_core_v600_ballot_condition_problems_health_concerns_patient_asserted_date_search_test
   :file_name: condition_problems_health_concerns_patient_asserted_date_search_test.rb
-- :id: us_core_v600_ballot_condition_problems_health_concerns_patient_category_search_test
-  :file_name: condition_problems_health_concerns_patient_category_search_test.rb
 - :id: us_core_v600_ballot_condition_problems_health_concerns_patient_code_search_test
   :file_name: condition_problems_health_concerns_patient_code_search_test.rb
 - :id: us_core_v600_ballot_condition_problems_health_concerns_patient_category_encounter_search_test
