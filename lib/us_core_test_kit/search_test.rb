@@ -482,7 +482,7 @@ module USCoreTestKit
     end
 
     def search_param_paths(name)
-      paths = metadata.search_definitions[name.to_sym][:paths]
+      paths = metadata.search_definitions[name.to_sym][:elements]
       if paths.first =='class'
         paths[0] = 'local_class'
       end

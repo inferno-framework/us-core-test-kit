@@ -59,7 +59,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - MedicationRequest.subject
@@ -69,7 +69,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :intent:
-    :paths:
+    :elements:
     - intent
     :full_paths:
     - MedicationRequest.intent
@@ -87,7 +87,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :encounter:
-    :paths:
+    :elements:
     - encounter
     :full_paths:
     - MedicationRequest.encounter
@@ -97,7 +97,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :authoredon:
-    :paths:
+    :elements:
     - authoredOn
     :full_paths:
     - MedicationRequest.authoredOn
@@ -116,7 +116,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - MedicationRequest.status
