@@ -43,7 +43,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :paths:
+    :elements:
     - name
     :full_paths:
     - Practitioner.name
@@ -53,7 +53,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :identifier:
-    :paths:
+    :elements:
     - identifier
     :full_paths:
     - Practitioner.identifier

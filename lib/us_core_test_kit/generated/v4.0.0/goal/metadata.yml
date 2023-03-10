@@ -50,7 +50,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - Goal.subject
@@ -60,7 +60,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :lifecycle-status:
-    :paths:
+    :elements:
     - lifecycleStatus
     :full_paths:
     - Goal.lifecycleStatus
@@ -79,7 +79,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :target-date:
-    :paths:
+    :elements:
     - target.dueDate
     :full_paths:
     - Goal.target.dueDate

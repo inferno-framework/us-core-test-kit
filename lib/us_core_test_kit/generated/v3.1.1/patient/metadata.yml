@@ -72,7 +72,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - Patient.id
@@ -82,7 +82,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :paths:
+    :elements:
     - identifier
     :full_paths:
     - Patient.identifier
@@ -92,7 +92,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :name:
-    :paths:
+    :elements:
     - name
     :full_paths:
     - Patient.name
@@ -102,7 +102,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :birthdate:
-    :paths:
+    :elements:
     - birthDate
     :full_paths:
     - Patient.birthDate
@@ -121,7 +121,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :family:
-    :paths:
+    :elements:
     - name.family
     :full_paths:
     - Patient.name.family
@@ -131,7 +131,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :gender:
-    :paths:
+    :elements:
     - gender
     :full_paths:
     - Patient.gender

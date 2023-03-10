@@ -39,7 +39,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - CareTeam.subject
@@ -49,7 +49,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - CareTeam.status

@@ -50,7 +50,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - patient
     :full_paths:
     - Immunization.patient
@@ -60,7 +60,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - Immunization.status
@@ -73,7 +73,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :paths:
+    :elements:
     - occurrence
     :full_paths:
     - Immunization.occurrence

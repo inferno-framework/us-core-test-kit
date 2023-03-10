@@ -50,7 +50,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :role:
-    :paths:
+    :elements:
     - participant.role
     :full_paths:
     - CareTeam.participant.role
@@ -60,7 +60,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - CareTeam.subject
@@ -70,7 +70,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - CareTeam.status

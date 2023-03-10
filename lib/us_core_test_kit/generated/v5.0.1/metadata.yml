@@ -46,7 +46,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - patient
       :full_paths:
       - AllergyIntolerance.patient
@@ -56,7 +56,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :paths:
+      :elements:
       - clinicalStatus
       :full_paths:
       - AllergyIntolerance.clinicalStatus
@@ -199,7 +199,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - CarePlan.subject
@@ -209,7 +209,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - CarePlan.category
@@ -220,7 +220,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - CarePlan.status
@@ -237,7 +237,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :date:
-      :paths:
+      :elements:
       - period
       :full_paths:
       - CarePlan.period
@@ -443,7 +443,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :role:
-      :paths:
+      :elements:
       - participant.role
       :full_paths:
       - CareTeam.participant.role
@@ -453,7 +453,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - CareTeam.subject
@@ -463,7 +463,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - CareTeam.status
@@ -637,7 +637,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Condition.subject
@@ -647,7 +647,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :abatement-date:
-      :paths:
+      :elements:
       - abatementDateTime
       - abatementPeriod
       :full_paths:
@@ -668,8 +668,8 @@
       :contains_multiple: false
       :multiple_or: MAY
     :asserted-date:
-      :paths:
-      - extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
+      :elements:
+      - ''
       :full_paths:
       - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :comparators:
@@ -687,7 +687,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Condition.code
@@ -698,7 +698,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Condition.category
@@ -709,7 +709,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :encounter:
-      :paths:
+      :elements:
       - encounter
       :full_paths:
       - Condition.encounter
@@ -719,7 +719,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :recorded-date:
-      :paths:
+      :elements:
       - recordedDate
       :full_paths:
       - Condition.recordedDate
@@ -738,7 +738,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :paths:
+      :elements:
       - onsetDateTime
       - onsetPeriod
       :full_paths:
@@ -759,7 +759,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :paths:
+      :elements:
       - clinicalStatus
       :full_paths:
       - Condition.clinicalStatus
@@ -944,7 +944,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Condition.subject
@@ -954,7 +954,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :abatement-date:
-      :paths:
+      :elements:
       - abatementDateTime
       - abatementPeriod
       :full_paths:
@@ -975,8 +975,8 @@
       :contains_multiple: false
       :multiple_or: MAY
     :asserted-date:
-      :paths:
-      - extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
+      :elements:
+      - ''
       :full_paths:
       - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :comparators:
@@ -994,7 +994,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Condition.code
@@ -1005,7 +1005,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Condition.category
@@ -1017,7 +1017,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :encounter:
-      :paths:
+      :elements:
       - encounter
       :full_paths:
       - Condition.encounter
@@ -1027,7 +1027,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :recorded-date:
-      :paths:
+      :elements:
       - recordedDate
       :full_paths:
       - Condition.recordedDate
@@ -1046,7 +1046,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :paths:
+      :elements:
       - onsetDateTime
       - onsetPeriod
       :full_paths:
@@ -1067,7 +1067,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :paths:
+      :elements:
       - clinicalStatus
       :full_paths:
       - Condition.clinicalStatus
@@ -1217,7 +1217,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - patient
       :full_paths:
       - Device.patient
@@ -1227,7 +1227,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :paths:
+      :elements:
       - type
       :full_paths:
       - Device.type
@@ -1366,7 +1366,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - DiagnosticReport.subject
@@ -1376,7 +1376,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - DiagnosticReport.category
@@ -1389,7 +1389,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - DiagnosticReport.effective
@@ -1408,7 +1408,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - DiagnosticReport.status
@@ -1428,7 +1428,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - DiagnosticReport.code
@@ -1613,7 +1613,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - DiagnosticReport.subject
@@ -1623,7 +1623,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - DiagnosticReport.category
@@ -1634,7 +1634,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - DiagnosticReport.effective
@@ -1653,7 +1653,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - DiagnosticReport.status
@@ -1673,7 +1673,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - DiagnosticReport.code
@@ -1846,7 +1846,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - DocumentReference.id
@@ -1856,7 +1856,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - DocumentReference.subject
@@ -1866,7 +1866,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - DocumentReference.category
@@ -1876,7 +1876,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - date
       :full_paths:
       - DocumentReference.date
@@ -1895,7 +1895,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - DocumentReference.status
@@ -1908,7 +1908,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :type:
-      :paths:
+      :elements:
       - type
       :full_paths:
       - DocumentReference.type
@@ -1919,7 +1919,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :period:
-      :paths:
+      :elements:
       - context.period
       :full_paths:
       - DocumentReference.context.period
@@ -2136,7 +2136,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - Encounter.id
@@ -2146,7 +2146,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :paths:
+      :elements:
       - identifier
       :full_paths:
       - Encounter.identifier
@@ -2156,7 +2156,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Encounter.subject
@@ -2166,7 +2166,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :discharge-disposition:
-      :paths:
+      :elements:
       - hospitalization.dischargeDisposition
       :full_paths:
       - Encounter.hospitalization.dischargeDisposition
@@ -2176,7 +2176,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :class:
-      :paths:
+      :elements:
       - class
       :full_paths:
       - Encounter.class
@@ -2186,7 +2186,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :location:
-      :paths:
+      :elements:
       - location.location
       :full_paths:
       - Encounter.location.location
@@ -2196,7 +2196,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - period
       :full_paths:
       - Encounter.period
@@ -2215,7 +2215,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Encounter.status
@@ -2234,7 +2234,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :paths:
+      :elements:
       - type
       :full_paths:
       - Encounter.type
@@ -2440,7 +2440,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Goal.subject
@@ -2450,7 +2450,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :paths:
+      :elements:
       - target.dueDate
       :full_paths:
       - Goal.target.dueDate
@@ -2469,7 +2469,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :lifecycle-status:
-      :paths:
+      :elements:
       - lifecycleStatus
       :full_paths:
       - Goal.lifecycleStatus
@@ -2488,7 +2488,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :description:
-      :paths:
+      :elements:
       - description
       :full_paths:
       - Goal.description
@@ -2595,7 +2595,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - patient
       :full_paths:
       - Immunization.patient
@@ -2605,7 +2605,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Immunization.status
@@ -2618,7 +2618,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - occurrence
       :full_paths:
       - Immunization.occurrence
@@ -2755,7 +2755,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :paths:
+      :elements:
       - name
       - alias
       :full_paths:
@@ -2767,7 +2767,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :paths:
+      :elements:
       - address
       :full_paths:
       - Location.address
@@ -2777,7 +2777,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
-      :paths:
+      :elements:
       - address.city
       :full_paths:
       - Location.address.city
@@ -2787,7 +2787,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
-      :paths:
+      :elements:
       - address.state
       :full_paths:
       - Location.address.state
@@ -2797,7 +2797,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
-      :paths:
+      :elements:
       - address.postalCode
       :full_paths:
       - Location.address.postalCode
@@ -2978,7 +2978,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - MedicationRequest.subject
@@ -2988,7 +2988,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :intent:
-      :paths:
+      :elements:
       - intent
       :full_paths:
       - MedicationRequest.intent
@@ -3006,7 +3006,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - MedicationRequest.status
@@ -3024,7 +3024,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :authoredon:
-      :paths:
+      :elements:
       - authoredOn
       :full_paths:
       - MedicationRequest.authoredOn
@@ -3043,7 +3043,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :encounter:
-      :paths:
+      :elements:
       - encounter
       :full_paths:
       - MedicationRequest.encounter
@@ -3255,7 +3255,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -3265,7 +3265,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -3276,7 +3276,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -3295,7 +3295,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -3305,7 +3305,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -3484,7 +3484,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -3494,7 +3494,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -3505,7 +3505,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -3524,7 +3524,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -3581,7 +3581,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -3784,7 +3784,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -3794,7 +3794,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -3805,7 +3805,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -3824,7 +3824,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -3835,7 +3835,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -4039,7 +4039,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -4049,7 +4049,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -4060,7 +4060,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -4079,7 +4079,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -4089,7 +4089,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -4286,7 +4286,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -4296,7 +4296,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -4307,7 +4307,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -4326,7 +4326,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -4337,7 +4337,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -4541,7 +4541,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -4551,7 +4551,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -4562,7 +4562,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -4581,7 +4581,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -4592,7 +4592,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -4799,7 +4799,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -4809,7 +4809,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -4820,7 +4820,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -4839,7 +4839,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -4850,7 +4850,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -5054,7 +5054,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -5064,7 +5064,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -5075,7 +5075,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -5094,7 +5094,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -5106,7 +5106,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -5354,7 +5354,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -5364,7 +5364,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -5375,7 +5375,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -5394,7 +5394,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -5405,7 +5405,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -5584,7 +5584,7 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -5594,7 +5594,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -5604,7 +5604,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -5623,7 +5623,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -5634,7 +5634,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -5803,7 +5803,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -5813,7 +5813,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -5824,7 +5824,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -5843,7 +5843,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -5854,7 +5854,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -6061,7 +6061,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -6071,7 +6071,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -6082,7 +6082,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -6101,7 +6101,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -6112,7 +6112,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -6319,7 +6319,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -6329,7 +6329,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -6340,7 +6340,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -6359,7 +6359,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -6370,7 +6370,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -6574,7 +6574,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -6584,7 +6584,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -6595,7 +6595,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -6614,7 +6614,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -6625,7 +6625,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -6854,7 +6854,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -6864,7 +6864,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -6875,7 +6875,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -6894,7 +6894,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -6904,7 +6904,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -7082,7 +7082,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -7092,7 +7092,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -7103,7 +7103,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -7122,7 +7122,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -7593,7 +7593,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -7771,7 +7771,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -7781,7 +7781,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -7792,7 +7792,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -7811,7 +7811,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -7822,7 +7822,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -8027,7 +8027,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -8037,7 +8037,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -8048,7 +8048,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -8067,7 +8067,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -8078,7 +8078,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -8282,7 +8282,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Observation.subject
@@ -8292,7 +8292,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - Observation.category
@@ -8303,7 +8303,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :paths:
+      :elements:
       - effective
       :full_paths:
       - Observation.effective
@@ -8322,7 +8322,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Observation.code
@@ -8333,7 +8333,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Observation.status
@@ -8517,7 +8517,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :paths:
+      :elements:
       - name
       - alias
       :full_paths:
@@ -8529,7 +8529,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :paths:
+      :elements:
       - address
       :full_paths:
       - Organization.address
@@ -8673,7 +8673,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - Patient.id
@@ -8683,7 +8683,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :paths:
+      :elements:
       - identifier
       :full_paths:
       - Patient.identifier
@@ -8693,7 +8693,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :name:
-      :paths:
+      :elements:
       - name
       :full_paths:
       - Patient.name
@@ -8703,7 +8703,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :birthdate:
-      :paths:
+      :elements:
       - birthDate
       :full_paths:
       - Patient.birthDate
@@ -8722,7 +8722,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :family:
-      :paths:
+      :elements:
       - name.family
       :full_paths:
       - Patient.name.family
@@ -8732,7 +8732,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :gender:
-      :paths:
+      :elements:
       - gender
       :full_paths:
       - Patient.gender
@@ -8954,7 +8954,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - Practitioner.id
@@ -8964,7 +8964,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :name:
-      :paths:
+      :elements:
       - name
       :full_paths:
       - Practitioner.name
@@ -8974,7 +8974,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
-      :paths:
+      :elements:
       - identifier
       :full_paths:
       - Practitioner.identifier
@@ -9098,7 +9098,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :specialty:
-      :paths:
+      :elements:
       - specialty
       :full_paths:
       - PractitionerRole.specialty
@@ -9108,7 +9108,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :practitioner:
-      :paths:
+      :elements:
       - practitioner
       :full_paths:
       - PractitionerRole.practitioner
@@ -9246,7 +9246,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - Procedure.subject
@@ -9256,7 +9256,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - Procedure.code
@@ -9266,7 +9266,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :paths:
+      :elements:
       - performed
       :full_paths:
       - Procedure.performed
@@ -9285,7 +9285,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - Procedure.status
@@ -9618,7 +9618,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - QuestionnaireResponse.id
@@ -9628,7 +9628,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - QuestionnaireResponse.subject
@@ -9638,7 +9638,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :authored:
-      :paths:
+      :elements:
       - authored
       :full_paths:
       - QuestionnaireResponse.authored
@@ -9657,7 +9657,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :_tag:
-      :paths:
+      :elements:
       - meta.tag
       :full_paths:
       - QuestionnaireResponse.meta.tag
@@ -9667,7 +9667,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - QuestionnaireResponse.status
@@ -9682,7 +9682,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :questionnaire:
-      :paths:
+      :elements:
       - questionnaire
       :full_paths:
       - QuestionnaireResponse.questionnaire
@@ -9827,7 +9827,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - RelatedPerson.id
@@ -9837,7 +9837,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :paths:
+      :elements:
       - patient
       :full_paths:
       - RelatedPerson.patient
@@ -9952,7 +9952,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :paths:
+      :elements:
       - subject
       :full_paths:
       - ServiceRequest.subject
@@ -9962,7 +9962,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :_id:
-      :paths:
+      :elements:
       - id
       :full_paths:
       - ServiceRequest.id
@@ -9972,7 +9972,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :paths:
+      :elements:
       - category
       :full_paths:
       - ServiceRequest.category
@@ -9985,7 +9985,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :authored:
-      :paths:
+      :elements:
       - authoredOn
       :full_paths:
       - ServiceRequest.authoredOn
@@ -10004,7 +10004,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :paths:
+      :elements:
       - status
       :full_paths:
       - ServiceRequest.status
@@ -10021,7 +10021,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :paths:
+      :elements:
       - code
       :full_paths:
       - ServiceRequest.code

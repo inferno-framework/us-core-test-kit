@@ -44,7 +44,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - patient
     :full_paths:
     - AllergyIntolerance.patient
@@ -54,7 +54,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :clinical-status:
-    :paths:
+    :elements:
     - clinicalStatus
     :full_paths:
     - AllergyIntolerance.clinicalStatus

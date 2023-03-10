@@ -84,7 +84,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - Encounter.id
@@ -94,7 +94,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :paths:
+    :elements:
     - identifier
     :full_paths:
     - Encounter.identifier
@@ -104,7 +104,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - Encounter.subject
@@ -114,7 +114,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :discharge-disposition:
-    :paths:
+    :elements:
     - hospitalization.dischargeDisposition
     :full_paths:
     - Encounter.hospitalization.dischargeDisposition
@@ -124,7 +124,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :class:
-    :paths:
+    :elements:
     - class
     :full_paths:
     - Encounter.class
@@ -134,7 +134,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :location:
-    :paths:
+    :elements:
     - location.location
     :full_paths:
     - Encounter.location.location
@@ -144,7 +144,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :paths:
+    :elements:
     - period
     :full_paths:
     - Encounter.period
@@ -163,7 +163,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - Encounter.status
@@ -182,7 +182,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :paths:
+    :elements:
     - type
     :full_paths:
     - Encounter.type

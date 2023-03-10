@@ -66,7 +66,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - Observation.subject
@@ -76,7 +76,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - Observation.category
@@ -87,7 +87,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - Observation.status
@@ -99,7 +99,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :paths:
+    :elements:
     - code
     :full_paths:
     - Observation.code
@@ -110,7 +110,7 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :paths:
+    :elements:
     - effective
     :full_paths:
     - Observation.effective

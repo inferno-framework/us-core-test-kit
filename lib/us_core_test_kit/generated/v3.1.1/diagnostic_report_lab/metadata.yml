@@ -70,7 +70,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - DiagnosticReport.subject
@@ -80,7 +80,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - DiagnosticReport.category
@@ -91,7 +91,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :paths:
+    :elements:
     - effective
     :full_paths:
     - DiagnosticReport.effective
@@ -110,7 +110,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - DiagnosticReport.status
@@ -130,7 +130,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :paths:
+    :elements:
     - code
     :full_paths:
     - DiagnosticReport.code

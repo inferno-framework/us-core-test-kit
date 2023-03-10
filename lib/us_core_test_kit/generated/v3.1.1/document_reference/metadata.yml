@@ -77,7 +77,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - DocumentReference.id
@@ -87,7 +87,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - DocumentReference.subject
@@ -97,7 +97,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :paths:
+    :elements:
     - type
     :full_paths:
     - DocumentReference.type
@@ -108,7 +108,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :period:
-    :paths:
+    :elements:
     - context.period
     :full_paths:
     - DocumentReference.context.period
@@ -127,7 +127,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - DocumentReference.category
@@ -137,7 +137,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :paths:
+    :elements:
     - date
     :full_paths:
     - DocumentReference.date
@@ -156,7 +156,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - DocumentReference.status

@@ -15,7 +15,7 @@ module USCoreTestKit
       def search_definition
         @search_definition ||=
           {
-            paths: paths,
+            elements: elements,
             full_paths: full_paths,
             comparators: comparators,
             values: values,
@@ -46,13 +46,24 @@ module USCoreTestKit
           end
       end
 
-      def paths
-        @paths ||= full_paths.map { |a_path| a_path.gsub("#{resource}.", '') }
+      def elements
+        @elements ||= full_paths.map do |a_path|
+          a_path.include?('extension.where') ? '' : a_path.gsub("#{resource}.", '')
+        end.compact
       end
 
       def profile_element
         @profile_element ||=
           profile_elements.find { |element| full_paths.include?(element.id) }
+      end
+
+      def extension
+        extension_urls = full_paths.map { |path| path[/(?<=extension.where\(url =).*(?=\))/]}.compact
+        binding.pry unless extension_urls.empty?
+
+        @extension ||= extension_urls
+
+        @extension
       end
 
       def comparator_expectation_extensions
@@ -82,6 +93,8 @@ module USCoreTestKit
       def type
         if profile_element.present?
           profile_element.type.first.code
+        # elsif extension.present?
+        #   extension
         else
           # search is a variable type, eg. Condition.onsetDateTime - element
           # in profile def is Condition.onset[x]
@@ -116,7 +129,7 @@ module USCoreTestKit
       def values
           value_extractor.values_from_slicing(profile_element, type).presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata(paths).presence || []
+          values_from_resource_metadata(elements).presence || []
       end
 
       def values_from_resource_metadata(paths)

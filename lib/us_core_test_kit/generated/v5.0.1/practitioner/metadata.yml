@@ -48,7 +48,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - Practitioner.id
@@ -58,7 +58,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :name:
-    :paths:
+    :elements:
     - name
     :full_paths:
     - Practitioner.name
@@ -68,7 +68,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :identifier:
-    :paths:
+    :elements:
     - identifier
     :full_paths:
     - Practitioner.identifier

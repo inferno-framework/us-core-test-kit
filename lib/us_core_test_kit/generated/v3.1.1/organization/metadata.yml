@@ -43,7 +43,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :paths:
+    :elements:
     - name
     :full_paths:
     - Organization.name
@@ -53,7 +53,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :address:
-    :paths:
+    :elements:
     - address
     :full_paths:
     - Organization.address

@@ -75,7 +75,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - ServiceRequest.subject
@@ -85,7 +85,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - ServiceRequest.id
@@ -95,7 +95,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - ServiceRequest.category
@@ -108,7 +108,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :authored:
-    :paths:
+    :elements:
     - authoredOn
     :full_paths:
     - ServiceRequest.authoredOn
@@ -127,7 +127,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - ServiceRequest.status
@@ -144,7 +144,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :paths:
+    :elements:
     - code
     :full_paths:
     - ServiceRequest.code

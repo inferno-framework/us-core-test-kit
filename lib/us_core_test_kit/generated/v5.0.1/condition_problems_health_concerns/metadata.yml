@@ -89,7 +89,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - Condition.subject
@@ -99,7 +99,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :abatement-date:
-    :paths:
+    :elements:
     - abatementDateTime
     - abatementPeriod
     :full_paths:
@@ -120,8 +120,8 @@
     :contains_multiple: false
     :multiple_or: MAY
   :asserted-date:
-    :paths:
-    - extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
+    :elements:
+    - ''
     :full_paths:
     - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
     :comparators:
@@ -139,7 +139,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :paths:
+    :elements:
     - code
     :full_paths:
     - Condition.code
@@ -150,7 +150,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - Condition.category
@@ -162,7 +162,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :encounter:
-    :paths:
+    :elements:
     - encounter
     :full_paths:
     - Condition.encounter
@@ -172,7 +172,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :recorded-date:
-    :paths:
+    :elements:
     - recordedDate
     :full_paths:
     - Condition.recordedDate
@@ -191,7 +191,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :onset-date:
-    :paths:
+    :elements:
     - onsetDateTime
     - onsetPeriod
     :full_paths:
@@ -212,7 +212,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :clinical-status:
-    :paths:
+    :elements:
     - clinicalStatus
     :full_paths:
     - Condition.clinicalStatus

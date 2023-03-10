@@ -63,7 +63,7 @@
   :must_support_or_mandatory: false
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - CarePlan.subject
@@ -73,7 +73,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :paths:
+    :elements:
     - category
     :full_paths:
     - CarePlan.category
@@ -84,7 +84,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - CarePlan.status
@@ -101,7 +101,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :date:
-    :paths:
+    :elements:
     - period
     :full_paths:
     - CarePlan.period

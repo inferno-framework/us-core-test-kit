@@ -74,7 +74,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - QuestionnaireResponse.id
@@ -84,7 +84,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - QuestionnaireResponse.subject
@@ -94,7 +94,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :authored:
-    :paths:
+    :elements:
     - authored
     :full_paths:
     - QuestionnaireResponse.authored
@@ -113,7 +113,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :_tag:
-    :paths:
+    :elements:
     - meta.tag
     :full_paths:
     - QuestionnaireResponse.meta.tag
@@ -123,7 +123,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - QuestionnaireResponse.status
@@ -138,7 +138,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :questionnaire:
-    :paths:
+    :elements:
     - questionnaire
     :full_paths:
     - QuestionnaireResponse.questionnaire

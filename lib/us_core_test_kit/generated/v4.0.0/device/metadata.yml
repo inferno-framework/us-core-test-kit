@@ -44,7 +44,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - patient
     :full_paths:
     - Device.patient
@@ -54,7 +54,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :paths:
+    :elements:
     - type
     :full_paths:
     - Device.type

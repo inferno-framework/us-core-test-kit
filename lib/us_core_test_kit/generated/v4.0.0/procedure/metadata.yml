@@ -57,7 +57,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :paths:
+    :elements:
     - subject
     :full_paths:
     - Procedure.subject
@@ -67,7 +67,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :code:
-    :paths:
+    :elements:
     - code
     :full_paths:
     - Procedure.code
@@ -77,7 +77,7 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :paths:
+    :elements:
     - performed
     :full_paths:
     - Procedure.performed
@@ -96,7 +96,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :paths:
+    :elements:
     - status
     :full_paths:
     - Procedure.status

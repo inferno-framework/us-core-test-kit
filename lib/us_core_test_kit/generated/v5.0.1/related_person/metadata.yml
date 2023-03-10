@@ -43,7 +43,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :paths:
+    :elements:
     - id
     :full_paths:
     - RelatedPerson.id
@@ -53,7 +53,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :paths:
+    :elements:
     - patient
     :full_paths:
     - RelatedPerson.patient
