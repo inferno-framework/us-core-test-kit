@@ -74,6 +74,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - Encounter.id
     :comparators: {}
@@ -84,6 +85,7 @@
   :identifier:
     :elements:
     - identifier
+    :extensions: []
     :full_paths:
     - Encounter.identifier
     :comparators: {}
@@ -94,6 +96,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - Encounter.subject
     :comparators: {}
@@ -104,6 +107,7 @@
   :date:
     :elements:
     - period
+    :extensions: []
     :full_paths:
     - Encounter.period
     :comparators:
@@ -123,6 +127,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - Encounter.status
     :comparators: {}
@@ -142,6 +147,7 @@
   :class:
     :elements:
     - class
+    :extensions: []
     :full_paths:
     - Encounter.class
     :comparators: {}
@@ -152,6 +158,7 @@
   :type:
     :elements:
     - type
+    :extensions: []
     :full_paths:
     - Encounter.type
     :comparators: {}

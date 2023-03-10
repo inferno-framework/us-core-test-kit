@@ -59,6 +59,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - Procedure.subject
     :comparators: {}
@@ -69,6 +70,7 @@
   :code:
     :elements:
     - code
+    :extensions: []
     :full_paths:
     - Procedure.code
     :comparators: {}
@@ -79,6 +81,7 @@
   :date:
     :elements:
     - performed
+    :extensions: []
     :full_paths:
     - Procedure.performed
     :comparators:
@@ -98,6 +101,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - Procedure.status
     :comparators: {}

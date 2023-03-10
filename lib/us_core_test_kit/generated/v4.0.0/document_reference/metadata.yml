@@ -79,6 +79,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - DocumentReference.id
     :comparators: {}
@@ -89,6 +90,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - DocumentReference.subject
     :comparators: {}
@@ -99,6 +101,7 @@
   :category:
     :elements:
     - category
+    :extensions: []
     :full_paths:
     - DocumentReference.category
     :comparators: {}
@@ -109,6 +112,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - DocumentReference.status
     :comparators: {}
@@ -122,6 +126,7 @@
   :type:
     :elements:
     - type
+    :extensions: []
     :full_paths:
     - DocumentReference.type
     :comparators: {}
@@ -133,6 +138,7 @@
   :period:
     :elements:
     - context.period
+    :extensions: []
     :full_paths:
     - DocumentReference.context.period
     :comparators:
@@ -152,6 +158,7 @@
   :date:
     :elements:
     - date
+    :extensions: []
     :full_paths:
     - DocumentReference.date
     :comparators:

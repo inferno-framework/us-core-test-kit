@@ -90,6 +90,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - Condition.subject
     :comparators: {}
@@ -101,6 +102,7 @@
     :elements:
     - abatementDateTime
     - abatementPeriod
+    :extensions: []
     :full_paths:
     - Condition.abatementDateTime
     - Condition.abatementPeriod
@@ -119,10 +121,11 @@
     :contains_multiple: false
     :multiple_or: MAY
   :asserted-date:
-    :elements:
-    - ''
+    :elements: []
+    :extensions:
+    - :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :full_paths:
-    - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
+    - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').valueDateTime
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -134,12 +137,13 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: date
+    :type: dateTime
     :contains_multiple: false
     :multiple_or: MAY
   :code:
     :elements:
     - code
+    :extensions: []
     :full_paths:
     - Condition.code
     :comparators: {}
@@ -151,6 +155,7 @@
   :category:
     :elements:
     - category
+    :extensions: []
     :full_paths:
     - Condition.category
     :comparators: {}
@@ -162,6 +167,7 @@
   :encounter:
     :elements:
     - encounter
+    :extensions: []
     :full_paths:
     - Condition.encounter
     :comparators: {}
@@ -172,6 +178,7 @@
   :recorded-date:
     :elements:
     - recordedDate
+    :extensions: []
     :full_paths:
     - Condition.recordedDate
     :comparators:
@@ -192,6 +199,7 @@
     :elements:
     - onsetDateTime
     - onsetPeriod
+    :extensions: []
     :full_paths:
     - Condition.onsetDateTime
     - Condition.onsetPeriod
@@ -212,6 +220,7 @@
   :clinical-status:
     :elements:
     - clinicalStatus
+    :extensions: []
     :full_paths:
     - Condition.clinicalStatus
     :comparators: {}

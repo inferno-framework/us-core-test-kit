@@ -65,6 +65,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - CarePlan.subject
     :comparators: {}
@@ -75,6 +76,7 @@
   :category:
     :elements:
     - category
+    :extensions: []
     :full_paths:
     - CarePlan.category
     :comparators: {}
@@ -86,6 +88,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - CarePlan.status
     :comparators: {}
@@ -103,6 +106,7 @@
   :date:
     :elements:
     - period
+    :extensions: []
     :full_paths:
     - CarePlan.period
     :comparators:

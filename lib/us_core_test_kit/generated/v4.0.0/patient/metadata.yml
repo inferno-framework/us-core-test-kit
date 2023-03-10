@@ -74,6 +74,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - Patient.id
     :comparators: {}
@@ -84,6 +85,7 @@
   :identifier:
     :elements:
     - identifier
+    :extensions: []
     :full_paths:
     - Patient.identifier
     :comparators: {}
@@ -94,6 +96,7 @@
   :name:
     :elements:
     - name
+    :extensions: []
     :full_paths:
     - Patient.name
     :comparators: {}
@@ -104,6 +107,7 @@
   :family:
     :elements:
     - name.family
+    :extensions: []
     :full_paths:
     - Patient.name.family
     :comparators: {}
@@ -114,6 +118,7 @@
   :gender:
     :elements:
     - gender
+    :extensions: []
     :full_paths:
     - Patient.gender
     :comparators: {}
@@ -124,6 +129,7 @@
   :birthdate:
     :elements:
     - birthDate
+    :extensions: []
     :full_paths:
     - Patient.birthDate
     :comparators:

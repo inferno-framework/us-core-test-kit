@@ -86,6 +86,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - Encounter.id
     :comparators: {}
@@ -96,6 +97,7 @@
   :identifier:
     :elements:
     - identifier
+    :extensions: []
     :full_paths:
     - Encounter.identifier
     :comparators: {}
@@ -106,6 +108,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - Encounter.subject
     :comparators: {}
@@ -116,6 +119,7 @@
   :discharge-disposition:
     :elements:
     - hospitalization.dischargeDisposition
+    :extensions: []
     :full_paths:
     - Encounter.hospitalization.dischargeDisposition
     :comparators: {}
@@ -126,6 +130,7 @@
   :class:
     :elements:
     - class
+    :extensions: []
     :full_paths:
     - Encounter.class
     :comparators: {}
@@ -136,6 +141,7 @@
   :location:
     :elements:
     - location.location
+    :extensions: []
     :full_paths:
     - Encounter.location.location
     :comparators: {}
@@ -146,6 +152,7 @@
   :date:
     :elements:
     - period
+    :extensions: []
     :full_paths:
     - Encounter.period
     :comparators:
@@ -165,6 +172,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - Encounter.status
     :comparators: {}
@@ -184,6 +192,7 @@
   :type:
     :elements:
     - type
+    :extensions: []
     :full_paths:
     - Encounter.type
     :comparators: {}

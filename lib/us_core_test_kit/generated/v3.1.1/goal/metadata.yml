@@ -52,6 +52,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - Goal.subject
     :comparators: {}
@@ -62,6 +63,7 @@
   :lifecycle-status:
     :elements:
     - lifecycleStatus
+    :extensions: []
     :full_paths:
     - Goal.lifecycleStatus
     :comparators: {}
@@ -81,6 +83,7 @@
   :target-date:
     :elements:
     - target.dueDate
+    :extensions: []
     :full_paths:
     - Goal.target.dueDate
     :comparators:

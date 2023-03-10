@@ -45,6 +45,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - RelatedPerson.id
     :comparators: {}
@@ -55,6 +56,7 @@
   :patient:
     :elements:
     - patient
+    :extensions: []
     :full_paths:
     - RelatedPerson.patient
     :comparators: {}

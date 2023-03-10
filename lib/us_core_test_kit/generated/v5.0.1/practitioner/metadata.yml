@@ -50,6 +50,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - Practitioner.id
     :comparators: {}
@@ -60,6 +61,7 @@
   :name:
     :elements:
     - name
+    :extensions: []
     :full_paths:
     - Practitioner.name
     :comparators: {}
@@ -70,6 +72,7 @@
   :identifier:
     :elements:
     - identifier
+    :extensions: []
     :full_paths:
     - Practitioner.identifier
     :comparators: {}

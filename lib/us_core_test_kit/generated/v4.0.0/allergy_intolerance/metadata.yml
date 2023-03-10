@@ -46,6 +46,7 @@
   :patient:
     :elements:
     - patient
+    :extensions: []
     :full_paths:
     - AllergyIntolerance.patient
     :comparators: {}
@@ -56,6 +57,7 @@
   :clinical-status:
     :elements:
     - clinicalStatus
+    :extensions: []
     :full_paths:
     - AllergyIntolerance.clinicalStatus
     :comparators: {}

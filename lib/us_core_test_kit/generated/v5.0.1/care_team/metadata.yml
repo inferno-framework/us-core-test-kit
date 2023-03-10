@@ -52,6 +52,7 @@
   :role:
     :elements:
     - participant.role
+    :extensions: []
     :full_paths:
     - CareTeam.participant.role
     :comparators: {}
@@ -62,6 +63,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - CareTeam.subject
     :comparators: {}
@@ -72,6 +74,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - CareTeam.status
     :comparators: {}

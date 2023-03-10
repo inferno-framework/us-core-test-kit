@@ -76,6 +76,7 @@
   :_id:
     :elements:
     - id
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.id
     :comparators: {}
@@ -86,6 +87,7 @@
   :patient:
     :elements:
     - subject
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.subject
     :comparators: {}
@@ -96,6 +98,7 @@
   :authored:
     :elements:
     - authored
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.authored
     :comparators:
@@ -115,6 +118,7 @@
   :_tag:
     :elements:
     - meta.tag
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.meta.tag
     :comparators: {}
@@ -125,6 +129,7 @@
   :status:
     :elements:
     - status
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.status
     :comparators: {}
@@ -140,6 +145,7 @@
   :questionnaire:
     :elements:
     - questionnaire
+    :extensions: []
     :full_paths:
     - QuestionnaireResponse.questionnaire
     :comparators: {}
