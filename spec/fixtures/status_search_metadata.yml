@@ -154,7 +154,7 @@
         :value: vital-signs
       - :path: coding.system
         :value: http://terminology.hl7.org/CodeSystem/observation-category
-  :paths:
+  :elements:
   - :path: status
   - :path: category
   - :path: category.coding

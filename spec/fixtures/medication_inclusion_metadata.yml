@@ -141,7 +141,7 @@
 :must_supports:
   :extensions: []
   :slices: []
-  :paths:
+  :elements:
   - :path: status
   - :path: intent
   - :path: reported[x]
