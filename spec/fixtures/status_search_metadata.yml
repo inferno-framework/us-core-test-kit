@@ -65,7 +65,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :elements:
+    :paths:
     - subject
     :full_paths:
     - Observation.subject
@@ -75,7 +75,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :elements:
+    :paths:
     - category
     :full_paths:
     - Observation.category
@@ -86,7 +86,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :full_paths:
     - Observation.status
@@ -104,7 +104,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :code:
-    :elements:
+    :paths:
     - code
     :full_paths:
     - Observation.code
@@ -115,7 +115,7 @@
     :contains_multiple: false
     :multiple_or: SHOULD
   :date:
-    :elements:
+    :paths:
     - effective
     :full_paths:
     - Observation.effective
@@ -154,7 +154,7 @@
         :value: vital-signs
       - :path: coding.system
         :value: http://terminology.hl7.org/CodeSystem/observation-category
-  :elements:
+  :paths:
   - :path: status
   - :path: category
   - :path: category.coding
