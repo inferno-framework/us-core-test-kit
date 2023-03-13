@@ -91,7 +91,6 @@
   :patient:
     :paths:
     - subject
-    :extensions: []
     :full_paths:
     - Condition.subject
     :comparators: {}
@@ -103,7 +102,6 @@
     :paths:
     - abatementDateTime
     - abatementPeriod
-    :extensions: []
     :full_paths:
     - Condition.abatementDateTime
     - Condition.abatementPeriod
@@ -144,7 +142,6 @@
   :code:
     :paths:
     - code
-    :extensions: []
     :full_paths:
     - Condition.code
     :comparators: {}
@@ -156,7 +153,6 @@
   :category:
     :paths:
     - category
-    :extensions: []
     :full_paths:
     - Condition.category
     :comparators: {}
@@ -169,7 +165,6 @@
   :encounter:
     :paths:
     - encounter
-    :extensions: []
     :full_paths:
     - Condition.encounter
     :comparators: {}
@@ -180,7 +175,6 @@
   :recorded-date:
     :paths:
     - recordedDate
-    :extensions: []
     :full_paths:
     - Condition.recordedDate
     :comparators:
@@ -201,7 +195,6 @@
     :paths:
     - onsetDateTime
     - onsetPeriod
-    :extensions: []
     :full_paths:
     - Condition.onsetDateTime
     - Condition.onsetPeriod
@@ -222,7 +215,6 @@
   :clinical-status:
     :paths:
     - clinicalStatus
-    :extensions: []
     :full_paths:
     - Condition.clinicalStatus
     :comparators: {}

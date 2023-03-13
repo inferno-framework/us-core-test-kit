@@ -46,7 +46,6 @@
     :paths:
     - name
     - alias
-    :extensions: []
     :full_paths:
     - Organization.name
     - Organization.alias
@@ -58,7 +57,6 @@
   :address:
     :paths:
     - address
-    :extensions: []
     :full_paths:
     - Organization.address
     :comparators: {}

@@ -52,7 +52,6 @@
   :patient:
     :paths:
     - patient
-    :extensions: []
     :full_paths:
     - Immunization.patient
     :comparators: {}
@@ -63,7 +62,6 @@
   :date:
     :paths:
     - occurrence
-    :extensions: []
     :full_paths:
     - Immunization.occurrence
     :comparators:
@@ -83,7 +81,6 @@
   :status:
     :paths:
     - status
-    :extensions: []
     :full_paths:
     - Immunization.status
     :comparators: {}

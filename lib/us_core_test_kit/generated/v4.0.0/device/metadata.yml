@@ -46,7 +46,6 @@
   :patient:
     :paths:
     - patient
-    :extensions: []
     :full_paths:
     - Device.patient
     :comparators: {}
@@ -57,7 +56,6 @@
   :type:
     :paths:
     - type
-    :extensions: []
     :full_paths:
     - Device.type
     :comparators: {}

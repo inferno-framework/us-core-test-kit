@@ -46,8 +46,7 @@ module USCoreTestKit
 
             full_paths = path.split('|')
 
-            #there is a bug in US Core 5 asserted-date search parameter. See FHIR-40573
-
+            # There is a bug in US Core 5 asserted-date search parameter. See FHIR-40573
             if param.respond_to?(:version) && param.version == '5.0.1' && name == 'asserted-date'
               remove_additional_extension_from_asserted_date(full_paths)
             end
@@ -65,12 +64,13 @@ module USCoreTestKit
 
       def paths
         @paths ||= full_paths.select { |a_path| !a_path.include?('extension.where') }
-                                .map { |a_path| a_path.gsub("#{resource}.", '') }
+                             .map { |a_path| a_path.gsub("#{resource}.", '') }
       end
 
       def extensions
         @extensions ||= full_paths.select { |a_path| a_path.include?('extension.where') }
-                                .map { |a_path| { url: a_path[/(?<=extension.where\(url = ').*(?='\))/] }}
+                                  .map { |a_path| { url: a_path[/(?<=extension.where\(url = ').*(?='\))/] }}
+                                  .presence
       end
 
       # def build_extension_metadata(fhir_path)
@@ -97,7 +97,7 @@ module USCoreTestKit
          @profile_extension ||=
             begin
               ext_definition = nil
-              @extensions.each do |ext_metadata|
+              @extensions&.each do |ext_metadata|
                 ext_definition = ig_resources.profile_by_url(ext_metadata[:url])
                 break if ext_definition.present?
               end

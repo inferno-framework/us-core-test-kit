@@ -65,7 +65,6 @@
   :patient:
     :paths:
     - subject
-    :extensions: []
     :full_paths:
     - Condition.subject
     :comparators: {}
@@ -76,7 +75,6 @@
   :code:
     :paths:
     - code
-    :extensions: []
     :full_paths:
     - Condition.code
     :comparators: {}
@@ -89,7 +87,6 @@
     :paths:
     - onsetDateTime
     - onsetPeriod
-    :extensions: []
     :full_paths:
     - Condition.onsetDateTime
     - Condition.onsetPeriod
@@ -110,7 +107,6 @@
   :clinical-status:
     :paths:
     - clinicalStatus
-    :extensions: []
     :full_paths:
     - Condition.clinicalStatus
     :comparators: {}
@@ -127,7 +123,6 @@
   :category:
     :paths:
     - category
-    :extensions: []
     :full_paths:
     - Condition.category
     :comparators: {}

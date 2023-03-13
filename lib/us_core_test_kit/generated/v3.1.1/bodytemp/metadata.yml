@@ -68,7 +68,6 @@
   :patient:
     :paths:
     - subject
-    :extensions: []
     :full_paths:
     - Observation.subject
     :comparators: {}
@@ -79,7 +78,6 @@
   :category:
     :paths:
     - category
-    :extensions: []
     :full_paths:
     - Observation.category
     :comparators: {}
@@ -91,7 +89,6 @@
   :date:
     :paths:
     - effective
-    :extensions: []
     :full_paths:
     - Observation.effective
     :comparators:
@@ -111,7 +108,6 @@
   :status:
     :paths:
     - status
-    :extensions: []
     :full_paths:
     - Observation.status
     :comparators: {}
@@ -130,7 +126,6 @@
   :code:
     :paths:
     - code
-    :extensions: []
     :full_paths:
     - Observation.code
     :comparators: {}

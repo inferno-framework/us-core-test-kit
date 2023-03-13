@@ -45,7 +45,6 @@
   :name:
     :paths:
     - name
-    :extensions: []
     :full_paths:
     - Practitioner.name
     :comparators: {}
@@ -56,7 +55,6 @@
   :identifier:
     :paths:
     - identifier
-    :extensions: []
     :full_paths:
     - Practitioner.identifier
     :comparators: {}

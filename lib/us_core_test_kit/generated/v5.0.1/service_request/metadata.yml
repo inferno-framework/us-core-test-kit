@@ -77,7 +77,6 @@
   :patient:
     :paths:
     - subject
-    :extensions: []
     :full_paths:
     - ServiceRequest.subject
     :comparators: {}
@@ -88,7 +87,6 @@
   :_id:
     :paths:
     - id
-    :extensions: []
     :full_paths:
     - ServiceRequest.id
     :comparators: {}
@@ -99,7 +97,6 @@
   :category:
     :paths:
     - category
-    :extensions: []
     :full_paths:
     - ServiceRequest.category
     :comparators: {}
@@ -113,7 +110,6 @@
   :authored:
     :paths:
     - authoredOn
-    :extensions: []
     :full_paths:
     - ServiceRequest.authoredOn
     :comparators:
@@ -133,7 +129,6 @@
   :status:
     :paths:
     - status
-    :extensions: []
     :full_paths:
     - ServiceRequest.status
     :comparators: {}
@@ -151,7 +146,6 @@
   :code:
     :paths:
     - code
-    :extensions: []
     :full_paths:
     - ServiceRequest.code
     :comparators: {}

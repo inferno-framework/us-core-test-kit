@@ -48,7 +48,6 @@
     :patient:
       :paths:
       - patient
-      :extensions: []
       :full_paths:
       - AllergyIntolerance.patient
       :comparators: {}
@@ -59,7 +58,6 @@
     :clinical-status:
       :paths:
       - clinicalStatus
-      :extensions: []
       :full_paths:
       - AllergyIntolerance.clinicalStatus
       :comparators: {}
@@ -203,7 +201,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - CarePlan.subject
       :comparators: {}
@@ -214,7 +211,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - CarePlan.category
       :comparators: {}
@@ -226,7 +222,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - CarePlan.status
       :comparators: {}
@@ -244,7 +239,6 @@
     :date:
       :paths:
       - period
-      :extensions: []
       :full_paths:
       - CarePlan.period
       :comparators:
@@ -451,7 +445,6 @@
     :role:
       :paths:
       - participant.role
-      :extensions: []
       :full_paths:
       - CareTeam.participant.role
       :comparators: {}
@@ -462,7 +455,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - CareTeam.subject
       :comparators: {}
@@ -473,7 +465,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - CareTeam.status
       :comparators: {}
@@ -648,7 +639,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Condition.subject
       :comparators: {}
@@ -660,7 +650,6 @@
       :paths:
       - abatementDateTime
       - abatementPeriod
-      :extensions: []
       :full_paths:
       - Condition.abatementDateTime
       - Condition.abatementPeriod
@@ -701,7 +690,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Condition.code
       :comparators: {}
@@ -713,7 +701,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Condition.category
       :comparators: {}
@@ -725,7 +712,6 @@
     :encounter:
       :paths:
       - encounter
-      :extensions: []
       :full_paths:
       - Condition.encounter
       :comparators: {}
@@ -736,7 +722,6 @@
     :recorded-date:
       :paths:
       - recordedDate
-      :extensions: []
       :full_paths:
       - Condition.recordedDate
       :comparators:
@@ -757,7 +742,6 @@
       :paths:
       - onsetDateTime
       - onsetPeriod
-      :extensions: []
       :full_paths:
       - Condition.onsetDateTime
       - Condition.onsetPeriod
@@ -778,7 +762,6 @@
     :clinical-status:
       :paths:
       - clinicalStatus
-      :extensions: []
       :full_paths:
       - Condition.clinicalStatus
       :comparators: {}
@@ -964,7 +947,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Condition.subject
       :comparators: {}
@@ -976,7 +958,6 @@
       :paths:
       - abatementDateTime
       - abatementPeriod
-      :extensions: []
       :full_paths:
       - Condition.abatementDateTime
       - Condition.abatementPeriod
@@ -1017,7 +998,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Condition.code
       :comparators: {}
@@ -1029,7 +1009,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Condition.category
       :comparators: {}
@@ -1042,7 +1021,6 @@
     :encounter:
       :paths:
       - encounter
-      :extensions: []
       :full_paths:
       - Condition.encounter
       :comparators: {}
@@ -1053,7 +1031,6 @@
     :recorded-date:
       :paths:
       - recordedDate
-      :extensions: []
       :full_paths:
       - Condition.recordedDate
       :comparators:
@@ -1074,7 +1051,6 @@
       :paths:
       - onsetDateTime
       - onsetPeriod
-      :extensions: []
       :full_paths:
       - Condition.onsetDateTime
       - Condition.onsetPeriod
@@ -1095,7 +1071,6 @@
     :clinical-status:
       :paths:
       - clinicalStatus
-      :extensions: []
       :full_paths:
       - Condition.clinicalStatus
       :comparators: {}
@@ -1246,7 +1221,6 @@
     :patient:
       :paths:
       - patient
-      :extensions: []
       :full_paths:
       - Device.patient
       :comparators: {}
@@ -1257,7 +1231,6 @@
     :type:
       :paths:
       - type
-      :extensions: []
       :full_paths:
       - Device.type
       :comparators: {}
@@ -1397,7 +1370,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - DiagnosticReport.subject
       :comparators: {}
@@ -1408,7 +1380,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - DiagnosticReport.category
       :comparators: {}
@@ -1422,7 +1393,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - DiagnosticReport.effective
       :comparators:
@@ -1442,7 +1412,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - DiagnosticReport.status
       :comparators: {}
@@ -1463,7 +1432,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - DiagnosticReport.code
       :comparators: {}
@@ -1649,7 +1617,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - DiagnosticReport.subject
       :comparators: {}
@@ -1660,7 +1627,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - DiagnosticReport.category
       :comparators: {}
@@ -1672,7 +1638,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - DiagnosticReport.effective
       :comparators:
@@ -1692,7 +1657,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - DiagnosticReport.status
       :comparators: {}
@@ -1713,7 +1677,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - DiagnosticReport.code
       :comparators: {}
@@ -1887,7 +1850,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - DocumentReference.id
       :comparators: {}
@@ -1898,7 +1860,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - DocumentReference.subject
       :comparators: {}
@@ -1909,7 +1870,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - DocumentReference.category
       :comparators: {}
@@ -1920,7 +1880,6 @@
     :date:
       :paths:
       - date
-      :extensions: []
       :full_paths:
       - DocumentReference.date
       :comparators:
@@ -1940,7 +1899,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - DocumentReference.status
       :comparators: {}
@@ -1954,7 +1912,6 @@
     :type:
       :paths:
       - type
-      :extensions: []
       :full_paths:
       - DocumentReference.type
       :comparators: {}
@@ -1966,7 +1923,6 @@
     :period:
       :paths:
       - context.period
-      :extensions: []
       :full_paths:
       - DocumentReference.context.period
       :comparators:
@@ -2184,7 +2140,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - Encounter.id
       :comparators: {}
@@ -2195,7 +2150,6 @@
     :identifier:
       :paths:
       - identifier
-      :extensions: []
       :full_paths:
       - Encounter.identifier
       :comparators: {}
@@ -2206,7 +2160,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Encounter.subject
       :comparators: {}
@@ -2217,7 +2170,6 @@
     :discharge-disposition:
       :paths:
       - hospitalization.dischargeDisposition
-      :extensions: []
       :full_paths:
       - Encounter.hospitalization.dischargeDisposition
       :comparators: {}
@@ -2228,7 +2180,6 @@
     :class:
       :paths:
       - class
-      :extensions: []
       :full_paths:
       - Encounter.class
       :comparators: {}
@@ -2239,7 +2190,6 @@
     :location:
       :paths:
       - location.location
-      :extensions: []
       :full_paths:
       - Encounter.location.location
       :comparators: {}
@@ -2250,7 +2200,6 @@
     :date:
       :paths:
       - period
-      :extensions: []
       :full_paths:
       - Encounter.period
       :comparators:
@@ -2270,7 +2219,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Encounter.status
       :comparators: {}
@@ -2290,7 +2238,6 @@
     :type:
       :paths:
       - type
-      :extensions: []
       :full_paths:
       - Encounter.type
       :comparators: {}
@@ -2497,7 +2444,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Goal.subject
       :comparators: {}
@@ -2508,7 +2454,6 @@
     :target-date:
       :paths:
       - target.dueDate
-      :extensions: []
       :full_paths:
       - Goal.target.dueDate
       :comparators:
@@ -2528,7 +2473,6 @@
     :lifecycle-status:
       :paths:
       - lifecycleStatus
-      :extensions: []
       :full_paths:
       - Goal.lifecycleStatus
       :comparators: {}
@@ -2548,7 +2492,6 @@
     :description:
       :paths:
       - description
-      :extensions: []
       :full_paths:
       - Goal.description
       :comparators: {}
@@ -2656,7 +2599,6 @@
     :patient:
       :paths:
       - patient
-      :extensions: []
       :full_paths:
       - Immunization.patient
       :comparators: {}
@@ -2667,7 +2609,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Immunization.status
       :comparators: {}
@@ -2681,7 +2622,6 @@
     :date:
       :paths:
       - occurrence
-      :extensions: []
       :full_paths:
       - Immunization.occurrence
       :comparators:
@@ -2820,7 +2760,6 @@
       :paths:
       - name
       - alias
-      :extensions: []
       :full_paths:
       - Location.name
       - Location.alias
@@ -2832,7 +2771,6 @@
     :address:
       :paths:
       - address
-      :extensions: []
       :full_paths:
       - Location.address
       :comparators: {}
@@ -2843,7 +2781,6 @@
     :address-city:
       :paths:
       - address.city
-      :extensions: []
       :full_paths:
       - Location.address.city
       :comparators: {}
@@ -2854,7 +2791,6 @@
     :address-state:
       :paths:
       - address.state
-      :extensions: []
       :full_paths:
       - Location.address.state
       :comparators: {}
@@ -2865,7 +2801,6 @@
     :address-postalcode:
       :paths:
       - address.postalCode
-      :extensions: []
       :full_paths:
       - Location.address.postalCode
       :comparators: {}
@@ -3047,7 +2982,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - MedicationRequest.subject
       :comparators: {}
@@ -3058,7 +2992,6 @@
     :intent:
       :paths:
       - intent
-      :extensions: []
       :full_paths:
       - MedicationRequest.intent
       :comparators: {}
@@ -3077,7 +3010,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - MedicationRequest.status
       :comparators: {}
@@ -3096,7 +3028,6 @@
     :authoredon:
       :paths:
       - authoredOn
-      :extensions: []
       :full_paths:
       - MedicationRequest.authoredOn
       :comparators:
@@ -3116,7 +3047,6 @@
     :encounter:
       :paths:
       - encounter
-      :extensions: []
       :full_paths:
       - MedicationRequest.encounter
       :comparators: {}
@@ -3329,7 +3259,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -3340,7 +3269,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -3352,7 +3280,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -3372,7 +3299,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -3383,7 +3309,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -3563,7 +3488,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -3574,7 +3498,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -3586,7 +3509,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -3606,7 +3528,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -3664,7 +3585,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -3868,7 +3788,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -3879,7 +3798,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -3891,7 +3809,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -3911,7 +3828,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -3923,7 +3839,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -4128,7 +4043,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -4139,7 +4053,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -4151,7 +4064,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -4171,7 +4083,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -4182,7 +4093,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -4380,7 +4290,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -4391,7 +4300,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -4403,7 +4311,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -4423,7 +4330,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -4435,7 +4341,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -4640,7 +4545,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -4651,7 +4555,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -4663,7 +4566,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -4683,7 +4585,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -4695,7 +4596,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -4903,7 +4803,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -4914,7 +4813,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -4926,7 +4824,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -4946,7 +4843,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -4958,7 +4854,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -5163,7 +5058,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -5174,7 +5068,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -5186,7 +5079,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -5206,7 +5098,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -5219,7 +5110,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -5468,7 +5358,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -5479,7 +5368,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -5491,7 +5379,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -5511,7 +5398,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -5523,7 +5409,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -5703,7 +5588,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -5714,7 +5598,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -5725,7 +5608,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -5745,7 +5627,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -5757,7 +5638,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -5927,7 +5807,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -5938,7 +5817,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -5950,7 +5828,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -5970,7 +5847,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -5982,7 +5858,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -6190,7 +6065,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -6201,7 +6075,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -6213,7 +6086,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -6233,7 +6105,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -6245,7 +6116,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -6453,7 +6323,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -6464,7 +6333,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -6476,7 +6344,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -6496,7 +6363,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -6508,7 +6374,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -6713,7 +6578,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -6724,7 +6588,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -6736,7 +6599,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -6756,7 +6618,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -6768,7 +6629,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -6998,7 +6858,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -7009,7 +6868,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -7021,7 +6879,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -7041,7 +6898,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -7052,7 +6908,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -7231,7 +7086,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -7242,7 +7096,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -7254,7 +7107,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -7274,7 +7126,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -7746,7 +7597,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -7925,7 +7775,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -7936,7 +7785,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -7948,7 +7796,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -7968,7 +7815,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -7980,7 +7826,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -8186,7 +8031,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -8197,7 +8041,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -8209,7 +8052,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -8229,7 +8071,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -8241,7 +8082,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -8446,7 +8286,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Observation.subject
       :comparators: {}
@@ -8457,7 +8296,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - Observation.category
       :comparators: {}
@@ -8469,7 +8307,6 @@
     :date:
       :paths:
       - effective
-      :extensions: []
       :full_paths:
       - Observation.effective
       :comparators:
@@ -8489,7 +8326,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Observation.code
       :comparators: {}
@@ -8501,7 +8337,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Observation.status
       :comparators: {}
@@ -8687,7 +8522,6 @@
       :paths:
       - name
       - alias
-      :extensions: []
       :full_paths:
       - Organization.name
       - Organization.alias
@@ -8699,7 +8533,6 @@
     :address:
       :paths:
       - address
-      :extensions: []
       :full_paths:
       - Organization.address
       :comparators: {}
@@ -8844,7 +8677,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - Patient.id
       :comparators: {}
@@ -8855,7 +8687,6 @@
     :identifier:
       :paths:
       - identifier
-      :extensions: []
       :full_paths:
       - Patient.identifier
       :comparators: {}
@@ -8866,7 +8697,6 @@
     :name:
       :paths:
       - name
-      :extensions: []
       :full_paths:
       - Patient.name
       :comparators: {}
@@ -8877,7 +8707,6 @@
     :birthdate:
       :paths:
       - birthDate
-      :extensions: []
       :full_paths:
       - Patient.birthDate
       :comparators:
@@ -8897,7 +8726,6 @@
     :family:
       :paths:
       - name.family
-      :extensions: []
       :full_paths:
       - Patient.name.family
       :comparators: {}
@@ -8908,7 +8736,6 @@
     :gender:
       :paths:
       - gender
-      :extensions: []
       :full_paths:
       - Patient.gender
       :comparators: {}
@@ -9131,7 +8958,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - Practitioner.id
       :comparators: {}
@@ -9142,7 +8968,6 @@
     :name:
       :paths:
       - name
-      :extensions: []
       :full_paths:
       - Practitioner.name
       :comparators: {}
@@ -9153,7 +8978,6 @@
     :identifier:
       :paths:
       - identifier
-      :extensions: []
       :full_paths:
       - Practitioner.identifier
       :comparators: {}
@@ -9278,7 +9102,6 @@
     :specialty:
       :paths:
       - specialty
-      :extensions: []
       :full_paths:
       - PractitionerRole.specialty
       :comparators: {}
@@ -9289,7 +9112,6 @@
     :practitioner:
       :paths:
       - practitioner
-      :extensions: []
       :full_paths:
       - PractitionerRole.practitioner
       :comparators: {}
@@ -9428,7 +9250,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - Procedure.subject
       :comparators: {}
@@ -9439,7 +9260,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - Procedure.code
       :comparators: {}
@@ -9450,7 +9270,6 @@
     :date:
       :paths:
       - performed
-      :extensions: []
       :full_paths:
       - Procedure.performed
       :comparators:
@@ -9470,7 +9289,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - Procedure.status
       :comparators: {}
@@ -9804,7 +9622,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.id
       :comparators: {}
@@ -9815,7 +9632,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.subject
       :comparators: {}
@@ -9826,7 +9642,6 @@
     :authored:
       :paths:
       - authored
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.authored
       :comparators:
@@ -9846,7 +9661,6 @@
     :_tag:
       :paths:
       - meta.tag
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.meta.tag
       :comparators: {}
@@ -9857,7 +9671,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.status
       :comparators: {}
@@ -9873,7 +9686,6 @@
     :questionnaire:
       :paths:
       - questionnaire
-      :extensions: []
       :full_paths:
       - QuestionnaireResponse.questionnaire
       :comparators: {}
@@ -10019,7 +9831,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - RelatedPerson.id
       :comparators: {}
@@ -10030,7 +9841,6 @@
     :patient:
       :paths:
       - patient
-      :extensions: []
       :full_paths:
       - RelatedPerson.patient
       :comparators: {}
@@ -10146,7 +9956,6 @@
     :patient:
       :paths:
       - subject
-      :extensions: []
       :full_paths:
       - ServiceRequest.subject
       :comparators: {}
@@ -10157,7 +9966,6 @@
     :_id:
       :paths:
       - id
-      :extensions: []
       :full_paths:
       - ServiceRequest.id
       :comparators: {}
@@ -10168,7 +9976,6 @@
     :category:
       :paths:
       - category
-      :extensions: []
       :full_paths:
       - ServiceRequest.category
       :comparators: {}
@@ -10182,7 +9989,6 @@
     :authored:
       :paths:
       - authoredOn
-      :extensions: []
       :full_paths:
       - ServiceRequest.authoredOn
       :comparators:
@@ -10202,7 +10008,6 @@
     :status:
       :paths:
       - status
-      :extensions: []
       :full_paths:
       - ServiceRequest.status
       :comparators: {}
@@ -10220,7 +10025,6 @@
     :code:
       :paths:
       - code
-      :extensions: []
       :full_paths:
       - ServiceRequest.code
       :comparators: {}

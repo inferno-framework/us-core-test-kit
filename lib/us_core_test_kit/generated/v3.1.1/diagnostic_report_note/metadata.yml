@@ -72,7 +72,6 @@
   :patient:
     :paths:
     - subject
-    :extensions: []
     :full_paths:
     - DiagnosticReport.subject
     :comparators: {}
@@ -83,7 +82,6 @@
   :category:
     :paths:
     - category
-    :extensions: []
     :full_paths:
     - DiagnosticReport.category
     :comparators: {}
@@ -97,7 +95,6 @@
   :date:
     :paths:
     - effective
-    :extensions: []
     :full_paths:
     - DiagnosticReport.effective
     :comparators:
@@ -117,7 +114,6 @@
   :status:
     :paths:
     - status
-    :extensions: []
     :full_paths:
     - DiagnosticReport.status
     :comparators: {}
@@ -138,7 +134,6 @@
   :code:
     :paths:
     - code
-    :extensions: []
     :full_paths:
     - DiagnosticReport.code
     :comparators: {}
