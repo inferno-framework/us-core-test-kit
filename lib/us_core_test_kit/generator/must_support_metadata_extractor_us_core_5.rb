@@ -17,6 +17,7 @@ module USCoreTestKit
 
       def handle_special_cases
         add_must_support_choices
+        remove_patient_address_period
         add_patient_uscdi_elements
         add_value_set_expansion
         remove_survey_questionnaire_response
@@ -46,6 +47,10 @@ module USCoreTestKit
           must_supports[:choices] ||= []
           must_supports[:choices].concat(more_choices)
         end
+      end
+
+      def remove_patient_address_period
+        us_core_4_extractor.remove_patient_address_period
       end
 
       def add_patient_uscdi_elements

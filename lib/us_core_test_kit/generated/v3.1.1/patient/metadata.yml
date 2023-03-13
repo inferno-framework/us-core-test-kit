@@ -171,9 +171,17 @@
   - :path: address.city
   - :path: address.state
   - :path: address.postalCode
-  - :path: address.period
   - :path: communication
   - :path: communication.language
+  :choices:
+  - :paths:
+    - address.period.end
+    - address.use
+    :uscdi_only: true
+  - :paths:
+    - name.period.end
+    - name.use
+    :uscdi_only: true
 :mandatory_elements:
 - Patient.identifier
 - Patient.identifier.system
