@@ -63,7 +63,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :elements:
+    :paths:
     - subject
     :extensions: []
     :full_paths:
@@ -74,7 +74,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :category:
-    :elements:
+    :paths:
     - category
     :extensions: []
     :full_paths:
@@ -86,7 +86,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:
@@ -104,7 +104,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :date:
-    :elements:
+    :paths:
     - period
     :extensions: []
     :full_paths:

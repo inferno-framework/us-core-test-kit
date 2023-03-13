@@ -50,7 +50,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :elements:
+    :paths:
     - patient
     :extensions: []
     :full_paths:
@@ -61,7 +61,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:
@@ -75,7 +75,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :date:
-    :elements:
+    :paths:
     - occurrence
     :extensions: []
     :full_paths:

@@ -72,7 +72,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :elements:
+    :paths:
     - id
     :extensions: []
     :full_paths:
@@ -83,7 +83,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
-    :elements:
+    :paths:
     - identifier
     :extensions: []
     :full_paths:
@@ -94,7 +94,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :patient:
-    :elements:
+    :paths:
     - subject
     :extensions: []
     :full_paths:
@@ -105,7 +105,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :class:
-    :elements:
+    :paths:
     - class
     :extensions: []
     :full_paths:
@@ -116,7 +116,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:
@@ -136,7 +136,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :elements:
+    :paths:
     - type
     :extensions: []
     :full_paths:
@@ -147,7 +147,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :date:
-    :elements:
+    :paths:
     - period
     :extensions: []
     :full_paths:

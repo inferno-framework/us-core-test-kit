@@ -74,7 +74,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :elements:
+    :paths:
     - id
     :extensions: []
     :full_paths:
@@ -85,7 +85,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :elements:
+    :paths:
     - subject
     :extensions: []
     :full_paths:
@@ -96,7 +96,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :authored:
-    :elements:
+    :paths:
     - authored
     :extensions: []
     :full_paths:
@@ -116,7 +116,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :_tag:
-    :elements:
+    :paths:
     - meta.tag
     :extensions: []
     :full_paths:
@@ -127,7 +127,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:
@@ -143,7 +143,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :questionnaire:
-    :elements:
+    :paths:
     - questionnaire
     :extensions: []
     :full_paths:

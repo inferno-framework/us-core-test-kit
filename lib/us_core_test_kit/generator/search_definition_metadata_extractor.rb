@@ -15,7 +15,7 @@ module USCoreTestKit
       def search_definition
         @search_definition ||=
           {
-            elements: elements,
+            paths: paths,
             extensions: extensions,
             full_paths: full_paths,
             comparators: comparators,
@@ -64,8 +64,8 @@ module USCoreTestKit
         end
       end
 
-      def elements
-        @elements ||= full_paths.select { |a_path| !a_path.include?('extension.where') }
+      def paths
+        @paths ||= full_paths.select { |a_path| !a_path.include?('extension.where') }
                                 .map { |a_path| a_path.gsub("#{resource}.", '') }
       end
 
@@ -179,7 +179,7 @@ module USCoreTestKit
       def values
           value_extractor.values_from_slicing(profile_element, type).presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata(elements).presence || []
+          values_from_resource_metadata(paths).presence || []
       end
 
       def values_from_resource_metadata(paths)

@@ -43,7 +43,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :name:
-    :elements:
+    :paths:
     - name
     - alias
     :extensions: []
@@ -56,7 +56,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :address:
-    :elements:
+    :paths:
     - address
     :extensions: []
     :full_paths:

@@ -60,7 +60,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :elements:
+    :paths:
     - subject
     :extensions: []
     :full_paths:
@@ -71,7 +71,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :intent:
-    :elements:
+    :paths:
     - intent
     :extensions: []
     :full_paths:
@@ -90,7 +90,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:
@@ -109,7 +109,7 @@
     :contains_multiple: false
     :multiple_or: SHALL
   :authoredon:
-    :elements:
+    :paths:
     - authoredOn
     :extensions: []
     :full_paths:
@@ -129,7 +129,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :encounter:
-    :elements:
+    :paths:
     - encounter
     :extensions: []
     :full_paths:

@@ -50,7 +50,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :role:
-    :elements:
+    :paths:
     - participant.role
     :extensions: []
     :full_paths:
@@ -61,7 +61,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :patient:
-    :elements:
+    :paths:
     - subject
     :extensions: []
     :full_paths:
@@ -72,7 +72,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :status:
-    :elements:
+    :paths:
     - status
     :extensions: []
     :full_paths:

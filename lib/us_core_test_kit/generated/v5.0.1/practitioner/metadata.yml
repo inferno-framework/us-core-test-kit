@@ -48,7 +48,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :_id:
-    :elements:
+    :paths:
     - id
     :extensions: []
     :full_paths:
@@ -59,7 +59,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :name:
-    :elements:
+    :paths:
     - name
     :extensions: []
     :full_paths:
@@ -70,7 +70,7 @@
     :contains_multiple: true
     :multiple_or: MAY
   :identifier:
-    :elements:
+    :paths:
     - identifier
     :extensions: []
     :full_paths:

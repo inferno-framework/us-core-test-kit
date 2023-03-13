@@ -46,7 +46,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - patient
       :extensions: []
       :full_paths:
@@ -57,7 +57,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :elements:
+      :paths:
       - clinicalStatus
       :extensions: []
       :full_paths:
@@ -201,7 +201,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -212,7 +212,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -224,7 +224,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -242,7 +242,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :date:
-      :elements:
+      :paths:
       - period
       :extensions: []
       :full_paths:
@@ -449,7 +449,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :role:
-      :elements:
+      :paths:
       - participant.role
       :extensions: []
       :full_paths:
@@ -460,7 +460,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -471,7 +471,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -646,7 +646,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -657,7 +657,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :abatement-date:
-      :elements:
+      :paths:
       - abatementDateTime
       - abatementPeriod
       :extensions: []
@@ -679,7 +679,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :asserted-date:
-      :elements: []
+      :paths: []
       :extensions:
       - :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
       :full_paths:
@@ -699,7 +699,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -711,7 +711,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -723,7 +723,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :encounter:
-      :elements:
+      :paths:
       - encounter
       :extensions: []
       :full_paths:
@@ -734,7 +734,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :recorded-date:
-      :elements:
+      :paths:
       - recordedDate
       :extensions: []
       :full_paths:
@@ -754,7 +754,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :elements:
+      :paths:
       - onsetDateTime
       - onsetPeriod
       :extensions: []
@@ -776,7 +776,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :elements:
+      :paths:
       - clinicalStatus
       :extensions: []
       :full_paths:
@@ -962,7 +962,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -973,7 +973,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :abatement-date:
-      :elements:
+      :paths:
       - abatementDateTime
       - abatementPeriod
       :extensions: []
@@ -995,7 +995,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :asserted-date:
-      :elements: []
+      :paths: []
       :extensions:
       - :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
       :full_paths:
@@ -1015,7 +1015,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -1027,7 +1027,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -1040,7 +1040,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :encounter:
-      :elements:
+      :paths:
       - encounter
       :extensions: []
       :full_paths:
@@ -1051,7 +1051,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :recorded-date:
-      :elements:
+      :paths:
       - recordedDate
       :extensions: []
       :full_paths:
@@ -1071,7 +1071,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
-      :elements:
+      :paths:
       - onsetDateTime
       - onsetPeriod
       :extensions: []
@@ -1093,7 +1093,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :clinical-status:
-      :elements:
+      :paths:
       - clinicalStatus
       :extensions: []
       :full_paths:
@@ -1244,7 +1244,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - patient
       :extensions: []
       :full_paths:
@@ -1255,7 +1255,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :elements:
+      :paths:
       - type
       :extensions: []
       :full_paths:
@@ -1395,7 +1395,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -1406,7 +1406,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -1420,7 +1420,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -1440,7 +1440,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -1461,7 +1461,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -1647,7 +1647,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -1658,7 +1658,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -1670,7 +1670,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -1690,7 +1690,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -1711,7 +1711,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -1885,7 +1885,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -1896,7 +1896,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -1907,7 +1907,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -1918,7 +1918,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - date
       :extensions: []
       :full_paths:
@@ -1938,7 +1938,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -1952,7 +1952,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :type:
-      :elements:
+      :paths:
       - type
       :extensions: []
       :full_paths:
@@ -1964,7 +1964,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :period:
-      :elements:
+      :paths:
       - context.period
       :extensions: []
       :full_paths:
@@ -2182,7 +2182,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -2193,7 +2193,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :elements:
+      :paths:
       - identifier
       :extensions: []
       :full_paths:
@@ -2204,7 +2204,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -2215,7 +2215,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :discharge-disposition:
-      :elements:
+      :paths:
       - hospitalization.dischargeDisposition
       :extensions: []
       :full_paths:
@@ -2226,7 +2226,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :class:
-      :elements:
+      :paths:
       - class
       :extensions: []
       :full_paths:
@@ -2237,7 +2237,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :location:
-      :elements:
+      :paths:
       - location.location
       :extensions: []
       :full_paths:
@@ -2248,7 +2248,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - period
       :extensions: []
       :full_paths:
@@ -2268,7 +2268,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -2288,7 +2288,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :type:
-      :elements:
+      :paths:
       - type
       :extensions: []
       :full_paths:
@@ -2495,7 +2495,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -2506,7 +2506,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :target-date:
-      :elements:
+      :paths:
       - target.dueDate
       :extensions: []
       :full_paths:
@@ -2526,7 +2526,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :lifecycle-status:
-      :elements:
+      :paths:
       - lifecycleStatus
       :extensions: []
       :full_paths:
@@ -2546,7 +2546,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :description:
-      :elements:
+      :paths:
       - description
       :extensions: []
       :full_paths:
@@ -2654,7 +2654,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - patient
       :extensions: []
       :full_paths:
@@ -2665,7 +2665,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -2679,7 +2679,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - occurrence
       :extensions: []
       :full_paths:
@@ -2817,7 +2817,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :elements:
+      :paths:
       - name
       - alias
       :extensions: []
@@ -2830,7 +2830,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :elements:
+      :paths:
       - address
       :extensions: []
       :full_paths:
@@ -2841,7 +2841,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-city:
-      :elements:
+      :paths:
       - address.city
       :extensions: []
       :full_paths:
@@ -2852,7 +2852,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-state:
-      :elements:
+      :paths:
       - address.state
       :extensions: []
       :full_paths:
@@ -2863,7 +2863,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address-postalcode:
-      :elements:
+      :paths:
       - address.postalCode
       :extensions: []
       :full_paths:
@@ -3045,7 +3045,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -3056,7 +3056,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :intent:
-      :elements:
+      :paths:
       - intent
       :extensions: []
       :full_paths:
@@ -3075,7 +3075,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -3094,7 +3094,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :authoredon:
-      :elements:
+      :paths:
       - authoredOn
       :extensions: []
       :full_paths:
@@ -3114,7 +3114,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :encounter:
-      :elements:
+      :paths:
       - encounter
       :extensions: []
       :full_paths:
@@ -3327,7 +3327,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -3338,7 +3338,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -3350,7 +3350,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -3370,7 +3370,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -3381,7 +3381,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -3561,7 +3561,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -3572,7 +3572,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -3584,7 +3584,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -3604,7 +3604,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -3662,7 +3662,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -3866,7 +3866,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -3877,7 +3877,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -3889,7 +3889,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -3909,7 +3909,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -3921,7 +3921,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -4126,7 +4126,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -4137,7 +4137,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -4149,7 +4149,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -4169,7 +4169,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -4180,7 +4180,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -4378,7 +4378,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -4389,7 +4389,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -4401,7 +4401,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -4421,7 +4421,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -4433,7 +4433,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -4638,7 +4638,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -4649,7 +4649,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -4661,7 +4661,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -4681,7 +4681,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -4693,7 +4693,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -4901,7 +4901,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -4912,7 +4912,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -4924,7 +4924,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -4944,7 +4944,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -4956,7 +4956,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -5161,7 +5161,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -5172,7 +5172,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -5184,7 +5184,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -5204,7 +5204,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -5217,7 +5217,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -5466,7 +5466,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -5477,7 +5477,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -5489,7 +5489,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -5509,7 +5509,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -5521,7 +5521,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -5701,7 +5701,7 @@
     :must_support_or_mandatory: false
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -5712,7 +5712,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -5723,7 +5723,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -5743,7 +5743,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -5755,7 +5755,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -5925,7 +5925,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -5936,7 +5936,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -5948,7 +5948,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -5968,7 +5968,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -5980,7 +5980,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -6188,7 +6188,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -6199,7 +6199,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -6211,7 +6211,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -6231,7 +6231,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -6243,7 +6243,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -6451,7 +6451,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -6462,7 +6462,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -6474,7 +6474,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -6494,7 +6494,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -6506,7 +6506,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -6711,7 +6711,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -6722,7 +6722,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -6734,7 +6734,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -6754,7 +6754,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -6766,7 +6766,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -6996,7 +6996,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -7007,7 +7007,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -7019,7 +7019,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -7039,7 +7039,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -7050,7 +7050,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -7229,7 +7229,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -7240,7 +7240,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -7252,7 +7252,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -7272,7 +7272,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -7744,7 +7744,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -7923,7 +7923,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -7934,7 +7934,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -7946,7 +7946,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -7966,7 +7966,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -7978,7 +7978,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -8184,7 +8184,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -8195,7 +8195,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -8207,7 +8207,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -8227,7 +8227,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -8239,7 +8239,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -8444,7 +8444,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -8455,7 +8455,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -8467,7 +8467,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :date:
-      :elements:
+      :paths:
       - effective
       :extensions: []
       :full_paths:
@@ -8487,7 +8487,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -8499,7 +8499,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -8684,7 +8684,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :name:
-      :elements:
+      :paths:
       - name
       - alias
       :extensions: []
@@ -8697,7 +8697,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :address:
-      :elements:
+      :paths:
       - address
       :extensions: []
       :full_paths:
@@ -8842,7 +8842,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -8853,7 +8853,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
-      :elements:
+      :paths:
       - identifier
       :extensions: []
       :full_paths:
@@ -8864,7 +8864,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :name:
-      :elements:
+      :paths:
       - name
       :extensions: []
       :full_paths:
@@ -8875,7 +8875,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :birthdate:
-      :elements:
+      :paths:
       - birthDate
       :extensions: []
       :full_paths:
@@ -8895,7 +8895,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :family:
-      :elements:
+      :paths:
       - name.family
       :extensions: []
       :full_paths:
@@ -8906,7 +8906,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :gender:
-      :elements:
+      :paths:
       - gender
       :extensions: []
       :full_paths:
@@ -9129,7 +9129,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -9140,7 +9140,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :name:
-      :elements:
+      :paths:
       - name
       :extensions: []
       :full_paths:
@@ -9151,7 +9151,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :identifier:
-      :elements:
+      :paths:
       - identifier
       :extensions: []
       :full_paths:
@@ -9276,7 +9276,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :specialty:
-      :elements:
+      :paths:
       - specialty
       :extensions: []
       :full_paths:
@@ -9287,7 +9287,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :practitioner:
-      :elements:
+      :paths:
       - practitioner
       :extensions: []
       :full_paths:
@@ -9426,7 +9426,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -9437,7 +9437,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:
@@ -9448,7 +9448,7 @@
       :contains_multiple: false
       :multiple_or: SHOULD
     :date:
-      :elements:
+      :paths:
       - performed
       :extensions: []
       :full_paths:
@@ -9468,7 +9468,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -9802,7 +9802,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -9813,7 +9813,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -9824,7 +9824,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :authored:
-      :elements:
+      :paths:
       - authored
       :extensions: []
       :full_paths:
@@ -9844,7 +9844,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :_tag:
-      :elements:
+      :paths:
       - meta.tag
       :extensions: []
       :full_paths:
@@ -9855,7 +9855,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -9871,7 +9871,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :questionnaire:
-      :elements:
+      :paths:
       - questionnaire
       :extensions: []
       :full_paths:
@@ -10017,7 +10017,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -10028,7 +10028,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
-      :elements:
+      :paths:
       - patient
       :extensions: []
       :full_paths:
@@ -10144,7 +10144,7 @@
     :must_support_or_mandatory: true
   :search_definitions:
     :patient:
-      :elements:
+      :paths:
       - subject
       :extensions: []
       :full_paths:
@@ -10155,7 +10155,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :_id:
-      :elements:
+      :paths:
       - id
       :extensions: []
       :full_paths:
@@ -10166,7 +10166,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :category:
-      :elements:
+      :paths:
       - category
       :extensions: []
       :full_paths:
@@ -10180,7 +10180,7 @@
       :contains_multiple: true
       :multiple_or: MAY
     :authored:
-      :elements:
+      :paths:
       - authoredOn
       :extensions: []
       :full_paths:
@@ -10200,7 +10200,7 @@
       :contains_multiple: false
       :multiple_or: MAY
     :status:
-      :elements:
+      :paths:
       - status
       :extensions: []
       :full_paths:
@@ -10218,7 +10218,7 @@
       :contains_multiple: false
       :multiple_or: SHALL
     :code:
-      :elements:
+      :paths:
       - code
       :extensions: []
       :full_paths:

@@ -44,7 +44,7 @@
   :must_support_or_mandatory: true
 :search_definitions:
   :patient:
-    :elements:
+    :paths:
     - patient
     :extensions: []
     :full_paths:
@@ -55,7 +55,7 @@
     :contains_multiple: false
     :multiple_or: MAY
   :type:
-    :elements:
+    :paths:
     - type
     :extensions: []
     :full_paths:
