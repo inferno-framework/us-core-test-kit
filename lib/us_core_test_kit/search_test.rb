@@ -490,6 +490,10 @@ module USCoreTestKit
       paths
     end
 
+    def search_param_extensions(name)
+      metadata.search_definitions[name.to_sym][:extensions]
+    end
+
     def all_search_params_present?(params)
       params.all? { |_name, value| value.present? }
     end
