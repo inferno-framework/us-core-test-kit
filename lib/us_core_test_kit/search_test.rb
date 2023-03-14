@@ -106,7 +106,6 @@ module USCoreTestKit
       return [] if resources_returned.blank?
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
-      binding.pry
 
       filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(resources_returned) if resource_type == 'Device'
@@ -607,7 +606,7 @@ module USCoreTestKit
 
       search_value = nil
       extensions.each do |extension_definition|
-        extension_value = find_an_extension_value(resource, extension_definition[:url]) #{ |extension| element_has_valid_value?(extesnion.value, include_system) }
+        extension_value = find_an_extension_value(resource, extension_definition[:url]) { |extension| element_has_valid_value?(extension.value, include_system) }
         search_value = extract_value_from_element(name, extension_value, include_system) if extension_value.present?
         break if search_value.present?
       end

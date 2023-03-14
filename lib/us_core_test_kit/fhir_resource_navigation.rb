@@ -71,8 +71,7 @@ module USCoreTestKit
 
       resources.each do |a_resource|
         extensions = a_resource.extension.select { |extension| extension.url == extension_url }
-        # target_extension =  block_given? ? extensions.find { |extension| yield (extension) } :
-        target_extension = extensions.first
+        target_extension =  block_given? ? extensions.find { |ext| yield (ext) } : extensions.first
 
         break if target_extension.present?
       end
