@@ -118,7 +118,6 @@ module USCoreTestKit
         if profile_element.present?
           profile_element.type.first.code
         elsif profile_extension.present?
-          #require 'pry'; require 'pry-byebug'; binding.pry
           profile_extension.differential.element.find { |element| element.id == 'Extension.value[x]'}.type.first.code
         else
           # search is a variable type, eg. Condition.onsetDateTime - element
@@ -131,6 +130,7 @@ module USCoreTestKit
         if profile_element.present?
           profile_element.max == '*'
         elsif profile_extension.present?
+          # Find the extension instance in a US Core profile
           target_element = profile_elements.find do |element|
             element.type.any? { |type| type.code == "Extension" && type.profile.include?(profile_extension.url) }
           end

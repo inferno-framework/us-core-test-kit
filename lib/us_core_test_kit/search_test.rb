@@ -593,7 +593,7 @@ module USCoreTestKit
       search_value = nil
       paths.each do |path|
         element = find_a_value_at(resource, path) { |element| element_has_valid_value?(element, include_system) }
-        search_value = extract_value_from_element(name, element, include_system)
+        search_value = extract_value_from_element(name, element, include_system) if element.present?
         break if search_value.present?
       end
 
@@ -714,75 +714,6 @@ module USCoreTestKit
 
     #### RESULT CHECKING ####
 
-    def check_resource_against_params(resource, params)
-      params.each do |name, escaped_search_value|
-        #unescape search value
-        search_value = escaped_search_value&.gsub('\\,', ',')
-        paths = search_param_paths(name)
-
-        match_found = false
-        values_found = []
-
-        if paths.any?
-          match_found = check_resource_element_against_params(resource, name, paths, search_value, values_found)
-        else
-          extensions = search_param_extensions(name)
-
-          if extensions.any?
-            match_found = check_resource_extension_against_params(resource, name, extensions, search_value, values_found)
-          end
-        end
-
-        assert match_found,
-               "#{resource_type}/#{resource.id} did not match the search parameters:\n" \
-               "* Expected: #{search_value}\n" \
-               "* Found: #{values_found.map(&:inspect).join(', ')}"
-      end
-    end
-
-    def check_resource_element_against_params(resource, name, paths, search_value, values_found)
-      match_found = false
-
-      paths.each do |path|
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-              if value.is_a? FHIR::Reference
-                value.reference
-              else
-                value
-              end
-            end
-
-        match_found = match_search_value(name, search_value, values_found)
-
-        break if match_found
-      end
-
-      match_found
-    end
-
-    def check_resource_extension_against_params(resource, name, extensions, search_value, values_found)
-      match_found = false
-
-      extensions.each do |extension_definition|
-        values_found = resource.extension.select { |extension| extension.url == extension_definition[:url] }
-                                         .map do |extension|
-                                           if extension.value.is_a? FHIR::Reference
-                                             extension.value.reference
-                                           else
-                                             extension.value
-                                           end
-                                         end
-
-        match_found = match_search_value(name, search_value, values_found)
-
-        break if match_found
-      end
-
-      match_found
-    end
-
     def match_search_value(name, search_value, values_found)
       type = metadata.search_definitions[name.to_sym][:type]
 
@@ -856,6 +787,75 @@ module USCoreTestKit
             values_found.any? { |value_found| search_values.include? value_found }
           end
         end
+
+      match_found
+    end
+
+    def check_resource_against_params(resource, params)
+      params.each do |name, escaped_search_value|
+        #unescape search value
+        search_value = escaped_search_value&.gsub('\\,', ',')
+        paths = search_param_paths(name)
+
+        match_found = false
+        values_found = []
+
+        if paths.any?
+          match_found = check_resource_element_against_params(resource, name, paths, search_value, values_found)
+        else
+          extensions = search_param_extensions(name)
+
+          if extensions.any?
+            match_found = check_resource_extension_against_params(resource, name, extensions, search_value, values_found)
+          end
+        end
+
+        assert match_found,
+               "#{resource_type}/#{resource.id} did not match the search parameters:\n" \
+               "* Expected: #{search_value}\n" \
+               "* Found: #{values_found.map(&:inspect).join(', ')}"
+      end
+    end
+
+    def check_resource_element_against_params(resource, name, paths, search_value, values_found)
+      match_found = false
+
+      paths.each do |path|
+        values_found =
+          resolve_path(resource, path)
+            .map do |value|
+              if value.is_a? FHIR::Reference
+                value.reference
+              else
+                value
+              end
+            end
+
+        match_found = match_search_value(name, search_value, values_found)
+
+        break if match_found
+      end
+
+      match_found
+    end
+
+    def check_resource_extension_against_params(resource, name, extensions, search_value, values_found)
+      match_found = false
+
+      extensions.each do |extension_definition|
+        values_found = resource.extension.select { |extension| extension.url == extension_definition[:url] }
+                                         .map do |extension|
+                                           if extension.value.is_a? FHIR::Reference
+                                             extension.value.reference
+                                           else
+                                             extension.value
+                                           end
+                                         end
+
+        match_found = match_search_value(name, search_value, values_found)
+
+        break if match_found
+      end
 
       match_found
     end
