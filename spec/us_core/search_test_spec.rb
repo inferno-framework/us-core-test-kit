@@ -1044,8 +1044,6 @@ RSpec.describe USCoreTestKit::SearchTest do
         .to_return(status: 200, body: bundle.to_json)
 
       result = run(test_class, patient_ids: patient_id, url: url)
-      require 'pry'; require 'pry-byebug'; binding.pry
-
       expect(result.result).to eq('pass')
     end
   end

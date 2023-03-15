@@ -744,15 +744,7 @@ module USCoreTestKit
       match_found = false
 
       paths.each do |path|
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-              if value.is_a? FHIR::Reference
-                value.reference
-              else
-                value
-              end
-            end
+        values_found = resolve_path(resource, path).map { |value| flat_reference(value) }
 
         match_found = match_search_value(name, search_value, values_found)
 
@@ -767,13 +759,7 @@ module USCoreTestKit
 
       extensions.each do |extension_definition|
         values_found = resource.extension.select { |extension| extension.url == extension_definition[:url] }
-                                         .map do |extension|
-                                           if extension.value.is_a? FHIR::Reference
-                                             extension.value.reference
-                                           else
-                                             extension.value
-                                           end
-                                         end
+                                         .map { |extension| flat_reference(extension.value) }
 
         match_found = match_search_value(name, search_value, values_found)
 
@@ -781,6 +767,14 @@ module USCoreTestKit
       end
 
       match_found
+    end
+
+    def flat_reference(target_value)
+      if target_value.is_a? FHIR::Reference
+        target_value.reference
+      else
+        target_value
+      end
     end
 
     def match_search_value(name, search_value, values_found)
