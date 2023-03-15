@@ -95,7 +95,7 @@ module USCoreTestKit
 
       ### BEGIN SPECIAL CASES ###
 
-      CATEGORY_FIRST_PROFILES_VERSION_ALL = [
+      ALL_VERSION_CATEGORY_FIRST_PROFILES = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
@@ -110,17 +110,14 @@ module USCoreTestKit
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
       ]
 
-      CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v501' ],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v501' ]
+      VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v600_ballot' ],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v600_ballot' ]
       }
 
       def category_first_profile?
-        CATEGORY_FIRST_PROFILES_VERSION_ALL.include?(profile_url) ||
-        (
-          CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE.key?(profile_url) &&
-          !CATEGORY_FIRST_PROFILES_VERSION_EXCLUDE[profile_url].include?(reformatted_version)
-        )
+        ALL_VERSION_CATEGORY_FIRST_PROFILES.include?(profile_url) ||
+        VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
       end
 
       def first_search_params
