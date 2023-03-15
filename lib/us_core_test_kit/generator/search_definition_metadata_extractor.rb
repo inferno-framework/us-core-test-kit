@@ -73,21 +73,6 @@ module USCoreTestKit
                                   .presence
       end
 
-      # def build_extension_metadata(fhir_path)
-      #   find_url = fhir_path[/(?<=extension.where\(url = ').*/]
-
-      #   parts = find_url.split('\').', 2)
-      #   extension_metadata = {
-      #     url: parts.first
-      #   }
-      #   if parts[1].start_with?('extension')
-      #     extension_metadata[:extension] = build_extension_metadata(parts[1])
-      #   else
-      #     extension_metadata[:type] = parts[1]
-      #   end
-      #   extension_metadata
-      # end
-
       def profile_element
         @profile_element ||=
           profile_elements.find { |element| full_paths.include?(element.id) }
