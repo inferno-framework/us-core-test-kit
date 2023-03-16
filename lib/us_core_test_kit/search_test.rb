@@ -602,8 +602,8 @@ module USCoreTestKit
             element.text || element.city || element.state || element.postalCode || element.country
           else
             if metadata.version != 'v3.1.1' &&
-              metadata.search_definitions[name.to_sym][:type] == 'date' &&
-              params_with_comparators&.include?(name)
+               metadata.search_definitions[name.to_sym][:type] == 'date' &&
+               params_with_comparators&.include?(name)
               # convert date search to greath-than comparator search with correct precision
               # For all date search parameters:
               #   Patient.birthDate does not mandate comparators so cannot be converted
