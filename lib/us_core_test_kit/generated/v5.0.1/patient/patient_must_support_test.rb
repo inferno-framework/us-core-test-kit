@@ -15,7 +15,6 @@ module USCoreTestKit
         * Patient.address
         * Patient.address.city
         * Patient.address.line
-        * Patient.address.period
         * Patient.address.postalCode
         * Patient.address.state
         * Patient.birthDate
@@ -29,16 +28,15 @@ module USCoreTestKit
 
         For ONC USCDI requirements, each Patient must support the following additional elements:
 
-        * Patient.address.use
+        * Patient.address.period.end or Patient.address.use
         * Patient.communication
         * Patient.communication.language
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
         * Patient.extension:genderIdentity
         * Patient.extension:race
-        * Patient.name.period.end
+        * Patient.name.period.end or Patient.name.use
         * Patient.name.suffix
-        * Patient.name.use
         * Patient.telecom
         * Patient.telecom.system
         * Patient.telecom.use

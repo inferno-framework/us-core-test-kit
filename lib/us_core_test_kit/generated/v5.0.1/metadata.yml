@@ -8780,12 +8780,9 @@
     - :path: address.city
     - :path: address.state
     - :path: address.postalCode
-    - :path: address.period
     - :path: communication.language
       :uscdi_only: true
     - :path: name.suffix
-      :uscdi_only: true
-    - :path: name.period.end
       :uscdi_only: true
     - :path: telecom
       :uscdi_only: true
@@ -8796,6 +8793,15 @@
       :uscdi_only: true
     - :path: name.use
       :fixed_value: old
+      :uscdi_only: true
+    :choices:
+    - :paths:
+      - address.period.end
+      - address.use
+      :uscdi_only: true
+    - :paths:
+      - name.period.end
+      - name.use
       :uscdi_only: true
   :mandatory_elements:
   - Patient.identifier
