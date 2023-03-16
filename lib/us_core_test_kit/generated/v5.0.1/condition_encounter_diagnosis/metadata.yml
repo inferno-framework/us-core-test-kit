@@ -119,11 +119,12 @@
     :contains_multiple: false
     :multiple_or: MAY
   :asserted-date:
-    :paths: []
+    :paths:
+    - extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').valueDateTime
     :extensions:
     - :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :full_paths:
-    - Condition.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate').valueDateTime
+    - Condition.extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').valueDateTime
     :comparators:
       :eq: MAY
       :ne: MAY

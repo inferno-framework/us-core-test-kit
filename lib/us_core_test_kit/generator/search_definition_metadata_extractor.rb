@@ -38,7 +38,7 @@ module USCoreTestKit
       def full_paths
         @full_paths ||=
           begin
-            path = param.expression.gsub(/.where\(resolve\((.*)/, '')
+            path = param.expression.gsub(/.where\(resolve\((.*)/, '').gsub(/url = '/, 'url=\'')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
             path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
               path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
@@ -63,19 +63,21 @@ module USCoreTestKit
       end
 
       def paths
-        @paths ||= full_paths.select { |a_path| !a_path.include?('extension.where') }
-                             .map { |a_path| a_path.gsub("#{resource}.", '') }
+        @paths ||= full_paths.map { |a_path| a_path.gsub("#{resource}.", '') }
       end
 
       def extensions
         @extensions ||= full_paths.select { |a_path| a_path.include?('extension.where') }
-                                  .map { |a_path| { url: a_path[/(?<=extension.where\(url = ').*(?='\))/] }}
+                                  .map { |a_path| { url: a_path[/(?<=extension.where\(url=').*(?='\))/] }}
                                   .presence
       end
 
       def profile_element
         @profile_element ||=
-          profile_elements.find { |element| full_paths.include?(element.id) }
+          (
+            profile_elements.find { |element| full_paths.include?(element.id) } ||
+            profile_extension&.differential&.element&.find { |element| element.id == 'Extension.value[x]'}
+          )
       end
 
       def profile_extension
@@ -117,8 +119,8 @@ module USCoreTestKit
       def type
         if profile_element.present?
           profile_element.type.first.code
-        elsif profile_extension.present?
-          profile_extension.differential.element.find { |element| element.id == 'Extension.value[x]'}.type.first.code
+        # elsif profile_extension.present?
+        #   profile_extension.differential.element.find { |element| element.id == 'Extension.value[x]'}.type.first.code
         else
           # search is a variable type, eg. Condition.onsetDateTime - element
           # in profile def is Condition.onset[x]

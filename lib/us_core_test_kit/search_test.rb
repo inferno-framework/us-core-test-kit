@@ -33,7 +33,6 @@ module USCoreTestKit
             else
               [search_params_with_values(search_param_names, patient_id)]
             end
-
           new_params.reject! do |params|
             params.any? { |_key, value| value.blank? }
           end
@@ -239,13 +238,7 @@ module USCoreTestKit
 
         required_comparators(name).each do |comparator|
           paths = search_param_paths(name).first
-          if paths.present?
-            date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
-          else
-            extension_definition = search_param_extensions(name)&.first
-            date_element = find_an_extension_value(scratch_resources_for_patient(patient_id), extension_definition[:url])
-          end
-
+          date_element = find_a_value_at(scratch_resources_for_patient(patient_id), paths)
           params_with_comparator = params.merge(name => date_comparator_value(comparator, date_element))
 
           search_and_check_response(params_with_comparator)
@@ -497,10 +490,6 @@ module USCoreTestKit
       paths
     end
 
-    def search_param_extensions(name)
-      metadata.search_definitions[name.to_sym][:extensions] || []
-    end
-
     def all_search_params_present?(params)
       params.all? { |_name, value| value.present? }
     end
@@ -579,90 +568,63 @@ module USCoreTestKit
     end
 
     def search_param_value(name, resource, include_system: false)
-      search_value = extract_value_from_paths(name, resource, include_system) ||
-                     extract_value_from_extensions(name, resource, include_system)
-
-      escaped_value = search_value&.gsub(',', '\\,')
-      escaped_value
-    end
-
-    def extract_value_from_paths(name, resource, include_system)
       paths = search_param_paths(name)
-      return nil if paths.empty?
-
       search_value = nil
       paths.each do |path|
         element = find_a_value_at(resource, path) { |element| element_has_valid_value?(element, include_system) }
-        search_value = extract_value_from_element(name, element, include_system) if element.present?
-        break if search_value.present?
-      end
 
-      search_value
-    end
-
-    def extract_value_from_extensions(name, resource, include_system)
-      extensions = search_param_extensions(name)
-      return nil if extensions.empty?
-
-      search_value = nil
-      extensions.each do |extension_definition|
-        extension_value = find_an_extension_value(resource, extension_definition[:url]) { |extension| element_has_valid_value?(extension.value, include_system) }
-        search_value = extract_value_from_element(name, extension_value, include_system) if extension_value.present?
-        break if search_value.present?
-      end
-
-      search_value
-    end
-
-    def extract_value_from_element(name, element, include_system)
-      search_value =
-        case element
-        when FHIR::Period
-          if element.start.present?
-            'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
+        search_value =
+          case element
+          when FHIR::Period
+            if element.start.present?
+              'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
+            else
+              end_datetime = get_fhir_datetime_range(element.end)[:end]
+              'lt' + (end_datetime + 1).xmlschema
+            end
+          when FHIR::Reference
+            element.reference
+          when FHIR::CodeableConcept
+            if include_system
+              coding =
+                find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+              "#{coding.system}|#{coding.code}"
+            else
+              find_a_value_at(element, 'coding.code')
+            end
+          when FHIR::Identifier
+            include_system ? "#{element.system}|#{element.value}" : element.value
+          when FHIR::Coding
+            include_system ? "#{element.system}|#{element.code}" : element.code
+          when FHIR::HumanName
+            element.family || element.given&.first || element.text
+          when FHIR::Address
+            element.text || element.city || element.state || element.postalCode || element.country
           else
-            end_datetime = get_fhir_datetime_range(element.end)[:end]
-            'lt' + (end_datetime + 1).xmlschema
-          end
-        when FHIR::Reference
-          element.reference
-        when FHIR::CodeableConcept
-          if include_system
-            coding =
-              find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-            "#{coding.system}|#{coding.code}"
-          else
-            find_a_value_at(element, 'coding.code')
-          end
-        when FHIR::Identifier
-          include_system ? "#{element.system}|#{element.value}" : element.value
-        when FHIR::Coding
-          include_system ? "#{element.system}|#{element.code}" : element.code
-        when FHIR::HumanName
-          element.family || element.given&.first || element.text
-        when FHIR::Address
-          element.text || element.city || element.state || element.postalCode || element.country
-        else
-          if metadata.version != 'v3.1.1' &&
-            metadata.search_definitions[name.to_sym][:type] == 'date' &&
-            params_with_comparators&.include?(name)
-            # convert date search to greath-than comparator search with correct precision
-            # For all date search parameters:
-            #   Patient.birthDate does not mandate comparators so cannot be converted
-            #   Goal.target-date has day precision
-            #   All others have second + time offset precision
-            if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
-              (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
-              "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+            if metadata.version != 'v3.1.1' &&
+              metadata.search_definitions[name.to_sym][:type] == 'date' &&
+              params_with_comparators&.include?(name)
+              # convert date search to greath-than comparator search with correct precision
+              # For all date search parameters:
+              #   Patient.birthDate does not mandate comparators so cannot be converted
+              #   Goal.target-date has day precision
+              #   All others have second + time offset precision
+              if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
+                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
+                "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+              else
+                element
+              end
             else
               element
             end
-          else
-            element
           end
-        end
 
-      search_value
+        break if search_value.present?
+      end
+
+      escaped_value = search_value&.gsub(',', '\\,')
+      escaped_value
     end
 
     def element_has_valid_value?(element, include_system)
@@ -723,14 +685,90 @@ module USCoreTestKit
         match_found = false
         values_found = []
 
-        if paths.any?
-          match_found = check_resource_element_against_params(resource, name, paths, search_value, values_found)
-        else
-          extensions = search_param_extensions(name)
+        paths.each do |path|
+          type = metadata.search_definitions[name.to_sym][:type]
+          values_found =
+            resolve_path(resource, path)
+              .map do |value|
+                if value.is_a? FHIR::Reference
+                  value.reference
+                else
+                  value
+                end
+              end
 
-          if extensions.any?
-            match_found = check_resource_extension_against_params(resource, name, extensions, search_value, values_found)
-          end
+          match_found =
+            case type
+            when 'Period', 'date', 'instant', 'dateTime'
+              values_found.any? { |date| validate_date_search(search_value, date) }
+            when 'HumanName'
+              # When a string search parameter refers to the types HumanName and Address,
+              # the search covers the elements of type string, and does not cover elements such as use and period
+              # https://www.hl7.org/fhir/search.html#string
+              search_value_downcase = search_value.downcase
+              values_found.any? do |name|
+                name&.text&.downcase&.start_with?(search_value_downcase) ||
+                  name&.family&.downcase&.start_with?(search_value_downcase) ||
+                  name&.given&.any? { |given| given.downcase.start_with?(search_value_downcase) } ||
+                  name&.prefix&.any? { |prefix| prefix.downcase.start_with?(search_value_downcase) } ||
+                  name&.suffix&.any? { |suffix| suffix.downcase.start_with?(search_value_downcase) }
+              end
+            when 'Address'
+              search_value_downcase = search_value.downcase
+              values_found.any? do |address|
+                address&.text&.downcase&.start_with?(search_value_downcase) ||
+                address&.city&.downcase&.start_with?(search_value_downcase) ||
+                address&.state&.downcase&.start_with?(search_value_downcase) ||
+                address&.postalCode&.downcase&.start_with?(search_value_downcase) ||
+                address&.country&.downcase&.start_with?(search_value_downcase)
+              end
+            when 'CodeableConcept'
+              # FHIR token search (https://www.hl7.org/fhir/search.html#token): "When in doubt, servers SHOULD
+              # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
+              # less safety implications than excluding desired behavior".
+              codings = values_found.flat_map(&:coding)
+              if search_value.include? '|'
+                system = search_value.split('|').first
+                code = search_value.split('|').last
+                codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
+              else
+                codings&.any? { |coding| coding.code&.casecmp?(search_value) }
+              end
+            when 'Coding'
+              if search_value.include? '|'
+                system = search_value.split('|').first
+                code = search_value.split('|').last
+                values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
+              else
+                values_found.any? { |coding| coding.code&.casecmp?(search_value) }
+              end
+            when 'Identifier'
+              if search_value.include? '|'
+                values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
+              else
+                values_found.any? { |identifier| identifier.value == search_value }
+              end
+            when 'string'
+              searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+              values_found.any? do |value_found|
+                searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
+              end
+            else
+              # searching by patient requires special case because we are searching by a resource identifier
+              # references can also be URLs, so we may need to resolve those URLs
+              if ['subject', 'patient'].include? name.to_s
+                id = search_value.split('Patient/').last
+                possible_values = [id, "Patient/#{id}", "#{url}/Patient/#{id}"]
+                values_found.any? do |reference|
+                  possible_values.include? reference
+                end
+              else
+                search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+                values_found.any? { |value_found| search_values.include? value_found }
+              end
+            end
+
+          break if match_found
         end
 
         assert match_found,

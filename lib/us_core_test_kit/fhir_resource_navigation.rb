@@ -6,7 +6,7 @@ module USCoreTestKit
       elements = Array.wrap(elements)
       return elements if path.blank?
 
-      paths = path.split('.')
+      paths = path.split(/(?<!hl7)\./)
       segment = paths.first
       remaining_path = paths.drop(1).join('.')
 
@@ -33,7 +33,7 @@ module USCoreTestKit
         return elements.first
       end
 
-      path_segments = path.split('.')
+      path_segments = path.split(/(?<!hl7)\./)
       segment = path_segments.shift.delete_suffix('[x]').to_sym
 
       no_elements_present =
@@ -80,7 +80,13 @@ module USCoreTestKit
     end
 
     def get_next_value(element, property)
-      element.send(property)
+      extension_url = property[/(?<=where\(url=').*(?='\))/]
+
+      if extension_url.present?
+        element.url == extension_url ? element : nil
+      else
+        element.send(property)
+      end
     rescue NoMethodError
       nil
     end
