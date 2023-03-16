@@ -62,23 +62,6 @@ module USCoreTestKit
       nil
     end
 
-    def find_an_extension_value(resource, extension_url)
-      return nil if extension_url.nil?
-
-      resources = Array.wrap(resource)
-
-      target_extension = nil
-
-      resources.each do |a_resource|
-        extensions = a_resource.extension.select { |extension| extension.url == extension_url }
-        target_extension =  block_given? ? extensions.find { |ext| yield (ext) } : extensions.first
-
-        break if target_extension.present?
-      end
-
-      target_extension&.value
-    end
-
     def get_next_value(element, property)
       extension_url = property[/(?<=where\(url=').*(?='\))/]
 
