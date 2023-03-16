@@ -620,7 +620,7 @@ module USCoreTestKit
             end
           end
 
-          break if search_value.present?
+        break if search_value.present?
       end
 
       escaped_value = search_value&.gsub(',', '\\,')

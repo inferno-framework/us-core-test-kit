@@ -195,7 +195,6 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
-
   describe 'search with medication inclusion' do
     context 'when the medication resources are contained' do
       let(:patient_id) { '123' }
@@ -980,6 +979,68 @@ RSpec.describe USCoreTestKit::SearchTest do
       stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=Path%5C,Cyt&date=le2021-11-25T15:55:00%2B00:00")
         .to_return(status: 200, body: bundle.to_json)
       stub_request(:get, "#{url}/DiagnosticReport?patient=#{patient_id}&category=urn:oid:1.2.840.114350.1.13.1545.1.7.10.798268.30%7CPath%5C,Cyt&date=2021-11-24T15:55:00Z")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+    end
+  end
+
+  describe 'search extension' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV501::ConditionEncounterDiagnosisPatientAssertedDateSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_id) { '85' }
+    let(:condition) {
+      FHIR::Condition.new(
+        id: '1',
+        extension: [
+          {
+            url: 'http://hl7.org/fhir/StructureDefinition/condition-assertedDate',
+            valueDateTime: '2021-11-24T15:55:00Z'
+          }
+        ],
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
+          {
+            coding: [
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                code: 'encounter-diagnosis'
+              }
+            ]
+          }
+        ]
+      )
+    }
+    let(:bundle) {
+      FHIR::Bundle.new(
+        entry: [
+          { resource: condition }
+        ]
+      )
+    }
+
+    it 'allows searching in extension' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient)
+        .and_return([condition])
+
+        stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=2021-11-24T15:55:00Z")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=gt2021-11-23T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=ge2021-11-23T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=lt2021-11-25T15:55:00%2B00:00")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=le2021-11-25T15:55:00%2B00:00")
         .to_return(status: 200, body: bundle.to_json)
 
       result = run(test_class, patient_ids: patient_id, url: url)
