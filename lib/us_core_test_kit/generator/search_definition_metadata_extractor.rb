@@ -126,7 +126,6 @@ module USCoreTestKit
       end
 
       def contains_multiple?
-        binding.pry if name == 'asserted-date'
         if profile_element.present?
           if profile_element.id.start_with?('Extension') && extension_definition.present?
             # Find the extension instance in a US Core profile
