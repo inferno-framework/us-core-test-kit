@@ -16,7 +16,6 @@ module USCoreTestKit
         @search_definition ||=
           {
             paths: paths,
-            extensions: extensions,
             full_paths: full_paths,
             comparators: comparators,
             values: values,
@@ -76,12 +75,12 @@ module USCoreTestKit
         @profile_element ||=
           (
             profile_elements.find { |element| full_paths.include?(element.id) } ||
-            profile_extension&.differential&.element&.find { |element| element.id == 'Extension.value[x]'}
+            extension_definition&.differential&.element&.find { |element| element.id == 'Extension.value[x]'}
           )
       end
 
-      def profile_extension
-         @profile_extension ||=
+      def extension_definition
+         @extension_definition ||=
             begin
               ext_definition = nil
               @extensions&.each do |ext_metadata|
@@ -119,8 +118,6 @@ module USCoreTestKit
       def type
         if profile_element.present?
           profile_element.type.first.code
-        # elsif profile_extension.present?
-        #   profile_extension.differential.element.find { |element| element.id == 'Extension.value[x]'}.type.first.code
         else
           # search is a variable type, eg. Condition.onsetDateTime - element
           # in profile def is Condition.onset[x]
@@ -129,14 +126,14 @@ module USCoreTestKit
       end
 
       def contains_multiple?
-        if profile_element.present?
-          profile_element.max == '*'
-        elsif profile_extension.present?
+        if extension_definition.present?
           # Find the extension instance in a US Core profile
           target_element = profile_elements.find do |element|
-            element.type.any? { |type| type.code == "Extension" && type.profile.include?(profile_extension.url) }
+            element.type.any? { |type| type.code == "Extension" && type.profile.include?(extension_definition.url) }
           end
           target_element&.max == '*'
+        elsif profile_element.present?
+          profile_element.max == '*'
         else
           false
         end
