@@ -83,7 +83,7 @@ module USCoreTestKit
          @extension_definition ||=
             begin
               ext_definition = nil
-              @extensions&.each do |ext_metadata|
+              extensions&.each do |ext_metadata|
                 ext_definition = ig_resources.profile_by_url(ext_metadata[:url])
                 break if ext_definition.present?
               end
@@ -126,14 +126,17 @@ module USCoreTestKit
       end
 
       def contains_multiple?
-        if extension_definition.present?
-          # Find the extension instance in a US Core profile
-          target_element = profile_elements.find do |element|
-            element.type.any? { |type| type.code == "Extension" && type.profile.include?(extension_definition.url) }
+        binding.pry if name == 'asserted-date'
+        if profile_element.present?
+          if profile_element.id.start_with?('Extension') && extension_definition.present?
+            # Find the extension instance in a US Core profile
+            target_element = profile_elements.find do |element|
+              element.type.any? { |type| type.code == "Extension" && type.profile.include?(extension_definition.url) }
+            end
+            target_element&.max == '*'
+          else
+            profile_element.max == '*'
           end
-          target_element&.max == '*'
-        elsif profile_element.present?
-          profile_element.max == '*'
         else
           false
         end
