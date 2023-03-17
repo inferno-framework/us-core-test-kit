@@ -1,3 +1,11 @@
+# 0.4.7
+
+* Updated Patient MustSupport tests for previous name and address. See #114 for
+  details.
+* Fix a bug which prevented the tests from finding search parameter values in
+  extensions, which is needed for searching Conditions by asserted date in US
+  Core 5.
+
 # 0.4.6
 
 * Fix the `ServiceRequest.category` ValueSet expansion for US Core 5.
