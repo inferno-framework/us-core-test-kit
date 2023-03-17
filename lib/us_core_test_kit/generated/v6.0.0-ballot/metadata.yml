@@ -725,9 +725,9 @@
       :multiple_or: MAY
     :asserted-date:
       :paths:
-      - extension
+      - extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :full_paths:
-      - Condition.extension
+      - Condition.extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -739,8 +739,8 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: Extension
-      :contains_multiple: true
+      :type: date
+      :contains_multiple: false
       :multiple_or: MAY
     :category:
       :paths:
@@ -1032,9 +1032,9 @@
       :multiple_or: MAY
     :asserted-date:
       :paths:
-      - extension
+      - extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :full_paths:
-      - Condition.extension
+      - Condition.extension.where(url='http://hl7.org/fhir/StructureDefinition/condition-assertedDate').extension.valueDateTime
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -1046,8 +1046,8 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: Extension
-      :contains_multiple: true
+      :type: date
+      :contains_multiple: false
       :multiple_or: MAY
     :category:
       :paths:
