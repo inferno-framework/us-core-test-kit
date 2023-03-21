@@ -82,6 +82,10 @@
     - Observation.category
     :comparators: {}
     :values:
+    - sdoh
+    - functional-status
+    - disability-status
+    - cognitive-status
     - survey
     :type: CodeableConcept
     :contains_multiple: true
