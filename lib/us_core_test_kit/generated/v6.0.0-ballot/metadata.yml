@@ -2019,7 +2019,8 @@
       :full_paths:
       - DocumentReference.category
       :comparators: {}
-      :values: []
+      :values:
+      - clinical-note
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4868,7 +4869,20 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4931,6 +4945,10 @@
         :type: requiredBinding
         :path: ''
         :values:
+        - sdoh
+        - functional-status
+        - disability-status
+        - cognitive-status
         - social-history
         - vital-signs
         - imaging
@@ -4940,10 +4958,6 @@
         - exam
         - therapy
         - activity
-        - sdoh
-        - functional-status
-        - disability-status
-        - cognitive-status
     :elements:
     - :path: status
     - :path: category
@@ -7463,6 +7477,10 @@
       - Observation.category
       :comparators: {}
       :values:
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
       - survey
       :type: CodeableConcept
       :contains_multiple: true
@@ -10305,8 +10323,17 @@
       - ServiceRequest.category
       :comparators: {}
       :values:
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
       - '386053000'
       - '410606002'
+      - '108252007'
+      - '363679005'
+      - '409063005'
+      - '409073007'
+      - '387713003'
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -10341,12 +10368,12 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - '386053000'
-        - '410606002'
         - sdoh
         - functional-status
         - disability-status
         - cognitive-status
+        - '386053000'
+        - '410606002'
         - '108252007'
         - '363679005'
         - '409063005'

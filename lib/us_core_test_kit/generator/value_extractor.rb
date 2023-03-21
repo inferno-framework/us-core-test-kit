@@ -68,7 +68,24 @@ module USCoreTestKit
       end
 
       def bound_systems(the_element)
-        value_set(the_element)&.compose&.include&.reject { |code| code.concept.nil? }
+        bound_systems_from_valueset(value_set(the_element))
+      end
+
+      def bound_systems_from_valueset(value_set)
+        systems = value_set&.compose&.include&.map do |include|
+          if include.concept.present?
+            include
+          elsif include.system.present? && include.filter&.empty? # Cannot process intensional value set with filters
+            ig_resources.code_system_by_url(include.system)
+          elsif include.valueSet.present?
+            include.valueSet.map do |vs|
+              a_value_set = ig_resources.value_set_by_url(vs)
+              bound_systems_from_valueset(a_value_set)
+            end
+          end
+        end&.flatten&.compact
+
+        systems
       end
 
       def values_from_value_set_binding(the_element)

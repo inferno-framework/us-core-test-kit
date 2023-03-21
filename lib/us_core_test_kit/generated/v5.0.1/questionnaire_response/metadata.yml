@@ -118,7 +118,8 @@
     :full_paths:
     - QuestionnaireResponse.meta.tag
     :comparators: {}
-    :values: []
+    :values:
+    - sdoh
     :type: Coding
     :contains_multiple: true
     :multiple_or: MAY

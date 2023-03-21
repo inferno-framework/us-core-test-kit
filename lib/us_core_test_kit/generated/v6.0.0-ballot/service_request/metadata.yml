@@ -130,8 +130,17 @@
     - ServiceRequest.category
     :comparators: {}
     :values:
+    - sdoh
+    - functional-status
+    - disability-status
+    - cognitive-status
     - '386053000'
     - '410606002'
+    - '108252007'
+    - '363679005'
+    - '409063005'
+    - '409073007'
+    - '387713003'
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -166,12 +175,12 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - '386053000'
-      - '410606002'
       - sdoh
       - functional-status
       - disability-status
       - cognitive-status
+      - '386053000'
+      - '410606002'
       - '108252007'
       - '363679005'
       - '409063005'
