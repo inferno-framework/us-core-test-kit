@@ -11,7 +11,6 @@ module USCoreTestKit
 
       def values_from_slicing(profile_element, type)
         (
-          values_from_required_binding(profile_element) +
           values_from_fixed_codes(profile_element, type) +
           values_from_pattern_coding(profile_element, type) +
           values_from_pattern_codeable_concept(profile_element, type)

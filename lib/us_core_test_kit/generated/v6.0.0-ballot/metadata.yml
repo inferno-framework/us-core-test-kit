@@ -3897,7 +3897,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4129,7 +4138,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4361,7 +4379,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -6471,7 +6498,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -7477,10 +7513,6 @@
       - Observation.category
       :comparators: {}
       :values:
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
       - survey
       :type: CodeableConcept
       :contains_multiple: true
@@ -8018,7 +8050,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
