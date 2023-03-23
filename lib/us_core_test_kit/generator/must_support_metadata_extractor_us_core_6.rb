@@ -91,6 +91,7 @@ module USCoreTestKit
         must_supports[:elements] << {
           path: 'basedOn',
           types: ['Reference'],
+          target_profiles: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest'],
           uscdi_only: true
         }
       end
