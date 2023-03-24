@@ -10438,6 +10438,17 @@
       - Reference
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - :path: reasonCode
+      :uscdi_only: true
+    - :path: reasonReference
+      :types:
+      - Reference
+      :uscdi_only: true
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - ServiceRequest.status
   - ServiceRequest.intent
