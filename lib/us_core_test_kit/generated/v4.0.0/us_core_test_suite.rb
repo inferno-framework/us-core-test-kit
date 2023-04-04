@@ -63,6 +63,8 @@ module USCoreTestKit
         /Provenance.agent\[\d*\]: Rule provenance-1/ #Invalid invariant in US Core v5.0.1
       ].freeze
 
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
             Generator::GroupMetadata.new(raw_metadata)
@@ -71,8 +73,11 @@ module USCoreTestKit
 
       validator do
         url ENV.fetch('V400_VALIDATOR_URL', 'http://validator_service:4567')
+        message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+
         exclude_message do |message|
-          VALIDATION_MESSAGE_FILTERS.any? { |filter| filter.match? message.message }
+
+          message_filters.any? { |filter| filter.match? message.message }
         end
 
         perform_additional_validation do |resource, profile_url|
