@@ -1400,7 +1400,8 @@
       :full_paths:
       - DocumentReference.category
       :comparators: {}
-      :values: []
+      :values:
+      - clinical-note
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY

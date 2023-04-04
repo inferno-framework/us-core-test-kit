@@ -184,7 +184,7 @@ module USCoreTestKit
       end
 
       def test_medication_inclusion?
-        resource_type == 'MedicationRequest'
+        ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
       end
 
       def test_post_search?

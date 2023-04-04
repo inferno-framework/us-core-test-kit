@@ -19,7 +19,6 @@ module USCoreTestKit
       def handle_special_cases
         add_must_support_choices
         add_uscdi_elements
-        add_value_set_expansion
         # TODO: US Core 6.0.0-ballot version has a bug in Observation Occupation Profile.
         # Slicing on Observation.component:industry is not correct. See HL7 JIRA FHIR-39608
         # This is a temparory fix. This method SHALL be removed after US Core 6.0.0 release
@@ -94,45 +93,6 @@ module USCoreTestKit
           types: ['Reference'],
           uscdi_only: true
         }
-      end
-
-      def add_value_set_expansion
-        us_core_5_extractor.add_document_reference_category_values
-        add_observation_screening_assessment_values
-        add_service_request_category_values
-        add_simple_observation_category_value
-      end
-
-      def add_observation_screening_assessment_values
-        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment'
-
-        slice = must_supports[:slices].find{|slice| slice[:name] == 'Observation.category:uscore'}
-
-        if slice.present?
-          slice[:discriminator][:values] = US_CORE_CATEGORY
-        end
-      end
-
-      def add_service_request_category_values
-        return unless profile.type == 'ServiceRequest'
-
-        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
-
-        if slice.present?
-          slice[:discriminator][:values]
-            .concat(US_CORE_CATEGORY)
-            .concat(['108252007', '363679005', '409063005', '409073007', '387713003'])
-        end
-      end
-
-      def add_simple_observation_category_value
-        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
-
-        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
-
-        if slice.present?
-          slice[:discriminator][:values].concat(US_CORE_CATEGORY)
-        end
       end
 
       def replace_occupation_industry
