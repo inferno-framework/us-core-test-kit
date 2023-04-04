@@ -81,7 +81,20 @@
     :full_paths:
     - Observation.category
     :comparators: {}
-    :values: []
+    :values:
+    - sdoh
+    - functional-status
+    - disability-status
+    - cognitive-status
+    - social-history
+    - vital-signs
+    - imaging
+    - laboratory
+    - procedure
+    - survey
+    - exam
+    - therapy
+    - activity
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -145,6 +158,10 @@
       :type: requiredBinding
       :path: ''
       :values:
+      - sdoh
+      - functional-status
+      - disability-status
+      - cognitive-status
       - social-history
       - vital-signs
       - imaging
@@ -154,10 +171,6 @@
       - exam
       - therapy
       - activity
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
   :elements:
   - :path: status
   - :path: category

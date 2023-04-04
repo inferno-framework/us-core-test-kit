@@ -13,6 +13,10 @@ patient on the MedicationDispense resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
+If any MedicationRequest resources use external references to
+Medications, the search will be repeated with
+`_include=MedicationRequest:medication`.
+
 This test verifies that the server supports searching by reference using
 the form `patient=[id]` as well as `patient=Patient/[id]`. The two
 different forms are expected to return the same number of results. US
@@ -42,6 +46,7 @@ requirement of US Core v6.0.0-ballot.
         search_param_names: ['patient'],
         saves_delayed_references: true,
         possible_status_search: true,
+        test_medication_inclusion: true,
         test_reference_variants: true,
         test_post_search: true
         )

@@ -1871,7 +1871,8 @@
       :full_paths:
       - DocumentReference.category
       :comparators: {}
-      :values: []
+      :values:
+      - clinical-note
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -9668,7 +9669,8 @@
       :full_paths:
       - QuestionnaireResponse.meta.tag
       :comparators: {}
-      :values: []
+      :values:
+      - sdoh
       :type: Coding
       :contains_multiple: true
       :multiple_or: MAY
@@ -9987,6 +9989,11 @@
       - sdoh
       - '386053000'
       - '410606002'
+      - '108252007'
+      - '363679005'
+      - '409063005'
+      - '409073007'
+      - '387713003'
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
