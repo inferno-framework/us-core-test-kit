@@ -36,6 +36,11 @@ module USCoreTestKit
             paths: ['reasonCode', 'reasonReference'],
             uscdi_only: true
           }
+        when 'ServiceRequest'
+          more_choices << {
+            paths: ['reasonCode', 'reasonReference'],
+            uscdi_only: true
+          }
         end
 
         if more_choices.present?
@@ -48,6 +53,7 @@ module USCoreTestKit
         add_patient_uscdi_elements
         add_medicationrequest_uscdi_elements
         add_procedure_uscdi_elements
+        add_service_request_uscdi_elements
       end
 
       def add_patient_uscdi_elements
@@ -91,6 +97,21 @@ module USCoreTestKit
         must_supports[:elements] << {
           path: 'basedOn',
           types: ['Reference'],
+          target_profiles: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest'],
+          uscdi_only: true
+        }
+      end
+
+      def add_service_request_uscdi_elements
+        return unless profile.type == 'ServiceRequest'
+
+        must_supports[:elements] << {
+          path: 'reasonCode',
+          uscdi_only: true
+        }
+        must_supports[:elements] << {
+          path: 'reasonReference',
+          types: [ 'Reference' ],
           uscdi_only: true
         }
       end
