@@ -163,11 +163,13 @@ module USCoreTestKit
       # Calling resource_is_valid? causes validation errors to be logged.
       validator = find_validator(:default)
 
-      outcome = FHIR::OperationOutcome.new(JSON.parse(validator.validate(resource, target_profile)))
+      target_profile_with_version =  target_profile.include?('|') ? target_profile : "#{target_profile}|#{metadata.profile_version}"
+
+      outcome = FHIR::OperationOutcome.new(JSON.parse(validator.validate(resource, target_profile_with_version)))
 
       message_hashes = outcome.issue&.map { |issue| validator.message_hash_from_issue(issue, resource) } || []
 
-      message_hashes.concat(validator.additional_validation_messages(resource, target_profile))
+      message_hashes.concat(validator.additional_validation_messages(resource, target_profile_with_version))
 
       validator.filter_messages(message_hashes)
 
