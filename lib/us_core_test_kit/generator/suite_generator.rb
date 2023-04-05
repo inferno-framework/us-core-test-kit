@@ -17,6 +17,19 @@ module USCoreTestKit
         self.base_output_dir = base_output_dir
       end
 
+      def version_specific_message_filters
+        case ig_metadata.reformatted_version
+        when 'v501', 'v600_ballot'
+          [
+            # v600 ballot has a compability bug on this extension which fails patients in both v5.0.1 and v6.0.0 ballot version.
+            # TODO: remove after v600 release
+            %r{http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity}
+          ]
+        else
+          []
+        end
+      end
+
       def template
         @template ||= File.read(File.join(__dir__, 'templates', 'suite.rb.erb'))
       end
