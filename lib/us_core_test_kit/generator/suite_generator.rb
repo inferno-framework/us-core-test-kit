@@ -19,7 +19,7 @@ module USCoreTestKit
 
       def version_specific_message_filters
         case ig_metadata.reformatted_version
-        when 'v501', 'v600_ballot'
+        when 'v311', 'v400', 'v501', 'v600_ballot'
           [
             # v600 ballot has a compability bug on this extension which fails patients in both v5.0.1 and v6.0.0 ballot version.
             # TODO: remove after v600 release

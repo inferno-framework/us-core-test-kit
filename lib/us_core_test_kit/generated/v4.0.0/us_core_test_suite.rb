@@ -63,7 +63,7 @@ module USCoreTestKit
         /Provenance.agent\[\d*\]: Rule provenance-1/ #Invalid invariant in US Core v5.0.1
       ].freeze
 
-      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [/http:\/\/hl7.org\/fhir\/us\/core\/StructureDefinition\/us-core-genderIdentity/].freeze
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
