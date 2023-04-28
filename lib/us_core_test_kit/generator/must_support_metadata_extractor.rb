@@ -28,8 +28,15 @@ module USCoreTestKit
         @must_supports
       end
 
+      def is_uscdi_requirement_element?(element)
+        element.extension.any? do |extension|
+          extension.url == 'http://hl7.org/fhir/us/core/StructureDefinition/uscdi-requirement' &&
+          extension.valueBoolean
+        end && !element.mustSupport
+      end
+
       def all_must_support_elements
-        profile_elements.select { |element| element.mustSupport }
+        profile_elements.select { |element| element.mustSupport || is_uscdi_requirement_element?(element) }
       end
 
       def must_support_extension_elements
@@ -41,7 +48,11 @@ module USCoreTestKit
           {
             id: element.id,
             url: element.type.first.profile.first
-          }
+          }.tap do |metadata|
+            if is_uscdi_requirement_element?(element)
+              metadata[:uscdi_only] = true
+            end
+          end
         end
       end
 
@@ -119,6 +130,10 @@ module USCoreTestKit
                   raise StandardError, 'Unsupported discriminator pattern type'
                 end
               end
+
+            if is_uscdi_requirement_element?(current_element)
+              metadata[:uscdi_only] = true
+            end
           end
         end
       end
@@ -150,7 +165,11 @@ module USCoreTestKit
               type: 'type',
               code: type_code.upcase_first
             }
-          }
+          }.tap do |metadata|
+            if is_uscdi_requirement_element?(current_element)
+              metadata[:uscdi_only] = true
+            end
+          end
         end
       end
 
@@ -179,6 +198,10 @@ module USCoreTestKit
                 path: discriminator.path,
                 value: fixed_element.fixedUri || fixed_element.fixedCode
               }
+            end
+
+            if is_uscdi_requirement_element?(current_element)
+              metadata[:uscdi_only] = true
             end
           end
         end
@@ -265,6 +288,10 @@ module USCoreTestKit
           {
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |current_metadata|
+            if is_uscdi_requirement_element?(current_element)
+              current_metadata[:uscdi_only] = true
+            end
+
             type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
             if type_must_support_metadata.any?
