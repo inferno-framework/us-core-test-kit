@@ -32,7 +32,7 @@ module USCoreTestKit
         * Patient.address.period.end or Patient.address.use
         * Patient.communication
         * Patient.communication.language
-        * Patient.deceased[x]
+        * Patient.deceasedDateTime
         * Patient.extension:birthsex
         * Patient.extension:ethnicity
         * Patient.extension:genderIdentity

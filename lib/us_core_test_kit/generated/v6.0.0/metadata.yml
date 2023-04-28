@@ -9210,9 +9210,8 @@
     :names:
     - death-date
     - family
-    :names_not_must_support_or_mandatory:
-    - death-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -9331,6 +9330,7 @@
     - :path: name
     - :path: name.use
       :uscdi_only: true
+      :fixed_value: old
     - :path: name.family
     - :path: name.given
     - :path: name.suffix
@@ -9347,11 +9347,13 @@
       :uscdi_only: true
     - :path: gender
     - :path: birthDate
-    - :path: deceased[x]
+    - :path: deceasedDateTime
       :uscdi_only: true
+      :original_path: deceased[x]
     - :path: address
     - :path: address.use
       :uscdi_only: true
+      :fixed_value: old
     - :path: address.line
     - :path: address.city
     - :path: address.state

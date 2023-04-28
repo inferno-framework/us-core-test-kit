@@ -22,7 +22,7 @@ module USCoreTestKit
 
       def handle_special_cases
         add_must_support_choices
-        add_uscdi_elements
+        add_patient_uscdi_elements
       end
 
       def add_must_support_choices
@@ -49,8 +49,22 @@ module USCoreTestKit
         end
       end
 
-      def add_uscdi_elements
-        us_core_4_extractor.remove_patient_telecom_communication
+      def add_patient_uscdi_elements
+        return unless profile.type == 'Patient'
+
+        us_core_4_extractor.add_patient_telecom_communication_uscdi
+
+        must_supports[:elements].each do |element|
+          case element[:path]
+          when 'address.use', 'name.use'
+            element[:fixed_value] = 'old'
+          when 'deceased[x]'
+            element[:original_path] = element[:path]
+            element[:path] = 'deceasedDateTime'
+          end
+        end
+
+
       end
     end
   end

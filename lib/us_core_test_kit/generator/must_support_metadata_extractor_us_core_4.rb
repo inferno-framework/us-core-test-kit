@@ -96,10 +96,10 @@ module USCoreTestKit
           uscdi_only: true
         }
 
-        remove_patient_telecom_communication
+        add_patient_telecom_communication_uscdi
       end
 
-      def remove_patient_telecom_communication
+      def add_patient_telecom_communication_uscdi
         return unless profile.type == 'Patient'
 
         # Though telecom.system, telecom.value, telecom.use, and communication.language are marked as MustSupport since US Core v4.0.0,
