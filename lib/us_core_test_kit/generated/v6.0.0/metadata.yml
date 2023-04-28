@@ -501,6 +501,10 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+    :choices:
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :mandatory_elements:
   - CareTeam.subject
   - CareTeam.participant
@@ -541,6 +545,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_condition_encounter_diagnosis
   :class_name: USCorev600ConditionEncounterDiagnosisSequence
   :version: v6.0.0
@@ -573,6 +578,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
@@ -627,12 +638,6 @@
     :names:
     - patient
     - code
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
@@ -808,6 +813,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -881,6 +891,12 @@
     :expectation: MAY
   :operations: []
   :searches:
+  - :expectation: SHALL
+    :names:
+    - patient
+    - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :names:
     - patient
     :expectation: SHALL
@@ -936,12 +952,6 @@
     :names:
     - patient
     - code
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
-  - :expectation: SHALL
-    :names:
-    - patient
-    - category
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   :search_definitions:
@@ -1094,7 +1104,6 @@
   - clinicalStatus
   - verificationStatus
   - category
-  - category
   :must_supports:
     :extensions:
     - :id: Condition.extension:assertedDate
@@ -1131,6 +1140,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -1320,6 +1334,7 @@
   - :path: payor
     :resources:
     - Organization
+    - RelatedPerson
 - :name: us_core_implantable_device
   :class_name: USCorev600ImplantableDeviceSequence
   :version: v6.0.0
@@ -2148,6 +2163,10 @@
       :types:
       - Reference
     - :path: context.period
+    :choices:
+    - :paths:
+      - content.attachment.data
+      - content.attachment.url
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -2216,6 +2235,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_encounter
   :class_name: USCorev600EncounterSequence
   :version: v6.0.0
@@ -2450,6 +2470,13 @@
     - :path: serviceProvider
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+    - :paths:
+      - location.location
+      - serviceProvider
   :mandatory_elements:
   - Encounter.identifier.system
   - Encounter.identifier.value
@@ -2537,6 +2564,7 @@
     :resources:
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: serviceProvider
     :resources:
     - Organization
@@ -3284,6 +3312,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_medicationrequest
   :class_name: USCorev600MedicationrequestSequence
   :version: v6.0.0
@@ -3480,6 +3509,14 @@
     - :path: dispenseRequest
     - :path: dispenseRequest.numberOfRepeatsAllowed
     - :path: dispenseRequest.quantity
+    :choices:
+    - :paths:
+      - reportedBoolean
+      - reportedReference
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
@@ -3562,6 +3599,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_observation_lab
   :class_name: USCorev600ObservationLabSequence
   :version: v6.0.0
@@ -3798,7 +3836,10 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
-  :delayed_references: []
+  :delayed_references:
+  - :path: specimen
+    :resources:
+    - Specimen
 - :name: us_core_observation_pregnancystatus
   :class_name: USCorev600ObservationPregnancystatusSequence
   :version: v6.0.0
@@ -5058,6 +5099,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_heart_rate
   :class_name: USCorev600HeartRateSequence
   :version: v6.0.0
@@ -7661,6 +7703,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_blood_pressure
   :class_name: USCorev600BloodPressureSequence
   :version: v6.0.0
@@ -9297,8 +9340,11 @@
     - :path: telecom
       :uscdi_only: true
     - :path: telecom.system
+      :uscdi_only: true
     - :path: telecom.value
+      :uscdi_only: true
     - :path: telecom.use
+      :uscdi_only: true
     - :path: gender
     - :path: birthDate
     - :path: deceased[x]
@@ -9315,6 +9361,16 @@
     - :path: communication
       :uscdi_only: true
     - :path: communication.language
+      :uscdi_only: true
+    :choices:
+    - :paths:
+      - address.period.end
+      - address.use
+      :uscdi_only: true
+    - :paths:
+      - name.period.end
+      - name.use
+      :uscdi_only: true
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
@@ -10068,6 +10124,7 @@
     - Organization
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: agent.onBehalfOf
     :resources:
     - Organization
@@ -10277,6 +10334,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_relatedperson
   :class_name: USCorev600RelatedpersonSequence
   :version: v6.0.0
@@ -10600,6 +10658,11 @@
       :uscdi_only: true
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - ServiceRequest.status
   - ServiceRequest.intent
@@ -10678,6 +10741,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_specimen
   :class_name: USCorev600SpecimenSequence
   :version: v6.0.0

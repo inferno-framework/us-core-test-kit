@@ -43,12 +43,12 @@ require_relative 'head_circumference_percentile_group'
 require_relative 'body_weight_group'
 require_relative 'procedure_group'
 require_relative 'questionnaire_response_group'
-require_relative 'related_person_group'
 require_relative 'service_request_group'
-require_relative 'specimen_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'provenance_group'
+require_relative 'related_person_group'
+require_relative 'specimen_group'
 
 module USCoreTestKit
   module USCoreV600
@@ -155,12 +155,12 @@ module USCoreTestKit
       group from: :us_core_v600_body_weight
       group from: :us_core_v600_procedure
       group from: :us_core_v600_questionnaire_response
-      group from: :us_core_v600_related_person
       group from: :us_core_v600_service_request
-      group from: :us_core_v600_specimen
       group from: :us_core_v600_organization
       group from: :us_core_v600_practitioner
       group from: :us_core_v600_provenance
+      group from: :us_core_v600_related_person
+      group from: :us_core_v600_specimen
       group from: :us_core_v400_clinical_notes_guidance
       group from: :us_core_311_data_absent_reason
     end

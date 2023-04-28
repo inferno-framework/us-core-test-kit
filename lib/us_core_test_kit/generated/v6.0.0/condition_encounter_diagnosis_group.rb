@@ -1,3 +1,4 @@
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_recorded_date_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_asserted_date_search_test'
@@ -7,7 +8,6 @@ require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_pa
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_clinical_status_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_encounter_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_code_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_read_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_provenance_revinclude_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_validation_test'
@@ -33,8 +33,8 @@ This test sequence will first perform each required search associated
 with this resource. This sequence will perform searches with the
 following parameters:
 
-* patient
 * patient + category
+* patient
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -85,6 +85,7 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition_encounter_diagnosis', 'metadata.yml'), aliases: true))
       end
   
+      test from: :us_core_v600_condition_encounter_diagnosis_patient_category_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_patient_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_patient_recorded_date_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_patient_asserted_date_search_test
@@ -94,7 +95,6 @@ read succeeds.
       test from: :us_core_v600_condition_encounter_diagnosis_patient_clinical_status_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_patient_category_encounter_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_patient_code_search_test
-      test from: :us_core_v600_condition_encounter_diagnosis_patient_category_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_read_test
       test from: :us_core_v600_condition_encounter_diagnosis_provenance_revinclude_search_test
       test from: :us_core_v600_condition_encounter_diagnosis_validation_test

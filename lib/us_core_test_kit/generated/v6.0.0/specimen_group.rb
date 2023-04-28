@@ -1,6 +1,6 @@
+require_relative 'specimen/specimen_read_test'
 require_relative 'specimen/specimen_patient_search_test'
 require_relative 'specimen/specimen_id_search_test'
-require_relative 'specimen/specimen_read_test'
 require_relative 'specimen/specimen_validation_test'
 require_relative 'specimen/specimen_must_support_test'
 require_relative 'specimen/specimen_reference_resolution_test'
@@ -75,9 +75,9 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'specimen', 'metadata.yml'), aliases: true))
       end
   
+      test from: :us_core_v600_specimen_read_test
       test from: :us_core_v600_specimen_patient_search_test
       test from: :us_core_v600_specimen__id_search_test
-      test from: :us_core_v600_specimen_read_test
       test from: :us_core_v600_specimen_validation_test
       test from: :us_core_v600_specimen_must_support_test
       test from: :us_core_v600_specimen_reference_resolution_test

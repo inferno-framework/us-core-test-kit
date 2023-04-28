@@ -31,6 +31,12 @@
   :expectation: MAY
 :operations: []
 :searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :names:
   - patient
   :expectation: SHALL
@@ -85,12 +91,6 @@
   :names:
   - patient
   - code
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -266,6 +266,11 @@
   - :path: abatementDateTime
     :original_path: abatement[x]
   - :path: recordedDate
+  :choices:
+  - :paths:
+    - onsetDateTime
+    :extension_ids:
+    - Condition.extension:assertedDate
 :mandatory_elements:
 - Condition.category
 - Condition.code
@@ -307,6 +312,8 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
+- :id: us_core_v600_condition_encounter_diagnosis_patient_category_search_test
+  :file_name: condition_encounter_diagnosis_patient_category_search_test.rb
 - :id: us_core_v600_condition_encounter_diagnosis_patient_search_test
   :file_name: condition_encounter_diagnosis_patient_search_test.rb
 - :id: us_core_v600_condition_encounter_diagnosis_patient_recorded_date_search_test
@@ -325,8 +332,6 @@
   :file_name: condition_encounter_diagnosis_patient_category_encounter_search_test.rb
 - :id: us_core_v600_condition_encounter_diagnosis_patient_code_search_test
   :file_name: condition_encounter_diagnosis_patient_code_search_test.rb
-- :id: us_core_v600_condition_encounter_diagnosis_patient_category_search_test
-  :file_name: condition_encounter_diagnosis_patient_category_search_test.rb
 - :id: us_core_v600_condition_encounter_diagnosis_read_test
   :file_name: condition_encounter_diagnosis_read_test.rb
 - :id: us_core_v600_condition_encounter_diagnosis_provenance_revinclude_search_test

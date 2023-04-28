@@ -111,8 +111,8 @@ module USCoreTestKit
       ]
 
       VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v600_ballot' ],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v600_ballot' ]
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v600_ballot', 'v600' ],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v600_ballot', 'v600' ]
       }
 
       def category_first_profile?
@@ -259,6 +259,7 @@ module USCoreTestKit
           .select { |element| element.type&.any? { |type| type.code == 'CodeableConcept' } }
           .select { |element| element.binding&.strength == 'required' }
           .map { |element| element.path.gsub("#{resource}.", '').gsub('[x]', 'CodeableConcept') }
+          .uniq
       end
 
       def terminology_binding_metadata_extractor

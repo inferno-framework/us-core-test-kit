@@ -211,6 +211,10 @@
     :types:
     - Reference
   - :path: context.period
+  :choices:
+  - :paths:
+    - content.attachment.data
+    - content.attachment.url
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type
@@ -308,3 +312,4 @@
   - Practitioner
   - Organization
   - PractitionerRole
+  - RelatedPerson

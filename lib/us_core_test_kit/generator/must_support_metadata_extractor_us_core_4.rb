@@ -95,6 +95,13 @@ module USCoreTestKit
           path: 'communication',
           uscdi_only: true
         }
+
+        remove_patient_telecom_communication
+      end
+
+      def remove_patient_telecom_communication
+        return unless profile.type == 'Patient'
+
         # Though telecom.system, telecom.value, telecom.use, and communication.language are marked as MustSupport since US Core v4.0.0,
         # their parent elements telecom, and communication are not MustSupport but listed under "Additional USCDI requirements"
         # According to the updated FHIR spec that "When a child element is defined as Must Support and the parent element isn't,

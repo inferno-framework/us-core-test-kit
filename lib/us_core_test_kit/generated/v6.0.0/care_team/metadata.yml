@@ -109,6 +109,10 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  :choices:
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
 :mandatory_elements:
 - CareTeam.subject
 - CareTeam.participant
@@ -168,3 +172,4 @@
   - Practitioner
   - Organization
   - PractitionerRole
+  - RelatedPerson
