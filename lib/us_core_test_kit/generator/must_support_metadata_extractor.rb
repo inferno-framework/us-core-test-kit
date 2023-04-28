@@ -126,8 +126,8 @@ module USCoreTestKit
                   values: values
                 }
               else
-                # TODO: US Core will fix the issue in Observation-occupant
-                unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
+                # TODO: US Core 6.0.0-ballot has a issue in Observation-occupant. It will be fixed in published verison
+                unless profile.version == '6.0.0-ballot' && profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
                   raise StandardError, 'Unsupported discriminator pattern type'
                 end
               end
