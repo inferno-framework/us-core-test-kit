@@ -3,7 +3,6 @@ require_relative 'must_support_metadata_extractor_us_core_3'
 require_relative 'must_support_metadata_extractor_us_core_4'
 require_relative 'must_support_metadata_extractor_us_core_5'
 require_relative 'must_support_metadata_extractor_us_core_6'
-require_relative 'must_support_metadata_extractor_us_core_6_ballot'
 
 module USCoreTestKit
   class Generator
@@ -126,10 +125,7 @@ module USCoreTestKit
                   values: values
                 }
               else
-                # TODO: US Core 6.0.0-ballot has a issue in Observation-occupant. It will be fixed in published verison
-                unless profile.version == '6.0.0-ballot' && profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation'
-                  raise StandardError, 'Unsupported discriminator pattern type'
-                end
+                raise StandardError, 'Unsupported discriminator pattern type'
               end
 
             if is_uscdi_requirement_element?(current_element)
@@ -331,8 +327,6 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore4.new(profile, @must_supports).handle_special_cases
         when '5.0.1'
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
-        when '6.0.0-ballot'
-          MustSupportMetadataExtractorUsCore6Ballot.new(profile, @must_supports).handle_special_cases
         when '6.0.0'
           MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         end
