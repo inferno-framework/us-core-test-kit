@@ -2700,6 +2700,10 @@
     - :path: target
     - :path: target.dueDate
       :original_path: target.due[x]
+    :choices:
+    - :paths:
+      - startDate
+      - target.dueDate
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -7631,6 +7635,10 @@
       :types:
       - Reference
       :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
+    :choices:
+    - :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
   :mandatory_elements:

@@ -131,6 +131,10 @@
   - :path: target
   - :path: target.dueDate
     :original_path: target.due[x]
+  :choices:
+  - :paths:
+    - startDate
+    - target.dueDate
 :mandatory_elements:
 - Goal.lifecycleStatus
 - Goal.description

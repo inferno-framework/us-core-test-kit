@@ -31,6 +31,10 @@ module USCoreTestKit
         more_choices = []
 
         case profile.type
+        when 'Goal'
+          more_choices << {
+            paths: ['startDate', 'target.dueDate']
+          }
         when 'MedicationRequest'
           more_choices << {
             paths: ['reasonCode', 'reasonReference'],
@@ -40,6 +44,15 @@ module USCoreTestKit
           more_choices << {
             paths: ['reasonCode', 'reasonReference'],
             uscdi_only: true
+          }
+        end
+
+        if profile.id == 'us-core-observation-screening-assessment'
+          more_choices << {
+            target_profiles: [
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'
+            ]
           }
         end
 
