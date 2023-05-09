@@ -24,4 +24,10 @@ namespace :us_core do
 
     USCoreTestKit::Generator.generate
   end
+
+  desc 'Process IGs'
+  task :process_igs do
+    require_relative 'lib/us_core_test_kit/ig_processor'
+    USCoreTestKit::IGProcessor.process
+  end
 end
