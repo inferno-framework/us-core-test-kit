@@ -26,7 +26,7 @@ module USCoreTestKit
 
     def process
       extract_igs
-      remove_older_vsac_dependencies
+      remove_older_dependencies('us.nlm.vsac')
       replace_original_igs
     end
 
@@ -53,14 +53,16 @@ module USCoreTestKit
       end
     end
 
-    def remove_older_vsac_dependencies
+    def remove_older_dependencies(package_name)
+      max_version = max_package_version(package_name)
+
       package_json_paths.each do |package_json_path|
         package_json = JSON.parse(File.read(package_json_path))
         dependencies = package_json['dependencies']
 
-        next if dependencies['us.nlm.vsac'].nil? || dependencies['us.nlm.vsac'] == max_vsac_version
+        next if dependencies[package_name].nil? || dependencies[package_name] == max_version
 
-        dependencies.delete 'us.nlm.vsac'
+        dependencies.delete package_name
         File.open(package_json_path, 'w') { |f| f.write JSON.pretty_generate(package_json) }
       end
     end
@@ -114,16 +116,15 @@ module USCoreTestKit
       end
     end
 
-    def vsac_versions
+    def package_versions(package_name)
       package_json_paths.map do |package_json_path|
         package_json = JSON.parse(File.read(package_json_path))
-        package_json.dig('dependencies', 'us.nlm.vsac')
+        package_json.dig('dependencies', package_name)
       end.compact
     end
 
-    def max_vsac_version
-      @max_vsac_version ||=
-        vsac_versions
+    def max_package_version(package_name)
+        package_versions(package_name)
           .sort { |v1, v2| compare_versions(v1, v2) }
           .last
     end
