@@ -28,6 +28,7 @@ module USCoreTestKit
       extract_igs
       remove_older_dependencies('us.nlm.vsac')
       replace_original_igs
+      remove_intermediate_files
     end
 
     def extract_igs
@@ -64,6 +65,13 @@ module USCoreTestKit
 
         dependencies.delete package_name
         File.open(package_json_path, 'w') { |f| f.write JSON.pretty_generate(package_json) }
+      end
+    end
+
+    def remove_intermediate_files
+      processed_igs.each do |ig_file_name|
+        ig_path = File.join(raw_ig_path, ig_file_name)
+        FileUtils.rm_rf(ig_path)
       end
     end
 
