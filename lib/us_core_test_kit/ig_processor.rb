@@ -60,7 +60,7 @@ module USCoreTestKit
 
         next if dependencies['us.nlm.vsac'].nil? || dependencies['us.nlm.vsac'] == max_vsac_version
 
-        dependencies['us.nlm.vsac'] = max_vsac_version
+        dependencies.delete 'us.nlm.vsac'
         File.open(package_json_path, 'w') { |f| f.write JSON.pretty_generate(package_json) }
       end
     end
