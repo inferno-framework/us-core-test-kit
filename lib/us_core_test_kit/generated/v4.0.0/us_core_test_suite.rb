@@ -44,10 +44,11 @@ module USCoreTestKit
         The US Core Test Kit tests systems for their conformance to the [US Core
         Implementation Guide](http://hl7.org/fhir/us/core/STU4).
 
-        Resources are validated with the FHIR Java validator using `tx.fhir.org`
-        as the terminology server. Users should note that the although the ONC
-        Certification (g)(10) Standardized API Test Suite includes tests from
-        this suite, [it uses a different method to perform terminology
+        HL7® FHIR® resources are validated with the Java validator using
+        `tx.fhir.org` as the terminology server. Users should note that the
+        although the ONC Certification (g)(10) Standardized API Test Suite
+        includes tests from this suite, [it uses a different method to perform
+        terminology
         validation](https://github.com/onc-healthit/onc-certification-g10-test-kit/wiki/FAQ#q-why-do-some-resources-fail-in-us-core-test-kit-with-terminology-validation-errors).
         As a result, resource validation results may not be consistent between
         the US Core Test Suite and the ONC Certification (g)(10) Standardized
