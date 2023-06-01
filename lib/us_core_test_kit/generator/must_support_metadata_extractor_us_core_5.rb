@@ -19,7 +19,6 @@ module USCoreTestKit
         add_must_support_choices
         remove_patient_address_period
         add_patient_uscdi_elements
-        add_value_set_expansion
         remove_survey_questionnaire_response
       end
 
@@ -78,24 +77,6 @@ module USCoreTestKit
       def add_value_set_expansion
         add_document_reference_category_values
         add_service_request_category_values
-      end
-
-      def add_document_reference_category_values
-        return unless profile.type == 'DocumentReference'
-
-        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
-
-        slice[:discriminator][:values] = ['clinical-note'] if slice.present?
-      end
-
-      def add_service_request_category_values
-        return unless profile.type == 'ServiceRequest'
-
-        slice = must_supports[:slices].find{|slice| slice[:path] == 'category'}
-
-        if slice.present?
-          slice[:discriminator][:values].concat(['108252007', '363679005', '409063005', '409073007', '387713003'])
-        end
       end
 
       # FHIR-37794 Server systems are not required to support US Core QuestionnaireResponse

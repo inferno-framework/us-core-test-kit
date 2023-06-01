@@ -1,0 +1,189 @@
+---
+:name: us_core_goal
+:class_name: USCorev600GoalSequence
+:version: v6.0.0
+:reformatted_version: v600
+:resource: Goal
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal
+:profile_name: US Core Goal Profile
+:profile_version: 6.0.0
+:title: Goal
+:short_description: Verify support for the server capabilities required by the US
+  Core Goal Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - target-date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - description
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - lifecycle-status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Goal.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :target-date:
+    :paths:
+    - target.dueDate
+    :full_paths:
+    - Goal.target.dueDate
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :description:
+    :paths:
+    - description
+    :full_paths:
+    - Goal.description
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :lifecycle-status:
+    :paths:
+    - lifecycleStatus
+    :full_paths:
+    - Goal.lifecycleStatus
+    :comparators: {}
+    :values:
+    - proposed
+    - planned
+    - accepted
+    - active
+    - on-hold
+    - completed
+    - cancelled
+    - entered-in-error
+    - rejected
+    :type: code
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: lifecycleStatus
+  - :path: description
+  - :path: subject
+    :types:
+    - Reference
+  - :path: startDate
+    :original_path: start[x]
+  - :path: target
+  - :path: target.dueDate
+    :original_path: target.due[x]
+  :choices:
+  - :paths:
+    - startDate
+    - target.dueDate
+:mandatory_elements:
+- Goal.lifecycleStatus
+- Goal.description
+- Goal.subject
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/goal-status
+  :path: lifecycleStatus
+:references:
+- :path: Goal.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Goal.expressedBy
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+- :path: Goal.addresses
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/MedicationStatement
+  - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+  - http://hl7.org/fhir/StructureDefinition/RiskAssessment
+- :path: Goal.outcomeReference
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Observation
+:tests:
+- :id: us_core_v600_goal_patient_search_test
+  :file_name: goal_patient_search_test.rb
+- :id: us_core_v600_goal_patient_target_date_search_test
+  :file_name: goal_patient_target_date_search_test.rb
+- :id: us_core_v600_goal_patient_description_search_test
+  :file_name: goal_patient_description_search_test.rb
+- :id: us_core_v600_goal_patient_lifecycle_status_search_test
+  :file_name: goal_patient_lifecycle_status_search_test.rb
+- :id: us_core_v600_goal_read_test
+  :file_name: goal_read_test.rb
+- :id: us_core_v600_goal_provenance_revinclude_search_test
+  :file_name: goal_provenance_revinclude_search_test.rb
+- :id: us_core_v600_goal_validation_test
+  :file_name: goal_validation_test.rb
+- :id: us_core_v600_goal_must_support_test
+  :file_name: goal_must_support_test.rb
+- :id: us_core_v600_goal_reference_resolution_test
+  :file_name: goal_reference_resolution_test.rb
+:id: us_core_v600_goal
+:file_name: goal_group.rb
+:delayed_references: []

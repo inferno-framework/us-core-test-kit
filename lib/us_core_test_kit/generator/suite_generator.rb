@@ -17,6 +17,10 @@ module USCoreTestKit
         self.base_output_dir = base_output_dir
       end
 
+      def version_specific_message_filters
+        []
+      end
+
       def template
         @template ||= File.read(File.join(__dir__, 'templates', 'suite.rb.erb'))
       end

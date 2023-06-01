@@ -95,20 +95,29 @@ module USCoreTestKit
 
       ### BEGIN SPECIAL CASES ###
 
-      CATEGORY_FIRST_PROFILES = [
+      ALL_VERSION_CATEGORY_FIRST_PROFILES = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey'
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
       ]
 
+      VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => [ 'v600' ],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => [ 'v600' ]
+      }
+
       def category_first_profile?
-        CATEGORY_FIRST_PROFILES.include?(profile_url)
+        ALL_VERSION_CATEGORY_FIRST_PROFILES.include?(profile_url) ||
+        VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
       end
 
       def first_search_params
@@ -178,6 +187,7 @@ module USCoreTestKit
       end
 
       def profile_name
+        binding.pry if profile.nil?
         profile.title.gsub('  ', ' ')
       end
 
@@ -249,6 +259,7 @@ module USCoreTestKit
           .select { |element| element.type&.any? { |type| type.code == 'CodeableConcept' } }
           .select { |element| element.binding&.strength == 'required' }
           .map { |element| element.path.gsub("#{resource}.", '').gsub('[x]', 'CodeableConcept') }
+          .uniq
       end
 
       def terminology_binding_metadata_extractor
