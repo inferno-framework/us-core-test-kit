@@ -1,3 +1,7 @@
+# 0.5.0
+
+* Add test suite for US Core 6.0.0.
+
 # 0.4.7
 
 * Updated Patient MustSupport tests for previous name and address. See #114 for
