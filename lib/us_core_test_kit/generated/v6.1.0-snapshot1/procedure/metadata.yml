@@ -1,0 +1,232 @@
+---
+:name: us_core_procedure
+:class_name: USCorev610_snapshot1ProcedureSequence
+:version: v6.1.0-snapshot1
+:reformatted_version: v610_snapshot1
+:resource: Procedure
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure
+:profile_name: US Core Procedure Profile
+:profile_version: 6.1.0-snapshot1
+:title: Procedure
+:short_description: Verify support for the server capabilities required by the US
+  Core Procedure Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Procedure.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Procedure.code
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
+  :date:
+    :paths:
+    - performed
+    :full_paths:
+    - Procedure.performed
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Procedure.status
+    :comparators: {}
+    :values:
+    - preparation
+    - in-progress
+    - not-done
+    - on-hold
+    - stopped
+    - completed
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: basedOn
+    :uscdi_only: true
+    :types:
+    - Reference
+  - :path: status
+  - :path: code
+  - :path: subject
+    :types:
+    - Reference
+  - :path: performedDateTime
+    :original_path: performed[x]
+:mandatory_elements:
+- Procedure.status
+- Procedure.code
+- Procedure.subject
+- Procedure.performer.actor
+- Procedure.focalDevice.manipulated
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/event-status
+  :path: status
+:references:
+- :path: Procedure.basedOn
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest
+- :path: Procedure.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+- :path: Procedure.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Procedure.encounter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+- :path: Procedure.recorder
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+- :path: Procedure.asserter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+- :path: Procedure.performer.actor
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/Organization
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  - http://hl7.org/fhir/StructureDefinition/Device
+- :path: Procedure.performer.onBehalfOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Procedure.location
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: Procedure.reasonReference
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+  - http://hl7.org/fhir/StructureDefinition/DiagnosticReport
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+- :path: Procedure.report
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DiagnosticReport
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+  - http://hl7.org/fhir/StructureDefinition/Composition
+- :path: Procedure.complicationDetail
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+- :path: Procedure.focalDevice.manipulated
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+- :path: Procedure.usedReference
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+  - http://hl7.org/fhir/StructureDefinition/Medication
+  - http://hl7.org/fhir/StructureDefinition/Substance
+:tests:
+- :id: us_core_v610_snapshot1_procedure_patient_search_test
+  :file_name: procedure_patient_search_test.rb
+- :id: us_core_v610_snapshot1_procedure_patient_code_date_search_test
+  :file_name: procedure_patient_code_date_search_test.rb
+- :id: us_core_v610_snapshot1_procedure_patient_status_search_test
+  :file_name: procedure_patient_status_search_test.rb
+- :id: us_core_v610_snapshot1_procedure_patient_date_search_test
+  :file_name: procedure_patient_date_search_test.rb
+- :id: us_core_v610_snapshot1_procedure_read_test
+  :file_name: procedure_read_test.rb
+- :id: us_core_v610_snapshot1_procedure_provenance_revinclude_search_test
+  :file_name: procedure_provenance_revinclude_search_test.rb
+- :id: us_core_v610_snapshot1_procedure_validation_test
+  :file_name: procedure_validation_test.rb
+- :id: us_core_v610_snapshot1_procedure_must_support_test
+  :file_name: procedure_must_support_test.rb
+- :id: us_core_v610_snapshot1_procedure_reference_resolution_test
+  :file_name: procedure_reference_resolution_test.rb
+:id: us_core_v610_snapshot1_procedure
+:file_name: procedure_group.rb
+:delayed_references: []

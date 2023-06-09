@@ -1,0 +1,230 @@
+---
+:name: us_core_medicationdispense
+:class_name: USCorev610_snapshot1MedicationdispenseSequence
+:version: v6.1.0-snapshot1
+:reformatted_version: v610_snapshot1
+:resource: MedicationDispense
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense
+:profile_name: US Core MedicationDispense Profile
+:profile_version: 6.1.0-snapshot1
+:title: MedicationDispense
+:short_description: Verify support for the server capabilities required by the US
+  Core MedicationDispense Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  - type
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - MedicationDispense.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - MedicationDispense.status
+    :comparators: {}
+    :values:
+    - preparation
+    - in-progress
+    - cancelled
+    - on-hold
+    - completed
+    - entered-in-error
+    - stopped
+    - declined
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+  :type:
+    :paths:
+    - type
+    :full_paths:
+    - MedicationDispense.type
+    :comparators: {}
+    :values:
+    - DF
+    - EM
+    - SO
+    - FF
+    - FFC
+    - FFP
+    - FFSS
+    - TF
+    - FS
+    - MS
+    - RF
+    - UD
+    - RFC
+    - RFCS
+    - RFF
+    - RFFS
+    - RFP
+    - RFPS
+    - RFS
+    - TB
+    - TBS
+    - UDE
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHALL
+:include_params:
+- MedicationDispense:medication
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: status
+  - :path: medication[x]
+    :types:
+    - Reference
+  - :path: subject
+    :types:
+    - Reference
+  - :path: performer
+  - :path: performer.actor
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - :path: authorizingPrescription
+    :types:
+    - Reference
+  - :path: type
+  - :path: quantity
+  - :path: whenHandedOver
+  - :path: dosageInstruction
+  - :path: dosageInstruction.text
+  - :path: dosageInstruction.timing
+  - :path: dosageInstruction.doseAndRate
+  - :path: dosageInstruction.doseAndRate.doseQuantity
+    :original_path: dosageInstruction.doseAndRate.dose[x]
+:mandatory_elements:
+- MedicationDispense.status
+- MedicationDispense.medication[x]
+- MedicationDispense.subject
+- MedicationDispense.performer.actor
+- MedicationDispense.substitution.wasSubstituted
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/medicationdispense-status
+  :path: status
+:references:
+- :path: MedicationDispense.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+- :path: MedicationDispense.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: MedicationDispense.context
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+  - http://hl7.org/fhir/StructureDefinition/EpisodeOfCare
+- :path: MedicationDispense.supportingInformation
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource
+- :path: MedicationDispense.performer.actor
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  - http://hl7.org/fhir/StructureDefinition/Device
+- :path: MedicationDispense.location
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: MedicationDispense.authorizingPrescription
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest
+- :path: MedicationDispense.destination
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: MedicationDispense.receiver
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+- :path: MedicationDispense.substitution.responsibleParty
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+- :path: MedicationDispense.detectedIssue
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DetectedIssue
+- :path: MedicationDispense.eventHistory
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Provenance
+:tests:
+- :id: us_core_v610_snapshot1_medication_dispense_patient_search_test
+  :file_name: medication_dispense_patient_search_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_patient_status_type_search_test
+  :file_name: medication_dispense_patient_status_type_search_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_patient_status_search_test
+  :file_name: medication_dispense_patient_status_search_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_read_test
+  :file_name: medication_dispense_read_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_provenance_revinclude_search_test
+  :file_name: medication_dispense_provenance_revinclude_search_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_validation_test
+  :file_name: medication_dispense_validation_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_must_support_test
+  :file_name: medication_dispense_must_support_test.rb
+- :id: us_core_v610_snapshot1_medication_dispense_reference_resolution_test
+  :file_name: medication_dispense_reference_resolution_test.rb
+:id: us_core_v610_snapshot1_medication_dispense
+:file_name: medication_dispense_group.rb
+:delayed_references:
+- :path: performer.actor
+  :resources:
+  - Practitioner
+  - Organization
+  - PractitionerRole
+  - RelatedPerson
