@@ -327,7 +327,7 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore4.new(profile, @must_supports).handle_special_cases
         when '5.0.1'
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
-        when '6.0.0', '6.1.0-snapshot1'
+        when '6.1.0'
           MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         end
       end
