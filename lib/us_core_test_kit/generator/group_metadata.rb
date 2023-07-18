@@ -31,13 +31,13 @@ module USCoreTestKit
 
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
-        'Location' => ['v311', 'v400', 'v501', 'v600'],
-        'Organization' => ['v311', 'v400', 'v501', 'v600'],
-        'Practitioner' => ['v311', 'v400', 'v501', 'v600'],
-        'PractitionerRole' => ['v311', 'v400', 'v501', 'v600'],
-        'Provenance' => ['v311', 'v400', 'v501', 'v600'],
-        'RelatedPerson' => ['v501', 'v600'],
-        'Specimen' => ['v600']
+        'Location' => ['v311', 'v400', 'v501', 'v610'],
+        'Organization' => ['v311', 'v400', 'v501', 'v610'],
+        'Practitioner' => ['v311', 'v400', 'v501', 'v610'],
+        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610'],
+        'Provenance' => ['v311', 'v400', 'v501', 'v610'],
+        'RelatedPerson' => ['v501', 'v610'],
+        'Specimen' => ['v610']
       }.freeze
 
 

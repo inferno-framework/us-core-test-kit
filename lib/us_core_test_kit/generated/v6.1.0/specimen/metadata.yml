@@ -1,0 +1,115 @@
+---
+:name: us_core_specimen
+:class_name: USCorev610SpecimenSequence
+:version: v6.1.0
+:reformatted_version: v610
+:resource: Specimen
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
+:profile_name: US Core Specimen Profile
+:profile_version: 6.1.0
+:title: Specimen
+:short_description: Verify support for the server capabilities required by the US
+  Core Specimen Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: MAY
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Specimen.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+    :multiple_or: MAY
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Specimen.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: type
+  - :path: subject
+    :types:
+    - Reference
+:mandatory_elements:
+- Specimen.type
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/specimen-status
+  :path: status
+:references:
+- :path: Specimen.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Specimen.parent
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Specimen
+- :path: Specimen.request
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+- :path: Specimen.collection.collector
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+- :path: Specimen.processing.additive
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Substance
+:tests:
+- :id: us_core_v610_specimen_read_test
+  :file_name: specimen_read_test.rb
+- :id: us_core_v610_specimen_patient_search_test
+  :file_name: specimen_patient_search_test.rb
+- :id: us_core_v610_specimen__id_search_test
+  :file_name: specimen_id_search_test.rb
+- :id: us_core_v610_specimen_validation_test
+  :file_name: specimen_validation_test.rb
+- :id: us_core_v610_specimen_must_support_test
+  :file_name: specimen_must_support_test.rb
+- :id: us_core_v610_specimen_reference_resolution_test
+  :file_name: specimen_reference_resolution_test.rb
+:id: us_core_v610_specimen
+:file_name: specimen_group.rb
+:delayed_references: []
