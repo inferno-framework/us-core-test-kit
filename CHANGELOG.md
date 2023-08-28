@@ -1,3 +1,8 @@
+# 0.6.0
+
+* Add test suite for US Core 6.1.0
+* Remove test suite for US Core 6.0.0
+
 # 0.5.0
 
 * Add test suite for US Core 6.0.0.
@@ -44,7 +49,7 @@
 * Remove unneeded search values from metadata (#91).
 * Remove optional patternCodeableConcept values from search definition metadata
   to avoid retrieving resources which conform to a different profile than the
-  one being tested (#93). 
+  one being tested (#93).
 * Add a description to the generated suites (#89).
 * Update to handle mandatory slices with required bindings in US Core 5 (#94).
 * Update US Core 5 Provenance tests to handle broken provenance-1 constraint
