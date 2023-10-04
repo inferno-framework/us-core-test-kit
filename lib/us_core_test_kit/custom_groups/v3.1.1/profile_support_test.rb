@@ -1,6 +1,6 @@
 module USCoreTestKit
   class ProfileSupportTest < Inferno::Test
-    id :us_core_profile_support
+    id :us_core_v311_profile_support
     title 'Capability Statement lists support for required US Core Profiles'
     description %(
       The US Core Implementation Guide states:
@@ -20,22 +20,22 @@ module USCoreTestKit
       assert_resource_type(:capability_statement)
       capability_statement = resource
 
-      supported_profiles =
+      supported_resources =
         capability_statement.rest
           &.each_with_object([]) do |rest, resources|
-            rest.resource.each { |resource| resources.concat(resource.resource.supportedProfile) }
+            rest.resource.each { |resource| resources << resource.type }
           end.uniq
 
-      assert supported_profiles.include?('http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'), 'US Core Patient profile not supported'
+      assert supported_resources.include?('Patient'), 'US Core Patient profile not supported'
 
-      us_core_profiles = config.options[:us_core_profiles]
+      us_core_resources = config.options[:us_core_resources]
 
-      other_us_core_profiles = us_core_profiles.reject { |resource_type| resource_type == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient' }
-      other_us_core_profiles_supported = other_us_core_profiles.any? { |profile| supported_profiles.include? profile }
+      other_resources = us_core_resources.reject { |resource_type| resource_type == 'Patient' }
+      other_resources_supported = other_resources.any? { |resource| supported_resources.include? resource }
       assert other_resources_supported, 'No US Core resources other than Patient are supported'
 
       if config.options[:required_resources].present?
-        missing_resources = config.options[:required_resources] - supported_profiles
+        missing_resources = config.options[:required_resources] - supported_resources
 
         missing_resource_list =
           missing_resources
