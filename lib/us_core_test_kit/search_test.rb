@@ -547,7 +547,7 @@ module USCoreTestKit
       end
 
       valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
+      valid_resource_types << 'Medication' if test_medication_inclusion?
 
       invalid_resource_types =
         resources.reject { |entry| valid_resource_types.include? entry.resourceType }
