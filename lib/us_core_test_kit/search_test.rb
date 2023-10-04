@@ -398,7 +398,7 @@ module USCoreTestKit
 
       return if requests_with_external_references.blank?
 
-      search_params = params.merge(_include: 'MedicationRequest:medication')
+      search_params = params.merge(_include: "#{resource_type}:medication")
 
       search_and_check_response(search_params)
 

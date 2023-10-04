@@ -13,9 +13,9 @@ patient on the MedicationDispense resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
-If any MedicationRequest resources use external references to
+If any MedicationDispense resources use external references to
 Medications, the search will be repeated with
-`_include=MedicationRequest:medication`.
+`_include=MedicationDispense:medication`.
 
 This test verifies that the server supports searching by reference using
 the form `patient=[id]` as well as `patient=Patient/[id]`. The two

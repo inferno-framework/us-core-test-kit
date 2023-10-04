@@ -13,9 +13,9 @@ patient + status on the MedicationDispense resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
-If any MedicationRequest resources use external references to
+If any MedicationDispense resources use external references to
 Medications, the search will be repeated with
-`_include=MedicationRequest:medication`.
+`_include=MedicationDispense:medication`.
 
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core//CapabilityStatement-us-core-server.html)
 
