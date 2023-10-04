@@ -5,7 +5,7 @@ for the US Core Implementation Guide
 [v3.1.1](http://hl7.org/fhir/us/core/STU3.1.1/),
 [v4.0.0](http://hl7.org/fhir/us/core/STU4/),
 [v5.0.1](http://hl7.org/fhir/us/core/STU5.0.1/), and
-[v6.1.0](http://hl7.org/fhir/us/core/STU6.1.0/)
+[v6.1.0](http://hl7.org/fhir/us/core/STU6.1/)
 
 ## Instructions
 
