@@ -257,9 +257,9 @@ module USCoreTestKit
         return '' unless test_medication_inclusion?
 
         <<~MEDICATION_INCLUSION_DESCRIPTION
-        If any MedicationRequest resources use external references to
+        If any #{resource_type} resources use external references to
         Medications, the search will be repeated with
-        `_include=MedicationRequest:medication`.
+        `_include=#{resource_type}:medication`.
         MEDICATION_INCLUSION_DESCRIPTION
       end
 

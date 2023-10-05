@@ -398,7 +398,7 @@ module USCoreTestKit
 
       return if requests_with_external_references.blank?
 
-      search_params = params.merge(_include: 'MedicationRequest:medication')
+      search_params = params.merge(_include: "#{resource_type}:medication")
 
       search_and_check_response(search_params)
 
@@ -547,7 +547,7 @@ module USCoreTestKit
       end
 
       valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if resource_type == 'MedicationRequest'
+      valid_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
 
       invalid_resource_types =
         resources.reject { |entry| valid_resource_types.include? entry.resourceType }
