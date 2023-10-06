@@ -1,6 +1,6 @@
-require_relative '../../lib/us_core_test_kit/custom_groups/capability_statement/profile_support_test'
+require_relative '../../lib/us_core_test_kit/custom_groups/v3.1.1/profile_support_test'
 
-RSpec.describe USCoreTestKit::ProfileSupportTest do
+RSpec.describe USCoreTestKit::USCoreV311::ProfileSupportTest do
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
     test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
@@ -17,7 +17,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
 
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v400') }
+  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v311') }
   let(:test) { described_class }
   let(:url) { 'http://example.com/fhir' }
 
@@ -26,11 +26,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       allow_any_instance_of(test).to receive(:config).and_return(
                                        OpenStruct.new(
                                          options: {
-                                           us_core_profiles: {
-                                            'Patient' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'],
-                                            'Condition' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition'],
-                                            'Observation' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus']
-                                           }
+                                           us_core_resources: ['Patient', 'Condition', 'Observation']
                                          }
                                        )
                                      )
@@ -43,8 +39,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
             {
               resource: [
                 {
-                  type: 'Condition',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition']
+                  type: 'Condition'
                 }
               ]
             }
@@ -65,8 +60,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
             {
               resource: [
                 {
-                  type: 'Patient',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient']
+                  type: 'Patient'
                 }
               ]
             }
@@ -77,7 +71,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       result = run(test, url:)
 
       expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('No US Core profiles other than Patient are supported')
+      expect(result.result_message).to eq('No US Core resources other than Patient are supported')
     end
 
     it 'passes if Patient and one other resource are supported' do
@@ -87,15 +81,10 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
             {
               resource: [
                 {
-                  type: 'Patient',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient']
+                  type: 'Patient'
                 },
                 {
-                  type: 'Observation',
-                  supportedProfile:[
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus',
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
-                  ]
+                  type: 'Observation'
                 }
               ]
             }
@@ -114,11 +103,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       allow_any_instance_of(test).to receive(:config).and_return(
                                        OpenStruct.new(
                                          options: {
-                                           us_core_profiles: {
-                                             'Patient' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'],
-                                             'Condition' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition'],
-                                             'Observation' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus']
-                                           },
+                                           us_core_resources: ['Patient', 'Condition', 'Observation'],
                                            required_resources: ['Patient', 'Condition', 'Observation']
                                          }
                                        )
@@ -132,15 +117,10 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
             {
               resource: [
                 {
-                  type: 'Patient',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient']
+                  type: 'Patient'
                 },
                 {
-                  type: 'Observation',
-                  supportedProfile:[
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus',
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
-                  ]
+                  type: 'Observation'
                 }
               ]
             }
@@ -151,7 +131,7 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       result = run(test, url:)
 
       expect(result.result).to eq('fail')
-      expect(result.result_message).to include('http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition')
+      expect(result.result_message).to include('Condition')
     end
 
     it 'passes if not required resources are supported' do
@@ -161,19 +141,13 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
             {
               resource: [
                 {
-                  type: 'Patient',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient']
+                  type: 'Patient'
                 },
                 {
-                  type: 'Observation',
-                  supportedProfile:[
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus',
-                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
-                  ]
+                  type: 'Observation'
                 },
                 {
-                  type: 'Condition',
-                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition']
+                  type: 'Condition'
                 }
               ]
             }
