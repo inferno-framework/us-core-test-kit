@@ -121,7 +121,7 @@ module USCoreTestKit
 
       test from: :us_core_profile_support do
         config(
-          options: { us_core_profiles: PROFILES }
+          options: { us_core_profiles: PROFILES.values.flatten }
         )
       end
 

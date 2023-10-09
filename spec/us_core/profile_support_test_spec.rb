@@ -26,11 +26,11 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       allow_any_instance_of(test).to receive(:config).and_return(
                                        OpenStruct.new(
                                          options: {
-                                           us_core_profiles: {
-                                            'Patient' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'],
-                                            'Condition' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition'],
-                                            'Observation' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus']
-                                           }
+                                           us_core_profiles: [
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition',
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
+                                           ]
                                          }
                                        )
                                      )
@@ -114,12 +114,16 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
       allow_any_instance_of(test).to receive(:config).and_return(
                                        OpenStruct.new(
                                          options: {
-                                           us_core_profiles: {
-                                             'Patient' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'],
-                                             'Condition' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition'],
-                                             'Observation' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus']
-                                           },
-                                           required_resources: ['Patient', 'Condition', 'Observation']
+                                           us_core_profiles: [
+                                             'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',
+                                             'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition',
+                                             'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
+                                           ],
+                                           required_profiles: [
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition',
+                                            'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
+                                           ]
                                          }
                                        )
                                      )

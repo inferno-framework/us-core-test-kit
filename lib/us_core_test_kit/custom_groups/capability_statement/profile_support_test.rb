@@ -28,14 +28,14 @@ module USCoreTestKit
 
       assert supported_profiles.include?('http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'), 'US Core Patient profile not supported'
 
-      us_core_profiles = config.options[:us_core_profiles].values.flatten
+      us_core_profiles = config.options[:us_core_profiles]
 
       other_profiles = us_core_profiles.reject { |resource_type| resource_type == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient' }
       other_profiles_supported = other_profiles.any? { |profile| supported_profiles.include? profile }
       assert other_profiles_supported, 'No US Core profiles other than Patient are supported'
 
-      if config.options[:required_resources].present?
-        required_profiles = config.options[:us_core_profiles].select { |key, _| config.options[:required_resources].include?(key) }.values.flatten
+      if config.options[:required_profiles].present?
+        required_profiles = config.options[:required_profiles]
 
         missing_profiles = required_profiles - supported_profiles
 

@@ -100,7 +100,7 @@ module USCoreTestKit
       test from: :us_core_fhir_version
       test from: :us_core_json_support
 
-      test from: :us_core_v311_profile_support do
+      test from: :us_core_profile_support do
         config(
           options: { us_core_resources: PROFILES.keys }
         )
