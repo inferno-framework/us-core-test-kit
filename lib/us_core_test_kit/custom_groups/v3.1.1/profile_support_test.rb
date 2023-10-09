@@ -9,7 +9,7 @@ module USCoreTestKit
         ```
         The US Core Server SHALL:
         1. Support the US Core Patient resource.
-        2. Support at least one additional US Core resource.
+        2. Support at least one additional US Core resources.
 
         In order to support USCDI, servers must support all USCDI resources.
         ```
