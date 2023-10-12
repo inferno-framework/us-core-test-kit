@@ -2,7 +2,7 @@ require 'tls_test_kit'
 require_relative '../capability_statement/conformance_support_test'
 require_relative '../capability_statement/fhir_version_test'
 require_relative '../capability_statement/json_support_test'
-require_relative '../capability_statement/profile_support_test'
+require_relative './profile_support_test'
 
 module USCoreTestKit
   module USCoreV311

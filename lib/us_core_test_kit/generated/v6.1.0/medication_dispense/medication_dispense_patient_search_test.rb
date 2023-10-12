@@ -38,7 +38,7 @@ requirement of US Core v6.1.0.
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
-  
+
       def self.properties
         @properties ||= SearchTestProperties.new(
           first_search: true,

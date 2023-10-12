@@ -33,6 +33,8 @@ module USCoreTestKit
 
           file_name = entry.full_name.split('/').last
 
+          next if file_name.end_with? 'openapi.json'
+
           next unless file_name.end_with? '.json'
 
           next unless entry.full_name.start_with? 'package/'

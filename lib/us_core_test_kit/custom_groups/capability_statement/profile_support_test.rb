@@ -20,30 +20,32 @@ module USCoreTestKit
       assert_resource_type(:capability_statement)
       capability_statement = resource
 
-      supported_resources =
+      supported_profiles =
         capability_statement.rest
-          &.each_with_object([]) do |rest, resources|
-            rest.resource.each { |resource| resources << resource.type }
+          &.each_with_object([]) do |rest, profiles|
+            rest.resource.each { |resource| profiles.concat(resource.supportedProfile) }
           end.uniq
 
-      assert supported_resources.include?('Patient'), 'US Core Patient profile not supported'
+      assert supported_profiles.include?('http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'), 'US Core Patient profile not supported'
 
-      us_core_resources = config.options[:us_core_resources]
+      us_core_profiles = config.options[:us_core_profiles]
 
-      other_resources = us_core_resources.reject { |resource_type| resource_type == 'Patient' }
-      other_resources_supported = other_resources.any? { |resource| supported_resources.include? resource }
-      assert other_resources_supported, 'No US Core resources other than Patient are supported'
+      other_profiles = us_core_profiles.reject { |resource_type| resource_type == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient' }
+      other_profiles_supported = other_profiles.any? { |profile| supported_profiles.include? profile }
+      assert other_profiles_supported, 'No US Core profiles other than Patient are supported'
 
-      if config.options[:required_resources].present?
-        missing_resources = config.options[:required_resources] - supported_resources
+      if config.options[:required_profiles].present?
+        required_profiles = config.options[:required_profiles]
 
-        missing_resource_list =
-          missing_resources
-          .map { |resource| "`#{resource}`" }
-          .join(', ')
+        missing_profiles = required_profiles - supported_profiles
 
-        assert missing_resources.empty?,
-               "The CapabilityStatement did not list support for the following resources: #{missing_resource_list}"
+        missing_profiles_list =
+          missing_profiles
+            .map { |resource| "`#{resource}`" }
+            .join(', ')
+
+        assert missing_profiles.empty?,
+               "The CapabilityStatement did not list support for the following resources: #{missing_profiles_list}"
       end
     end
   end
