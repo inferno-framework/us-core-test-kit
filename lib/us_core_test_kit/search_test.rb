@@ -373,7 +373,7 @@ module USCoreTestKit
       end
     end
 
-    def test_medication_inclusion(medication_requests, params, patient_id)
+    def test_medication_inclusion(base_resources, params, patient_id)
       return if search_variant_test_records[:medication_inclusion]
 
       scratch[:medication_resources] ||= {}
@@ -381,13 +381,13 @@ module USCoreTestKit
       scratch[:medication_resources][patient_id] ||= []
       scratch[:medication_resources][:contained] ||= []
 
-      requests_with_external_references =
-        medication_requests
+      base_resources_with_external_reference =
+        base_resources
           .select { |request| request&.medicationReference&.present? }
           .reject { |request| request&.medicationReference&.reference&.start_with? '#' }
 
       contained_medications =
-        medication_requests
+        base_resources
           .select { |request| request&.medicationReference&.reference&.start_with? '#' }
           .flat_map(&:contained)
           .select { |resource| resource.resourceType == 'Medication' }
@@ -396,7 +396,7 @@ module USCoreTestKit
       scratch[:medication_resources][patient_id] += contained_medications
       scratch[:medication_resources][:contained] += contained_medications
 
-      return if requests_with_external_references.blank?
+      return if base_resources_with_external_reference.blank?
 
       search_params = params.merge(_include: "#{resource_type}:medication")
 
@@ -404,6 +404,32 @@ module USCoreTestKit
 
       medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
+
+      included_medications = medications.map { |medication| "#{medication.resource_type}/#{medication.id}" }
+
+      matched_base_resurces = base_resources_with_external_reference.select do |base_resource|
+        included_medications.any? do |medication_reference|
+          base_resource.medicationReference.reference == medication_reference ||
+          base_resource.medicationReference.reference.include?("/#{medication_reference}")
+        end
+      end
+
+      not_matched_included_medications = included_medications.select do |medication_reference|
+        matched_base_resurces.none? do |base_resource|
+          base_resource.medicationReference.reference == medication_reference ||
+          base_resource.medicationReference.reference.include?("/#{medication_reference}")
+      end
+
+      not_matched_base_resources = base_resources_with_external_reference - matched_base_resurces;
+
+      not_matched_base_resources_string = not_matched_base_resources
+        .map { |base_resource| "#{resource_type}/#{base_resource.id}" }
+        .join(',')
+
+      not_matched_included_medications_string = not_matched_included_medications.join(',')
+
+      assert not_matched_base_resources.empty? "#{not_matched_base_resources_string} do not have referenced Medication included in the search result."
+      assert not_matched_included_medications.empty? "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
 
