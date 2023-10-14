@@ -407,25 +407,24 @@ module USCoreTestKit
 
       included_medications = medications.map { |medication| "#{medication.resource_type}/#{medication.id}" }
 
-      matched_base_resurces = base_resources_with_external_reference.select do |base_resource|
+      matched_base_resources = []
+      not_matched_base_resources = []
+
+      regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
+
+      matched_base_resources, not_matched_base_resources = base_resources_with_external_reference.partition do |base_resource|
         included_medications.any? do |medication_reference|
-          base_resource.medicationReference.reference == medication_reference ||
-          base_resource.medicationReference.reference.include?("/#{medication_reference}")
+          base_resource.medicationReference.reference.match?(regex_pattern)
         end
       end
 
       not_matched_included_medications = included_medications.select do |medication_reference|
         matched_base_resurces.none? do |base_resource|
-          base_resource.medicationReference.reference == medication_reference ||
-          base_resource.medicationReference.reference.include?("/#{medication_reference}")
+          base_resource.medicationReference.reference.match?(regex_pattern)
+        end
       end
 
-      not_matched_base_resources = base_resources_with_external_reference - matched_base_resurces;
-
-      not_matched_base_resources_string = not_matched_base_resources
-        .map { |base_resource| "#{resource_type}/#{base_resource.id}" }
-        .join(',')
-
+      not_matched_base_resources_string = not_matched_base_resources.map { |base_resource| "#{resource_type}/#{base_resource.id}" }.join(',')
       not_matched_included_medications_string = not_matched_included_medications.join(',')
 
       assert not_matched_base_resources.empty? "#{not_matched_base_resources_string} do not have referenced Medication included in the search result."
