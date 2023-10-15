@@ -1170,31 +1170,36 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(result.result).to eq('fail')
       expect(result.result_message).to include(medication_3.id)
     end
+  end
 
-    it 'handles reference url with version' do
-      medication_request_2.medicationReference.reference += '|1.0'
-      bundle.entry.concat([ {resource: medication_1}, {resource: medication_2}])
+  describe '#is_reference_match' do
+    let(:test_class) { USCoreTestKit::USCoreV311::MedicationRequestPatientIntentSearchTest }
+    let(:test) { test_class.new }
+    let(:pattern_reference) {'Medication/1'}
 
-      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
-        .to_return(status: 200, body: bundle.to_json)
-      stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
-        .to_return(status: 200, body: bundle.to_json)
-
-      result = run(test_class, patient_ids: patient_id, url: url)
-      expect(result.result).to eq('pass')
+    it 'handles local reference' do
+      result = test.is_reference_match?('Medication/1', pattern_reference)
+      expect(result).to be_truthy
     end
 
-    it 'handles reference url with history' do
-      medication_request_2.medicationReference.reference += '/_history/1'
-      bundle.entry.concat([ {resource: medication_1}, {resource: medication_2}])
+    it 'handles canonical url' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1', pattern_reference)
+      expect(result).to be_truthy
+    end
 
-      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
-        .to_return(status: 200, body: bundle.to_json)
-      stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
-        .to_return(status: 200, body: bundle.to_json)
+    it 'handles canonical url with history' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1/_history/1', pattern_reference)
+      expect(result).to be_truthy
+    end
 
-      result = run(test_class, patient_ids: patient_id, url: url)
-      expect(result.result).to eq('pass')
+    it 'handles canonical url with version' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1|1.0', pattern_reference)
+      expect(result).to be_truthy
+    end
+
+    it 'handles resource id correctly' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/12', pattern_reference)
+      expect(result).to be_falsey
     end
   end
 end

@@ -409,15 +409,13 @@ module USCoreTestKit
 
       matched_base_resources, not_matched_base_resources = base_resources_with_external_reference.partition do |base_resource|
         included_medications.any? do |medication_reference|
-          regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
-          base_resource.medicationReference.reference.match?(regex_pattern)
+          is_reference_match?(base_resource.medicationReference.reference, medication_reference)
         end
       end
 
       not_matched_included_medications = included_medications.select do |medication_reference|
         matched_base_resources.none? do |base_resource|
-          regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
-          base_resource.medicationReference.reference.match?(regex_pattern)
+          is_reference_match?(base_resource.medicationReference.reference, medication_reference)
         end
       end
 
@@ -433,6 +431,11 @@ module USCoreTestKit
       scratch[:medication_resources][patient_id] += medications
 
       search_variant_test_records[:medication_inclusion] = true
+    end
+
+    def is_reference_match? (reference, pattern_reference)
+      regex_pattern = /^(#{Regexp.escape(pattern_reference)}|\S+\/#{Regexp.escape(pattern_reference)}(?:[\/|]\S+)*)$/
+      reference.match?(regex_pattern)
     end
 
     def all_scratch_resources
