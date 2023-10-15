@@ -405,21 +405,18 @@ module USCoreTestKit
       medications = fetch_all_bundled_resources.select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
 
-      included_medications = medications.map { |medication| "#{medication.resource_type}/#{medication.id}" }
-
-      matched_base_resources = []
-      not_matched_base_resources = []
-
-      regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
+      included_medications = medications.map { |medication| "#{medication.resourceType}/#{medication.id}" }
 
       matched_base_resources, not_matched_base_resources = base_resources_with_external_reference.partition do |base_resource|
         included_medications.any? do |medication_reference|
+          regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
           base_resource.medicationReference.reference.match?(regex_pattern)
         end
       end
 
       not_matched_included_medications = included_medications.select do |medication_reference|
-        matched_base_resurces.none? do |base_resource|
+        matched_base_resources.none? do |base_resource|
+          regex_pattern = /^(#{Regexp.escape(medication_reference)}|\S+\/#{Regexp.escape(medication_reference)}(?:[\/|]\S+)*)$/
           base_resource.medicationReference.reference.match?(regex_pattern)
         end
       end
@@ -427,8 +424,8 @@ module USCoreTestKit
       not_matched_base_resources_string = not_matched_base_resources.map { |base_resource| "#{resource_type}/#{base_resource.id}" }.join(',')
       not_matched_included_medications_string = not_matched_included_medications.join(',')
 
-      assert not_matched_base_resources.empty? "#{not_matched_base_resources_string} do not have referenced Medication included in the search result."
-      assert not_matched_included_medications.empty? "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
+      assert not_matched_base_resources.empty?, "#{not_matched_base_resources_string} do not have referenced Medication included in the search result."
+      assert not_matched_included_medications.empty?, "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
 
