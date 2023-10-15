@@ -433,8 +433,8 @@ module USCoreTestKit
       search_variant_test_records[:medication_inclusion] = true
     end
 
-    def is_reference_match? (reference, pattern_reference)
-      regex_pattern = /^(#{Regexp.escape(pattern_reference)}|\S+\/#{Regexp.escape(pattern_reference)}(?:[\/|]\S+)*)$/
+    def is_reference_match? (reference, local_reference)
+      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
       reference.match?(regex_pattern)
     end
 
