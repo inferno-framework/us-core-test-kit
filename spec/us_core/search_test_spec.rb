@@ -1142,7 +1142,7 @@ RSpec.describe USCoreTestKit::SearchTest do
         .to_return(status: 200, body: bundle.to_json)
     end
 
-    it 'passes when references and included Medications are excat match' do
+    it 'passes when references and included Medications are exact match' do
       bundle.entry.concat([ {resource: medication_1 }, {resource: medication_2}])
       stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle.to_json)
