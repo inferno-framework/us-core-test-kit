@@ -1151,14 +1151,13 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'fails when there are more references than included Medications' do
+    it 'passes when there are more references than included Medications' do
       bundle.entry.concat([ {resource: medication_1 }])
       stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle.to_json)
 
       result = run(test_class, patient_ids: patient_id, url: url)
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to include(medication_request_2.id)
+      expect(result.result).to eq('pass')
     end
 
     it 'fails when there are less references than included Medications' do

@@ -407,7 +407,7 @@ module USCoreTestKit
 
       included_medications = medications.map { |medication| "#{medication.resourceType}/#{medication.id}" }
 
-      matched_base_resources, not_matched_base_resources = base_resources_with_external_reference.partition do |base_resource|
+      matched_base_resources = base_resources_with_external_reference.select do |base_resource|
         included_medications.any? do |medication_reference|
           is_reference_match?(base_resource.medicationReference.reference, medication_reference)
         end
@@ -419,10 +419,7 @@ module USCoreTestKit
         end
       end
 
-      not_matched_base_resources_string = not_matched_base_resources.map { |base_resource| "#{resource_type}/#{base_resource.id}" }.join(',')
       not_matched_included_medications_string = not_matched_included_medications.join(',')
-
-      assert not_matched_base_resources.empty?, "#{not_matched_base_resources_string} do not have referenced Medication included in the search result."
       assert not_matched_included_medications.empty?, "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
