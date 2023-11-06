@@ -1,11 +1,9 @@
 require_relative '../../../reference_resolution_test'
-require_relative '../resource_list'
 
 module USCoreTestKit
   module USCoreV400
     class PediatricWeightForHeightReferenceResolutionTest < Inferno::Test
       include USCoreTestKit::ReferenceResolutionTest
-      include ResourceList
 
       title 'MustSupport references within Observation resources are valid'
       description %(
