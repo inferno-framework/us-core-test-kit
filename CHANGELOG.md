@@ -1,3 +1,20 @@
+# 0.6.1
+
+* Fix broken link to US Core 6.1.0 IG by @Justin-Ramm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/130
+* FI-2212 Fix _include search for MedicationDispense by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/132
+* FI-2163 Update CapabilityStatement Test 1.05 for supported profile by
+  @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/133
+* FI-2240 Fix non-root deployment on US Core by @arscan in
+  https://github.com/inferno-framework/us-core-test-kit/pull/134
+* FI-2240 Compare references in Medication include test result by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/135
+* FI-2104: Remove resource list by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/136
+* FI-2268 Merge reference_test_spec and reference_resolution_test_spec by
+  @360dgries in https://github.com/inferno-framework/us-core-test-kit/pull/137
+
 # 0.6.0
 
 * Add test suite for US Core 6.1.0
