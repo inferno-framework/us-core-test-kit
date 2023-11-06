@@ -1047,4 +1047,158 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(result.result).to eq('pass')
     end
   end
+
+  describe '#test_medication_inclusion' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::MedicationRequestPatientIntentSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_id) { '85' }
+    let(:test_scratch) { {} }
+    let(:intent) { 'order' }
+    let(:medication_request_1) {
+      FHIR::MedicationRequest.new(
+        id: 'medication-request-local-reference',
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        intent: intent,
+        medicationReference: {
+          reference: 'Medication/medication-1'
+        }
+      )
+    }
+    let(:medication_request_2) {
+      FHIR::MedicationRequest.new(
+        id: 'medication-request-url',
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        intent: intent,
+        medicationReference: {
+          reference: 'http://example.com/Medication/medication-2'
+        }
+      )
+    }
+    let(:medication_requests) {
+      [
+        medication_request_1,
+        medication_request_2
+      ]
+    }
+    let(:medication_1) {
+      FHIR::Medication.new(
+        id: 'medication-1'
+      )
+    }
+    let(:medication_2) {
+      FHIR::Medication.new(
+        id: 'medication-2'
+      )
+    }
+    let(:medication_3) {
+      FHIR::Medication.new(
+        id: 'medication-3'
+      )
+    }
+    let(:bundle) {
+      FHIR::Bundle.new(
+        entry: [
+          { resource: medication_request_1 },
+          { resource: medication_request_2 }
+        ]
+      )
+    }
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch).and_return(test_scratch)
+
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=proposal")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=plan")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=original-order")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=reflex-order")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=filler-order")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=instance-order")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=option")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:post, "#{url}/MedicationRequest/_search")
+        .with(body: {patient: patient_id, intent: 'order'})
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=Patient/#{patient_id}&intent=order")
+        .to_return(status: 200, body: bundle.to_json)
+      stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option")
+        .to_return(status: 200, body: bundle.to_json)
+    end
+
+    it 'passes when references and included Medications are exact match' do
+      bundle.entry.concat([ {resource: medication_1 }, {resource: medication_2}])
+      stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'passes when there are more references than included Medications' do
+      bundle.entry.concat([ {resource: medication_1 }])
+      stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'fails when there are less references than included Medications' do
+      bundle.entry.concat([ {resource: medication_1}, {resource: medication_2}, {resource: medication_3 }])
+      stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
+        .to_return(status: 200, body: bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to include(medication_3.id)
+    end
+  end
+
+  describe '#is_reference_match' do
+    let(:test_class) { USCoreTestKit::USCoreV311::MedicationRequestPatientIntentSearchTest }
+    let(:test) { test_class.new }
+    let(:pattern_reference) {'Medication/1'}
+
+    it 'handles local reference' do
+      result = test.is_reference_match?('Medication/1', pattern_reference)
+      expect(result).to be_truthy
+    end
+
+    it 'handles canonical url' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1', pattern_reference)
+      expect(result).to be_truthy
+    end
+
+    it 'handles canonical url with history' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1/_history/1', pattern_reference)
+      expect(result).to be_truthy
+    end
+
+    it 'handles canonical url with version' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/1|1.0', pattern_reference)
+      expect(result).to be_truthy
+    end
+
+    it 'handles resource id correctly' do
+      result = test.is_reference_match?('http://example.com/fhir/Medication/12', pattern_reference)
+      expect(result).to be_falsey
+    end
+  end
 end
