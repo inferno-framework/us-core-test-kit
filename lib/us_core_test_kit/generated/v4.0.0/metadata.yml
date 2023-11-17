@@ -84,6 +84,8 @@
     - :path: patient
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: reaction
     - :path: reaction.manifestation
   :mandatory_elements:
@@ -280,6 +282,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - CarePlan.text
   - CarePlan.text.status
@@ -469,6 +473,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: participant
     - :path: participant.role
     - :path: participant.member
@@ -666,6 +672,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -790,6 +798,8 @@
     - :path: patient
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: distinctIdentifier
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
@@ -992,6 +1002,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: issued
@@ -1003,6 +1015,8 @@
     - :path: result
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -1215,9 +1229,13 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: encounter
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: issued
@@ -1473,6 +1491,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: date
     - :path: author
       :types:
@@ -1489,6 +1509,8 @@
     - :path: context.encounter
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: context.period
     :choices:
     - :paths:
@@ -1743,6 +1765,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: participant
     - :path: participant.type
     - :path: participant.period
@@ -1767,6 +1791,8 @@
     - :path: serviceProvider
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     :choices:
     - :paths:
       - reasonCode
@@ -1974,6 +2000,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: target
     - :path: target.dueDate
       :original_path: target.due[x]
@@ -2114,6 +2142,8 @@
     - :path: patient
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: occurrenceDateTime
       :original_path: occurrence[x]
     - :path: primarySource
@@ -2288,6 +2318,8 @@
     - :path: managingOrganization
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   :mandatory_elements:
   - Location.name
   - Location.position.longitude
@@ -2542,9 +2574,13 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: encounter
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: authoredOn
     - :path: requester
       :types:
@@ -2799,6 +2835,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
@@ -3053,6 +3091,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: component
@@ -3338,6 +3378,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -3595,6 +3637,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -3855,6 +3899,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -4115,6 +4161,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -4375,6 +4423,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -4635,6 +4685,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -4892,6 +4944,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -5150,6 +5204,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -5407,6 +5463,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -5691,6 +5749,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
@@ -5978,6 +6038,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: value[x]
@@ -6227,6 +6289,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -6909,9 +6973,13 @@
     - :path: practitioner
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: organization
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: code
     - :path: specialty
     - :path: location
@@ -7090,6 +7158,8 @@
     - :path: subject
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: performedDateTime
       :original_path: performed[x]
   :mandatory_elements:

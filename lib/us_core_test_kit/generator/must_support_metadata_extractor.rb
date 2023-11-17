@@ -264,14 +264,20 @@ module USCoreTestKit
         index = 0
         target_profiles = []
 
-        type.source_hash['_targetProfile']&.each do |hash|
-          if hash.present?
-            element = FHIR::Element.new(hash)
-            target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+        if type.targetProfile&.length == 1 && profile.version != '3.1.1'
+          target_profiles << type.targetProfile.first
+        else
+          type.source_hash['_targetProfile']&.each do |hash|
+            if hash.present?
+              element = FHIR::Element.new(hash)
+              target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+            end
+            index += 1
           end
-          index += 1
         end
 
+        # remove target_profile for FHIR Base resource type.
+        target_profiles.delete_if { |reference| reference.start_with?('http://hl7.org/fhir/StructureDefinition')}
         metadata[:target_profiles] = target_profiles if target_profiles.present?
       end
 

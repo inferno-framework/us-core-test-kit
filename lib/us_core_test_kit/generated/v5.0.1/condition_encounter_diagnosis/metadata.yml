@@ -252,9 +252,13 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: encounter
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: onsetDateTime
     :original_path: onset[x]
   - :path: abatementDateTime

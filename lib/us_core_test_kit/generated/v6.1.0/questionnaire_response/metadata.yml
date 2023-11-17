@@ -142,6 +142,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: authored
   - :path: author
     :types:
