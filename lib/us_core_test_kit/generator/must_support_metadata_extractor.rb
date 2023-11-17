@@ -261,12 +261,14 @@ module USCoreTestKit
       end
 
       def handle_type_must_support_target_profiles(type, metadata)
-        index = 0
+        return if profile.version == '3.1.1'
+
         target_profiles = []
 
-        if type.targetProfile&.length == 1 && profile.version != '3.1.1'
+        if type.targetProfile&.length == 1
           target_profiles << type.targetProfile.first
         else
+          index = 0
           type.source_hash['_targetProfile']&.each do |hash|
             if hash.present?
               element = FHIR::Element.new(hash)
