@@ -14,9 +14,8 @@ module USCoreTestKit
 
         * Observation.category
         * Observation.category:us-core
-        * Observation.code
+        * Observation.code or Observation.specimen
         * Observation.effectiveDateTime
-        * Observation.specimen
         * Observation.status
         * Observation.subject
         * Observation.valueCodeableConcept

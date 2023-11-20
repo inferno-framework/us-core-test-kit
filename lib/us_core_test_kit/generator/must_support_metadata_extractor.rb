@@ -327,6 +327,7 @@ module USCoreTestKit
         remove_vital_sign_component
         remove_blood_pressure_value
         remove_observation_data_absent_reason
+        add_must_support_choices
 
         case profile.version
         when '3.1.1'
@@ -382,6 +383,31 @@ module USCoreTestKit
             ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
           end
         end
+      end
+
+      # Add common MustSupport choices for all versions
+      def add_must_support_choices
+        choices = []
+
+        case profile.type
+        when 'DocumentReference'
+          choices << { paths: ['content.attachment.data', 'content.attachment.url'] }
+        when 'Patient'
+          # FHIR-40299 adds USCDI MustSupport choices for:
+          # * address.period.end and address.use,
+          # * name.period.end and name.use
+          choices << {
+            paths: ['address.period.end', 'address.use'],
+            uscdi_only: true
+          }
+
+          choices << {
+            paths: ['name.period.end', 'name.use'],
+            uscdi_only: true
+          }
+        end
+
+        @must_supports[:choices] = choices if choices.present?
       end
     end
   end

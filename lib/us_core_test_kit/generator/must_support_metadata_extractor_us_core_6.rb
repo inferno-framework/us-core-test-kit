@@ -47,7 +47,12 @@ module USCoreTestKit
           }
         end
 
-        if profile.id == 'us-core-observation-screening-assessment'
+        case profile.id
+        when 'us-core-observation-lab'
+          more_choices << {
+            paths: ['code', 'specimen']
+          }
+        when 'us-core-observation-screening-assessment'
           more_choices << {
             target_profiles: [
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',

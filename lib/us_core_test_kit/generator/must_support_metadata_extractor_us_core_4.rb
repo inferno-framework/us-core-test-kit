@@ -22,32 +22,20 @@ module USCoreTestKit
       end
 
       def add_must_support_choices
-        choices = []
+        more_choices = []
 
         case profile.type
-        when 'DocumentReference'
-          choices << { paths: ['content.attachment.data', 'content.attachment.url'] }
         when 'Encounter'
-          choices << { paths: ['reasonCode', 'reasonReference'] }
-          choices << { paths: ['location.location', 'serviceProvider'] }
+          more_choices << { paths: ['reasonCode', 'reasonReference'] }
+          more_choices << { paths: ['location.location', 'serviceProvider'] }
         when 'MedicationRequest'
-          choices << { paths: ['reportedBoolean', 'reportedReference'] }
-        when 'Patient'
-          # FHIR-40299 adds USCDI MustSupport choices for:
-          # * address.period.end and address.use,
-          # * name.period.end and name.use
-          choices << {
-            paths: ['address.period.end', 'address.use'],
-            uscdi_only: true
-          }
-
-          choices << {
-            paths: ['name.period.end', 'name.use'],
-            uscdi_only: true
-          }
+          more_choices << { paths: ['reportedBoolean', 'reportedReference'] }
         end
 
-        must_supports[:choices] = choices if choices.present?
+        if more_choices.present?
+          must_supports[:choices] ||= []
+          must_supports[:choices].concat(more_choices)
+        end
       end
 
       def remove_patient_address_period

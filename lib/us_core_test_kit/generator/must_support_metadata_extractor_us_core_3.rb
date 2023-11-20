@@ -15,29 +15,17 @@ module USCoreTestKit
       end
 
       def add_must_support_choices
-        choices = []
+        more_choices = []
 
         case profile.type
         when 'Device'
-          choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] }
-        when 'DocumentReference'
-          choices << { paths: ['content.attachment.data', 'content.attachment.url'] }
-        when 'Patient'
-          # FHIR-40299 adds USCDI MustSupport choices for:
-          # * address.period.end and address.use,
-          # * name.period.end and name.use
-          choices << {
-            paths: ['address.period.end', 'address.use'],
-            uscdi_only: true
-          }
-
-          choices << {
-            paths: ['name.period.end', 'name.use'],
-            uscdi_only: true
-          }
+          more_choices << { paths: ['udiCarrier.carrierAIDC', 'udiCarrier.carrierHRF'] }
         end
 
-        must_supports[:choices] = choices if choices.present?
+        if more_choices.present?
+          must_supports[:choices] ||= []
+          must_supports[:choices].concat(more_choices)
+        end
       end
 
       # FHIR-40299 removes Patient.address.period from MustSupport,
