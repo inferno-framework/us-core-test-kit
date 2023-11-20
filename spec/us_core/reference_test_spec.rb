@@ -23,16 +23,16 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
     let(:test_class) do
       Class.new(Inferno::Entities::Test) do
         include USCoreTestKit::ReferenceResolutionTest
-  
+
         fhir_client { url 'https://example.com/fhir' }
       end
     end
-  
+
     let(:test) do
       test_class.new(scratch: {})
     end
     let(:base_url) { 'https://example.com/fhir' }
-    
+
     context 'when the reference has already been resolved' do
       let(:reference_string) { 'Encounter/123' }
       let(:resource) do
@@ -314,7 +314,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         result = run(test_class, url: url)
         expect(result.result).to eq('skip')
-        expect(result.result_message).to eq('Could not resolve Must Support references encounter')
+        expect(result.result_message).to eq('Could not resolve Must Support references encounter(http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter)')
       end
     end
   end
