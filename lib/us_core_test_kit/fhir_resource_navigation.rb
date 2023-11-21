@@ -33,7 +33,9 @@ module USCoreTestKit
         return elements.first
       end
 
+
       path_segments = path.split(/(?<!hl7)\./)
+
       segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').to_sym
 
       no_elements_present =

@@ -23,7 +23,6 @@ module USCoreTestKit
       if (missing_elements + missing_slices + missing_extensions).length.zero?
         pass
       end
-
       skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
            "provided #{resource_type} resource(s)"
     end
@@ -56,7 +55,7 @@ module USCoreTestKit
 
     def missing_must_support_strings
       missing_elements.map { |element_definition| missing_element_string(element_definition) } +
-        missing_slices.map { |slice_definition| slice_definition[:name] } +
+        missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
         missing_extensions.map { |extension_definition| extension_definition[:id] }
     end
 
