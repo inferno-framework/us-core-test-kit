@@ -601,7 +601,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:clinical-test
+  - :slice_id: Observation.category:clinical-test
+    :slice_name: clinical-test
     :path: category
     :discriminator:
       :type: patternCodeableConcept

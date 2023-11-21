@@ -146,7 +146,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: DiagnosticReport.category:LaboratorySlice
+  - :slice_id: DiagnosticReport.category:LaboratorySlice
+    :slice_name: LaboratorySlice
     :path: category
     :discriminator:
       :type: patternCodeableConcept

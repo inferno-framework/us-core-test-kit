@@ -20,7 +20,7 @@ module USCoreTestKit
       return nil if element.nil?
 
       elements = Array.wrap(element)
-
+      path = (path.include?(':') && !path.include?('url')) ? path.gsub(/:.*\./, '.') : path
       if path.empty?
         unless include_dar
           elements = elements.reject do |el|

@@ -149,7 +149,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: DiagnosticReport.category:us-core
+  - :slice_id: DiagnosticReport.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding

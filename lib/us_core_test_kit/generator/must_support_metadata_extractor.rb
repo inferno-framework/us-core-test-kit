@@ -77,7 +77,8 @@ module USCoreTestKit
       def pattern_slices
         must_support_pattern_slice_elements.map do |current_element|
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.id.split(':')[1],
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
             discriminator = discriminators(sliced_element(current_element)).first
@@ -89,7 +90,6 @@ module USCoreTestKit
               else
                 current_element
               end
-
             metadata[:discriminator] =
               if pattern_element.patternCodeableConcept.present?
                 {
@@ -156,7 +156,8 @@ module USCoreTestKit
           type_code = type_element.type.first.code
 
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.id.split(':')[1],
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'type',
@@ -179,7 +180,8 @@ module USCoreTestKit
       def value_slices
         must_support_value_slice_elements.map do |current_element|
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.id.split(':')[1],
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'value'
@@ -283,7 +285,7 @@ module USCoreTestKit
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", '')
+            path: current_element.id.gsub("#{resource}.", '')
           }.tap do |current_metadata|
             if is_uscdi_requirement_element?(current_element)
               current_metadata[:uscdi_only] = true

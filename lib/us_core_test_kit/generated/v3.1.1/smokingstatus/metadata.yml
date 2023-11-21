@@ -139,7 +139,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.value[x]:valueCodeableConcept
+  - :slice_id: Observation.value[x]:valueCodeableConcept
+    :slice_name: valueCodeableConcept
     :path: value[x]
     :discriminator:
       :type: type

@@ -13,32 +13,41 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category.coding
-        * Observation.category.coding.code
-        * Observation.category.coding.system
         * Observation.category:VSCat
+        * Observation.category:VSCat.coding
+        * Observation.category:VSCat.coding.code
+        * Observation.category:VSCat.coding.system
         * Observation.code
         * Observation.code.coding
         * Observation.code.coding:O2Sat
         * Observation.code.coding:PulseOx
         * Observation.component
         * Observation.component.code
-        * Observation.component.code.coding.code
         * Observation.component.valueQuantity
-        * Observation.component.valueQuantity.code
-        * Observation.component.valueQuantity.system
-        * Observation.component.valueQuantity.unit
-        * Observation.component.valueQuantity.value
         * Observation.component:Concentration
+        * Observation.component:Concentration.code.coding.code
+        * Observation.component:Concentration.dataAbsentReason
+        * Observation.component:Concentration.valueQuantity
+        * Observation.component:Concentration.valueQuantity.code
+        * Observation.component:Concentration.valueQuantity.system
+        * Observation.component:Concentration.valueQuantity.unit
+        * Observation.component:Concentration.valueQuantity.value
         * Observation.component:FlowRate
+        * Observation.component:FlowRate.code.coding.code
+        * Observation.component:FlowRate.dataAbsentReason
+        * Observation.component:FlowRate.valueQuantity
+        * Observation.component:FlowRate.valueQuantity.code
+        * Observation.component:FlowRate.valueQuantity.system
+        * Observation.component:FlowRate.valueQuantity.unit
+        * Observation.component:FlowRate.valueQuantity.value
         * Observation.effectiveDateTime
         * Observation.status
         * Observation.subject
         * Observation.valueQuantity
-        * Observation.valueQuantity.code
-        * Observation.valueQuantity.system
-        * Observation.valueQuantity.unit
-        * Observation.valueQuantity.value
+        * Observation.valueQuantity:valueQuantity.code
+        * Observation.valueQuantity:valueQuantity.system
+        * Observation.valueQuantity:valueQuantity.unit
+        * Observation.valueQuantity:valueQuantity.value
         * Observation.value[x]:valueQuantity
       )
 

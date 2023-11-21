@@ -140,7 +140,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:Laboratory
+  - :slice_id: Observation.category:Laboratory
+    :slice_name: Laboratory
     :path: category
     :discriminator:
       :type: patternCodeableConcept

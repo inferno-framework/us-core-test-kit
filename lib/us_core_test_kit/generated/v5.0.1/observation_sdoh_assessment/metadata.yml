@@ -187,14 +187,16 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:survey
+  - :slice_id: Observation.category:survey
+    :slice_name: survey
     :path: category
     :discriminator:
       :type: patternCodeableConcept
       :path: ''
       :code: survey
       :system: http://terminology.hl7.org/CodeSystem/observation-category
-  - :name: Observation.category:sdoh
+  - :slice_id: Observation.category:sdoh
+    :slice_name: sdoh
     :path: category
     :discriminator:
       :type: patternCodeableConcept

@@ -13,21 +13,30 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category.coding
-        * Observation.category.coding.code
-        * Observation.category.coding.system
         * Observation.category:VSCat
+        * Observation.category:VSCat.coding
+        * Observation.category:VSCat.coding.code
+        * Observation.category:VSCat.coding.system
         * Observation.code.coding.code
         * Observation.component
         * Observation.component.code
-        * Observation.component.code.coding.code
         * Observation.component.valueQuantity
-        * Observation.component.valueQuantity.code
-        * Observation.component.valueQuantity.system
-        * Observation.component.valueQuantity.unit
-        * Observation.component.valueQuantity.value
         * Observation.component:diastolic
+        * Observation.component:diastolic.code.coding.code
+        * Observation.component:diastolic.dataAbsentReason
+        * Observation.component:diastolic.valueQuantity
+        * Observation.component:diastolic.valueQuantity.code
+        * Observation.component:diastolic.valueQuantity.system
+        * Observation.component:diastolic.valueQuantity.unit
+        * Observation.component:diastolic.valueQuantity.value
         * Observation.component:systolic
+        * Observation.component:systolic.code.coding.code
+        * Observation.component:systolic.dataAbsentReason
+        * Observation.component:systolic.valueQuantity
+        * Observation.component:systolic.valueQuantity.code
+        * Observation.component:systolic.valueQuantity.system
+        * Observation.component:systolic.valueQuantity.unit
+        * Observation.component:systolic.valueQuantity.value
         * Observation.effectiveDateTime
         * Observation.status
         * Observation.subject

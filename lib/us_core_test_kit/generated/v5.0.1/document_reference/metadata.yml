@@ -178,7 +178,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: DocumentReference.category:us-core
+  - :slice_id: DocumentReference.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding

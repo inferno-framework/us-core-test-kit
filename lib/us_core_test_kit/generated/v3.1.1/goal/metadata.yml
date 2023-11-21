@@ -104,7 +104,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Goal.target.due[x]:dueDate
+  - :slice_id: Goal.target.due[x]:dueDate
+    :slice_name: dueDate
     :path: target.due[x]
     :discriminator:
       :type: type

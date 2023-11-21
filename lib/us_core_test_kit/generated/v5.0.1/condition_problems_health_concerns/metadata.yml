@@ -239,7 +239,8 @@
   - :id: Condition.extension:assertedDate
     :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
   :slices:
-  - :name: Condition.category:us-core
+  - :slice_id: Condition.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding
@@ -247,7 +248,8 @@
       :values:
       - problem-list-item
       - health-concern
-  - :name: Condition.category:sdoh
+  - :slice_id: Condition.category:sdoh
+    :slice_name: sdoh
     :path: category
     :discriminator:
       :type: patternCodeableConcept
