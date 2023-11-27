@@ -20,7 +20,6 @@ module USCoreTestKit
       return nil if element.nil?
 
       elements = Array.wrap(element)
-      path = (path.include?(':') && !path.include?('url')) ? path.gsub(/:.*\./, '.') : path
       if path.empty?
         unless include_dar
           elements = elements.reject do |el|
@@ -33,22 +32,20 @@ module USCoreTestKit
         return elements.first
       end
 
+      
 
       path_segments = path.split(/(?<!hl7)\./)
 
       segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').to_sym
-
       no_elements_present =
         elements.none? do |element|
         child = get_next_value(element, segment)
-
         child.present? || child == false
       end
 
       return nil if no_elements_present
 
       remaining_path = path_segments.join('.')
-
       elements.each do |element|
         child = get_next_value(element, segment)
         element_found =
@@ -66,9 +63,14 @@ module USCoreTestKit
 
     def get_next_value(element, property)
       extension_url = property[/(?<=where\(url=').*(?='\))/]
-
       if extension_url.present?
         element.url == extension_url ? element : nil
+      elsif property.to_s.include?(':') && !property.to_s.include?('url')
+        #Filter slice for the entry that matches the specific sliceName
+        element_name = property.to_s.split(':')[0].gsub(/^class$/, 'local_class')
+        slice_name = property.to_s.split(':')[1].gsub(/^class$/, 'local_class')
+        slices = element.send(element_name)
+        slices.find {|slice| find_a_value_at(slice, 'type.coding.code') == slice_name}
       else
         element.send(property)
       end

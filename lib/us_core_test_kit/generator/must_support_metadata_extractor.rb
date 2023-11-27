@@ -78,7 +78,7 @@ module USCoreTestKit
         must_support_pattern_slice_elements.map do |current_element|
           {
             slice_id: current_element.id,
-            slice_name: current_element.id.split(':')[1],
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
             discriminator = discriminators(sliced_element(current_element)).first
@@ -157,7 +157,7 @@ module USCoreTestKit
 
           {
             slice_id: current_element.id,
-            slice_name: current_element.id.split(':')[1],
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'type',
@@ -181,7 +181,7 @@ module USCoreTestKit
         must_support_value_slice_elements.map do |current_element|
           {
             slice_id: current_element.id,
-            slice_name: current_element.id.split(':')[1],
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'value'
