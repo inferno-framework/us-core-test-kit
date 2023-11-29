@@ -21,6 +21,7 @@ module USCoreTestKit
         * Observation.component
         * Observation.component.code
         * Observation.component.code.coding.code
+        * Observation.component.dataAbsentReason
         * Observation.component.valueQuantity
         * Observation.component.valueQuantity.code
         * Observation.component.valueQuantity.system
