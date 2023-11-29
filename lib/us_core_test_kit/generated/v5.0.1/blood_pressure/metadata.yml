@@ -197,6 +197,7 @@
     :original_path: component.value[x].value
   - :path: component.valueQuantity.unit
     :original_path: component.value[x].unit
+  - :path: component.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

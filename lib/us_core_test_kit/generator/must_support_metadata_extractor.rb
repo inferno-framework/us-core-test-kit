@@ -317,7 +317,7 @@ module USCoreTestKit
 
       def handle_special_cases
         remove_vital_sign_component
-        remove_blood_pressure_value
+        remove_blood_pressure_value_data_absent_reason
         remove_observation_data_absent_reason
 
         case profile.version
@@ -345,7 +345,9 @@ module USCoreTestKit
 
       # Exclude Observation.component from vital sign profiles except observation-bp and observation-pulse-ox
       def remove_vital_sign_component
-        if is_vital_sign? && !is_blood_pressure? && profile.name != 'USCorePulseOximetryProfile'
+        return if is_blood_pressure? || profile.name == 'USCorePulseOximetryProfile'
+
+        if is_vital_sign?
           @must_supports[:elements].delete_if do |element|
             element[:path].start_with?('component')
           end
@@ -353,14 +355,21 @@ module USCoreTestKit
       end
 
       # Exclude Observation.value[x] from observation-bp
-      def remove_blood_pressure_value
-        if is_blood_pressure?
-          @must_supports[:elements].delete_if do |element|
-            element[:path].start_with?('value[x]') || element[:original_path]&.start_with?('value[x]')
-          end
-          @must_supports[:slices].delete_if do |slice|
-            slice[:path].start_with?('value[x]')
-          end
+      def remove_blood_pressure_value_data_absent_reason
+        return unless is_blood_pressure?
+
+        @must_supports[:elements].delete_if do |element|
+          element[:path].start_with?('value[x]') ||
+          element[:original_path]&.start_with?('value[x]') ||
+          element[:path] == ('dataAbsentReason') ||
+          (
+            element[:path] == ('component.dataAbsentReason') &&
+            ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
+          )
+        end
+
+        @must_supports[:slices].delete_if do |slice|
+          slice[:path].start_with?('value[x]')
         end
       end
 
@@ -368,7 +377,10 @@ module USCoreTestKit
       # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
       # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles and observation lab profile
       # Smoking status profile does not have MS on dataAbsentReason. It is safe to use profile.type == 'Observation'
+      # Since US Core 5.0.1, Blood Pressure profile are required to support component.dataAbsentReason
       def remove_observation_data_absent_reason
+        return if is_blood_pressure?
+
         if profile.type == 'Observation'
           @must_supports[:elements].delete_if do |element|
             ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
