@@ -21,8 +21,7 @@ module USCoreTestKit
         For ONC USCDI requirements, each Procedure must support the following additional elements:
 
         * Procedure.basedOn
-        * Procedure.reasonCode
-        * Procedure.reasonReference
+        * Procedure.reasonCode or Procedure.reasonReference
       )
 
       id :us_core_v700_ballot_procedure_must_support_test

@@ -24,6 +24,7 @@ module USCoreTestKit
         * Observation.component.code
         * Observation.component.code.coding
         * Observation.component.code.coding.code
+        * Observation.component.dataAbsentReason
         * Observation.component.valueQuantity
         * Observation.component.valueQuantity.code
         * Observation.component.valueQuantity.system
@@ -37,7 +38,6 @@ module USCoreTestKit
         * Observation.effectivePeriod
         * Observation.status
         * Observation.subject
-        * Observation.valueQuantity
       )
 
       id :us_core_v700_ballot_average_blood_pressure_must_support_test

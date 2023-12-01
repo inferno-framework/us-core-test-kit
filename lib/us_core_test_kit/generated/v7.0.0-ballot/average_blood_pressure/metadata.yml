@@ -206,8 +206,6 @@
     :original_path: effective[x]
   - :path: effectivePeriod
     :original_path: effective[x]
-  - :path: valueQuantity
-    :original_path: value[x]
   - :path: component
   - :path: component.code
   - :path: component.valueQuantity
@@ -227,6 +225,7 @@
     :original_path: component.value[x].value
   - :path: component.valueQuantity.unit
     :original_path: component.value[x].unit
+  - :path: component.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category
