@@ -3,6 +3,7 @@ require_relative 'must_support_metadata_extractor_us_core_3'
 require_relative 'must_support_metadata_extractor_us_core_4'
 require_relative 'must_support_metadata_extractor_us_core_5'
 require_relative 'must_support_metadata_extractor_us_core_6'
+require_relative 'must_support_metadata_extractor_us_core_7'
 
 module USCoreTestKit
   class Generator
@@ -344,6 +345,8 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
         when '6.1.0'
           MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
+        when '7.0.0-ballot'
+          MustSupportMetadataExtractorUsCore7.new(profile, @must_supports).handle_special_cases
         end
       end
 
@@ -355,7 +358,8 @@ module USCoreTestKit
       end
 
       def is_blood_pressure?
-        ['observation-bp', 'USCoreBloodPressureProfile'].include?(profile.name)
+        #['observation-bp', 'USCoreBloodPressureProfile', ].include?(profile.name)
+        ['bp', 'us-core-blood-pressure', 'us-core-average-blood-pressure'].include?(profile.id)
       end
 
       # Exclude Observation.component from vital sign profiles except observation-bp and observation-pulse-ox

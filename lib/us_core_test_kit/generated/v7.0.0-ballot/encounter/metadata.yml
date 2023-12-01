@@ -239,6 +239,13 @@
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  :choices:
+  - :paths:
+    - reasonCode
+    - reasonReference
+  - :paths:
+    - location.location
+    - serviceProvider
 :mandatory_elements:
 - Encounter.identifier.system
 - Encounter.identifier.value
