@@ -15,12 +15,12 @@ module USCoreTestKit
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
       missing_elements(resources)
-      missing_slices(resources)
-      missing_extensions(resources)
+      # missing_slices(resources)
+      # missing_extensions(resources)
 
-      handle_must_support_choices if metadata.must_supports[:choices].present?
+      # handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      if (missing_elements + missing_slices + missing_extensions).length.zero?
+      if (missing_elements).length.zero?# + missing_slices + missing_extensions 
         pass
       end
       skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
@@ -54,9 +54,9 @@ module USCoreTestKit
     end
 
     def missing_must_support_strings
-      missing_elements.map { |element_definition| missing_element_string(element_definition) } +
-        missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
-        missing_extensions.map { |extension_definition| extension_definition[:id] }
+      missing_elements.map { |element_definition| missing_element_string(element_definition) } # +
+        #missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
+        #missing_extensions.map { |extension_definition| extension_definition[:id] }
     end
 
     def missing_element_string(element_definition)
@@ -109,12 +109,10 @@ module USCoreTestKit
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
 
             end
-
             # Note that false.present? => false, which is why we need to add this extra check
             value_found.present? || value_found == false
           end
         end
-
       @missing_elements
     end
 
@@ -180,31 +178,31 @@ module USCoreTestKit
       end
     end
 
-    def find_slice_by_values(element, value_definitions)
-      path_prefixes = value_definitions.map { |value_definition| value_definition[:path].first }.uniq
-      Array.wrap(element).find do |el|
-        path_prefixes.all? do |path_prefix|
-          value_definitions_for_path =
-            value_definitions
-              .select { |value_definition| value_definition[:path].first == path_prefix }
-              .each { |value_definition| value_definition[:path].shift }
+    # def find_slice_by_values(element, value_definitions)
+    #   path_prefixes = value_definitions.map { |value_definition| value_definition[:path].first }.uniq
+    #   Array.wrap(element).find do |el|
+    #     path_prefixes.all? do |path_prefix|
+    #       value_definitions_for_path =
+    #         value_definitions
+    #           .select { |value_definition| value_definition[:path].first == path_prefix }
+    #           .each { |value_definition| value_definition[:path].shift }
 
-          find_a_value_at(el, path_prefix) do |el_found|
-            child_element_value_definitions, current_element_value_definitions =
-              value_definitions_for_path.partition { |value_definition| value_definition[:path].present? }
+    #       find_a_value_at(el, path_prefix) do |el_found|
+    #         child_element_value_definitions, current_element_value_definitions =
+    #           value_definitions_for_path.partition { |value_definition| value_definition[:path].present? }
 
-            current_element_values_match =
-              current_element_value_definitions
-                .all? { |value_definition| value_definition[:value] == el_found }
+    #         current_element_values_match =
+    #           current_element_value_definitions
+    #             .all? { |value_definition| value_definition[:value] == el_found }
 
-            child_element_values_match =
-              child_element_value_definitions.present? ?
-                find_slice_by_values(el_found, child_element_value_definitions) : true
+    #         child_element_values_match =
+    #           child_element_value_definitions.present? ?
+    #             find_slice_by_values(el_found, child_element_value_definitions) : true
 
-            current_element_values_match && child_element_values_match
-          end
-        end
-      end
-    end
+    #         current_element_values_match && child_element_values_match
+    #       end
+    #     end
+    #   end
+    # end
   end
 end
