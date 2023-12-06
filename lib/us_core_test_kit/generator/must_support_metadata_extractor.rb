@@ -275,7 +275,6 @@ module USCoreTestKit
               element = FHIR::Element.new(hash)
               target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
             end
-            index += 1
           end
         end
 
