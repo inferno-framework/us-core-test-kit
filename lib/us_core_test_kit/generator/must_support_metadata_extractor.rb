@@ -270,8 +270,7 @@ module USCoreTestKit
         if type.targetProfile&.length == 1
           target_profiles << type.targetProfile.first
         else
-          index = 0
-          type.source_hash['_targetProfile']&.each do |hash|
+          type.source_hash['_targetProfile']&.each_with_index do |hash, index|
             if hash.present?
               element = FHIR::Element.new(hash)
               target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
