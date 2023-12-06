@@ -261,7 +261,9 @@ module USCoreTestKit
       end
 
       def handle_type_must_support_target_profiles(type, metadata)
-        return if profile.version == '3.1.1'
+        # US Core 3.1.1 profiles do not have US Core target profiles.
+        # Vital Sign proifles from FHIR R4 (version 4.0.1) do not have US Core target profiles either.
+        return if ['3.1.1', '4.0.1'].include?(profile.version)
 
         target_profiles = []
 
