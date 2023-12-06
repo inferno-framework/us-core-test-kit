@@ -377,7 +377,7 @@ module USCoreTestKit
       # are not required to demonstrate Health IT Module support for "dataAbsentReason" elements.
       # Remove MS check for dataAbsentReason and component.dataAbsentReason from vital sign profiles and observation lab profile
       # Smoking status profile does not have MS on dataAbsentReason. It is safe to use profile.type == 'Observation'
-      # Since US Core 5.0.1, Blood Pressure profile are required to support component.dataAbsentReason
+      # Since US Core 5.0.1, Blood Pressure profile restores component.dataAbsentReason as MustSupport.
       def remove_observation_data_absent_reason
         return if is_blood_pressure?
 
