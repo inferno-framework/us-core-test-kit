@@ -84,8 +84,6 @@
     - :path: patient
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: reaction
     - :path: reaction.manifestation
   :mandatory_elements:
@@ -264,7 +262,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: CarePlan.category:AssessPlan
+    - :slice_id: CarePlan.category:AssessPlan
+      :slice_name: AssessPlan
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -797,7 +796,8 @@
     - :id: Condition.extension:assertedDate
       :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :slices:
-    - :name: Condition.category:us-core
+    - :slice_id: Condition.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -817,8 +817,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: onsetDateTime
       :original_path: onset[x]
     - :path: abatementDateTime
@@ -1123,7 +1121,8 @@
     - :id: Condition.extension:assertedDate
       :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :slices:
-    - :name: Condition.category:us-core
+    - :slice_id: Condition.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -1131,7 +1130,8 @@
         :values:
         - problem-list-item
         - health-concern
-    - :name: Condition.category:screening-assessment
+    - :slice_id: Condition.category:screening-assessment
+      :slice_name: screening-assessment
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -1265,21 +1265,24 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Coverage.identifier:memberid
+    - :slice_id: Coverage.identifier:memberid
+      :slice_name: memberid
       :path: identifier
       :discriminator:
         :type: patternCodeableConcept
         :path: type
         :code: MB
         :system: http://terminology.hl7.org/CodeSystem/v2-0203
-    - :name: Coverage.class:group
+    - :slice_id: Coverage.class:group
+      :slice_name: group
       :path: class
       :discriminator:
         :type: patternCodeableConcept
         :path: type
         :code: group
         :system: http://terminology.hl7.org/CodeSystem/coverage-class
-    - :name: Coverage.class:plan
+    - :slice_id: Coverage.class:plan
+      :slice_name: plan
       :path: class
       :discriminator:
         :type: patternCodeableConcept
@@ -1288,7 +1291,7 @@
         :system: http://terminology.hl7.org/CodeSystem/coverage-class
     :elements:
     - :path: identifier
-    - :path: identifier.type.coding.code
+    - :path: identifier:memberid.type.coding.code
       :fixed_value: MB
     - :path: status
     - :path: type
@@ -1296,8 +1299,6 @@
     - :path: beneficiary
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: relationship
     - :path: period
     - :path: payor
@@ -1306,8 +1307,10 @@
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: class
-    - :path: class.value
-    - :path: class.name
+    - :path: class:group.value
+    - :path: class:group.name
+    - :path: class:plan.value
+    - :path: class:plan.name
   :mandatory_elements:
   - Coverage.identifier.type
   - Coverage.status
@@ -1460,8 +1463,6 @@
     - :path: patient
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - Device.udiCarrier.deviceIdentifier
   - Device.deviceName.name
@@ -1651,7 +1652,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: DiagnosticReport.category:us-core
+    - :slice_id: DiagnosticReport.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -1672,8 +1674,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: issued
@@ -1903,7 +1903,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: DiagnosticReport.category:LaboratorySlice
+    - :slice_id: DiagnosticReport.category:LaboratorySlice
+      :slice_name: LaboratorySlice
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -1922,8 +1923,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: issued
@@ -1935,8 +1934,6 @@
     - :path: result
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
   :mandatory_elements:
   - DiagnosticReport.status
   - DiagnosticReport.category
@@ -2177,7 +2174,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: DocumentReference.category:uscore
+    - :slice_id: DocumentReference.category:uscore
+      :slice_name: uscore
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -2211,8 +2209,6 @@
     - :path: context.encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: context.period
     :choices:
     - :paths:
@@ -2522,13 +2518,9 @@
     - :path: location.location
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
     - :path: serviceProvider
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     :choices:
     - :paths:
       - reasonCode
@@ -2907,21 +2899,15 @@
     - :path: patient
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: occurrenceDateTime
       :original_path: occurrence[x]
     - :path: primarySource
     - :path: location
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
   :mandatory_elements:
   - Immunization.status
   - Immunization.vaccineCode
@@ -3097,8 +3083,6 @@
     - :path: managingOrganization
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   :mandatory_elements:
   - Location.name
   - Location.position.longitude
@@ -3337,8 +3321,6 @@
     - :path: authorizingPrescription
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest
     - :path: type
     - :path: quantity
     - :path: whenHandedOver
@@ -3558,7 +3540,8 @@
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence
       :uscdi_only: true
     :slices:
-    - :name: MedicationRequest.category:us-core
+    - :slice_id: MedicationRequest.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -3591,8 +3574,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: authoredOn
     - :path: requester
       :types:
@@ -3853,7 +3834,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:us-core
+    - :slice_id: Observation.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -3872,8 +3854,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
@@ -3886,8 +3866,6 @@
     - :path: specimen
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
     - :path: referenceRange
   :mandatory_elements:
   - Observation.status
@@ -4106,19 +4084,22 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:SocialHistory
+    - :slice_id: Observation.category:SocialHistory
+      :slice_name: SocialHistory
       :path: category
       :discriminator:
         :type: patternCodeableConcept
         :path: ''
         :code: social-history
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.effective[x]:effectiveDateTime
+    - :slice_id: Observation.effective[x]:effectiveDateTime
+      :slice_name: effectiveDateTime
       :path: effective[x]
       :discriminator:
         :type: type
         :code: DateTime
-    - :name: Observation.value[x]:valueCodeableConcept
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
       :path: value[x]
       :discriminator:
         :type: type
@@ -4131,8 +4112,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - Observation.status
   - Observation.code
@@ -4340,19 +4319,22 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:SocialHistory
+    - :slice_id: Observation.category:SocialHistory
+      :slice_name: SocialHistory
       :path: category
       :discriminator:
         :type: patternCodeableConcept
         :path: ''
         :code: social-history
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.effective[x]:effectiveDateTime
+    - :slice_id: Observation.effective[x]:effectiveDateTime
+      :slice_name: effectiveDateTime
       :path: effective[x]
       :discriminator:
         :type: type
         :code: DateTime
-    - :name: Observation.value[x]:valueCodeableConcept
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
       :path: value[x]
       :discriminator:
         :type: type
@@ -4365,8 +4347,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :mandatory_elements:
   - Observation.status
   - Observation.code
@@ -4574,26 +4554,30 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:socialhistory
+    - :slice_id: Observation.category:socialhistory
+      :slice_name: socialhistory
       :path: category
       :discriminator:
         :type: patternCodeableConcept
         :path: ''
         :code: social-history
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.component:industry
+    - :slice_id: Observation.component:industry
+      :slice_name: industry
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 86188-0
         :system: http://loinc.org
-    - :name: Observation.effective[x]:effectivePeriod
+    - :slice_id: Observation.effective[x]:effectivePeriod
+      :slice_name: effectivePeriod
       :path: effective[x]
       :discriminator:
         :type: type
         :code: Period
-    - :name: Observation.value[x]:valueCodeableConcept
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
       :path: value[x]
       :discriminator:
         :type: type
@@ -4606,12 +4590,10 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: component
-    - :path: component.code.coding.code
+    - :path: component:industry.code.coding.code
       :fixed_value: 86188-0
-    - :path: component.value[x]
+    - :path: component:industry.value[x]
   :mandatory_elements:
   - Observation.status
   - Observation.code
@@ -4820,12 +4802,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -4837,31 +4821,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 9279-1
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
@@ -5086,7 +5068,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:us-core
+    - :slice_id: Observation.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -5340,7 +5323,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:us-core
+    - :slice_id: Observation.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -5355,8 +5339,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueString
@@ -5568,7 +5550,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:us-core
+    - :slice_id: Observation.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: patternCodeableConcept
@@ -5583,8 +5566,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueString
@@ -5797,12 +5778,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -5814,31 +5797,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 8867-4
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "/min"
   :mandatory_elements:
   - Observation.status
@@ -6059,12 +6040,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -6076,31 +6059,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 8310-5
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -6324,12 +6305,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -6341,31 +6324,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 77606-2
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -6587,40 +6568,46 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.code.coding:PulseOx
+    - :slice_id: Observation.code.coding:PulseOx
+      :slice_name: PulseOx
       :path: code.coding
       :discriminator:
         :type: patternCoding
         :path: ''
         :code: 59408-5
         :system: http://loinc.org
-    - :name: Observation.code.coding:O2Sat
+    - :slice_id: Observation.code.coding:O2Sat
+      :slice_name: O2Sat
       :path: code.coding
       :discriminator:
         :type: patternCoding
         :path: ''
         :code: 2708-6
         :system: http://loinc.org
-    - :name: Observation.component:FlowRate
+    - :slice_id: Observation.component:FlowRate
+      :slice_name: FlowRate
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 3151-8
         :system: http://loinc.org
-    - :name: Observation.component:Concentration
+    - :slice_id: Observation.component:Concentration
+      :slice_name: Concentration
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 3150-0
         :system: http://loinc.org
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -6632,52 +6619,61 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code
     - :path: code.coding
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "%"
     - :path: component
     - :path: component.code
     - :path: component.valueQuantity
       :original_path: component.value[x]
-    - :path: component.code.coding.code
+    - :path: component:FlowRate.code.coding.code
       :fixed_value: 3151-8
-    - :path: component.valueQuantity.system
-      :original_path: component.value[x].system
+    - :path: component:FlowRate.valueQuantity
+      :original_path: component:FlowRate.value[x]
+    - :path: component:FlowRate.valueQuantity.value
+      :original_path: component:FlowRate.value[x].value
+    - :path: component:FlowRate.valueQuantity.unit
+      :original_path: component:FlowRate.value[x].unit
+    - :path: component:FlowRate.valueQuantity.system
+      :original_path: component:FlowRate.value[x].system
       :fixed_value: http://unitsofmeasure.org
-    - :path: component.valueQuantity.code
-      :original_path: component.value[x].code
+    - :path: component:FlowRate.valueQuantity.code
+      :original_path: component:FlowRate.value[x].code
       :fixed_value: L/min
-    - :path: component.code.coding.code
+    - :path: component:Concentration.code.coding.code
       :fixed_value: 3150-0
-    - :path: component.valueQuantity.value
-      :original_path: component.value[x].value
-    - :path: component.valueQuantity.unit
-      :original_path: component.value[x].unit
-    - :path: component.valueQuantity.code
-      :original_path: component.value[x].code
+    - :path: component:Concentration.valueQuantity
+      :original_path: component:Concentration.value[x]
+    - :path: component:Concentration.valueQuantity.value
+      :original_path: component:Concentration.value[x].value
+    - :path: component:Concentration.valueQuantity.unit
+      :original_path: component:Concentration.value[x].unit
+    - :path: component:Concentration.valueQuantity.system
+      :original_path: component:Concentration.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component:Concentration.valueQuantity.code
+      :original_path: component:Concentration.value[x].code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -6905,14 +6901,16 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:SocialHistory
+    - :slice_id: Observation.category:SocialHistory
+      :slice_name: SocialHistory
       :path: category
       :discriminator:
         :type: patternCodeableConcept
         :path: ''
         :code: social-history
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.effective[x]:effectiveDateTime
+    - :slice_id: Observation.effective[x]:effectiveDateTime
+      :slice_name: effectiveDateTime
       :path: effective[x]
       :discriminator:
         :type: type
@@ -6924,8 +6922,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: valueCodeableConcept
       :original_path: value[x]
   :mandatory_elements:
@@ -7139,7 +7135,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueCodeableConcept
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
       :path: value[x]
       :discriminator:
         :type: type
@@ -7151,8 +7148,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
   :mandatory_elements:
@@ -7361,12 +7356,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -7378,31 +7375,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 9843-4
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -7626,12 +7621,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -7643,31 +7640,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 8302-2
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -7891,12 +7886,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -7908,31 +7905,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 39156-5
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: kg/m2
   :mandatory_elements:
   - Observation.status
@@ -8152,14 +8147,16 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:survey
+    - :slice_id: Observation.category:survey
+      :slice_name: survey
       :path: category
       :discriminator:
         :type: patternCodeableConcept
         :path: ''
         :code: survey
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :name: Observation.category:screening-assessment
+    - :slice_id: Observation.category:screening-assessment
+      :slice_name: screening-assessment
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -8424,42 +8421,48 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.code.coding:uscore-avg-bp
+    - :slice_id: Observation.code.coding:uscore-avg-bp
+      :slice_name: uscore-avg-bp
       :path: code.coding
       :discriminator:
         :type: patternCoding
         :path: ''
         :code: 96607-7
         :system: http://loinc.org
-    - :name: Observation.component:systolic
+    - :slice_id: Observation.component:systolic
+      :slice_name: systolic
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 8480-6
         :system: http://loinc.org
-    - :name: Observation.component:systolic.code.coding:uscore-avg-systolic-bp
+    - :slice_id: Observation.component:systolic.code.coding:uscore-avg-systolic-bp
+      :slice_name: uscore-avg-systolic-bp
       :path: component.code.coding
       :discriminator:
         :type: patternCoding
         :path: ''
         :code: 96608-5
         :system: http://loinc.org
-    - :name: Observation.component:diastolic
+    - :slice_id: Observation.component:diastolic
+      :slice_name: diastolic
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 8462-4
         :system: http://loinc.org
-    - :name: Observation.component:diastolic.code.coding:uscore-avg-diastolic-bp
+    - :slice_id: Observation.component:diastolic.code.coding:uscore-avg-diastolic-bp
+      :slice_name: uscore-avg-diastolic-bp
       :path: component.code.coding
       :discriminator:
         :type: patternCoding
         :path: ''
         :code: 96609-3
         :system: http://loinc.org
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -8471,10 +8474,10 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 85354-9
@@ -8482,8 +8485,6 @@
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: effectivePeriod
@@ -8492,22 +8493,39 @@
     - :path: component.code
     - :path: component.valueQuantity
       :original_path: component.value[x]
-    - :path: component.code.coding.code
-      :fixed_value: 8480-6
-    - :path: component.valueQuantity.system
-      :original_path: component.value[x].system
-      :fixed_value: http://unitsofmeasure.org
-    - :path: component.valueQuantity.code
-      :original_path: component.value[x].code
-      :fixed_value: mm[Hg]
-    - :path: component.code.coding.code
-      :fixed_value: 8462-4
-    - :path: component.code.coding
-    - :path: component.valueQuantity.value
-      :original_path: component.value[x].value
-    - :path: component.valueQuantity.unit
-      :original_path: component.value[x].unit
     - :path: component.dataAbsentReason
+    - :path: component:systolic.code.coding.code
+      :fixed_value: 8480-6
+    - :path: component:systolic.code.coding
+    - :path: component:systolic.valueQuantity
+      :original_path: component:systolic.value[x]
+    - :path: component:systolic.valueQuantity.value
+      :original_path: component:systolic.value[x].value
+    - :path: component:systolic.valueQuantity.unit
+      :original_path: component:systolic.value[x].unit
+    - :path: component:systolic.valueQuantity.system
+      :original_path: component:systolic.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component:systolic.valueQuantity.code
+      :original_path: component:systolic.value[x].code
+      :fixed_value: mm[Hg]
+    - :path: component:systolic.dataAbsentReason
+    - :path: component:diastolic.code.coding.code
+      :fixed_value: 8462-4
+    - :path: component:diastolic.code.coding
+    - :path: component:diastolic.valueQuantity
+      :original_path: component:diastolic.value[x]
+    - :path: component:diastolic.valueQuantity.value
+      :original_path: component:diastolic.value[x].value
+    - :path: component:diastolic.valueQuantity.unit
+      :original_path: component:diastolic.value[x].unit
+    - :path: component:diastolic.valueQuantity.system
+      :original_path: component:diastolic.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component:diastolic.valueQuantity.code
+      :original_path: component:diastolic.value[x].code
+      :fixed_value: mm[Hg]
+    - :path: component:diastolic.dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -8734,21 +8752,24 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.component:systolic
+    - :slice_id: Observation.component:systolic
+      :slice_name: systolic
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 8480-6
         :system: http://loinc.org
-    - :name: Observation.component:diastolic
+    - :slice_id: Observation.component:diastolic
+      :slice_name: diastolic
       :path: component
       :discriminator:
         :type: patternCodeableConcept
         :path: code
         :code: 8462-4
         :system: http://loinc.org
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -8760,39 +8781,53 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 85354-9
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: component
     - :path: component.code
     - :path: component.valueQuantity
       :original_path: component.value[x]
-    - :path: component.code.coding.code
-      :fixed_value: 8480-6
-    - :path: component.valueQuantity.system
-      :original_path: component.value[x].system
-      :fixed_value: http://unitsofmeasure.org
-    - :path: component.valueQuantity.code
-      :original_path: component.value[x].code
-      :fixed_value: mm[Hg]
-    - :path: component.code.coding.code
-      :fixed_value: 8462-4
-    - :path: component.valueQuantity.value
-      :original_path: component.value[x].value
-    - :path: component.valueQuantity.unit
-      :original_path: component.value[x].unit
     - :path: component.dataAbsentReason
+    - :path: component:systolic.code.coding.code
+      :fixed_value: 8480-6
+    - :path: component:systolic.valueQuantity
+      :original_path: component:systolic.value[x]
+    - :path: component:systolic.valueQuantity.value
+      :original_path: component:systolic.value[x].value
+    - :path: component:systolic.valueQuantity.unit
+      :original_path: component:systolic.value[x].unit
+    - :path: component:systolic.valueQuantity.system
+      :original_path: component:systolic.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component:systolic.valueQuantity.code
+      :original_path: component:systolic.value[x].code
+      :fixed_value: mm[Hg]
+    - :path: component:systolic.dataAbsentReason
+    - :path: component:diastolic.code.coding.code
+      :fixed_value: 8462-4
+    - :path: component:diastolic.valueQuantity
+      :original_path: component:diastolic.value[x]
+    - :path: component:diastolic.valueQuantity.value
+      :original_path: component:diastolic.value[x].value
+    - :path: component:diastolic.valueQuantity.unit
+      :original_path: component:diastolic.value[x].unit
+    - :path: component:diastolic.valueQuantity.system
+      :original_path: component:diastolic.value[x].system
+      :fixed_value: http://unitsofmeasure.org
+    - :path: component:diastolic.valueQuantity.code
+      :original_path: component:diastolic.value[x].code
+      :fixed_value: mm[Hg]
+    - :path: component:diastolic.dataAbsentReason
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -9022,7 +9057,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:us-core
+    - :slice_id: Observation.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -9047,8 +9083,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
@@ -9270,12 +9304,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -9287,31 +9323,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 59576-9
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -9533,12 +9567,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -9550,31 +9586,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 8289-1
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
       :fixed_value: "%"
   :mandatory_elements:
   - Observation.status
@@ -9795,12 +9829,14 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.value[x]:valueQuantity
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
       :path: value[x]
       :discriminator:
         :type: type
         :code: Quantity
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -9812,31 +9848,29 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code.coding.code
       :fixed_value: 29463-7
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
       :original_path: value[x]
-    - :path: valueQuantity.value
-      :original_path: value[x].value
-    - :path: valueQuantity.unit
-      :original_path: value[x].unit
-    - :path: valueQuantity.system
-      :original_path: value[x].system
+    - :path: valueQuantity:valueQuantity.value
+      :original_path: value[x]:valueQuantity.value
+    - :path: valueQuantity:valueQuantity.unit
+      :original_path: value[x]:valueQuantity.unit
+    - :path: valueQuantity:valueQuantity.system
+      :original_path: value[x]:valueQuantity.system
       :fixed_value: http://unitsofmeasure.org
-    - :path: valueQuantity.code
-      :original_path: value[x].code
+    - :path: valueQuantity:valueQuantity.code
+      :original_path: value[x]:valueQuantity.code
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10068,7 +10102,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Observation.category:VSCat
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
       :path: category
       :discriminator:
         :type: value
@@ -10080,17 +10115,15 @@
     :elements:
     - :path: status
     - :path: category
-    - :path: category.coding
-    - :path: category.coding.system
+    - :path: category:VSCat.coding
+    - :path: category:VSCat.coding.system
       :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-    - :path: category.coding.code
+    - :path: category:VSCat.coding.code
       :fixed_value: vital-signs
     - :path: code
     - :path: subject
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: effectiveDateTime
       :original_path: effective[x]
     - :path: valueQuantity
@@ -10236,7 +10269,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Organization.identifier:NPI
+    - :slice_id: Organization.identifier:NPI
+      :slice_name: NPI
       :path: identifier
       :discriminator:
         :type: patternIdentifier
@@ -10735,7 +10769,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Practitioner.identifier:NPI
+    - :slice_id: Practitioner.identifier:NPI
+      :slice_name: NPI
       :path: identifier
       :discriminator:
         :type: patternIdentifier
@@ -10880,20 +10915,14 @@
     - :path: practitioner
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - :path: organization
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: code
     - :path: specialty
     - :path: location
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
     - :path: telecom
     - :path: telecom.system
     - :path: telecom.value
@@ -11079,8 +11108,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: performedDateTime
       :original_path: performed[x]
     - :path: reasonCode
@@ -11211,14 +11238,16 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: Provenance.agent:ProvenanceAuthor
+    - :slice_id: Provenance.agent:ProvenanceAuthor
+      :slice_name: ProvenanceAuthor
       :path: agent
       :discriminator:
         :type: patternCodeableConcept
         :path: type
         :code: author
         :system: http://terminology.hl7.org/CodeSystem/provenance-participant-type
-    - :name: Provenance.agent:ProvenanceTransmitter
+    - :slice_id: Provenance.agent:ProvenanceTransmitter
+      :slice_name: ProvenanceTransmitter
       :path: agent
       :discriminator:
         :type: patternCodeableConcept
@@ -11241,11 +11270,9 @@
     - :path: agent.onBehalfOf
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
-    - :path: agent.type.coding.code
+    - :path: agent:ProvenanceAuthor.type.coding.code
       :fixed_value: author
-    - :path: agent.type.coding.code
+    - :path: agent:ProvenanceTransmitter.type.coding.code
       :fixed_value: transmitter
   :mandatory_elements:
   - Provenance.target
@@ -11627,8 +11654,6 @@
     - :path: patient
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: relationship
     - :path: name
     - :path: telecom
@@ -11814,7 +11839,8 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :name: ServiceRequest.category:us-core
+    - :slice_id: ServiceRequest.category:us-core
+      :slice_name: us-core
       :path: category
       :discriminator:
         :type: requiredBinding
@@ -11841,8 +11867,6 @@
     - :path: encounter
       :types:
       - Reference
-      :target_profiles:
-      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: occurrencePeriod
       :original_path: occurrence[x]
     - :path: authoredOn

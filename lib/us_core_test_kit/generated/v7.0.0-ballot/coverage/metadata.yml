@@ -54,21 +54,24 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Coverage.identifier:memberid
+  - :slice_id: Coverage.identifier:memberid
+    :slice_name: memberid
     :path: identifier
     :discriminator:
       :type: patternCodeableConcept
       :path: type
       :code: MB
       :system: http://terminology.hl7.org/CodeSystem/v2-0203
-  - :name: Coverage.class:group
+  - :slice_id: Coverage.class:group
+    :slice_name: group
     :path: class
     :discriminator:
       :type: patternCodeableConcept
       :path: type
       :code: group
       :system: http://terminology.hl7.org/CodeSystem/coverage-class
-  - :name: Coverage.class:plan
+  - :slice_id: Coverage.class:plan
+    :slice_name: plan
     :path: class
     :discriminator:
       :type: patternCodeableConcept
@@ -77,7 +80,7 @@
       :system: http://terminology.hl7.org/CodeSystem/coverage-class
   :elements:
   - :path: identifier
-  - :path: identifier.type.coding.code
+  - :path: identifier:memberid.type.coding.code
     :fixed_value: MB
   - :path: status
   - :path: type
@@ -85,8 +88,6 @@
   - :path: beneficiary
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: relationship
   - :path: period
   - :path: payor
@@ -95,8 +96,10 @@
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: class
-  - :path: class.value
-  - :path: class.name
+  - :path: class:group.value
+  - :path: class:group.name
+  - :path: class:plan.value
+  - :path: class:plan.name
 :mandatory_elements:
 - Coverage.identifier.type
 - Coverage.status

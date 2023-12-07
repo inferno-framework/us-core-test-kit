@@ -82,8 +82,6 @@
   - :path: patient
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: reaction
   - :path: reaction.manifestation
 :mandatory_elements:

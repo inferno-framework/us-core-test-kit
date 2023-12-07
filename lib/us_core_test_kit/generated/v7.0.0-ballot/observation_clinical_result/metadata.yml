@@ -146,7 +146,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:us-core
+  - :slice_id: Observation.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding
@@ -171,8 +172,6 @@
   - :path: encounter
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: valueQuantity

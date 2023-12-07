@@ -145,7 +145,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:us-core
+  - :slice_id: Observation.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding
