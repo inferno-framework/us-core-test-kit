@@ -358,7 +358,6 @@ module USCoreTestKit
       end
 
       def is_blood_pressure?
-        #['observation-bp', 'USCoreBloodPressureProfile', ].include?(profile.name)
         ['bp', 'us-core-blood-pressure', 'us-core-average-blood-pressure'].include?(profile.id)
       end
 

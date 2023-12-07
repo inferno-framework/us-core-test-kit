@@ -166,7 +166,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: ServiceRequest.category:us-core
+  - :slice_id: ServiceRequest.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding
@@ -193,8 +194,6 @@
   - :path: encounter
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: occurrencePeriod
     :original_path: occurrence[x]
   - :path: authoredOn

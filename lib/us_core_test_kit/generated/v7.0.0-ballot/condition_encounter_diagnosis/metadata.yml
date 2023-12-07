@@ -243,7 +243,8 @@
   - :id: Condition.extension:assertedDate
     :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
   :slices:
-  - :name: Condition.category:us-core
+  - :slice_id: Condition.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: patternCodeableConcept
@@ -263,8 +264,6 @@
   - :path: encounter
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: onsetDateTime
     :original_path: onset[x]
   - :path: abatementDateTime

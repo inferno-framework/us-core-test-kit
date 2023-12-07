@@ -146,7 +146,8 @@
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence
     :uscdi_only: true
   :slices:
-  - :name: MedicationRequest.category:us-core
+  - :slice_id: MedicationRequest.category:us-core
+    :slice_name: us-core
     :path: category
     :discriminator:
       :type: requiredBinding
@@ -179,8 +180,6 @@
   - :path: encounter
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: authoredOn
   - :path: requester
     :types:

@@ -143,7 +143,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.value[x]:valueCodeableConcept
+  - :slice_id: Observation.value[x]:valueCodeableConcept
+    :slice_name: valueCodeableConcept
     :path: value[x]
     :discriminator:
       :type: type
@@ -155,8 +156,6 @@
   - :path: subject
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
 :mandatory_elements:

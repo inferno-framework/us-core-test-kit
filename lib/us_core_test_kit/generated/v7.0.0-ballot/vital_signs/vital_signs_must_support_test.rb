@@ -13,10 +13,10 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category.coding
-        * Observation.category.coding.code
-        * Observation.category.coding.system
         * Observation.category:VSCat
+        * Observation.category:VSCat.coding
+        * Observation.category:VSCat.coding.code
+        * Observation.category:VSCat.coding.system
         * Observation.code
         * Observation.effectiveDateTime
         * Observation.status

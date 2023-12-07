@@ -70,7 +70,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Organization.identifier:NPI
+  - :slice_id: Organization.identifier:NPI
+    :slice_name: NPI
     :path: identifier
     :discriminator:
       :type: patternIdentifier

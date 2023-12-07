@@ -178,7 +178,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: DocumentReference.category:uscore
+  - :slice_id: DocumentReference.category:uscore
+    :slice_name: uscore
     :path: category
     :discriminator:
       :type: requiredBinding
@@ -212,8 +213,6 @@
   - :path: context.encounter
     :types:
     - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: context.period
   :choices:
   - :paths:
