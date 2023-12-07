@@ -519,7 +519,31 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     let (:test_class) {
       USCoreTestKit::USCoreV610::CoverageMustSupportTest
     }
-    let(:coverage_with_two_classes) {
+    let (:group_class) {
+      FHIR::Coverage::Class.new.tap{ |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
+            coding.code = "group"
+          }]
+        }
+        loc_class.value = "group-class-value"
+        loc_class.name = "group-class-name"
+        }
+    }
+    let (:plan_class) {
+      FHIR::Coverage::Class.new.tap{ |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
+            coding.code = "plan"
+          }]
+        }
+      loc_class.value = "plan-class-value"
+      loc_class.name = "plan-class-name"
+      }
+    }
+    let (:coverage_with_two_classes) {
       FHIR::Coverage.new.tap{ |cov|
         cov.status = "active"
         cov.type = FHIR::CodeableConcept.new.tap{ |code_concept|
@@ -556,27 +580,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
             ref.display = "Acme Health Plan"
           }
         ],
-        cov.local_class = [FHIR::Coverage::Class.new.tap{ |loc_class|
-            loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-              code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-                coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
-                coding.code = "group"
-              }]
-            }
-            loc_class.value = "group-class-value"
-            loc_class.name = "group-class-name"
-            },
-          FHIR::Coverage::Class.new.tap{ |loc_class|
-            loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-              code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-                coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
-                coding.code = "plan"
-              }]
-            }
-          loc_class.value = "plan-class-value"
-          loc_class.name = "plan-class-name"
-          }
-        ]
+        cov.local_class = [group_class, plan_class]
         cov.identifier = [FHIR::Identifier.new.tap {|identifier|
             identifier.type = FHIR::CodeableConcept.new.tap { |code_concept|
               code_concept.coding = [FHIR::Coding.new.tap{ |coding|
@@ -596,6 +600,35 @@ RSpec.describe USCoreTestKit::MustSupportTest do
           .to receive(:scratch_resources).and_return(
             {
               all: [coverage_with_two_classes]
+            }
+          )
+        result = run(test_class)
+        expect(result.result).to eq('pass')
+    end
+
+    it 'skips if resources do not cover all must support sub elements of slices' do
+      coverage_with_just_group = coverage_with_two_classes.dup
+      coverage_with_just_group.local_class = [group_class]
+      allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage_with_just_group]
+            }
+          )
+
+        result = run(test_class)
+        expect(result.result).to eq('skip')
+    end
+
+    it 'passes if resources cover all must support elements over multiple elements' do
+      coverage_with_just_group = coverage_with_two_classes.clone
+      coverage_with_just_group.local_class = [group_class]
+      coverage_with_just_plan = coverage_with_two_classes.clone
+      coverage_with_just_plan.local_class = [plan_class]
+      allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage_with_just_group, coverage_with_just_plan]
             }
           )
 
