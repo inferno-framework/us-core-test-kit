@@ -200,7 +200,6 @@
   - :path: component:systolic.valueQuantity.code
     :original_path: component:systolic.value[x].code
     :fixed_value: mm[Hg]
-  - :path: component:systolic.dataAbsentReason
   - :path: component:diastolic.code.coding.code
     :fixed_value: 8462-4
   - :path: component:diastolic.valueQuantity
@@ -215,7 +214,6 @@
   - :path: component:diastolic.valueQuantity.code
     :original_path: component:diastolic.value[x].code
     :fixed_value: mm[Hg]
-  - :path: component:diastolic.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

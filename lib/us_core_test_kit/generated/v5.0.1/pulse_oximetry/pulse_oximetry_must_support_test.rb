@@ -26,7 +26,6 @@ module USCoreTestKit
         * Observation.component.valueQuantity
         * Observation.component:Concentration
         * Observation.component:Concentration.code.coding.code
-        * Observation.component:Concentration.dataAbsentReason
         * Observation.component:Concentration.valueQuantity
         * Observation.component:Concentration.valueQuantity.code
         * Observation.component:Concentration.valueQuantity.system
@@ -34,7 +33,6 @@ module USCoreTestKit
         * Observation.component:Concentration.valueQuantity.value
         * Observation.component:FlowRate
         * Observation.component:FlowRate.code.coding.code
-        * Observation.component:FlowRate.dataAbsentReason
         * Observation.component:FlowRate.valueQuantity
         * Observation.component:FlowRate.valueQuantity.code
         * Observation.component:FlowRate.valueQuantity.system

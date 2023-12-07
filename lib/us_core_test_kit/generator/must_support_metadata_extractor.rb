@@ -360,13 +360,14 @@ module USCoreTestKit
       def remove_blood_pressure_value_data_absent_reason
         return unless is_blood_pressure?
 
+        pattern = /component(:[^.]+)?\.dataAbsentReason/
+
         @must_supports[:elements].delete_if do |element|
           element[:path].start_with?('value[x]') ||
           element[:original_path]&.start_with?('value[x]') ||
           element[:path] == ('dataAbsentReason') ||
           (
-            element[:path] == ('component.dataAbsentReason') &&
-            ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
+            pattern.match?(element[:path]) && ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
           )
         end
 
@@ -383,9 +384,11 @@ module USCoreTestKit
       def remove_observation_data_absent_reason
         return if is_blood_pressure?
 
+        pattern = /(component(:[^.]+)?\.)?dataAbsentReason/
+
         if profile.type == 'Observation'
           @must_supports[:elements].delete_if do |element|
-            ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
+            pattern.match?(element[:path])
           end
         end
       end

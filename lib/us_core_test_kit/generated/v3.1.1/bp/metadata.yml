@@ -195,7 +195,6 @@
     :fixed_value: http://unitsofmeasure.org
   - :path: component:SystolicBP.value[x].code
     :fixed_value: mm[Hg]
-  - :path: component:SystolicBP.dataAbsentReason
   - :path: component:DiastolicBP.code
   - :path: component:DiastolicBP.value[x]
   - :path: component:DiastolicBP.value[x].value
@@ -204,7 +203,6 @@
     :fixed_value: http://unitsofmeasure.org
   - :path: component:DiastolicBP.value[x].code
     :fixed_value: mm[Hg]
-  - :path: component:DiastolicBP.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

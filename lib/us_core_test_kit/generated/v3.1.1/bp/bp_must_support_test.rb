@@ -23,7 +23,6 @@ module USCoreTestKit
         * Observation.component.value[x]
         * Observation.component:DiastolicBP
         * Observation.component:DiastolicBP.code
-        * Observation.component:DiastolicBP.dataAbsentReason
         * Observation.component:DiastolicBP.value[x]
         * Observation.component:DiastolicBP.value[x].code
         * Observation.component:DiastolicBP.value[x].system
@@ -31,7 +30,6 @@ module USCoreTestKit
         * Observation.component:DiastolicBP.value[x].value
         * Observation.component:SystolicBP
         * Observation.component:SystolicBP.code
-        * Observation.component:SystolicBP.dataAbsentReason
         * Observation.component:SystolicBP.value[x]
         * Observation.component:SystolicBP.value[x].code
         * Observation.component:SystolicBP.value[x].system
