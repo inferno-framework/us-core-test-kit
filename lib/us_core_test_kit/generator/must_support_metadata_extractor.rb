@@ -77,7 +77,8 @@ module USCoreTestKit
       def pattern_slices
         must_support_pattern_slice_elements.map do |current_element|
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
             discriminator = discriminators(sliced_element(current_element)).first
@@ -89,7 +90,6 @@ module USCoreTestKit
               else
                 current_element
               end
-
             metadata[:discriminator] =
               if pattern_element.patternCodeableConcept.present?
                 {
@@ -156,7 +156,8 @@ module USCoreTestKit
           type_code = type_element.type.first.code
 
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'type',
@@ -179,7 +180,8 @@ module USCoreTestKit
       def value_slices
         must_support_value_slice_elements.map do |current_element|
           {
-            name: current_element.id,
+            slice_id: current_element.id,
+            slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", ''),
             discriminator: {
               type: 'value'
@@ -283,7 +285,7 @@ module USCoreTestKit
       def must_support_elements
         plain_must_support_elements.each_with_object([]) do |current_element, must_support_elements_metadata|
           {
-            path: current_element.path.gsub("#{resource}.", '')
+            path: current_element.id.gsub("#{resource}.", '')
           }.tap do |current_metadata|
             if is_uscdi_requirement_element?(current_element)
               current_metadata[:uscdi_only] = true
@@ -358,13 +360,14 @@ module USCoreTestKit
       def remove_blood_pressure_value_data_absent_reason
         return unless is_blood_pressure?
 
+        pattern = /component(:[^.]+)?\.dataAbsentReason/
+
         @must_supports[:elements].delete_if do |element|
           element[:path].start_with?('value[x]') ||
           element[:original_path]&.start_with?('value[x]') ||
           element[:path] == ('dataAbsentReason') ||
           (
-            element[:path] == ('component.dataAbsentReason') &&
-            ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
+            pattern.match?(element[:path]) && ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
           )
         end
 
@@ -381,9 +384,11 @@ module USCoreTestKit
       def remove_observation_data_absent_reason
         return if is_blood_pressure?
 
+        pattern = /(component(:[^.]+)?\.)?dataAbsentReason/
+
         if profile.type == 'Observation'
           @must_supports[:elements].delete_if do |element|
-            ['dataAbsentReason', 'component.dataAbsentReason'].include?(element[:path])
+            pattern.match?(element[:path])
           end
         end
       end

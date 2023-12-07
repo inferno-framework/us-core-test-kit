@@ -141,7 +141,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:VSCat
+  - :slice_id: Observation.category:VSCat
+    :slice_name: VSCat
     :path: category
     :discriminator:
       :type: value
@@ -150,7 +151,8 @@
         :value: vital-signs
       - :path: coding.system
         :value: http://terminology.hl7.org/CodeSystem/observation-category
-  - :name: Observation.component:SystolicBP
+  - :slice_id: Observation.component:SystolicBP
+    :slice_name: SystolicBP
     :path: component
     :discriminator:
       :type: value
@@ -159,7 +161,8 @@
         :value: 8480-6
       - :path: code.coding.system
         :value: http://loinc.org
-  - :name: Observation.component:DiastolicBP
+  - :slice_id: Observation.component:DiastolicBP
+    :slice_name: DiastolicBP
     :path: component
     :discriminator:
       :type: value
@@ -171,10 +174,10 @@
   :elements:
   - :path: status
   - :path: category
-  - :path: category.coding
-  - :path: category.coding.system
+  - :path: category:VSCat.coding
+  - :path: category:VSCat.coding.system
     :fixed_value: http://terminology.hl7.org/CodeSystem/observation-category
-  - :path: category.coding.code
+  - :path: category:VSCat.coding.code
     :fixed_value: vital-signs
   - :path: code
   - :path: subject
@@ -182,14 +185,24 @@
     - Reference
   - :path: effective[x]
   - :path: component
-  - :path: component.value[x].system
-    :fixed_value: http://unitsofmeasure.org
-  - :path: component.value[x].code
-    :fixed_value: mm[Hg]
   - :path: component.code
   - :path: component.value[x]
-  - :path: component.value[x].value
-  - :path: component.value[x].unit
+  - :path: component:SystolicBP.code
+  - :path: component:SystolicBP.value[x]
+  - :path: component:SystolicBP.value[x].value
+  - :path: component:SystolicBP.value[x].unit
+  - :path: component:SystolicBP.value[x].system
+    :fixed_value: http://unitsofmeasure.org
+  - :path: component:SystolicBP.value[x].code
+    :fixed_value: mm[Hg]
+  - :path: component:DiastolicBP.code
+  - :path: component:DiastolicBP.value[x]
+  - :path: component:DiastolicBP.value[x].value
+  - :path: component:DiastolicBP.value[x].unit
+  - :path: component:DiastolicBP.value[x].system
+    :fixed_value: http://unitsofmeasure.org
+  - :path: component:DiastolicBP.value[x].code
+    :fixed_value: mm[Hg]
 :mandatory_elements:
 - Observation.status
 - Observation.category

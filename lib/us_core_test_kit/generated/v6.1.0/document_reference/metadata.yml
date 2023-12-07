@@ -178,7 +178,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: DocumentReference.category:uscore
+  - :slice_id: DocumentReference.category:uscore
+    :slice_name: uscore
     :path: category
     :discriminator:
       :type: requiredBinding

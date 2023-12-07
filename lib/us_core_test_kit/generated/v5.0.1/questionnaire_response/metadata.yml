@@ -159,7 +159,8 @@
   - :id: QuestionnaireResponse.questionnaire.extension:url
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri
   :slices:
-  - :name: QuestionnaireResponse.meta.tag:sdoh
+  - :slice_id: QuestionnaireResponse.meta.tag:sdoh
+    :slice_name: sdoh
     :path: meta.tag
     :discriminator:
       :type: patternCoding

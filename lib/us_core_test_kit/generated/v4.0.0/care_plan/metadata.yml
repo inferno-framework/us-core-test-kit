@@ -126,7 +126,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: CarePlan.category:AssessPlan
+  - :slice_id: CarePlan.category:AssessPlan
+    :slice_name: AssessPlan
     :path: category
     :discriminator:
       :type: patternCodeableConcept

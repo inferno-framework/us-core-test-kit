@@ -68,7 +68,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Practitioner.identifier:NPI
+  - :slice_id: Practitioner.identifier:NPI
+    :slice_name: NPI
     :path: identifier
     :discriminator:
       :type: patternIdentifier

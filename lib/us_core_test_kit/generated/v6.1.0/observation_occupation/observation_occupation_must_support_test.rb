@@ -16,9 +16,9 @@ module USCoreTestKit
         * Observation.category:socialhistory
         * Observation.code.coding.code
         * Observation.component
-        * Observation.component.code.coding.code
-        * Observation.component.value[x]
         * Observation.component:industry
+        * Observation.component:industry.code.coding.code
+        * Observation.component:industry.value[x]
         * Observation.effective[x]:effectivePeriod
         * Observation.status
         * Observation.subject

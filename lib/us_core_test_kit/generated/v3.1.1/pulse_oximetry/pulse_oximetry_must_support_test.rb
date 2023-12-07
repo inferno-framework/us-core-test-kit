@@ -13,34 +13,41 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category.coding
-        * Observation.category.coding.code
-        * Observation.category.coding.system
         * Observation.category:VSCat
+        * Observation.category:VSCat.coding
+        * Observation.category:VSCat.coding.code
+        * Observation.category:VSCat.coding.system
         * Observation.code
         * Observation.code.coding
-        * Observation.code.coding.code
-        * Observation.code.coding.system
         * Observation.code.coding:PulseOx
+        * Observation.code.coding:PulseOx.code
+        * Observation.code.coding:PulseOx.system
         * Observation.component
         * Observation.component.code
-        * Observation.component.code.coding.code
         * Observation.component.value[x]
-        * Observation.component.value[x].code
-        * Observation.component.value[x].system
-        * Observation.component.value[x].unit
-        * Observation.component.value[x].value
         * Observation.component:Concentration
+        * Observation.component:Concentration.code.coding.code
+        * Observation.component:Concentration.value[x]
+        * Observation.component:Concentration.value[x].code
+        * Observation.component:Concentration.value[x].system
+        * Observation.component:Concentration.value[x].unit
+        * Observation.component:Concentration.value[x].value
         * Observation.component:FlowRate
+        * Observation.component:FlowRate.code.coding.code
+        * Observation.component:FlowRate.value[x]
+        * Observation.component:FlowRate.value[x].code
+        * Observation.component:FlowRate.value[x].system
+        * Observation.component:FlowRate.value[x].unit
+        * Observation.component:FlowRate.value[x].value
         * Observation.effective[x]
         * Observation.status
         * Observation.subject
         * Observation.value[x]
-        * Observation.value[x].code
-        * Observation.value[x].system
-        * Observation.value[x].unit
-        * Observation.value[x].value
         * Observation.value[x]:valueQuantity
+        * Observation.value[x]:valueQuantity.code
+        * Observation.value[x]:valueQuantity.system
+        * Observation.value[x]:valueQuantity.unit
+        * Observation.value[x]:valueQuantity.value
       )
 
       id :us_core_v311_pulse_oximetry_must_support_test

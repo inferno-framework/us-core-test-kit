@@ -140,7 +140,8 @@
 :must_supports:
   :extensions: []
   :slices:
-  - :name: Observation.category:imaging
+  - :slice_id: Observation.category:imaging
+    :slice_name: imaging
     :path: category
     :discriminator:
       :type: patternCodeableConcept

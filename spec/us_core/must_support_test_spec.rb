@@ -515,4 +515,126 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     end
   end
 
+  describe 'must support tests for sub elements of slices' do
+    let (:test_class) {
+      USCoreTestKit::USCoreV610::CoverageMustSupportTest
+    }
+    let (:group_class) {
+      FHIR::Coverage::Class.new.tap{ |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
+            coding.code = "group"
+          }]
+        }
+        loc_class.value = "group-class-value"
+        loc_class.name = "group-class-name"
+        }
+    }
+    let (:plan_class) {
+      FHIR::Coverage::Class.new.tap{ |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
+            coding.code = "plan"
+          }]
+        }
+      loc_class.value = "plan-class-value"
+      loc_class.name = "plan-class-name"
+      }
+    }
+    let (:coverage_with_two_classes) {
+      FHIR::Coverage.new.tap{ |cov|
+        cov.status = "active"
+        cov.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [ FHIR::Coding.new.tap { |coding|
+              coding.system = "https://nahdo.org/sopt"
+              coding.code = "3712"
+              coding.display = "PPO"
+            },
+            FHIR::Coding.new.tap { |coding|
+              coding.system = "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+              coding.code = "PPO"
+              coding.display = "preferred provider organization policy"
+            }
+          ],
+          code_concept.text = "PPO"
+        },
+        cov.subscriberId = "888009335"
+        cov.beneficiary = FHIR::Reference.new.tap { |ref|
+          ref.reference = "Patient/example"
+        }
+        cov.relationship = FHIR::CodeableConcept.new.tap { |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap { |coding|
+              coding.system ="http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+              coding.code = "self"
+            }
+          ],
+          code_concept.text = "Self"
+        },
+        cov.period =  FHIR::Period.new.tap { |period|
+          period.start = "2020-01-01"
+        }
+        cov.payor = [ FHIR::Reference.new.tap { |ref|
+            ref.reference = "Organization/acme-payer"
+            ref.display = "Acme Health Plan"
+          }
+        ],
+        cov.local_class = [group_class, plan_class]
+        cov.identifier = [FHIR::Identifier.new.tap {|identifier|
+            identifier.type = FHIR::CodeableConcept.new.tap { |code_concept|
+              code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+                coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+                coding.code = "MB"
+              }]
+            }
+            identifier.system = "https://github.com/inferno-framework/us-core-test-kit"
+            identifier.value = "f4a375d2-4e53-4f81-ba95-345e7573b550"
+          }
+        ] 
+      }
+    }
+
+    it 'passes if resources cover all must support sub elements of slices' do
+      allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage_with_two_classes]
+            }
+          )
+        result = run(test_class)
+        expect(result.result).to eq('pass')
+    end
+
+    it 'skips if resources do not cover all must support sub elements of slices' do
+      coverage_with_just_group = coverage_with_two_classes.dup
+      coverage_with_just_group.local_class = [group_class]
+      allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage_with_just_group]
+            }
+          )
+
+        result = run(test_class)
+        expect(result.result).to eq('skip')
+    end
+
+    it 'passes if resources cover all must support elements over multiple elements' do
+      coverage_with_just_group = coverage_with_two_classes.clone
+      coverage_with_just_group.local_class = [group_class]
+      coverage_with_just_plan = coverage_with_two_classes.clone
+      coverage_with_just_plan.local_class = [plan_class]
+      allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage_with_just_group, coverage_with_just_plan]
+            }
+          )
+
+        result = run(test_class)
+        expect(result.result).to eq('pass')
+    end
+  end
+
 end

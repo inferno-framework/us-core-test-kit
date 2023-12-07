@@ -13,20 +13,20 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category.coding
-        * Observation.category.coding.code
-        * Observation.category.coding.system
         * Observation.category:VSCat
+        * Observation.category:VSCat.coding
+        * Observation.category:VSCat.coding.code
+        * Observation.category:VSCat.coding.system
         * Observation.code.coding.code
         * Observation.effectiveDateTime
         * Observation.status
         * Observation.subject
         * Observation.value[x]
-        * Observation.value[x].code
-        * Observation.value[x].system
-        * Observation.value[x].unit
-        * Observation.value[x].value
         * Observation.value[x]:valueQuantity
+        * Observation.value[x]:valueQuantity.code
+        * Observation.value[x]:valueQuantity.system
+        * Observation.value[x]:valueQuantity.unit
+        * Observation.value[x]:valueQuantity.value
       )
 
       id :us_core_v501_respiratory_rate_must_support_test
