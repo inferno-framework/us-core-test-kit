@@ -216,6 +216,7 @@
     :original_path: component:diastolic.value[x].code
     :fixed_value: mm[Hg]
   - :path: component:diastolic.dataAbsentReason
+  - :path: component.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category

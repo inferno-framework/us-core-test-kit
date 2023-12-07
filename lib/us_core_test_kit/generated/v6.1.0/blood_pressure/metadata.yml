@@ -209,6 +209,7 @@
     :original_path: component:diastolic.value[x].value
   - :path: component:diastolic.valueQuantity.unit
     :original_path: component:diastolic.value[x].unit
+  - :path: component.dataAbsentReason
   - :path: component:diastolic.valueQuantity.system
     :original_path: component:diastolic.value[x].system
     :fixed_value: http://unitsofmeasure.org

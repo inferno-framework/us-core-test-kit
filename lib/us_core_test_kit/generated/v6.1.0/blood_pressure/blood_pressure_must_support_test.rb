@@ -20,6 +20,8 @@ module USCoreTestKit
         * Observation.code.coding.code
         * Observation.component
         * Observation.component.code
+        * Observation.component.code.coding.code
+        * Observation.component.dataAbsentReason
         * Observation.component.valueQuantity
         * Observation.component:diastolic
         * Observation.component:diastolic.code.coding.code
