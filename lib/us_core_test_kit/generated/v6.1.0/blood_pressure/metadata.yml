@@ -186,6 +186,7 @@
   - :path: component.code
   - :path: component.valueQuantity
     :original_path: component.value[x]
+  - :path: component.dataAbsentReason
   - :path: component:systolic.code.coding.code
     :fixed_value: 8480-6
   - :path: component:systolic.valueQuantity
@@ -209,7 +210,6 @@
     :original_path: component:diastolic.value[x].value
   - :path: component:diastolic.valueQuantity.unit
     :original_path: component:diastolic.value[x].unit
-  - :path: component.dataAbsentReason
   - :path: component:diastolic.valueQuantity.system
     :original_path: component:diastolic.value[x].system
     :fixed_value: http://unitsofmeasure.org
