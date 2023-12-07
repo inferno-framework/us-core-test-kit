@@ -22,7 +22,7 @@ module USCoreTestKit
         * Coverage.class:plan.value
         * Coverage.identifier
         * Coverage.identifier:memberid
-        * Coverage.identifier:memberid.type.coding.code
+        * Coverage.identifier:memberid.type
         * Coverage.payor
         * Coverage.period
         * Coverage.relationship

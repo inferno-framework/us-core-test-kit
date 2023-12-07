@@ -3059,8 +3059,7 @@
     - :path: component.code
     - :path: component.valueQuantity
       :original_path: component.value[x]
-    - :path: component:systolic.code.coding.code
-      :fixed_value: 8480-6
+    - :path: component:systolic.code
     - :path: component:systolic.valueQuantity
       :original_path: component:systolic.value[x]
     - :path: component:systolic.valueQuantity.value
@@ -3073,8 +3072,7 @@
     - :path: component:systolic.valueQuantity.code
       :original_path: component:systolic.value[x].code
       :fixed_value: mm[Hg]
-    - :path: component:diastolic.code.coding.code
-      :fixed_value: 8462-4
+    - :path: component:diastolic.code
     - :path: component:diastolic.valueQuantity
       :original_path: component:diastolic.value[x]
     - :path: component:diastolic.valueQuantity.value
@@ -5701,8 +5699,7 @@
     - :path: component.code
     - :path: component.valueQuantity
       :original_path: component.value[x]
-    - :path: component:FlowRate.code.coding.code
-      :fixed_value: 3151-8
+    - :path: component:FlowRate.code
     - :path: component:FlowRate.valueQuantity
       :original_path: component:FlowRate.value[x]
     - :path: component:FlowRate.valueQuantity.value
@@ -5715,8 +5712,7 @@
     - :path: component:FlowRate.valueQuantity.code
       :original_path: component:FlowRate.value[x].code
       :fixed_value: L/min
-    - :path: component:Concentration.code.coding.code
-      :fixed_value: 3150-0
+    - :path: component:Concentration.code
     - :path: component:Concentration.valueQuantity
       :original_path: component:Concentration.value[x]
     - :path: component:Concentration.valueQuantity.value
@@ -7245,10 +7241,8 @@
     - :path: agent.onBehalfOf
       :types:
       - Reference
-    - :path: agent:ProvenanceAuthor.type.coding.code
-      :fixed_value: author
-    - :path: agent:ProvenanceTransmitter.type.coding.code
-      :fixed_value: transmitter
+    - :path: agent:ProvenanceAuthor.type
+    - :path: agent:ProvenanceTransmitter.type
   :mandatory_elements:
   - Provenance.target
   - Provenance.target.reference

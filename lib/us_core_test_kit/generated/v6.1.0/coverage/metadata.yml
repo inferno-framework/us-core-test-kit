@@ -80,8 +80,7 @@
       :system: http://terminology.hl7.org/CodeSystem/coverage-class
   :elements:
   - :path: identifier
-  - :path: identifier:memberid.type.coding.code
-    :fixed_value: MB
+  - :path: identifier:memberid.type
   - :path: status
   - :path: type
   - :path: subscriberId

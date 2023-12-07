@@ -22,14 +22,14 @@ module USCoreTestKit
         * Observation.component.code
         * Observation.component.valueQuantity
         * Observation.component:diastolic
-        * Observation.component:diastolic.code.coding.code
+        * Observation.component:diastolic.code
         * Observation.component:diastolic.valueQuantity
         * Observation.component:diastolic.valueQuantity.code
         * Observation.component:diastolic.valueQuantity.system
         * Observation.component:diastolic.valueQuantity.unit
         * Observation.component:diastolic.valueQuantity.value
         * Observation.component:systolic
-        * Observation.component:systolic.code.coding.code
+        * Observation.component:systolic.code
         * Observation.component:systolic.valueQuantity
         * Observation.component:systolic.valueQuantity.code
         * Observation.component:systolic.valueQuantity.system
