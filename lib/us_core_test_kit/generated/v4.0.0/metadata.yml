@@ -7311,6 +7311,8 @@
     - :path: agent.onBehalfOf
       :types:
       - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
     - :path: agent:ProvenanceAuthor.type
     - :path: agent:ProvenanceTransmitter.type
   :mandatory_elements:
