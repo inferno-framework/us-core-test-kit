@@ -186,8 +186,7 @@
     :types:
     - Reference
   - :path: component
-  - :path: component:industry.code.coding.code
-    :fixed_value: 86188-0
+  - :path: component:industry.code
   - :path: component:industry.value[x]
 :mandatory_elements:
 - Observation.status

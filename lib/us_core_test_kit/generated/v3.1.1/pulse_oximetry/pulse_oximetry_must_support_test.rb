@@ -26,14 +26,14 @@ module USCoreTestKit
         * Observation.component.code
         * Observation.component.value[x]
         * Observation.component:Concentration
-        * Observation.component:Concentration.code.coding.code
+        * Observation.component:Concentration.code
         * Observation.component:Concentration.value[x]
         * Observation.component:Concentration.value[x].code
         * Observation.component:Concentration.value[x].system
         * Observation.component:Concentration.value[x].unit
         * Observation.component:Concentration.value[x].value
         * Observation.component:FlowRate
-        * Observation.component:FlowRate.code.coding.code
+        * Observation.component:FlowRate.code
         * Observation.component:FlowRate.value[x]
         * Observation.component:FlowRate.value[x].code
         * Observation.component:FlowRate.value[x].system

@@ -186,8 +186,7 @@
   - :path: component.code
   - :path: component.valueQuantity
     :original_path: component.value[x]
-  - :path: component:systolic.code.coding.code
-    :fixed_value: 8480-6
+  - :path: component:systolic.code
   - :path: component:systolic.valueQuantity
     :original_path: component:systolic.value[x]
   - :path: component:systolic.valueQuantity.value
@@ -200,8 +199,7 @@
   - :path: component:systolic.valueQuantity.code
     :original_path: component:systolic.value[x].code
     :fixed_value: mm[Hg]
-  - :path: component:diastolic.code.coding.code
-    :fixed_value: 8462-4
+  - :path: component:diastolic.code
   - :path: component:diastolic.valueQuantity
     :original_path: component:diastolic.value[x]
   - :path: component:diastolic.valueQuantity.value

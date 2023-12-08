@@ -205,8 +205,7 @@
   - :path: component.code
   - :path: component.valueQuantity
     :original_path: component.value[x]
-  - :path: component:FlowRate.code.coding.code
-    :fixed_value: 3151-8
+  - :path: component:FlowRate.code
   - :path: component:FlowRate.valueQuantity
     :original_path: component:FlowRate.value[x]
   - :path: component:FlowRate.valueQuantity.value
@@ -219,8 +218,7 @@
   - :path: component:FlowRate.valueQuantity.code
     :original_path: component:FlowRate.value[x].code
     :fixed_value: L/min
-  - :path: component:Concentration.code.coding.code
-    :fixed_value: 3150-0
+  - :path: component:Concentration.code
   - :path: component:Concentration.valueQuantity
     :original_path: component:Concentration.value[x]
   - :path: component:Concentration.valueQuantity.value

@@ -36,7 +36,7 @@ module USCoreTestKit
       end
 
       def all_must_support_elements
-        profile_elements.select { |element| element.mustSupport || is_uscdi_requirement_element?(element) }
+        profile_elements.select { |element| (element.mustSupport || is_uscdi_requirement_element?(element))}
       end
 
       def must_support_extension_elements
@@ -211,18 +211,23 @@ module USCoreTestKit
       end
 
       def plain_must_support_elements
-        all_must_support_elements - must_support_extension_elements - must_support_slice_elements
+        plain_must_supports = all_must_support_elements - must_support_extension_elements - must_support_slice_elements
       end
+
+      def element_part_of_slice_discrimination?(element)
+        must_support_slice_elements.any? { |ms_slice| element.id.include?(ms_slice.id) }
+      end
+
 
       def handle_fixed_values(metadata, element)
         if element.fixedUri.present?
           metadata[:fixed_value] = element.fixedUri
-        elsif element.patternCodeableConcept.present?
+        elsif element.patternCodeableConcept.present? && !element_part_of_slice_discrimination?(element)
           metadata[:fixed_value] = element.patternCodeableConcept.coding.first.code
           metadata[:path] += '.coding.code'
         elsif element.fixedCode.present?
           metadata[:fixed_value] = element.fixedCode
-        elsif element.patternIdentifier.present?
+        elsif element.patternIdentifier.present? && !element_part_of_slice_discrimination?(element)
           metadata[:fixed_value] = element.patternIdentifier.system
           metadata[:path] += '.system'
         end
