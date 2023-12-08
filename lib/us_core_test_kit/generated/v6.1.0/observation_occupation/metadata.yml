@@ -185,6 +185,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: component
   - :path: component:industry.code
   - :path: component:industry.value[x]

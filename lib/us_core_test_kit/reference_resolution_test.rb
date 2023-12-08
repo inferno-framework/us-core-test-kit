@@ -12,7 +12,7 @@ module USCoreTestKit
 
       pass if unresolved_references(resources).length.zero?
 
-      skip "Could not resolve Must Support references #{unresolved_references_strings.join(', ')}"
+      skip "Could not resolve and validate any Must Support references for #{unresolved_references_strings.join(', ')}"
     end
 
     def unresolved_references_strings
@@ -20,7 +20,7 @@ module USCoreTestKit
         unresolved_references.each_with_object(Hash.new { |hash, key| hash[key] = [] }) do |missing, hash|
           hash[missing[:path]] << missing[:target_profile]
         end
-      unresolved_reference_hash.map { |path, profiles| "#{path}#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
+      unresolved_reference_hash.map { |path, profiles| "#{path} element: Reference#{"(#{profiles.join('|')})" unless profiles.first.empty?}" }
     end
 
     def record_resolved_reference(reference, target_profile)

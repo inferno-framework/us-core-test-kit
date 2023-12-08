@@ -261,17 +261,25 @@ module USCoreTestKit
       end
 
       def handle_type_must_support_target_profiles(type, metadata)
-        index = 0
+        # US Core 3.1.1 profiles do not have US Core target profiles.
+        # Vital Sign proifles from FHIR R4 (version 4.0.1) do not have US Core target profiles either.
+        return if ['3.1.1', '4.0.1'].include?(profile.version)
+
         target_profiles = []
 
-        type.source_hash['_targetProfile']&.each do |hash|
-          if hash.present?
-            element = FHIR::Element.new(hash)
-            target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+        if type.targetProfile&.length == 1
+          target_profiles << type.targetProfile.first
+        else
+          type.source_hash['_targetProfile']&.each_with_index do |hash, index|
+            if hash.present?
+              element = FHIR::Element.new(hash)
+              target_profiles << type.targetProfile[index] if type_must_support_extension?(element.extension)
+            end
           end
-          index += 1
         end
 
+        # remove target_profile for FHIR Base resource type.
+        target_profiles.delete_if { |reference| reference.start_with?('http://hl7.org/fhir/StructureDefinition')}
         metadata[:target_profiles] = target_profiles if target_profiles.present?
       end
 

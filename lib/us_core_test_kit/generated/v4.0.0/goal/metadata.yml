@@ -110,6 +110,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: target
   - :path: target.dueDate
     :original_path: target.due[x]

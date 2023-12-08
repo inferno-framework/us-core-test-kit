@@ -161,6 +161,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: issued
@@ -172,6 +174,8 @@
   - :path: result
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
 :mandatory_elements:
 - DiagnosticReport.status
 - DiagnosticReport.category

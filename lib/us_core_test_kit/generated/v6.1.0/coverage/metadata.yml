@@ -87,6 +87,8 @@
   - :path: beneficiary
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: relationship
   - :path: period
   - :path: payor

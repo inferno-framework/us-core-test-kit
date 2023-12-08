@@ -155,6 +155,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: valueQuantity
@@ -166,6 +168,8 @@
   - :path: specimen
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
 :mandatory_elements:
 - Observation.status
 - Observation.category
