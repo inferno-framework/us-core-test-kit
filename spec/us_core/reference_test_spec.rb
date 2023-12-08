@@ -298,7 +298,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         result = run(test_class, url: url)
         expect(result.result).to eq('skip')
-        expect(result.result_message).to include('performer(http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization)')
+        expect(result.result_message).to include('performer element: Reference(http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization)')
       end
     end
 
@@ -314,7 +314,7 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest do
 
         result = run(test_class, url: url)
         expect(result.result).to eq('skip')
-        expect(result.result_message).to eq('Could not resolve Must Support references encounter(http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter)')
+        expect(result.result_message).to include('Could not resolve and validate any Must Support references for encounter element: Reference(http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter)')
       end
     end
   end
