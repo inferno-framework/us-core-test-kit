@@ -684,7 +684,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
@@ -1009,7 +1009,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: dateTime
       :contains_multiple: false
       :multiple_or: MAY
     :onset-date:
@@ -4026,7 +4026,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4261,7 +4270,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4496,7 +4514,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -5012,6 +5039,15 @@
       - cognitive-status
       - treatment-intervention-preference
       - care-experience-preference
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -5081,6 +5117,15 @@
         - cognitive-status
         - treatment-intervention-preference
         - care-experience-preference
+        - social-history
+        - vital-signs
+        - imaging
+        - laboratory
+        - procedure
+        - survey
+        - exam
+        - therapy
+        - activity
     :elements:
     - :path: status
     - :path: category
@@ -5265,7 +5310,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -5492,7 +5546,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -7077,7 +7140,16 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values: []
+      :values:
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -11782,6 +11854,11 @@
       - care-experience-preference
       - '386053000'
       - '410606002'
+      - '108252007'
+      - '363679005'
+      - '409063005'
+      - '409073007'
+      - '387713003'
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -11854,6 +11931,11 @@
         - care-experience-preference
         - '386053000'
         - '410606002'
+        - '108252007'
+        - '363679005'
+        - '409063005'
+        - '409073007'
+        - '387713003'
     :elements:
     - :path: status
     - :path: intent
