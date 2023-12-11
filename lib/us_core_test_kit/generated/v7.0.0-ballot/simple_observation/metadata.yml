@@ -88,6 +88,15 @@
     - cognitive-status
     - treatment-intervention-preference
     - care-experience-preference
+    - social-history
+    - vital-signs
+    - imaging
+    - laboratory
+    - procedure
+    - survey
+    - exam
+    - therapy
+    - activity
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -158,6 +167,15 @@
       - cognitive-status
       - treatment-intervention-preference
       - care-experience-preference
+      - social-history
+      - vital-signs
+      - imaging
+      - laboratory
+      - procedure
+      - survey
+      - exam
+      - therapy
+      - activity
   :elements:
   - :path: status
   - :path: category
