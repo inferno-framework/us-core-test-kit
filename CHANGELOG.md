@@ -1,3 +1,10 @@
+# 0.6.2
+
+* FHIR-2327: Restore component.dataAbsentReason MS for BloodPressure profile by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/141
+* FI-2313: MS Slice Subelement Support by @360dgries in https://github.com/inferno-framework/us-core-test-kit/pull/140
+* FI-2348: Add guard for fixed values on slice discriminators by @360dgries in https://github.com/inferno-framework/us-core-test-kit/pull/143
+* FI-2316: Label Reference target profile as MustSupport as there is only one by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/139
+
 # 0.6.1
 
 * Fix broken link to US Core 6.1.0 IG by @Justin-Ramm in
