@@ -166,7 +166,7 @@ module USCoreTestKit
       end
 
       def values
-        values_from_must_supports(profile_element, type).presence ||
+        values_from_must_supports(profile_element).presence ||
           value_extractor.values_from_slicing(profile_element, type).presence ||
           value_extractor.values_from_required_binding(profile_element).presence ||
           value_extractor.values_from_value_set_binding(profile_element).presence ||
@@ -174,8 +174,8 @@ module USCoreTestKit
           []
       end
 
-      def values_from_must_supports(profile_element, type)
-        return [] unless type == 'CodeableConcept'
+      def values_from_must_supports(profile_element)
+        return if profile_element.nil?
 
         short_path = profile_element.path.split('.', 2)[1]
 
