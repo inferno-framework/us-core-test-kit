@@ -984,12 +984,6 @@
       :values:
       - problem-list-item
       - health-concern
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
-      - treatment-intervention-preference
-      - care-experience-preference
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4028,14 +4022,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4272,14 +4258,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4516,14 +4494,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -5311,15 +5281,7 @@
       - Observation.category
       :comparators: {}
       :values:
-      - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
+      - treatment-intervention-preference
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -5547,15 +5509,7 @@
       - Observation.category
       :comparators: {}
       :values:
-      - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
+      - care-experience-preference
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -7140,16 +7094,7 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values:
-      - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
+      :values: []
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY

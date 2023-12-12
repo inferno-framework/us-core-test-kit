@@ -1024,10 +1024,6 @@
       :values:
       - problem-list-item
       - health-concern
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4021,14 +4017,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4267,14 +4255,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -4513,14 +4493,6 @@
       :comparators: {}
       :values:
       - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY
@@ -6667,16 +6639,7 @@
       :full_paths:
       - Observation.category
       :comparators: {}
-      :values:
-      - social-history
-      - vital-signs
-      - imaging
-      - laboratory
-      - procedure
-      - survey
-      - exam
-      - therapy
-      - activity
+      :values: []
       :type: CodeableConcept
       :contains_multiple: true
       :multiple_or: MAY

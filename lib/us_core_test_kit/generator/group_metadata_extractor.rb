@@ -229,8 +229,16 @@ module USCoreTestKit
       end
 
       def search_metadata_extractor
-        @search_metadata_extractor ||=
-          SearchMetadataExtractor.new(resource_capabilities, ig_resources, resource, profile_elements)
+        @search_metadata_extractor ||= SearchMetadataExtractor.new(
+          resource_capabilities,
+          ig_resources,
+          profile_elements,
+          {
+            resource: resource,
+            profile_url: profile_url,
+            must_supports: must_supports
+          }
+        )
       end
 
       def searches

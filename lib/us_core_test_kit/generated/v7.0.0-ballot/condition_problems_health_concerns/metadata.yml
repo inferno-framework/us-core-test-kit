@@ -114,12 +114,6 @@
     :values:
     - problem-list-item
     - health-concern
-    - sdoh
-    - functional-status
-    - disability-status
-    - cognitive-status
-    - treatment-intervention-preference
-    - care-experience-preference
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
