@@ -167,11 +167,11 @@ module USCoreTestKit
 
       def values
         values_from_must_supports(profile_element).presence ||
-          value_extractor.values_from_slicing(profile_element, type).presence ||
-          value_extractor.values_from_required_binding(profile_element).presence ||
-          value_extractor.values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata(paths).presence ||
-          []
+        value_extractor.values_from_fixed_codes(profile_element, type).presence ||
+        #value_extractor.values_from_required_binding(profile_element).presence ||
+        value_extractor.values_from_value_set_binding(profile_element).presence ||
+        values_from_resource_metadata(paths).presence ||
+        []
       end
 
       def values_from_must_supports(profile_element)
@@ -179,14 +179,25 @@ module USCoreTestKit
 
         short_path = profile_element.path.split('.', 2)[1]
 
+        (
+          (
+            values_from_must_support_slices(profile_element, short_path, true).presence ||
+            values_from_must_support_slices(profile_element, short_path, false)
+          ) +
+          values_from_must_support_elements(short_path)
+        ).uniq
+      end
+
+      def values_from_must_support_slices(profile_element, short_path, mandatory_slice_only)
         group_metadata[:must_supports][:slices]
-          .select { |slice| slice[:path] == short_path }
+          .select { |slice| [short_path, "#{short_path}.coding"].include?(slice[:path]) }
           .map do |slice|
+            #binding.pry if group_metadata[:profile_url] == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note' && short_path == 'category'
             slice_element = profile_elements.find { |element| slice[:slice_id] == element.id }
-            next if (profile_element.min > 0 && slice_element.min == 0)
+            next if (profile_element.min > 0 && slice_element.min == 0 && mandatory_slice_only)
 
             case slice[:discriminator][:type]
-            when 'patternCodeableConcept'
+            when 'patternCoding', 'patternCodeableConcept'
               slice[:discriminator][:code]
             when 'requiredBinding'
               slice[:discriminator][:values]
@@ -197,6 +208,12 @@ module USCoreTestKit
             end
           end
           .compact.flatten
+      end
+
+      def values_from_must_support_elements(short_path)
+        group_metadata[:must_supports][:elements]
+          .select { |element| element[:path] == "#{short_path}.coding.code" }
+          .map { |element| element[:fixed_value] }
       end
 
       def values_from_resource_metadata(paths)
