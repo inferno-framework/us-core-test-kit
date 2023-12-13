@@ -71,11 +71,38 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :<%= capability_statement_group_id %>
-  <% group_id_list.each do |id| %>
-      group from: :<%= id %><% end %>
-      group from: :<%= clinical_notes_guidance_group_id %>
-      group from: :us_core_311_data_absent_reason
+      group do
+        title 'SMART App Launch'
+        group do
+          title 'Standalone Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { pass }
+          end
+        end
+
+        group do
+          title 'EHR Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { pass }
+          end
+        end
+      end
+
+      group do
+        title 'US Core FHIR API'
+
+        group from: :<%= capability_statement_group_id %>
+      <% group_id_list.each do |id| %>
+        group from: :<%= id %><% end %>
+        group from: :<%= clinical_notes_guidance_group_id %>
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end
