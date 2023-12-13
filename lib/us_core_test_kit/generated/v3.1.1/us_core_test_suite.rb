@@ -99,39 +99,66 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :us_core_v311_capability_statement
-  
-      group from: :us_core_v311_patient
-      group from: :us_core_v311_allergy_intolerance
-      group from: :us_core_v311_care_plan
-      group from: :us_core_v311_care_team
-      group from: :us_core_v311_condition
-      group from: :us_core_v311_device
-      group from: :us_core_v311_diagnostic_report_note
-      group from: :us_core_v311_diagnostic_report_lab
-      group from: :us_core_v311_document_reference
-      group from: :us_core_v311_goal
-      group from: :us_core_v311_immunization
-      group from: :us_core_v311_medication_request
-      group from: :us_core_v311_smokingstatus
-      group from: :us_core_v311_pediatric_weight_for_height
-      group from: :us_core_v311_observation_lab
-      group from: :us_core_v311_pediatric_bmi_for_age
-      group from: :us_core_v311_pulse_oximetry
-      group from: :us_core_v311_head_circumference
-      group from: :us_core_v311_bodyheight
-      group from: :us_core_v311_bodytemp
-      group from: :us_core_v311_bp
-      group from: :us_core_v311_bodyweight
-      group from: :us_core_v311_heartrate
-      group from: :us_core_v311_resprate
-      group from: :us_core_v311_procedure
-      group from: :us_core_v311_encounter
-      group from: :us_core_v311_organization
-      group from: :us_core_v311_practitioner
-      group from: :us_core_v311_provenance
-      group from: :us_core_v311_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+      group do
+        title 'SMART App Launch'
+        group do
+          title 'Standalone Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { pass }
+          end
+        end
+
+        group do
+          title 'EHR Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { assert false }
+          end
+        end
+      end
+
+      group do
+        title 'US Core FHIR API'
+
+        group from: :us_core_v311_capability_statement
+      
+        group from: :us_core_v311_patient
+        group from: :us_core_v311_allergy_intolerance
+        group from: :us_core_v311_care_plan
+        group from: :us_core_v311_care_team
+        group from: :us_core_v311_condition
+        group from: :us_core_v311_device
+        group from: :us_core_v311_diagnostic_report_note
+        group from: :us_core_v311_diagnostic_report_lab
+        group from: :us_core_v311_document_reference
+        group from: :us_core_v311_goal
+        group from: :us_core_v311_immunization
+        group from: :us_core_v311_medication_request
+        group from: :us_core_v311_smokingstatus
+        group from: :us_core_v311_pediatric_weight_for_height
+        group from: :us_core_v311_observation_lab
+        group from: :us_core_v311_pediatric_bmi_for_age
+        group from: :us_core_v311_pulse_oximetry
+        group from: :us_core_v311_head_circumference
+        group from: :us_core_v311_bodyheight
+        group from: :us_core_v311_bodytemp
+        group from: :us_core_v311_bp
+        group from: :us_core_v311_bodyweight
+        group from: :us_core_v311_heartrate
+        group from: :us_core_v311_resprate
+        group from: :us_core_v311_procedure
+        group from: :us_core_v311_encounter
+        group from: :us_core_v311_organization
+        group from: :us_core_v311_practitioner
+        group from: :us_core_v311_provenance
+        group from: :us_core_v311_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end
