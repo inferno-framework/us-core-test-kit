@@ -586,15 +586,15 @@
     :expectation: MAY
   :operations: []
   :searches:
-  - :names:
-    - patient
-    :expectation: SHALL
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
     - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - patient
+    :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
@@ -905,15 +905,15 @@
     :expectation: MAY
   :operations: []
   :searches:
-  - :names:
-    - patient
-    :expectation: SHALL
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - patient
     - category
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - patient
+    :expectation: SHALL
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
   - :expectation: SHOULD
