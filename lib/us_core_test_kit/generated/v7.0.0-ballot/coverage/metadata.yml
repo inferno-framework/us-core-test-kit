@@ -80,14 +80,15 @@
       :system: http://terminology.hl7.org/CodeSystem/coverage-class
   :elements:
   - :path: identifier
-  - :path: identifier:memberid.type.coding.code
-    :fixed_value: MB
+  - :path: identifier:memberid.type
   - :path: status
   - :path: type
   - :path: subscriberId
   - :path: beneficiary
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: relationship
   - :path: period
   - :path: payor

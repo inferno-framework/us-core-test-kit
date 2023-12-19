@@ -70,10 +70,10 @@
   - :path: agent.onBehalfOf
     :types:
     - Reference
-  - :path: agent:ProvenanceAuthor.type.coding.code
-    :fixed_value: author
-  - :path: agent:ProvenanceTransmitter.type.coding.code
-    :fixed_value: transmitter
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - :path: agent:ProvenanceAuthor.type
+  - :path: agent:ProvenanceTransmitter.type
 :mandatory_elements:
 - Provenance.target
 - Provenance.recorded

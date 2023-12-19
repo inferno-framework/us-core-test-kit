@@ -179,13 +179,10 @@ module USCoreTestKit
 
         short_path = profile_element.path.split('.', 2)[1]
 
-        (
-          (
-            values_from_must_support_slices(profile_element, short_path, true).presence ||
-            values_from_must_support_slices(profile_element, short_path, false)
-          ) +
-          values_from_must_support_elements(short_path)
-        ).uniq
+        values_from_must_support_slices(profile_element, short_path, true).presence ||
+        values_from_must_support_slices(profile_element, short_path, false).presence ||
+        values_from_must_support_elements(short_path).presence ||
+        []
       end
 
       def values_from_must_support_slices(profile_element, short_path, mandatory_slice_only)
