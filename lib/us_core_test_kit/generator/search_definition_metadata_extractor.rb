@@ -189,7 +189,6 @@ module USCoreTestKit
         group_metadata[:must_supports][:slices]
           .select { |slice| [short_path, "#{short_path}.coding"].include?(slice[:path]) }
           .map do |slice|
-            #binding.pry if group_metadata[:profile_url] == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note' && short_path == 'category'
             slice_element = profile_elements.find { |element| slice[:slice_id] == element.id }
             next if (profile_element.min > 0 && slice_element.min == 0 && mandatory_slice_only)
 
