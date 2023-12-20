@@ -4,6 +4,8 @@ require_relative '../../custom_groups/v3.1.1/capability_statement_group'
 require_relative '../../custom_groups/v3.1.1/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -99,9 +101,25 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
+
+      suite_option :smart_app_launch_version,
+      title: 'SMART App Launch Version',
+      list_options: [
+        {
+          label: 'SMART App Launch 1.0.0',
+          value: USCoreOptions::SMART_1
+        },
+        {
+          label: 'SMART App Launch 2.0.0',
+          value: USCoreOptions::SMART_2
+        }
+      ]
+
       group do
         title 'SMART App Launch'
+        
         group do
+          required_suite_options USCoreOptions::SMART_1_REQUIREMENT
           title 'Standalone Launch'
           optional
 
@@ -112,6 +130,29 @@ module USCoreTestKit
         end
 
         group do
+          required_suite_options USCoreOptions::SMART_1_REQUIREMENT
+          title 'EHR Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { assert false }
+          end
+        end
+
+        group do
+          required_suite_options USCoreOptions::SMART_2_REQUIREMENT
+          title 'Standalone Launch'
+          optional
+
+          test do
+            title 'TODO'
+            run { pass }
+          end
+        end
+
+        group do
+          required_suite_options USCoreOptions::SMART_2_REQUIREMENT
           title 'EHR Launch'
           optional
 
