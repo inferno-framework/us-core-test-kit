@@ -17,7 +17,7 @@ module USCoreTestKit
         * Observation.code.coding.code
         * Observation.component
         * Observation.component:industry
-        * Observation.component:industry.code.coding.code
+        * Observation.component:industry.code
         * Observation.component:industry.value[x]
         * Observation.effective[x]:effectivePeriod
         * Observation.status

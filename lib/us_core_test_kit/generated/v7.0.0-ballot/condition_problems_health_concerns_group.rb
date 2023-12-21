@@ -1,5 +1,5 @@
-require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_search_test'
 require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_category_search_test'
+require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_search_test'
 require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_asserted_date_search_test'
 require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_onset_date_search_test'
 require_relative 'condition_problems_health_concerns/condition_problems_health_concerns_patient_code_search_test'
@@ -33,8 +33,8 @@ This test sequence will first perform each required search associated
 with this resource. This sequence will perform searches with the
 following parameters:
 
-* patient
 * patient + category
+* patient
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -85,8 +85,8 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition_problems_health_concerns', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_search_test
       test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_category_search_test
+      test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_search_test
       test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_asserted_date_search_test
       test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_onset_date_search_test
       test from: :us_core_v700_ballot_condition_problems_health_concerns_patient_code_search_test

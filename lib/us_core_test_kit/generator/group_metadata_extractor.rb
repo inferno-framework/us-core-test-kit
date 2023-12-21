@@ -111,8 +111,8 @@ module USCoreTestKit
       ]
 
       VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610'],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610']
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700_ballot'],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700_ballot']
       }
 
       def category_first_profile?
@@ -229,8 +229,16 @@ module USCoreTestKit
       end
 
       def search_metadata_extractor
-        @search_metadata_extractor ||=
-          SearchMetadataExtractor.new(resource_capabilities, ig_resources, resource, profile_elements)
+        @search_metadata_extractor ||= SearchMetadataExtractor.new(
+          resource_capabilities,
+          ig_resources,
+          profile_elements,
+          {
+            resource: resource,
+            profile_url: profile_url,
+            must_supports: must_supports
+          }
+        )
       end
 
       def searches

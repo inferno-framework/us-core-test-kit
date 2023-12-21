@@ -3,13 +3,13 @@ require_relative 'value_extractor'
 module USCoreTestKit
   class Generator
     class SearchDefinitionMetadataExtractor
-      attr_accessor :ig_resources, :name, :resource, :profile_elements
+      attr_accessor :ig_resources, :name, :profile_elements, :group_metadata
 
-      def initialize(name, ig_resources, resource, profile_elements)
+      def initialize(name, ig_resources, profile_elements, group_metadata)
         self.name = name
         self.ig_resources = ig_resources
-        self.resource = resource
         self.profile_elements = profile_elements
+        self.group_metadata = group_metadata
       end
 
       def search_definition
@@ -24,6 +24,10 @@ module USCoreTestKit
             multiple_or: multiple_or_expectation,
             chain: chain
           }.compact
+      end
+
+      def resource
+        group_metadata[:resource]
       end
 
       def param
@@ -162,11 +166,50 @@ module USCoreTestKit
       end
 
       def values
-          value_extractor.values_from_slicing(profile_element, type).presence ||
-          value_extractor.values_from_required_binding(profile_element).presence ||
-          value_extractor.values_from_value_set_binding(profile_element).presence ||
-          values_from_resource_metadata(paths).presence ||
-          []
+        values_from_must_supports(profile_element).presence ||
+        value_extractor.values_from_fixed_codes(profile_element, type).presence ||
+        #value_extractor.values_from_required_binding(profile_element).presence ||
+        value_extractor.values_from_value_set_binding(profile_element).presence ||
+        values_from_resource_metadata(paths).presence ||
+        []
+      end
+
+      def values_from_must_supports(profile_element)
+        return if profile_element.nil?
+
+        short_path = profile_element.path.split('.', 2)[1]
+
+        values_from_must_support_slices(profile_element, short_path, true).presence ||
+        values_from_must_support_slices(profile_element, short_path, false).presence ||
+        values_from_must_support_elements(short_path).presence ||
+        []
+      end
+
+      def values_from_must_support_slices(profile_element, short_path, mandatory_slice_only)
+        group_metadata[:must_supports][:slices]
+          .select { |slice| [short_path, "#{short_path}.coding"].include?(slice[:path]) }
+          .map do |slice|
+            slice_element = profile_elements.find { |element| slice[:slice_id] == element.id }
+            next if (profile_element.min > 0 && slice_element.min == 0 && mandatory_slice_only)
+
+            case slice[:discriminator][:type]
+            when 'patternCoding', 'patternCodeableConcept'
+              slice[:discriminator][:code]
+            when 'requiredBinding'
+              slice[:discriminator][:values]
+            when 'value'
+              slice[:discriminator][:values]
+                .select { |value| value[:path] == 'coding.code' }
+                .map { |value| value[:value] }
+            end
+          end
+          .compact.flatten
+      end
+
+      def values_from_must_support_elements(short_path)
+        group_metadata[:must_supports][:elements]
+          .select { |element| element[:path] == "#{short_path}.coding.code" }
+          .map { |element| element[:fixed_value] }
       end
 
       def values_from_resource_metadata(paths)

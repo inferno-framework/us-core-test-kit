@@ -31,15 +31,15 @@
   :expectation: MAY
 :operations: []
 :searches:
-- :names:
-  - patient
-  :expectation: SHALL
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - patient
   - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - patient
+  :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -114,12 +114,6 @@
     :values:
     - problem-list-item
     - health-concern
-    - sdoh
-    - functional-status
-    - disability-status
-    - cognitive-status
-    - treatment-intervention-preference
-    - care-experience-preference
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -341,10 +335,10 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: us_core_v700_ballot_condition_problems_health_concerns_patient_search_test
-  :file_name: condition_problems_health_concerns_patient_search_test.rb
 - :id: us_core_v700_ballot_condition_problems_health_concerns_patient_category_search_test
   :file_name: condition_problems_health_concerns_patient_category_search_test.rb
+- :id: us_core_v700_ballot_condition_problems_health_concerns_patient_search_test
+  :file_name: condition_problems_health_concerns_patient_search_test.rb
 - :id: us_core_v700_ballot_condition_problems_health_concerns_patient_asserted_date_search_test
   :file_name: condition_problems_health_concerns_patient_asserted_date_search_test.rb
 - :id: us_core_v700_ballot_condition_problems_health_concerns_patient_onset_date_search_test

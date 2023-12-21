@@ -82,15 +82,7 @@
     - Observation.category
     :comparators: {}
     :values:
-    - social-history
-    - vital-signs
-    - imaging
-    - laboratory
-    - procedure
-    - survey
-    - exam
-    - therapy
-    - activity
+    - treatment-intervention-preference
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -165,6 +157,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
   - :path: valueString

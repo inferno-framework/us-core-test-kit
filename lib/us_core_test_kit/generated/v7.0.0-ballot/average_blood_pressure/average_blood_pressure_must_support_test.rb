@@ -25,8 +25,8 @@ module USCoreTestKit
         * Observation.component.dataAbsentReason
         * Observation.component.valueQuantity
         * Observation.component:diastolic
+        * Observation.component:diastolic.code
         * Observation.component:diastolic.code.coding
-        * Observation.component:diastolic.code.coding.code
         * Observation.component:diastolic.code.coding:uscore-avg-diastolic-bp
         * Observation.component:diastolic.dataAbsentReason
         * Observation.component:diastolic.valueQuantity
@@ -35,8 +35,8 @@ module USCoreTestKit
         * Observation.component:diastolic.valueQuantity.unit
         * Observation.component:diastolic.valueQuantity.value
         * Observation.component:systolic
+        * Observation.component:systolic.code
         * Observation.component:systolic.code.coding
-        * Observation.component:systolic.code.coding.code
         * Observation.component:systolic.code.coding:uscore-avg-systolic-bp
         * Observation.component:systolic.dataAbsentReason
         * Observation.component:systolic.valueQuantity

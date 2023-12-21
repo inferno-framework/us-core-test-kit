@@ -83,14 +83,6 @@
     :comparators: {}
     :values:
     - social-history
-    - vital-signs
-    - imaging
-    - laboratory
-    - procedure
-    - survey
-    - exam
-    - therapy
-    - activity
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -177,6 +169,8 @@
   - :path: subject
     :types:
     - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 :mandatory_elements:
 - Observation.status
 - Observation.code
