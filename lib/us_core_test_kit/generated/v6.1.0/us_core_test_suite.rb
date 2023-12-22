@@ -1,9 +1,9 @@
 require 'inferno/dsl/oauth_credentials'
-require 'smart_app_launch_test_kit'
 require_relative '../../version'
 require_relative '../../custom_groups/v6.1.0/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -132,145 +132,7 @@ module USCoreTestKit
         }
       ]
 
-      group do
-        title 'SMART App Launch'
-        
-        group do
-          required_suite_options USCoreOptions::SMART_1_REQUIREMENT
-          title 'Standalone Launch'
-          optional
-
-          group from: :smart_discovery
-          group from: :smart_standalone_launch
-          
-          group from: :smart_openid_connect do
-            optional
-            config(
-              inputs: {
-                id_token: { name: :standalone_id_token },
-                client_id: { name: :standalone_client_id },
-                requested_scopes: { name: :standalone_requested_scopes },
-                access_token: { name: :standalone_access_token },
-                smart_credentials: { name: :standalone_smart_credentials }
-              }
-            )
-          end
-
-          group from: :smart_token_refresh do
-            optional
-            config(
-              inputs: {
-                refresh_token: { name: :standalone_refresh_token },
-                client_id: { name: :standalone_client_id },
-                client_secret: { name: :standalone_client_secret },
-                received_scopes: { name: :standalone_received_scopes }
-              }
-            )
-          end
-        end
-
-        group do
-          required_suite_options USCoreOptions::SMART_1_REQUIREMENT
-          title 'EHR Launch'
-          optional
-
-          group from: :smart_discovery
-          group from: :smart_ehr_launch
-          
-          group from: :smart_openid_connect do
-            optional
-            config(
-              inputs: {
-                id_token: { name: :ehr_id_token },
-                client_id: { name: :ehr_client_id },
-                requested_scopes: { name: :ehr_requested_scopes },
-                access_token: { name: :ehr_access_token },
-                smart_credentials: { name: :ehr_smart_credentials }
-              }
-            )
-          end
-
-          group from: :smart_token_refresh do
-            optional
-            config(
-              inputs: {
-                refresh_token: { name: :ehr_refresh_token },
-                client_id: { name: :ehr_client_id },
-                client_secret: { name: :ehr_client_secret },
-                received_scopes: { name: :ehr_received_scopes }
-              }
-            )
-          end
-        end
-
-        group do
-          required_suite_options USCoreOptions::SMART_2_REQUIREMENT
-          title 'Standalone Launch'
-          optional
-
-          group from: :smart_discovery_stu2
-          group from: :smart_standalone_launch_stu2
-          
-          group from: :smart_openid_connect do
-            optional
-            config(
-              inputs: {
-                id_token: { name: :standalone_id_token },
-                client_id: { name: :standalone_client_id },
-                requested_scopes: { name: :standalone_requested_scopes },
-                access_token: { name: :standalone_access_token },
-                smart_credentials: { name: :standalone_smart_credentials }
-              }
-            )
-          end
-
-          group from: :smart_token_refresh do
-            optional
-            config(
-              inputs: {
-                refresh_token: { name: :standalone_refresh_token },
-                client_id: { name: :standalone_client_id },
-                client_secret: { name: :standalone_client_secret },
-                received_scopes: { name: :standalone_received_scopes }
-              }
-            )
-          end
-        end
-
-        group do
-          required_suite_options USCoreOptions::SMART_2_REQUIREMENT
-          title 'EHR Launch'
-          optional
-
-          group from: :smart_discovery_stu2
-          group from: :smart_ehr_launch_stu2
-          
-          group from: :smart_openid_connect do
-            optional
-            config(
-              inputs: {
-                id_token: { name: :ehr_id_token },
-                client_id: { name: :ehr_client_id },
-                requested_scopes: { name: :ehr_requested_scopes },
-                access_token: { name: :ehr_access_token },
-                smart_credentials: { name: :ehr_smart_credentials }
-              }
-            )
-          end
-
-          group from: :smart_token_refresh do
-            optional
-            config(
-              inputs: {
-                refresh_token: { name: :ehr_refresh_token },
-                client_id: { name: :ehr_client_id },
-                client_secret: { name: :ehr_client_secret },
-                received_scopes: { name: :ehr_received_scopes }
-              }
-            )
-          end
-        end
-      end
+      group from: :us_core_smart_app_launch
 
       group do
         title 'US Core FHIR API'
