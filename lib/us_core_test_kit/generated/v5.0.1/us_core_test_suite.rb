@@ -1,4 +1,5 @@
 require 'inferno/dsl/oauth_credentials'
+require 'smart_app_launch_test_kit'
 require_relative '../../version'
 require_relative '../../custom_groups/v5.0.1/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
@@ -134,9 +135,32 @@ module USCoreTestKit
           title 'Standalone Launch'
           optional
 
-          test do
-            title 'TODO'
-            run { pass }
+          group from: :smart_discovery
+          group from: :smart_standalone_launch
+          
+          group from: :smart_openid_connect do
+            optional
+            config(
+              inputs: {
+                id_token: { name: :standalone_id_token },
+                client_id: { name: :standalone_client_id },
+                requested_scopes: { name: :standalone_requested_scopes },
+                access_token: { name: :standalone_access_token },
+                smart_credentials: { name: :standalone_smart_credentials }
+              }
+            )
+          end
+
+          group from: :smart_token_refresh do
+            optional
+            config(
+              inputs: {
+                refresh_token: { name: :standalone_refresh_token },
+                client_id: { name: :standalone_client_id },
+                client_secret: { name: :standalone_client_secret },
+                received_scopes: { name: :standalone_received_scopes }
+              }
+            )
           end
         end
 
@@ -145,9 +169,32 @@ module USCoreTestKit
           title 'EHR Launch'
           optional
 
-          test do
-            title 'TODO'
-            run { assert false }
+          group from: :smart_discovery
+          group from: :smart_ehr_launch
+          
+          group from: :smart_openid_connect do
+            optional
+            config(
+              inputs: {
+                id_token: { name: :ehr_id_token },
+                client_id: { name: :ehr_client_id },
+                requested_scopes: { name: :ehr_requested_scopes },
+                access_token: { name: :ehr_access_token },
+                smart_credentials: { name: :ehr_smart_credentials }
+              }
+            )
+          end
+
+          group from: :smart_token_refresh do
+            optional
+            config(
+              inputs: {
+                refresh_token: { name: :ehr_refresh_token },
+                client_id: { name: :ehr_client_id },
+                client_secret: { name: :ehr_client_secret },
+                received_scopes: { name: :ehr_received_scopes }
+              }
+            )
           end
         end
 
@@ -156,9 +203,32 @@ module USCoreTestKit
           title 'Standalone Launch'
           optional
 
-          test do
-            title 'TODO'
-            run { pass }
+          group from: :smart_discovery_stu2
+          group from: :smart_standalone_launch_stu2
+          
+          group from: :smart_openid_connect do
+            optional
+            config(
+              inputs: {
+                id_token: { name: :standalone_id_token },
+                client_id: { name: :standalone_client_id },
+                requested_scopes: { name: :standalone_requested_scopes },
+                access_token: { name: :standalone_access_token },
+                smart_credentials: { name: :standalone_smart_credentials }
+              }
+            )
+          end
+
+          group from: :smart_token_refresh do
+            optional
+            config(
+              inputs: {
+                refresh_token: { name: :standalone_refresh_token },
+                client_id: { name: :standalone_client_id },
+                client_secret: { name: :standalone_client_secret },
+                received_scopes: { name: :standalone_received_scopes }
+              }
+            )
           end
         end
 
@@ -167,9 +237,32 @@ module USCoreTestKit
           title 'EHR Launch'
           optional
 
-          test do
-            title 'TODO'
-            run { assert false }
+          group from: :smart_discovery_stu2
+          group from: :smart_ehr_launch_stu2
+          
+          group from: :smart_openid_connect do
+            optional
+            config(
+              inputs: {
+                id_token: { name: :ehr_id_token },
+                client_id: { name: :ehr_client_id },
+                requested_scopes: { name: :ehr_requested_scopes },
+                access_token: { name: :ehr_access_token },
+                smart_credentials: { name: :ehr_smart_credentials }
+              }
+            )
+          end
+
+          group from: :smart_token_refresh do
+            optional
+            config(
+              inputs: {
+                refresh_token: { name: :ehr_refresh_token },
+                client_id: { name: :ehr_client_id },
+                client_secret: { name: :ehr_client_secret },
+                received_scopes: { name: :ehr_received_scopes }
+              }
+            )
           end
         end
       end
