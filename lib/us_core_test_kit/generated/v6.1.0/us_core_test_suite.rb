@@ -120,22 +120,23 @@ module USCoreTestKit
 
 
       suite_option :smart_app_launch_version,
-      title: 'SMART App Launch Version',
-      list_options: [
-        {
-          label: 'SMART App Launch 1.0.0',
-          value: USCoreOptions::SMART_1
-        },
-        {
-          label: 'SMART App Launch 2.0.0',
-          value: USCoreOptions::SMART_2
-        }
-      ]
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
 
       group from: :us_core_smart_app_launch
 
       group do
         title 'US Core FHIR API'
+        id :us_core_v610_fhir_api
 
         group from: :us_core_v610_capability_statement
       
