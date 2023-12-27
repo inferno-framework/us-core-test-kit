@@ -43,6 +43,11 @@
       "value": "SAMPLE_CONFIDENTIAL_CLIENT_SECRET"
     },
     {
+      "name": "client_auth_type",
+      "type": "text",
+      "value": "confidential_symmetric"
+    },
+    {
       "name": "patient_ids",
       "type": "text",
       "title": "Patient IDs",
