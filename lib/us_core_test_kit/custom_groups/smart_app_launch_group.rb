@@ -5,17 +5,20 @@ module USCoreTestKit
   class SmartAppLaunchGroup < Inferno::TestGroup
     id :us_core_smart_app_launch
     title 'SMART App Launch'
-    
+
     group do
       required_suite_options USCoreOptions::SMART_1_REQUIREMENT
       id :us_core_smart_standalone_launch_stu1
       title 'Standalone Launch'
       optional
 
-      group from: :smart_discovery
-      group from: :smart_standalone_launch
-      
+      group from: :smart_discovery,
+            run_as_group: true
+      group from: :smart_standalone_launch,
+            run_as_group: true
+
       group from: :smart_openid_connect do
+        run_as_group
         optional
         config(
           inputs: {
@@ -29,6 +32,7 @@ module USCoreTestKit
       end
 
       group from: :smart_token_refresh do
+        run_as_group
         optional
         config(
           inputs: {
@@ -47,10 +51,13 @@ module USCoreTestKit
       title 'EHR Launch'
       optional
 
-      group from: :smart_discovery
-      group from: :smart_ehr_launch
-      
+      group from: :smart_discovery,
+            run_as_group: true
+      group from: :smart_ehr_launch,
+            run_as_group: true
+
       group from: :smart_openid_connect do
+        run_as_group
         optional
         config(
           inputs: {
@@ -64,6 +71,7 @@ module USCoreTestKit
       end
 
       group from: :smart_token_refresh do
+        run_as_group
         optional
         config(
           inputs: {
@@ -82,10 +90,13 @@ module USCoreTestKit
       title 'Standalone Launch'
       optional
 
-      group from: :smart_discovery_stu2
-      group from: :smart_standalone_launch_stu2
-      
+      group from: :smart_discovery_stu2,
+            run_as_group: true
+      group from: :smart_standalone_launch_stu2,
+            run_as_group: true
+
       group from: :smart_openid_connect do
+        run_as_group
         optional
         config(
           inputs: {
@@ -99,6 +110,7 @@ module USCoreTestKit
       end
 
       group from: :smart_token_refresh do
+        run_as_group
         optional
         config(
           inputs: {
@@ -117,10 +129,13 @@ module USCoreTestKit
       title 'EHR Launch'
       optional
 
-      group from: :smart_discovery_stu2
-      group from: :smart_ehr_launch_stu2
-      
+      group from: :smart_discovery_stu2,
+            run_as_group: true
+      group from: :smart_ehr_launch_stu2,
+            run_as_group: true
+
       group from: :smart_openid_connect do
+        run_as_group
         optional
         config(
           inputs: {
@@ -134,6 +149,7 @@ module USCoreTestKit
       end
 
       group from: :smart_token_refresh do
+        run_as_group
         optional
         config(
           inputs: {
@@ -147,4 +163,3 @@ module USCoreTestKit
     end
   end
 end
-        
