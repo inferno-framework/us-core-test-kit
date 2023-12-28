@@ -4,6 +4,7 @@ require_relative '<%= capability_statement_file_name %>'
 require_relative '<%= clinical_notes_guidance_file_name %>'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../custom_groups/smart_app_launch_group'
+require_relative '../../custom_groups/smart_scopes_group'
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -102,6 +103,8 @@ module USCoreTestKit
         group from: :<%= clinical_notes_guidance_group_id %>
         group from: :us_core_311_data_absent_reason
       end
+
+      group from: :us_core_smart_scopes
     end
   end
 end
