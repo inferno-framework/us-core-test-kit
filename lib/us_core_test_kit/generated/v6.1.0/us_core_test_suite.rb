@@ -3,7 +3,10 @@ require_relative '../../version'
 require_relative '../../custom_groups/v6.1.0/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -115,55 +118,76 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :us_core_v610_capability_statement
-  
-      group from: :us_core_v610_patient
-      group from: :us_core_v610_allergy_intolerance
-      group from: :us_core_v610_care_plan
-      group from: :us_core_v610_care_team
-      group from: :us_core_v610_condition_encounter_diagnosis
-      group from: :us_core_v610_condition_problems_health_concerns
-      group from: :us_core_v610_coverage
-      group from: :us_core_v610_device
-      group from: :us_core_v610_diagnostic_report_note
-      group from: :us_core_v610_diagnostic_report_lab
-      group from: :us_core_v610_document_reference
-      group from: :us_core_v610_encounter
-      group from: :us_core_v610_goal
-      group from: :us_core_v610_immunization
-      group from: :us_core_v610_medication_dispense
-      group from: :us_core_v610_medication_request
-      group from: :us_core_v610_observation_lab
-      group from: :us_core_v610_observation_pregnancystatus
-      group from: :us_core_v610_observation_pregnancyintent
-      group from: :us_core_v610_observation_occupation
-      group from: :us_core_v610_respiratory_rate
-      group from: :us_core_v610_simple_observation
-      group from: :us_core_v610_heart_rate
-      group from: :us_core_v610_body_temperature
-      group from: :us_core_v610_pediatric_weight_for_height
-      group from: :us_core_v610_pulse_oximetry
-      group from: :us_core_v610_smokingstatus
-      group from: :us_core_v610_observation_sexual_orientation
-      group from: :us_core_v610_head_circumference
-      group from: :us_core_v610_body_height
-      group from: :us_core_v610_bmi
-      group from: :us_core_v610_observation_screening_assessment
-      group from: :us_core_v610_blood_pressure
-      group from: :us_core_v610_observation_clinical_result
-      group from: :us_core_v610_pediatric_bmi_for_age
-      group from: :us_core_v610_head_circumference_percentile
-      group from: :us_core_v610_body_weight
-      group from: :us_core_v610_procedure
-      group from: :us_core_v610_questionnaire_response
-      group from: :us_core_v610_service_request
-      group from: :us_core_v610_organization
-      group from: :us_core_v610_practitioner
-      group from: :us_core_v610_provenance
-      group from: :us_core_v610_related_person
-      group from: :us_core_v610_specimen
-      group from: :us_core_v400_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+
+      suite_option :smart_app_launch_version,
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
+
+      group from: :us_core_smart_app_launch
+
+      group do
+        title 'US Core FHIR API'
+        id :us_core_v610_fhir_api
+
+        group from: :us_core_v610_capability_statement
+      
+        group from: :us_core_v610_patient
+        group from: :us_core_v610_allergy_intolerance
+        group from: :us_core_v610_care_plan
+        group from: :us_core_v610_care_team
+        group from: :us_core_v610_condition_encounter_diagnosis
+        group from: :us_core_v610_condition_problems_health_concerns
+        group from: :us_core_v610_coverage
+        group from: :us_core_v610_device
+        group from: :us_core_v610_diagnostic_report_note
+        group from: :us_core_v610_diagnostic_report_lab
+        group from: :us_core_v610_document_reference
+        group from: :us_core_v610_encounter
+        group from: :us_core_v610_goal
+        group from: :us_core_v610_immunization
+        group from: :us_core_v610_medication_dispense
+        group from: :us_core_v610_medication_request
+        group from: :us_core_v610_observation_lab
+        group from: :us_core_v610_observation_pregnancystatus
+        group from: :us_core_v610_observation_pregnancyintent
+        group from: :us_core_v610_observation_occupation
+        group from: :us_core_v610_respiratory_rate
+        group from: :us_core_v610_simple_observation
+        group from: :us_core_v610_heart_rate
+        group from: :us_core_v610_body_temperature
+        group from: :us_core_v610_pediatric_weight_for_height
+        group from: :us_core_v610_pulse_oximetry
+        group from: :us_core_v610_smokingstatus
+        group from: :us_core_v610_observation_sexual_orientation
+        group from: :us_core_v610_head_circumference
+        group from: :us_core_v610_body_height
+        group from: :us_core_v610_bmi
+        group from: :us_core_v610_observation_screening_assessment
+        group from: :us_core_v610_blood_pressure
+        group from: :us_core_v610_observation_clinical_result
+        group from: :us_core_v610_pediatric_bmi_for_age
+        group from: :us_core_v610_head_circumference_percentile
+        group from: :us_core_v610_body_weight
+        group from: :us_core_v610_procedure
+        group from: :us_core_v610_questionnaire_response
+        group from: :us_core_v610_service_request
+        group from: :us_core_v610_organization
+        group from: :us_core_v610_practitioner
+        group from: :us_core_v610_provenance
+        group from: :us_core_v610_related_person
+        group from: :us_core_v610_specimen
+        group from: :us_core_v400_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end

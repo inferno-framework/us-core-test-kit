@@ -3,7 +3,10 @@ require_relative '../../version'
 require_relative '../../custom_groups/v3.1.1/capability_statement_group'
 require_relative '../../custom_groups/v3.1.1/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -99,39 +102,60 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :us_core_v311_capability_statement
-  
-      group from: :us_core_v311_patient
-      group from: :us_core_v311_allergy_intolerance
-      group from: :us_core_v311_care_plan
-      group from: :us_core_v311_care_team
-      group from: :us_core_v311_condition
-      group from: :us_core_v311_device
-      group from: :us_core_v311_diagnostic_report_note
-      group from: :us_core_v311_diagnostic_report_lab
-      group from: :us_core_v311_document_reference
-      group from: :us_core_v311_goal
-      group from: :us_core_v311_immunization
-      group from: :us_core_v311_medication_request
-      group from: :us_core_v311_smokingstatus
-      group from: :us_core_v311_pediatric_weight_for_height
-      group from: :us_core_v311_observation_lab
-      group from: :us_core_v311_pediatric_bmi_for_age
-      group from: :us_core_v311_pulse_oximetry
-      group from: :us_core_v311_head_circumference
-      group from: :us_core_v311_bodyheight
-      group from: :us_core_v311_bodytemp
-      group from: :us_core_v311_bp
-      group from: :us_core_v311_bodyweight
-      group from: :us_core_v311_heartrate
-      group from: :us_core_v311_resprate
-      group from: :us_core_v311_procedure
-      group from: :us_core_v311_encounter
-      group from: :us_core_v311_organization
-      group from: :us_core_v311_practitioner
-      group from: :us_core_v311_provenance
-      group from: :us_core_v311_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+
+      suite_option :smart_app_launch_version,
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
+
+      group from: :us_core_smart_app_launch
+
+      group do
+        title 'US Core FHIR API'
+        id :us_core_v311_fhir_api
+
+        group from: :us_core_v311_capability_statement
+      
+        group from: :us_core_v311_patient
+        group from: :us_core_v311_allergy_intolerance
+        group from: :us_core_v311_care_plan
+        group from: :us_core_v311_care_team
+        group from: :us_core_v311_condition
+        group from: :us_core_v311_device
+        group from: :us_core_v311_diagnostic_report_note
+        group from: :us_core_v311_diagnostic_report_lab
+        group from: :us_core_v311_document_reference
+        group from: :us_core_v311_goal
+        group from: :us_core_v311_immunization
+        group from: :us_core_v311_medication_request
+        group from: :us_core_v311_smokingstatus
+        group from: :us_core_v311_pediatric_weight_for_height
+        group from: :us_core_v311_observation_lab
+        group from: :us_core_v311_pediatric_bmi_for_age
+        group from: :us_core_v311_pulse_oximetry
+        group from: :us_core_v311_head_circumference
+        group from: :us_core_v311_bodyheight
+        group from: :us_core_v311_bodytemp
+        group from: :us_core_v311_bp
+        group from: :us_core_v311_bodyweight
+        group from: :us_core_v311_heartrate
+        group from: :us_core_v311_resprate
+        group from: :us_core_v311_procedure
+        group from: :us_core_v311_encounter
+        group from: :us_core_v311_organization
+        group from: :us_core_v311_practitioner
+        group from: :us_core_v311_provenance
+        group from: :us_core_v311_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end

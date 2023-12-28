@@ -49,6 +49,10 @@ module USCoreTestKit
         "us_core_#{ig_metadata.reformatted_version}"
       end
 
+      def fhir_api_group_id
+        "us_core_#{ig_metadata.reformatted_version}_fhir_api"
+      end
+
       def title
         "US Core #{ig_metadata.ig_version}"
       end

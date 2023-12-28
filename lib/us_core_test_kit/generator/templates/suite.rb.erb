@@ -3,7 +3,10 @@ require_relative '../../version'
 require_relative '<%= capability_statement_file_name %>'
 require_relative '<%= clinical_notes_guidance_file_name %>'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
 module USCoreTestKit
@@ -71,11 +74,32 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :<%= capability_statement_group_id %>
-  <% group_id_list.each do |id| %>
-      group from: :<%= id %><% end %>
-      group from: :<%= clinical_notes_guidance_group_id %>
-      group from: :us_core_311_data_absent_reason
+
+      suite_option :smart_app_launch_version,
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
+
+      group from: :us_core_smart_app_launch
+
+      group do
+        title 'US Core FHIR API'
+        id :<%= fhir_api_group_id %>
+
+        group from: :<%= capability_statement_group_id %>
+      <% group_id_list.each do |id| %>
+        group from: :<%= id %><% end %>
+        group from: :<%= clinical_notes_guidance_group_id %>
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end

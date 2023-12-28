@@ -3,7 +3,10 @@ require_relative '../../version'
 require_relative '../../custom_groups/v5.0.1/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -110,50 +113,71 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :us_core_v501_capability_statement
-  
-      group from: :us_core_v501_patient
-      group from: :us_core_v501_allergy_intolerance
-      group from: :us_core_v501_care_plan
-      group from: :us_core_v501_care_team
-      group from: :us_core_v501_condition_encounter_diagnosis
-      group from: :us_core_v501_condition_problems_health_concerns
-      group from: :us_core_v501_device
-      group from: :us_core_v501_diagnostic_report_note
-      group from: :us_core_v501_diagnostic_report_lab
-      group from: :us_core_v501_document_reference
-      group from: :us_core_v501_encounter
-      group from: :us_core_v501_goal
-      group from: :us_core_v501_immunization
-      group from: :us_core_v501_medication_request
-      group from: :us_core_v501_observation_lab
-      group from: :us_core_v501_observation_sdoh_assessment
-      group from: :us_core_v501_respiratory_rate
-      group from: :us_core_v501_observation_social_history
-      group from: :us_core_v501_heart_rate
-      group from: :us_core_v501_body_temperature
-      group from: :us_core_v501_pediatric_weight_for_height
-      group from: :us_core_v501_pulse_oximetry
-      group from: :us_core_v501_smokingstatus
-      group from: :us_core_v501_observation_sexual_orientation
-      group from: :us_core_v501_head_circumference
-      group from: :us_core_v501_body_height
-      group from: :us_core_v501_bmi
-      group from: :us_core_v501_blood_pressure
-      group from: :us_core_v501_observation_imaging
-      group from: :us_core_v501_observation_clinical_test
-      group from: :us_core_v501_pediatric_bmi_for_age
-      group from: :us_core_v501_head_circumference_percentile
-      group from: :us_core_v501_body_weight
-      group from: :us_core_v501_procedure
-      group from: :us_core_v501_questionnaire_response
-      group from: :us_core_v501_service_request
-      group from: :us_core_v501_organization
-      group from: :us_core_v501_practitioner
-      group from: :us_core_v501_provenance
-      group from: :us_core_v501_related_person
-      group from: :us_core_v400_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+
+      suite_option :smart_app_launch_version,
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
+
+      group from: :us_core_smart_app_launch
+
+      group do
+        title 'US Core FHIR API'
+        id :us_core_v501_fhir_api
+
+        group from: :us_core_v501_capability_statement
+      
+        group from: :us_core_v501_patient
+        group from: :us_core_v501_allergy_intolerance
+        group from: :us_core_v501_care_plan
+        group from: :us_core_v501_care_team
+        group from: :us_core_v501_condition_encounter_diagnosis
+        group from: :us_core_v501_condition_problems_health_concerns
+        group from: :us_core_v501_device
+        group from: :us_core_v501_diagnostic_report_note
+        group from: :us_core_v501_diagnostic_report_lab
+        group from: :us_core_v501_document_reference
+        group from: :us_core_v501_encounter
+        group from: :us_core_v501_goal
+        group from: :us_core_v501_immunization
+        group from: :us_core_v501_medication_request
+        group from: :us_core_v501_observation_lab
+        group from: :us_core_v501_observation_sdoh_assessment
+        group from: :us_core_v501_respiratory_rate
+        group from: :us_core_v501_observation_social_history
+        group from: :us_core_v501_heart_rate
+        group from: :us_core_v501_body_temperature
+        group from: :us_core_v501_pediatric_weight_for_height
+        group from: :us_core_v501_pulse_oximetry
+        group from: :us_core_v501_smokingstatus
+        group from: :us_core_v501_observation_sexual_orientation
+        group from: :us_core_v501_head_circumference
+        group from: :us_core_v501_body_height
+        group from: :us_core_v501_bmi
+        group from: :us_core_v501_blood_pressure
+        group from: :us_core_v501_observation_imaging
+        group from: :us_core_v501_observation_clinical_test
+        group from: :us_core_v501_pediatric_bmi_for_age
+        group from: :us_core_v501_head_circumference_percentile
+        group from: :us_core_v501_body_weight
+        group from: :us_core_v501_procedure
+        group from: :us_core_v501_questionnaire_response
+        group from: :us_core_v501_service_request
+        group from: :us_core_v501_organization
+        group from: :us_core_v501_practitioner
+        group from: :us_core_v501_provenance
+        group from: :us_core_v501_related_person
+        group from: :us_core_v400_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end
