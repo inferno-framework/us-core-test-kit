@@ -59,7 +59,7 @@ module USCoreTestKit
       provenance_resources =
         all_provenance_revinclude_search_params.flat_map do |_patient_id, params_list|
           params_list.flat_map do |params|
-            fhir_search resource_type, params:, tags: [params_tag(params)]
+            fhir_search resource_type, params:, tags: tags(params)
 
             perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
 
@@ -93,7 +93,7 @@ module USCoreTestKit
     end
 
     def perform_search(params, patient_id)
-      fhir_search resource_type, params:, tags: [params_tag(params)]
+      fhir_search resource_type, params:, tags: tags(params)
 
       perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
 
@@ -174,7 +174,7 @@ module USCoreTestKit
     end
 
     def search_and_check_response(params, resource_type = self.resource_type)
-      fhir_search resource_type, params:, tags: [params_tag(params)]
+      fhir_search resource_type, params:, tags: tags(params)
 
       check_search_response
     end
@@ -562,9 +562,7 @@ module USCoreTestKit
 
         reply = fhir_client.raw_read_url(next_bundle_link)
 
-        tags = params.present? ? [params_tag(params)] : nil
-
-        store_request('outgoing', tags:) { reply }
+        store_request('outgoing', tags: tags(params)) { reply }
         error_message = cant_resolve_next_bundle_message(next_bundle_link)
 
         assert_response_status(200)
@@ -807,8 +805,16 @@ module USCoreTestKit
       end
     end
 
-    def params_tag(params)
-      Digest::SHA2.hexdigest(URI.encode_www_form(params))
+    def tags(params)
+      return nil unless config.options[:tag_requests]
+
+      return nil if params.blank?
+
+      if ['Condition', 'DiagnosticReport', 'DocumentReference', 'Observation', 'ServiceRequest'].include? resource_type
+        return [Digest::SHA2.hexdigest(URI.encode_www_form(params))]
+      end
+
+      nil
     end
   end
 end

@@ -97,6 +97,12 @@ module USCoreTestKit
         title 'US Core FHIR API'
         id :<%= fhir_api_group_id %>
 
+        config(
+          options: {
+            tag_requests: true
+          }
+        )
+
         group from: :<%= capability_statement_group_id %>
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
