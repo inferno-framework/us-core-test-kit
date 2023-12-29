@@ -6,40 +6,60 @@ module USCoreTestKit
     id :us_core_smart_scopes
     title 'US Core SMART Scopes'
 
-    DEFAULT_SMART_V1_SCOPES = "launch/patient openid fhirUser offline_access patient/Medication.read patient/AllergyIntolerance.read patient/CarePlan.read patient/CareTeam.read patient/Condition.read patient/Device.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/Location.read patient/MedicationRequest.read patient/Observation.read patient/Organization.read patient/Patient.read patient/Practitioner.read patient/Procedure.read patient/Provenance.read patient/PractitionerRole.read".freeze
+    DEFAULT_SCOPES = 'launch/patient openid fhirUser offline_access'
 
-    DEFAULT_SMART_V2_SCOPES = "launch/patient openid fhirUser offline_access patient/Medication.rs patient/AllergyIntolerance.rs patient/CarePlan.rs patient/CareTeam.rs patient/Condition.rs patient/Device.rs patient/DiagnosticReport.rs patient/DocumentReference.rs patient/Encounter.rs patient/Goal.rs patient/Immunization.rs patient/Location.rs patient/MedicationRequest.rs patient/Observation.rs patient/Organization.rs patient/Patient.rs patient/Practitioner.rs patient/Procedure.rs patient/Provenance.rs patient/PractitionerRole.rs".freeze
+    SMART_GRANULAR_SCOPES_GROUP1 = [
+      'patient.Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
+      'patient.Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern',
+      'patient.DiagnosticReport.rs?category=http://loinc.org|LP29684-5',
+      'patient.DiagnosticReport.rs?category=http://loinc.org|LP29708-2',
+      'patient.DocumentReference.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category|clinical-note',
+      'patient.Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
+      'patient.Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category.html|social-history',
+      'patient.Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imagin',
+      'patient.Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure',
+      'patient.ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
+    ].freeze
+
+    SMART_GRANULAR_SCOPES_GROUP2 = [
+      'patient.Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
+      'patient.DiagnosticReport.rs?category=http://loinc.org|LP7839-6',
+      'patient.DiagnosticReport.rs?category=http://terminology.hl7.org/CodeSystem/v2-0074|LAB',
+      'patient.Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-sign',
+      'patient.Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|treatment-intervention-preference',
+      'patient.Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|care-experience-preference',
+      'patient.ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|functional-status',
+      'patient.ServiceRequest.rs?category=http://snomed.info/sct|surgical-procedure'
+    ]
 
     group do
-      title 'Resource-Level Scopes'
+      title 'Granular Scopes 1'
 
-      group from: :us_core_smart_app_launch do
-        groups[0].config(
-          inputs: {
-            requested_scopes: { default: USCoreTestKit::SmartScopesGroup::DEFAULT_SMART_V1_SCOPES }
-          }
-        )
-
-        groups[1].config(
-          inputs: {
-            requested_scopes: { default: USCoreTestKit::SmartScopesGroup::DEFAULT_SMART_V1_SCOPES }
-          }
-        )
-
-        groups[2].config(
-          inputs: {
-            requested_scopes: { default: USCoreTestKit::SmartScopesGroup::DEFAULT_SMART_V2_SCOPES }
-          }
-        )
-
-        groups[3].config(
-          inputs: {
-            requested_scopes: { default: USCoreTestKit::SmartScopesGroup::DEFAULT_SMART_V2_SCOPES }
-          }
-        )
-
-        # TODO: verify that all required scopes were requested and received
+      def self.default_group_scopes
+        [SmartScopesGroup::DEFAULT_SCOPES, ...SmartScopesGroup::SMART_GRANULAR_SCOPES_GROUP1].join(' ')
       end
+
+      config(
+        inputs: {
+          requested_scopes: { default: default_group_scopes }
+        }
+      )
+
+      # TODO: verify that all required scopes were requested and received
+    end
+
+    group do
+      title 'Granular Scopes 2'
+
+      def self.default_group_scopes
+        [SmartScopesGroup::DEFAULT_SCOPES, ...SmartScopesGroup::SMART_GRANULAR_SCOPES_GROUP2].join(' ')
+      end
+
+      config(
+        inputs: {
+          requested_scopes: { default: default_group_scopes }
+        }
+      )
     end
   end
 end
