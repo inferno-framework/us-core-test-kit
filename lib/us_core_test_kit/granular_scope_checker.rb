@@ -2,50 +2,105 @@ module USCoreTestKit
   module GranularScopeChecker
     def self.included(klass)
       klass.input(:received_scopes)
+      klass.attr_accessor :previous_requests
+    end
+
+    def run_scope_check_test
+      assert granular_scopes.present?, "No granular scopes were received for #{resource_type} resources"
+
+      load_previous_requests
+
+      skip_if previous_requests.blank?,
+              "No #{resource_type} searches with search params #{search_param_names.join('& ')} found"
+
+      previous_request_resources.each do |previous_request, all_previous_resources|
+        params = previous_request.query_parameters
+        search_method = previous_request.verb.to_sym
+        fhir_search(resource_type, params:, search_method:)
+
+        found_resources =
+          if request.status != 200
+            []
+          else
+            fetch_all_bundled_resources
+          end
+
+        mismatched_ids = mismatched_resource_ids(found_resources)
+
+        assert mismatched_ids.empty?,
+               'Resources with the following ids were received even though they do not match the ' \
+               "granted granular scopes: #{mismatched_ids.join(', ')}"
+
+        found_ids = found_resources.map(&:id)
+        previous_ids = expected_resource_ids(all_previous_resources)
+        missing_ids = previous_ids - found_ids
+
+        assert missing_ids.empty?,
+               'Resources with the following ids were received when using resource-level scopes, ' \
+               "but not when using granular scopes: #{missing_ids.join(', ')}"
+
+        unexpected_ids = found_ids - previous_ids
+
+        assert unexpected_ids.empty?,
+               'Resources with the following ids were received when using granular scopes, ' \
+               "but not when using resource-level scopes: #{unexpected_ids.join(', ')}"
+      end
+    end
+
+    def previous_request_resources
+      first_request = previous_requests.first
+      next_page_url = nil
+      hash = Hash.new { |hash, key| hash[key] = [] }
+      previous_requests.each_with_object(hash) do |request, request_resource_hash|
+        request_resources =
+          if request.status == 200
+            request.resource.entry.map(&:resource).select { |resource| resource.resourceType == resource_type }
+          else
+            []
+          end
+
+        first_request = request if request.url != next_page_url
+
+        request_resource_hash[first_request].concat(request_resources)
+
+        next_page_url = request.resource&.link&.find { |link| link.relation == 'next' }&.url
+      end
     end
 
     def granular_scopes
       @granular_scopes ||=
         received_scopes
           .split(' ')
-          .select { |scope| scope.start_with?(resource_type) && scope.include?('?') }
+          .select do |scope|
+            (scope.start_with?("patient/#{resource_type}") || scope.start_with?("user/#{resource_type}")) &&
+              scope.include?('?')
+          end
     end
 
     def granular_scope_search_params
       @granular_scope_search_params ||=
-        granular_scopes.each_with_object do |scope, search_params|
+        granular_scopes.map do |scope|
           _, granular_scope = scope.split('?')
-          search_name, search_value = granular_scope.split('=')
-          search_params[search_name] = search_value
+          name, value = granular_scope.split('=')
+
+          {
+            name:,
+            value:
+          }
         end
     end
 
-    def check_granular_scopes(params, resources)
-      assert granular_scopes.present?, "No granular scopes were received for #{resource_type} resources"
-
-      resource_ids_which_do_not_match_scopes = mismatched_resources(resources).map(&:id)
-
-      assert resource_ids_which_do_not_match_scopes.blank?,
-             'Resources with the following ids were received, but do not match the granted granular scopes: ' \
-             "#{resource_ids_which_do_not_match_scopes.join(', ')}"
-
-      resource_ids_found = resources.map(&:id)
-
-      expected_ids = expected_resource_ids(params)
-      missing_resource_ids = expected_ids - resource_ids_found
-
-      assert missing_resource_ids.blank?,
-             "Expected to receive resources with the following ids: #{missing_resource_ids.join(', ')}"
-
-      extra_resource_ids = resource_ids_found - expected_ids
-
-      assert extra_resource_ids.blank?,
-             'Received resources with the following ids which were not received using resource-level scopes' \
-             "#{extra_resource_ids.join(', ')}"
+    def load_previous_requests
+      search_params_as_hash = search_param_names.each_with_object({}) do |name, hash|
+        hash[name] = nil
+      end
+      @previous_requests ||=
+        load_tagged_requests(search_params_tag(search_params_as_hash))
+          .sort_by { |request| request.index }
     end
 
     def previous_resources(params)
-      load_tagged_requests(search_params_tag(params))
+      previous_requests(params)
         .flat_map do |request|
           resource = request.resource
           if resource.is_a?(FHIR::Bundle)
@@ -58,22 +113,24 @@ module USCoreTestKit
         .select { |resource| resource.resourceType == resource_type }
     end
 
-    def expected_resource_ids(params)
-      previous_resources(params)
+    def expected_resource_ids(resources)
+      resources
         .select do |resource|
-          granular_scope_search_params.any? do |param_name, param_value|
-            resource_matches_param?(resource, param_name, param_value)
+          granular_scope_search_params.any? do |param|
+            resource_matches_param?(resource, param[:name], param[:value])
           end
         end
         .map(&:id)
     end
 
-    def mismatched_resources(resources)
-      resources.reject do |resource|
-        granular_scope_search_params.any? do |param_name, param_value|
+    def mismatched_resource_ids(resources)
+      resources
+        .reject do |resource|
+          granular_scope_search_params.any? do |param_name, param_value|
             resource_matches_param?(resource, param_name, param_value)
           end
-      end
+        end
+        .map(&:id)
     end
   end
 end
