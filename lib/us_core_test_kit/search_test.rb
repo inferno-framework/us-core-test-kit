@@ -839,7 +839,7 @@ module USCoreTestKit
     end
 
     def search_params_tag(params)
-      Digest::SHA2.hexdigest(URI.encode_www_form(params))
+      "#{resource_type}?#{params.keys.join('&')}"
     end
 
     def check_granular_scopes(_params, _resources)
