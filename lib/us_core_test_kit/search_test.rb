@@ -104,8 +104,6 @@ module USCoreTestKit
       resources_returned =
         fetch_all_bundled_resources(params:).select { |resource| resource.resourceType == resource_type }
 
-      check_granular_scopes(params, resources_returned)
-
       return [] if resources_returned.blank?
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
@@ -250,8 +248,6 @@ module USCoreTestKit
           comparator_resources = fetch_all_bundled_resources(params: params_with_comparator).each do |resource|
             check_resource_against_params(resource, params_with_comparator) if resource.resourceType == resource_type
           end
-
-          check_granular_scopes(params_with_comparator, comparator_resources)
         end
 
         search_variant_test_records[:comparator_searches] << name
@@ -271,8 +267,6 @@ module USCoreTestKit
 
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
-
-      check_granular_scopes(new_search_params, reference_with_type_resources)
 
       new_resource_count = reference_with_type_resources.count
 
@@ -367,8 +361,6 @@ module USCoreTestKit
         resources_returned =
           fetch_all_bundled_resources(params: search_params)
             .select { |resource| resource.resourceType == resource_type }
-
-        check_granular_scopes(search_params, resources_returned)
 
         multiple_or_search_params.each do |param_name|
           missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
@@ -840,10 +832,6 @@ module USCoreTestKit
 
     def search_params_tag(params)
       "#{resource_type}?#{params.keys.join('&')}"
-    end
-
-    def check_granular_scopes(_params, _resources)
-      nil
     end
   end
 end

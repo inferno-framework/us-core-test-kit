@@ -63,6 +63,8 @@ module USCoreTestKit
 
         request_resource_hash[first_request].concat(request_resources)
 
+        next if request.resource&.resourceType != 'Bundle'
+
         next_page_url = request.resource&.link&.find { |link| link.relation == 'next' }&.url
       end
     end

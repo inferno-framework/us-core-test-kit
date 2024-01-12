@@ -72,6 +72,10 @@ module USCoreTestKit
         end
       end
 
+      def test_granular_scopes?
+        ig_metadata.ig_version[1].to_i > 5
+      end
+
       def generate
         File.open(output_file_name, 'w') { |f| f.write(output) }
       end

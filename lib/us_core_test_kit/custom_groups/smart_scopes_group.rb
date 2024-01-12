@@ -1,7 +1,19 @@
+require 'inferno'
 require 'smart_app_launch_test_kit'
 require_relative '../granular_scope_checker'
 require_relative '../us_core_options'
-require_relative '../generated/v6.1.0/condition_encounter_diagnosis/condition_encounter_diagnosis_patient_code_search_test'
+require_relative '../custom_groups/smart_ehr_launch_stu2'
+require_relative '../custom_groups/smart_standalone_launch_stu2_group'
+require_relative '../generated/v6.1.0/condition_granular_scope1_group'
+require_relative '../generated/v6.1.0/condition_granular_scope2_group'
+require_relative '../generated/v6.1.0/diagnostic_report_granular_scope1_group'
+require_relative '../generated/v6.1.0/diagnostic_report_granular_scope2_group'
+require_relative '../generated/v6.1.0/document_reference_granular_scope1_group'
+require_relative '../generated/v6.1.0/document_reference_granular_scope2_group'
+require_relative '../generated/v6.1.0/observation_granular_scope1_group'
+require_relative '../generated/v6.1.0/observation_granular_scope2_group'
+require_relative '../generated/v6.1.0/service_request_granular_scope1_group'
+require_relative '../generated/v6.1.0/service_request_granular_scope2_group'
 
 module USCoreTestKit
   class SmartScopesGroup < Inferno::TestGroup
@@ -32,6 +44,14 @@ module USCoreTestKit
       'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|care-experience-preference',
       'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|functional-status',
       'patient/ServiceRequest.rs?category=http://snomed.info/sct|surgical-procedure'
+    ].map(&:freeze).freeze
+
+    SMART_GRANULAR_SCOPE_RESOURCES = [
+      'Condition',
+      'DiagnosticReport',
+      'DocumentReference',
+      'Observation',
+      'ServiceRequest'
     ].map(&:freeze).freeze
 
     group do
@@ -65,34 +85,11 @@ module USCoreTestKit
       group do
         title 'US Core FHIR API w/Granular Scopes 1'
 
-        test from: :us_core_v610_condition_encounter_diagnosis_patient_code_search_test do
-          include GranularScopeChecker
-
-          run do
-            run_scope_check_test
-          end
-        end
-        # TODO: generate all this
-        # group from: :us_core_v610_condition_encounter_diagnosis
-        # group from: :us_core_v610_condition_problems_health_concerns
-        # group from: :us_core_v610_diagnostic_report_lab
-        # group from: :us_core_v610_diagnostic_report_note
-        # group from: :us_core_v610_document_reference
-        # group from: :us_core_v610_observation_lab
-        # group from: :us_core_v610_observation_occupation
-        # group from: :us_core_v610_observation_clinical_result
-        # group from: :us_core_v610_observation_pregnancyintent
-        # group from: :us_core_v610_observation_pregnancystatus
-        # group from: :us_core_v610_observation_sexual_orientation
-        # group from: :us_core_v610_observation_screening_assessment
-        # group from: :us_core_v610_simple_observation
-        # # TODO: add other observation groups
-        # group from: :us_core_v610_service_request
-
-        # groups.each do |group|
-        #   group.children.select! { |test| test.id.to_s.end_with? 'search_test' }
-        #   group.tests.each { |test| test.include GranularScopeChecker }
-        # end
+        group from: :us_core_v610_condition_granular_scope_1_group
+        group from: :us_core_v610_diagnostic_report_granular_scope_1_group
+        group from: :us_core_v610_document_reference_granular_scope_1_group
+        group from: :us_core_v610_observation_granular_scope_1_group
+        group from: :us_core_v610_service_request_granular_scope_1_group
       end
     end
 
@@ -124,31 +121,15 @@ module USCoreTestKit
         # TODO: verify that all required scopes were requested and received
       end
 
-      # group do
-      #   title 'US Core FHIR API w/Granular Scopes 2'
+      group do
+        title 'US Core FHIR API w/Granular Scopes 2'
 
-      #   # TODO: generate all this
-      #   group from: :us_core_v610_condition_encounter_diagnosis
-      #   group from: :us_core_v610_condition_problems_health_concerns
-      #   # group from: :us_core_v610_diagnostic_report_lab
-      #   # group from: :us_core_v610_diagnostic_report_note
-      #   # group from: :us_core_v610_document_reference
-      #   # group from: :us_core_v610_observation_lab
-      #   # group from: :us_core_v610_observation_occupation
-      #   # group from: :us_core_v610_observation_clinical_result
-      #   # group from: :us_core_v610_observation_pregnancyintent
-      #   # group from: :us_core_v610_observation_pregnancystatus
-      #   # group from: :us_core_v610_observation_sexual_orientation
-      #   # group from: :us_core_v610_observation_screening_assessment
-      #   # group from: :us_core_v610_simple_observation
-      #   # # TODO: add other observation groups
-      #   # group from: :us_core_v610_service_request
-
-      #   groups.each do |group|
-      #     group.children.select! { |test| test.id.to_s.end_with? 'search_test' }
-      #     group.tests.each { |test| test.include GranularScopeChecker }
-      #   end
-      # end
+        group from: :us_core_v610_condition_granular_scope_2_group
+        group from: :us_core_v610_diagnostic_report_granular_scope_2_group
+        group from: :us_core_v610_document_reference_granular_scope_2_group
+        group from: :us_core_v610_observation_granular_scope_2_group
+        group from: :us_core_v610_service_request_granular_scope_2_group
+      end
     end
   end
 end
