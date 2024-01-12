@@ -3,7 +3,10 @@ require_relative '../../version'
 require_relative '../../custom_groups/v7.0.0-ballot/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
+require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../provenance_validator'
+require_relative '../../us_core_options'
+
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
@@ -79,7 +82,9 @@ module USCoreTestKit
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
         /Observation\.effective\.ofType\(Period\): .*us-core-1:/, # Invalid invariant in US Core v3.1.1
-        /Provenance.agent\[\d*\]: Rule provenance-1/ #Invalid invariant in US Core v5.0.1
+        /Provenance.agent\[\d*\]: Rule provenance-1/, #Invalid invariant in US Core v5.0.1
+        %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
+        %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve} # Validator has an issue with this US Core 5 code system in US Core 6 resource
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
@@ -119,59 +124,80 @@ module USCoreTestKit
         oauth_credentials :smart_credentials
       end
 
-      group from: :us_core_v700_ballot_capability_statement
-  
-      group from: :us_core_v700_ballot_patient
-      group from: :us_core_v700_ballot_allergy_intolerance
-      group from: :us_core_v700_ballot_care_plan
-      group from: :us_core_v700_ballot_care_team
-      group from: :us_core_v700_ballot_condition_encounter_diagnosis
-      group from: :us_core_v700_ballot_condition_problems_health_concerns
-      group from: :us_core_v700_ballot_coverage
-      group from: :us_core_v700_ballot_device
-      group from: :us_core_v700_ballot_diagnostic_report_note
-      group from: :us_core_v700_ballot_diagnostic_report_lab
-      group from: :us_core_v700_ballot_document_reference
-      group from: :us_core_v700_ballot_encounter
-      group from: :us_core_v700_ballot_goal
-      group from: :us_core_v700_ballot_immunization
-      group from: :us_core_v700_ballot_medication_dispense
-      group from: :us_core_v700_ballot_medication_request
-      group from: :us_core_v700_ballot_observation_lab
-      group from: :us_core_v700_ballot_observation_pregnancystatus
-      group from: :us_core_v700_ballot_observation_pregnancyintent
-      group from: :us_core_v700_ballot_observation_occupation
-      group from: :us_core_v700_ballot_respiratory_rate
-      group from: :us_core_v700_ballot_simple_observation
-      group from: :us_core_v700_ballot_treatment_intervention_preference
-      group from: :us_core_v700_ballot_care_experience_preference
-      group from: :us_core_v700_ballot_heart_rate
-      group from: :us_core_v700_ballot_body_temperature
-      group from: :us_core_v700_ballot_pediatric_weight_for_height
-      group from: :us_core_v700_ballot_pulse_oximetry
-      group from: :us_core_v700_ballot_smokingstatus
-      group from: :us_core_v700_ballot_observation_sexual_orientation
-      group from: :us_core_v700_ballot_head_circumference
-      group from: :us_core_v700_ballot_body_height
-      group from: :us_core_v700_ballot_bmi
-      group from: :us_core_v700_ballot_observation_screening_assessment
-      group from: :us_core_v700_ballot_average_blood_pressure
-      group from: :us_core_v700_ballot_blood_pressure
-      group from: :us_core_v700_ballot_observation_clinical_result
-      group from: :us_core_v700_ballot_pediatric_bmi_for_age
-      group from: :us_core_v700_ballot_head_circumference_percentile
-      group from: :us_core_v700_ballot_body_weight
-      group from: :us_core_v700_ballot_vital_signs
-      group from: :us_core_v700_ballot_procedure
-      group from: :us_core_v700_ballot_questionnaire_response
-      group from: :us_core_v700_ballot_related_person
-      group from: :us_core_v700_ballot_service_request
-      group from: :us_core_v700_ballot_specimen
-      group from: :us_core_v700_ballot_organization
-      group from: :us_core_v700_ballot_practitioner
-      group from: :us_core_v700_ballot_provenance
-      group from: :us_core_v400_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+
+      suite_option :smart_app_launch_version,
+        title: 'SMART App Launch Version',
+        list_options: [
+          {
+            label: 'SMART App Launch 1.0.0',
+            value: USCoreOptions::SMART_1
+          },
+          {
+            label: 'SMART App Launch 2.0.0',
+            value: USCoreOptions::SMART_2
+          }
+        ]
+
+      group from: :us_core_smart_app_launch
+
+      group do
+        title 'US Core FHIR API'
+        id :us_core_v700_ballot_fhir_api
+
+        group from: :us_core_v700_ballot_capability_statement
+      
+        group from: :us_core_v700_ballot_patient
+        group from: :us_core_v700_ballot_allergy_intolerance
+        group from: :us_core_v700_ballot_care_plan
+        group from: :us_core_v700_ballot_care_team
+        group from: :us_core_v700_ballot_condition_encounter_diagnosis
+        group from: :us_core_v700_ballot_condition_problems_health_concerns
+        group from: :us_core_v700_ballot_coverage
+        group from: :us_core_v700_ballot_device
+        group from: :us_core_v700_ballot_diagnostic_report_note
+        group from: :us_core_v700_ballot_diagnostic_report_lab
+        group from: :us_core_v700_ballot_document_reference
+        group from: :us_core_v700_ballot_encounter
+        group from: :us_core_v700_ballot_goal
+        group from: :us_core_v700_ballot_immunization
+        group from: :us_core_v700_ballot_medication_dispense
+        group from: :us_core_v700_ballot_medication_request
+        group from: :us_core_v700_ballot_observation_lab
+        group from: :us_core_v700_ballot_observation_pregnancystatus
+        group from: :us_core_v700_ballot_observation_pregnancyintent
+        group from: :us_core_v700_ballot_observation_occupation
+        group from: :us_core_v700_ballot_respiratory_rate
+        group from: :us_core_v700_ballot_simple_observation
+        group from: :us_core_v700_ballot_treatment_intervention_preference
+        group from: :us_core_v700_ballot_care_experience_preference
+        group from: :us_core_v700_ballot_heart_rate
+        group from: :us_core_v700_ballot_body_temperature
+        group from: :us_core_v700_ballot_pediatric_weight_for_height
+        group from: :us_core_v700_ballot_pulse_oximetry
+        group from: :us_core_v700_ballot_smokingstatus
+        group from: :us_core_v700_ballot_observation_sexual_orientation
+        group from: :us_core_v700_ballot_head_circumference
+        group from: :us_core_v700_ballot_body_height
+        group from: :us_core_v700_ballot_bmi
+        group from: :us_core_v700_ballot_observation_screening_assessment
+        group from: :us_core_v700_ballot_average_blood_pressure
+        group from: :us_core_v700_ballot_blood_pressure
+        group from: :us_core_v700_ballot_observation_clinical_result
+        group from: :us_core_v700_ballot_pediatric_bmi_for_age
+        group from: :us_core_v700_ballot_head_circumference_percentile
+        group from: :us_core_v700_ballot_body_weight
+        group from: :us_core_v700_ballot_vital_signs
+        group from: :us_core_v700_ballot_procedure
+        group from: :us_core_v700_ballot_questionnaire_response
+        group from: :us_core_v700_ballot_related_person
+        group from: :us_core_v700_ballot_service_request
+        group from: :us_core_v700_ballot_specimen
+        group from: :us_core_v700_ballot_organization
+        group from: :us_core_v700_ballot_practitioner
+        group from: :us_core_v700_ballot_provenance
+        group from: :us_core_v400_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+      end
     end
   end
 end
