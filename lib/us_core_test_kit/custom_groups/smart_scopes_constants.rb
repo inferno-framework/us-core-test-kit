@@ -1,0 +1,37 @@
+module USCoreTestKit
+  module SmartScopesConstants
+    DEFAULT_SCOPES = 'launch/patient openid fhirUser offline_access'
+
+    SMART_GRANULAR_SCOPES_GROUP1 = [
+      'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
+      'patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern',
+      'patient/DiagnosticReport.rs?category=http://loinc.org|LP29684-5',
+      'patient/DiagnosticReport.rs?category=http://loinc.org|LP29708-2',
+      'patient/DocumentReference.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category|clinical-note',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
+      'patient/Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category.html|social-history',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imagin',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure',
+      'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
+    ].map(&:freeze).freeze
+
+    SMART_GRANULAR_SCOPES_GROUP2 = [
+      'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
+      'patient/DiagnosticReport.rs?category=http://loinc.org|LP7839-6',
+      'patient/DiagnosticReport.rs?category=http://terminology.hl7.org/CodeSystem/v2-0074|LAB',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-sign',
+      'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|treatment-intervention-preference',
+      'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|care-experience-preference',
+      'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|functional-status',
+      'patient/ServiceRequest.rs?category=http://snomed.info/sct|surgical-procedure'
+    ].map(&:freeze).freeze
+
+    SMART_GRANULAR_SCOPE_RESOURCES = [
+      'Condition',
+      'DiagnosticReport',
+      'DocumentReference',
+      'Observation',
+      'ServiceRequest'
+    ].map(&:freeze).freeze
+  end
+end
