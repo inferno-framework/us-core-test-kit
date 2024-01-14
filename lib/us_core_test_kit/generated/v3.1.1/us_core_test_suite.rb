@@ -62,7 +62,9 @@ module USCoreTestKit
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
         /Observation\.effective\.ofType\(Period\): .*us-core-1:/, # Invalid invariant in US Core v3.1.1
-        /Provenance.agent\[\d*\]: Rule provenance-1/ #Invalid invariant in US Core v5.0.1
+        /Provenance.agent\[\d*\]: Rule provenance-1/, #Invalid invariant in US Core v5.0.1
+        %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
+        %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve} # Validator has an issue with this US Core 5 code system in US Core 6 resource
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze

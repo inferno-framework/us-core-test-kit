@@ -114,16 +114,7 @@
     :full_paths:
     - Observation.category
     :comparators: {}
-    :values:
-    - social-history
-    - vital-signs
-    - imaging
-    - laboratory
-    - procedure
-    - survey
-    - exam
-    - therapy
-    - activity
+    :values: []
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY

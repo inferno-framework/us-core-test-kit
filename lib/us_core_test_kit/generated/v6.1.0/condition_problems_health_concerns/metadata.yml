@@ -152,10 +152,6 @@
     :values:
     - problem-list-item
     - health-concern
-    - sdoh
-    - functional-status
-    - disability-status
-    - cognitive-status
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY

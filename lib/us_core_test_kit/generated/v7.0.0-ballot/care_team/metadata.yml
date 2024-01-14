@@ -1,0 +1,177 @@
+---
+:name: us_core_careteam
+:class_name: USCorev700_ballotCareteamSequence
+:version: v7.0.0-ballot
+:reformatted_version: v700_ballot
+:resource: CareTeam
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
+:profile_name: US Core CareTeam Profile
+:profile_version: 7.0.0-ballot
+:title: CareTeam
+:short_description: Verify support for the server capabilities required by the US
+  Core CareTeam Profile.
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - role
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - role
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :role:
+    :paths:
+    - participant.role
+    :full_paths:
+    - CareTeam.participant.role
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - CareTeam.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - CareTeam.status
+    :comparators: {}
+    :values:
+    - proposed
+    - active
+    - suspended
+    - inactive
+    - entered-in-error
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHOULD
+:include_params:
+- CareTeam:participant:PractitionerRole
+- CareTeam:participant:Practitioner
+- CareTeam:participant:Patient
+- CareTeam:participant:RelatedPerson
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: status
+  - :path: subject
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - :path: participant
+  - :path: participant.role
+  - :path: participant.member
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  :choices:
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+:mandatory_elements:
+- CareTeam.subject
+- CareTeam.participant
+- CareTeam.participant.role
+- CareTeam.participant.member
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/care-team-status
+  :path: status
+:references:
+- :path: CareTeam.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/StructureDefinition/Group
+- :path: CareTeam.encounter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+- :path: CareTeam.participant.member
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+- :path: CareTeam.participant.onBehalfOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: CareTeam.reasonReference
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+- :path: CareTeam.managingOrganization
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+:tests:
+- :id: us_core_v700_ballot_care_team_patient_status_search_test
+  :file_name: care_team_patient_status_search_test.rb
+- :id: us_core_v700_ballot_care_team_role_search_test
+  :file_name: care_team_role_search_test.rb
+- :id: us_core_v700_ballot_care_team_patient_role_search_test
+  :file_name: care_team_patient_role_search_test.rb
+- :id: us_core_v700_ballot_care_team_read_test
+  :file_name: care_team_read_test.rb
+- :id: us_core_v700_ballot_care_team_provenance_revinclude_search_test
+  :file_name: care_team_provenance_revinclude_search_test.rb
+- :id: us_core_v700_ballot_care_team_validation_test
+  :file_name: care_team_validation_test.rb
+- :id: us_core_v700_ballot_care_team_must_support_test
+  :file_name: care_team_must_support_test.rb
+- :id: us_core_v700_ballot_care_team_reference_resolution_test
+  :file_name: care_team_reference_resolution_test.rb
+:id: us_core_v700_ballot_care_team
+:file_name: care_team_group.rb
+:delayed_references:
+- :path: participant.member
+  :resources:
+  - Practitioner
+  - Organization
+  - PractitionerRole

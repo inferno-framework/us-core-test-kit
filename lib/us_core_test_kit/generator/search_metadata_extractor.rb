@@ -6,13 +6,13 @@ module USCoreTestKit
       COMBO_EXTENSION_URL =
         'http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination'.freeze
 
-      attr_accessor :resource_capabilities, :ig_resources, :resource, :profile_elements
+      attr_accessor :resource_capabilities, :ig_resources, :profile_elements, :group_metadata
 
-      def initialize(resource_capabilities, ig_resources, resource, profile_elements)
+      def initialize(resource_capabilities, ig_resources, profile_elements, group_metadata)
         self.resource_capabilities = resource_capabilities
         self.ig_resources = ig_resources
-        self.resource = resource
         self.profile_elements = profile_elements
+        self.group_metadata = group_metadata
       end
 
       def searches
@@ -66,7 +66,7 @@ module USCoreTestKit
       def search_definitions
         search_param_names.each_with_object({}) do |name, definitions|
           definitions[name.to_sym] =
-            SearchDefinitionMetadataExtractor.new(name, ig_resources, resource, profile_elements).search_definition
+            SearchDefinitionMetadataExtractor.new(name, ig_resources, profile_elements, group_metadata).search_definition
         end
       end
     end
