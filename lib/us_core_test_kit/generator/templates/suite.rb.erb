@@ -110,7 +110,9 @@ module USCoreTestKit
         group from: :us_core_311_data_absent_reason
       end<% if test_granular_scopes? %>
 
-      group from: :<%= granular_scopes_id %><% end %>
+      group from: :<%= granular_scopes_id %>,
+            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+      <% end %>
     end
   end
 end

@@ -16,6 +16,25 @@ module USCoreTestKit
       id :us_core_v610_smart_granular_scopes
       title 'US Core SMART Granular Scopes'
 
+      def self.scopes_string(scopes)
+        scopes
+          .map { |scope| scope.delete_prefix 'patient/' }
+          .map { |scope| "* `#{scope}`" }
+          .join("\n")
+      end
+
+      groups
+        .first
+        .description %(
+These tests perform a SMART app launch to receive the following granular scopes:
+
+#{scopes_string(SMART_GRANULAR_SCOPES_GROUP1)}
+
+Then all of the searches which have been performed in the US Core FHIR API tests
+are repeated to verify that the results have been filtered according to the
+above scopes.
+        )
+
       groups
         .first
         .group do
@@ -55,6 +74,18 @@ module USCoreTestKit
 
       groups
         .last
+        .description %(
+These tests perform a SMART app launch to receive the following granular scopes:
+
+#{scopes_string(SMART_GRANULAR_SCOPES_GROUP2)}
+
+Then all of the searches which have been performed in the US Core FHIR API tests
+are repeated to verify that the results have been filtered according to the
+above scopes.
+        )
+
+      groups
+        .last
         .group do
           title 'US Core FHIR API w/Granular Scopes 2'
 
@@ -85,7 +116,6 @@ module USCoreTestKit
 
           group from: :us_core_v610_condition_granular_scope_2_group
           group from: :us_core_v610_diagnostic_report_granular_scope_2_group
-          group from: :us_core_v610_document_reference_granular_scope_2_group
           group from: :us_core_v610_observation_granular_scope_2_group
           group from: :us_core_v610_service_request_granular_scope_2_group
         end

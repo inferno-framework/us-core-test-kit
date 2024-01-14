@@ -10,7 +10,7 @@ module USCoreTestKit
           return unless ['6', '7'].include? ig_metadata.ig_version[1]
 
           SmartScopesConstants::SMART_GRANULAR_SCOPE_RESOURCES.each do |resource_type|
-            # guard that resource_type is in this group
+            # TODO: guard that resource_type is in this group
 
             group = ig_metadata.groups.find { |group| group.resource == resource_type }
 
@@ -76,10 +76,6 @@ module USCoreTestKit
         group_metadata.resource
       end
 
-      # def conformance_expectation
-      #   search_metadata[:expectation]
-      # end
-
       def search_params
         @search_params ||=
           search_metadata[:names].map do |name|
@@ -89,19 +85,6 @@ module USCoreTestKit
             }
           end
       end
-
-      # def first_search?
-      #   group_metadata.searches.first == search_metadata
-      # end
-
-      # def fixed_value_search?
-      #   first_search? && search_metadata[:names] != ['patient'] &&
-      #     !group_metadata.delayed? && resource_type != 'Patient'
-      # end
-
-      # def fixed_value_search_param_name
-      #   (search_metadata[:names] - [:patient]).first
-      # end
 
       def search_param_name_string
         search_metadata[:names].join(' + ')
@@ -124,77 +107,14 @@ module USCoreTestKit
         path == 'class' ? 'local_class' : path
       end
 
-      # def required_comparators_for_param(name)
-      #   search_definition(name)[:comparators].select { |_comparator, expectation| expectation == 'SHALL' }
-      # end
-
-      # def required_comparators
-      #   @required_comparators ||=
-      #     search_param_names.each_with_object({}) do |name, comparators|
-      #       required_comparators = required_comparators_for_param(name)
-      #       comparators[name] = required_comparators if required_comparators.present?
-      #     end
-      # end
-
-      # def optional?
-      #   conformance_expectation != 'SHALL' || !search_metadata[:must_support_or_mandatory]
-      # end
-
       def search_definition(name)
         group_metadata.search_definitions[name.to_sym]
       end
-
-      # def saves_delayed_references?
-      #   first_search? && group_metadata.delayed_references.present?
-      # end
-
-      # def possible_status_search?
-      #   !search_metadata[:names].any? { |name| name.include? 'status' } &&
-      #     group_metadata.search_definitions.keys.any? { |key| key.to_s.include? 'status' }
-      # end
-
-      # def token_search_params
-      #   @token_search_params ||=
-      #     search_param_names.select do |name|
-      #       ['Identifier', 'CodeableConcept', 'Coding'].include? group_metadata.search_definitions[name.to_sym][:type]
-      #     end
-      # end
-
-      # def token_search_params_string
-      #   array_of_strings(token_search_params)
-      # end
-
-      # def required_multiple_or_search_params
-      #   @multiple_or_search_params ||=
-      #     search_param_names.select do |name|
-      #       search_definition(name)[:multiple_or] == 'SHALL'
-      #     end
-      # end
-
-      # def required_multiple_or_search_params_string
-      #   array_of_strings(required_multiple_or_search_params)
-      # end
-
-      # def required_comparators_string
-      #   array_of_strings(required_comparators.keys)
-      # end
 
       def array_of_strings(array)
         quoted_strings = array.map { |element| "'#{element}'" }
         "[#{quoted_strings.join(', ')}]"
       end
-
-      # def test_reference_variants?
-      #   first_search? && search_param_names.include?('patient')
-      # end
-
-      # def test_medication_inclusion?
-      #   ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
-      # end
-
-      # def test_post_search?
-      #   first_search?
-      # end
 
       def search_properties
         {}.tap do |properties|
@@ -228,55 +148,11 @@ module USCoreTestKit
         )
       end
 
-      # def reference_search_description
-      #   return '' unless test_reference_variants?
-
-      #   <<~REFERENCE_SEARCH_DESCRIPTION
-      #   This test verifies that the server supports searching by reference using
-      #   the form `patient=[id]` as well as `patient=Patient/[id]`. The two
-      #   different forms are expected to return the same number of results. US
-      #   Core requires that both forms are supported by US Core responders.
-      #   REFERENCE_SEARCH_DESCRIPTION
-      # end
-
-      # def first_search_description
-      #   return '' unless first_search?
-
-      #   <<~FIRST_SEARCH_DESCRIPTION
-      #   Because this is the first search of the sequence, resources in the
-      #   response will be used for subsequent tests.
-      #   FIRST_SEARCH_DESCRIPTION
-      # end
-
-      # def medication_inclusion_description
-      #   return '' unless test_medication_inclusion?
-
-      #   <<~MEDICATION_INCLUSION_DESCRIPTION
-      #   If any #{resource_type} resources use external references to
-      #   Medications, the search will be repeated with
-      #   `_include=#{resource_type}:medication`.
-      #   MEDICATION_INCLUSION_DESCRIPTION
-      # end
-
-      # def post_search_description
-      #   return '' unless test_post_search?
-
-      #   <<~POST_SEARCH_DESCRIPTION
-      #   Additionally, this test will check that GET and POST search methods
-      #   return the same number of results. Search by POST is required by the
-      #   FHIR R4 specification, and these tests interpret search by GET as a
-      #   requirement of US Core #{group_metadata.version}.
-      #   POST_SEARCH_DESCRIPTION
-      # end
-
       def description
         <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
-        A server SHALL support searching by
-        #{search_param_name_string} on the #{resource_type} resource. This test
-        will pass if resources are returned and match the search criteria. If
-        none are returned, the test is skipped.
-
-        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/#{url_version}/CapabilityStatement-us-core-server.html)
+          This test repeats all #{resource_type} searches by
+          #{search_param_name_string} and verifies that the results have been
+          filtered based on the granted granular scopes.
         DESCRIPTION
       end
     end

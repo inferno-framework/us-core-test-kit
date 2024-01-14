@@ -55,7 +55,6 @@ module USCoreTestKit
 
           group from: :us_core_v700_ballot_condition_granular_scope_2_group
           group from: :us_core_v700_ballot_diagnostic_report_granular_scope_2_group
-          group from: :us_core_v700_ballot_document_reference_granular_scope_2_group
           group from: :us_core_v700_ballot_observation_granular_scope_2_group
           group from: :us_core_v700_ballot_service_request_granular_scope_2_group
         end

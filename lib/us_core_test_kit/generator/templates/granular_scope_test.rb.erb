@@ -8,7 +8,7 @@ module USCoreTestKit
       include USCoreTestKit::SearchTest
       include USCoreTestKit::GranularScopeChecker
 
-      title 'Server returns valid results for <%= resource_type %> search by <%= search_param_name_string %>'
+      title 'Server filters results for <%= resource_type %> search by <%= search_param_name_string %> based on granular scopes'
       description %(
 <%= description %>
       )
