@@ -4,6 +4,7 @@ require_relative '../../custom_groups/v7.0.0-ballot/capability_statement_group'
 require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../custom_groups/smart_app_launch_group'
+require_relative '../../custom_groups/v7.0.0-ballot/smart_granular_scopes_group'
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -114,16 +115,6 @@ module USCoreTestKit
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
-      input :smart_credentials,
-        title: 'OAuth Credentials',
-        type: :oauth_credentials,
-        optional: true
-
-      fhir_client do
-        url :url
-        oauth_credentials :smart_credentials
-      end
-
 
       suite_option :smart_app_launch_version,
         title: 'SMART App Launch Version',
@@ -141,8 +132,24 @@ module USCoreTestKit
       group from: :us_core_smart_app_launch
 
       group do
+        input :smart_credentials,
+          title: 'OAuth Credentials',
+          type: :oauth_credentials,
+          optional: true
+
+        fhir_client do
+          url :url
+          oauth_credentials :smart_credentials
+        end
+
         title 'US Core FHIR API'
         id :us_core_v700_ballot_fhir_api
+
+        config(
+          options: {
+            tag_requests: true
+          }
+        )
 
         group from: :us_core_v700_ballot_capability_statement
       
@@ -198,6 +205,10 @@ module USCoreTestKit
         group from: :us_core_v400_clinical_notes_guidance
         group from: :us_core_311_data_absent_reason
       end
+
+      group from: :us_core_v700_ballot_smart_granular_scopes,
+            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+      
     end
   end
 end

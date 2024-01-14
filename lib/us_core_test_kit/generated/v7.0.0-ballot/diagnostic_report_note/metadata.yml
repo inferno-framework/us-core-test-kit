@@ -270,8 +270,21 @@
   :file_name: diagnostic_report_note_must_support_test.rb
 - :id: us_core_v700_ballot_diagnostic_report_note_reference_resolution_test
   :file_name: diagnostic_report_note_reference_resolution_test.rb
-:id: us_core_v700_ballot_diagnostic_report_note
-:file_name: diagnostic_report_note_group.rb
+:granular_scope_tests:
+- :id: us_core_v700_ballot_DiagnosticReport_patient_category_granular_scope_test
+  :file_name: diagnostic_report_patient_category_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_granular_scope_test
+  :file_name: diagnostic_report_patient_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_category_date_granular_scope_test
+  :file_name: diagnostic_report_patient_category_date_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_code_granular_scope_test
+  :file_name: diagnostic_report_patient_code_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_status_granular_scope_test
+  :file_name: diagnostic_report_patient_status_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_code_date_granular_scope_test
+  :file_name: diagnostic_report_patient_code_date_granular_scope_test.rb
+:id: us_core_v700_ballot_diagnostic_report_granular_scope_2_group
+:file_name: diagnostic_report_granular_scope2_group.rb
 :delayed_references:
 - :path: subject
   :resources:

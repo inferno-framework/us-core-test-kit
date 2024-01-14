@@ -347,6 +347,27 @@
   :file_name: condition_encounter_diagnosis_must_support_test.rb
 - :id: us_core_v610_condition_encounter_diagnosis_reference_resolution_test
   :file_name: condition_encounter_diagnosis_reference_resolution_test.rb
-:id: us_core_v610_condition_encounter_diagnosis
-:file_name: condition_encounter_diagnosis_group.rb
+:granular_scope_tests:
+- :id: us_core_v610_Condition_patient_category_granular_scope_test
+  :file_name: condition_patient_category_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_granular_scope_test
+  :file_name: condition_patient_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_recorded_date_granular_scope_test
+  :file_name: condition_patient_recorded_date_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_asserted_date_granular_scope_test
+  :file_name: condition_patient_asserted_date_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_category_clinical_status_granular_scope_test
+  :file_name: condition_patient_category_clinical_status_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_onset_date_granular_scope_test
+  :file_name: condition_patient_onset_date_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_abatement_date_granular_scope_test
+  :file_name: condition_patient_abatement_date_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_clinical_status_granular_scope_test
+  :file_name: condition_patient_clinical_status_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_category_encounter_granular_scope_test
+  :file_name: condition_patient_category_encounter_granular_scope_test.rb
+- :id: us_core_v610_Condition_patient_code_granular_scope_test
+  :file_name: condition_patient_code_granular_scope_test.rb
+:id: us_core_v610_condition_granular_scope_2_group
+:file_name: condition_granular_scope2_group.rb
 :delayed_references: []
