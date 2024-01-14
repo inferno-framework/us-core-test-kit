@@ -1,6 +1,6 @@
 require_relative 'naming'
 require_relative 'special_cases'
-require_relative '../custom_groups/smart_scopes_group'
+require_relative '../custom_groups/smart_scopes_constants'
 
 module USCoreTestKit
   class Generator
@@ -9,7 +9,7 @@ module USCoreTestKit
         def generate(ig_metadata, base_output_dir)
           return unless ['6', '7'].include? ig_metadata.ig_version[1]
 
-          SmartScopesGroup::SMART_GRANULAR_SCOPE_RESOURCES.each do |resource_type|
+          SmartScopesConstants::SMART_GRANULAR_SCOPE_RESOURCES.each do |resource_type|
             # guard that resource_type is in this group
 
             group = ig_metadata.groups.find { |group| group.resource == resource_type }

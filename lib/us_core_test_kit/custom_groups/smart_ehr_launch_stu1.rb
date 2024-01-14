@@ -3,6 +3,8 @@ module USCoreTestKit
     id :us_core_smart_ehr_launch_stu1
     title 'EHR Launch'
 
+    run_as_group
+
     group from: :smart_discovery,
           run_as_group: true
     group from: :smart_ehr_launch,

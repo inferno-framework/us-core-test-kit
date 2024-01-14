@@ -3,6 +3,8 @@ module USCoreTestKit
     id :us_core_smart_standalone_launch_stu2
     title 'Standalone Launch'
 
+    run_as_group
+
     group from: :smart_discovery_stu2,
           run_as_group: true
     group from: :smart_standalone_launch_stu2,

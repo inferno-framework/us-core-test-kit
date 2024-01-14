@@ -19,7 +19,7 @@ module USCoreTestKit
       'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
       'patient/DiagnosticReport.rs?category=http://loinc.org|LP7839-6',
       'patient/DiagnosticReport.rs?category=http://terminology.hl7.org/CodeSystem/v2-0074|LAB',
-      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-sign',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs',
       'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|treatment-intervention-preference',
       'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|care-experience-preference',
       'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|functional-status',

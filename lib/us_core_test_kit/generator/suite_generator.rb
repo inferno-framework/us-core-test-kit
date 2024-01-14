@@ -118,6 +118,14 @@ module USCoreTestKit
           'us_core_v400_clinical_notes_guidance'
         end
       end
+
+      def granular_scopes_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/smart_granular_scopes_group"
+      end
+
+      def granular_scopes_id
+        "us_core_#{ig_metadata.reformatted_version}_smart_granular_scopes"
+      end
     end
   end
 end

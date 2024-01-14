@@ -13,6 +13,13 @@ module USCoreTestKit
 
     REQUIRED_CATEGORIES = ['LP29708-2', 'LP7839-6', 'LP29684-5'].freeze
 
+    # Disable tagging requests since this test doesn't have properties defined.
+    # TODO: investigate whether we need to tag these for granular scope
+    # checking.
+    def tags(_params)
+      nil
+    end
+
     def document_reference_types_found(patient_id)
       search_params = { patient: patient_id }
       status_values = ['current,superseded,entered-in-error']
