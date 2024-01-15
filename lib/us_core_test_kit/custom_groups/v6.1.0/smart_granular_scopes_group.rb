@@ -39,6 +39,7 @@ above scopes.
         .first
         .group do
           title 'US Core FHIR API w/Granular Scopes 1'
+          id :us_core_v610_smart_granular_scopes_1
 
           input :granular_scopes_1_credentials,
                 title: 'SMART Credentials for Granular Scopes 1',
@@ -88,6 +89,7 @@ above scopes.
         .last
         .group do
           title 'US Core FHIR API w/Granular Scopes 2'
+          id :us_core_v610_smart_granular_scopes_2
 
           input :granular_scopes_2_credentials,
                 title: 'SMART Credentials for Granular Scopes 2',
