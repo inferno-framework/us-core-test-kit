@@ -9,8 +9,8 @@ module USCoreTestKit
       'patient/DiagnosticReport.rs?category=http://loinc.org|LP29708-2',
       'patient/DocumentReference.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category|clinical-note',
       'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
-      'patient/Observation.rs?category=http://terminology.hl7.org//CodeSystem-observation-category.html|social-history',
-      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imagin',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem-observation-category|social-history',
+      'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging',
       'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure',
       'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
     ].map(&:freeze).freeze
