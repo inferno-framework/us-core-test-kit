@@ -3,7 +3,7 @@ require 'inferno/ext/fhir_models'
 
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
-require_relative 'generator/granular_scope_group_generator'
+require_relative 'generator/granular_scope_resource_type_group_generator'
 require_relative 'generator/granular_scope_test_generator'
 require_relative 'generator/group_generator'
 require_relative 'generator/must_support_test_generator'
@@ -47,7 +47,7 @@ module USCoreTestKit
 
       generate_groups
 
-      generate_granular_scope_groups
+      generate_granular_scope_resource_type_groups
 
       generate_suites
     end
@@ -102,8 +102,8 @@ module USCoreTestKit
       GroupGenerator.generate(ig_metadata, base_output_dir)
     end
 
-    def generate_granular_scope_groups
-      GranularScopeGroupGenerator.generate(ig_metadata, base_output_dir)
+    def generate_granular_scope_resource_type_groups
+      GranularScopeResourceTypeGroupGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_suites

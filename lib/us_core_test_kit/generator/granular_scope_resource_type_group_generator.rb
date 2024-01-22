@@ -4,7 +4,7 @@ require_relative '../custom_groups/smart_scopes_constants'
 
 module USCoreTestKit
   class Generator
-    class GranularScopeGroupGenerator
+    class GranularScopeResourceTypeGroupGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
           return unless ['6', '7'].include? ig_metadata.ig_version[1]
