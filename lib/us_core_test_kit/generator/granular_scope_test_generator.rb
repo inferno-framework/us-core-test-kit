@@ -41,7 +41,7 @@ module USCoreTestKit
       end
 
       def output_file_directory
-        File.join(base_output_dir, profile_identifier)
+        File.join(base_output_dir, 'granular_scope_tests', resource_type.underscore)
       end
 
       def output_file_name

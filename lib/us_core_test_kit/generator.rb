@@ -3,6 +3,7 @@ require 'inferno/ext/fhir_models'
 
 require_relative 'generator/ig_loader'
 require_relative 'generator/ig_metadata_extractor'
+require_relative 'generator/granular_scope_group_generator'
 require_relative 'generator/granular_scope_resource_type_group_generator'
 require_relative 'generator/granular_scope_test_generator'
 require_relative 'generator/group_generator'
@@ -49,13 +50,20 @@ module USCoreTestKit
 
       generate_granular_scope_resource_type_groups
 
+      generate_granular_scope_groups
+
       generate_suites
+
+      write_metadata
     end
 
     def extract_metadata
       self.ig_metadata = IGMetadataExtractor.new(ig_resources).extract
 
       FileUtils.mkdir_p(base_output_dir)
+    end
+
+    def write_metadata
       File.open(File.join(base_output_dir, 'metadata.yml'), 'w') do |file|
         file.write(YAML.dump(ig_metadata.to_hash))
       end
@@ -104,6 +112,10 @@ module USCoreTestKit
 
     def generate_granular_scope_resource_type_groups
       GranularScopeResourceTypeGroupGenerator.generate(ig_metadata, base_output_dir)
+    end
+
+    def generate_granular_scope_groups
+      GranularScopeGroupGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_suites

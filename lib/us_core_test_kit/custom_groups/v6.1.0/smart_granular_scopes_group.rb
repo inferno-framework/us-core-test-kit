@@ -1,14 +1,6 @@
 require_relative '../base_smart_granular_scopes_group'
-require_relative '../../generated/v6.1.0/condition_granular_scope1_group'
-require_relative '../../generated/v6.1.0/condition_granular_scope2_group'
-require_relative '../../generated/v6.1.0/diagnostic_report_granular_scope1_group'
-require_relative '../../generated/v6.1.0/diagnostic_report_granular_scope2_group'
-require_relative '../../generated/v6.1.0/document_reference_granular_scope1_group'
-require_relative '../../generated/v6.1.0/document_reference_granular_scope2_group'
-require_relative '../../generated/v6.1.0/observation_granular_scope1_group'
-require_relative '../../generated/v6.1.0/observation_granular_scope2_group'
-require_relative '../../generated/v6.1.0/service_request_granular_scope1_group'
-require_relative '../../generated/v6.1.0/service_request_granular_scope2_group'
+require_relative '../../generated/v6.1.0/granular_scopes1_group'
+require_relative '../../generated/v6.1.0/granular_scopes2_group'
 
 module USCoreTestKit
   module USCoreV610
@@ -37,41 +29,7 @@ above scopes.
 
       groups
         .first
-        .group do
-          title 'US Core FHIR API w/Granular Scopes 1'
-          id :us_core_v610_smart_granular_scopes_1
-
-          input :granular_scopes_1_credentials,
-                title: 'SMART Credentials for Granular Scopes 1',
-                type: :oauth_credentials,
-                locked: true
-
-          config(
-            inputs: {
-              patient_ids: {
-                locked: true
-              },
-              received_scopes: {
-                title: 'Received Scopes',
-                locked: true
-              },
-              url: {
-                locked: true
-              }
-            }
-          )
-
-          fhir_client do
-            oauth_credentials :granular_scopes_1_credentials
-            url :url
-          end
-
-          group from: :us_core_v610_condition_granular_scope_1_group
-          group from: :us_core_v610_diagnostic_report_granular_scope_1_group
-          group from: :us_core_v610_document_reference_granular_scope_1_group
-          group from: :us_core_v610_observation_granular_scope_1_group
-          group from: :us_core_v610_service_request_granular_scope_1_group
-      end
+        .group from: :us_core_v610_smart_granular_scopes_1
 
       groups
         .last
@@ -87,40 +45,7 @@ above scopes.
 
       groups
         .last
-        .group do
-          title 'US Core FHIR API w/Granular Scopes 2'
-          id :us_core_v610_smart_granular_scopes_2
-
-          input :granular_scopes_2_credentials,
-                title: 'SMART Credentials for Granular Scopes 2',
-                type: :oauth_credentials,
-                locked: true
-
-          config(
-            inputs: {
-              patient_ids: {
-                locked: true
-              },
-              received_scopes: {
-                title: 'Received Scopes',
-                locked: true
-              },
-              url: {
-                locked: true
-              }
-            }
-          )
-
-          fhir_client do
-            oauth_credentials :granular_scopes_2_credentials
-            url :url
-          end
-
-          group from: :us_core_v610_condition_granular_scope_2_group
-          group from: :us_core_v610_diagnostic_report_granular_scope_2_group
-          group from: :us_core_v610_observation_granular_scope_2_group
-          group from: :us_core_v610_service_request_granular_scope_2_group
-        end
+        .group  from: :us_core_v610_smart_granular_scopes_2
     end
   end
 end

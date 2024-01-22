@@ -1,22 +1,37 @@
-<% test_file_list.each do |file_name| %>require_relative '<%= file_name %>'
+<% group_file_list.each do |file| %>require_relative '<%= file %>'
 <% end %>
 module USCoreTestKit
   module <%= module_name %>
-    class <%= class_name %> < Inferno::TestGroup
-      title '<%= title %> Tests'
-      short_description '<%= short_description %>'
-      description %(
-  <%= description %>
+    class SmartGranularScopes<%= group_number %>Group < Inferno::TestGroup
+      id :<%= group_id %>
+      title 'US Core FHIR API w/Granular Scopes 1'
+
+      input :granular_scopes_1_credentials,
+            title: 'SMART Credentials for Granular Scopes 1',
+            type: :oauth_credentials,
+            locked: true
+
+      config(
+        inputs: {
+          patient_ids: {
+            locked: true
+          },
+          received_scopes: {
+            title: 'Received Scopes',
+            locked: true
+          },
+          url: {
+            locked: true
+          }
+        }
       )
 
-      id :<%= group_id %>
-      run_as_group
-
-      def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml'), aliases: true))
+      fhir_client do
+        oauth_credentials :granular_scopes_1_credentials
+        url :url
       end
-    <% test_id_list.each do |id| %>
-      test from: :<%= id %><% end %>
+<% group_id_list.each do |group_id| %>
+      group from: :<%= group_id %><% end %>
     end
   end
 end

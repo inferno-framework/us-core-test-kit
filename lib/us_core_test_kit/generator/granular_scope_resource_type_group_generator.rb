@@ -11,24 +11,28 @@ module USCoreTestKit
 
           [1, 2].each do |group_number|
             groups = ig_metadata.groups.select { |group| group.granular_scope_tests.present? }
+            scopes = SmartScopesConstants.const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")
 
             groups.each do |group_metadata|
-              new(GroupMetadata.new(group_metadata.to_hash), base_output_dir, group_number).generate
+              next if scopes.none? { |scope| scope.start_with? "patient/#{group_metadata.resource}" }
+
+              new(GroupMetadata.new(group_metadata.to_hash), ig_metadata, base_output_dir, group_number).generate
             end
           end
         end
       end
 
-      attr_accessor :group_metadata, :base_output_dir, :group_number
+      attr_accessor :group_metadata, :ig_metadata, :base_output_dir, :group_number
 
-      def initialize(group_metadata, base_output_dir, group_number)
+      def initialize(group_metadata, ig_metadata, base_output_dir, group_number)
         self.group_metadata = group_metadata
+        self.ig_metadata = ig_metadata
         self.base_output_dir = base_output_dir
         self.group_number = group_number
       end
 
       def template
-        @template ||= File.read(File.join(__dir__, 'templates', 'granular_scope_group.rb.erb'))
+        @template ||= File.read(File.join(__dir__, 'templates', 'granular_scope_resource_type_group.rb.erb'))
       end
 
       def output
@@ -63,12 +67,12 @@ module USCoreTestKit
         File.join(base_output_dir, base_output_file_name)
       end
 
-      def metadata_file_name
-        File.join(base_output_dir, profile_identifier, base_metadata_file_name)
+      def group_dir
+        File.join(base_output_dir, 'granular_scope_tests', resource_type.underscore)
       end
 
-      def profile_identifier
-        Naming.snake_case_for_profile(group_metadata)
+      def metadata_file_name
+        File.join(group_dir, base_metadata_file_name)
       end
 
       def group_id
@@ -79,38 +83,13 @@ module USCoreTestKit
         group_metadata.resource
       end
 
-      def search_validation_resource_type
-        text = "#{resource_type} resources"
-        if resource_type == 'Condition' && group_metadata.reformatted_version == 'v501'
-          case profile_url
-          when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis'
-            text.concat(' with category `encounter-diagnosis`')
-          when 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns'
-            text.concat(' with category `problem-list-item | health-concern`')
-          end
-        end
-
-        text
-      end
-
-      def profile_name
-        group_metadata.profile_name
-      end
-
-      def profile_url
-        group_metadata.profile_url
-      end
-
-
-      def optional?
-        resource_type == 'QuestionnaireResponse' ||
-        profile_url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
-      end
-
       def generate
+        FileUtils.mkdir_p(group_dir)
         File.open(output_file_name, 'w') { |f| f.write(output) }
         group_metadata.id = group_id
         group_metadata.file_name = base_output_file_name
+        ig_metadata.granular_scope_resource_type_groups[resource_type] <<
+          group_metadata.to_hash.slice(:granular_scope_resource_type_groups, :id, :file_name)
         File.open(metadata_file_name, 'w') { |f| f.write(YAML.dump(group_metadata.to_hash)) }
       end
 
@@ -122,8 +101,7 @@ module USCoreTestKit
       def test_file_list
         @test_file_list ||=
           group_metadata.granular_scope_tests.map do |test|
-            name_without_suffix = test[:file_name].delete_suffix('.rb')
-            name_without_suffix.start_with?('..') ? name_without_suffix : "#{profile_identifier}/#{name_without_suffix}"
+            "./granular_scope_tests/#{resource_type.underscore}/#{test[:file_name].delete_suffix('.rb')}"
           end
       end
 
