@@ -11,7 +11,7 @@ module USCoreTestKit
       load_previous_requests
 
       skip_if previous_requests.blank?,
-              "No #{resource_type} searches with search params #{search_param_names.join('& ')} found"
+              "No #{resource_type} searches with search params #{search_param_names.join(' & ')} found"
 
       previous_request_resources.each do |previous_request, all_previous_resources|
         params = previous_request.query_parameters
@@ -128,8 +128,8 @@ module USCoreTestKit
     def mismatched_resource_ids(resources)
       resources
         .reject do |resource|
-          granular_scope_search_params.any? do |param_name, param_value|
-            resource_matches_param?(resource, param_name, param_value)
+          granular_scope_search_params.any? do |param|
+            resource_matches_param?(resource, param[:name], param[:value])
           end
         end
         .map(&:id)

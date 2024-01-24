@@ -11,7 +11,9 @@ module USCoreTestKit
 
           [1, 2].each do |group_number|
             groups = ig_metadata.groups.select { |group| group.granular_scope_tests.present? }
-            scopes = SmartScopesConstants.const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")
+            scopes =
+              SmartScopesConstants
+                .const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")[ig_metadata.reformatted_version]
 
             groups.each do |group_metadata|
               next if scopes.none? { |scope| scope.start_with? "patient/#{group_metadata.resource}" }
@@ -116,8 +118,12 @@ module USCoreTestKit
           .join("\n")
       end
 
+      def scopes
+        SmartScopesConstants.const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")[ig_metadata.reformatted_version]
+      end
+
       def scopes_string
-        SmartScopesConstants.const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")
+        scopes
           .map { |scope| scope.delete_prefix 'patient/' }
           .select { |scope| scope.start_with? resource_type }
           .map { |scope| "* `#{scope}`" }

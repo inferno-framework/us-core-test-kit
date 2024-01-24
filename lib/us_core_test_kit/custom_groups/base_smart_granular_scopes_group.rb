@@ -29,24 +29,20 @@ module USCoreTestKit
       granular scopes are returned.
     DESCRIPTION
 
+    config(
+      inputs: {
+        url: {
+          locked: true
+        }
+      }
+    )
+
     group do
       title 'Granular Scopes 1'
 
-      def self.default_group_scopes
-        [DEFAULT_SCOPES, *SMART_GRANULAR_SCOPES_GROUP1].join(' ')
+      def self.default_group_scopes(version)
+        [DEFAULT_SCOPES, *SMART_GRANULAR_SCOPES_GROUP1[version]].join(' ')
       end
-
-      config(
-        inputs: {
-          requested_scopes: {
-            name: :requested_scopes_group1,
-            default: default_group_scopes
-          },
-          url: {
-            locked: true
-          }
-        }
-      )
 
       group do
         title 'SMART App Launch w/Granular Scopes 1'
@@ -84,18 +80,9 @@ module USCoreTestKit
     group do
       title 'Granular Scopes 2'
 
-      def self.default_group_scopes
-        [DEFAULT_SCOPES, *SMART_GRANULAR_SCOPES_GROUP2].join(' ')
+      def self.default_group_scopes(version)
+        [DEFAULT_SCOPES, *SMART_GRANULAR_SCOPES_GROUP2[version]].join(' ')
       end
-
-      config(
-        inputs: {
-          requested_scopes: {
-            name: :requested_scopes_group2,
-            default: default_group_scopes
-          }
-        }
-      )
 
       group do
         title 'SMART App Launch w/Granular Scopes 2'

@@ -15,16 +15,35 @@ module USCoreTestKit
           .join("\n")
       end
 
+      config(
+        inputs: {
+          url: {
+            locked: true
+          }
+        }
+      )
+
       groups
         .first
         .description %(
 These tests perform a SMART app launch to receive the following granular scopes:
 
-#{scopes_string(SMART_GRANULAR_SCOPES_GROUP1)}
+#{scopes_string(SMART_GRANULAR_SCOPES_GROUP1['v700_ballot'])}
 
 Then all of the searches which have been performed in the US Core FHIR API tests
 are repeated to verify that the results have been filtered according to the
 above scopes.
+        )
+
+      groups
+        .first
+        .config(
+          inputs: {
+            requested_scopes: {
+              name: :requested_scopes_group1,
+              default: groups.first.default_group_scopes('v700_ballot')
+            }
+          }
         )
 
       groups
@@ -36,11 +55,22 @@ above scopes.
         .description %(
 These tests perform a SMART app launch to receive the following granular scopes:
 
-#{scopes_string(SMART_GRANULAR_SCOPES_GROUP2)}
+#{scopes_string(SMART_GRANULAR_SCOPES_GROUP2['v700_ballot'])}
 
 Then all of the searches which have been performed in the US Core FHIR API tests
 are repeated to verify that the results have been filtered according to the
 above scopes.
+        )
+
+      groups
+        .last
+        .config(
+          inputs: {
+            requested_scopes: {
+              name: :requested_scopes_group2,
+              default: groups.last.default_group_scopes('v700_ballot')
+            }
+          }
         )
 
       groups
