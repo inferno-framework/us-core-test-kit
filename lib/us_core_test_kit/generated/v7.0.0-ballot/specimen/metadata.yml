@@ -10,7 +10,7 @@
 :title: Specimen
 :short_description: Verify support for the server capabilities required by the US
   Core Specimen Profile.
-:is_delayed: false
+:is_delayed: true
 :interactions:
 - :code: create
   :expectation: MAY
@@ -112,12 +112,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Substance
 :tests:
+- :id: us_core_v700_ballot_specimen_read_test
+  :file_name: specimen_read_test.rb
 - :id: us_core_v700_ballot_specimen_patient_search_test
   :file_name: specimen_patient_search_test.rb
 - :id: us_core_v700_ballot_specimen__id_search_test
   :file_name: specimen_id_search_test.rb
-- :id: us_core_v700_ballot_specimen_read_test
-  :file_name: specimen_read_test.rb
 - :id: us_core_v700_ballot_specimen_validation_test
   :file_name: specimen_validation_test.rb
 - :id: us_core_v700_ballot_specimen_must_support_test

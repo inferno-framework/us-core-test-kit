@@ -278,3 +278,6 @@
 - :path: subject
   :resources:
   - Location
+- :path: specimen
+  :resources:
+  - Specimen

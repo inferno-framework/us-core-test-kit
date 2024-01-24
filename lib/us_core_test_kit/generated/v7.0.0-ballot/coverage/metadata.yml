@@ -164,3 +164,4 @@
 - :path: payor
   :resources:
   - Organization
+  - RelatedPerson

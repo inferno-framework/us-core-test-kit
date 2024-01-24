@@ -50,12 +50,12 @@ require_relative 'body_weight_group'
 require_relative 'vital_signs_group'
 require_relative 'procedure_group'
 require_relative 'questionnaire_response_group'
-require_relative 'related_person_group'
 require_relative 'service_request_group'
-require_relative 'specimen_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'provenance_group'
+require_relative 'related_person_group'
+require_relative 'specimen_group'
 
 module USCoreTestKit
   module USCoreV700_BALLOT
@@ -189,12 +189,12 @@ module USCoreTestKit
         group from: :us_core_v700_ballot_vital_signs
         group from: :us_core_v700_ballot_procedure
         group from: :us_core_v700_ballot_questionnaire_response
-        group from: :us_core_v700_ballot_related_person
         group from: :us_core_v700_ballot_service_request
-        group from: :us_core_v700_ballot_specimen
         group from: :us_core_v700_ballot_organization
         group from: :us_core_v700_ballot_practitioner
         group from: :us_core_v700_ballot_provenance
+        group from: :us_core_v700_ballot_related_person
+        group from: :us_core_v700_ballot_specimen
         group from: :us_core_v400_clinical_notes_guidance
         group from: :us_core_311_data_absent_reason
       end

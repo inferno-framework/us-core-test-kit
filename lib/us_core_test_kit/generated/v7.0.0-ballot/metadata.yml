@@ -557,6 +557,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_condition_encounter_diagnosis
   :class_name: USCorev700_ballotConditionEncounterDiagnosisSequence
   :version: v7.0.0-ballot
@@ -1363,6 +1364,7 @@
   - :path: payor
     :resources:
     - Organization
+    - RelatedPerson
 - :name: us_core_implantable_device
   :class_name: USCorev700_ballotImplantableDeviceSequence
   :version: v7.0.0-ballot
@@ -2304,6 +2306,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_encounter
   :class_name: USCorev700_ballotEncounterSequence
   :version: v7.0.0-ballot
@@ -2640,6 +2643,7 @@
     :resources:
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: location.location
     :resources:
     - Location
@@ -3432,6 +3436,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_medicationrequest
   :class_name: USCorev700_ballotMedicationrequestSequence
   :version: v7.0.0-ballot
@@ -3735,6 +3740,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+    - RelatedPerson
 - :name: us_core_observation_lab
   :class_name: USCorev700_ballotObservationLabSequence
   :version: v7.0.0-ballot
@@ -3991,6 +3997,9 @@
   - :path: subject
     :resources:
     - Location
+  - :path: specimen
+    :resources:
+    - Specimen
 - :name: us_core_observation_pregnancystatus
   :class_name: USCorev700_ballotObservationPregnancystatusSequence
   :version: v7.0.0-ballot
@@ -5263,6 +5272,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_treatment_intervention_preference
   :class_name: USCorev700_ballotTreatmentInterventionPreferenceSequence
   :version: v7.0.0-ballot
@@ -8393,6 +8403,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_average_blood_pressure
   :class_name: USCorev700_ballotAverageBloodPressureSequence
   :version: v7.0.0-ballot
@@ -11490,6 +11501,7 @@
     - Organization
     - Practitioner
     - PractitionerRole
+    - RelatedPerson
   - :path: agent.onBehalfOf
     :resources:
     - Organization
@@ -11703,6 +11715,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_relatedperson
   :class_name: USCorev700_ballotRelatedpersonSequence
   :version: v7.0.0-ballot
@@ -11714,7 +11727,7 @@
   :title: RelatedPerson
   :short_description: Verify support for the server capabilities required by the US
     Core RelatedPerson Profile.
-  :is_delayed: false
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -12131,6 +12144,7 @@
     :resources:
     - Practitioner
     - Organization
+    - RelatedPerson
 - :name: us_core_specimen
   :class_name: USCorev700_ballotSpecimenSequence
   :version: v7.0.0-ballot
@@ -12142,7 +12156,7 @@
   :title: Specimen
   :short_description: Verify support for the server capabilities required by the US
     Core Specimen Profile.
-  :is_delayed: false
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
