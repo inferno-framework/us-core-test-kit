@@ -10,6 +10,7 @@
 :title: DiagnosticReport for Report and Note exchange
 :short_description: Verify support for the server capabilities required by the US
   Core DiagnosticReport Profile for Report and Note exchange.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: SHALL

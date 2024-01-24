@@ -10,6 +10,7 @@
 :title: Implantable Device
 :short_description: Verify support for the server capabilities required by the US
   Core Implantable Device Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

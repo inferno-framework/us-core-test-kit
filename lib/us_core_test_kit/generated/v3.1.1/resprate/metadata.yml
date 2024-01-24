@@ -10,6 +10,7 @@
 :title: Observation Respiratory Rate
 :short_description: Verify support for the server capabilities required by the Observation
   Respiratory Rate Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

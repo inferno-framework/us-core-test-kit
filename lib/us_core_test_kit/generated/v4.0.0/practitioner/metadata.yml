@@ -10,6 +10,7 @@
 :title: Practitioner
 :short_description: Verify support for the server capabilities required by the US
   Core Practitioner Profile.
+:is_delayed: true
 :interactions:
 - :code: create
   :expectation: MAY
