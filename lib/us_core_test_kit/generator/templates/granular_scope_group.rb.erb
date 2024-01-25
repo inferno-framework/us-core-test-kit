@@ -4,10 +4,10 @@ module USCoreTestKit
   module <%= module_name %>
     class SmartGranularScopes<%= group_number %>Group < Inferno::TestGroup
       id :<%= group_id %>
-      title 'US Core FHIR API w/Granular Scopes 1'
+      title 'US Core FHIR API w/Granular Scopes <%= group_number %>'
 
-      input :granular_scopes_1_credentials,
-            title: 'SMART Credentials for Granular Scopes 1',
+      input :granular_scopes_<%= group_number %>_credentials,
+            title: 'SMART Credentials for Granular Scopes <%= group_number %>',
             type: :oauth_credentials,
             locked: true
 
@@ -27,7 +27,7 @@ module USCoreTestKit
       )
 
       fhir_client do
-        oauth_credentials :granular_scopes_1_credentials
+        oauth_credentials :granular_scopes_<%= group_number %>_credentials
         url :url
       end
 <% group_id_list.each do |group_id| %>
