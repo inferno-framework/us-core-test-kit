@@ -438,6 +438,7 @@ RSpec.describe USCoreTestKit::SearchTest do
 
   describe 'search date/dateTime precision' do
     let(:patient_id) { '123' }
+    let(:preg_intent_id) { 'preg_intent' }
     context 'with date precision' do
       let(:test_class) do
         Class.new(USCoreTestKit::USCoreV400::GoalPatientTargetDateSearchTest) do
@@ -478,6 +479,7 @@ RSpec.describe USCoreTestKit::SearchTest do
             ]
           )
       end
+      
 
       let(:bundle_year) { FHIR::Bundle.new(entry: [ {resource: goal_year} ]) }
       let(:bundle_date) { FHIR::Bundle.new(entry: [ {resource: goal_date} ]) }
@@ -677,6 +679,147 @@ RSpec.describe USCoreTestKit::SearchTest do
         result = run(test_class, patient_ids: patient_id, url: url)
         expect(request).to have_been_made.once
         expect(result.result).to eq('pass')
+      end
+    end
+    context 'with period' do
+      let(:test_class_period) do
+        Class.new(USCoreTestKit::USCoreV700_BALLOT::ObservationPregnancyintentPatientCategoryDateSearchTest) do
+          fhir_client { url :url }
+          input :url
+        end
+      end
+
+      let(:observation_preg_intent_period) do
+        FHIR::Observation.new(
+          id: "obs_preg_intent_period",
+          category: [
+            {
+              coding: [
+                {
+                  system: "http://terminology.hl7.org/CodeSystem/observation-category",
+                  code: "social-history"
+                }
+              ]
+            }
+          ],
+          subject: {
+            reference: "Patient/preg_intent",
+            type: "Patient"
+          },
+          component: [
+            {
+              valueCodeableConcept: {
+                coding: [
+                  {
+                    system: "http://terminology.hl7.org/CodeSystem/PHOccupationalDataForHealthODH",
+                    code: "926",
+                    display: "Administration of Economic Programs"
+                  }
+                ]
+              },
+              code: {
+                coding: [
+                  {
+                    system: "http://loinc.org",
+                    code: "86188-0"
+                  }
+                ]
+              }
+            }
+          ],
+          status: "final",
+          code: {
+            coding: [
+              {
+                system: "http://loinc.org",
+                code: "11341-5"
+              }
+            ]
+          },
+          effectivePeriod: {
+            start: "2022-12-31"
+          },
+          valueCodeableConcept: {
+            coding: [
+              {
+                system: "http://terminology.hl7.org/CodeSystem/PHOccupationalDataForHealthODH",
+                code: "15-1131.00.000002",
+                display: ".NET Programmer [Computer Programmers]"
+              }
+            ]
+          },
+        )
+      end
+
+      let(:observation_preg_intent_datetime) do
+        FHIR::Observation.new(
+          id: "obs_preg_intent_datetime",
+          category: [
+            {
+              coding: [
+                {
+                  system: "http://terminology.hl7.org/CodeSystem/observation-category",
+                  code: "social-history"
+                }
+              ]
+            }
+          ],
+          encounter: {
+            reference: "Encounter/6f18a49f-fe05-57b9-bd77-ddc883791520",
+            type: "Encounter"
+          },
+          subject: {
+            reference: "Patient/preg_intent",
+            type: "Patient"
+          },
+          status: "final",
+          code: {
+            coding: [
+              {
+                system: "http://loinc.org",
+                code: "86645-9",
+                display: "Pregnancy intention in the next year Reported Nom"
+              }
+            ]
+          },
+          effectiveDateTime: "2023-05-25T18:05:00+00:00",
+          valueCodeableConcept: {
+            extension: [
+              {
+                url: "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                valueCode: "unknown"
+              }
+            ]
+          },
+        )
+      end
+      let(:bundle_period) { FHIR::Bundle.new(entry: [ {resource: observation_preg_intent_datetime }, {resource: observation_preg_intent_period } ]) }
+
+      it 'displays proper error message if returning incorrect resource' do
+        allow_any_instance_of(test_class_period)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [observation_preg_intent_datetime],
+              preg_intent_id => [observation_preg_intent_datetime]
+            }
+          )
+        
+        request = stub_request(:get, "#{url}/Observation?category=social-history&date=2023-05-25T18:05:00%2B00:00&patient=preg_intent")
+          .to_return(status: 200, body: bundle_period.to_json)
+
+        stub_request(:get, "#{url}/Observation?category=social-history&date=gt2023-05-24T18:05:00%2B00:00&patient=preg_intent")
+          .to_return(status: 200, body: bundle_period.to_json)
+        stub_request(:get, "#{url}/Observation?category=social-history&date=ge2023-05-24T18:05:00%2B00:00&patient=preg_intent")
+          .to_return(status: 200, body: bundle_period.to_json)
+        stub_request(:get, "#{url}/Observation?category=social-history&date=lt2023-05-26T18:05:00%2B00:00&patient=preg_intent")
+          .to_return(status: 200, body: bundle_period.to_json)
+        stub_request(:get, "#{url}/Observation?category=social-history&date=le2023-05-26T18:05:00%2B00:00&patient=preg_intent")
+          .to_return(status: 200, body: bundle_period.to_json)
+
+        result = run(test_class_period, patient_ids: preg_intent_id, url: url)
+        binding.pry
+        expect(result.result).to eq('fail')
+        expect(result.result_message).to include("2022-12-31")
       end
     end
   end
