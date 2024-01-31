@@ -44,12 +44,12 @@ module USCoreTestKit
         @is_delayed ||= if resource == 'Patient'
                           false
                         else
-                          no_patient_searches? || non_uscdi_resource? || searchable_non_uscdi_resource?
+                          no_patient_searches? || non_uscdi_resource?
                         end
       end
 
       def exclude_search_tests?
-        delayed? && !searchable_non_uscdi_resource
+        delayed? && !searchable_delayed_resource
       end
 
       def no_patient_searches?
@@ -60,8 +60,8 @@ module USCoreTestKit
         SpecialCases::NON_USCDI_RESOURCES.key?(resource) && SpecialCases::NON_USCDI_RESOURCES[resource].include?(reformatted_version)
       end
 
-      def searchable_non_uscdi_resource?
-        SpecialCases::SEARCHABLE_NON_USCDI_RESOURCES.key?(resource) && SpecialCases::SEARCHABLE_NON_USCDI_RESOURCES[resource].include?(reformatted_version)
+      def searchable_delayed_resource?
+        SpecialCases::SEARCHABLE_DELAYED_RESOURCES.key?(resource) && SpecialCases::SEARCHABLE_DELAYED_RESOURCES[resource].include?(reformatted_version)
       end
 
       def add_test(id:, file_name:)

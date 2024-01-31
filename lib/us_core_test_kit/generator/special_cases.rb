@@ -23,7 +23,7 @@ module USCoreTestKit
         'Specimen' => ['v610', 'v700_ballot']
       }.freeze
 
-      SEARCHABLE_NON_USCDI_RESOURCES = {
+      SEARCHABLE_DELAYED_RESOURCES = {
         'Practitioner' => ['v501', 'v610', 'v700_ballot']
       }.freeze
 
