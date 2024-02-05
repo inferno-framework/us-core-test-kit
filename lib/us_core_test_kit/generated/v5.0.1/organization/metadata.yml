@@ -10,6 +10,7 @@
 :title: Organization
 :short_description: Verify support for the server capabilities required by the US
   Core Organization Profile.
+:is_delayed: true
 :interactions:
 - :code: create
   :expectation: MAY

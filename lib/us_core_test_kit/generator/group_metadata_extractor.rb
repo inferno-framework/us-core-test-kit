@@ -94,30 +94,9 @@ module USCoreTestKit
       end
 
       ### BEGIN SPECIAL CASES ###
-
-      ALL_VERSION_CATEGORY_FIRST_PROFILES = [
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sdoh-assessment',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-social-history',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
-      ]
-
-      VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700_ballot'],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700_ballot']
-      }
-
       def category_first_profile?
-        ALL_VERSION_CATEGORY_FIRST_PROFILES.include?(profile_url) ||
-        VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
+        SpecialCases::ALL_VERSION_CATEGORY_FIRST_PROFILES.include?(profile_url) ||
+        SpecialCases::VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
       end
 
       def first_search_params

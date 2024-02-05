@@ -10,6 +10,7 @@
 :title: Observation Heart Rate
 :short_description: Verify support for the server capabilities required by the Observation
   Heart Rate Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

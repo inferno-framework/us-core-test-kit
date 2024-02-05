@@ -10,6 +10,7 @@
 :title: Observation Pediatric BMI for Age
 :short_description: Verify support for the server capabilities required by the US
   Core Pediatric BMI for Age Observation Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

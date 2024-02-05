@@ -10,6 +10,7 @@
 :title: Observation Screening Assessment
 :short_description: Verify support for the server capabilities required by the US
   Core Observation Screening Assessment Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY
@@ -295,3 +296,4 @@
   :resources:
   - Practitioner
   - Organization
+  - RelatedPerson

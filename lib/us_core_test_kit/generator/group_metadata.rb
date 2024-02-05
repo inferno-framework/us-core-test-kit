@@ -12,6 +12,7 @@ module USCoreTestKit
         :profile_version,
         :title,
         :short_description,
+        :is_delayed,
         :interactions,
         :operations,
         :searches,
@@ -30,18 +31,6 @@ module USCoreTestKit
         :delayed_references
       ].freeze
 
-      NON_USCDI_RESOURCES = {
-        'Encounter' => ['v311', 'v400'],
-        'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Organization' => ['v311', 'v400', 'v501', 'v610'],
-        'Practitioner' => ['v311', 'v400', 'v501', 'v610'],
-        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610'],
-        'Provenance' => ['v311', 'v400', 'v501', 'v610'],
-        'RelatedPerson' => ['v501', 'v610'],
-        'Specimen' => ['v610']
-      }.freeze
-
-
       ATTRIBUTES.each { |name| attr_accessor name }
 
       def initialize(metadata)
@@ -53,9 +42,15 @@ module USCoreTestKit
       end
 
       def delayed?
-        return false if resource == 'Patient'
+        @is_delayed ||= if resource == 'Patient'
+                          false
+                        else
+                          no_patient_searches? || non_uscdi_resource?
+                        end
+      end
 
-        no_patient_searches? || non_uscdi_resource?
+      def exclude_search_tests?
+        delayed? && !searchable_delayed_resource
       end
 
       def no_patient_searches?
@@ -63,7 +58,11 @@ module USCoreTestKit
       end
 
       def non_uscdi_resource?
-        NON_USCDI_RESOURCES.key?(resource) && NON_USCDI_RESOURCES[resource].include?(reformatted_version)
+        SpecialCases::NON_USCDI_RESOURCES.key?(resource) && SpecialCases::NON_USCDI_RESOURCES[resource].include?(reformatted_version)
+      end
+
+      def searchable_delayed_resource?
+        SpecialCases::SEARCHABLE_DELAYED_RESOURCES.key?(resource) && SpecialCases::SEARCHABLE_DELAYED_RESOURCES[resource].include?(reformatted_version)
       end
 
       def add_test(id:, file_name:)

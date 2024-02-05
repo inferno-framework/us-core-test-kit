@@ -10,6 +10,7 @@
 :title: MedicationDispense
 :short_description: Verify support for the server capabilities required by the US
   Core MedicationDispense Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY
@@ -237,3 +238,4 @@
   - Practitioner
   - Organization
   - PractitionerRole
+  - RelatedPerson

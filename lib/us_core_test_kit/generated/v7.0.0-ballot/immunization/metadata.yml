@@ -10,6 +10,7 @@
 :title: Immunization
 :short_description: Verify support for the server capabilities required by the US
   Core Immunization Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

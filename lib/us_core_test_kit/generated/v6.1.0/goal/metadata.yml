@@ -10,6 +10,7 @@
 :title: Goal
 :short_description: Verify support for the server capabilities required by the US
   Core Goal Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

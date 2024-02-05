@@ -10,6 +10,7 @@
 :title: Observation Laboratory Result
 :short_description: Verify support for the server capabilities required by the US
   Core Laboratory Result Observation Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY
@@ -288,3 +289,6 @@
 - :path: subject
   :resources:
   - Location
+- :path: specimen
+  :resources:
+  - Specimen

@@ -10,6 +10,7 @@
 :title: Observation Pediatric Head Occipital Frontal Circumference Percentile
 :short_description: Verify support for the server capabilities required by the US
   Core Pediatric Head Occipital Frontal Circumference Percentile Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

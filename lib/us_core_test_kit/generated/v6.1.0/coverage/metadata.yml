@@ -10,6 +10,7 @@
 :title: Coverage
 :short_description: Verify support for the server capabilities required by the US
   Core Coverage Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

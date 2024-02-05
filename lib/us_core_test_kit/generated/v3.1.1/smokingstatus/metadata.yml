@@ -10,6 +10,7 @@
 :title: Smoking Status Observation
 :short_description: Verify support for the server capabilities required by the US
   Core Smoking Status Observation Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY

@@ -12,6 +12,7 @@
   :title: AllergyIntolerance
   :short_description: Verify support for the server capabilities required by the US
     Core AllergyIntolerance Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -165,6 +166,7 @@
   :title: CarePlan
   :short_description: Verify support for the server capabilities required by the US
     Core CarePlan Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -445,6 +447,7 @@
   :title: CareTeam
   :short_description: Verify support for the server capabilities required by the US
     Core CareTeam Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -621,6 +624,7 @@
   :title: Condition Encounter Diagnosis
   :short_description: Verify support for the server capabilities required by the US
     Core Condition Encounter Diagnosis Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -993,6 +997,7 @@
   :title: Condition Problems and Health Concerns
   :short_description: Verify support for the server capabilities required by the US
     Core Condition Problems and Health Concerns Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -1358,6 +1363,7 @@
   :title: Coverage
   :short_description: Verify support for the server capabilities required by the US
     Core Coverage Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -1523,6 +1529,7 @@
   :title: Implantable Device
   :short_description: Verify support for the server capabilities required by the US
     Core Implantable Device Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -1688,6 +1695,7 @@
   :title: DiagnosticReport for Report and Note Exchange
   :short_description: Verify support for the server capabilities required by the US
     Core DiagnosticReport Profile for Report and Note Exchange.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -1964,6 +1972,7 @@
   :title: DiagnosticReport for Laboratory Results Reporting
   :short_description: Verify support for the server capabilities required by the US
     Core DiagnosticReport Profile for Laboratory Results Reporting.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -2220,6 +2229,7 @@
   :title: DocumentReference
   :short_description: Verify support for the server capabilities required by the US
     Core DocumentReference Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: SHALL
@@ -2539,6 +2549,7 @@
   :title: Encounter
   :short_description: Verify support for the server capabilities required by the US
     Core Encounter Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -2906,6 +2917,7 @@
   :title: Goal
   :short_description: Verify support for the server capabilities required by the US
     Core Goal Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -3096,6 +3108,7 @@
   :title: Immunization
   :short_description: Verify support for the server capabilities required by the US
     Core Immunization Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -3268,6 +3281,7 @@
   :title: Location
   :short_description: Verify support for the server capabilities required by the US
     Core Location Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -3437,6 +3451,7 @@
   :title: Medication
   :short_description: Verify support for the server capabilities required by the US
     Core Medication Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -3491,6 +3506,7 @@
   :title: MedicationDispense
   :short_description: Verify support for the server capabilities required by the US
     Core MedicationDispense Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -3724,6 +3740,7 @@
   :title: MedicationRequest
   :short_description: Verify support for the server capabilities required by the US
     Core MedicationRequest Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -4039,6 +4056,7 @@
   :title: Observation Laboratory Result
   :short_description: Verify support for the server capabilities required by the US
     Core Laboratory Result Observation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -4318,6 +4336,7 @@
   :title: Observation Pregnancy Status
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Pregnancy Status Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -4579,6 +4598,7 @@
   :title: Observation Pregnancy Intent
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Pregnancy Intent Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -4840,6 +4860,7 @@
   :title: Observation Occupation
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Occupation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5112,6 +5133,7 @@
   :title: Observation Respiratory Rate
   :short_description: Verify support for the server capabilities required by the US
     Core Respiratory Rate Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5399,6 +5421,7 @@
   :title: Observation Simple
   :short_description: Verify support for the server capabilities required by the US
     Core Simple Observation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5691,6 +5714,7 @@
   :title: Observation Heart Rate
   :short_description: Verify support for the server capabilities required by the US
     Core Heart Rate Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -5978,6 +6002,7 @@
   :title: Observation Body Temperature
   :short_description: Verify support for the server capabilities required by the US
     Core Body Temperature Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -6268,6 +6293,7 @@
   :title: Observation Pediatric Weight for Height
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Weight for Height Observation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -6555,6 +6581,7 @@
   :title: Observation Pulse Oximetry
   :short_description: Verify support for the server capabilities required by the US
     Core Pulse Oximetry Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -6918,6 +6945,7 @@
   :title: Observation Smoking Status
   :short_description: Verify support for the server capabilities required by the US
     Core Smoking Status Observation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7169,6 +7197,7 @@
   :title: Observation Sexual Orientation
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Sexual Orientation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7417,6 +7446,7 @@
   :title: Observation Head Circumference
   :short_description: Verify support for the server capabilities required by the US
     Core Head Circumference Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7707,6 +7737,7 @@
   :title: Observation Body Height
   :short_description: Verify support for the server capabilities required by the US
     Core Body Height Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -7997,6 +8028,7 @@
   :title: Observation BMI
   :short_description: Verify support for the server capabilities required by the US
     Core BMI Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8284,6 +8316,7 @@
   :title: Observation Screening Assessment
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Screening Assessment Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8572,6 +8605,7 @@
   :title: Observation Blood Pressure
   :short_description: Verify support for the server capabilities required by the US
     Core Blood Pressure Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -8895,6 +8929,7 @@
   :title: Observation Clinical Result
   :short_description: Verify support for the server capabilities required by the US
     Core Observation Clinical Result Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9161,6 +9196,7 @@
   :title: Observation Pediatric BMI for Age
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric BMI for Age Observation Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9449,6 +9485,7 @@
   :title: Observation Pediatric Head Occipital Frontal Circumference Percentile
   :short_description: Verify support for the server capabilities required by the US
     Core Pediatric Head Occipital Frontal Circumference Percentile Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -9736,6 +9773,7 @@
   :title: Observation Body Weight
   :short_description: Verify support for the server capabilities required by the US
     Core Body Weight Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10026,6 +10064,7 @@
   :title: Organization
   :short_description: Verify support for the server capabilities required by the US
     Core Organization Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10167,6 +10206,7 @@
   :title: Patient
   :short_description: Verify support for the server capabilities required by the US
     Core Patient Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10553,6 +10593,7 @@
   :title: Practitioner
   :short_description: Verify support for the server capabilities required by the US
     Core Practitioner Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10718,6 +10759,7 @@
   :title: PractitionerRole
   :short_description: Verify support for the server capabilities required by the US
     Core PractitionerRole Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -10856,6 +10898,7 @@
   :title: Procedure
   :short_description: Verify support for the server capabilities required by the US
     Core Procedure Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11089,6 +11132,7 @@
   :title: Provenance
   :short_description: Verify support for the server capabilities required by the US
     Core Provenance Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11251,6 +11295,7 @@
   :title: QuestionnaireResponse
   :short_description: Verify support for the server capabilities required by the US
     Core QuestionnaireResponse Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11483,6 +11528,7 @@
   :title: RelatedPerson
   :short_description: Verify support for the server capabilities required by the US
     Core RelatedPerson Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11620,6 +11666,7 @@
   :title: ServiceRequest
   :short_description: Verify support for the server capabilities required by the US
     Core ServiceRequest Profile.
+  :is_delayed: false
   :interactions:
   - :code: create
     :expectation: MAY
@@ -11943,6 +11990,7 @@
   :title: Specimen
   :short_description: Verify support for the server capabilities required by the US
     Core Specimen Profile.
+  :is_delayed: true
   :interactions:
   - :code: create
     :expectation: MAY

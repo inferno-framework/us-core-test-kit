@@ -10,6 +10,7 @@
 :title: DocumentReference
 :short_description: Verify support for the server capabilities required by the US
   Core DocumentReference Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: SHALL
@@ -335,3 +336,4 @@
   - Practitioner
   - Organization
   - PractitionerRole
+  - RelatedPerson

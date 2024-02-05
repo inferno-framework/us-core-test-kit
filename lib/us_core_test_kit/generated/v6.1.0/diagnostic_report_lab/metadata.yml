@@ -10,6 +10,7 @@
 :title: DiagnosticReport for Laboratory Results Reporting
 :short_description: Verify support for the server capabilities required by the US
   Core DiagnosticReport Profile for Laboratory Results Reporting.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: SHALL

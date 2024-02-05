@@ -10,6 +10,7 @@
 :title: Pulse Oximetry
 :short_description: Verify support for the server capabilities required by the US
   Core Pulse Oximetry Profile.
+:is_delayed: false
 :interactions:
 - :code: create
   :expectation: MAY
