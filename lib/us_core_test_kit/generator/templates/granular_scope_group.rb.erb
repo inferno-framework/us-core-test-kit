@@ -6,6 +6,10 @@ module USCoreTestKit
       id :<%= group_id %>
       title 'US Core FHIR API w/Granular Scopes <%= group_number %>'
 
+      description %(
+<%= description %>
+      )
+
       input :granular_scopes_<%= group_number %>_credentials,
             title: 'SMART Credentials for Granular Scopes <%= group_number %>',
             type: :oauth_credentials,

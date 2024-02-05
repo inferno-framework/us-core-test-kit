@@ -107,8 +107,8 @@ module USCoreTestKit
 
       def scopes_string
         SmartScopesConstants.const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")
+          .dig(ig_metadata.reformatted_version)
           .map { |scope| scope.delete_prefix 'patient/' }
-          .select { |scope| scope.start_with? resource_type }
           .map { |scope| "* `#{scope}`" }
           .join("\n")
       end
