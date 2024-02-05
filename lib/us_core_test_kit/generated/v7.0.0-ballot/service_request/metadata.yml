@@ -341,8 +341,8 @@
   :file_name: service_request_patient_code_granular_scope_test.rb
 - :id: us_core_v700_ballot_ServiceRequest_patient_status_granular_scope_test
   :file_name: service_request_patient_status_granular_scope_test.rb
-:id: us_core_v700_ballot_service_request_granular_scope_2_group
-:file_name: service_request_granular_scope2_group.rb
+:id: us_core_v700_ballot_service_request
+:file_name: service_request_group.rb
 :delayed_references:
 - :path: subject
   :resources:

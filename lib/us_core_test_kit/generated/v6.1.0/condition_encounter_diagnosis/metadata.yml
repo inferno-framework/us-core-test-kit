@@ -368,6 +368,6 @@
   :file_name: condition_patient_category_encounter_granular_scope_test.rb
 - :id: us_core_v610_Condition_patient_code_granular_scope_test
   :file_name: condition_patient_code_granular_scope_test.rb
-:id: us_core_v610_condition_granular_scope_2_group
-:file_name: condition_granular_scope2_group.rb
+:id: us_core_v610_condition_encounter_diagnosis
+:file_name: condition_encounter_diagnosis_group.rb
 :delayed_references: []

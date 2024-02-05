@@ -1,9 +1,9 @@
-require_relative 'diagnostic_report_note/diagnostic_report_patient_category_granular_scope_test'
-require_relative 'diagnostic_report_note/diagnostic_report_patient_granular_scope_test'
-require_relative 'diagnostic_report_note/diagnostic_report_patient_category_date_granular_scope_test'
-require_relative 'diagnostic_report_note/diagnostic_report_patient_code_granular_scope_test'
-require_relative 'diagnostic_report_note/diagnostic_report_patient_status_granular_scope_test'
-require_relative 'diagnostic_report_note/diagnostic_report_patient_code_date_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_category_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_category_date_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_code_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_status_granular_scope_test'
+require_relative './granular_scope_tests/diagnostic_report/diagnostic_report_patient_code_date_granular_scope_test'
 
 module USCoreTestKit
   module USCoreV700_BALLOT
@@ -23,9 +23,6 @@ based on the following granular scopes:
       id :us_core_v700_ballot_diagnostic_report_granular_scope_2_group
       run_as_group
 
-      def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'diagnostic_report_note', 'metadata.yml'), aliases: true))
-      end
     
       test from: :us_core_v700_ballot_DiagnosticReport_patient_category_granular_scope_test
       test from: :us_core_v700_ballot_DiagnosticReport_patient_granular_scope_test

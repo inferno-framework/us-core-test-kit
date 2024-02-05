@@ -1,13 +1,13 @@
-require_relative 'condition_encounter_diagnosis/condition_patient_category_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_recorded_date_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_asserted_date_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_category_clinical_status_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_onset_date_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_abatement_date_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_clinical_status_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_category_encounter_granular_scope_test'
-require_relative 'condition_encounter_diagnosis/condition_patient_code_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_category_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_recorded_date_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_asserted_date_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_category_clinical_status_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_onset_date_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_abatement_date_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_clinical_status_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_category_encounter_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_patient_code_granular_scope_test'
 
 module USCoreTestKit
   module USCoreV610
@@ -19,6 +19,7 @@ module USCoreTestKit
 FHIR API tests, and verify that the resources returned are filtered
 based on the following granular scopes:
 
+* `Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
 * `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item`
 
       )
@@ -26,9 +27,6 @@ based on the following granular scopes:
       id :us_core_v610_condition_granular_scope_2_group
       run_as_group
 
-      def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'condition_encounter_diagnosis', 'metadata.yml'), aliases: true))
-      end
     
       test from: :us_core_v610_Condition_patient_category_granular_scope_test
       test from: :us_core_v610_Condition_patient_granular_scope_test
