@@ -24,6 +24,7 @@ module USCoreTestKit
         :bindings,
         :references,
         :tests,
+        :granular_scope_tests,
         :id,
         :file_name,
         :delayed_references
@@ -78,6 +79,15 @@ module USCoreTestKit
         else
           self.tests << test_metadata
         end
+      end
+
+      def add_granular_scope_test(id:, file_name:)
+        self.granular_scope_tests ||= []
+
+        self.granular_scope_tests << {
+          id:,
+          file_name:
+        }
       end
 
       def to_hash

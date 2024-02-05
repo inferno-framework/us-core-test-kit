@@ -72,6 +72,10 @@ module USCoreTestKit
         end
       end
 
+      def test_granular_scopes?
+        ig_metadata.ig_version[1].to_i > 5
+      end
+
       def generate
         File.open(output_file_name, 'w') { |f| f.write(output) }
       end
@@ -113,6 +117,14 @@ module USCoreTestKit
         else
           'us_core_v400_clinical_notes_guidance'
         end
+      end
+
+      def granular_scopes_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/smart_granular_scopes_group"
+      end
+
+      def granular_scopes_id
+        "us_core_#{ig_metadata.reformatted_version}_smart_granular_scopes"
       end
     end
   end

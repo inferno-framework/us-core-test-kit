@@ -96,16 +96,6 @@ module USCoreTestKit
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
-      input :smart_credentials,
-        title: 'OAuth Credentials',
-        type: :oauth_credentials,
-        optional: true
-
-      fhir_client do
-        url :url
-        oauth_credentials :smart_credentials
-      end
-
 
       suite_option :smart_app_launch_version,
         title: 'SMART App Launch Version',
@@ -123,6 +113,16 @@ module USCoreTestKit
       group from: :us_core_smart_app_launch
 
       group do
+        input :smart_credentials,
+          title: 'OAuth Credentials',
+          type: :oauth_credentials,
+          optional: true
+
+        fhir_client do
+          url :url
+          oauth_credentials :smart_credentials
+        end
+
         title 'US Core FHIR API'
         id :us_core_v400_fhir_api
 

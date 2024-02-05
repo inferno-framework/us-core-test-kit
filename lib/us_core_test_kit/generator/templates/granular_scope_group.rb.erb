@@ -1,0 +1,41 @@
+<% group_file_list.each do |file| %>require_relative '<%= file %>'
+<% end %>
+module USCoreTestKit
+  module <%= module_name %>
+    class SmartGranularScopes<%= group_number %>Group < Inferno::TestGroup
+      id :<%= group_id %>
+      title 'US Core FHIR API w/Granular Scopes <%= group_number %>'
+
+      description %(
+<%= description %>
+      )
+
+      input :granular_scopes_<%= group_number %>_credentials,
+            title: 'SMART Credentials for Granular Scopes <%= group_number %>',
+            type: :oauth_credentials,
+            locked: true
+
+      config(
+        inputs: {
+          patient_ids: {
+            locked: true
+          },
+          received_scopes: {
+            title: 'Received Scopes',
+            locked: true
+          },
+          url: {
+            locked: true
+          }
+        }
+      )
+
+      fhir_client do
+        oauth_credentials :granular_scopes_<%= group_number %>_credentials
+        url :url
+      end
+<% group_id_list.each do |group_id| %>
+      group from: :<%= group_id %><% end %>
+    end
+  end
+end

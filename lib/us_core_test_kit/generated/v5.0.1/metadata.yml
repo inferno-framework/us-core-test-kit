@@ -136,6 +136,23 @@
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  :tests:
+  - :id: us_core_v501_allergy_intolerance_patient_search_test
+    :file_name: allergy_intolerance_patient_search_test.rb
+  - :id: us_core_v501_allergy_intolerance_patient_clinical_status_search_test
+    :file_name: allergy_intolerance_patient_clinical_status_search_test.rb
+  - :id: us_core_v501_allergy_intolerance_read_test
+    :file_name: allergy_intolerance_read_test.rb
+  - :id: us_core_v501_allergy_intolerance_provenance_revinclude_search_test
+    :file_name: allergy_intolerance_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_allergy_intolerance_validation_test
+    :file_name: allergy_intolerance_validation_test.rb
+  - :id: us_core_v501_allergy_intolerance_must_support_test
+    :file_name: allergy_intolerance_must_support_test.rb
+  - :id: us_core_v501_allergy_intolerance_reference_resolution_test
+    :file_name: allergy_intolerance_reference_resolution_test.rb
+  :id: us_core_v501_allergy_intolerance
+  :file_name: allergy_intolerance_group.rb
   :delayed_references: []
 - :name: us_core_careplan
   :class_name: USCorev501CareplanSequence
@@ -396,6 +413,27 @@
     - http://hl7.org/fhir/StructureDefinition/CareTeam
     - http://hl7.org/fhir/StructureDefinition/HealthcareService
     - http://hl7.org/fhir/StructureDefinition/Device
+  :tests:
+  - :id: us_core_v501_care_plan_patient_category_search_test
+    :file_name: care_plan_patient_category_search_test.rb
+  - :id: us_core_v501_care_plan_patient_category_status_date_search_test
+    :file_name: care_plan_patient_category_status_date_search_test.rb
+  - :id: us_core_v501_care_plan_patient_category_date_search_test
+    :file_name: care_plan_patient_category_date_search_test.rb
+  - :id: us_core_v501_care_plan_patient_category_status_search_test
+    :file_name: care_plan_patient_category_status_search_test.rb
+  - :id: us_core_v501_care_plan_read_test
+    :file_name: care_plan_read_test.rb
+  - :id: us_core_v501_care_plan_provenance_revinclude_search_test
+    :file_name: care_plan_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_care_plan_validation_test
+    :file_name: care_plan_validation_test.rb
+  - :id: us_core_v501_care_plan_must_support_test
+    :file_name: care_plan_must_support_test.rb
+  - :id: us_core_v501_care_plan_reference_resolution_test
+    :file_name: care_plan_reference_resolution_test.rb
+  :id: us_core_v501_care_plan
+  :file_name: care_plan_group.rb
   :delayed_references: []
 - :name: us_core_careteam
   :class_name: USCorev501CareteamSequence
@@ -548,6 +586,25 @@
   - :path: CareTeam.managingOrganization
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
+  - :id: us_core_v501_care_team_patient_status_search_test
+    :file_name: care_team_patient_status_search_test.rb
+  - :id: us_core_v501_care_team_role_search_test
+    :file_name: care_team_role_search_test.rb
+  - :id: us_core_v501_care_team_patient_role_search_test
+    :file_name: care_team_patient_role_search_test.rb
+  - :id: us_core_v501_care_team_read_test
+    :file_name: care_team_read_test.rb
+  - :id: us_core_v501_care_team_provenance_revinclude_search_test
+    :file_name: care_team_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_care_team_validation_test
+    :file_name: care_team_validation_test.rb
+  - :id: us_core_v501_care_team_must_support_test
+    :file_name: care_team_must_support_test.rb
+  - :id: us_core_v501_care_team_reference_resolution_test
+    :file_name: care_team_reference_resolution_test.rb
+  :id: us_core_v501_care_team
+  :file_name: care_team_group.rb
   :delayed_references:
   - :path: participant.member
     :resources:
@@ -865,6 +922,37 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_search_test
+    :file_name: condition_encounter_diagnosis_patient_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_abatement_date_search_test
+    :file_name: condition_encounter_diagnosis_patient_abatement_date_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_asserted_date_search_test
+    :file_name: condition_encounter_diagnosis_patient_asserted_date_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_code_search_test
+    :file_name: condition_encounter_diagnosis_patient_code_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_category_encounter_search_test
+    :file_name: condition_encounter_diagnosis_patient_category_encounter_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_category_search_test
+    :file_name: condition_encounter_diagnosis_patient_category_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_recorded_date_search_test
+    :file_name: condition_encounter_diagnosis_patient_recorded_date_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_onset_date_search_test
+    :file_name: condition_encounter_diagnosis_patient_onset_date_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_patient_clinical_status_search_test
+    :file_name: condition_encounter_diagnosis_patient_clinical_status_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_read_test
+    :file_name: condition_encounter_diagnosis_read_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_provenance_revinclude_search_test
+    :file_name: condition_encounter_diagnosis_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_validation_test
+    :file_name: condition_encounter_diagnosis_validation_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_must_support_test
+    :file_name: condition_encounter_diagnosis_must_support_test.rb
+  - :id: us_core_v501_condition_encounter_diagnosis_reference_resolution_test
+    :file_name: condition_encounter_diagnosis_reference_resolution_test.rb
+  :id: us_core_v501_condition_encounter_diagnosis
+  :file_name: condition_encounter_diagnosis_group.rb
   :delayed_references: []
 - :name: us_core_condition_problems_health_concerns
   :class_name: USCorev501ConditionProblemsHealthConcernsSequence
@@ -1187,6 +1275,37 @@
   - :path: Condition.evidence.detail
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
+  - :id: us_core_v501_condition_problems_health_concerns_patient_search_test
+    :file_name: condition_problems_health_concerns_patient_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_abatement_date_search_test
+    :file_name: condition_problems_health_concerns_patient_abatement_date_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_asserted_date_search_test
+    :file_name: condition_problems_health_concerns_patient_asserted_date_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_code_search_test
+    :file_name: condition_problems_health_concerns_patient_code_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_category_encounter_search_test
+    :file_name: condition_problems_health_concerns_patient_category_encounter_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_category_search_test
+    :file_name: condition_problems_health_concerns_patient_category_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_recorded_date_search_test
+    :file_name: condition_problems_health_concerns_patient_recorded_date_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_onset_date_search_test
+    :file_name: condition_problems_health_concerns_patient_onset_date_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_patient_clinical_status_search_test
+    :file_name: condition_problems_health_concerns_patient_clinical_status_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_read_test
+    :file_name: condition_problems_health_concerns_read_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_provenance_revinclude_search_test
+    :file_name: condition_problems_health_concerns_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_validation_test
+    :file_name: condition_problems_health_concerns_validation_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_must_support_test
+    :file_name: condition_problems_health_concerns_must_support_test.rb
+  - :id: us_core_v501_condition_problems_health_concerns_reference_resolution_test
+    :file_name: condition_problems_health_concerns_reference_resolution_test.rb
+  :id: us_core_v501_condition_problems_health_concerns
+  :file_name: condition_problems_health_concerns_group.rb
   :delayed_references: []
 - :name: us_core_implantable_device
   :class_name: USCorev501ImplantableDeviceSequence
@@ -1312,6 +1431,23 @@
   - :path: Device.parent
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Device
+  :tests:
+  - :id: us_core_v501_device_patient_search_test
+    :file_name: device_patient_search_test.rb
+  - :id: us_core_v501_device_patient_type_search_test
+    :file_name: device_patient_type_search_test.rb
+  - :id: us_core_v501_device_read_test
+    :file_name: device_read_test.rb
+  - :id: us_core_v501_device_provenance_revinclude_search_test
+    :file_name: device_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_device_validation_test
+    :file_name: device_validation_test.rb
+  - :id: us_core_v501_device_must_support_test
+    :file_name: device_must_support_test.rb
+  - :id: us_core_v501_device_reference_resolution_test
+    :file_name: device_reference_resolution_test.rb
+  :id: us_core_v501_device
+  :file_name: device_group.rb
   :delayed_references: []
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev501DiagnosticreportNoteSequence
@@ -1559,6 +1695,31 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
+  :tests:
+  - :id: us_core_v501_diagnostic_report_note_patient_category_search_test
+    :file_name: diagnostic_report_note_patient_category_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_patient_search_test
+    :file_name: diagnostic_report_note_patient_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_patient_category_date_search_test
+    :file_name: diagnostic_report_note_patient_category_date_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_patient_status_search_test
+    :file_name: diagnostic_report_note_patient_status_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_patient_code_search_test
+    :file_name: diagnostic_report_note_patient_code_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_patient_code_date_search_test
+    :file_name: diagnostic_report_note_patient_code_date_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_read_test
+    :file_name: diagnostic_report_note_read_test.rb
+  - :id: us_core_v501_diagnostic_report_note_provenance_revinclude_search_test
+    :file_name: diagnostic_report_note_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_diagnostic_report_note_validation_test
+    :file_name: diagnostic_report_note_validation_test.rb
+  - :id: us_core_v501_diagnostic_report_note_must_support_test
+    :file_name: diagnostic_report_note_must_support_test.rb
+  - :id: us_core_v501_diagnostic_report_note_reference_resolution_test
+    :file_name: diagnostic_report_note_reference_resolution_test.rb
+  :id: us_core_v501_diagnostic_report_note
+  :file_name: diagnostic_report_note_group.rb
   :delayed_references:
   - :path: performer
     :resources:
@@ -1790,6 +1951,31 @@
   - :path: DiagnosticReport.media.link
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Media
+  :tests:
+  - :id: us_core_v501_diagnostic_report_lab_patient_category_search_test
+    :file_name: diagnostic_report_lab_patient_category_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_patient_search_test
+    :file_name: diagnostic_report_lab_patient_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_patient_category_date_search_test
+    :file_name: diagnostic_report_lab_patient_category_date_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_patient_status_search_test
+    :file_name: diagnostic_report_lab_patient_status_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_patient_code_search_test
+    :file_name: diagnostic_report_lab_patient_code_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_patient_code_date_search_test
+    :file_name: diagnostic_report_lab_patient_code_date_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_read_test
+    :file_name: diagnostic_report_lab_read_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_provenance_revinclude_search_test
+    :file_name: diagnostic_report_lab_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_validation_test
+    :file_name: diagnostic_report_lab_validation_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_must_support_test
+    :file_name: diagnostic_report_lab_must_support_test.rb
+  - :id: us_core_v501_diagnostic_report_lab_reference_resolution_test
+    :file_name: diagnostic_report_lab_reference_resolution_test.rb
+  :id: us_core_v501_diagnostic_report_lab
+  :file_name: diagnostic_report_lab_group.rb
   :delayed_references:
   - :path: performer
     :resources:
@@ -2078,6 +2264,35 @@
   - :path: DocumentReference.context.related
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
+  - :id: us_core_v501_document_reference_patient_search_test
+    :file_name: document_reference_patient_search_test.rb
+  - :id: us_core_v501_document_reference__id_search_test
+    :file_name: document_reference_id_search_test.rb
+  - :id: us_core_v501_document_reference_patient_category_date_search_test
+    :file_name: document_reference_patient_category_date_search_test.rb
+  - :id: us_core_v501_document_reference_patient_status_search_test
+    :file_name: document_reference_patient_status_search_test.rb
+  - :id: us_core_v501_document_reference_patient_category_search_test
+    :file_name: document_reference_patient_category_search_test.rb
+  - :id: us_core_v501_document_reference_patient_type_period_search_test
+    :file_name: document_reference_patient_type_period_search_test.rb
+  - :id: us_core_v501_document_reference_patient_type_search_test
+    :file_name: document_reference_patient_type_search_test.rb
+  - :id: us_core_v501_document_reference_read_test
+    :file_name: document_reference_read_test.rb
+  - :id: us_core_v501_document_reference_provenance_revinclude_search_test
+    :file_name: document_reference_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_document_reference_validation_test
+    :file_name: document_reference_validation_test.rb
+  - :id: us_core_v501_document_reference_must_support_test
+    :file_name: document_reference_must_support_test.rb
+  - :id: us_core_v501_document_reference_reference_resolution_test
+    :file_name: document_reference_reference_resolution_test.rb
+  - :id: us_core_v400_document_reference_custodian_test
+    :file_name: "../../custom_groups/v4.0.0/document_reference_custodian_test.rb"
+  :id: us_core_v501_document_reference
+  :file_name: document_reference_group.rb
   :delayed_references:
   - :path: author
     :resources:
@@ -2412,6 +2627,37 @@
   - :path: Encounter.partOf
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
+  :tests:
+  - :id: us_core_v501_encounter_patient_search_test
+    :file_name: encounter_patient_search_test.rb
+  - :id: us_core_v501_encounter__id_search_test
+    :file_name: encounter_id_search_test.rb
+  - :id: us_core_v501_encounter_identifier_search_test
+    :file_name: encounter_identifier_search_test.rb
+  - :id: us_core_v501_encounter_patient_discharge_disposition_search_test
+    :file_name: encounter_patient_discharge_disposition_search_test.rb
+  - :id: us_core_v501_encounter_class_patient_search_test
+    :file_name: encounter_class_patient_search_test.rb
+  - :id: us_core_v501_encounter_patient_location_search_test
+    :file_name: encounter_patient_location_search_test.rb
+  - :id: us_core_v501_encounter_date_patient_search_test
+    :file_name: encounter_date_patient_search_test.rb
+  - :id: us_core_v501_encounter_patient_status_search_test
+    :file_name: encounter_patient_status_search_test.rb
+  - :id: us_core_v501_encounter_patient_type_search_test
+    :file_name: encounter_patient_type_search_test.rb
+  - :id: us_core_v501_encounter_read_test
+    :file_name: encounter_read_test.rb
+  - :id: us_core_v501_encounter_provenance_revinclude_search_test
+    :file_name: encounter_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_encounter_validation_test
+    :file_name: encounter_validation_test.rb
+  - :id: us_core_v501_encounter_must_support_test
+    :file_name: encounter_must_support_test.rb
+  - :id: us_core_v501_encounter_reference_resolution_test
+    :file_name: encounter_reference_resolution_test.rb
+  :id: us_core_v501_encounter
+  :file_name: encounter_group.rb
   :delayed_references:
   - :path: participant.individual
     :resources:
@@ -2583,6 +2829,27 @@
   - :path: Goal.outcomeReference
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Observation
+  :tests:
+  - :id: us_core_v501_goal_patient_search_test
+    :file_name: goal_patient_search_test.rb
+  - :id: us_core_v501_goal_patient_target_date_search_test
+    :file_name: goal_patient_target_date_search_test.rb
+  - :id: us_core_v501_goal_patient_lifecycle_status_search_test
+    :file_name: goal_patient_lifecycle_status_search_test.rb
+  - :id: us_core_v501_goal_patient_description_search_test
+    :file_name: goal_patient_description_search_test.rb
+  - :id: us_core_v501_goal_read_test
+    :file_name: goal_read_test.rb
+  - :id: us_core_v501_goal_provenance_revinclude_search_test
+    :file_name: goal_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_goal_validation_test
+    :file_name: goal_validation_test.rb
+  - :id: us_core_v501_goal_must_support_test
+    :file_name: goal_must_support_test.rb
+  - :id: us_core_v501_goal_reference_resolution_test
+    :file_name: goal_reference_resolution_test.rb
+  :id: us_core_v501_goal
+  :file_name: goal_group.rb
   :delayed_references: []
 - :name: us_core_immunization
   :class_name: USCorev501ImmunizationSequence
@@ -2737,6 +3004,25 @@
   - :path: Immunization.protocolApplied.authority
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
+  - :id: us_core_v501_immunization_patient_search_test
+    :file_name: immunization_patient_search_test.rb
+  - :id: us_core_v501_immunization_patient_status_search_test
+    :file_name: immunization_patient_status_search_test.rb
+  - :id: us_core_v501_immunization_patient_date_search_test
+    :file_name: immunization_patient_date_search_test.rb
+  - :id: us_core_v501_immunization_read_test
+    :file_name: immunization_read_test.rb
+  - :id: us_core_v501_immunization_provenance_revinclude_search_test
+    :file_name: immunization_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_immunization_validation_test
+    :file_name: immunization_validation_test.rb
+  - :id: us_core_v501_immunization_must_support_test
+    :file_name: immunization_must_support_test.rb
+  - :id: us_core_v501_immunization_reference_resolution_test
+    :file_name: immunization_reference_resolution_test.rb
+  :id: us_core_v501_immunization
+  :file_name: immunization_group.rb
   :delayed_references: []
 - :name: us_core_location
   :class_name: USCorev501LocationSequence
@@ -3230,6 +3516,29 @@
   - :path: MedicationRequest.eventHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
+  :tests:
+  - :id: us_core_v501_medication_request_patient_intent_search_test
+    :file_name: medication_request_patient_intent_search_test.rb
+  - :id: us_core_v501_medication_request_patient_intent_status_search_test
+    :file_name: medication_request_patient_intent_status_search_test.rb
+  - :id: us_core_v501_medication_request_patient_intent_authoredon_search_test
+    :file_name: medication_request_patient_intent_authoredon_search_test.rb
+  - :id: us_core_v501_medication_request_patient_intent_encounter_search_test
+    :file_name: medication_request_patient_intent_encounter_search_test.rb
+  - :id: us_core_v501_medication_request_read_test
+    :file_name: medication_request_read_test.rb
+  - :id: us_core_v501_medication_request_provenance_revinclude_search_test
+    :file_name: medication_request_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_medication_request_validation_test
+    :file_name: medication_request_validation_test.rb
+  - :id: us_core_v501_medication_validation_test
+    :file_name: medication_validation_test.rb
+  - :id: us_core_v501_medication_request_must_support_test
+    :file_name: medication_request_must_support_test.rb
+  - :id: us_core_v501_medication_request_reference_resolution_test
+    :file_name: medication_request_reference_resolution_test.rb
+  :id: us_core_v501_medication_request
+  :file_name: medication_request_group.rb
   :delayed_references:
   - :path: requester
     :resources:
@@ -3468,6 +3777,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_lab_patient_category_search_test
+    :file_name: observation_lab_patient_category_search_test.rb
+  - :id: us_core_v501_observation_lab_patient_category_date_search_test
+    :file_name: observation_lab_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_lab_patient_code_search_test
+    :file_name: observation_lab_patient_code_search_test.rb
+  - :id: us_core_v501_observation_lab_patient_code_date_search_test
+    :file_name: observation_lab_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_lab_patient_category_status_search_test
+    :file_name: observation_lab_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_lab_read_test
+    :file_name: observation_lab_read_test.rb
+  - :id: us_core_v501_observation_lab_provenance_revinclude_search_test
+    :file_name: observation_lab_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_lab_validation_test
+    :file_name: observation_lab_validation_test.rb
+  - :id: us_core_v501_observation_lab_must_support_test
+    :file_name: observation_lab_must_support_test.rb
+  - :id: us_core_v501_observation_lab_reference_resolution_test
+    :file_name: observation_lab_reference_resolution_test.rb
+  :id: us_core_v501_observation_lab
+  :file_name: observation_lab_group.rb
   :delayed_references: []
 - :name: us_core_observation_sdoh_assessment
   :class_name: USCorev501ObservationSdohAssessmentSequence
@@ -3767,6 +4099,29 @@
     - http://hl7.org/fhir/StructureDefinition/ImagingStudy
     - http://hl7.org/fhir/StructureDefinition/Media
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_sdoh_assessment_patient_category_search_test
+    :file_name: observation_sdoh_assessment_patient_category_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_patient_category_date_search_test
+    :file_name: observation_sdoh_assessment_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_patient_code_search_test
+    :file_name: observation_sdoh_assessment_patient_code_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_patient_code_date_search_test
+    :file_name: observation_sdoh_assessment_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_patient_category_status_search_test
+    :file_name: observation_sdoh_assessment_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_read_test
+    :file_name: observation_sdoh_assessment_read_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_provenance_revinclude_search_test
+    :file_name: observation_sdoh_assessment_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_validation_test
+    :file_name: observation_sdoh_assessment_validation_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_must_support_test
+    :file_name: observation_sdoh_assessment_must_support_test.rb
+  - :id: us_core_v501_observation_sdoh_assessment_reference_resolution_test
+    :file_name: observation_sdoh_assessment_reference_resolution_test.rb
+  :id: us_core_v501_observation_sdoh_assessment
+  :file_name: observation_sdoh_assessment_group.rb
   :delayed_references:
   - :path: performer
     :resources:
@@ -4031,6 +4386,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_respiratory_rate_patient_code_search_test
+    :file_name: respiratory_rate_patient_code_search_test.rb
+  - :id: us_core_v501_respiratory_rate_patient_category_date_search_test
+    :file_name: respiratory_rate_patient_category_date_search_test.rb
+  - :id: us_core_v501_respiratory_rate_patient_code_date_search_test
+    :file_name: respiratory_rate_patient_code_date_search_test.rb
+  - :id: us_core_v501_respiratory_rate_patient_category_search_test
+    :file_name: respiratory_rate_patient_category_search_test.rb
+  - :id: us_core_v501_respiratory_rate_patient_category_status_search_test
+    :file_name: respiratory_rate_patient_category_status_search_test.rb
+  - :id: us_core_v501_respiratory_rate_read_test
+    :file_name: respiratory_rate_read_test.rb
+  - :id: us_core_v501_respiratory_rate_provenance_revinclude_search_test
+    :file_name: respiratory_rate_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_respiratory_rate_validation_test
+    :file_name: respiratory_rate_validation_test.rb
+  - :id: us_core_v501_respiratory_rate_must_support_test
+    :file_name: respiratory_rate_must_support_test.rb
+  - :id: us_core_v501_respiratory_rate_reference_resolution_test
+    :file_name: respiratory_rate_reference_resolution_test.rb
+  :id: us_core_v501_respiratory_rate
+  :file_name: respiratory_rate_group.rb
   :delayed_references: []
 - :name: us_core_observation_social_history
   :class_name: USCorev501ObservationSocialHistorySequence
@@ -4277,6 +4655,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_social_history_patient_category_search_test
+    :file_name: observation_social_history_patient_category_search_test.rb
+  - :id: us_core_v501_observation_social_history_patient_category_date_search_test
+    :file_name: observation_social_history_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_social_history_patient_code_search_test
+    :file_name: observation_social_history_patient_code_search_test.rb
+  - :id: us_core_v501_observation_social_history_patient_code_date_search_test
+    :file_name: observation_social_history_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_social_history_patient_category_status_search_test
+    :file_name: observation_social_history_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_social_history_read_test
+    :file_name: observation_social_history_read_test.rb
+  - :id: us_core_v501_observation_social_history_provenance_revinclude_search_test
+    :file_name: observation_social_history_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_social_history_validation_test
+    :file_name: observation_social_history_validation_test.rb
+  - :id: us_core_v501_observation_social_history_must_support_test
+    :file_name: observation_social_history_must_support_test.rb
+  - :id: us_core_v501_observation_social_history_reference_resolution_test
+    :file_name: observation_social_history_reference_resolution_test.rb
+  :id: us_core_v501_observation_social_history
+  :file_name: observation_social_history_group.rb
   :delayed_references:
   - :path: performer
     :resources:
@@ -4541,6 +4942,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_heart_rate_patient_code_search_test
+    :file_name: heart_rate_patient_code_search_test.rb
+  - :id: us_core_v501_heart_rate_patient_category_date_search_test
+    :file_name: heart_rate_patient_category_date_search_test.rb
+  - :id: us_core_v501_heart_rate_patient_code_date_search_test
+    :file_name: heart_rate_patient_code_date_search_test.rb
+  - :id: us_core_v501_heart_rate_patient_category_search_test
+    :file_name: heart_rate_patient_category_search_test.rb
+  - :id: us_core_v501_heart_rate_patient_category_status_search_test
+    :file_name: heart_rate_patient_category_status_search_test.rb
+  - :id: us_core_v501_heart_rate_read_test
+    :file_name: heart_rate_read_test.rb
+  - :id: us_core_v501_heart_rate_provenance_revinclude_search_test
+    :file_name: heart_rate_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_heart_rate_validation_test
+    :file_name: heart_rate_validation_test.rb
+  - :id: us_core_v501_heart_rate_must_support_test
+    :file_name: heart_rate_must_support_test.rb
+  - :id: us_core_v501_heart_rate_reference_resolution_test
+    :file_name: heart_rate_reference_resolution_test.rb
+  :id: us_core_v501_heart_rate
+  :file_name: heart_rate_group.rb
   :delayed_references: []
 - :name: us_core_body_temperature
   :class_name: USCorev501BodyTemperatureSequence
@@ -4803,6 +5227,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_body_temperature_patient_code_search_test
+    :file_name: body_temperature_patient_code_search_test.rb
+  - :id: us_core_v501_body_temperature_patient_category_date_search_test
+    :file_name: body_temperature_patient_category_date_search_test.rb
+  - :id: us_core_v501_body_temperature_patient_code_date_search_test
+    :file_name: body_temperature_patient_code_date_search_test.rb
+  - :id: us_core_v501_body_temperature_patient_category_search_test
+    :file_name: body_temperature_patient_category_search_test.rb
+  - :id: us_core_v501_body_temperature_patient_category_status_search_test
+    :file_name: body_temperature_patient_category_status_search_test.rb
+  - :id: us_core_v501_body_temperature_read_test
+    :file_name: body_temperature_read_test.rb
+  - :id: us_core_v501_body_temperature_provenance_revinclude_search_test
+    :file_name: body_temperature_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_body_temperature_validation_test
+    :file_name: body_temperature_validation_test.rb
+  - :id: us_core_v501_body_temperature_must_support_test
+    :file_name: body_temperature_must_support_test.rb
+  - :id: us_core_v501_body_temperature_reference_resolution_test
+    :file_name: body_temperature_reference_resolution_test.rb
+  :id: us_core_v501_body_temperature
+  :file_name: body_temperature_group.rb
   :delayed_references: []
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
@@ -5062,6 +5509,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_pediatric_weight_for_height_patient_code_search_test
+    :file_name: pediatric_weight_for_height_patient_code_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_patient_category_date_search_test
+    :file_name: pediatric_weight_for_height_patient_category_date_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_patient_code_date_search_test
+    :file_name: pediatric_weight_for_height_patient_code_date_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_patient_category_search_test
+    :file_name: pediatric_weight_for_height_patient_category_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_patient_category_status_search_test
+    :file_name: pediatric_weight_for_height_patient_category_status_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_read_test
+    :file_name: pediatric_weight_for_height_read_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_provenance_revinclude_search_test
+    :file_name: pediatric_weight_for_height_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_validation_test
+    :file_name: pediatric_weight_for_height_validation_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_must_support_test
+    :file_name: pediatric_weight_for_height_must_support_test.rb
+  - :id: us_core_v501_pediatric_weight_for_height_reference_resolution_test
+    :file_name: pediatric_weight_for_height_reference_resolution_test.rb
+  :id: us_core_v501_pediatric_weight_for_height
+  :file_name: pediatric_weight_for_height_group.rb
   :delayed_references: []
 - :name: us_core_pulse_oximetry
   :class_name: USCorev501PulseOximetrySequence
@@ -5378,6 +5848,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_pulse_oximetry_patient_code_search_test
+    :file_name: pulse_oximetry_patient_code_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_patient_category_date_search_test
+    :file_name: pulse_oximetry_patient_category_date_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_patient_code_date_search_test
+    :file_name: pulse_oximetry_patient_code_date_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_patient_category_search_test
+    :file_name: pulse_oximetry_patient_category_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_patient_category_status_search_test
+    :file_name: pulse_oximetry_patient_category_status_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_read_test
+    :file_name: pulse_oximetry_read_test.rb
+  - :id: us_core_v501_pulse_oximetry_provenance_revinclude_search_test
+    :file_name: pulse_oximetry_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_pulse_oximetry_validation_test
+    :file_name: pulse_oximetry_validation_test.rb
+  - :id: us_core_v501_pulse_oximetry_must_support_test
+    :file_name: pulse_oximetry_must_support_test.rb
+  - :id: us_core_v501_pulse_oximetry_reference_resolution_test
+    :file_name: pulse_oximetry_reference_resolution_test.rb
+  :id: us_core_v501_pulse_oximetry
+  :file_name: pulse_oximetry_group.rb
   :delayed_references: []
 - :name: us_core_smokingstatus
   :class_name: USCorev501SmokingstatusSequence
@@ -5610,6 +6103,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_smokingstatus_patient_code_search_test
+    :file_name: smokingstatus_patient_code_search_test.rb
+  - :id: us_core_v501_smokingstatus_patient_category_date_search_test
+    :file_name: smokingstatus_patient_category_date_search_test.rb
+  - :id: us_core_v501_smokingstatus_patient_code_date_search_test
+    :file_name: smokingstatus_patient_code_date_search_test.rb
+  - :id: us_core_v501_smokingstatus_patient_category_search_test
+    :file_name: smokingstatus_patient_category_search_test.rb
+  - :id: us_core_v501_smokingstatus_patient_category_status_search_test
+    :file_name: smokingstatus_patient_category_status_search_test.rb
+  - :id: us_core_v501_smokingstatus_read_test
+    :file_name: smokingstatus_read_test.rb
+  - :id: us_core_v501_smokingstatus_provenance_revinclude_search_test
+    :file_name: smokingstatus_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_smokingstatus_validation_test
+    :file_name: smokingstatus_validation_test.rb
+  - :id: us_core_v501_smokingstatus_must_support_test
+    :file_name: smokingstatus_must_support_test.rb
+  - :id: us_core_v501_smokingstatus_reference_resolution_test
+    :file_name: smokingstatus_reference_resolution_test.rb
+  :id: us_core_v501_smokingstatus
+  :file_name: smokingstatus_group.rb
   :delayed_references: []
 - :name: us_core_observation_sexual_orientation
   :class_name: USCorev501ObservationSexualOrientationSequence
@@ -5835,6 +6351,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_sexual_orientation_patient_code_search_test
+    :file_name: observation_sexual_orientation_patient_code_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_patient_category_date_search_test
+    :file_name: observation_sexual_orientation_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_patient_code_date_search_test
+    :file_name: observation_sexual_orientation_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_patient_category_search_test
+    :file_name: observation_sexual_orientation_patient_category_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_patient_category_status_search_test
+    :file_name: observation_sexual_orientation_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_read_test
+    :file_name: observation_sexual_orientation_read_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_provenance_revinclude_search_test
+    :file_name: observation_sexual_orientation_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_validation_test
+    :file_name: observation_sexual_orientation_validation_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_must_support_test
+    :file_name: observation_sexual_orientation_must_support_test.rb
+  - :id: us_core_v501_observation_sexual_orientation_reference_resolution_test
+    :file_name: observation_sexual_orientation_reference_resolution_test.rb
+  :id: us_core_v501_observation_sexual_orientation
+  :file_name: observation_sexual_orientation_group.rb
   :delayed_references: []
 - :name: us_core_head_circumference
   :class_name: USCorev501HeadCircumferenceSequence
@@ -6097,6 +6636,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_head_circumference_patient_code_search_test
+    :file_name: head_circumference_patient_code_search_test.rb
+  - :id: us_core_v501_head_circumference_patient_category_date_search_test
+    :file_name: head_circumference_patient_category_date_search_test.rb
+  - :id: us_core_v501_head_circumference_patient_code_date_search_test
+    :file_name: head_circumference_patient_code_date_search_test.rb
+  - :id: us_core_v501_head_circumference_patient_category_search_test
+    :file_name: head_circumference_patient_category_search_test.rb
+  - :id: us_core_v501_head_circumference_patient_category_status_search_test
+    :file_name: head_circumference_patient_category_status_search_test.rb
+  - :id: us_core_v501_head_circumference_read_test
+    :file_name: head_circumference_read_test.rb
+  - :id: us_core_v501_head_circumference_provenance_revinclude_search_test
+    :file_name: head_circumference_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_head_circumference_validation_test
+    :file_name: head_circumference_validation_test.rb
+  - :id: us_core_v501_head_circumference_must_support_test
+    :file_name: head_circumference_must_support_test.rb
+  - :id: us_core_v501_head_circumference_reference_resolution_test
+    :file_name: head_circumference_reference_resolution_test.rb
+  :id: us_core_v501_head_circumference
+  :file_name: head_circumference_group.rb
   :delayed_references: []
 - :name: us_core_body_height
   :class_name: USCorev501BodyHeightSequence
@@ -6359,6 +6921,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_body_height_patient_code_search_test
+    :file_name: body_height_patient_code_search_test.rb
+  - :id: us_core_v501_body_height_patient_category_date_search_test
+    :file_name: body_height_patient_category_date_search_test.rb
+  - :id: us_core_v501_body_height_patient_code_date_search_test
+    :file_name: body_height_patient_code_date_search_test.rb
+  - :id: us_core_v501_body_height_patient_category_search_test
+    :file_name: body_height_patient_category_search_test.rb
+  - :id: us_core_v501_body_height_patient_category_status_search_test
+    :file_name: body_height_patient_category_status_search_test.rb
+  - :id: us_core_v501_body_height_read_test
+    :file_name: body_height_read_test.rb
+  - :id: us_core_v501_body_height_provenance_revinclude_search_test
+    :file_name: body_height_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_body_height_validation_test
+    :file_name: body_height_validation_test.rb
+  - :id: us_core_v501_body_height_must_support_test
+    :file_name: body_height_must_support_test.rb
+  - :id: us_core_v501_body_height_reference_resolution_test
+    :file_name: body_height_reference_resolution_test.rb
+  :id: us_core_v501_body_height
+  :file_name: body_height_group.rb
   :delayed_references: []
 - :name: us_core_bmi
   :class_name: USCorev501BmiSequence
@@ -6618,6 +7203,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_bmi_patient_code_search_test
+    :file_name: bmi_patient_code_search_test.rb
+  - :id: us_core_v501_bmi_patient_category_date_search_test
+    :file_name: bmi_patient_category_date_search_test.rb
+  - :id: us_core_v501_bmi_patient_code_date_search_test
+    :file_name: bmi_patient_code_date_search_test.rb
+  - :id: us_core_v501_bmi_patient_category_search_test
+    :file_name: bmi_patient_category_search_test.rb
+  - :id: us_core_v501_bmi_patient_category_status_search_test
+    :file_name: bmi_patient_category_status_search_test.rb
+  - :id: us_core_v501_bmi_read_test
+    :file_name: bmi_read_test.rb
+  - :id: us_core_v501_bmi_provenance_revinclude_search_test
+    :file_name: bmi_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_bmi_validation_test
+    :file_name: bmi_validation_test.rb
+  - :id: us_core_v501_bmi_must_support_test
+    :file_name: bmi_must_support_test.rb
+  - :id: us_core_v501_bmi_reference_resolution_test
+    :file_name: bmi_reference_resolution_test.rb
+  :id: us_core_v501_bmi
+  :file_name: bmi_group.rb
   :delayed_references: []
 - :name: us_core_blood_pressure
   :class_name: USCorev501BloodPressureSequence
@@ -6918,6 +7526,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_blood_pressure_patient_code_search_test
+    :file_name: blood_pressure_patient_code_search_test.rb
+  - :id: us_core_v501_blood_pressure_patient_category_date_search_test
+    :file_name: blood_pressure_patient_category_date_search_test.rb
+  - :id: us_core_v501_blood_pressure_patient_code_date_search_test
+    :file_name: blood_pressure_patient_code_date_search_test.rb
+  - :id: us_core_v501_blood_pressure_patient_category_search_test
+    :file_name: blood_pressure_patient_category_search_test.rb
+  - :id: us_core_v501_blood_pressure_patient_category_status_search_test
+    :file_name: blood_pressure_patient_category_status_search_test.rb
+  - :id: us_core_v501_blood_pressure_read_test
+    :file_name: blood_pressure_read_test.rb
+  - :id: us_core_v501_blood_pressure_provenance_revinclude_search_test
+    :file_name: blood_pressure_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_blood_pressure_validation_test
+    :file_name: blood_pressure_validation_test.rb
+  - :id: us_core_v501_blood_pressure_must_support_test
+    :file_name: blood_pressure_must_support_test.rb
+  - :id: us_core_v501_blood_pressure_reference_resolution_test
+    :file_name: blood_pressure_reference_resolution_test.rb
+  :id: us_core_v501_blood_pressure
+  :file_name: blood_pressure_group.rb
   :delayed_references: []
 - :name: us_core_observation_imaging
   :class_name: USCorev501ObservationImagingSequence
@@ -7149,6 +7780,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_imaging_patient_category_search_test
+    :file_name: observation_imaging_patient_category_search_test.rb
+  - :id: us_core_v501_observation_imaging_patient_category_date_search_test
+    :file_name: observation_imaging_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_imaging_patient_code_search_test
+    :file_name: observation_imaging_patient_code_search_test.rb
+  - :id: us_core_v501_observation_imaging_patient_code_date_search_test
+    :file_name: observation_imaging_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_imaging_patient_category_status_search_test
+    :file_name: observation_imaging_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_imaging_read_test
+    :file_name: observation_imaging_read_test.rb
+  - :id: us_core_v501_observation_imaging_provenance_revinclude_search_test
+    :file_name: observation_imaging_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_imaging_validation_test
+    :file_name: observation_imaging_validation_test.rb
+  - :id: us_core_v501_observation_imaging_must_support_test
+    :file_name: observation_imaging_must_support_test.rb
+  - :id: us_core_v501_observation_imaging_reference_resolution_test
+    :file_name: observation_imaging_reference_resolution_test.rb
+  :id: us_core_v501_observation_imaging
+  :file_name: observation_imaging_group.rb
   :delayed_references: []
 - :name: us_core_observation_clinical_test
   :class_name: USCorev501ObservationClinicalTestSequence
@@ -7841,6 +8495,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/Observation
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :tests:
+  - :id: us_core_v501_observation_clinical_test_patient_category_search_test
+    :file_name: observation_clinical_test_patient_category_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_patient_category_date_search_test
+    :file_name: observation_clinical_test_patient_category_date_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_patient_code_search_test
+    :file_name: observation_clinical_test_patient_code_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_patient_code_date_search_test
+    :file_name: observation_clinical_test_patient_code_date_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_patient_category_status_search_test
+    :file_name: observation_clinical_test_patient_category_status_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_read_test
+    :file_name: observation_clinical_test_read_test.rb
+  - :id: us_core_v501_observation_clinical_test_provenance_revinclude_search_test
+    :file_name: observation_clinical_test_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_observation_clinical_test_validation_test
+    :file_name: observation_clinical_test_validation_test.rb
+  - :id: us_core_v501_observation_clinical_test_must_support_test
+    :file_name: observation_clinical_test_must_support_test.rb
+  - :id: us_core_v501_observation_clinical_test_reference_resolution_test
+    :file_name: observation_clinical_test_reference_resolution_test.rb
+  :id: us_core_v501_observation_clinical_test
+  :file_name: observation_clinical_test_group.rb
   :delayed_references: []
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
@@ -8100,6 +8777,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_pediatric_bmi_for_age_patient_code_search_test
+    :file_name: pediatric_bmi_for_age_patient_code_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_patient_category_date_search_test
+    :file_name: pediatric_bmi_for_age_patient_category_date_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_patient_code_date_search_test
+    :file_name: pediatric_bmi_for_age_patient_code_date_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_patient_category_search_test
+    :file_name: pediatric_bmi_for_age_patient_category_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_patient_category_status_search_test
+    :file_name: pediatric_bmi_for_age_patient_category_status_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_read_test
+    :file_name: pediatric_bmi_for_age_read_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_provenance_revinclude_search_test
+    :file_name: pediatric_bmi_for_age_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_validation_test
+    :file_name: pediatric_bmi_for_age_validation_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_must_support_test
+    :file_name: pediatric_bmi_for_age_must_support_test.rb
+  - :id: us_core_v501_pediatric_bmi_for_age_reference_resolution_test
+    :file_name: pediatric_bmi_for_age_reference_resolution_test.rb
+  :id: us_core_v501_pediatric_bmi_for_age
+  :file_name: pediatric_bmi_for_age_group.rb
   :delayed_references: []
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
@@ -8360,6 +9060,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_head_circumference_percentile_patient_code_search_test
+    :file_name: head_circumference_percentile_patient_code_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_patient_category_date_search_test
+    :file_name: head_circumference_percentile_patient_category_date_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_patient_code_date_search_test
+    :file_name: head_circumference_percentile_patient_code_date_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_patient_category_search_test
+    :file_name: head_circumference_percentile_patient_category_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_patient_category_status_search_test
+    :file_name: head_circumference_percentile_patient_category_status_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_read_test
+    :file_name: head_circumference_percentile_read_test.rb
+  - :id: us_core_v501_head_circumference_percentile_provenance_revinclude_search_test
+    :file_name: head_circumference_percentile_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_head_circumference_percentile_validation_test
+    :file_name: head_circumference_percentile_validation_test.rb
+  - :id: us_core_v501_head_circumference_percentile_must_support_test
+    :file_name: head_circumference_percentile_must_support_test.rb
+  - :id: us_core_v501_head_circumference_percentile_reference_resolution_test
+    :file_name: head_circumference_percentile_reference_resolution_test.rb
+  :id: us_core_v501_head_circumference_percentile
+  :file_name: head_circumference_percentile_group.rb
   :delayed_references: []
 - :name: us_core_body_weight
   :class_name: USCorev501BodyWeightSequence
@@ -8622,6 +9345,29 @@
     - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
     - http://hl7.org/fhir/StructureDefinition/MolecularSequence
     - http://hl7.org/fhir/StructureDefinition/vitalsigns
+  :tests:
+  - :id: us_core_v501_body_weight_patient_code_search_test
+    :file_name: body_weight_patient_code_search_test.rb
+  - :id: us_core_v501_body_weight_patient_category_date_search_test
+    :file_name: body_weight_patient_category_date_search_test.rb
+  - :id: us_core_v501_body_weight_patient_code_date_search_test
+    :file_name: body_weight_patient_code_date_search_test.rb
+  - :id: us_core_v501_body_weight_patient_category_search_test
+    :file_name: body_weight_patient_category_search_test.rb
+  - :id: us_core_v501_body_weight_patient_category_status_search_test
+    :file_name: body_weight_patient_category_status_search_test.rb
+  - :id: us_core_v501_body_weight_read_test
+    :file_name: body_weight_read_test.rb
+  - :id: us_core_v501_body_weight_provenance_revinclude_search_test
+    :file_name: body_weight_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_body_weight_validation_test
+    :file_name: body_weight_validation_test.rb
+  - :id: us_core_v501_body_weight_must_support_test
+    :file_name: body_weight_must_support_test.rb
+  - :id: us_core_v501_body_weight_reference_resolution_test
+    :file_name: body_weight_reference_resolution_test.rb
+  :id: us_core_v501_body_weight
+  :file_name: body_weight_group.rb
   :delayed_references: []
 - :name: us_core_organization
   :class_name: USCorev501OrganizationSequence
@@ -8750,6 +9496,19 @@
   - :path: Organization.endpoint
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
+  :tests:
+  - :id: us_core_v501_organization_read_test
+    :file_name: organization_read_test.rb
+  - :id: us_core_v501_organization_name_search_test
+    :file_name: organization_name_search_test.rb
+  - :id: us_core_v501_organization_address_search_test
+    :file_name: organization_address_search_test.rb
+  - :id: us_core_v501_organization_validation_test
+    :file_name: organization_validation_test.rb
+  - :id: us_core_v501_organization_must_support_test
+    :file_name: organization_must_support_test.rb
+  :id: us_core_v501_organization
+  :file_name: organization_group.rb
   :delayed_references: []
 - :name: us_core_patient
   :class_name: USCorev501PatientSequence
@@ -9061,6 +9820,31 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Patient
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  :tests:
+  - :id: us_core_v501_patient__id_search_test
+    :file_name: patient_id_search_test.rb
+  - :id: us_core_v501_patient_identifier_search_test
+    :file_name: patient_identifier_search_test.rb
+  - :id: us_core_v501_patient_name_search_test
+    :file_name: patient_name_search_test.rb
+  - :id: us_core_v501_patient_birthdate_family_search_test
+    :file_name: patient_birthdate_family_search_test.rb
+  - :id: us_core_v501_patient_birthdate_name_search_test
+    :file_name: patient_birthdate_name_search_test.rb
+  - :id: us_core_v501_patient_family_gender_search_test
+    :file_name: patient_family_gender_search_test.rb
+  - :id: us_core_v501_patient_gender_name_search_test
+    :file_name: patient_gender_name_search_test.rb
+  - :id: us_core_v501_patient_read_test
+    :file_name: patient_read_test.rb
+  - :id: us_core_v501_patient_provenance_revinclude_search_test
+    :file_name: patient_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_patient_validation_test
+    :file_name: patient_validation_test.rb
+  - :id: us_core_v501_patient_must_support_test
+    :file_name: patient_must_support_test.rb
+  :id: us_core_v501_patient
+  :file_name: patient_group.rb
   :delayed_references: []
 - :name: us_core_practitioner
   :class_name: USCorev501PractitionerSequence
@@ -9211,6 +9995,21 @@
   - :path: Practitioner.qualification.issuer
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
+  :tests:
+  - :id: us_core_v501_practitioner_read_test
+    :file_name: practitioner_read_test.rb
+  - :id: us_core_v501_practitioner__id_search_test
+    :file_name: practitioner_id_search_test.rb
+  - :id: us_core_v501_practitioner_name_search_test
+    :file_name: practitioner_name_search_test.rb
+  - :id: us_core_v501_practitioner_identifier_search_test
+    :file_name: practitioner_identifier_search_test.rb
+  - :id: us_core_v501_practitioner_validation_test
+    :file_name: practitioner_validation_test.rb
+  - :id: us_core_v501_practitioner_must_support_test
+    :file_name: practitioner_must_support_test.rb
+  :id: us_core_v501_practitioner
+  :file_name: practitioner_group.rb
   :delayed_references: []
 - :name: us_core_practitionerrole
   :class_name: USCorev501PractitionerroleSequence
@@ -9557,6 +10356,27 @@
     - http://hl7.org/fhir/StructureDefinition/Device
     - http://hl7.org/fhir/StructureDefinition/Medication
     - http://hl7.org/fhir/StructureDefinition/Substance
+  :tests:
+  - :id: us_core_v501_procedure_patient_search_test
+    :file_name: procedure_patient_search_test.rb
+  - :id: us_core_v501_procedure_patient_code_date_search_test
+    :file_name: procedure_patient_code_date_search_test.rb
+  - :id: us_core_v501_procedure_patient_status_search_test
+    :file_name: procedure_patient_status_search_test.rb
+  - :id: us_core_v501_procedure_patient_date_search_test
+    :file_name: procedure_patient_date_search_test.rb
+  - :id: us_core_v501_procedure_read_test
+    :file_name: procedure_read_test.rb
+  - :id: us_core_v501_procedure_provenance_revinclude_search_test
+    :file_name: procedure_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_procedure_validation_test
+    :file_name: procedure_validation_test.rb
+  - :id: us_core_v501_procedure_must_support_test
+    :file_name: procedure_must_support_test.rb
+  - :id: us_core_v501_procedure_reference_resolution_test
+    :file_name: procedure_reference_resolution_test.rb
+  :id: us_core_v501_procedure
+  :file_name: procedure_group.rb
   :delayed_references: []
 - :name: us_core_provenance
   :class_name: USCorev501ProvenanceSequence
@@ -9699,6 +10519,17 @@
   - :path: Provenance.entity.what
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Resource
+  :tests:
+  - :id: us_core_v501_provenance_read_test
+    :file_name: provenance_read_test.rb
+  - :id: us_core_v501_provenance_validation_test
+    :file_name: provenance_validation_test.rb
+  - :id: us_core_v501_provenance_must_support_test
+    :file_name: provenance_must_support_test.rb
+  - :id: us_core_v501_provenance_reference_resolution_test
+    :file_name: provenance_reference_resolution_test.rb
+  :id: us_core_v501_provenance
+  :file_name: provenance_group.rb
   :delayed_references:
   - :path: agent.who
     :resources:
@@ -9947,6 +10778,33 @@
     - http://hl7.org/fhir/StructureDefinition/Practitioner
     - http://hl7.org/fhir/StructureDefinition/PractitionerRole
     - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  :tests:
+  - :id: us_core_v501_questionnaire_response_patient_search_test
+    :file_name: questionnaire_response_patient_search_test.rb
+  - :id: us_core_v501_questionnaire_response__id_search_test
+    :file_name: questionnaire_response_id_search_test.rb
+  - :id: us_core_v501_questionnaire_response_patient_authored_search_test
+    :file_name: questionnaire_response_patient_authored_search_test.rb
+  - :id: us_core_v501_questionnaire_response_patient__tag_authored_search_test
+    :file_name: questionnaire_response_patient_tag_authored_search_test.rb
+  - :id: us_core_v501_questionnaire_response_patient_status_search_test
+    :file_name: questionnaire_response_patient_status_search_test.rb
+  - :id: us_core_v501_questionnaire_response_patient__tag_search_test
+    :file_name: questionnaire_response_patient_tag_search_test.rb
+  - :id: us_core_v501_questionnaire_response_patient_questionnaire_search_test
+    :file_name: questionnaire_response_patient_questionnaire_search_test.rb
+  - :id: us_core_v501_questionnaire_response_read_test
+    :file_name: questionnaire_response_read_test.rb
+  - :id: us_core_v501_questionnaire_response_provenance_revinclude_search_test
+    :file_name: questionnaire_response_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_questionnaire_response_validation_test
+    :file_name: questionnaire_response_validation_test.rb
+  - :id: us_core_v501_questionnaire_response_must_support_test
+    :file_name: questionnaire_response_must_support_test.rb
+  - :id: us_core_v501_questionnaire_response_reference_resolution_test
+    :file_name: questionnaire_response_reference_resolution_test.rb
+  :id: us_core_v501_questionnaire_response
+  :file_name: questionnaire_response_group.rb
   :delayed_references:
   - :path: author
     :resources:
@@ -10047,6 +10905,23 @@
   - :path: RelatedPerson.patient
     :profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  :tests:
+  - :id: us_core_v501_related_person_read_test
+    :file_name: related_person_read_test.rb
+  - :id: us_core_v501_related_person_patient_search_test
+    :file_name: related_person_patient_search_test.rb
+  - :id: us_core_v501_related_person__id_search_test
+    :file_name: related_person_id_search_test.rb
+  - :id: us_core_v501_related_person_provenance_revinclude_search_test
+    :file_name: related_person_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_related_person_validation_test
+    :file_name: related_person_validation_test.rb
+  - :id: us_core_v501_related_person_must_support_test
+    :file_name: related_person_must_support_test.rb
+  - :id: us_core_v501_related_person_reference_resolution_test
+    :file_name: related_person_reference_resolution_test.rb
+  :id: us_core_v501_related_person
+  :file_name: related_person_group.rb
   :delayed_references: []
 - :name: us_core_servicerequest
   :class_name: USCorev501ServicerequestSequence
@@ -10322,9 +11197,38 @@
   - :path: ServiceRequest.relevantHistory
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Provenance
+  :tests:
+  - :id: us_core_v501_service_request_patient_search_test
+    :file_name: service_request_patient_search_test.rb
+  - :id: us_core_v501_service_request__id_search_test
+    :file_name: service_request_id_search_test.rb
+  - :id: us_core_v501_service_request_patient_category_authored_search_test
+    :file_name: service_request_patient_category_authored_search_test.rb
+  - :id: us_core_v501_service_request_patient_status_search_test
+    :file_name: service_request_patient_status_search_test.rb
+  - :id: us_core_v501_service_request_patient_code_search_test
+    :file_name: service_request_patient_code_search_test.rb
+  - :id: us_core_v501_service_request_patient_code_authored_search_test
+    :file_name: service_request_patient_code_authored_search_test.rb
+  - :id: us_core_v501_service_request_patient_category_search_test
+    :file_name: service_request_patient_category_search_test.rb
+  - :id: us_core_v501_service_request_read_test
+    :file_name: service_request_read_test.rb
+  - :id: us_core_v501_service_request_provenance_revinclude_search_test
+    :file_name: service_request_provenance_revinclude_search_test.rb
+  - :id: us_core_v501_service_request_validation_test
+    :file_name: service_request_validation_test.rb
+  - :id: us_core_v501_service_request_must_support_test
+    :file_name: service_request_must_support_test.rb
+  - :id: us_core_v501_service_request_reference_resolution_test
+    :file_name: service_request_reference_resolution_test.rb
+  :id: us_core_v501_service_request
+  :file_name: service_request_group.rb
   :delayed_references:
   - :path: requester
     :resources:
     - Practitioner
     - Organization
     - RelatedPerson
+:granular_scope_resource_type_groups: {}
+:granular_scope_groups: []

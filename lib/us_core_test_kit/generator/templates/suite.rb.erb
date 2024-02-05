@@ -3,7 +3,8 @@ require_relative '../../version'
 require_relative '<%= capability_statement_file_name %>'
 require_relative '<%= clinical_notes_guidance_file_name %>'
 require_relative '../../custom_groups/data_absent_reason_group'
-require_relative '../../custom_groups/smart_app_launch_group'
+require_relative '../../custom_groups/smart_app_launch_group'<% if test_granular_scopes? %>
+require_relative '<%= granular_scopes_file_name %>'<% end %>
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -66,16 +67,6 @@ module USCoreTestKit
       input :url,
         title: 'FHIR Endpoint',
         description: 'URL of the FHIR endpoint'
-      input :smart_credentials,
-        title: 'OAuth Credentials',
-        type: :oauth_credentials,
-        optional: true
-
-      fhir_client do
-        url :url
-        oauth_credentials :smart_credentials
-      end
-
 
       suite_option :smart_app_launch_version,
         title: 'SMART App Launch Version',
@@ -93,15 +84,35 @@ module USCoreTestKit
       group from: :us_core_smart_app_launch
 
       group do
+        input :smart_credentials,
+          title: 'OAuth Credentials',
+          type: :oauth_credentials,
+          optional: true
+
+        fhir_client do
+          url :url
+          oauth_credentials :smart_credentials
+        end
+
         title 'US Core FHIR API'
-        id :<%= fhir_api_group_id %>
+        id :<%= fhir_api_group_id %><% if test_granular_scopes? %>
+
+        config(
+          options: {
+            tag_requests: true
+          }
+        )<% end %>
 
         group from: :<%= capability_statement_group_id %>
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
         group from: :<%= clinical_notes_guidance_group_id %>
         group from: :us_core_311_data_absent_reason
-      end
+      end<% if test_granular_scopes? %>
+
+      group from: :<%= granular_scopes_id %>,
+            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+      <% end %>
     end
   end
 end
