@@ -1,9 +1,30 @@
+# 0.6.3
+* FI-2370: Add SMART App Launch by @emichaud998 in
+  https://github.com/inferno-framework/us-core-test-kit/pull/146
+* FI-2395: Data rights legend by @bmath10 in
+  https://github.com/inferno-framework/us-core-test-kit/pull/147
+* Fi 2331 Create US Core 7.0.0-ballot test suite by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/142
+* Add INFERNO_HOST to .env files by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/151
+* FI-2371: Add granular scopes tests by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/148
+* FI-2231 Add searches for Practitioner test by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/149
+* FI-2371: Add additional granular scope by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/152
+
+
 # 0.6.2
 
-* FHIR-2327: Restore component.dataAbsentReason MS for BloodPressure profile by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/141
-* FI-2313: MS Slice Subelement Support by @360dgries in https://github.com/inferno-framework/us-core-test-kit/pull/140
-* FI-2348: Add guard for fixed values on slice discriminators by @360dgries in https://github.com/inferno-framework/us-core-test-kit/pull/143
-* FI-2316: Label Reference target profile as MustSupport as there is only one by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/139
+* FHIR-2327: Restore component.dataAbsentReason MS for BloodPressure profile by
+  @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/141
+* FI-2313: MS Slice Subelement Support by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/140
+* FI-2348: Add guard for fixed values on slice discriminators by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/143
+* FI-2316: Label Reference target profile as MustSupport as there is only one by
+  @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/139
 
 # 0.6.1
 
