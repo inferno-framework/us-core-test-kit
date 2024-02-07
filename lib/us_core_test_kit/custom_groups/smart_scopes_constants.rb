@@ -6,7 +6,8 @@ module USCoreTestKit
       'v610' => [
           'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
-          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history'
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history',
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure'
         ].map(&:freeze).freeze,
       'v700_ballot' => [
           'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
