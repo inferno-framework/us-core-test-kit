@@ -15,6 +15,7 @@ based on the following granular scopes:
 * `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history`
+* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure`
 
       )
 
