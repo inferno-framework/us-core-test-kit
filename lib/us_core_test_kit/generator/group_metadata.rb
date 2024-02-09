@@ -50,7 +50,7 @@ module USCoreTestKit
       end
 
       def exclude_search_tests?
-        delayed? && !searchable_delayed_resource
+        delayed? && !searchable_delayed_resource?
       end
 
       def no_patient_searches?
