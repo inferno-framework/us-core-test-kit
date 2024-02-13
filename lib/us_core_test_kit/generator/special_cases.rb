@@ -1,20 +1,29 @@
 module USCoreTestKit
   class Generator
     module SpecialCases
-      RESOURCES_TO_EXCLUDE = [
-        'Location',
-        'Medication',
-        'PractitionerRole'
-      ].freeze
+      RESOURCES_TO_EXCLUDE = {
+        'Location' => ['v311', 'v400', 'v501', 'v610'],
+        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
+        'PractitionerRole' => ['v311', 'v400']
+      }.freeze
 
       PROFILES_TO_EXCLUDE = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
       ].freeze
 
+      OPTIONAL_RESOURCES = [
+        'PractitionerRole',
+        'QuestionnaireResponse'
+      ].freeze
+
+      OPTIONAL_PROFILES = [
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
+      ].freeze
+
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
-        'Location' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
+        'Location' => ['v311', 'v400', 'v501', 'v610'],
         'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
         'Practitioner' => ['v311', 'v400'],
         'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
@@ -24,6 +33,7 @@ module USCoreTestKit
       }.freeze
 
       SEARCHABLE_DELAYED_RESOURCES = {
+        'Location' => ['v700_ballot'],
         'Practitioner' => ['v501', 'v610', 'v700_ballot']
       }.freeze
 
@@ -49,7 +59,7 @@ module USCoreTestKit
 
       class << self
         def exclude_group?(group)
-          RESOURCES_TO_EXCLUDE.include?(group.resource)
+          RESOURCES_TO_EXCLUDE.key?(group.resource) && RESOURCES_TO_EXCLUDE[group.resource].include?(group.reformatted_version)
         end
       end
     end
