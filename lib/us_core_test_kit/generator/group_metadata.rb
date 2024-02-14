@@ -1,3 +1,5 @@
+require_relative 'special_cases'
+
 module USCoreTestKit
   class Generator
     class GroupMetadata
