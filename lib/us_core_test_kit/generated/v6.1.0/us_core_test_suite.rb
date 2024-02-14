@@ -50,6 +50,7 @@ require_relative 'questionnaire_response_group'
 require_relative 'service_request_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
+require_relative 'practitioner_role_group'
 require_relative 'provenance_group'
 require_relative 'related_person_group'
 require_relative 'specimen_group'
@@ -191,6 +192,7 @@ module USCoreTestKit
         group from: :us_core_v610_service_request
         group from: :us_core_v610_organization
         group from: :us_core_v610_practitioner
+        group from: :us_core_v610_practitioner_role
         group from: :us_core_v610_provenance
         group from: :us_core_v610_related_person
         group from: :us_core_v610_specimen

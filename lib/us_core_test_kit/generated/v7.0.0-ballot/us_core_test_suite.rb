@@ -48,12 +48,13 @@ require_relative 'observation_clinical_result_group'
 require_relative 'pediatric_bmi_for_age_group'
 require_relative 'head_circumference_percentile_group'
 require_relative 'body_weight_group'
-require_relative 'vital_signs_group'
 require_relative 'procedure_group'
 require_relative 'questionnaire_response_group'
 require_relative 'service_request_group'
+require_relative 'location_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
+require_relative 'practitioner_role_group'
 require_relative 'provenance_group'
 require_relative 'related_person_group'
 require_relative 'specimen_group'
@@ -193,12 +194,13 @@ module USCoreTestKit
         group from: :us_core_v700_ballot_pediatric_bmi_for_age
         group from: :us_core_v700_ballot_head_circumference_percentile
         group from: :us_core_v700_ballot_body_weight
-        group from: :us_core_v700_ballot_vital_signs
         group from: :us_core_v700_ballot_procedure
         group from: :us_core_v700_ballot_questionnaire_response
         group from: :us_core_v700_ballot_service_request
+        group from: :us_core_v700_ballot_location
         group from: :us_core_v700_ballot_organization
         group from: :us_core_v700_ballot_practitioner
+        group from: :us_core_v700_ballot_practitioner_role
         group from: :us_core_v700_ballot_provenance
         group from: :us_core_v700_ballot_related_person
         group from: :us_core_v700_ballot_specimen

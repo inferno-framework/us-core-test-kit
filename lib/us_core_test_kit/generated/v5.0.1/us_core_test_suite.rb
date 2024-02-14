@@ -45,6 +45,7 @@ require_relative 'questionnaire_response_group'
 require_relative 'service_request_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
+require_relative 'practitioner_role_group'
 require_relative 'provenance_group'
 require_relative 'related_person_group'
 
@@ -175,6 +176,7 @@ module USCoreTestKit
         group from: :us_core_v501_service_request
         group from: :us_core_v501_organization
         group from: :us_core_v501_practitioner
+        group from: :us_core_v501_practitioner_role
         group from: :us_core_v501_provenance
         group from: :us_core_v501_related_person
         group from: :us_core_v400_clinical_notes_guidance
