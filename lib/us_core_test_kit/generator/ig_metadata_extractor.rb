@@ -63,7 +63,6 @@ module USCoreTestKit
         ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Observation' }
             .supportedProfile.delete_if do |profile_url|
-              binding.pry if ig_resources.ig.version == '7.0.0-ballot' && profile_url.include?('vital-signs')
               SpecialCases::PROFILES_TO_EXCLUDE.include?(profile_url)
             end
       end
