@@ -95,8 +95,8 @@ module USCoreTestKit
 
 
       def optional?
-        resource_type == 'QuestionnaireResponse' ||
-        profile_url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
+        SpecialCases::OPTIONAL_RESOURCES.include?(resource_type) ||
+        SpecialCases::OPTIONAL_PROFILES.include?(profile_url)
       end
 
       def generate
