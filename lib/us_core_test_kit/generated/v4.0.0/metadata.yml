@@ -7289,6 +7289,8 @@
     - :path: address.city
     - :path: address.state
     - :path: address.postalCode
+    - :path: address.period.end
+      :uscdi_only: true
     - :path: communication.language
       :uscdi_only: true
     - :path: name.suffix
@@ -7296,6 +7298,14 @@
     - :path: telecom
       :uscdi_only: true
     - :path: communication
+      :uscdi_only: true
+    - :path: name.period.end
+      :uscdi_only: true
+    - :path: name.use
+      :fixed_value: old
+      :uscdi_only: true
+    - :path: address.use
+      :fixed_value: old
       :uscdi_only: true
     :choices:
     - :paths:

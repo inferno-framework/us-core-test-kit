@@ -16,7 +16,6 @@ module USCoreTestKit
 
       def handle_special_cases
         add_must_support_choices
-        remove_patient_address_period
         add_device_distinct_identifier
         add_patient_uscdi_elements
       end
@@ -32,26 +31,9 @@ module USCoreTestKit
           choices << { paths: ['location.location', 'serviceProvider'] }
         when 'MedicationRequest'
           choices << { paths: ['reportedBoolean', 'reportedReference'] }
-        when 'Patient'
-          # FHIR-40299 adds USCDI MustSupport choices for:
-          # * address.period.end and address.use,
-          # * name.period.end and name.use
-          choices << {
-            paths: ['address.period.end', 'address.use'],
-            uscdi_only: true
-          }
-
-          choices << {
-            paths: ['name.period.end', 'name.use'],
-            uscdi_only: true
-          }
         end
 
         must_supports[:choices] = choices if choices.present?
-      end
-
-      def remove_patient_address_period
-        us_core_3_extractor.remove_patient_address_period
       end
 
       def add_device_distinct_identifier
@@ -97,6 +79,7 @@ module USCoreTestKit
         }
 
         add_patient_telecom_communication_uscdi
+        us_core_3_extractor.update_patient_previous_name_address
       end
 
       def add_patient_telecom_communication_uscdi

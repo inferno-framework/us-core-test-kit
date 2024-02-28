@@ -17,7 +17,6 @@ module USCoreTestKit
 
       def handle_special_cases
         add_must_support_choices
-        remove_patient_address_period
         add_patient_uscdi_elements
         remove_survey_questionnaire_response
       end
@@ -48,10 +47,6 @@ module USCoreTestKit
         end
       end
 
-      def remove_patient_address_period
-        us_core_4_extractor.remove_patient_address_period
-      end
-
       def add_patient_uscdi_elements
         return unless profile.type == 'Patient'
 
@@ -60,16 +55,6 @@ module USCoreTestKit
         must_supports[:extensions] << {
           id: 'Patient.extension:genderIdentity',
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
-          uscdi_only: true
-        }
-        must_supports[:elements] << {
-          path: 'address.use',
-          fixed_value: 'old',
-          uscdi_only: true
-        }
-        must_supports[:elements] << {
-          path: 'name.use',
-          fixed_value: 'old',
           uscdi_only: true
         }
       end

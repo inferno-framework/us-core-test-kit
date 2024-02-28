@@ -172,8 +172,18 @@
   - :path: address.city
   - :path: address.state
   - :path: address.postalCode
+  - :path: address.period.end
+    :uscdi_only: true
   - :path: communication
   - :path: communication.language
+  - :path: name.period.end
+    :uscdi_only: true
+  - :path: name.use
+    :fixed_value: old
+    :uscdi_only: true
+  - :path: address.use
+    :fixed_value: old
+    :uscdi_only: true
   :choices:
   - :paths:
     - address.period.end

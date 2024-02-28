@@ -3,6 +3,50 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
   let(:patient_ref) { 'Patient/85' }
+  let(:patient) do
+    FHIR::Patient.new(
+      identifier: [{system: 'system', value: 'value'}],
+      name: [{use: 'old', family: 'family', given: ['given'], suffix: ['suffix'], period: {end: '2022-12-12'}}],
+      telecom: [{system: 'phone', value: 'value', use: 'home'}],
+      gender: 'male',
+      birthDate: '2020-01-01',
+      deceasedDateTime: '2022-12-12',
+      address: [{use: 'old', line: 'line', city: 'city', state: 'state', postalCode: 'postalCode', period: {start: '2020-01-01'}}],
+      communication: [{language: {text: 'text'}}],
+      extension: [
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
+          extension: [
+            {url: 'ombCategory', valueCoding: {display: 'display'}},
+            {url: 'text', valueString: 'valueString'}
+          ]
+        },
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
+          extension: [
+            {url: 'ombCategory', valueCoding: {display: 'display'}},
+            {url: 'text', valueString: 'valueString'}
+          ]
+        },
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
+          valueCode: 'M'
+        },
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation',
+          extension: [{url: 'tribalAffiliation', valueCodeableConcept: {text: 'text'}}]
+        },
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex',
+          valueCode: 'M'
+        },
+        {
+          url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
+          valueCodeableConcept: {text: 'text'}
+        }
+      ]
+    )
+  end
 
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
@@ -80,37 +124,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
   describe 'must support test for extensions' do
     let(:patient_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_patient_must_support_test')}
-    let(:patient) do
-      FHIR::Patient.new(
-        identifier: [{system: 'system', value: 'value'}],
-        name: [{family: 'family', given: 'given'}],
-        telecom: [{system: 'phone', value: 'value', use: 'home'}],
-        gender: 'male',
-        birthDate: '2020-01-01',
-        address: [{line: 'line', city: 'city', state: 'state', postalCode: 'postalCode', period: {start: '2020-01-01'}}],
-        communication: [{language: {text: 'text'}}],
-        extension: [
-          {
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
-            extension: [
-              {url: 'ombCategory', valueCoding: {display: 'display'}},
-              {url: 'text', valueString: 'valueString'}
-            ]
-          },
-          {
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
-            extension: [
-              {url: 'ombCategory', valueCoding: {display: 'display'}},
-              {url: 'text', valueString: 'valueString'}
-            ]
-          },
-          {
-            url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
-            valueCode: 'M'
-          }
-        ]
-      )
-    end
 
     it 'passes if server suports all MS extensions' do
       allow_any_instance_of(patient_must_support_test)
@@ -121,7 +134,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         )
 
       result = run(patient_must_support_test)
-
       expect(result.result).to eq('pass')
     end
 
@@ -515,6 +527,67 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     end
   end
 
+  describe 'must support test for Patient previous name choices' do
+    let(:test_class) { USCoreTestKit::USCoreV311::PatientMustSupportTest }
+
+    it 'passes previous name check if both use=old and preiod.end are provided' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [patient]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'passes previous name check if only use=old is presented' do
+      patient.name[0].period = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [patient]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'passes previous name check if only period.end is presented' do
+      patient.name[0].use = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [patient]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips previous name check if neither use=old nor period.end is presented' do
+      patient.name[0].use = nil
+      patient.name[0].period = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [patient]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('name.period.end')
+      expect(result.result_message).to include('name.use:old')
+    end
+  end
+
   describe 'must support tests for sub elements of slices' do
     let (:test_class) {
       USCoreTestKit::USCoreV610::CoverageMustSupportTest
@@ -591,7 +664,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
             identifier.system = "https://github.com/inferno-framework/us-core-test-kit"
             identifier.value = "f4a375d2-4e53-4f81-ba95-345e7573b550"
           }
-        ] 
+        ]
       }
     }
 
