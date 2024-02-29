@@ -10396,7 +10396,7 @@
     - :path: name.given
     - :path: name.suffix
       :uscdi_only: true
-    - :path: name.period
+    - :path: name.period.end
       :uscdi_only: true
     - :path: telecom
       :uscdi_only: true
@@ -10419,7 +10419,7 @@
     - :path: address.city
     - :path: address.state
     - :path: address.postalCode
-    - :path: address.period
+    - :path: address.period.end
       :uscdi_only: true
     - :path: communication
       :uscdi_only: true

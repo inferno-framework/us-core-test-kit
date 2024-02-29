@@ -12,6 +12,10 @@ module USCoreTestKit
         self.must_supports = must_supports
       end
 
+      def us_core_3_extractor
+        @us_core_3_extractor ||= MustSupportMetadataExtractorUsCore3.new(profile, must_supports)
+      end
+
       def us_core_4_extractor
         @us_core_4_extractor ||= MustSupportMetadataExtractorUsCore4.new(profile, must_supports)
       end
@@ -66,11 +70,10 @@ module USCoreTestKit
         return unless profile.type == 'Patient'
 
         us_core_4_extractor.add_patient_telecom_communication_uscdi
+        us_core_3_extractor.update_patient_previous_name_address
 
         must_supports[:elements].each do |element|
           case element[:path]
-          when 'address.use', 'name.use'
-            element[:fixed_value] = 'old'
           when 'deceased[x]'
             element[:original_path] = element[:path]
             element[:path] = 'deceasedDateTime'
