@@ -134,7 +134,6 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
         )
       end
       
-
       it 'fails if resources which match the received scopes are not returned' do
         stub_request(request.verb.to_sym, request.url.split('?').first)
           .with(query: request.query_parameters)
@@ -261,12 +260,12 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
 
         it 'correctly pulls parameters from POST body' do
           response_body =
-          FHIR::Bundle.new(
-            entry: [
-              { resource: matching_resource.to_hash },
-              { resource: matching_resource2.to_hash }
-            ]
-          ).to_json
+            FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash }
+              ]
+            ).to_json
 
           stub_request(:post, post_request.url)
             .with(body: {patient: patient_ids})

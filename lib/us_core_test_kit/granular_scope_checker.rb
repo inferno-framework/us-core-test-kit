@@ -16,7 +16,6 @@ module USCoreTestKit
       previous_request_resources.each do |previous_request, all_previous_resources|
         search_method = previous_request.verb.to_sym
         params = search_method == :get ? previous_request.query_parameters : Hash[URI.decode_www_form(previous_request.request_body)]
-        binding.pry if search_method == :post
         fhir_search(resource_type, params:, search_method:)
 
         found_resources =
