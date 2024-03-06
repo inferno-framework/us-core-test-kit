@@ -248,7 +248,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
               test_session_id: test_session.id
             ),
             tags: ['Condition?patient'],
-            request_body: {patient: patient_ids}.to_json,
+            request_body: URI.encode_www_form({patient: patient_ids}),
             response_body: FHIR::Bundle.new(
               entry: [
                 { resource: matching_resource.to_hash },
