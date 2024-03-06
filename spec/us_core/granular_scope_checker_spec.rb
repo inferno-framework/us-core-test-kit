@@ -133,6 +133,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
           ).to_json
         )
       end
+      
 
       it 'fails if resources which match the received scopes are not returned' do
         stub_request(request.verb.to_sym, request.url.split('?').first)
@@ -233,6 +234,48 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
         result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
 
         expect(result.result).to eq('pass')
+      end
+      
+      context 'with POST requests' do
+        let!(:post_request) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Condition/_search',
+            verb: 'post',
+            test_session_id: test_session.id,
+            result: repo_create(
+              :result,
+              test_session_id: test_session.id
+            ),
+            tags: ['Condition?patient'],
+            request_body: {patient: patient_ids}.to_json,
+            response_body: FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash },
+                { resource: not_matching_resource.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        it 'correctly pulls parameters from POST body' do
+          response_body =
+          FHIR::Bundle.new(
+            entry: [
+              { resource: matching_resource.to_hash },
+              { resource: matching_resource2.to_hash }
+            ]
+          ).to_json
+
+          stub_request(:post, post_request.url)
+            .with(body: {patient: patient_ids})
+            .to_return(body: response_body)
+  
+          result = run(granular_scope_test, url:, received_scopes:)
+
+          expect(result.result).to eq('pass')
+        end
       end
     end
   end

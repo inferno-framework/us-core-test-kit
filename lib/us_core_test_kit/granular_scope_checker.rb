@@ -14,8 +14,8 @@ module USCoreTestKit
               "No #{resource_type} searches with search params #{search_param_names.join(' & ')} found"
 
       previous_request_resources.each do |previous_request, all_previous_resources|
-        params = previous_request.query_parameters
         search_method = previous_request.verb.to_sym
+        params = search_method == :get ? previous_request.query_parameters : JSON.parse(previous_request.request_body)
         fhir_search(resource_type, params:, search_method:)
 
         found_resources =
