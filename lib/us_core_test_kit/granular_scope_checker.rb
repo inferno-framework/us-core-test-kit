@@ -84,7 +84,6 @@ module USCoreTestKit
         granular_scopes.map do |scope|
           _, granular_scope = scope.split('?')
           name, value = granular_scope.split('=')
-
           {
             name:,
             value:

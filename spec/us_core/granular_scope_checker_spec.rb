@@ -234,7 +234,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
 
         expect(result.result).to eq('pass')
       end
-      
+
       context 'with POST requests' do
         let!(:post_request) do
           repo_create(
@@ -266,11 +266,10 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
                 { resource: matching_resource2.to_hash }
               ]
             ).to_json
-
           stub_request(:post, post_request.url)
             .with(body: {patient: patient_ids})
             .to_return(body: response_body)
-  
+
           result = run(granular_scope_test, url:, received_scopes:)
 
           expect(result.result).to eq('pass')
