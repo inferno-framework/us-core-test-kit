@@ -260,12 +260,13 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
 
         it 'correctly pulls parameters from POST body' do
           response_body =
-            FHIR::Bundle.new(
-              entry: [
-                { resource: matching_resource.to_hash },
-                { resource: matching_resource2.to_hash }
-              ]
-            ).to_json
+          FHIR::Bundle.new(
+            entry: [
+              { resource: matching_resource.to_hash },
+              { resource: matching_resource2.to_hash }
+            ]
+          ).to_json
+
           stub_request(:post, post_request.url)
             .with(body: {patient: patient_ids})
             .to_return(body: response_body)
