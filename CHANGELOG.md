@@ -1,3 +1,16 @@
+# 0.6.4
+* fix exclude_search_tests by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/155
+* Add missing require by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/154
+* FI-2481 Add PractitionerRole by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/156
+* FI-2534 Fix US Core MS Support for Patient's previous name and previous
+  address by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/157
+* FI-2494 POST capability added to granular scopes by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/158
+
 # 0.6.3
 * FI-2370: Add SMART App Launch by @emichaud998 in
   https://github.com/inferno-framework/us-core-test-kit/pull/146
