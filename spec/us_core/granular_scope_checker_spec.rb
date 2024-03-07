@@ -234,6 +234,48 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
 
         expect(result.result).to eq('pass')
       end
+
+      context 'with POST requests' do
+        let!(:post_request) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Condition/_search',
+            verb: 'post',
+            test_session_id: test_session.id,
+            result: repo_create(
+              :result,
+              test_session_id: test_session.id
+            ),
+            tags: ['Condition?patient'],
+            request_body: URI.encode_www_form({patient: patient_ids}),
+            response_body: FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash },
+                { resource: not_matching_resource.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        it 'correctly pulls parameters from POST body' do
+          response_body =
+            FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash }
+              ]
+            ).to_json
+
+          stub_request(:post, post_request.url)
+            .with(body: {patient: patient_ids})
+            .to_return(body: response_body)
+
+          result = run(granular_scope_test, url:, received_scopes:)
+
+          expect(result.result).to eq('pass')
+        end
+      end
     end
   end
 end
