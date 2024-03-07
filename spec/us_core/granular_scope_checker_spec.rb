@@ -133,7 +133,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
           ).to_json
         )
       end
-      
+
       it 'fails if resources which match the received scopes are not returned' do
         stub_request(request.verb.to_sym, request.url.split('?').first)
           .with(query: request.query_parameters)
