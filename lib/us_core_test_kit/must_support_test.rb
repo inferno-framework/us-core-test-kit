@@ -101,9 +101,7 @@ module USCoreTestKit
         must_support_elements.select do |element_definition|
           resources.none? do |resource|
             path = element_definition[:path] #.delete_suffix('[x]')
-            #binding.pry if path == 'identifier:memberid.type'
             value_found = find_a_value_at(resource, path) do |value|
-              #binding.pry if path == 'identifier:memberid.type'
 
               value_without_extensions =
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
@@ -112,7 +110,6 @@ module USCoreTestKit
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
 
             end
-            #binding.pry if path == 'identifier:memberid.type'
             # Note that false.present? => false, which is why we need to add this extra check
             value_found.present? || value_found == false
           end
