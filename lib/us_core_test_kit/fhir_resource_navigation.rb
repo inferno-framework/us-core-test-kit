@@ -80,11 +80,11 @@ module USCoreTestKit
         slices.find do |slice|
           case discriminator[:type]
           when 'patternCodeableConcept'
-            slice_value = discriminator[:path].present? ? slice.send("#{discriminator[:path]}").coding : slice.coding
-            slice_value.any? { |coding| coding.code == discriminator[:code] && coding.system == discriminator[:system] }
+            slice_value = discriminator[:path].present? ? slice.send("#{discriminator[:path]}")&.coding : slice.coding
+            slice_value&.any? { |coding| coding.code == discriminator[:code] && coding.system == discriminator[:system] }
           when 'patternCoding'
             slice_value = discriminator[:path].present? ? slice.send(discriminator[:path]) : slice
-            slice_value.code == discriminator[:code] && slice_value.system == discriminator[:system]
+            slice_value&.code == discriminator[:code] && slice_value.system == discriminator[:system]
           when 'patternIdentifier'
             slice.identifier.system == discriminator[:system]
           when 'value'
