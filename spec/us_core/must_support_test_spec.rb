@@ -686,17 +686,17 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       USCoreTestKit::USCoreV610::CoverageMustSupportTest
     }
     let (:group_class) {
-        FHIR::Coverage::Class.new.tap{ |loc_class|
-          loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-            code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-              coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
-              coding.code = "group"
-            }]
-          }
-          loc_class.value = "group-class-value"
-          loc_class.name = "group-class-name"
-          }
+      FHIR::Coverage::Class.new.tap{ |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
+            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
+            coding.code = "group"
+          }]
+        }
+        loc_class.value = "group-class-value"
+        loc_class.name = "group-class-name"
       }
+    }
     let (:plan_class) {
       FHIR::Coverage::Class.new.tap{ |loc_class|
         loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
