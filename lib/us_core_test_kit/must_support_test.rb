@@ -102,7 +102,6 @@ module USCoreTestKit
           resources.none? do |resource|
             path = element_definition[:path] #.delete_suffix('[x]')
             value_found = find_a_value_at(resource, path) do |value|
-
               value_without_extensions =
                 value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
 
