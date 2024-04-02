@@ -155,7 +155,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   end
 
   describe 'must support test for slices' do
-    context 'slicing with pattern' do
+    context 'slicing with patternCodeableConcept' do
       let(:care_plan_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_care_plan_must_support_test')}
       let(:careplan) do
         FHIR::CarePlan.new(
@@ -205,6 +205,99 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
         expect(result.result).to eq('skip')
         expect(result.result_message).to include('CarePlan.category:AssessPlan')
+      end
+    end
+
+    context 'slicing with patternCodeableConcept and mulitple codings' do
+      let(:test_class) { USCoreTestKit::USCoreV610::CoverageMustSupportTest }
+      let(:coverage) do
+        FHIR::Coverage.new(
+          identifier: [
+            {
+              system: 'local-id',
+              value: '123'
+            },
+            {
+              type: {
+                coding: [
+                  {
+                    system: 'http://terminology.hl7.org/CodeSystem/v2-0203',
+                    code: 'MB',
+                    display: 'Member Number'
+                  }
+                ]
+              },
+              value: 'member-id'
+            }
+          ],
+          status: 'active',
+          type: {
+            coding: [
+              {
+                system: 'local-type',
+                code: 'medicare'
+              }
+            ]
+          },
+          subscriberId: 'abc',
+          beneficiary: {
+            reference: 'Patient/1'
+          },
+          relationship: {
+            coding: [
+              {
+                system: 'local-relationship',
+                code: '01'
+              }
+            ]
+          },
+          period: {
+            start: '2022-03-04'
+          },
+          payor: [
+            {
+              reference: 'Organization/1'
+            }
+          ],
+          class: [
+            {
+              type: {
+                coding: [
+                  {
+                    system: 'http://terminology.hl7.org/CodeSystem/coverage-class',
+                    code: 'plan'
+                  }
+                ]
+              },
+              value: '10603',
+              name: 'MEDICARE PART A & B'
+            },
+            {
+              type: {
+                coding: [
+                  {
+                    system: 'http://terminology.hl7.org/CodeSystem/coverage-class',
+                    code: 'group'
+                  }
+                ]
+              },
+              value: '123',
+              name: 'group'
+            }
+          ],
+        )
+      end
+
+      it 'passes if server suports all MS slices' do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [coverage]
+            }
+          )
+
+        result = run(test_class)
+        expect(result.result).to eq('pass')
       end
     end
 
@@ -602,7 +695,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         }
         loc_class.value = "group-class-value"
         loc_class.name = "group-class-name"
-        }
+      }
     }
     let (:plan_class) {
       FHIR::Coverage::Class.new.tap{ |loc_class|
@@ -709,5 +802,4 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         expect(result.result).to eq('pass')
     end
   end
-
 end
