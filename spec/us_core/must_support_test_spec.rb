@@ -214,8 +214,8 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         FHIR::Coverage.new(
           identifier: [
             {
-              system: 'urn:oid:1.2.840.114350.1.13.1545.1.7.2.678671',
-              value: '1967'
+              system: 'local-id',
+              value: '123'
             },
             {
               type: {
@@ -227,26 +227,26 @@ RSpec.describe USCoreTestKit::MustSupportTest do
                   }
                 ]
               },
-              value: '421800514A'
+              value: 'member-id'
             }
           ],
           status: 'active',
           type: {
             coding: [
               {
-                system: 'http://open.epic.com/FHIR/StructureDefinition/coverage-type',
+                system: 'local-type',
                 code: 'medicare'
               }
             ]
           },
-          subscriberId: '421800514A',
+          subscriberId: 'abc',
           beneficiary: {
-            reference: 'Patient/eYYYYYYYYYYYYYYYYYYYYYY3'
+            reference: 'Patient/1'
           },
           relationship: {
             coding: [
               {
-                system: 'urn:oid:1.2.840.114350.1.13.1545.1.7.10.678671.305',
+                system: 'local-relationship',
                 code: '01'
               }
             ]
@@ -256,7 +256,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
           },
           payor: [
             {
-              reference: 'Organization/eFFFFFFFFFFFFFFFFFFFFFF3'
+              reference: 'Organization/1'
             }
           ],
           class: [
