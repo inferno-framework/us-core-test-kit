@@ -1,3 +1,13 @@
+# 0.6.5
+* Dependency Updates 2024-03-19 by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/162
+* Fix homepage url on RubyGems by @Shaumik-Ashraf in
+  https://github.com/inferno-framework/us-core-test-kit/pull/161
+* FI-2425: Ignore validator error for L/min unit on Pulse Ox profile by @dehall in
+  https://github.com/inferno-framework/us-core-test-kit/pull/160
+* FI-2611 Fix MustSupport issue on Coverage.identifier:membershipid.type by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/163
+
 # 0.6.4
 * fix exclude_search_tests by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/155
