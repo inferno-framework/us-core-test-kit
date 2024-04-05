@@ -271,7 +271,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
             .with(body: {patient: patient_ids})
             .to_return(body: response_body)
 
-          result = run(granular_scope_test, url:, received_scopes:)
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
 
           expect(result.result).to eq('pass')
         end
