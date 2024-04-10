@@ -383,7 +383,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
       it 'fails if resources which match the received scopes are not returned' do
         stub_request(request_matching.verb.to_sym, request_matching.url)
           .to_return(body: FHIR::Bundle.new.to_json)
-
+        binding.pry
         result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
 
         expected_message = "Resources with the following ids were received when using resource-level scopes, " \

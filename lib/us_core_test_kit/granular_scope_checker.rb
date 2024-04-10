@@ -54,10 +54,10 @@ module USCoreTestKit
               "No #{resource_type} reads found"
 
       previous_requests.each do |previous_request|
-        resource_id = previous_request.to_hash["id"]
+        resource_id = id_from_read(previous_request)
         #search_method = previous_request.verb.to_sym
         #params = search_method == :get ? previous_request.query_parameters : Hash[URI.decode_www_form(previous_request.request_body)]
-        fhir_read resource_type, previous_request.id
+        fhir_read resource_type, resource_id
 
         found_resources =
           if request.status != 200
@@ -147,6 +147,11 @@ module USCoreTestKit
     def load_previous_read_requests
       @previous_requests ||= load_tagged_requests("#{resource_type}_Read").sort_by { |request| request.index }
     end
+
+    def id_from_read(previous_read_request)
+      JSON.parse(previous_read_request.response_body)["entry"][0]["resource"]["id"]
+    end
+
 
     def previous_resources(params)
       previous_requests(params)
