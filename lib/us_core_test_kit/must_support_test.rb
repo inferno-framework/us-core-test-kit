@@ -114,7 +114,7 @@ module USCoreTestKit
             ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }.map { |ex| ex[:url] }
 
             value_found = find_a_value_at(resource, path) do |value|
-              if value.respond_to?(:extension)
+              if value.respond_to?(:extension) && ms_extension_urls.present?
                 urls = value.extension.map { |ex| ex.url }
                 has_ms_extension = (urls & ms_extension_urls).present?
               end

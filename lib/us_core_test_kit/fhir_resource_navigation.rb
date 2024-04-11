@@ -66,7 +66,7 @@ module USCoreTestKit
         slice
       else
         result = element.send(property)
-        result = find_primitive_extension(element, property) unless result.present?
+        result = find_primitive_extension(element, property) if result.nil?
         result
       end
     rescue NoMethodError
