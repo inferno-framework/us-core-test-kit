@@ -819,27 +819,9 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       expect(result.result).to eq('pass')
     end
 
-    it 'skips if primitive value is provided but not MS extensions' do
-      new_qr = FHIR::QuestionnaireResponse.new(qr.source_hash.reject { |key, _| key == '_questionnaire' })
-      new_qr.questionnaire = 'questionnaire'
-
-      allow_any_instance_of(test_class)
-        .to receive(:scratch_resources).and_return(
-          {
-            all: [new_qr]
-          }
-        )
-
-      result = run(test_class)
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
-      expect(result.result_message).not_to include(' questionnaire')
-    end
-
-    it 'skips if either MS extension nor primitive value is provided' do
-      qr.source_hash['_questionnaire']['extension'][0]['url'] = 'extension_0'
-      qr.source_hash['_questionnaire']['extension'][1]['url'] = 'extension_1'
+    it 'skips if regular extension is provided for element with MS extension' do
+      qr.source_hash['_questionnaire']['extension'][0]['url'] = 'http://example.com/extension-1'
+      qr.source_hash['_questionnaire']['extension'][1]['url'] = 'http://example.com/extension-1'
       new_qr = FHIR::QuestionnaireResponse.new(qr.source_hash)
 
       allow_any_instance_of(test_class)
@@ -854,6 +836,31 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
       expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
       expect(result.result_message).to include(' questionnaire')
+    end
+
+    it 'skips if regular extension is provided for element without MS extension' do
+      new_hash = qr.source_hash.reject { |key, _| key == 'status' }
+      new_hash['_status'] = {
+        'extension' => [
+          {
+            'url' => 'http://example.com/extension',
+            'valueString' => 'value'
+          }
+        ]
+      }
+
+      new_qr = FHIR::QuestionnaireResponse.new(new_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' status')
     end
   end
 end
