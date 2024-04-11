@@ -94,7 +94,6 @@ module USCoreTestKit
 
               extension.present?
             end
-
           end
         end
     end
@@ -111,12 +110,13 @@ module USCoreTestKit
       @missing_elements ||=
         must_support_elements.select do |element_definition|
           resources.none? do |resource|
-            path = element_definition[:path] #.delete_suffix('[x]')
-            ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }.map { |ex| ex[:url] }
+            path = element_definition[:path]
+            ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }
+                                                       .map { |ex| ex[:url] }
 
             value_found = find_a_value_at(resource, path) do |value|
               if value.respond_to?(:extension) && ms_extension_urls.present?
-                urls = value.extension.map { |ex| ex.url }
+                urls = value.extension.map(&:url)
                 has_ms_extension = (urls & ms_extension_urls).present?
               end
 
@@ -127,7 +127,6 @@ module USCoreTestKit
 
               (has_ms_extension || value_without_extensions.present? || value_without_extensions == false) &&
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
-
             end
             # Note that false.present? => false, which is why we need to add this extra check
             value_found.present? || value_found == false
