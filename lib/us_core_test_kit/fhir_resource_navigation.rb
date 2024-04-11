@@ -1,6 +1,7 @@
 module USCoreTestKit
   module FHIRResourceNavigation
     DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'.freeze
+    PRIMITIVE_DATA_TYPES = FHIR::PRIMITIVES.keys
 
     def resolve_path(elements, path)
       elements = Array.wrap(elements)
@@ -64,10 +65,17 @@ module USCoreTestKit
         slice = find_slice_via_discriminator(element, property)
         slice
       else
-        element.send(property)
+        result = element.send(property)
+        result = find_primitive_extension(element, property) unless result.present?
+        result
       end
     rescue NoMethodError
       nil
+    end
+
+    def find_primitive_extension(element, property)
+      type = element.class::METADATA[property.to_s]['type']
+      PRIMITIVE_DATA_TYPES.include?(type) ? FHIR::Element.new(element.source_hash["_#{property.to_s}"]) : nil
     end
 
     def find_slice_via_discriminator(element, property)

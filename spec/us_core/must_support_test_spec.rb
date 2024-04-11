@@ -802,4 +802,21 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         expect(result.result).to eq('pass')
     end
   end
+
+  describe 'must support tests for primitive extension' do
+    let(:test_class) { USCoreTestKit::USCoreV610::QuestionnaireResponseMustSupportTest }
+    let(:qr) { FHIR.from_contents(File.read('spec/fixtures/QuestionnaireResponse.json')) }
+
+    it 'passes if server suports all MS slices' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+  end
 end
