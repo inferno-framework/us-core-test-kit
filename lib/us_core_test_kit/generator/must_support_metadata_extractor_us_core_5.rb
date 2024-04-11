@@ -54,6 +54,7 @@ module USCoreTestKit
 
         must_supports[:extensions] << {
           id: 'Patient.extension:genderIdentity',
+          path: 'extension',
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
           uscdi_only: true
         }

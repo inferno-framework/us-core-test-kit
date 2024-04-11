@@ -52,16 +52,19 @@ module USCoreTestKit
         #US Core 4.0.0 Section 10.112.1.1 Additional USCDI v1 Requirement:
         must_supports[:extensions] << {
           id: 'Patient.extension:race',
+          path: 'extension',
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
           uscdi_only: true
         }
         must_supports[:extensions] << {
           id: 'Patient.extension:ethnicity',
+          path: 'extension',
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
           uscdi_only: true
         }
         must_supports[:extensions] << {
           id: 'Patient.extension:birthsex',
+          path: 'extension',
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
           uscdi_only: true
         }

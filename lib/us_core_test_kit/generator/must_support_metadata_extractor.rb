@@ -48,6 +48,7 @@ module USCoreTestKit
         must_support_extension_elements.map do |element|
           {
             id: element.id,
+            path: element.path.gsub("#{resource}.", ''),
             url: element.type.first.profile.first
           }.tap do |metadata|
             if is_uscdi_requirement_element?(element)

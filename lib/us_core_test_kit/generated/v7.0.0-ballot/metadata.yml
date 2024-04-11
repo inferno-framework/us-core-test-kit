@@ -858,6 +858,7 @@
   :must_supports:
     :extensions:
     - :id: Condition.extension:assertedDate
+      :path: extension
       :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :slices:
     - :slice_id: Condition.category:us-core
@@ -1234,6 +1235,7 @@
   :must_supports:
     :extensions:
     - :id: Condition.extension:assertedDate
+      :path: extension
       :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
     :slices:
     - :slice_id: Condition.category:us-core
@@ -3978,6 +3980,7 @@
   :must_supports:
     :extensions:
     - :id: MedicationRequest.extension:medicationAdherence
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence
       :uscdi_only: true
     :slices:
@@ -11389,18 +11392,23 @@
   :must_supports:
     :extensions:
     - :id: Patient.extension:race
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
       :uscdi_only: true
     - :id: Patient.extension:ethnicity
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
       :uscdi_only: true
     - :id: Patient.extension:tribalAffiliation
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation
       :uscdi_only: true
     - :id: Patient.extension:sex
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex
       :uscdi_only: true
     - :id: Patient.extension:genderIdentity
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
       :uscdi_only: true
     :slices: []
@@ -12474,8 +12482,10 @@
   :must_supports:
     :extensions:
     - :id: QuestionnaireResponse.questionnaire.extension:questionnaireDisplay
+      :path: questionnaire.extension
       :url: http://hl7.org/fhir/StructureDefinition/display
     - :id: QuestionnaireResponse.questionnaire.extension:url
+      :path: questionnaire.extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri
     :slices: []
     :elements:

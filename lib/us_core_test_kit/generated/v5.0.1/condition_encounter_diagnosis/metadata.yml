@@ -235,6 +235,7 @@
 :must_supports:
   :extensions:
   - :id: Condition.extension:assertedDate
+    :path: extension
     :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
   :slices:
   - :slice_id: Condition.category:us-core

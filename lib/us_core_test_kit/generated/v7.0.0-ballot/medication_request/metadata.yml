@@ -144,6 +144,7 @@
 :must_supports:
   :extensions:
   - :id: MedicationRequest.extension:medicationAdherence
+    :path: extension
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication-adherence
     :uscdi_only: true
   :slices:
