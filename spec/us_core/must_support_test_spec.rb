@@ -838,6 +838,22 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       expect(result.result_message).to include(' questionnaire')
     end
 
+    it 'skips if primitive value is missing' do
+      new_hash = qr.source_hash.reject { |key, _| key == 'status' }
+      new_qr = FHIR::QuestionnaireResponse.new(new_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' status')
+    end
+
     it 'skips if regular extension is provided for element without MS extension' do
       new_hash = qr.source_hash.reject { |key, _| key == 'status' }
       new_hash['_status'] = {

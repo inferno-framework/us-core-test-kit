@@ -75,7 +75,9 @@ module USCoreTestKit
 
     def find_primitive_extension(element, property)
       type = element.class::METADATA[property.to_s]['type']
-      PRIMITIVE_DATA_TYPES.include?(type) ? FHIR::Element.new(element.source_hash["_#{property.to_s}"]) : nil
+      source_value = element.source_hash["_#{property.to_s}"]
+
+      PRIMITIVE_DATA_TYPES.include?(type) && source_value.present? ? FHIR::Element.new(source_value) : nil
     end
 
     def find_slice_via_discriminator(element, property)
