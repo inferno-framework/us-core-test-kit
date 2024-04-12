@@ -75,7 +75,7 @@ module USCoreTestKit
 
     def find_primitive_extension(element, property)
       type = element.class::METADATA[property.to_s]['type']
-      source_value = element.source_hash["_#{property.to_s}"]
+      source_value = element.source_hash["_#{property}"]
 
       PRIMITIVE_DATA_TYPES.include?(type) && source_value.present? ? FHIR::Element.new(source_value) : nil
     end
