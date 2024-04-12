@@ -839,7 +839,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     end
 
     it 'skips if primitive value is missing' do
-      new_hash = qr.source_hash.reject { |key, _| key == 'status' }
+      new_hash = qr.source_hash.except('status')
       new_qr = FHIR::QuestionnaireResponse.new(new_hash)
 
       allow_any_instance_of(test_class)
@@ -855,7 +855,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     end
 
     it 'skips if regular extension is provided for element without MS extension' do
-      new_hash = qr.source_hash.reject { |key, _| key == 'status' }
+      new_hash = qr.source_hash.except('status')
       new_hash['_status'] = {
         'extension' => [
           {
