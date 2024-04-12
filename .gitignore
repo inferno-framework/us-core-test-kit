@@ -19,3 +19,4 @@
 /docs/yard
 .yardoc
 node_modules
+.rubocop.yml
