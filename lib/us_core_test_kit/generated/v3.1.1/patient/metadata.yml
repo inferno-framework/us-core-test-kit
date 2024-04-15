@@ -148,10 +148,13 @@
 :must_supports:
   :extensions:
   - :id: Patient.extension:race
+    :path: extension
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
   - :id: Patient.extension:ethnicity
+    :path: extension
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
   - :id: Patient.extension:birthsex
+    :path: extension
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
   :slices: []
   :elements:

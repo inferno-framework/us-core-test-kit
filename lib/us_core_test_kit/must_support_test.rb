@@ -83,7 +83,17 @@ module USCoreTestKit
       @missing_extensions ||=
         must_support_extensions.select do |extension_definition|
           resources.none? do |resource|
-            resource.extension.any? { |extension| extension.url == extension_definition[:url] }
+            path = extension_definition[:path]
+
+            if path == 'extension'
+              resource.extension.any? { |extension| extension.url == extension_definition[:url] }
+            else
+              extension = find_a_value_at(resource, path) do |el|
+                el.url == extension_definition[:url]
+              end
+
+              extension.present?
+            end
           end
         end
     end
@@ -100,14 +110,23 @@ module USCoreTestKit
       @missing_elements ||=
         must_support_elements.select do |element_definition|
           resources.none? do |resource|
-            path = element_definition[:path] #.delete_suffix('[x]')
+            path = element_definition[:path]
+            ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }
+              .map { |ex| ex[:url] }
+
             value_found = find_a_value_at(resource, path) do |value|
-              value_without_extensions =
-                value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
+              if value.respond_to?(:extension) && ms_extension_urls.present?
+                urls = value.extension.map(&:url)
+                has_ms_extension = (urls & ms_extension_urls).present?
+              end
 
-              (value_without_extensions.present? || value_without_extensions == false) &&
+              unless has_ms_extension
+                value_without_extensions =
+                  value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
+              end
+
+              (has_ms_extension || value_without_extensions.present? || value_without_extensions == false) &&
                 (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
-
             end
             # Note that false.present? => false, which is why we need to add this extra check
             value_found.present? || value_found == false

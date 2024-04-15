@@ -802,4 +802,136 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         expect(result.result).to eq('pass')
     end
   end
+
+  describe 'must support tests for primitive extension' do
+    let(:test_class) { USCoreTestKit::USCoreV610::QuestionnaireResponseMustSupportTest }
+    let(:qr) { FHIR.from_contents(File.read('spec/fixtures/QuestionnaireResponse.json')) }
+
+    it 'passes if server suports all MS slices' do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips if both MS extensions in a primitive are not provided' do
+      qr.source_hash['_questionnaire']['extension'][0]['url'] = 'http://example.com/extension'
+      qr.source_hash['_questionnaire']['extension'][1]['url'] = 'http://example.com/extension'
+      new_qr = FHIR::QuestionnaireResponse.new(qr.source_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
+      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
+      expect(result.result_message).to include(' questionnaire')
+    end
+
+    it 'skips if one of MS extensions in a primitive is not provided' do
+      qr.source_hash['_questionnaire']['extension'][0]['url'] = 'http://example.com/extension'
+      new_qr = FHIR::QuestionnaireResponse.new(qr.source_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
+      expect(result.result_message).not_to include('QuestionnaireResponse.questionnaire.extension:url')
+      expect(result.result_message).not_to include(' questionnaire')
+    end
+
+    it 'skips if MS primitive value is missing' do
+      new_hash = qr.source_hash.except('status')
+      new_qr = FHIR::QuestionnaireResponse.new(new_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' status')
+    end
+
+    it 'skips if regular extension is provided for MS primitive without MS extension' do
+      new_hash = qr.source_hash.except('status')
+      new_hash['_status'] = {
+        'extension' => [
+          {
+            'url' => 'http://example.com/extension',
+            'valueString' => 'value'
+          }
+        ]
+      }
+
+      new_qr = FHIR::QuestionnaireResponse.new(new_hash)
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' status')
+    end
+
+    it 'skips if MS element (not primitive) is missing' do
+      qr.subject = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' subject')
+    end
+
+    it 'skips if regular extension is provided for MS element (not primitive)' do
+      qr.subject = FHIR::Reference.new(
+        extension: [
+          {
+            url: 'http://example.com/extension',
+            valueString: 'value'
+          }
+        ]
+      )
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include(' subject')
+    end
+  end
 end

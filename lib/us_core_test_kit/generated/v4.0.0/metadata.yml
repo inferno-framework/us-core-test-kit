@@ -7260,12 +7260,15 @@
   :must_supports:
     :extensions:
     - :id: Patient.extension:race
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
       :uscdi_only: true
     - :id: Patient.extension:ethnicity
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
       :uscdi_only: true
     - :id: Patient.extension:birthsex
+      :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
       :uscdi_only: true
     :slices: []
