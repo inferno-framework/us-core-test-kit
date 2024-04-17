@@ -676,6 +676,8 @@ module USCoreTestKit
         (element.family || element.given&.first || element.text).present?
       when FHIR::Address
         (element.text || element.city || element.state || element.postalCode || element.country).present?
+      when FHIR::Element
+        false
       else
         true
       end
