@@ -11,6 +11,11 @@ services:
       # To let the service share your local FHIR package cache,
       # uncomment the below line
       # - ~/.fhir:/home/ktor/.fhir
+  # validator_service:
+  #   image: infernocommunity/fhir-validator-service
+  #   # Update this path to match your directory structure
+  #   volumes:
+  #     - ./lib/us_core_test_kit/igs:/home/igs
   # fhir_validator_app:
   #   image: infernocommunity/fhir-validator-app
   #   depends_on:
