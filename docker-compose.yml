@@ -15,14 +15,14 @@ services:
     command: bundle exec sidekiq -r ./worker.rb
     depends_on:
       - redis
-  validator_service:
+  hl7_validator_service:
     extends:
       file: docker-compose.background.yml
-      service: validator_service
-  fhir_validator_app:
-    extends:
-      file: docker-compose.background.yml
-      service: fhir_validator_app
+      service: hl7_validator_service
+  # fhir_validator_app:
+  #   extends:
+  #     file: docker-compose.background.yml
+  #     service: fhir_validator_app
   nginx:
     extends:
       file: docker-compose.background.yml

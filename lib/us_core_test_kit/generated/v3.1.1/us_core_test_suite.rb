@@ -65,6 +65,7 @@ module USCoreTestKit
         /Provenance.agent\[\d*\]: Rule provenance-1/, #Invalid invariant in US Core v5.0.1
         %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
         %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
+        /\A\S+: \S+: URL value '.*' does not resolve/,
         %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
       ].freeze
 
@@ -76,8 +77,9 @@ module USCoreTestKit
           end
       end
 
-      validator do
-        url ENV.fetch('V311_VALIDATOR_URL', 'http://validator_service:4567')
+      fhir_resource_validator do
+        url ENV.fetch('V311_FHIR_RESOURCE_VALIDATOR_URL', 'http://hl7_validator_service:3500')
+        igs 'hl7.fhir.us.core#3.1.1'
         message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
         exclude_message do |message|
