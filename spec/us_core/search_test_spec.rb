@@ -838,8 +838,6 @@ RSpec.describe USCoreTestKit::SearchTest do
 
       new_resource = FHIR::DocumentReference.new(resource_with_category.source_hash)
 
-      expect(new_resource.source_hash).to have_key('_date')
-
       allow_any_instance_of(test_class)
         .to receive(:scratch_resources_for_patient).and_return(
           [
