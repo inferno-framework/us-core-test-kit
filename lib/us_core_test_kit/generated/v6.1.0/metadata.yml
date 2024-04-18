@@ -12124,15 +12124,9 @@
   Condition:
   - :id: us_core_v610_condition_granular_scope_1_group
     :file_name: condition_granular_scope1_group.rb
-  - :id: us_core_v610_condition_granular_scope_2_group
-    :file_name: condition_granular_scope2_group.rb
   Observation:
   - :id: us_core_v610_observation_granular_scope_1_group
     :file_name: observation_granular_scope1_group.rb
-  - :id: us_core_v610_observation_granular_scope_2_group
-    :file_name: observation_granular_scope2_group.rb
 :granular_scope_groups:
 - :id: us_core_v610_smart_granular_scopes_1
   :file_name: granular_scopes1_group.rb
-- :id: us_core_v610_smart_granular_scopes_2
-  :file_name: granular_scopes2_group.rb
