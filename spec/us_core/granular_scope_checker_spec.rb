@@ -353,7 +353,6 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
             :result,
             test_session_id: test_session.id
           ),
-          tags: ['Condition_Read'],
           response_body: FHIR::Bundle.new(
             entry: [
               { resource: matching_resource.to_hash },
@@ -370,7 +369,6 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
             :result,
             test_session_id: test_session.id
           ),
-          tags: ['Condition_Read'],
           response_body: FHIR::Bundle.new(
             entry: [
               { resource: not_matching_resource.to_hash }

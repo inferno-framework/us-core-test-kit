@@ -49,11 +49,31 @@ module USCoreTestKit
 
     def run_scope_check_read_test
       assert granular_scopes.present?, "No granular scopes were received for #{resource_type} resources"
-      load_previous_read_requests
-      skip_if previous_requests.blank?,
-              "No #{resource_type} reads found"
+      resource_scopes = granular_scopes.select {|scope| scope.include?(resource_type)}
 
+      #From scopes find important fields
+      resource_scopes.each do |scope| 
+        /\?(?<field_name>.*)=(.*)\|(?<field_value>.*)/ =~ (scope)
+        info field_name
+        info field_value
+        #Look for previous elements with the fields populated, one that matches scope, one that doesn't
+        binding.pry
+        load_previous_requests_for_reads([field_name])
+        info previous_resources([field_name])
+        skip_if previous_requests.blank?,
+              "No #{resource_type} reads found"
+        
+        resource_matching_scope = previous_resources.find {|prev_resource| prev_resource[field_name] == field_value}
+        #resource_notmatching_scope =
+
+        #Confirm that the matched is returned and the unmatched does not
+      end
+      
+      
+      
+      
       previous_requests.each do |previous_request|
+        info previous_request.to_json
         resource_id = id_from_read(previous_request)
         #search_method = previous_request.verb.to_sym
         #params = search_method == :get ? previous_request.query_parameters : Hash[URI.decode_www_form(previous_request.request_body)]
@@ -144,8 +164,13 @@ module USCoreTestKit
           .sort_by { |request| request.index }
     end
     
-    def load_previous_read_requests
-      @previous_requests ||= load_tagged_requests("#{resource_type}_Read").sort_by { |request| request.index }
+    def load_previous_requests_for_reads(params)
+      search_params_as_hash = params.each_with_object({}) do |name, hash|
+        hash[name] = nil
+      end
+      @previous_requests ||=
+        load_tagged_requests(search_params_tag(search_params_as_hash))
+          .sort_by { |request| request.index }
     end
 
     def id_from_read(previous_read_request)
