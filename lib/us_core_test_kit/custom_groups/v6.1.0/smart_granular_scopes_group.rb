@@ -9,28 +9,20 @@ module USCoreTestKit
       title 'US Core SMART Granular Scopes'
       id :us_core_v610_smart_granular_scopes
 
-    description <<~DESCRIPTION
-      These tests verify that servers honor [SMART App Launch granular
-      scopes](http://hl7.org/fhir/smart-app-launch/STU2/scopes-and-launch-context.html#finer-grained-resource-constraints-using-search-parameters).
-      Support for these scopes is [required in US Core
-      7](http://hl7.org/fhir/us/core/2024Jan/scopes.html#us-core-scopes).
+      description <<~DESCRIPTION
+        These tests verify that servers honor [SMART App Launch granular
+        scopes](http://hl7.org/fhir/smart-app-launch/STU2/scopes-and-launch-context.html#finer-grained-resource-constraints-using-search-parameters).
+        Support for these scopes is [required in US Core
+        7](http://hl7.org/fhir/us/core/2024Jan/scopes.html#us-core-scopes).
 
-      Prior to running these tests, first run the US Core FHIR API tests using
-      resource-level scopes. This group includes a SMART App Launch followed by
-      FHIR API tests. The app launches require that a granular scopes be
-      granted. The FHIR API tests then repeat all of the queries from the
-      original FHIR API tests that were run using resource-level scopes, and
-      verify that only resources matching the granted granular scopes are
-      returned.
-    DESCRIPTION
-
-      config(
-        inputs: {
-          url: {
-            locked: true
-          }
-        }
-      )
+        Prior to running these tests, first run the US Core FHIR API tests using
+        resource-level scopes. This group includes a SMART App Launch followed by
+        FHIR API tests. The app launches require that a granular scopes be
+        granted. The FHIR API tests then repeat all of the queries from the
+        original FHIR API tests that were run using resource-level scopes, and
+        verify that only resources matching the granted granular scopes are
+        returned.
+      DESCRIPTION
 
       def self.default_group_scopes(version)
         [DEFAULT_SCOPES, *SMART_GRANULAR_SCOPES_GROUP1[version]].join(' ')
@@ -42,6 +34,18 @@ module USCoreTestKit
           .map { |scope| "* `#{scope}`" }
           .join("\n")
       end
+
+      config(
+        inputs: {
+          url: {
+            locked: true
+          },
+          requested_scopes: {
+            name: :requested_scopes_group1,
+            default: default_group_scopes('v610')
+          }
+        }
+      )
 
       group do
         title 'SMART App Launch w/Granular Scopes'
