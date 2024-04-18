@@ -50,6 +50,8 @@ module USCoreTestKit
           end
       end
 
+      id :<%= suite_id %>
+
       fhir_resource_validator do
         url ENV.fetch('<%= validator_env_name %>', 'http://hl7_validator_service:3500')
         igs '<%= ig_identifier %>'
@@ -64,8 +66,6 @@ module USCoreTestKit
           ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
         end
       end
-
-      id :<%= suite_id %>
 
       input :url,
         title: 'FHIR Endpoint',
