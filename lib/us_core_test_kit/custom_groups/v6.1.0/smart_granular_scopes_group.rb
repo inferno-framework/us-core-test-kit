@@ -96,7 +96,8 @@ above scopes.
         # TODO: verify that all required scopes were requested and received
       end
 
-      group from: :us_core_v610_smart_granular_scopes_1
+      group from: :us_core_v610_smart_granular_scopes_1,
+            title: 'US Core FHIR API w/Granular Scopes'
     end
   end
 end
