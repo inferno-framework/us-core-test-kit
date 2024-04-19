@@ -43,6 +43,9 @@ above scopes.
               name: :requested_scopes_group1,
               default: groups.first.default_group_scopes('v700_ballot')
             }
+          },
+          options: {
+            required_scopes: SMART_GRANULAR_SCOPES_GROUP1['v700_ballot']
           }
         )
 
@@ -70,6 +73,9 @@ above scopes.
               name: :requested_scopes_group2,
               default: groups.last.default_group_scopes('v700_ballot')
             }
+          },
+          options: {
+            required_scopes: SMART_GRANULAR_SCOPES_GROUP2['v700_ballot']
           }
         )
 

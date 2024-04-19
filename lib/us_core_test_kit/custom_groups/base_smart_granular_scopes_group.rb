@@ -5,6 +5,7 @@ require_relative './smart_scopes_constants'
 require_relative './smart_standalone_launch_stu2_group'
 require_relative '../granular_scope_checker'
 require_relative '../us_core_options'
+require_relative './granted_granular_scopes_test'
 
 module USCoreTestKit
   class BaseSmartGranularScopesGroup < Inferno::TestGroup
@@ -52,8 +53,7 @@ module USCoreTestKit
             smart_credentials: {
               name: :granular_scopes_1_credentials
             }
-          }
-        )
+          }        )
         group from: :us_core_smart_standalone_launch_stu2,
               optional: true,
               config: {
@@ -62,7 +62,16 @@ module USCoreTestKit
                     name: :granular_scopes_1_credentials
                   }
                 }
-              }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :standalone_received_scopes
+                             }
+                           }
+                         }
+        end
         group from: :us_core_smart_ehr_launch_stu2,
               optional: true,
               config: {
@@ -71,9 +80,16 @@ module USCoreTestKit
                     name: :granular_scopes_1_credentials
                   }
                 }
-              }
-
-        # TODO: verify that all required scopes were requested and received
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :ehr_received_scopes
+                             }
+                           }
+                         }
+        end
       end
     end
 
@@ -103,7 +119,16 @@ module USCoreTestKit
                     name: :granular_scopes_2_credentials
                   }
                 }
-              }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :standalone_received_scopes
+                             }
+                           }
+                         }
+        end
 
 
         group from: :us_core_smart_ehr_launch_stu2,
@@ -114,10 +139,16 @@ module USCoreTestKit
                     name: :granular_scopes_2_credentials
                   }
                 }
-              }
-
-
-        # TODO: verify that all required scopes were requested and received
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :ehr_received_scopes
+                             }
+                           }
+                         }
+        end
       end
     end
   end

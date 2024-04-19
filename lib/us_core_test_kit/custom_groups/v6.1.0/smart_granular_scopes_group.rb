@@ -1,5 +1,6 @@
 require_relative '../base_smart_granular_scopes_group'
 require_relative '../smart_scopes_constants'
+require_relative '../granted_granular_scopes_test'
 require_relative '../../generated/v6.1.0/granular_scopes1_group'
 
 module USCoreTestKit
@@ -82,7 +83,19 @@ above scopes.
                     name: :granular_scopes_1_credentials
                   }
                 }
-              }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :standalone_received_scopes
+                             }
+                           },
+                           options: {
+                             required_scopes: SMART_GRANULAR_SCOPES_GROUP1['v610']
+                           }
+                         }
+        end
         group from: :us_core_smart_ehr_launch_stu2,
               optional: true,
               config: {
@@ -91,9 +104,19 @@ above scopes.
                     name: :granular_scopes_1_credentials
                   }
                 }
-              }
-
-        # TODO: verify that all required scopes were requested and received
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :ehr_received_scopes
+                             }
+                           },
+                           options: {
+                             required_scopes: SMART_GRANULAR_SCOPES_GROUP1['v610']
+                           }
+                         }
+        end
       end
 
       group from: :us_core_v610_smart_granular_scopes_1,
