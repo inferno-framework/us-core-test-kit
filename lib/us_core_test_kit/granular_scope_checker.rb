@@ -55,11 +55,11 @@ module USCoreTestKit
       skip_if previous_requests.blank?,
               "No #{resource_type} reads found"
       previous_resources_for_reads = previous_request_resources.values.flatten
-      #From scopes find important fields
+
       resource_specific_granular_scope_search_params.each do |scope| 
         resource_matching_scope = previous_resources_for_reads.find {|prev_resource| search_param_value(scope[:name], prev_resource) == scope[:value]}
-        skip_if resource_matching_scope.nil?, "Unable to find any resources to match scope #{scope}"
-        #Attempt read, assert it was read.
+        skip_if resource_matching_scope.nil?, "Unable to find any resources to match scope #{granular_scopes.find {|granular| granular.include?(scope[:name]) && granular.include?(scope[:value])}}"
+
         fhir_read resource_type, resource_matching_scope.id
 
         assert_response_status(200)
@@ -67,7 +67,6 @@ module USCoreTestKit
         assert resource.id.present? && resource.id == resource_matching_scope.id, "Unable to read resource #{resource_matching_scope.id}, but it matches scopes"
       end
 
-      # Find element that matches no scopes, and attempt a read, ensure it fails.
       nonmatching_resource = previous_resources_for_reads.find do |prev_resource|
         resource_specific_granular_scope_search_params.all? { |scope| search_param_value(scope[:name], prev_resource) != scope[:value]}
       end
@@ -103,8 +102,6 @@ module USCoreTestKit
     end
 
     def granular_scopes
-      info "Checking scopes"
-      info "#{received_scopes}"
       @granular_scopes ||=
         received_scopes
           .split(' ')
@@ -157,10 +154,6 @@ module USCoreTestKit
       @previous_requests ||=
         load_tagged_requests(search_params_tag(search_params_as_hash))
           .sort_by { |request| request.index }
-    end
-
-    def resources_from_requests(previous_read_request)
-      JSON.parse(previous_read_request.response_body)["entry"][0]["resource"]["id"]
     end
 
     def search_param_paths(name, resource = resource_type)
