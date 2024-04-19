@@ -315,6 +315,7 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
   end
 
   describe "#run_scope_check_read_test" do
+
     context 'when previous searches do match the search parameters' do
       let(:matching_resource) do
         FHIR::Condition.new(
@@ -330,10 +331,24 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
           }
         )
       end
-      let(:not_matching_resource) do
+      let(:matching_resource2) do
         FHIR::Condition.new(
           resourceType: 'Condition',
           id: 'DEF',
+          category: {
+            coding: [
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                code: 'health-concern'
+              }
+            ]
+          }
+        )
+      end
+      let(:not_matching_resource) do
+        FHIR::Condition.new(
+          resourceType: 'Condition',
+          id: 'GHI',
           category: {
             coding: [
               {
@@ -344,84 +359,115 @@ RSpec.describe USCoreTestKit::GranularScopeChecker do
           }
         )
       end
-      let!(:request_matching) do
-        repo_create(
-          :request,
-          url: 'http://example.com/fhir/Condition/ABC',
-          test_session_id: test_session.id,
-          result: repo_create(
-            :result,
-            test_session_id: test_session.id
-          ),
-          response_body: FHIR::Bundle.new(
+
+      let(:received_scopes) { 'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern' }
+
+      context "with previous requests having available resources" do
+        
+        let!(:request) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Condition',
+            test_session_id: test_session.id,
+            result: repo_create(
+              :result,
+              test_session_id: test_session.id
+            ),
+            tags: ['Condition?patient&category'],
+            response_body: FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash },
+                { resource: not_matching_resource.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        it 'fails if resources which match the received scopes are not returned' do
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource.id}")
+            .to_return(body: FHIR::OperationOutcome.new().to_json, status: 401)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Unexpected response status: expected 200, but received 401"
+
+          expect(result.result).to eq('fail')
+          expect(result.result_message).to eq(expected_message)
+        end
+
+        it 'fails if resources which do not match the received scopes are returned' do
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource.id}")
+            .to_return(body: matching_resource.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource2.id}")
+            .to_return(body: matching_resource2.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{not_matching_resource.id}")
+            .to_return(body: not_matching_resource.to_json)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Unexpected response status: expected 401, but received 200"
+
+          expect(result.result).to eq('fail')
+          expect(result.result_message).to eq(expected_message)
+        end
+
+        it 'passes if matching resource returned' do
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource.id}")
+            .to_return(body: matching_resource.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource2.id}")
+            .to_return(body: matching_resource2.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{not_matching_resource.id}")
+            .to_return(body: FHIR::OperationOutcome.new().to_json, status: 401)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+
+          expect(result.result).to eq('pass')
+        end
+
+        
+      end
+
+      context "with previous requests not populated with resource" do
+        let!(:empty_request) do 
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Condition',
+            test_session_id: test_session.id,
+            result: repo_create(
+              :result,
+              test_session_id: test_session.id
+            ),
+            tags: ['Condition?patient&category'],
+            response_body: FHIR::Bundle.new(
+              entry: [
+              ]
+            ).to_json
+          )
+        end
+
+        it 'skips if unable to find a resource to match scopes' do
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Unable to find any resources to match scope #{received_scopes.split(" ").first}"
+
+          expect(result.result).to eq("skip")
+        end
+
+        it 'skips if unable to find a resource that does not match scopes' do
+          empty_request.response_body = FHIR::Bundle.new(
             entry: [
               { resource: matching_resource.to_hash },
-            ]
+              { resource: matching_resource2.to_hash }
+              ]
           ).to_json
-        )
-      end
-      let!(:request_notmatching) do
-        repo_create(
-          :request,
-          url: 'http://example.com/fhir/Condition/DEF',
-          test_session_id: test_session.id,
-          result: repo_create(
-            :result,
-            test_session_id: test_session.id
-          ),
-          response_body: FHIR::Bundle.new(
-            entry: [
-              { resource: not_matching_resource.to_hash }
-            ]
-          ).to_json
-        )
-      end
-      let(:received_scopes) { 'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis' }
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
 
-      it 'fails if resources which match the received scopes are not returned' do
-        stub_request(request_matching.verb.to_sym, request_matching.url)
-          .to_return(body: FHIR::Bundle.new.to_json)
-        binding.pry
-        result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+          expected_message = "Unable to find a resource that does not match scopes"
 
-        expected_message = "Resources with the following ids were received when using resource-level scopes, " \
-                          "but not when using granular scopes: #{matching_resource.id}"
-
-        expect(result.result).to eq('fail')
-        expect(result.result_message).to eq(expected_message)
-      end
-
-      it 'fails if resources which do not match the received scopes are returned' do
-        stub_request(request_notmatching.verb.to_sym, request_notmatching.url)
-          .to_return(body: request_notmatching.response_body)
-
-        result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
-
-        expected_message = "Resources with the following ids were received even though they do not match the " \
-                          "granted granular scopes: #{not_matching_resource.id}"
-
-        expect(result.result).to eq('fail')
-        expect(result.result_message).to eq(expected_message)
-      end
-
-      it 'succeeds if matching resource returned' do
-        response_body =
-          FHIR::Bundle.new(
-            entry: [
-              { resource: matching_resource.to_hash }
-            ]
-          ).to_json
-        stub_request(request_matching.verb.to_sym, request_matching.url)
-          .to_return(body: response_body)
-
-        result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
-
-        expect(result.result).to eq('pass')
+          expect(result.result).to eq("skip")
+        end
       end
     end
-
-
-
   end
-
 end
