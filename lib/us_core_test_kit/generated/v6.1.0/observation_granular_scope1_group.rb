@@ -16,7 +16,7 @@ based on the following granular scopes:
 
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history`
-* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure`
+* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
 
       )
 

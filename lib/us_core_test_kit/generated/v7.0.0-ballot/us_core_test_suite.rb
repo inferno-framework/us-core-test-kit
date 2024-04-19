@@ -209,7 +209,7 @@ module USCoreTestKit
         group from: :us_core_311_data_absent_reason
       end
 
-      group from: :us_core_v700_ballot_smart_granular_scopes,
+      group from: :'us_core_v700_ballot_smart_granular_scopes',
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
       
     end

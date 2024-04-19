@@ -16,7 +16,7 @@ module USCoreTestKit
                 .const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")[ig_metadata.reformatted_version]
 
             groups.each do |group_metadata|
-              next if scopes.none? { |scope| scope.start_with? "patient/#{group_metadata.resource}" }
+              next if scopes.blank? || scopes.none? { |scope| scope.start_with? "patient/#{group_metadata.resource}" }
 
               new(GroupMetadata.new(group_metadata.to_hash), ig_metadata, base_output_dir, group_number).generate
             end

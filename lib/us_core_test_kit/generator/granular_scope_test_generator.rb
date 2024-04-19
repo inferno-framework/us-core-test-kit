@@ -11,12 +11,12 @@ module USCoreTestKit
 
           scopes =
             SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP1[ig_metadata.reformatted_version] +
-            SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP2[ig_metadata.reformatted_version]
+            (SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP2[ig_metadata.reformatted_version] || [])
 
           SmartScopesConstants::SMART_GRANULAR_SCOPE_RESOURCES.each do |resource_type|
             group = ig_metadata.groups.find { |group| group.resource == resource_type }
 
-            next if scopes.none? { |scope| scope.start_with? "patient/#{group.resource}" }
+            next if scopes.blank? || scopes.none? { |scope| scope.start_with? "patient/#{group.resource}" }
 
             group.searches
               .each { |search| new(group, search, base_output_dir).generate }
