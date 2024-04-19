@@ -101,7 +101,7 @@ module USCoreTestKit
 
       def description
         <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
-          This test repeats all #{resource_type} reads 
+          This test attempts #{resource_type} reads 
           and verifies that the results have been
           filtered based on the granted granular scopes.
         DESCRIPTION
