@@ -273,15 +273,8 @@
   :file_name: observation_patient_category_date_granular_scope_test.rb
 - :id: us_core_v610_Observation_patient_code_granular_scope_test
   :file_name: observation_patient_code_granular_scope_test.rb
-<<<<<<< HEAD
 :id: us_core_v610_observation_granular_scope_1_group
 :file_name: observation_granular_scope1_group.rb
-=======
-- :id: us_core_v610_Observation_read_granular_scope_test
-  :file_name: observation_read_granular_scope_test.rb
-:id: us_core_v610_observation_granular_scope_2_group
-:file_name: observation_granular_scope2_group.rb
->>>>>>> 5a720c7a (Generation of Granular Reads, Spec tests added)
 :delayed_references:
 - :path: specimen
   :resources:
