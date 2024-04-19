@@ -31,7 +31,7 @@ module USCoreTestKit
     def read_and_validate(resource_to_read)
       id = resource_id(resource_to_read)
 
-      fhir_read resource_type, id
+      fhir_read resource_type, id, tags: tags()
 
       assert_response_status(200)
       assert_resource_type(resource_type)
@@ -44,6 +44,16 @@ module USCoreTestKit
 
     def resource_id(resource)
       resource.is_a?(FHIR::Reference) ? resource.reference.split('/').last : resource.id
+    end
+
+    def tags()
+      return nil unless config.options[:tag_requests]
+
+      if ['Condition', 'DiagnosticReport', 'DocumentReference', 'Observation', 'ServiceRequest'].include? resource_type
+        return ["#{resource_type}_Read"]
+      end
+
+      nil
     end
 
     def no_resources_skip_message

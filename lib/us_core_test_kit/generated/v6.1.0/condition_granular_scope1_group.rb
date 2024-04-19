@@ -8,6 +8,7 @@ require_relative './granular_scope_tests/condition/condition_patient_abatement_d
 require_relative './granular_scope_tests/condition/condition_patient_clinical_status_granular_scope_test'
 require_relative './granular_scope_tests/condition/condition_patient_category_encounter_granular_scope_test'
 require_relative './granular_scope_tests/condition/condition_patient_code_granular_scope_test'
+require_relative './granular_scope_tests/condition/condition_read_granular_scope_test'
 
 module USCoreTestKit
   module USCoreV610
@@ -39,6 +40,7 @@ based on the following granular scopes:
       test from: :us_core_v610_Condition_patient_clinical_status_granular_scope_test
       test from: :us_core_v610_Condition_patient_category_encounter_granular_scope_test
       test from: :us_core_v610_Condition_patient_code_granular_scope_test
+      test from: :us_core_v610_Condition_read_granular_scope_test
     end
   end
 end

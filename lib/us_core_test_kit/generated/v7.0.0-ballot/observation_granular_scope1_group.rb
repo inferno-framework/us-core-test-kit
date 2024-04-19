@@ -3,6 +3,7 @@ require_relative './granular_scope_tests/observation/observation_patient_categor
 require_relative './granular_scope_tests/observation/observation_patient_code_granular_scope_test'
 require_relative './granular_scope_tests/observation/observation_patient_category_status_granular_scope_test'
 require_relative './granular_scope_tests/observation/observation_patient_code_date_granular_scope_test'
+require_relative './granular_scope_tests/observation/observation_read_granular_scope_test'
 
 module USCoreTestKit
   module USCoreV700_BALLOT
@@ -30,6 +31,7 @@ based on the following granular scopes:
       test from: :us_core_v700_ballot_Observation_patient_code_granular_scope_test
       test from: :us_core_v700_ballot_Observation_patient_category_status_granular_scope_test
       test from: :us_core_v700_ballot_Observation_patient_code_date_granular_scope_test
+      test from: :us_core_v700_ballot_Observation_read_granular_scope_test
     end
   end
 end

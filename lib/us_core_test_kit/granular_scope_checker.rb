@@ -47,6 +47,47 @@ module USCoreTestKit
       end
     end
 
+    def run_scope_check_read_test
+      assert granular_scopes.present?, "No granular scopes were received for #{resource_type} resources"
+      load_previous_read_requests
+      skip_if previous_requests.blank?,
+              "No #{resource_type} reads found"
+
+      previous_requests.each do |previous_request|
+        resource_id = previous_request.to_hash["id"]
+        #search_method = previous_request.verb.to_sym
+        #params = search_method == :get ? previous_request.query_parameters : Hash[URI.decode_www_form(previous_request.request_body)]
+        fhir_read resource_type, previous_request.id
+
+        found_resources =
+          if request.status != 200
+            []
+          else
+            fetch_all_bundled_resources
+          end
+
+        mismatched_ids = mismatched_resource_ids(found_resources)
+
+        assert mismatched_ids.empty?,
+               'Resources with the following ids were received even though they do not match the ' \
+               "granted granular scopes: #{mismatched_ids.join(', ')}"
+
+        found_ids = found_resources.map(&:id)
+        previous_ids = previous_request.id
+        missing_ids = previous_ids == found_ids.first
+
+        assert !missing_ids,
+               'Resources with the following ids were received when using resource-level scopes, ' \
+               "but not when using granular scopes: #{previous_request.id}"
+
+        unexpected_ids = found_ids - previous_ids
+
+        assert unexpected_ids.empty?,
+               'Resources with the following ids were received when using granular scopes, ' \
+               "but not when using resource-level scopes: #{unexpected_ids.join(', ')}"
+      end
+    end
+
     def previous_request_resources
       first_request = previous_requests.first
       next_page_url = nil
@@ -70,6 +111,8 @@ module USCoreTestKit
     end
 
     def granular_scopes
+      info "Checking scopes"
+      info "#{received_scopes}"
       @granular_scopes ||=
         received_scopes
           .split(' ')
@@ -99,6 +142,10 @@ module USCoreTestKit
       @previous_requests ||=
         load_tagged_requests(search_params_tag(search_params_as_hash))
           .sort_by { |request| request.index }
+    end
+    
+    def load_previous_read_requests
+      @previous_requests ||= load_tagged_requests("#{resource_type}_Read").sort_by { |request| request.index }
     end
 
     def previous_resources(params)

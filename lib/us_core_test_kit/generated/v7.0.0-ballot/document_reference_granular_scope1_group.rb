@@ -5,6 +5,7 @@ require_relative './granular_scope_tests/document_reference/document_reference_p
 require_relative './granular_scope_tests/document_reference/document_reference_patient_type_period_granular_scope_test'
 require_relative './granular_scope_tests/document_reference/document_reference_patient_type_granular_scope_test'
 require_relative './granular_scope_tests/document_reference/document_reference_patient_status_granular_scope_test'
+require_relative './granular_scope_tests/document_reference/document_reference_read_granular_scope_test'
 
 module USCoreTestKit
   module USCoreV700_BALLOT
@@ -31,6 +32,7 @@ based on the following granular scopes:
       test from: :us_core_v700_ballot_DocumentReference_patient_type_period_granular_scope_test
       test from: :us_core_v700_ballot_DocumentReference_patient_type_granular_scope_test
       test from: :us_core_v700_ballot_DocumentReference_patient_status_granular_scope_test
+      test from: :us_core_v700_ballot_DocumentReference_read_granular_scope_test
     end
   end
 end

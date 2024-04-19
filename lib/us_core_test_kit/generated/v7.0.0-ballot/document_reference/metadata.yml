@@ -328,6 +328,8 @@
   :file_name: document_reference_patient_type_granular_scope_test.rb
 - :id: us_core_v700_ballot_DocumentReference_patient_status_granular_scope_test
   :file_name: document_reference_patient_status_granular_scope_test.rb
+- :id: us_core_v700_ballot_DocumentReference_read_granular_scope_test
+  :file_name: document_reference_read_granular_scope_test.rb
 :id: us_core_v700_ballot_document_reference
 :file_name: document_reference_group.rb
 :delayed_references:

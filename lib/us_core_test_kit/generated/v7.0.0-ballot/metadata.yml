@@ -987,6 +987,8 @@
     :file_name: condition_patient_category_encounter_granular_scope_test.rb
   - :id: us_core_v700_ballot_Condition_patient_clinical_status_granular_scope_test
     :file_name: condition_patient_clinical_status_granular_scope_test.rb
+  - :id: us_core_v700_ballot_Condition_read_granular_scope_test
+    :file_name: condition_read_granular_scope_test.rb
   :id: us_core_v700_ballot_condition_encounter_diagnosis
   :file_name: condition_encounter_diagnosis_group.rb
   :delayed_references: []
@@ -1977,6 +1979,8 @@
     :file_name: diagnostic_report_patient_status_granular_scope_test.rb
   - :id: us_core_v700_ballot_DiagnosticReport_patient_code_date_granular_scope_test
     :file_name: diagnostic_report_patient_code_date_granular_scope_test.rb
+  - :id: us_core_v700_ballot_DiagnosticReport_read_granular_scope_test
+    :file_name: diagnostic_report_read_granular_scope_test.rb
   :id: us_core_v700_ballot_diagnostic_report_note
   :file_name: diagnostic_report_note_group.rb
   :delayed_references:
@@ -2585,6 +2589,8 @@
     :file_name: document_reference_patient_type_granular_scope_test.rb
   - :id: us_core_v700_ballot_DocumentReference_patient_status_granular_scope_test
     :file_name: document_reference_patient_status_granular_scope_test.rb
+  - :id: us_core_v700_ballot_DocumentReference_read_granular_scope_test
+    :file_name: document_reference_read_granular_scope_test.rb
   :id: us_core_v700_ballot_document_reference
   :file_name: document_reference_group.rb
   :delayed_references:
@@ -4447,6 +4453,8 @@
     :file_name: observation_patient_category_status_granular_scope_test.rb
   - :id: us_core_v700_ballot_Observation_patient_code_date_granular_scope_test
     :file_name: observation_patient_code_date_granular_scope_test.rb
+  - :id: us_core_v700_ballot_Observation_read_granular_scope_test
+    :file_name: observation_read_granular_scope_test.rb
   :id: us_core_v700_ballot_observation_lab
   :file_name: observation_lab_group.rb
   :delayed_references:
@@ -13066,6 +13074,8 @@
     :file_name: service_request_patient_code_granular_scope_test.rb
   - :id: us_core_v700_ballot_ServiceRequest_patient_status_granular_scope_test
     :file_name: service_request_patient_status_granular_scope_test.rb
+  - :id: us_core_v700_ballot_ServiceRequest_read_granular_scope_test
+    :file_name: service_request_read_granular_scope_test.rb
   :id: us_core_v700_ballot_service_request
   :file_name: service_request_group.rb
   :delayed_references:
