@@ -36,7 +36,7 @@ module USCoreTestKit
       end
       if nonmatching_resource
         fhir_read resource_type, nonmatching_resource.id
-
+        #TODO: Decide assertions for nonmatching resources
         assert !resource.id.present?, "Resource #{nonmatching_resource.id} does not match the scopes, but was still read."
       else
         info "Unable to find a resource that does not fit scopes."

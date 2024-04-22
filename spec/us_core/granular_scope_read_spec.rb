@@ -134,7 +134,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
           result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
           
           expect(result.result).to eq('fail')
-          expect(result.result_message).to include?('Expected status 200')
+          expect(result.result_message.include?('expected 200,')).to eq(true)
         end
 
         it 'fails if resources which do not match the received scopes are returned' do
