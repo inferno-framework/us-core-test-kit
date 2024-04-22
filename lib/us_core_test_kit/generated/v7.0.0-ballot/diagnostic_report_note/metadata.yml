@@ -272,20 +272,20 @@
 - :id: us_core_v700_ballot_diagnostic_report_note_reference_resolution_test
   :file_name: diagnostic_report_note_reference_resolution_test.rb
 :granular_scope_tests:
-- :id: us_core_v700_ballot_DiagnosticReport_patient_category_granular_scope_test
-  :file_name: diagnostic_report_patient_category_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_patient_granular_scope_test
-  :file_name: diagnostic_report_patient_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_patient_category_date_granular_scope_test
-  :file_name: diagnostic_report_patient_category_date_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_patient_code_granular_scope_test
-  :file_name: diagnostic_report_patient_code_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_patient_status_granular_scope_test
-  :file_name: diagnostic_report_patient_status_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_patient_code_date_granular_scope_test
-  :file_name: diagnostic_report_patient_code_date_granular_scope_test.rb
-- :id: us_core_v700_ballot_DiagnosticReport_read_granular_scope_test
-  :file_name: diagnostic_report_read_granular_scope_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_category_granular_scope_search_test
+  :file_name: diagnostic_report_patient_category_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_granular_scope_search_test
+  :file_name: diagnostic_report_patient_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_category_date_granular_scope_search_test
+  :file_name: diagnostic_report_patient_category_date_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_code_granular_scope_search_test
+  :file_name: diagnostic_report_patient_code_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_status_granular_scope_search_test
+  :file_name: diagnostic_report_patient_status_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_patient_code_date_granular_scope_search_test
+  :file_name: diagnostic_report_patient_code_date_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_DiagnosticReport_granular_scope_read_test
+  :file_name: diagnostic_report_granular_scope_read_test.rb
 :id: us_core_v700_ballot_diagnostic_report_note
 :file_name: diagnostic_report_note_group.rb
 :delayed_references:

@@ -3,7 +3,8 @@ require 'smart_app_launch_test_kit'
 require_relative './smart_ehr_launch_stu2'
 require_relative './smart_scopes_constants'
 require_relative './smart_standalone_launch_stu2_group'
-require_relative '../granular_scope_checker'
+require_relative '../granular_scope_search_test'
+require_relative '../granular_scope_read_test'
 require_relative '../us_core_options'
 
 module USCoreTestKit

@@ -12,7 +12,7 @@ module USCoreTestKit
           
           scopes =
             SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP1[ig_metadata.reformatted_version] +
-            SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP2[ig_metadata.reformatted_version]
+            (SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP2[ig_metadata.reformatted_version] || [])
 
           SmartScopesConstants::SMART_GRANULAR_SCOPE_RESOURCES.each do |resource_type|
             group = ig_metadata.groups.find { |group| group.resource == resource_type }
@@ -56,11 +56,11 @@ module USCoreTestKit
       end
 
       def test_id
-        "us_core_#{group_metadata.reformatted_version}_#{resource_type}_read_granular_scope_test"
+        "us_core_#{group_metadata.reformatted_version}_#{resource_type}_granular_scope_read_test"
       end
 
       def class_name
-        "#{resource_type}ReadGranularScopeTest"
+        "#{resource_type}GranularScopeReadTest"
       end
 
       def module_name
@@ -78,15 +78,6 @@ module USCoreTestKit
       def array_of_strings(array)
         quoted_strings = array.map { |element| "'#{element}'" }
         "[#{quoted_strings.join(', ')}]"
-      end
-
-      def url_version
-        case group_metadata.version
-        when 'v3.1.1'
-          'STU3.1.1'
-        when 'v4.0.0'
-          'STU4'
-        end
       end
 
       def generate

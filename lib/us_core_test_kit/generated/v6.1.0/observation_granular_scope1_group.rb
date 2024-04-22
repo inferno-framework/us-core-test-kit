@@ -1,9 +1,9 @@
-require_relative './granular_scope_tests/observation/observation_patient_category_granular_scope_test'
-require_relative './granular_scope_tests/observation/observation_patient_code_date_granular_scope_test'
-require_relative './granular_scope_tests/observation/observation_patient_category_status_granular_scope_test'
-require_relative './granular_scope_tests/observation/observation_patient_category_date_granular_scope_test'
-require_relative './granular_scope_tests/observation/observation_patient_code_granular_scope_test'
-require_relative './granular_scope_tests/observation/observation_read_granular_scope_test'
+require_relative './granular_scope_tests/observation/observation_patient_category_granular_scope_search_test'
+require_relative './granular_scope_tests/observation/observation_patient_code_date_granular_scope_search_test'
+require_relative './granular_scope_tests/observation/observation_patient_category_status_granular_scope_search_test'
+require_relative './granular_scope_tests/observation/observation_patient_category_date_granular_scope_search_test'
+require_relative './granular_scope_tests/observation/observation_patient_code_granular_scope_search_test'
+require_relative './granular_scope_tests/observation/observation_granular_scope_read_test'
 
 module USCoreTestKit
   module USCoreV610
@@ -25,12 +25,12 @@ based on the following granular scopes:
       run_as_group
 
     
-      test from: :us_core_v610_Observation_patient_category_granular_scope_test
-      test from: :us_core_v610_Observation_patient_code_date_granular_scope_test
-      test from: :us_core_v610_Observation_patient_category_status_granular_scope_test
-      test from: :us_core_v610_Observation_patient_category_date_granular_scope_test
-      test from: :us_core_v610_Observation_patient_code_granular_scope_test
-      test from: :us_core_v610_Observation_read_granular_scope_test
+      test from: :us_core_v610_Observation_patient_category_granular_scope_search_test
+      test from: :us_core_v610_Observation_patient_code_date_granular_scope_search_test
+      test from: :us_core_v610_Observation_patient_category_status_granular_scope_search_test
+      test from: :us_core_v610_Observation_patient_category_date_granular_scope_search_test
+      test from: :us_core_v610_Observation_patient_code_granular_scope_search_test
+      test from: :us_core_v610_Observation_granular_scope_read_test
     end
   end
 end
