@@ -47,38 +47,6 @@ module USCoreTestKit
       end
     end
 
-    def run_scope_check_read_test
-      assert granular_scopes.present?, "No granular scopes were received for #{resource_type} resources"
-      resource_scopes = granular_scopes.select {|scope| scope.include?(resource_type)}
-
-      load_previous_requests_for_reads
-      skip_if previous_requests.blank?,
-              "No #{resource_type} reads found"
-      previous_resources_for_reads = previous_request_resources.values.flatten
-
-      resource_specific_granular_scope_search_params.each do |scope| 
-        resource_matching_scope = previous_resources_for_reads.find {|prev_resource| search_param_value(scope[:name], prev_resource) == scope[:value]}
-        skip_if resource_matching_scope.nil?, "Unable to find any resources to match scope #{granular_scopes.find {|granular| granular.include?(scope[:name]) && granular.include?(scope[:value])}}"
-
-        fhir_read resource_type, resource_matching_scope.id
-
-        assert_response_status(200)
-        assert_resource_type(resource_type)
-        assert resource.id.present? && resource.id == resource_matching_scope.id, "Unable to read resource #{resource_matching_scope.id}, but it matches scopes"
-      end
-
-      nonmatching_resource = previous_resources_for_reads.find do |prev_resource|
-        resource_specific_granular_scope_search_params.all? { |scope| search_param_value(scope[:name], prev_resource) != scope[:value]}
-      end
-
-      skip_if nonmatching_resource.nil?, "Unable to find a resource that does not match scopes"
-      fhir_read resource_type, nonmatching_resource.id
-
-      assert_response_status(401)
-      assert_resource_type(:OperationOutcome)
-      assert !resource.id.present?, "Resource #{nonmatching_resource.id} does not match the scopes, but was still read."
-    end
-
     def previous_request_resources
       first_request = previous_requests.first
       next_page_url = nil
