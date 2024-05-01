@@ -56,7 +56,7 @@ module USCoreTestKit
       end
 
       def no_patient_searches?
-        searches.none? { |search| search[:names].include? 'patient' }
+        searches.none? { |search| search[:names].include?('patient') && search[:expectation] == 'SHALL' }
       end
 
       def non_uscdi_resource?
