@@ -35,6 +35,7 @@ module USCoreTestKit
         received_scopes
           .split(' ')
           .reject { |scope| scope.include? '?' }
+          .select { |scope| scope.match? %r{\A(user|patient|system|\*)/.+\..+} }
           .map { |scope| scope[scope.index('/') + 1, scope.length] }
           .select { |scope| granular_scope_resource_types.include? scope[0, scope.index('.')] }
 
