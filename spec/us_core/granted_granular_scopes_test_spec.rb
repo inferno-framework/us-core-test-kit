@@ -23,7 +23,11 @@ RSpec.describe USCoreTestKit::GrantedGranularScopesTest do
   end
 
   it 'passes if all required scopes were received' do
-    received_scopes = required_scopes.map { |scope| scope.gsub('patient/', 'user/') }.join(' ')
+    received_scopes =
+      required_scopes
+        .map { |scope| scope.gsub('patient/', 'user/') }
+        .join(' ')
+        .concat(' launch/patient openid')
 
     result = run(test, received_scopes:)
 
