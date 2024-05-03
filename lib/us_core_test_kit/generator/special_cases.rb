@@ -25,16 +25,14 @@ module USCoreTestKit
         'Encounter' => ['v311', 'v400'],
         'Location' => ['v311', 'v400', 'v501', 'v610'],
         'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'Practitioner' => ['v311', 'v400'],
+        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
         'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
         'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'RelatedPerson' => ['v501', 'v610', 'v700_ballot'],
-        'Specimen' => ['v610', 'v700_ballot']
+        'RelatedPerson' => ['v501', 'v610', 'v700_ballot']
       }.freeze
 
       SEARCHABLE_DELAYED_RESOURCES = {
-        'Location' => ['v700_ballot'],
-        'Practitioner' => ['v501', 'v610', 'v700_ballot']
+        'Location' => ['v700_ballot']
       }.freeze
 
       ALL_VERSION_CATEGORY_FIRST_PROFILES = [
