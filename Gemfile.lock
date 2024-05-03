@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    us_core_test_kit (0.6.5)
+    us_core_test_kit (0.7.0)
       inferno_core (>= 0.4.2)
       smart_app_launch_test_kit (>= 0.4.0)
       tls_test_kit (~> 0.2.0)
@@ -196,7 +196,8 @@ GEM
     mini_portile2 (2.8.6)
     minitest (5.22.3)
     multi_json (1.15.0)
-    multi_xml (0.6.0)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
     multipart-post (2.4.0)
     mustermann (1.1.2)
       ruby2_keywords (~> 0.0.1)
