@@ -6,7 +6,8 @@ services:
     volumes:
       - ./data:/opt/inferno/data
     depends_on:
-      - validator_service
+      - hl7_validator_service
+      # - validator_service
   worker:
     build:
       context: ./
