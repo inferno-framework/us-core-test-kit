@@ -1,3 +1,21 @@
+# 0.7.0
+* Dependency Updates 2024-04-05 by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/165
+* FI-2673 Add Primitive Extension handling by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/166
+* FI-2687 Skip find search values from primitive extension by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/167
+* FI-2683: Update US Core 6 Granular Scope Tests by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/169
+* FI-2517: Migrate to HL7 validator wrapper by @dehall in
+  https://github.com/inferno-framework/us-core-test-kit/pull/168
+* Use default validator env var by @dehall in
+  https://github.com/inferno-framework/us-core-test-kit/pull/173
+* FI-2171 Remove Practitioner from SEARCHABLE_DELAYED_RESOURCES by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/172
+* FI-2456: Verify granular scopes by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/171
+
 # 0.6.5
 * Dependency Updates 2024-03-19 by @Jammjammjamm in
   https://github.com/inferno-framework/us-core-test-kit/pull/162
