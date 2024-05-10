@@ -156,7 +156,7 @@ module USCoreTestKit
         )
 
         group from: :us_core_v700_ballot_capability_statement
-      
+
         group from: :us_core_v700_ballot_patient
         group from: :us_core_v700_ballot_allergy_intolerance
         group from: :us_core_v700_ballot_care_plan
@@ -214,7 +214,7 @@ module USCoreTestKit
 
       group from: :us_core_v700_ballot_smart_granular_scopes,
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
-      
+
     end
   end
 end
