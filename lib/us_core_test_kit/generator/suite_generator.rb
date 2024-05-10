@@ -75,7 +75,7 @@ module USCoreTestKit
         end
       end
 
-      def test_granular_scopes?
+      def us_core_6_and_above?
         ig_metadata.ig_version[1].to_i > 5
       end
 
