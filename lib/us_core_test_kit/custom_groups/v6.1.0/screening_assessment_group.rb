@@ -5,8 +5,8 @@ module USCoreTestKit
     class ScreeningAssessmentGroup < Inferno::TestGroup
       id :us_core_610_screening_assessment
       title 'Screening Assessments Guidance'
-      short_description 'Verify Condition and Observation resources support the' \
-        ' US Core Screening And Assessments Guidance.'
+      short_description 'Verify Condition and Observation resources support the ' \
+                        'US Core Screening And Assessments Guidance.'
       description %(
         The #{title} Sequence tests Condition and Observation
         resources associated with the provided patient. The resources returned
