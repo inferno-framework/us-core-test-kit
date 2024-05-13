@@ -86,6 +86,14 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       ]
     )
   end
+  let(:condition_non_sdoh) do
+    FHIR::Condition.new(
+      id: 'non_sdoh',
+      category: [
+        { coding: [{ code: 'health-concern' }] }
+      ]
+    )
+  end
   let(:observation_bundle) do
     FHIR::Bundle.new(
       entry: [
@@ -100,7 +108,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
   let(:condition_bundle) do
     FHIR::Bundle.new(
       entry: [
-        { resource: condition_sdoh }
+        { resource: condition_sdoh },
+        { resource: condition_non_sdoh }
       ]
     )
   end
@@ -138,7 +147,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     end
 
     it 'skips when an Condition category is missing' do
-      condition_bundle.entry.first.resource.category.delete_at(1)
+      condition_bundle.entry.delete_at(0)
 
       stub_request(:get, "#{url}/Condition?patient=85&category=health-concern")
         .to_return(status: 200, body: condition_bundle.to_json)
