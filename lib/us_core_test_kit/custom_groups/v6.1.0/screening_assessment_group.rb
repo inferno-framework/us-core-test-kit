@@ -3,7 +3,7 @@ require_relative '../screening_assessment_category_test'
 module USCoreTestKit
   module USCoreV610
     class ScreeningAssessmentGroup < Inferno::TestGroup
-      id :us_core_610_screening_assessment
+      id :us_core_v610_screening_assessment
       title 'Screening Assessments Guidance'
       short_description 'Verify Condition and Observation resources support the ' \
                         'US Core Screening And Assessments Guidance.'

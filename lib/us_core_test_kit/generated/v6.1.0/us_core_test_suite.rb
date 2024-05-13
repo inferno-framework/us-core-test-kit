@@ -200,7 +200,7 @@ module USCoreTestKit
         group from: :us_core_v610_related_person
         group from: :us_core_v610_specimen
         group from: :us_core_v400_clinical_notes_guidance
-        group from: :us_core_610_screening_assessment
+        group from: :us_core_v610_screening_assessment
         group from: :us_core_311_data_absent_reason
       end
 

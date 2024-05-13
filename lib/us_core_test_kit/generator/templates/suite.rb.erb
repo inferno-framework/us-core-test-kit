@@ -110,7 +110,7 @@ module USCoreTestKit
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
         group from: :<%= clinical_notes_guidance_group_id %><%if us_core_6_and_above? %>
-        group from: :us_core_610_screening_assessment<% end %>
+        group from: :us_core_v610_screening_assessment<% end %>
         group from: :us_core_311_data_absent_reason
       end<% if us_core_6_and_above? %>
 
