@@ -7,103 +7,103 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     inputs.each do |name, value|
       session_data_repo.save(
         test_session_id: test_session.id,
-        name: name,
-        value: value,
+        name:,
+        value:,
         type: runnable.config.input_type(name)
       )
     end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
+    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v610') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
 
-  #let(:test_class) { USCoreTestKit::ScreeningAssessmentCategoryTest }
-
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
+  let(:observation_categories) { ['sdoh', 'functional-status', 'disability-status', 'cognitive-status'] }
 
   let(:test_class) do
+    categories = observation_categories
     Class.new(USCoreTestKit::ScreeningAssessmentCategoryTest) do
-      fhir_client { url :url }
-      input :url, :patient_ids
+      fhir_client { url 'http://example.com/fhir' }
+      config(options: { observation_screening_assessment_categories: categories })
     end
   end
 
   let(:test_scratch) { {} }
 
-  let(:observation_sdoh) {
+  let(:observation_sdoh) do
     FHIR::Observation.new(
       id: 'sdoh',
       category: [
         { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'sdoh'}]}
+        { coding: [{ code: 'sdoh' }] }
       ]
     )
-  }
-  let(:observation_functional_status) {
+  end
+  let(:observation_functional_status) do
     FHIR::Observation.new(
       id: 'functional-status',
       category: [
         { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'functional-status'}]}
+        { coding: [{ code: 'functional-status' }] }
       ]
     )
-  }
-  let(:observation_diability_status) {
+  end
+  let(:observation_diability_status) do
     FHIR::Observation.new(
-      id: 'diability-status',
+      id: 'disability-status',
       category: [
         { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'diability-status'}]}
+        { coding: [{ code: 'disability-status' }] }
       ]
     )
-  }
-  let(:observation_cognitive_status) {
+  end
+  let(:observation_cognitive_status) do
     FHIR::Observation.new(
       id: 'cognitive-status',
       category: [
         { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'cognitive-status'}]}
+        { coding: [{ code: 'cognitive-status' }] }
       ]
     )
-  }
-  let(:observation_survey) {
+  end
+  let(:observation_survey) do
     FHIR::Observation.new(
       id: 'cognitive-status',
       category: [
         { coding: [{ code: 'survey' }] }
       ]
     )
-  }
-  let(:condition_sdoh) {
+  end
+  let(:condition_sdoh) do
     FHIR::Condition.new(
       id: 'sdoh',
       category: [
         { coding: [{ code: 'health-concern' }] },
-        { coding: [{ code: 'sdoh'}]}
+        { coding: [{ code: 'sdoh' }] }
       ]
     )
-  }
-  let(:observation_bundle) {
+  end
+  let(:observation_bundle) do
     FHIR::Bundle.new(
       entry: [
-        { resource: observation_sdoh},
-        { resource: observation_functional_status},
-        { resource: observation_diability_status},
-        { resource: observation_cognitive_status},
-        { resource: observation_survey}
+        { resource: observation_sdoh },
+        { resource: observation_functional_status },
+        { resource: observation_diability_status },
+        { resource: observation_cognitive_status },
+        { resource: observation_survey }
       ]
     )
-  }
-  let(:condition_bundle) {
+  end
+  let(:condition_bundle) do
     FHIR::Bundle.new(
       entry: [
-        { resource: condition_sdoh}
+        { resource: condition_sdoh }
       ]
     )
-  }
+  end
 
   describe 'Screening Assessments Category Test' do
     before do
@@ -113,8 +113,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       stub_request(:get, "#{url}/Condition?patient=85&category=health-concern")
         .to_return(status: 200, body: condition_bundle.to_json)
 
-      stub_request(:get, "#{url}/Condition?patient=85&category=problem-list")
-        .to_return(status: 200, body: FHIR::Bundle.new().to_json)
+      stub_request(:get, "#{url}/Condition?patient=85&category=problem-list-item")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
 
       allow_any_instance_of(test_class)
         .to receive(:scratch).and_return(test_scratch)
@@ -122,9 +122,31 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
 
     it 'passes when all categories are returned' do
       result = run(test_class, patient_ids: patient_id)
-
-      binding.pry
       expect(result.result).to eq('pass')
+    end
+
+    it 'skips when an Observation category is missing' do
+      observation_bundle.entry.delete_at(1)
+
+      stub_request(:get, "#{url}/Observation?patient=85&category=survey")
+        .to_return(status: 200, body: observation_bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id)
+
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('Observation categories: functional-status')
+    end
+
+    it 'skips when an Condition category is missing' do
+      condition_bundle.entry.first.resource.category.delete_at(1)
+
+      stub_request(:get, "#{url}/Condition?patient=85&category=health-concern")
+        .to_return(status: 200, body: condition_bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id)
+
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('Condition category: sdoh')
     end
   end
 end
