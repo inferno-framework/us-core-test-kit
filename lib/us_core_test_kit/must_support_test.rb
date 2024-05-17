@@ -115,12 +115,13 @@ module USCoreTestKit
               .map { |ex| ex[:url] }
 
             value_found = find_a_value_at(resource, path) do |value|
-              if value.respond_to?(:extension) && ms_extension_urls.present?
-                urls = value.extension.map(&:url)
+              if value.instance_of?(USCoreTestKit::PrimitiveType) && ms_extension_urls.present?
+                urls = value.extension&.map(&:url)
                 has_ms_extension = (urls & ms_extension_urls).present?
               end
 
               unless has_ms_extension
+                value = value.value if value.instance_of?(USCoreTestKit::PrimitiveType)
                 value_without_extensions =
                   value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
               end

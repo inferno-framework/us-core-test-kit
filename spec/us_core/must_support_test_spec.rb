@@ -505,7 +505,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               }
             )
 
-
           result = run(test_class)
           expect(result.result).to eq('pass')
         end
@@ -835,6 +834,25 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       expect(result.result).to eq('skip')
       expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
       expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
+    end
+
+    it 'skips if both MS extensions and MS element in a primitive are not provided' do
+      qr.source_hash['_questionnaire']['extension'][0]['url'] = 'http://example.com/extension'
+      qr.source_hash['_questionnaire']['extension'][1]['url'] = 'http://example.com/extension'
+      new_qr = FHIR::QuestionnaireResponse.new(qr.source_hash)
+      new_qr.questionnaire = nil
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [new_qr]
+          }
+        )
+
+      result = run(test_class)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
+      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
       expect(result.result_message).to include(' questionnaire')
     end
 
@@ -852,8 +870,8 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       result = run(test_class)
       expect(result.result).to eq('skip')
       expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
-      expect(result.result_message).not_to include('QuestionnaireResponse.questionnaire.extension:url')
-      expect(result.result_message).not_to include(' questionnaire')
+      expect(result.result_message).to_not include('QuestionnaireResponse.questionnaire.extension:url')
+      expect(result.result_message).to_not include(' questionnaire')
     end
 
     it 'skips if MS primitive value is missing' do

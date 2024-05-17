@@ -1,3 +1,5 @@
+require_relative './primitive_type'
+
 module USCoreTestKit
   module FHIRResourceNavigation
     DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'.freeze
@@ -65,19 +67,22 @@ module USCoreTestKit
         slice = find_slice_via_discriminator(element, property)
         slice
       else
-        result = element.send(property)
-        result = find_primitive_extension(element, property) if result.nil?
-        result
+        value = element.send(property)
+        primitive_value = get_primitive_value(element, property, value)
+        primitive_value.present? ? primitive_value : value
       end
     rescue NoMethodError
       nil
     end
 
-    def find_primitive_extension(element, property)
-      type = element.class::METADATA[property.to_s]['type']
+    def get_primitive_value(element, property, value)
       source_value = element.source_hash["_#{property}"]
 
-      PRIMITIVE_DATA_TYPES.include?(type) && source_value.present? ? FHIR::Element.new(source_value) : nil
+      return nil unless source_value.present?
+
+      primitive_value = USCoreTestKit::PrimitiveType.new(source_value)
+      primitive_value.value = value
+      primitive_value
     end
 
     def find_slice_via_discriminator(element, property)
