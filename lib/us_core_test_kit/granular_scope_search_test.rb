@@ -1,5 +1,11 @@
+require_relative 'resource_checker'
+require_relative 'granular_scope'
+
 module USCoreTestKit
   module GranularScopeSearchTest
+    include ResourceChecker
+    include GranularScope
+
     def self.included(klass)
       klass.input(:received_scopes)
       klass.attr_accessor :previous_requests
@@ -47,64 +53,6 @@ module USCoreTestKit
       end
     end
 
-    def previous_request_resources
-      first_request = previous_requests.first
-      next_page_url = nil
-      hash = Hash.new { |hash, key| hash[key] = [] }
-      previous_requests.each_with_object(hash) do |request, request_resource_hash|
-        request_resources =
-          if request.status == 200
-            request.resource.entry.map(&:resource).select { |resource| resource.resourceType == resource_type }
-          else
-            []
-          end
-
-        first_request = request if request.url != next_page_url
-
-        request_resource_hash[first_request].concat(request_resources)
-
-        next if request.resource&.resourceType != 'Bundle'
-
-        next_page_url = request.resource&.link&.find { |link| link.relation == 'next' }&.url
-      end
-    end
-
-    def granular_scopes
-      @granular_scopes ||=
-        received_scopes
-          .split(' ')
-          .select do |scope|
-            (scope.start_with?("patient/#{resource_type}") || scope.start_with?("user/#{resource_type}")) &&
-              scope.include?('?')
-          end
-    end
-
-    def granular_scope_search_params
-      @granular_scope_search_params ||=
-        granular_scopes.map do |scope|
-          _, granular_scope = scope.split('?')
-          name, value = granular_scope.split('=')
-
-          {
-            name:,
-            value:
-          }
-        end
-    end
-
-    def resource_specific_granular_scope_search_params
-      @resource_specific_granular_scope_search_params ||=
-        granular_scopes.select {|scope| scope.include?(resource_type)}.map do |scope|
-          _, granular_scope = scope.split('?')
-          name, value = granular_scope.split('=')
-          _, value = value.split('|')
-          {
-            name:,
-            value:
-          }
-      end
-    end
-
     def load_previous_requests
       search_params_as_hash = search_param_names.each_with_object({}) do |name, hash|
         hash[name] = nil
@@ -112,83 +60,6 @@ module USCoreTestKit
       @previous_requests ||=
         load_tagged_requests(search_params_tag(search_params_as_hash))
           .sort_by { |request| request.index }
-    end
-    
-    def load_previous_requests_for_reads
-      params = metadata.searches.first[:names]
-      search_params_as_hash = params.each_with_object({}) do |name, hash|
-        hash[name] = nil
-      end
-      @previous_requests ||=
-        load_tagged_requests(search_params_tag(search_params_as_hash))
-          .sort_by { |request| request.index }
-    end
-
-    def search_param_paths(name, resource = resource_type)
-      paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class'
-        paths[0] = 'local_class'
-      end
-
-      paths.map { |path| path.delete_prefix("Resource.") }  
-    end
-
-    def search_param_value(name, resource)
-      paths = search_param_paths(name, resource.resourceType)
-      search_value = nil
-      paths.each do |path|
-        element = find_a_value_at(resource, path) { |element| element_has_valid_value?(element) }
-        search_value =
-          case element
-          when FHIR::Period
-            if element.start.present?
-              'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
-            else
-              end_datetime = get_fhir_datetime_range(element.end)[:end]
-              'lt' + (end_datetime + 1).xmlschema
-            end
-          when FHIR::Reference
-            element.reference
-          when FHIR::CodeableConcept
-            find_a_value_at(element, 'coding.code')
-          when FHIR::Identifier
-            element.value
-          when FHIR::Coding
-            element.code
-          when FHIR::HumanName
-            element.family || element.given&.first || element.text
-          when FHIR::Address
-            element.text || element.city || element.state || element.postalCode || element.country
-          when FHIR::Extension
-            element.valueReference.reference
-          else
-            element
-          end
-
-        break if search_value.present?
-      end
-
-      escaped_value = search_value&.gsub(',', '\,')
-      escaped_value
-    end
-
-    def element_has_valid_value?(element)
-      case element
-      when FHIR::Reference
-        element.reference.present?
-      when FHIR::CodeableConcept
-        find_a_value_at(element, 'coding.code').present?
-      when FHIR::Identifier
-        element.value.present?
-      when FHIR::Coding
-        element.code.present?
-      when FHIR::HumanName
-        (element.family || element.given&.first || element.text).present?
-      when FHIR::Address
-        (element.text || element.city || element.state || element.postalCode || element.country).present?
-      else
-        true
-      end
     end
 
     def previous_resources(params)

@@ -146,7 +146,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
             .to_return(body: not_matching_resource.to_json)
 
           result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
-          expected_message = "Resource GHI does not match the scopes, but was still read."
+          expected_message = 'Server incorrectly responded with a successful status, read should fail due to scopes.'
 
           expect(result.result).to eq('fail')
           expect(result.result_message).to eq(expected_message)
