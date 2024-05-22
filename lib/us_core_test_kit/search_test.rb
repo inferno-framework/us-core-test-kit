@@ -1,6 +1,6 @@
 require_relative 'date_search_validation'
 require_relative 'fhir_resource_navigation'
-require_relative 'resource_checker'
+require_relative 'resource_search_param_checker'
 require_relative 'search_test_properties'
 
 module USCoreTestKit
@@ -8,7 +8,7 @@ module USCoreTestKit
     extend Forwardable
     include DateSearchValidation
     include FHIRResourceNavigation
-    include ResourceChecker
+    include ResourceSearchParamChecker
 
     def_delegators 'self.class', :metadata, :provenance_metadata, :properties
     def_delegators 'properties',

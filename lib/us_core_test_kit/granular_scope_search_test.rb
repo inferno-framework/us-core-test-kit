@@ -1,9 +1,9 @@
-require_relative 'resource_checker'
+require_relative 'resource_search_param_checker'
 require_relative 'granular_scope'
 
 module USCoreTestKit
   module GranularScopeSearchTest
-    include ResourceChecker
+    include ResourceSearchParamChecker
     include GranularScope
 
     def self.included(klass)

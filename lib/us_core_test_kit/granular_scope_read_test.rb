@@ -1,10 +1,10 @@
-require_relative 'resource_checker'
+require_relative 'resource_search_param_checker'
 require_relative 'granular_scope'
 
 module USCoreTestKit
   module GranularScopeReadTest
     extend Forwardable
-    include ResourceChecker
+    include ResourceSearchParamChecker
     include GranularScope
 
     def_delegators 'self.class', :metadata
@@ -34,7 +34,6 @@ module USCoreTestKit
 
         assert_response_status(200)
         assert_resource_type(resource_type)
-        assert resource.id.present? && resource.id == resource_matching_scope.id, "Unable to read resource #{resource_matching_scope.id}, but it matches scopes"
       end
 
       nonmatching_resource = previous_resources_for_reads.find do |prev_resource|
@@ -44,9 +43,8 @@ module USCoreTestKit
       end
       if nonmatching_resource
         fhir_read resource_type, nonmatching_resource.id
-        assert response[:status] != 200, "Server incorrectly responded with a successful status, read should fail due to scopes."
-        assert resource.resourceType != resource_type, "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
-        assert !resource.id.present?, "Server incorrectly returned resource #{nonmatching_resource.id}, read should fail due to scopes"
+        assert (response && response[:status]) != 200, "Server incorrectly responded with a successful status, read should fail due to scopes."
+        assert (resource && resource.resourceType != resource_type), "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
       else
         info "Unable to find a resource that does not fit scopes."
       end

@@ -1,7 +1,7 @@
 require_relative 'fhir_resource_navigation'
 
 module USCoreTestKit
-  module ResourceChecker
+  module ResourceSearchParamChecker
     include FHIRResourceNavigation
 
     def search_param_paths(name)
