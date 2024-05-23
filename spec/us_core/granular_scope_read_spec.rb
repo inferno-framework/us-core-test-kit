@@ -214,7 +214,6 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
             ).to_json
           )
         end
-        #TODO: Decide on how to test the reverse direction if unable to find a resource
         it 'passes if unable to find a resource that does not match scopes, and gives info message' do
           stub_request(request_with_all_matching.verb.to_sym, request_with_all_matching.url+"/#{matching_resource.id}")
             .to_return(body: matching_resource.to_json)
