@@ -194,6 +194,42 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
           expect(result.result_message).to eq(expected_message)
         end
       end
+
+      context "with previous requests populated, but no out of scope resources" do
+        let!(:request_with_all_matching) do 
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Condition',
+            test_session_id: test_session.id,
+            result: repo_create(
+              :result,
+              test_session_id: test_session.id
+            ),
+            tags: ['Condition?patient&category'],
+            response_body: FHIR::Bundle.new(
+              entry: [
+                { resource: matching_resource.to_hash },
+                { resource: matching_resource2.to_hash }
+                ]
+            ).to_json
+          )
+        end
+        #TODO: Decide on how to test the reverse direction if unable to find a resource
+        it 'passes if unable to find a resource that does not match scopes, and gives info message' do
+          stub_request(request_with_all_matching.verb.to_sym, request_with_all_matching.url+"/#{matching_resource.id}")
+            .to_return(body: matching_resource.to_json)
+          stub_request(request_with_all_matching.verb.to_sym, request_with_all_matching.url+"/#{matching_resource2.id}")
+            .to_return(body: matching_resource2.to_json)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Unable to find a resource that does not match scopes."
+          messages = Inferno::Repositories::Messages.new.messages_for_result(result.id).map { |message| message.message }
+
+          expect(result.result).to eq("pass")
+          expect(messages).to include(expected_message)
+        end
+      end
     end
   end
 end

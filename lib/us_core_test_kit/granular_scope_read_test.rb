@@ -46,7 +46,7 @@ module USCoreTestKit
         assert (response && response[:status]) != 200, "Server incorrectly responded with a successful status, read should fail due to scopes."
         assert (resource && resource.resourceType != resource_type), "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
       else
-        info "Unable to find a resource that does not fit scopes."
+        info "Unable to find a resource that does not match scopes."
       end
     end
     
