@@ -57,7 +57,7 @@ module USCoreTestKit
       end
 
       def test_id
-        "us_core_#{group_metadata.reformatted_version}_#{resource_type}_#{search_identifier}_granular_scope_test"
+        "us_core_#{group_metadata.reformatted_version}_#{resource_type}_#{search_identifier}_granular_scope_search_test"
       end
 
       def search_identifier
@@ -69,7 +69,7 @@ module USCoreTestKit
       end
 
       def class_name
-        "#{resource_type}#{search_title}GranularScopeTest"
+        "#{resource_type}#{search_title}GranularScopeSearchTest"
       end
 
       def module_name

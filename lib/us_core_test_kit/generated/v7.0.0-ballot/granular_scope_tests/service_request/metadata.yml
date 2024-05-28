@@ -328,20 +328,22 @@
 - :id: us_core_v700_ballot_service_request_reference_resolution_test
   :file_name: service_request_reference_resolution_test.rb
 :granular_scope_tests:
-- :id: us_core_v700_ballot_ServiceRequest_patient_granular_scope_test
-  :file_name: service_request_patient_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest__id_granular_scope_test
-  :file_name: service_request_id_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest_patient_category_authored_granular_scope_test
-  :file_name: service_request_patient_category_authored_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest_patient_category_granular_scope_test
-  :file_name: service_request_patient_category_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest_patient_code_authored_granular_scope_test
-  :file_name: service_request_patient_code_authored_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest_patient_code_granular_scope_test
-  :file_name: service_request_patient_code_granular_scope_test.rb
-- :id: us_core_v700_ballot_ServiceRequest_patient_status_granular_scope_test
-  :file_name: service_request_patient_status_granular_scope_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_granular_scope_search_test
+  :file_name: service_request_patient_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest__id_granular_scope_search_test
+  :file_name: service_request_id_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_category_authored_granular_scope_search_test
+  :file_name: service_request_patient_category_authored_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_category_granular_scope_search_test
+  :file_name: service_request_patient_category_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_code_authored_granular_scope_search_test
+  :file_name: service_request_patient_code_authored_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_code_granular_scope_search_test
+  :file_name: service_request_patient_code_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_patient_status_granular_scope_search_test
+  :file_name: service_request_patient_status_granular_scope_search_test.rb
+- :id: us_core_v700_ballot_ServiceRequest_granular_scope_read_test
+  :file_name: service_request_granular_scope_read_test.rb
 :id: us_core_v700_ballot_service_request_granular_scope_2_group
 :file_name: service_request_granular_scope2_group.rb
 :delayed_references:

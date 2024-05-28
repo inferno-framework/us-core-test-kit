@@ -1,10 +1,11 @@
-require_relative './granular_scope_tests/document_reference/document_reference_patient_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_id_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_patient_category_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_patient_category_date_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_patient_type_period_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_patient_type_granular_scope_test'
-require_relative './granular_scope_tests/document_reference/document_reference_patient_status_granular_scope_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_id_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_category_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_category_date_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_type_period_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_type_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_patient_status_granular_scope_search_test'
+require_relative './granular_scope_tests/document_reference/document_reference_granular_scope_read_test'
 
 module USCoreTestKit
   module USCoreV700_BALLOT
@@ -24,13 +25,14 @@ based on the following granular scopes:
       run_as_group
 
     
-      test from: :us_core_v700_ballot_DocumentReference_patient_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference__id_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference_patient_category_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference_patient_category_date_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference_patient_type_period_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference_patient_type_granular_scope_test
-      test from: :us_core_v700_ballot_DocumentReference_patient_status_granular_scope_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference__id_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_category_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_category_date_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_type_period_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_type_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_patient_status_granular_scope_search_test
+      test from: :us_core_v700_ballot_DocumentReference_granular_scope_read_test
     end
   end
 end

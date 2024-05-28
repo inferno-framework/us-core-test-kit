@@ -1,12 +1,12 @@
 require_relative '../../../../search_test'
 require_relative '../../../../generator/group_metadata'
-require_relative '../../../../granular_scope_checker'
+require_relative '../../../../granular_scope_search_test'
 
 module USCoreTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
       include USCoreTestKit::SearchTest
-      include USCoreTestKit::GranularScopeChecker
+      include USCoreTestKit::GranularScopeSearchTest
 
       title 'Server filters results for <%= resource_type %> search by <%= search_param_name_string %> based on granular scopes'
       description %(
@@ -30,7 +30,7 @@ module USCoreTestKit
       end
 
       run do
-        run_scope_check_test
+        run_scope_search_test
       end
     end
   end

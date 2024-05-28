@@ -6,6 +6,7 @@ require_relative 'generator/ig_metadata_extractor'
 require_relative 'generator/granular_scope_group_generator'
 require_relative 'generator/granular_scope_resource_type_group_generator'
 require_relative 'generator/granular_scope_test_generator'
+require_relative 'generator/granular_scope_read_test_generator'
 require_relative 'generator/group_generator'
 require_relative 'generator/must_support_test_generator'
 require_relative 'generator/provenance_revinclude_search_test_generator'
@@ -104,6 +105,7 @@ module USCoreTestKit
 
     def generate_granular_scope_tests
       GranularScopeTestGenerator.generate(ig_metadata, base_output_dir)
+      GranularScopeReadTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_groups
