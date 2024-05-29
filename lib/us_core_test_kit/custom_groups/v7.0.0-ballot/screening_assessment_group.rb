@@ -1,9 +1,9 @@
 require_relative '../screening_assessment_category_test'
 
 module USCoreTestKit
-  module USCoreV610
+  module USCoreV700_BALLOT
     class ScreeningAssessmentGroup < Inferno::TestGroup
-      id :us_core_v610_screening_assessment
+      id :us_core_v700_ballot_screening_assessment
       title 'Screening Assessments Guidance'
       short_description 'Verify Condition and Observation resources support the ' \
                         'US Core Screening And Assessments Guidance.'
@@ -23,6 +23,9 @@ module USCoreTestKit
         * Functional Status (functional-status)
         * Disability Status (disability-status)
         * Mental/Cognitive Status (cognitive-status)
+        * Physical Activity (activity)
+        * Alcohol Use (social-history)
+        * Substance Use (social-history)
 
         The provided patient also needs to have the following common Screening and Assessment
         as Condition category:
@@ -36,7 +39,7 @@ module USCoreTestKit
           options: {
             condition_screening_assessment_categories: ['sdoh'].freeze,
             observation_screening_assessment_categories: ['sdoh', 'functional-status', 'disability-status',
-                                                          'cognitive-status'].freeze
+                                                          'cognitive-status', 'activity', 'social-history'].freeze
           }
         )
       end

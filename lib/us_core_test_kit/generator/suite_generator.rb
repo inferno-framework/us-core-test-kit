@@ -129,6 +129,14 @@ module USCoreTestKit
       def granular_scopes_id
         "us_core_#{ig_metadata.reformatted_version}_smart_granular_scopes"
       end
+
+      def screening_assessment_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/screening_assessment_group"
+      end
+
+      def screening_assessment_id
+        "us_core_#{ig_metadata.reformatted_version}_screening_assessment"
+      end
     end
   end
 end

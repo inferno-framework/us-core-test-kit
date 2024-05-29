@@ -22,12 +22,17 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
   let(:observation_categories) { ['sdoh', 'functional-status', 'disability-status', 'cognitive-status'] }
+  let(:condition_categories) { ['sdoh'] }
 
   let(:test_class) do
-    categories = observation_categories
+    obs_categories = observation_categories
+    cond_categories = condition_categories
     Class.new(USCoreTestKit::ScreeningAssessmentCategoryTest) do
       fhir_client { url 'http://example.com/fhir' }
-      config(options: { observation_screening_assessment_categories: categories })
+      config(options: {
+        condition_screening_assessment_categories: cond_categories,
+        observation_screening_assessment_categories: obs_categories
+      })
     end
   end
 
@@ -146,7 +151,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       expect(result.result_message).to include('Observation categories: functional-status')
     end
 
-    it 'skips when an Condition category is missing' do
+    it 'skips when a Condition category is missing' do
       condition_bundle.entry.delete_at(0)
 
       stub_request(:get, "#{url}/Condition?patient=85&category=health-concern")
@@ -155,7 +160,23 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       result = run(test_class, patient_ids: patient_id)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Condition category: sdoh')
+      expect(result.result_message).to include('Condition categories: sdoh')
+    end
+
+    it 'skips when Observation and Condition categories are missing' do
+      observation_bundle.entry.delete_at(1)
+      observation_bundle.entry.delete_at(1)
+      condition_bundle.entry.delete_at(0)
+
+      stub_request(:get, "#{url}/Observation?patient=85&category=survey")
+        .to_return(status: 200, body: observation_bundle.to_json)
+      stub_request(:get, "#{url}/Condition?patient=85&category=health-concern")
+        .to_return(status: 200, body: condition_bundle.to_json)
+
+      result = run(test_class, patient_ids: patient_id)
+
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('Observation categories: functional-status, disability-status and Condition categories: sdoh')
     end
   end
 end

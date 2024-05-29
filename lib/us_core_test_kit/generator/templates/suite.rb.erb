@@ -5,7 +5,7 @@ require_relative '<%= clinical_notes_guidance_file_name %>'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../custom_groups/smart_app_launch_group'<% if us_core_6_and_above? %>
 require_relative '<%= granular_scopes_file_name %>'
-require_relative '../../custom_groups/v6.1.0/screening_assessment_group'<% end %>
+require_relative '<%= screening_assessment_file_name %>'<% end %>
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -110,7 +110,7 @@ module USCoreTestKit
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
         group from: :<%= clinical_notes_guidance_group_id %><%if us_core_6_and_above? %>
-        group from: :us_core_v610_screening_assessment<% end %>
+        group from: :<%= screening_assessment_id %><% end %>
         group from: :us_core_311_data_absent_reason
       end<% if us_core_6_and_above? %>
 
