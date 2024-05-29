@@ -68,14 +68,14 @@ module USCoreTestKit
         slice
       else
         value = element.send(property)
-        primitive_value = get_primitive_value(element, property, value)
+        primitive_value = get_primitive_type_value(element, property, value)
         primitive_value.present? ? primitive_value : value
       end
     rescue NoMethodError
       nil
     end
 
-    def get_primitive_value(element, property, value)
+    def get_primitive_type_value(element, property, value)
       source_value = element.source_hash["_#{property}"]
 
       return nil unless source_value.present?
