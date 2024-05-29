@@ -28,7 +28,7 @@ module USCoreTestKit
         search_params[:category] = category_search_value
         search_and_check_response(search_params, resource_type)
 
-        resources = fetch_all_bundled_resources(resource_type: resource_type)
+        resources = fetch_all_bundled_resources(resource_type:)
           .select { |resource| resource.resourceType == resource_type }
 
         resources.each do |resource|
@@ -38,10 +38,10 @@ module USCoreTestKit
             end
           end
 
-          return if missing_categories.empty?
+          break if missing_categories.empty?
         end
 
-        return if missing_categories.empty?
+        break if missing_categories.empty?
       end
     end
     # rubocop:enable Metrics/CyclomaticComplexity
@@ -51,15 +51,19 @@ module USCoreTestKit
       missing_cond_categories = config.options[:condition_screening_assessment_categories].dup
 
       patient_id_list.each do |patient_id|
-        category_found(resource_type: 'Condition',
-                       patient_id: patient_id,
-                       category_search_values: ['health-concern', 'problem-list-item'],
-                       missing_categories: missing_cond_categories) unless missing_cond_categories.empty?
+        unless missing_cond_categories.empty?
+          category_found(resource_type: 'Condition',
+                         patient_id:,
+                         category_search_values: ['health-concern', 'problem-list-item'],
+                         missing_categories: missing_cond_categories)
+        end
+
+        next if missing_obs_categories.empty?
 
         category_found(resource_type: 'Observation',
-                       patient_id: patient_id,
+                       patient_id:,
                        category_search_values: ['survey'],
-                       missing_categories: missing_obs_categories) unless missing_obs_categories.empty?
+                       missing_categories: missing_obs_categories)
       end
 
       pass if missing_cond_categories.empty? && missing_obs_categories.empty?

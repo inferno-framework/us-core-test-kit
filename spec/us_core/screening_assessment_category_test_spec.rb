@@ -29,10 +29,13 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     cond_categories = condition_categories
     Class.new(USCoreTestKit::ScreeningAssessmentCategoryTest) do
       fhir_client { url 'http://example.com/fhir' }
-      config(options: {
-        condition_screening_assessment_categories: cond_categories,
-        observation_screening_assessment_categories: obs_categories
-      })
+      config(
+        options:
+        {
+          condition_screening_assessment_categories: cond_categories,
+          observation_screening_assessment_categories: obs_categories
+        }
+      )
     end
   end
 
@@ -176,7 +179,9 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       result = run(test_class, patient_ids: patient_id)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Observation categories: functional-status, disability-status and Condition categories: sdoh')
+      expect(result.result_message).to include(
+        'Observation categories: functional-status, disability-status and Condition categories: sdoh'
+      )
     end
   end
 end
