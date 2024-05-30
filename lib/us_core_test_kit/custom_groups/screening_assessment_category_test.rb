@@ -11,8 +11,6 @@ module USCoreTestKit
           title: 'Patient IDs',
           description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
 
-    CONDITION_REQUIRED_CATEGORY = 'sdoh'.freeze
-
     # Disable tagging requests since this test doesn't have properties defined.
     # TODO: investigate whether we need to tag these for granular scope
     # checking.
