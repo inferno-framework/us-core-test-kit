@@ -11,8 +11,8 @@ module USCoreTestKit
         The #{title} Sequence tests Condition and Observation
         resources associated with the provided patient. The resources returned
         will be checked for consistency against the [US Core Screening And Assessments
-        Guidance](https://hl7.org/fhir/us/core/STU6.1/screening-and-assessments.html)
-        and FHIR JIRA ticket [FHIR-45319](https://jira.hl7.org/browse/FHIR-45319)
+        Guidance](https://hl7.org/fhir/us/core/STU7/screening-and-assessments.html)
+        and FHIR JIRA ticket [FHIR-46052](https://jira.hl7.org/browse/FHIR-46052)
 
         In this set of tests, Inferno serves as a FHIR client that attempts to
         access the different types of Screening and Assessments specified in the guidance.
