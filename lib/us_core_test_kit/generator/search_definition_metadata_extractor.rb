@@ -41,6 +41,7 @@ module USCoreTestKit
       def full_paths
         @full_paths ||=
           begin
+            binding.pry if param.nil?
             path = param.expression.gsub(/.where\(resolve\((.*)/, '').gsub(/url = '/, 'url=\'')
             path = path[1..-2] if path.start_with?('(') && path.end_with?(')')
             path.scan(/[. ]as[( ]([^)]*)[)]?/).flatten.map do |as_type|
@@ -162,7 +163,7 @@ module USCoreTestKit
       end
 
       def multiple_or_expectation
-        param_hash['_multipleOr']['extension'].first['valueCode']
+        param_hash['_multipleOr'] ? param_hash['_multipleOr']['extension'].first['valueCode'] : 'MAY'
       end
 
       def values
