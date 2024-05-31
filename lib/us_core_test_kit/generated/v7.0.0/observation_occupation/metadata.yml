@@ -1,0 +1,304 @@
+---
+:name: us_core_observation_occupation
+:class_name: USCorev700ObservationOccupationSequence
+:version: v7.0.0
+:reformatted_version: v700
+:resource: Observation
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation
+:profile_name: US Core Observation Occupation Profile
+:profile_version: 7.0.0
+:title: Observation Occupation
+:short_description: Verify support for the server capabilities required by the US
+  Core Observation Occupation Profile.
+:is_delayed: false
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - code
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - category
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - category
+  - _lastUpdated
+  :names_not_must_support_or_mandatory:
+  - _lastUpdated
+  :must_support_or_mandatory: false
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Observation.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 11341-5
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
+  :category:
+    :paths:
+    - category
+    :full_paths:
+    - Observation.category
+    :comparators: {}
+    :values:
+    - social-history
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Observation.status
+    :comparators: {}
+    :values:
+    - registered
+    - preliminary
+    - final
+    - amended
+    - corrected
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
+  :_lastUpdated:
+    :paths:
+    - Resource.meta.lastUpdated
+    :full_paths:
+    - Resource.meta.lastUpdated
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: MAY
+      :ge: MAY
+      :lt: MAY
+      :le: MAY
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :slice_id: Observation.category:socialhistory
+    :slice_name: socialhistory
+    :path: category
+    :discriminator:
+      :type: patternCodeableConcept
+      :path: ''
+      :code: social-history
+      :system: http://terminology.hl7.org/CodeSystem/observation-category
+  - :slice_id: Observation.component:industry
+    :slice_name: industry
+    :path: component
+    :discriminator:
+      :type: patternCodeableConcept
+      :path: code
+      :code: 86188-0
+      :system: http://loinc.org
+  - :slice_id: Observation.effective[x]:effectivePeriod
+    :slice_name: effectivePeriod
+    :path: effective[x]
+    :discriminator:
+      :type: type
+      :code: Period
+  - :slice_id: Observation.value[x]:valueCodeableConcept
+    :slice_name: valueCodeableConcept
+    :path: value[x]
+    :discriminator:
+      :type: type
+      :code: CodeableConcept
+  :elements:
+  - :path: status
+  - :path: category
+  - :path: code.coding.code
+    :fixed_value: 11341-5
+  - :path: subject
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - :path: component
+  - :path: component:industry.code
+  - :path: component:industry.value[x]
+:mandatory_elements:
+- Observation.status
+- Observation.code
+- Observation.subject
+- Observation.value[x]
+- Observation.component.code
+- Observation.component.value[x]
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/observation-status
+  :path: status
+:references:
+- :path: Observation.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/CarePlan
+  - http://hl7.org/fhir/StructureDefinition/DeviceRequest
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+  - http://hl7.org/fhir/StructureDefinition/MedicationRequest
+  - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+- :path: Observation.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+  - http://hl7.org/fhir/StructureDefinition/MedicationDispense
+  - http://hl7.org/fhir/StructureDefinition/MedicationStatement
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+  - http://hl7.org/fhir/StructureDefinition/Immunization
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+- :path: Observation.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+- :path: Observation.focus
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource
+- :path: Observation.encounter
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+- :path: Observation.performer
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/StructureDefinition/Organization
+  - http://hl7.org/fhir/StructureDefinition/CareTeam
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+- :path: Observation.specimen
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Specimen
+- :path: Observation.device
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device
+  - http://hl7.org/fhir/StructureDefinition/DeviceMetric
+- :path: Observation.hasMember
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+- :path: Observation.derivedFrom
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+  - http://hl7.org/fhir/StructureDefinition/Media
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+:tests:
+- :id: us_core_v700_observation_occupation_patient_code_search_test
+  :file_name: observation_occupation_patient_code_search_test.rb
+- :id: us_core_v700_observation_occupation_patient_category_date_search_test
+  :file_name: observation_occupation_patient_category_date_search_test.rb
+- :id: us_core_v700_observation_occupation_patient_code_date_search_test
+  :file_name: observation_occupation_patient_code_date_search_test.rb
+- :id: us_core_v700_observation_occupation_patient_category_status_search_test
+  :file_name: observation_occupation_patient_category_status_search_test.rb
+- :id: us_core_v700_observation_occupation_patient_category__lastUpdated_search_test
+  :file_name: observation_occupation_patient_category_lastupdated_search_test.rb
+- :id: us_core_v700_observation_occupation_patient_category_search_test
+  :file_name: observation_occupation_patient_category_search_test.rb
+- :id: us_core_v700_observation_occupation_read_test
+  :file_name: observation_occupation_read_test.rb
+- :id: us_core_v700_observation_occupation_provenance_revinclude_search_test
+  :file_name: observation_occupation_provenance_revinclude_search_test.rb
+- :id: us_core_v700_observation_occupation_validation_test
+  :file_name: observation_occupation_validation_test.rb
+- :id: us_core_v700_observation_occupation_must_support_test
+  :file_name: observation_occupation_must_support_test.rb
+- :id: us_core_v700_observation_occupation_reference_resolution_test
+  :file_name: observation_occupation_reference_resolution_test.rb
+:id: us_core_v700_observation_occupation
+:file_name: observation_occupation_group.rb
+:delayed_references: []

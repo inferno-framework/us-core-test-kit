@@ -346,7 +346,7 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore5.new(profile, @must_supports).handle_special_cases
         when '6.1.0'
           MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
-        when '7.0.0-ballot'
+        when '7.0.0'
           MustSupportMetadataExtractorUsCore7.new(profile, @must_supports).handle_special_cases
         end
       end
