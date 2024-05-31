@@ -5,6 +5,7 @@
       "value": "identifier"
     }
   ],
+  "questionnaire": "http://example.com/questionnaire-1",
   "_questionnaire" : {
     "extension" : [
       {

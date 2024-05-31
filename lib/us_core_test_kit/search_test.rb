@@ -631,6 +631,8 @@ module USCoreTestKit
             element.family || element.given&.first || element.text
           when FHIR::Address
             element.text || element.city || element.state || element.postalCode || element.country
+          when USCoreTestKit::PrimitiveType
+            element.value
           else
             if metadata.version != 'v3.1.1' &&
                metadata.search_definitions[name.to_sym][:type] == 'date' &&
@@ -678,8 +680,8 @@ module USCoreTestKit
         (element.family || element.given&.first || element.text).present?
       when FHIR::Address
         (element.text || element.city || element.state || element.postalCode || element.country).present?
-      when FHIR::Element
-        false
+      when USCoreTestKit::PrimitiveType
+        element.value.present?
       else
         true
       end
