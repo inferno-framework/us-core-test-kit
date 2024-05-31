@@ -9,17 +9,15 @@ module USCoreTestKit
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history',
         ].map(&:freeze).freeze,
-      'v700_ballot' => [
-          'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
+      'v700' => [
           'patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern',
-          'patient/DiagnosticReport.rs?category=http://loinc.org|LP29684-5',
-          'patient/DiagnosticReport.rs?category=http://loinc.org|LP29708-2',
-          'patient/DocumentReference.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category|clinical-note',
-          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
+          'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis',
+          'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
+          'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh',
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history',
-          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|imaging',
-          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|procedure',
-          'patient/ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory',
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey',
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs'
         ].map(&:freeze).freeze
     }.freeze
 
@@ -30,7 +28,7 @@ module USCoreTestKit
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey',
           'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
       ].map(&:freeze).freeze,
-      'v700_ballot' => [
+      'v700' => [
           'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
           'patient/DiagnosticReport.rs?category=http://loinc.org|LP7839-6',
           'patient/DiagnosticReport.rs?category=http://terminology.hl7.org/CodeSystem/v2-0074|LAB',
