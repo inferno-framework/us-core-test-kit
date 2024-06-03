@@ -192,7 +192,7 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   - :path: reasonCode
     :uscdi_only: true
-  - :path: reasonReference.reference
+  - :path: reasonReference
     :uscdi_only: true
     :types:
     - Reference
@@ -211,7 +211,7 @@
     - reportedReference
   - :paths:
     - reasonCode
-    - reasonReference.reference
+    - reasonReference
     :uscdi_only: true
 :mandatory_elements:
 - MedicationRequest.status

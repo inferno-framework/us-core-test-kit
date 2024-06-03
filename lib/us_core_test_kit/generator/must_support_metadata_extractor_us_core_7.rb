@@ -19,24 +19,6 @@ module USCoreTestKit
       def handle_special_cases
         us_core_6_extractor.handle_special_cases
         add_must_support_choices
-        update_uscdi_elements
-      end
-
-      def update_uscdi_elements
-        case profile.type
-        when 'MedicationRequest'
-          element = must_supports[:elements].find { |e| e[:path] == 'reasonReference' }
-          element[:path] = 'reasonReference.reference' if element.present?
-
-          element = must_supports[:choices].find do |choice|
-            index = choice[:paths].index('reasonReference')
-
-            if index
-              choice[:paths][index] = 'reasonReference.reference'
-              break
-            end
-          end
-        end
       end
 
       def add_must_support_choices
