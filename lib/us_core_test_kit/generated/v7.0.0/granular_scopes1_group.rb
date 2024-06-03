@@ -1,6 +1,5 @@
 require_relative './condition_granular_scope1_group'
 require_relative './observation_granular_scope1_group'
-require_relative './service_request_granular_scope1_group'
 
 module USCoreTestKit
   module USCoreV700
@@ -16,7 +15,7 @@ based on the following granular scopes:
 * `Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
 * `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis`
 * `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item`
-* `ServiceRequest.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh`
+* `Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory`
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey`
@@ -51,7 +50,6 @@ based on the following granular scopes:
 
       group from: :us_core_v700_condition_granular_scope_1_group
       group from: :us_core_v700_observation_granular_scope_1_group
-      group from: :us_core_v700_service_request_granular_scope_1_group
     end
   end
 end
