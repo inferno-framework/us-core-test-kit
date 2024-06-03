@@ -51,14 +51,14 @@ above scopes.
 
       groups
         .first
-        .group from: :us_core_v700_ballot_smart_granular_scopes_1
+        .group from: :us_core_v700_smart_granular_scopes_1
 
       groups
         .last
         .description %(
 These tests perform a SMART app launch to receive the following granular scopes:
 
-#{scopes_string(SMART_GRANULAR_SCOPES_GROUP2['v700_ballot'])}
+#{scopes_string(SMART_GRANULAR_SCOPES_GROUP2['v700'])}
 
 Then all of the searches which have been performed in the US Core FHIR API tests
 are repeated to verify that the results have been filtered according to the
