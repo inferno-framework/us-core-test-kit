@@ -34,7 +34,7 @@ module USCoreTestKit
         For ONC USCDI requirements, each MedicationRequest must support the following additional elements:
 
         * MedicationRequest.extension:medicationAdherence
-        * MedicationRequest.reasonCode or MedicationRequest.reasonReference.reference
+        * MedicationRequest.reasonCode or MedicationRequest.reasonReference
       )
 
       id :us_core_v700_medication_request_must_support_test
