@@ -5,6 +5,7 @@ require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../custom_groups/v6.1.0/smart_granular_scopes_group'
+require_relative '../../custom_groups/v6.1.0/screening_assessment_group'
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -199,6 +200,7 @@ module USCoreTestKit
         group from: :us_core_v610_related_person
         group from: :us_core_v610_specimen
         group from: :us_core_v400_clinical_notes_guidance
+        group from: :us_core_v610_screening_assessment
         group from: :us_core_311_data_absent_reason
       end
 

@@ -3,8 +3,9 @@ require_relative '../../version'
 require_relative '<%= capability_statement_file_name %>'
 require_relative '<%= clinical_notes_guidance_file_name %>'
 require_relative '../../custom_groups/data_absent_reason_group'
-require_relative '../../custom_groups/smart_app_launch_group'<% if test_granular_scopes? %>
-require_relative '<%= granular_scopes_file_name %>'<% end %>
+require_relative '../../custom_groups/smart_app_launch_group'<% if us_core_6_and_above? %>
+require_relative '<%= granular_scopes_file_name %>'
+require_relative '<%= screening_assessment_file_name %>'<% end %>
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 
@@ -97,7 +98,7 @@ module USCoreTestKit
         end
 
         title 'US Core FHIR API'
-        id :<%= fhir_api_group_id %><% if test_granular_scopes? %>
+        id :<%= fhir_api_group_id %><% if us_core_6_and_above? %>
 
         config(
           options: {
@@ -108,9 +109,10 @@ module USCoreTestKit
         group from: :<%= capability_statement_group_id %>
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
-        group from: :<%= clinical_notes_guidance_group_id %>
+        group from: :<%= clinical_notes_guidance_group_id %><%if us_core_6_and_above? %>
+        group from: :<%= screening_assessment_id %><% end %>
         group from: :us_core_311_data_absent_reason
-      end<% if test_granular_scopes? %>
+      end<% if us_core_6_and_above? %>
 
       group from: :'<%= granular_scopes_id %>',
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
