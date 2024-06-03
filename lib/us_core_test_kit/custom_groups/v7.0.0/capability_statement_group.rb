@@ -103,7 +103,7 @@ module USCoreTestKit
         'PractitionerRole' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'].freeze,
         'Procedure' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure'].freeze,
         'Provenance' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance'].freeze,
-        'QuestionnaireResponse' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'].freeze
+        'QuestionnaireResponse' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse'].freeze,
         'RelatedPerson' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson'].freeze,
         'ServiceRequest' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest'].freeze,
         'Specimen' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen'].freeze
