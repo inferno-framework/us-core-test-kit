@@ -81,11 +81,21 @@ module USCoreTestKit
       end
 
       def values_from_value_set_binding(the_element)
+        return [] if the_element.nil?
+
         bound_systems = bound_systems(the_element)
 
-        return [] if bound_systems.blank?
+        return bound_systems.flat_map { |system| system.concept.map(&:code) }.uniq if bound_systems.present?
 
-        bound_systems.flat_map { |system| system.concept.map { |code| code.code } }.uniq
+        expansion_contains = value_set_expansion_contains(the_element)
+
+        return [] if expansion_contains.blank?
+
+        expansion_contains.map(&:code).compact.uniq
+      end
+
+      def value_set_expansion_contains(element)
+        value_set(element)&.expansion&.contains
       end
 
       def fhir_metadata(current_path)
