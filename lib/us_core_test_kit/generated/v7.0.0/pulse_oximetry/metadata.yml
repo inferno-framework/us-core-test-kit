@@ -146,9 +146,9 @@
     :multiple_or: SHALL
   :_lastUpdated:
     :paths:
-    - Resource.meta.lastUpdated
+    - meta.lastUpdated
     :full_paths:
-    - Resource.meta.lastUpdated
+    - Observation.meta.lastUpdated
     :comparators:
       :eq: MAY
       :ne: MAY

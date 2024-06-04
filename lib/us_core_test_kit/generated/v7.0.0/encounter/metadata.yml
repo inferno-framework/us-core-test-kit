@@ -69,9 +69,8 @@
   :names:
   - patient
   - _lastUpdated
-  :names_not_must_support_or_mandatory:
-  - _lastUpdated
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -93,12 +92,12 @@
 :search_definitions:
   :_id:
     :paths:
-    - Resource.id
+    - id
     :full_paths:
-    - Resource.id
+    - Encounter.id
     :comparators: {}
     :values: []
-    :type: token
+    :type: http://hl7.org/fhirpath/System.String
     :contains_multiple: false
     :multiple_or: MAY
   :identifier:
@@ -162,9 +161,9 @@
     :multiple_or: MAY
   :_lastUpdated:
     :paths:
-    - Resource.meta.lastUpdated
+    - meta.lastUpdated
     :full_paths:
-    - Resource.meta.lastUpdated
+    - Encounter.meta.lastUpdated
     :comparators:
       :eq: MAY
       :ne: MAY
@@ -176,7 +175,7 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: date
+    :type: instant
     :contains_multiple: false
     :multiple_or: MAY
   :status:

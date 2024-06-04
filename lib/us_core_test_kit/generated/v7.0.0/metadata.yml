@@ -839,9 +839,9 @@
       :multiple_or: MAY
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Condition.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -1116,9 +1116,8 @@
     :names:
     - patient
     - _lastUpdated
-    :names_not_must_support_or_mandatory:
-    - _lastUpdated
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -1248,9 +1247,9 @@
       :multiple_or: MAY
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Condition.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -1262,7 +1261,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
       :multiple_or: MAY
     :recorded-date:
@@ -1907,9 +1906,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - DiagnosticReport.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2141,9 +2140,8 @@
     - patient
     - category
     - _lastUpdated
-    :names_not_must_support_or_mandatory:
-    - _lastUpdated
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :patient:
       :paths:
@@ -2217,9 +2215,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - DiagnosticReport.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2231,7 +2229,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
       :multiple_or: MAY
   :include_params: *3
@@ -2445,12 +2443,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - DocumentReference.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
@@ -2758,9 +2756,8 @@
     :names:
     - patient
     - _lastUpdated
-    :names_not_must_support_or_mandatory:
-    - _lastUpdated
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :expectation: SHOULD
     :names:
     - patient
@@ -2782,12 +2779,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - Encounter.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
@@ -2851,9 +2848,9 @@
       :multiple_or: MAY
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Encounter.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -2865,7 +2862,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
       :multiple_or: MAY
     :status:
@@ -4365,9 +4362,8 @@
     - patient
     - category
     - _lastUpdated
-    :names_not_must_support_or_mandatory:
-    - _lastUpdated
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   :search_definitions:
     :patient:
       :paths:
@@ -4439,9 +4435,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -4453,7 +4449,7 @@
         :eb: MAY
         :ap: MAY
       :values: []
-      :type: date
+      :type: instant
       :contains_multiple: false
       :multiple_or: MAY
   :include_params: &5 []
@@ -4768,9 +4764,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5059,9 +5055,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5350,9 +5346,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5652,9 +5648,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -5982,9 +5978,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6301,9 +6297,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6584,9 +6580,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -6867,9 +6863,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -7184,9 +7180,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -7504,9 +7500,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -7822,9 +7818,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8159,7 +8155,11 @@
       :full_paths:
       - Observation.code
       :comparators: {}
-      :values: []
+      :values:
+      - 11367-0
+      - '401201003'
+      - 72166-2
+      - '782516008'
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: SHOULD
@@ -8207,9 +8207,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8503,9 +8503,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -8779,9 +8779,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9099,9 +9099,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9419,9 +9419,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -9735,9 +9735,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10062,9 +10062,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10385,9 +10385,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -10743,9 +10743,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11045,9 +11045,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11363,9 +11363,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -11680,9 +11680,9 @@
       :multiple_or: SHALL
     :_lastUpdated:
       :paths:
-      - Resource.meta.lastUpdated
+      - meta.lastUpdated
       :full_paths:
-      - Resource.meta.lastUpdated
+      - Observation.meta.lastUpdated
       :comparators:
         :eq: MAY
         :ne: MAY
@@ -12077,12 +12077,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - Patient.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
@@ -12439,12 +12439,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - Practitioner.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :identifier:
@@ -13191,12 +13191,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - QuestionnaireResponse.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
@@ -13420,12 +13420,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - RelatedPerson.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :name:
@@ -13579,12 +13579,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - ServiceRequest.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
@@ -13886,12 +13886,12 @@
   :search_definitions:
     :_id:
       :paths:
-      - Resource.id
+      - id
       :full_paths:
-      - Resource.id
+      - Specimen.id
       :comparators: {}
       :values: []
-      :type: token
+      :type: http://hl7.org/fhirpath/System.String
       :contains_multiple: false
       :multiple_or: MAY
     :patient:
