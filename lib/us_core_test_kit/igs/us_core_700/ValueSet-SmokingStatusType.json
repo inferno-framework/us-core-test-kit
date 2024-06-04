@@ -1,0 +1,74 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113762.1.4.1267.6",
+  "meta": {
+    "versionId": "5",
+    "lastUpdated": "2024-02-27T16:29:13.000-05:00",
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/shareablevalueset",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-valueset-cqfm",
+      "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
+      "valueDate": "2024-02-22"
+    }
+  ],
+  "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.6",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:oid:2.16.840.1.113762.1.4.1267.6"
+    }
+  ],
+  "version": "20240222",
+  "name": "SmokingStatusType",
+  "title": "Smoking Status Type",
+  "status": "active",
+  "date": "2024-02-22T01:11:38-05:00",
+  "publisher": "HL7 US Realm Program Management Steward",
+  "expansion": {
+    "identifier": "urn:uuid:4846dfb3-7d88-40a1-a541-64a4faa5fb25",
+    "timestamp": "2024-06-04T17:17:43-04:00",
+    "total": 4,
+    "offset": 0,
+    "parameter": [
+      {
+        "name": "count",
+        "valueInteger": 1000
+      },
+      {
+        "name": "offset",
+        "valueInteger": 0
+      }
+    ],
+    "contains": [
+      {
+        "system": "http://loinc.org",
+        "version": "2.77",
+        "code": "11367-0",
+        "display": "History of Tobacco use"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/731000124108/version/20240301",
+        "code": "401201003",
+        "display": "Cigarette pack-years (observable entity)"
+      },
+      {
+        "system": "http://loinc.org",
+        "version": "2.77",
+        "code": "72166-2",
+        "display": "Tobacco smoking status"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "version": "http://snomed.info/sct/731000124108/version/20240301",
+        "code": "782516008",
+        "display": "Number of calculated pack years for cumulative lifetime tobacco exposure (observable entity)"
+      }
+    ]
+  }
+}
