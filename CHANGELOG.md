@@ -1,5 +1,5 @@
 # 0.7.1
-* Fi 2455 granular scope read tests by @360dgries in
+* FI-2455 granular scope read tests by @360dgries in
   https://github.com/inferno-framework/us-core-test-kit/pull/170
 * FI-2790 Fix error caused by agent.who is nil by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/179
