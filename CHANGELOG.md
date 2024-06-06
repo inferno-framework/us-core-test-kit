@@ -1,3 +1,18 @@
+# 0.7.1
+* Fi 2455 granular scope read tests by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/170
+* FI-2790 Fix error caused by agent.who is nil by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/179
+* FI-2762 Add PrimitiveType class by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/176
+* FI-2749 Screen Assessment by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/175
+* FI-2429: Additional changes for HL7 validator wrapper transition by @dehall in
+  https://github.com/inferno-framework/us-core-test-kit/pull/178
+* Dependency Updates 2024-06-05 by @Jammjammjamm in
+  https://github.com/inferno-framework/us-core-test-kit/pull/180
+
+
 # 0.7.0
 * Dependency Updates 2024-04-05 by @Jammjammjamm in
   https://github.com/inferno-framework/us-core-test-kit/pull/165
