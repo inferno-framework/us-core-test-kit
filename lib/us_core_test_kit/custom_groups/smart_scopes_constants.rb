@@ -27,8 +27,8 @@ module USCoreTestKit
           'patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern',
           'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
           'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs',
-          'patient.Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey',
-          'patient.Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
+          'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey',
+          'patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'
       ].map(&:freeze).freeze,
       'v700_ballot' => [
           'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item',
