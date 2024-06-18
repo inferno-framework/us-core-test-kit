@@ -12,7 +12,7 @@ require_relative './granular_scope_tests/condition/condition_granular_scope_read
 
 module USCoreTestKit
   module USCoreV610
-    class ConditionGranularScope1Group < Inferno::TestGroup
+    class ConditionGranularScope2Group < Inferno::TestGroup
       title 'Condition Granular Scope Tests Tests'
       short_description 'Verify support for the server capabilities required by the US Core Condition Encounter Diagnosis Profile.'
       description %(
@@ -20,11 +20,12 @@ module USCoreTestKit
 FHIR API tests, and verify that the resources returned are filtered
 based on the following granular scopes:
 
-* `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis`
+* `Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
+* `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item`
 
       )
 
-      id :us_core_v610_condition_granular_scope_1_group
+      id :us_core_v610_condition_granular_scope_2_group
       run_as_group
 
     

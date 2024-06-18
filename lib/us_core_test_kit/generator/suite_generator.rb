@@ -64,8 +64,6 @@ module USCoreTestKit
 
       def ig_link
         case ig_metadata.ig_version
-        when 'v6.1.0'
-          'http://hl7.org/fhir/us/core/STU6'
         when 'v5.0.1'
           'http://hl7.org/fhir/us/core/STU5.0.1'
         when 'v4.0.0'

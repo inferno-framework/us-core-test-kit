@@ -62,7 +62,7 @@ module USCoreTestKit
       title 'US Core v6.1.0'
       description %(
         The US Core Test Kit tests systems for their conformance to the [US Core
-        Implementation Guide](http://hl7.org/fhir/us/core/STU6).
+        Implementation Guide]().
 
         HL7® FHIR® resources are validated with the Java validator using
         `tx.fhir.org` as the terminology server. Users should note that the
@@ -204,7 +204,7 @@ module USCoreTestKit
         group from: :us_core_311_data_absent_reason
       end
 
-      group from: :'us_core_v610_smart_granular_scopes',
+      group from: :us_core_v610_smart_granular_scopes,
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
       
     end
