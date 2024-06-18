@@ -16,6 +16,8 @@ FHIR API tests, and verify that the resources returned are filtered
 based on the following granular scopes:
 
 * `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
+* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey`
+* `Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh`
 
       )
 
