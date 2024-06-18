@@ -35,6 +35,9 @@ above scopes.
               name: :requested_scopes_group1,
               default: groups.first.default_group_scopes('v610')
             }
+          },
+          options: {
+            required_scopes: SMART_GRANULAR_SCOPES_GROUP1['v610']
           }
         )
 
@@ -62,12 +65,15 @@ above scopes.
               name: :requested_scopes_group2,
               default: groups.last.default_group_scopes('v610')
             }
+          },
+          options: {
+            required_scopes: SMART_GRANULAR_SCOPES_GROUP2['v610']
           }
         )
 
       groups
         .last
-        .group  from: :us_core_v610_smart_granular_scopes_2
+        .group from: :us_core_v610_smart_granular_scopes_2
     end
   end
 end
