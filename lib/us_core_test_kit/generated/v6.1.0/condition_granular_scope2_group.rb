@@ -20,7 +20,6 @@ module USCoreTestKit
 FHIR API tests, and verify that the resources returned are filtered
 based on the following granular scopes:
 
-* `Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
 * `Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item`
 
       )
