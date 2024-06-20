@@ -403,6 +403,6 @@
   :file_name: condition_patient_recorded_date_granular_scope_search_test.rb
 - :id: us_core_v700_Condition_granular_scope_read_test
   :file_name: condition_granular_scope_read_test.rb
-:id: us_core_v700_condition_granular_scope_1_group
-:file_name: condition_granular_scope1_group.rb
+:id: us_core_v700_condition_granular_scope_2_group
+:file_name: condition_granular_scope2_group.rb
 :delayed_references: []
