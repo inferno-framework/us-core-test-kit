@@ -275,8 +275,8 @@
   :file_name: observation_patient_code_granular_scope_search_test.rb
 - :id: us_core_v610_Observation_granular_scope_read_test
   :file_name: observation_granular_scope_read_test.rb
-:id: us_core_v610_observation_granular_scope_1_group
-:file_name: observation_granular_scope1_group.rb
+:id: us_core_v610_observation_granular_scope_2_group
+:file_name: observation_granular_scope2_group.rb
 :delayed_references:
 - :path: specimen
   :resources:

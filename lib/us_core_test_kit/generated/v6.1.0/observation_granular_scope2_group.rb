@@ -7,7 +7,7 @@ require_relative './granular_scope_tests/observation/observation_granular_scope_
 
 module USCoreTestKit
   module USCoreV610
-    class ObservationGranularScope1Group < Inferno::TestGroup
+    class ObservationGranularScope2Group < Inferno::TestGroup
       title 'Observation Granular Scope Tests Tests'
       short_description 'Verify support for the server capabilities required by the US Core Laboratory Result Observation Profile.'
       description %(
@@ -15,12 +15,13 @@ module USCoreTestKit
 FHIR API tests, and verify that the resources returned are filtered
 based on the following granular scopes:
 
-* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|laboratory`
-* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|social-history`
+* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
+* `Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey`
+* `Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh`
 
       )
 
-      id :us_core_v610_observation_granular_scope_1_group
+      id :us_core_v610_observation_granular_scope_2_group
       run_as_group
 
     

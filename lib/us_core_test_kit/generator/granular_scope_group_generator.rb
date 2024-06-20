@@ -4,18 +4,11 @@ require_relative '../custom_groups/smart_scopes_constants'
 module USCoreTestKit
   class Generator
     class GranularScopeGroupGenerator
-      include SmartScopesConstants
-
       class << self
         def generate(ig_metadata, base_output_dir)
           return unless ['6', '7'].include? ig_metadata.ig_version[1]
 
           [1, 2].each do |group_number|
-            scopes =
-              SmartScopesConstants
-                .const_get("SMART_GRANULAR_SCOPES_GROUP#{group_number}")[ig_metadata.reformatted_version]
-            next if scopes.blank?
-
             new(ig_metadata, base_output_dir, group_number).generate
           end
         end
