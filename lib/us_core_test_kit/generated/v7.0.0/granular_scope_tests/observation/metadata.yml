@@ -317,8 +317,8 @@
   :file_name: observation_patient_category_lastupdated_granular_scope_search_test.rb
 - :id: us_core_v700_Observation_granular_scope_read_test
   :file_name: observation_granular_scope_read_test.rb
-:id: us_core_v700_observation_granular_scope_1_group
-:file_name: observation_granular_scope1_group.rb
+:id: us_core_v700_observation_granular_scope_2_group
+:file_name: observation_granular_scope2_group.rb
 :delayed_references:
 - :path: subject
   :resources:
