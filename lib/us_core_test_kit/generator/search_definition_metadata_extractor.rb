@@ -47,6 +47,8 @@ module USCoreTestKit
               path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
             end
 
+            path.gsub!('Resource.', "#{resource}.") if path.start_with?('Resource.')
+
             full_paths = path.split('|')
 
             # There is a bug in US Core 5 asserted-date search parameter. See FHIR-40573
@@ -162,7 +164,7 @@ module USCoreTestKit
       end
 
       def multiple_or_expectation
-        param_hash['_multipleOr']['extension'].first['valueCode']
+        param_hash['_multipleOr'] ? param_hash['_multipleOr']['extension'].first['valueCode'] : 'MAY'
       end
 
       def values
