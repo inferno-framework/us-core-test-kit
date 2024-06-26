@@ -43,7 +43,7 @@ above scopes.
 
       groups
         .first
-        .group from: :us_core_v610_smart_granular_scopes_1
+        .group from: :us_core_v700_smart_granular_scopes_1
 
       groups
         .last
@@ -73,7 +73,7 @@ above scopes.
 
       groups
         .last
-        .group from: :us_core_v610_smart_granular_scopes_2
+        .group from: :us_core_v700_smart_granular_scopes_2
     end
   end
 end
