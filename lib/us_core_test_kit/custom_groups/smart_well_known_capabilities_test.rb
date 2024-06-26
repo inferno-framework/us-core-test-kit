@@ -1,13 +1,15 @@
 module USCoreTestKit
   class SMARTWellKnownCapabilitiesTest < Inferno::Test
 
-    title 'Well-known configuration declares support for required capabilities'
+    title 'Well-known configuration declares support for Additional US Core Required capabilities'
     description %(
-      A SMART on FHIR server SHALL convey its capabilities to app developers
-      by listing the SMART core capabilities supported by their
-      implementation within the Well-known configuration file. This test
-      ensures that the capabilities required by this scenario are properly
-      documented in the Well-known file.
+      US Core requires following additional metadata:
+      * scopes_supported: Array of scopes a client may request.
+        * The server SHALL support all scopes listed in the table above for the US Core Profiles they support; additional scopes MAY be supported.
+      * introspection_endpoint: The URL to a server’s introspection endpoint, which can be used to validate a token.
+        * Servers SHALL document this endpoint in the file
+
+      [Additional US Core Requirements](https://hl7.org/fhir/us/core/scopes.html#additional-us-core-requirements)
     )
     id :us_core_smart_well_known_capabilities
     input :well_known_configuration
