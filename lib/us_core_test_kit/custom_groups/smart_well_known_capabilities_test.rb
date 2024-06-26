@@ -24,7 +24,7 @@ module USCoreTestKit
       assert scopes_supported.present?, 'Well-known configuration does not include `scopes_supported`'
       assert scopes_supported.is_a?(Array),
              "Well-known `scopes_supported` must be type of Array, but found #{scopes_supported.class.name}"
-      # Add regex check of scopes pattern
+
       pattern = %r{^(patient|user|system|\*)/([a-zA-Z*]+)\.([cruds])(\?[\w-]+=[\w-]+(&[\w-]+=[\w-]+)*)?$}
       has_fhir_resource_scopes = scopes_supported.any { |scope| scope.match?(pattern) }
       assert has_fhir_resource_scopes,
@@ -33,7 +33,7 @@ module USCoreTestKit
 
       introspection_endpoint = config['introspection_endpoint']
       assert introspection_endpoint.present?, 'Well-known configuration does not include `introspection_endpoint`'
-      assert introspection_endpoint.is_a?(Array),
+      assert introspection_endpoint.is_a?(String),
              "Well-known `introspection_endpoint` must be type of Array, but found #{introspection_endpoint.class.name}"
     end
   end
