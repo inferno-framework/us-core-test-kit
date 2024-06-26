@@ -1,3 +1,5 @@
+require_relative 'smart_well_known_capabilities_test'
+
 module USCoreTestKit
   class SmartStandaloneLaunchSTU2 < Inferno::TestGroup
     id :us_core_smart_standalone_launch_stu2
@@ -5,8 +7,11 @@ module USCoreTestKit
 
     run_as_group
 
-    group from: :smart_discovery_stu2,
-          run_as_group: true
+    group from: :smart_discovery_stu2 do
+      run_as_group
+      test from: 'us_core_smart_well_known_capabilities'
+    end
+
     group from: :smart_standalone_launch_stu2,
           run_as_group: true
 

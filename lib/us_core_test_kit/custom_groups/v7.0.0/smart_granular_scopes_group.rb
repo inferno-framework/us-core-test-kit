@@ -5,7 +5,7 @@ require_relative '../../generated/v7.0.0/granular_scopes2_group'
 module USCoreTestKit
   module USCoreV700
     class SmartGranularScopesGroup < BaseSmartGranularScopesGroup
-      id :us_core_v7000_smart_granular_scopes
+      id :us_core_v700_smart_granular_scopes
       title 'US Core SMART Granular Scopes'
 
       def self.scopes_string(scopes)
