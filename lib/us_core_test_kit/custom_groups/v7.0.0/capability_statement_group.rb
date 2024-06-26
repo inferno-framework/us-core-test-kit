@@ -10,7 +10,8 @@ module USCoreTestKit
     class CapabilityStatementGroup < Inferno::TestGroup
       id :us_core_v700_capability_statement
       title 'Capability Statement'
-      short_description 'Retrieve information about supported server functionality using the FHIR capabilties interaction.'
+      short_description 'Retrieve information about supported server functionality' \
+                        'using the FHIR capabilties interaction.'
       description %(
         # Background
         The #{title} Sequence tests a FHIR server's ability to formally describe
@@ -110,15 +111,15 @@ module USCoreTestKit
       }.freeze
 
       test from: :tls_version_test,
-          id: :standalone_auth_tls,
-          title: 'FHIR server secured by transport layer security',
-          description: %(
-            Systems **SHALL** use TLS version 1.2 or higher for all transmissions
-            not taking place over a secure network connection.
-          ),
-          config: {
-            options: {  minimum_allowed_version: OpenSSL::SSL::TLS1_2_VERSION }
-          }
+           id: :standalone_auth_tls,
+           title: 'FHIR server secured by transport layer security',
+           description: %(
+             Systems **SHALL** use TLS version 1.2 or higher for all transmissions
+             not taking place over a secure network connection.
+           ),
+           config: {
+             options: { minimum_allowed_version: OpenSSL::SSL::TLS1_2_VERSION }
+           }
       test from: :us_core_conformance_support
       test from: :us_core_fhir_version
       test from: :us_core_json_support
