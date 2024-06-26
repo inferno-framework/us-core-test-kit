@@ -47,7 +47,7 @@ module USCoreTestKit
               path.gsub!(/[. ]as[( ](#{as_type}[^)]*)[)]?/, as_type.upcase_first) if as_type.present?
             end
 
-            path.gsub!('Resource.', "#{resource}.")
+            path.gsub!('Resource.', "#{resource}.") if path.start_with?('Resource.')
 
             full_paths = path.split('|')
 
