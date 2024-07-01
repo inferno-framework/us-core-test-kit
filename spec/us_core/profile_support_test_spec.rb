@@ -107,6 +107,34 @@ RSpec.describe USCoreTestKit::ProfileSupportTest do
 
       expect(result.result).to eq('pass')
     end
+
+    it 'passes if supported profiles have versions' do
+      response_body =
+        FHIR::CapabilityStatement.new(
+          rest: [
+            {
+              resource: [
+                {
+                  type: 'Patient',
+                  supportedProfile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|6.1.0']
+                },
+                {
+                  type: 'Observation',
+                  supportedProfile:[
+                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0',
+                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
+                  ]
+                }
+              ]
+            }
+          ]
+        ).to_json
+      repo_create(:request, response_body:, name: 'capability_statement', test_session_id: test_session.id)
+
+      result = run(test, url:)
+
+      expect(result.result).to eq('pass')
+    end
   end
 
   context 'with required resources' do
