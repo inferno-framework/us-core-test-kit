@@ -12,8 +12,12 @@ module USCoreTestKit
       assert_resource_type(:capability_statement)
       capability_statement = resource
 
-      assert capability_statement.instantiates.include?('http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server'),
-        "Server CapabilityStatement.instantiates does not include 'http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server'"
+      include_us_core = capability_statement.instantiates&.any? do |url|
+        url.split('|').first == 'http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server'
+      end
+
+      assert include_us_core,
+             "Server CapabilityStatement.instantiates does not include 'http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server'"
     end
   end
 end
