@@ -127,15 +127,6 @@ module USCoreTestKit
         end
       end
 
-      def url_version
-        case group_metadata.version
-        when 'v3.1.1'
-          'STU3.1.1'
-        when 'v4.0.0'
-          'STU4'
-        end
-      end
-
       def search_test_properties_string
         search_properties
           .map { |key, value| "#{' ' * 8}#{key}: #{value}" }
