@@ -26,7 +26,7 @@ module USCoreTestKit
              "Well-known `scopes_supported` must be type of Array, but found #{scopes_supported.class.name}"
 
       pattern = %r{^(patient|user|system|\*)/([a-zA-Z*]+)\.([cruds])(\?[\w-]+=[\w-]+(&[\w-]+=[\w-]+)*)?$}
-      has_fhir_resource_scopes = scopes_supported.any { |scope| scope.match?(pattern) }
+      has_fhir_resource_scopes = scopes_supported.any? { |scope| scope.match?(pattern) }
       assert has_fhir_resource_scopes,
              'Well-known `scopes_supported` does not have any FHIR Resource scopes:' \
              '<patient|user|system>/<fhir-resource>.<c|r|u|d|s>[?param=value]'
