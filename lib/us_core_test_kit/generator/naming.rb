@@ -28,6 +28,14 @@ module USCoreTestKit
       PROCEDURE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure'
       PROVENANCE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance'
 
+      IG_LINKS = {
+        'v3.1.1' => 'http://hl7.org/fhir/us/core/STU3.1.1',
+        'v4.0.0' => 'http://hl7.org/fhir/us/core/STU4',
+        'v5.0.1' => 'http://hl7.org/fhir/us/core/STU5.0.1',
+        'v6.1.0' => 'http://hl7.org/fhir/us/core/STU6.1',
+        'v7.0.0' => 'http://hl7.org/fhir/us/core/STU7'
+      }.freeze
+
       class << self
         def resources_with_multiple_profiles
           ['Condition', 'DiagnosticReport', 'Observation']
@@ -53,6 +61,10 @@ module USCoreTestKit
 
         def upper_camel_case_for_profile(group_metadata)
           snake_case_for_profile(group_metadata).camelize
+        end
+
+        def ig_link(version)
+          IG_LINKS[version]
         end
       end
     end

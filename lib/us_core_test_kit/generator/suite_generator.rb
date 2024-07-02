@@ -62,16 +62,8 @@ module USCoreTestKit
         "hl7.fhir.us.core##{version}"
       end
 
-      IG_LINKS = {
-        'v3.1.1' => 'http://hl7.org/fhir/us/core/STU3.1.1',
-        'v4.0.0' => 'http://hl7.org/fhir/us/core/STU4',
-        'v5.0.1' => 'http://hl7.org/fhir/us/core/STU5.0.1',
-        'v6.1.0' => 'http://hl7.org/fhir/us/core/STU6.1',
-        'v7.0.0' => 'http://hl7.org/fhir/us/core/STU7'
-      }.freeze
-
       def ig_link
-        IG_LINKS[ig_metadata.ig_version]
+        Naming.ig_link(ig_metadata.ig_version)
       end
 
       def us_core_6_and_above?
