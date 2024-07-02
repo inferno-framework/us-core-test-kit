@@ -1,5 +1,5 @@
 module USCoreTestKit
-  class SMARTWellKnownCapabilitiesTest < Inferno::Test
+  class SmartWellKnownCapabilitiesTest < Inferno::Test
     title 'Well-known configuration declares support for Additional US Core Required capabilities'
     description %(
       US Core requires following additional metadata:
@@ -25,10 +25,10 @@ module USCoreTestKit
       assert scopes_supported.is_a?(Array),
              "Well-known `scopes_supported` must be type of Array, but found #{scopes_supported.class.name}"
 
-      pattern = %r{^(patient|user|system|\*)/([a-zA-Z*]+)\.([cruds])(\?[\w-]+=[\w-]+(&[\w-]+=[\w-]+)*)?$}
+      pattern = %r{^(patient|user|system|\*)/([a-zA-Z*]+)\.([cruds]+)(\?\w+=[^\s&]+(&\w+=[^\s&]+)*)?$}
       has_fhir_resource_scopes = scopes_supported.any? { |scope| scope.match?(pattern) }
       assert has_fhir_resource_scopes,
-             'Well-known `scopes_supported` does not have any FHIR Resource scopes:' \
+             'Well-known `scopes_supported` does not have any FHIR Resource scopes: ' \
              '<patient|user|system>/<fhir-resource>.<c|r|u|d|s>[?param=value]'
 
       introspection_endpoint = config['introspection_endpoint']
