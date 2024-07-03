@@ -20,13 +20,15 @@ module USCoreTestKit
       assert_resource_type(:capability_statement)
       capability_statement = resource
 
-      supported_profiles =
-        capability_statement.rest
-          &.each_with_object([]) do |rest, profiles|
-            rest.resource.each { |resource| profiles.concat(resource.supportedProfile) }
-          end.uniq
+      supported_profiles = capability_statement.rest&.flat_map do |rest|
+        rest.resource.flat_map do |resource|
+          # Remove trailing version from canonical url
+          resource.supportedProfile&.map { |profile| profile.split('|').first }
+        end.compact
+      end&.uniq || []
 
-      assert supported_profiles.include?('http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'), 'US Core Patient profile not supported'
+      assert supported_profiles.include?('http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'),
+             'US Core Patient profile not supported'
 
       us_core_profiles = config.options[:us_core_profiles]
 
@@ -45,7 +47,8 @@ module USCoreTestKit
             .join(', ')
 
         assert missing_profiles.empty?,
-               "The CapabilityStatement did not list support for the following resources: #{missing_profiles_list}"
+               'The CapabilityStatement does not list support for the following' \
+               "US Core profiles: #{missing_profiles_list}"
       end
     end
   end
