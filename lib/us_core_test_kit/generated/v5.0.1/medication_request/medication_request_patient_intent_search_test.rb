@@ -30,7 +30,7 @@ return the same number of results. Search by POST is required by the
 FHIR R4 specification, and these tests interpret search by GET as a
 requirement of US Core v5.0.1.
 
-[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core//CapabilityStatement-us-core-server.html)
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU5.0.1/CapabilityStatement-us-core-server.html)
 
       )
 
