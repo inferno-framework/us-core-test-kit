@@ -13,7 +13,7 @@ patient + category on the DocumentReference resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
-[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core//CapabilityStatement-us-core-server.html)
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-server.html)
 
       )
 
