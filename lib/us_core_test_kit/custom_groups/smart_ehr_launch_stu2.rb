@@ -1,3 +1,5 @@
+require_relative 'smart_well_known_capabilities_test'
+
 module USCoreTestKit
   class SmartEHRLaunchSTU2 < Inferno::TestGroup
     id :us_core_smart_ehr_launch_stu2
