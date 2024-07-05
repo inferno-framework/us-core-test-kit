@@ -1,7 +1,3 @@
-# 0.7.2
-* FHIR-2497 Handle instantiate and supportedProfile with version by @yunwwang in
-  https://github.com/inferno-framework/us-core-test-kit/pull/185
-
 # 0.7.1
 * FI-2455 granular scope read tests by @360dgries in
   https://github.com/inferno-framework/us-core-test-kit/pull/170
