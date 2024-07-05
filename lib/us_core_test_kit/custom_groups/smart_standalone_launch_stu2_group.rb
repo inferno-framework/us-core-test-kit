@@ -7,7 +7,6 @@ module USCoreTestKit
 
     group from: :smart_discovery_stu2,
           run_as_group: true
-
     group from: :smart_standalone_launch_stu2,
           run_as_group: true
 
