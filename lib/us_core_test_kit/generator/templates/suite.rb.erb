@@ -7,7 +7,8 @@ require_relative '../../custom_groups/smart_app_launch_group'<% if us_core_6_and
 require_relative '<%= granular_scopes_file_name %>'
 require_relative '<%= screening_assessment_file_name %>'<% end %>
 require_relative '../../provenance_validator'
-require_relative '../../us_core_options'
+require_relative '../../us_core_options'<% if us_core_7_and_above? %>
+require_relative '<%= smart_app_launch_file_name %>'<% end %>
 
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
@@ -84,7 +85,7 @@ module USCoreTestKit
           }
         ]
 
-      group from: :us_core_smart_app_launch
+      group from: :<%= smart_app_launch_id %>
 
       group do
         input :smart_credentials,
