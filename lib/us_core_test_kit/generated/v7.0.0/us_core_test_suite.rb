@@ -8,6 +8,7 @@ require_relative '../../custom_groups/v7.0.0/smart_granular_scopes_group'
 require_relative '../../custom_groups/v7.0.0/screening_assessment_group'
 require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
+require_relative '../../custom_groups/v7.0.0/smart_app_launch_group'
 
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
@@ -133,7 +134,7 @@ module USCoreTestKit
           }
         ]
 
-      group from: :us_core_smart_app_launch
+      group from: :us_core_v700_smart_app_launch
 
       group do
         input :smart_credentials,
