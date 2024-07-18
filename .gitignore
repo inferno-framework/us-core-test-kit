@@ -20,3 +20,5 @@
 .yardoc
 node_modules
 .rubocop.yml
+
+/lib/us_core_test_kit/igs/package

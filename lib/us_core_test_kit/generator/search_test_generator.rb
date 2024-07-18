@@ -208,13 +208,8 @@ module USCoreTestKit
         end
       end
 
-      def url_version
-        case group_metadata.version
-        when 'v3.1.1'
-          'STU3.1.1'
-        when 'v4.0.0'
-          'STU4'
-        end
+      def ig_link
+        Naming.ig_link(group_metadata.version)
       end
 
       def search_test_properties_string
@@ -286,7 +281,7 @@ module USCoreTestKit
         #{first_search_description}
         #{post_search_description}
 
-        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/#{url_version}/CapabilityStatement-us-core-server.html)
+        [US Core Server CapabilityStatement](#{ig_link}/CapabilityStatement-us-core-server.html)
         DESCRIPTION
       end
     end

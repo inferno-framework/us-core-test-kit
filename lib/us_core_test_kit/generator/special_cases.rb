@@ -3,7 +3,7 @@ module USCoreTestKit
     module SpecialCases
       RESOURCES_TO_EXCLUDE = {
         'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
+        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700'],
         'PractitionerRole' => ['v311', 'v400']
       }.freeze
 
@@ -24,15 +24,15 @@ module USCoreTestKit
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
         'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700_ballot'],
-        'RelatedPerson' => ['v501', 'v610', 'v700_ballot']
+        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700'],
+        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700'],
+        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700'],
+        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700'],
+        'RelatedPerson' => ['v501', 'v610', 'v700']
       }.freeze
 
       SEARCHABLE_DELAYED_RESOURCES = {
-        'Location' => ['v700_ballot']
+        'Location' => ['v700']
       }.freeze
 
       ALL_VERSION_CATEGORY_FIRST_PROFILES = [
@@ -51,13 +51,14 @@ module USCoreTestKit
       ].freeze
 
       VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700_ballot'],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700_ballot']
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700'],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700']
       }.freeze
 
       class << self
         def exclude_group?(group)
-          RESOURCES_TO_EXCLUDE.key?(group.resource) && RESOURCES_TO_EXCLUDE[group.resource].include?(group.reformatted_version)
+          RESOURCES_TO_EXCLUDE.key?(group.resource) &&
+            RESOURCES_TO_EXCLUDE[group.resource].include?(group.reformatted_version)
         end
       end
     end

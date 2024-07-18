@@ -30,11 +30,11 @@ module USCoreTestKit
       end
 
       def base_output_file_name
-        "us_core_test_suite.rb"
+        'us_core_test_suite.rb'
       end
 
       def class_name
-        "USCoreTestSuite"
+        'USCoreTestSuite'
       end
 
       def module_name
@@ -63,20 +63,15 @@ module USCoreTestKit
       end
 
       def ig_link
-        case ig_metadata.ig_version
-        when 'v6.1.0'
-          'http://hl7.org/fhir/us/core/STU6'
-        when 'v5.0.1'
-          'http://hl7.org/fhir/us/core/STU5.0.1'
-        when 'v4.0.0'
-          'http://hl7.org/fhir/us/core/STU4'
-        when 'v3.1.1'
-          'http://hl7.org/fhir/us/core/STU3.1.1'
-        end
+        Naming.ig_link(ig_metadata.ig_version)
       end
 
       def us_core_6_and_above?
         ig_metadata.ig_version[1].to_i > 5
+      end
+
+      def us_core_7_and_above?
+        ig_metadata.ig_version[1].to_i > 6
       end
 
       def generate
@@ -136,6 +131,18 @@ module USCoreTestKit
 
       def screening_assessment_id
         "us_core_#{ig_metadata.reformatted_version}_screening_assessment"
+      end
+
+      def smart_app_launch_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/smart_app_launch_group"
+      end
+
+      def smart_app_launch_id
+        if us_core_7_and_above?
+          "us_core_#{ig_metadata.reformatted_version}_smart_app_launch"
+        else
+          'us_core_smart_app_launch'
+        end
       end
     end
   end
