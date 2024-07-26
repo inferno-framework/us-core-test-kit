@@ -81,7 +81,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
           category: {
             coding: [
               {
-                system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/condition-category',
                 code: 'health-concern'
               }
             ]
