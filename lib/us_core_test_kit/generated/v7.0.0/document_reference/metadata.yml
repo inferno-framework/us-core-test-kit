@@ -186,7 +186,8 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - clinical-note
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category
+        :code: clinical-note
     :uscdi_only: true
   :elements:
   - :path: identifier

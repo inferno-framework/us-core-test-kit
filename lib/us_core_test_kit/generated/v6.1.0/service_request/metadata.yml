@@ -177,17 +177,28 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
-      - '386053000'
-      - '410606002'
-      - '108252007'
-      - '363679005'
-      - '409063005'
-      - '409073007'
-      - '387713003'
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: sdoh
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: functional-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: disability-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: cognitive-status
+      - :system: http://snomed.info/sct
+        :code: '386053000'
+      - :system: http://snomed.info/sct
+        :code: '410606002'
+      - :system: http://snomed.info/sct
+        :code: '108252007'
+      - :system: http://snomed.info/sct
+        :code: '363679005'
+      - :system: http://snomed.info/sct
+        :code: '409063005'
+      - :system: http://snomed.info/sct
+        :code: '409073007'
+      - :system: http://snomed.info/sct
+        :code: '387713003'
   :elements:
   - :path: status
   - :path: intent

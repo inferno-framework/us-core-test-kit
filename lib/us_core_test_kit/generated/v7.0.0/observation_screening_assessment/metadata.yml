@@ -183,12 +183,18 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
-      - treatment-intervention-preference
-      - care-experience-preference
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: sdoh
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: functional-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: disability-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: cognitive-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: treatment-intervention-preference
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: care-experience-preference
   :elements:
   - :path: status
   - :path: category

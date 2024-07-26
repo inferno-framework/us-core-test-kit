@@ -151,10 +151,14 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - inpatient
-      - outpatient
-      - community
-      - discharge
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: inpatient
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: outpatient
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: community
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: discharge
   :elements:
   - :path: status
   - :path: intent

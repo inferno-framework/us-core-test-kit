@@ -169,11 +169,10 @@ module USCoreTestKit
 
       def values
         values_from_must_supports(profile_element).presence ||
-        value_extractor.values_from_fixed_codes(profile_element, type).presence ||
-        #value_extractor.values_from_required_binding(profile_element).presence ||
-        value_extractor.values_from_value_set_binding(profile_element).presence ||
-        values_from_resource_metadata(paths).presence ||
-        []
+          value_extractor.values_from_fixed_codes(profile_element, type).presence ||
+          value_extractor.codes_from_value_set_binding(profile_element).presence ||
+          values_from_resource_metadata(paths).presence ||
+          []
       end
 
       def values_from_must_supports(profile_element)
@@ -198,7 +197,7 @@ module USCoreTestKit
             when 'patternCoding', 'patternCodeableConcept'
               slice[:discriminator][:code]
             when 'requiredBinding'
-              slice[:discriminator][:values]
+              value_extractor.codes_from_system_code_pair(slice[:discriminator][:values])
             when 'value'
               slice[:discriminator][:values]
                 .select { |value| value[:path] == 'coding.code' }
@@ -216,7 +215,7 @@ module USCoreTestKit
 
       def values_from_resource_metadata(paths)
         if multiple_or_expectation == 'SHALL' || paths.any? { |path| path.downcase.include?('status') }
-          value_extractor.values_from_resource_metadata(paths)
+          value_extractor.codes_from_system_code_pair(value_extractor.values_from_resource_metadata(paths))
         else
           []
         end

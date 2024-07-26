@@ -118,7 +118,7 @@ module USCoreTestKit
 
                 value_extractor = ValueExactor.new(ig_resources, resource, profile_elements)
 
-                values = value_extractor.values_from_value_set_binding(pattern_element).presence ||
+                values = value_extractor.codings_from_value_set_binding(pattern_element).presence ||
                          value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
 
                 {

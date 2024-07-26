@@ -18,7 +18,6 @@ module USCoreTestKit
       nil
     end
 
-    # rubocop:disable Metrics/CyclomaticComplexity
     def category_found(resource_type:, patient_id:, category_search_values:, missing_categories:)
       search_params = { patient: patient_id }
 
@@ -32,7 +31,7 @@ module USCoreTestKit
         resources.each do |resource|
           resource.category&.each do |category|
             category.coding&.each do |coding|
-              missing_categories.delete(coding.code)
+              missing_categories.delete_if { |item| item[:system] == coding.system && item[:code] == coding.code }
             end
           end
 
@@ -42,7 +41,6 @@ module USCoreTestKit
         break if missing_categories.empty?
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity
 
     run do
       missing_obs_categories = config.options[:observation_screening_assessment_categories].dup
@@ -67,8 +65,10 @@ module USCoreTestKit
       pass if missing_cond_categories.empty? && missing_obs_categories.empty?
 
       messages = []
-      messages << "Observation categories: #{missing_obs_categories.join(', ')}" unless missing_obs_categories.empty?
-      messages << "Condition categories: #{missing_cond_categories.join(', ')}" unless missing_cond_categories.empty?
+      missing_obs_codes = missing_obs_categories.map { |item| "#{item[:system]}|#{item[:code]}" }
+      missing_cond_codes = missing_cond_categories.map { |item| "#{item[:system]}|#{item[:code]}" }
+      messages << "Observation categories: #{missing_obs_codes.join(', ')}" unless missing_obs_codes.empty?
+      messages << "Condition categories: #{missing_cond_codes.join(', ')}" unless missing_cond_codes.empty?
       skip "Could not find these #{messages.join(' and ')}."
     end
   end
