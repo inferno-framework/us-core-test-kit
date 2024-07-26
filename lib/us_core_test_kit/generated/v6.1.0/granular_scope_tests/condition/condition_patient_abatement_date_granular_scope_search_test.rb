@@ -17,6 +17,7 @@ filtered based on the granted granular scopes.
       )
 
       id :us_core_v610_Condition_patient_abatement_date_granular_scope_search_test
+      optional
 
       input :patient_ids,
         title: 'Patient IDs',
