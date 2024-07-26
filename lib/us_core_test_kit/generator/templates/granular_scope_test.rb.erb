@@ -13,8 +13,9 @@ module USCoreTestKit
 <%= description %>
       )
 
-      id :<%= test_id %>
-<% if needs_patient_id? %>
+      id :<%= test_id %><% if optional? %>
+      optional
+<% end %><% if needs_patient_id? %>
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
