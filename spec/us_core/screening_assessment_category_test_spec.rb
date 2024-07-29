@@ -21,8 +21,34 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
 
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
-  let(:observation_categories) { ['sdoh', 'functional-status', 'disability-status', 'cognitive-status'] }
-  let(:condition_categories) { ['sdoh'] }
+  let(:observation_categories) do
+    [
+      {
+        system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+        code: 'sdoh'
+      },
+      {
+        system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+        code: 'functional-status'
+      },
+      {
+        system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+        code: 'disability-status'
+      },
+      {
+        system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+        code: 'cognitive-status'
+      }
+    ]
+  end
+  let(:condition_categories) do
+    [
+      {
+        system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+        code: 'sdoh'
+      }
+    ]
+  end
 
   let(:test_class) do
     obs_categories = observation_categories
@@ -45,8 +71,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Observation.new(
       id: 'sdoh',
       category: [
-        { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'sdoh' }] }
+        { coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'survey' }] },
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category', code: 'sdoh' }] }
       ]
     )
   end
@@ -54,8 +80,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Observation.new(
       id: 'functional-status',
       category: [
-        { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'functional-status' }] }
+        { coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'survey' }] },
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category', code: 'functional-status' }] }
       ]
     )
   end
@@ -63,8 +89,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Observation.new(
       id: 'disability-status',
       category: [
-        { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'disability-status' }] }
+        { coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'survey' }] },
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category', code: 'disability-status' }] }
       ]
     )
   end
@@ -72,8 +98,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Observation.new(
       id: 'cognitive-status',
       category: [
-        { coding: [{ code: 'survey' }] },
-        { coding: [{ code: 'cognitive-status' }] }
+        { coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'survey' }] },
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category', code: 'cognitive-status' }] }
       ]
     )
   end
@@ -81,7 +107,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Observation.new(
       id: 'cognitive-status',
       category: [
-        { coding: [{ code: 'survey' }] }
+        { coding: [{ system: 'http://terminology.hl7.org/CodeSystem/observation-category', code: 'survey' }] }
       ]
     )
   end
@@ -89,8 +115,8 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Condition.new(
       id: 'sdoh',
       category: [
-        { coding: [{ code: 'health-concern' }] },
-        { coding: [{ code: 'sdoh' }] }
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/condition-category', code: 'health-concern' }] },
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category', code: 'sdoh' }] }
       ]
     )
   end
@@ -98,7 +124,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
     FHIR::Condition.new(
       id: 'non_sdoh',
       category: [
-        { coding: [{ code: 'health-concern' }] }
+        { coding: [{ system: 'http://hl7.org/fhir/us/core/CodeSystem/condition-category', code: 'health-concern' }] }
       ]
     )
   end
@@ -151,7 +177,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       result = run(test_class, patient_ids: patient_id)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Observation categories: functional-status')
+      expect(result.result_message).to include('Observation categories: http://hl7.org/fhir/us/core/CodeSystem/us-core-category|functional-status')
     end
 
     it 'skips when a Condition category is missing' do
@@ -163,7 +189,7 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       result = run(test_class, patient_ids: patient_id)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Condition categories: sdoh')
+      expect(result.result_message).to include('Condition categories: http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh')
     end
 
     it 'skips when Observation and Condition categories are missing' do
@@ -179,9 +205,11 @@ RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
       result = run(test_class, patient_ids: patient_id)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include(
-        'Observation categories: functional-status, disability-status and Condition categories: sdoh'
-      )
+      expect(result.result_message).to include('Observation categories')
+      expect(result.result_message).to include('functional-status')
+      expect(result.result_message).to include('disability-status')
+      expect(result.result_message).to include('Condition categories')
+      expect(result.result_message).to include('sdoh')
     end
   end
 end

@@ -181,13 +181,20 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - laboratory
-      - exam
-      - therapy
-      - imaging
-      - procedure
-      - vital-signs
-      - activity
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: laboratory
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: exam
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: therapy
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: imaging
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: procedure
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: vital-signs
+      - :system: http://terminology.hl7.org/CodeSystem/observation-category
+        :code: activity
   :elements:
   - :path: status
   - :path: category

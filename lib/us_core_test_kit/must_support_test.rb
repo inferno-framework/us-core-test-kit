@@ -193,7 +193,10 @@ module USCoreTestKit
           end
         when 'requiredBinding'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
-          find_a_value_at(element, coding_path) {|coding| discriminator[:values].include?(coding.code) }
+
+          find_a_value_at(element, coding_path) do |coding|
+            discriminator[:values].any? { |value| value[:system] == coding.system && value[:code] == coding.code }
+          end
         end
       end
     end

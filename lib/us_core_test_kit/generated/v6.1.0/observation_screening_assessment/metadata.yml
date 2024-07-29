@@ -156,10 +156,14 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: sdoh
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: functional-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: disability-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: cognitive-status
   :elements:
   - :path: status
   - :path: category

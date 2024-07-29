@@ -1207,8 +1207,10 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - problem-list-item
-        - health-concern
+        - :system: http://terminology.hl7.org/CodeSystem/condition-category
+          :code: problem-list-item
+        - :system: http://hl7.org/fhir/us/core/CodeSystem/condition-category
+          :code: health-concern
     - :slice_id: Condition.category:sdoh
       :slice_name: sdoh
       :path: category
@@ -1615,9 +1617,12 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - LP29684-5
-        - LP29708-2
-        - LP7839-6
+        - :system: http://loinc.org
+          :code: LP29684-5
+        - :system: http://loinc.org
+          :code: LP29708-2
+        - :system: http://loinc.org
+          :code: LP7839-6
     :elements:
     - :path: status
     - :path: category
@@ -2179,7 +2184,8 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - clinical-note
+        - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category
+          :code: clinical-note
     :elements:
     - :path: identifier
     - :path: status
@@ -3415,10 +3421,14 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - inpatient
-        - outpatient
-        - community
-        - discharge
+        - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+          :code: inpatient
+        - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+          :code: outpatient
+        - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+          :code: community
+        - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+          :code: discharge
     :elements:
     - :path: status
     - :path: intent
@@ -11167,14 +11177,22 @@
         :type: requiredBinding
         :path: ''
         :values:
-        - sdoh
-        - '386053000'
-        - '410606002'
-        - '108252007'
-        - '363679005'
-        - '409063005'
-        - '409073007'
-        - '387713003'
+        - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-tags
+          :code: sdoh
+        - :system: http://snomed.info/sct
+          :code: '386053000'
+        - :system: http://snomed.info/sct
+          :code: '410606002'
+        - :system: http://snomed.info/sct
+          :code: '108252007'
+        - :system: http://snomed.info/sct
+          :code: '363679005'
+        - :system: http://snomed.info/sct
+          :code: '409063005'
+        - :system: http://snomed.info/sct
+          :code: '409073007'
+        - :system: http://snomed.info/sct
+          :code: '387713003'
     :elements:
     - :path: status
     - :path: intent

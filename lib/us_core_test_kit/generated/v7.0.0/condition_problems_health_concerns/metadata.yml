@@ -280,8 +280,10 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - problem-list-item
-      - health-concern
+      - :system: http://terminology.hl7.org/CodeSystem/condition-category
+        :code: problem-list-item
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/condition-category
+        :code: health-concern
   - :slice_id: Condition.category:screening-assessment
     :slice_name: screening-assessment
     :path: category
@@ -289,12 +291,18 @@
       :type: requiredBinding
       :path: ''
       :values:
-      - sdoh
-      - functional-status
-      - disability-status
-      - cognitive-status
-      - treatment-intervention-preference
-      - care-experience-preference
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: sdoh
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: functional-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: disability-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: cognitive-status
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: treatment-intervention-preference
+      - :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
+        :code: care-experience-preference
   :elements:
   - :path: meta
   - :path: meta.lastUpdated

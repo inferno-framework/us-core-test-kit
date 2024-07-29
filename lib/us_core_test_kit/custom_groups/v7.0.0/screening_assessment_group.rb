@@ -37,9 +37,38 @@ module USCoreTestKit
       test from: :us_core_screening_assessment_category do
         config(
           options: {
-            condition_screening_assessment_categories: ['sdoh'].freeze,
-            observation_screening_assessment_categories: ['sdoh', 'functional-status', 'disability-status',
-                                                          'cognitive-status', 'activity', 'social-history'].freeze
+            condition_screening_assessment_categories: [
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'sdoh'
+              }
+            ].freeze,
+            observation_screening_assessment_categories: [
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'sdoh'
+              },
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'functional-status'
+              },
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'disability-status'
+              },
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'cognitive-status'
+              },
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/observation-category',
+                code: 'activity'
+              },
+              {
+                system: 'http://terminology.hl7.org/CodeSystem/observation-category',
+                code: 'social-history'
+              }
+            ].freeze
           }
         )
       end
