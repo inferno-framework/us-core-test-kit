@@ -17,6 +17,7 @@ filtered based on the granted granular scopes.
       )
 
       id :us_core_v700_Condition_patient_clinical_status_granular_scope_search_test
+      optional
 
       input :patient_ids,
         title: 'Patient IDs',

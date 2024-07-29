@@ -80,6 +80,10 @@ module USCoreTestKit
         group_metadata.resource
       end
 
+      def conformance_expectation
+        search_metadata[:expectation]
+      end
+
       def search_params
         @search_params ||=
           search_metadata[:names].map do |name|
@@ -109,6 +113,10 @@ module USCoreTestKit
 
       def path_for_value(path)
         path == 'class' ? 'local_class' : path
+      end
+
+      def optional?
+        conformance_expectation != 'SHALL' || !search_metadata[:must_support_or_mandatory]
       end
 
       def search_definition(name)
