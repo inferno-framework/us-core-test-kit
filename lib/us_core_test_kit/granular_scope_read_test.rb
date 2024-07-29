@@ -25,8 +25,8 @@ module USCoreTestKit
       resource_specific_granular_scope_search_params.each do |scope| 
         current_scope = granular_scopes.find {|granular| granular.include?(scope[:name]) && granular.include?(scope[:value])}
 
-        resource_matching_scope = previous_resources_for_reads.find do |prev_resource| 
-          resource_matches_param?(prev_resource, scope[:name], scope[:value])
+        resource_matching_scope = previous_resources_for_reads.find do |prev_resource|
+          resource_matches_param?(prev_resource, scope[:name], current_scope.split('=').last)
         end
         skip_if resource_matching_scope.nil?, "Unable to find any resources to match scope #{current_scope}"
 
