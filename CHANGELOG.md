@@ -1,3 +1,14 @@
+# 0.8.0
+* FI-2792 Add US Core Test Suite for US Core IG v7.0.0
+* FI-2959 Add code system check to MustSupport test on requiredBinding slice
+* FI-2955 Include code system when checking for resources to read
+* FI-2957 Support optional granular searches
+* FI-2979 Updae filter for provenance-1 error
+
+# 0.7.2
+* FI-2497 Handle instantiate and supportedProfile with version by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/185
+
 # 0.7.1
 * FI-2455 granular scope read tests by @360dgries in
   https://github.com/inferno-framework/us-core-test-kit/pull/170
