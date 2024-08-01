@@ -3,7 +3,7 @@
 * FI-2959 Add code system check to MustSupport test on requiredBinding slice
 * FI-2955 Include code system when checking for resources to read
 * FI-2957 Support optional granular searches
-* FI-2979 Updae filter for provenance-1 error
+* FI-2979 Update filter for provenance-1 error
 
 # 0.7.2
 * FI-2497 Handle instantiate and supportedProfile with version by @yunwwang in
