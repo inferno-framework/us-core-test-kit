@@ -826,6 +826,34 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(params['date']).to be_nil
     end
 
+    it 'return primitive having both value and extensions' do
+      resource_with_category.source_hash['_date'] = {
+        'extension' => [
+          {
+            'url' => 'http://example.com/extension',
+            'valueString' => 'value'
+          }
+        ]
+      }
+
+      new_resource = FHIR::DocumentReference.new(resource_with_category.source_hash)
+      new_resource.date = '2024-01-01'
+
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources_for_patient).and_return(
+          [
+            new_resource
+          ]
+        )
+
+      params = test.search_params_with_values(test.search_param_names, patient_id)
+
+      expect(params).to_not be_empty
+      expect(params['patient']).to eq(patient_id)
+      expect(params['category']).to eq(new_resource.category.first.coding.first.code)
+      expect(params['date']).to eq(new_resource.date)
+    end
+
     it 'skips primitive with extensions and returns value from another resource' do
       resource_with_category.source_hash['_date'] = {
         'extension' => [
