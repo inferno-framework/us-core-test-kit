@@ -742,6 +742,8 @@ module USCoreTestKit
             .map do |value|
           if value.is_a? FHIR::Reference
             value.reference
+          elsif value.is_a? USCoreTestKit::PrimitiveType
+            value.value
           else
             value
           end
