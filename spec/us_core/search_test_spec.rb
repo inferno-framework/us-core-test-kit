@@ -1286,4 +1286,61 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(result).to be_falsey
     end
   end
+
+  describe '#resource_matches_param' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::PatientFamilyGenderSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_gender) { 'male' }
+    let(:patient_id) { '85' }
+
+
+    it 'matches the primitive value' do
+      patient = FHIR::Patient.new(
+        id: patient_id,
+        gender: patient_gender
+      )
+
+      patient.source_hash['_gender'] = {
+        'extension' => [
+          {
+            'url' => 'http://example.com/extension',
+            'valueString' => 'value'
+          }
+        ]
+      }
+
+      values_found = []
+      match_found = test.resource_matches_param?(patient, 'gender', patient_gender, values_found)
+
+      expect(match_found).to be_truthy
+      expect(values_found.length).to eq(1)
+      expect(values_found.first).to eq(patient_gender)
+    end
+
+    it 'returns false if only extension exists' do
+      patient = FHIR::Patient.new(
+        id: patient_id
+      )
+
+      patient.source_hash['_gender'] = {
+        'extension' => [
+          {
+            'url' => 'http://example.com/extension',
+            'valueString' => 'value'
+          }
+        ]
+      }
+
+      values_found = []
+      match_found = test.resource_matches_param?(patient, 'gender', patient_gender, values_found)
+
+      expect(match_found).to be_falsey
+      expect(values_found.length).to eq(0)
+    end
+  end
 end

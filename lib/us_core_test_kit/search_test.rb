@@ -737,16 +737,19 @@ module USCoreTestKit
 
       paths.each do |path|
         type = metadata.search_definitions[search_param_name.to_sym][:type]
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-          if value.is_a? FHIR::Reference
-            value.reference
-          else
-            value
-          end
+
+        resolve_path(resource, path).each do |value|
+          values_found <<
+            if value.is_a? FHIR::Reference
+              value.reference
+            elsif value.is_a? USCoreTestKit::PrimitiveType
+              value.value
+            else
+              value
+            end
         end
 
+        values_found.compact!
         match_found =
           case type
           when 'Period', 'date', 'instant', 'dateTime'
