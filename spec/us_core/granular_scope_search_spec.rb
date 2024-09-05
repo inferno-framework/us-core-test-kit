@@ -236,6 +236,24 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest do
         expect(result.result).to eq('pass')
       end
 
+      it 'passes if an OperationOutcome is included among matching resources' do
+        response_body =
+          FHIR::Bundle.new(
+            entry: [
+              { resource: matching_resource.to_hash },
+              { resource: matching_resource2.to_hash },
+              { resource: FHIR::OperationOutcome.new(id: "temp") }
+            ]
+          ).to_json
+        stub_request(request.verb.to_sym, request.url.split('?').first)
+          .with(query: request.query_parameters)
+          .to_return(body: response_body)
+
+        result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+        expect(result.result).to eq('pass')
+      end
+
       context 'with POST requests' do
         let!(:post_request) do
           repo_create(
