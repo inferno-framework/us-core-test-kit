@@ -13,18 +13,30 @@ module USCoreTestKit
           .options[:required_scopes]
           .map { |scope| scope[scope.index('/') + 1, scope.length] }
 
+      required_granular_regexes = 
+        required_granular_scopes.flat_map do |scope|
+          [ 
+            Regexp.new(Regexp.quote(scope).gsub(".rs", ".r?s")),
+            Regexp.new(Regexp.quote(scope).gsub(".rs", ".rs?"))
+          ]
+        end
+
       received_granular_scopes =
         received_scopes
           .split(' ')
           .select { |scope| scope.include? '?' }
           .map { |scope| scope[scope.index('/') + 1, scope.length] }
 
-      missing_scopes = required_granular_scopes - received_granular_scopes
+      missing_scopes = 
+        required_granular_regexes
+          .reject do |required_scope|
+            received_granular_scopes.any? { |received_scope| received_scope.match?(required_scope) }
+          end
 
-      wrapped_missing_scopes = missing_scopes.map { |scope| "`#{scope}`" }
+      wrapped_missing_scopes = missing_scopes.map { |scope| "`#{scope.source}`" }
 
       assert missing_scopes.empty?,
-             "The following granular scopes were not granted: #{wrapped_missing_scopes.to_sentence}"
+             "Granular scopes matching the following were not matched: #{wrapped_missing_scopes.to_sentence}"
 
       granular_scope_resource_types =
         required_granular_scopes

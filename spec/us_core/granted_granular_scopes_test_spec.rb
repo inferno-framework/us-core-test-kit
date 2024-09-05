@@ -34,9 +34,21 @@ RSpec.describe USCoreTestKit::GrantedGranularScopesTest do
     expect(result.result).to eq('pass')
   end
 
+  it 'passes if server returns read and search scopes separately' do
+    received_scopes =
+      required_scopes
+        .map { |scope| scope.gsub('patient/', 'user/') }
+        .flat_map { |scope| [scope.gsub('.rs', '.r'), scope.gsub('.rs', '.s')] }
+        .join(' ')
+        .concat(' launch/patient openid')
+
+    result = run(test, received_scopes:)
+    expect(result.result).to eq('pass')
+  end
+
   it 'fails if not all required scopes were received' do
     received_scopes = required_scopes.dup
-    missing_scope = received_scopes.pop.delete_prefix('patient/')
+    missing_scope = Regexp.quote(received_scopes.pop.split('?').last)
 
     result = run(test, received_scopes: received_scopes.join(' '))
 
