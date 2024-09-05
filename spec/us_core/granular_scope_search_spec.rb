@@ -242,7 +242,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest do
             entry: [
               { resource: matching_resource.to_hash },
               { resource: matching_resource2.to_hash },
-              { resource: FHIR::OperationOutcome.new(id: "temp") }
+              { resource: FHIR::OperationOutcome.new(id: "OperationOutcomeID") }
             ]
           ).to_json
         stub_request(request.verb.to_sym, request.url.split('?').first)
@@ -250,7 +250,6 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest do
           .to_return(body: response_body)
 
         result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
-
         expect(result.result).to eq('pass')
       end
 

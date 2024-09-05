@@ -28,7 +28,7 @@ module USCoreTestKit
           if request.status != 200
             []
           else
-            fetch_all_bundled_resources
+            fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
           end
 
         mismatched_ids = mismatched_resource_ids(found_resources)
@@ -78,6 +78,7 @@ module USCoreTestKit
 
     def expected_resource_ids(resources)
       resources
+        .select { |resource| resource.resourceType == resource_type }
         .select do |resource|
           granular_scope_search_params.any? do |param|
             resource_matches_param?(resource, param[:name], param[:value])
@@ -88,6 +89,7 @@ module USCoreTestKit
 
     def mismatched_resource_ids(resources)
       resources
+        .select { |resource| resource.resourceType == resource_type }
         .reject do |resource|
           granular_scope_search_params.any? do |param|
             resource_matches_param?(resource, param[:name], param[:value])
