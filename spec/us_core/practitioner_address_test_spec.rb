@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/us_core_test_kit/custom_groups/v6.1.0/practitioner_address_test'
 
 RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
@@ -24,23 +26,23 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
     inputs.each do |name, value|
       session_data_repo.save(
         test_session_id: test_session.id,
-        name: name,
-        value: value,
+        name:,
+        value:,
         type: runnable.config.input_type(name)
       )
     end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
+    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   let(:patient_id) { '85' }
   let(:practitioner_id) { '100' }
   let(:pr_id) { '200' }
-  let(:practitioner) {
+  let(:practitioner) do
     FHIR::Practitioner.new(
       id: practitioner_id,
       address: [
         {
-          line: [ "840 Seneca St" ],
+          line: ['840 Seneca St'],
           city: 'Buffalo',
           state: 'NY',
           postalCode: '14210',
@@ -48,8 +50,8 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
         }
       ]
     )
-  }
-  let(:practitioner_role) {
+  end
+  let(:practitioner_role) do
     FHIR::PractitionerRole.new(
       id: pr_id,
       practitioner: {
@@ -60,27 +62,27 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
         value: '555-1234'
       }
     )
-  }
-  let(:practitioner_role_bundle) {
+  end
+  let(:practitioner_role_bundle) do
     FHIR::Bundle.new(
       entry: [
         { resource: practitioner_role }
       ]
     )
-  }
+  end
 
   describe 'practitioner address test' do
     before do
       allow_any_instance_of(test_class)
-      .to receive(:scratch).and_return(
-        {
-          references: {
-            'Practitioner' => [
-              FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}")
-            ]
+        .to receive(:scratch).and_return(
+          {
+            references: {
+              'Practitioner' => [
+                FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}")
+              ]
+            }
           }
-        }
-      )
+        )
     end
 
     it 'passes when practitioner has address' do

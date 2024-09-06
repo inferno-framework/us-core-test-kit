@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 module USCoreTestKit
   module PractitionerAddressTest
-    include MustSupportTest, ReferenceResolutionTest, SearchTest
+    include SearchTest
+    include ReferenceResolutionTest
+    include MustSupportTest
 
     MUST_SUPPORT_ELEMENTS = [
       { path: 'address' },
@@ -21,7 +25,7 @@ module USCoreTestKit
 
     def verify_practitioner_address
       references = scratch.dig(:references, 'Practitioner')
-      assert references.any?, "No Pracitioner references found."
+      assert references.any?, 'No Pracitioner references found.'
 
       missing_element_set = MUST_SUPPORT_ELEMENTS.to_set
       practitioners = []
@@ -32,7 +36,7 @@ module USCoreTestKit
         if resolved_resource.nil? ||
            resolved_resource.resourceType != resource_type ||
            resolved_resource.id != reference.reference_id
-           return false
+          return false
         end
 
         practitioners << resolved_resource
@@ -54,13 +58,13 @@ module USCoreTestKit
           search_and_check_response(search_params, resource_type)
 
           practitioner_roles = fetch_all_bundled_resources(resource_type:)
-            .select { |resource| resource.resourceType == resource_type }
+                               .select { |resource| resource.resourceType == resource_type }
 
           next false if practitioner_roles.empty?
           next true if config.options[:skip_practitioner_role_validation]
 
           validator = find_validator(:default)
-          target_profile_with_version =  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
+          target_profile_with_version = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
 
           practitioner_roles.any? do |pr|
             validator_response = validator.validate(pr, target_profile_with_version)
@@ -71,17 +75,17 @@ module USCoreTestKit
         end
       end
 
-
       messages = []
-      messages << "US Core PractitionerRole Profile resources" unless support_practitioner_role
-      messages << "these MustSupport elements #{missing_elements_string} in US Core Practitioner Profile resources" if missing_element_set.any?
+      messages << 'US Core PractitionerRole Profile resources' unless support_practitioner_role
+      if missing_element_set.any?
+        messages << "these MustSupport elements #{missing_elements_string} in US Core Practitioner Profile resources"
+      end
 
       assert messages.length < 2, "Could not find #{messages.join(' and ')}. Please use patients with more information."
     end
 
     def get_practitioner_ids(references)
-      references.map { |reference| reference.reference&.split('/').last }.compact.uniq
+      references.map { |reference| reference.reference&.split('/')&.last }.compact.uniq
     end
-
   end
 end
