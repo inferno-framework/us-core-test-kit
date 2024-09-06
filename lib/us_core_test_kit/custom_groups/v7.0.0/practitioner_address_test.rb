@@ -1,11 +1,11 @@
 require_relative '../../practitioner_address_test'
 
 module USCoreTestKit
-  module USCoreV610
+  module USCoreV700
     class PractitionerAddressTest < Inferno::Test
       include USCoreTestKit::PractitionerAddressTest
 
-      id :us_core_v610_practitioner_address_test
+      id :us_core_v700_practitioner_address_test
       title 'Server support either Practitioner.address or PractitionerRole'
 
       description %(
@@ -21,7 +21,7 @@ module USCoreTestKit
       )
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '../../generated/v6.1.0/practitioner/metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '../../generated/v7.0.0/practitioner/metadata.yml'), aliases: true))
       end
 
       run do

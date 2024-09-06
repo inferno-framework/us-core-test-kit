@@ -1,6 +1,6 @@
 module USCoreTestKit
   module PractitionerAddressTest
-    include MustSupportTest, SearchTest
+    include MustSupportTest, ReferenceResolutionTest, SearchTest
 
     MUST_SUPPORT_ELEMENTS = [
       { path: 'address' },
@@ -21,20 +21,23 @@ module USCoreTestKit
 
     def verify_practitioner_address
       references = scratch.dig(:references, 'Practitioner')
-      practitioner_ids = get_practitioner_ids(references)
-
-      assert practitioner_ids.present?, "No Pracitioner id found."
+      assert references.any?, "No Pracitioner references found."
 
       missing_element_set = MUST_SUPPORT_ELEMENTS.to_set
       practitioners = []
 
-      practitioner_ids.each do |p_id|
-        fhir_read resource_type, p_id
-        assert_response_status(200)
-        assert_resource_type(resource_type)
-        practitioners << resource
+      references.each do |reference|
+        resolved_resource = resolve_reference(reference)
 
-        missing_elements = find_missing_elements([resource], MUST_SUPPORT_ELEMENTS)
+        if resolved_resource.nil? ||
+           resolved_resource.resourceType != resource_type ||
+           resolved_resource.id != reference.reference_id
+           return false
+        end
+
+        practitioners << resolved_resource
+
+        missing_elements = find_missing_elements([resolved_resource], MUST_SUPPORT_ELEMENTS)
         missing_element_set &= missing_elements.to_set
 
         break if missing_element_set.empty?
@@ -43,15 +46,18 @@ module USCoreTestKit
       missing_elements_string = missing_element_set.map { |element| missing_element_string(element) }
       support_practitioner_role = false
 
-      if missing_elements.any?
-        pr_resource_type = 'PractitionerRole'
+      if missing_element_set.any?
+        resource_type = 'PractitionerRole'
         support_practitioner_role = practitioners.any? do |practitioner|
           search_params = { practitioner: practitioner.id }
 
-          search_and_check_response(search_params, pr_resource_type)
+          search_and_check_response(search_params, resource_type)
 
-          practitioner_roles = fetch_all_bundled_resources(resource_type: pr_resource_type)
-            .select { |resource| resource.resourceType == pr_resource_type }
+          practitioner_roles = fetch_all_bundled_resources(resource_type:)
+            .select { |resource| resource.resourceType == resource_type }
+
+          next false if practitioner_roles.empty?
+          next true if config.options[:skip_practitioner_role_validation]
 
           validator = find_validator(:default)
           target_profile_with_version =  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
@@ -76,5 +82,6 @@ module USCoreTestKit
     def get_practitioner_ids(references)
       references.map { |reference| reference.reference&.split('/').last }.compact.uniq
     end
+
   end
 end

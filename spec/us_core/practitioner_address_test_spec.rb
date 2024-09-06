@@ -5,7 +5,18 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
   let(:url) { 'http://example.com/fhir' }
-  let(:test) { described_class }
+  let(:test_class) do
+    Class.new(USCoreTestKit::USCoreV610::PractitionerAddressTest) do
+      fhir_client { url :url }
+      input :url
+      config(
+        options: {
+          skip_practitioner_role_validation: true
+        }
+      )
+    end
+  end
+  let(:test) { test_class.new }
 
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
@@ -15,12 +26,13 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
         test_session_id: test_session.id,
         name: name,
         value: value,
-        type: runnable.config.input_type(name) || 'text'
+        type: runnable.config.input_type(name)
       )
     end
     Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
   end
 
+  let(:patient_id) { '85' }
   let(:practitioner_id) { '100' }
   let(:pr_id) { '200' }
   let(:practitioner) {
@@ -52,43 +64,57 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
   let(:practitioner_role_bundle) {
     FHIR::Bundle.new(
       entry: [
-        practitioner_role
+        { resource: practitioner_role }
       ]
     )
   }
 
   describe 'practitioner address test' do
-    it 'passes when practitioner has address' do
-      allow_any_instance_of(test)
-        .to receive(:scratch).and_return(
-          {
-            references: {
-              'Practitioner' => [
-                FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}")
-              ]
-            }
+    before do
+      allow_any_instance_of(test_class)
+      .to receive(:scratch).and_return(
+        {
+          references: {
+            'Practitioner' => [
+              FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}")
+            ]
           }
-        )
-      result = run(test, url:)
-      binding.pry
+        }
+      )
+    end
+
+    it 'passes when practitioner has address' do
+      stub_request(:get, "#{url}/Practitioner/#{practitioner_id}")
+        .to_return(status: 200, body: practitioner.to_json)
+
+      result = run(test_class, url:)
       expect(result.result).to eq('pass')
     end
 
-    # it 'passes when practitioner role is returned' do
-    #   practitioner.address = nil
-    #   allow_any_instance_of(test)
-    #     .to receive(:scratch_resources).and_return(
-    #       {
-    #         all: [practitioner]
-    #       }
-    #     )
+    it 'passes when practitioner role is returned' do
+      practitioner.address.first.country = nil
 
-    #   stub_request(:get, "#{url}/PractitionerRole?practitioner=#{practitioner_id}")
-    #     .to_return(status: 200, body: practitioner_role_bundle.to_json)
-    #   result = run(test, url:)
-    #   binding.pry
-    #   expect(result.result).to eq('pass')
-    # end
+      stub_request(:get, "#{url}/Practitioner/#{practitioner_id}")
+        .to_return(status: 200, body: practitioner.to_json)
 
+      stub_request(:get, "#{url}/PractitionerRole?practitioner=#{practitioner_id}")
+        .to_return(status: 200, body: practitioner_role_bundle.to_json)
+
+      result = run(test_class, url:)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'fails when practitioner role is not returned and practitioner does not have all MS elements' do
+      practitioner.address.first.country = nil
+
+      stub_request(:get, "#{url}/Practitioner/#{practitioner_id}")
+        .to_return(status: 200, body: practitioner.to_json)
+
+      stub_request(:get, "#{url}/PractitionerRole?practitioner=#{practitioner_id}")
+        .to_return(status: 200, body: FHIR::Bundle.new.to_json)
+
+      result = run(test_class, url:)
+      expect(result.result).to eq('fail')
+    end
   end
 end

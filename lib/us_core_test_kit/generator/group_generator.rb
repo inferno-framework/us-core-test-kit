@@ -119,8 +119,8 @@ module USCoreTestKit
 
         if group_metadata.version[1].to_i > 5 && group_metadata.resource == 'Practitioner'
           group_metadata.add_test(
-            id: 'us_core_v610_practitioner_address',
-            file_name: '../../custom_groups/v6.1.0/practitioner_address_test.rb'
+            id: "us_core_#{group_metadata.reformatted_version}_practitioner_address_test",
+            file_name: "../../custom_groups/#{group_metadata.version}/practitioner_address_test.rb"
           )
         end
       end

@@ -156,8 +156,8 @@
   :file_name: practitioner_validation_test.rb
 - :id: us_core_v700_practitioner_must_support_test
   :file_name: practitioner_must_support_test.rb
-- :id: us_core_v610_practitioner_address
-  :file_name: "../../custom_groups/v6.1.0/practitioner_address_test.rb"
+- :id: us_core_v700_practitioner_address_test
+  :file_name: "../../custom_groups/v7.0.0/practitioner_address_test.rb"
 :id: us_core_v700_practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []

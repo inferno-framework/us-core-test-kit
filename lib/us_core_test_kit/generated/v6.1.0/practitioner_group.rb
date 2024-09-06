@@ -83,7 +83,7 @@ read succeeds.
       test from: :us_core_v610_practitioner_identifier_search_test
       test from: :us_core_v610_practitioner_validation_test
       test from: :us_core_v610_practitioner_must_support_test
-      test from: :us_core_v610_practitioner_address
+      test from: :us_core_v610_practitioner_address_test
     end
   end
 end
