@@ -1,4 +1,4 @@
-require_relative '../../practitioner_address_test'
+require_relative '../practitioner_address_test'
 
 module USCoreTestKit
   module USCoreV700
