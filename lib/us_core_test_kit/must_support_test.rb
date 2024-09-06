@@ -107,33 +107,36 @@ module USCoreTestKit
     end
 
     def missing_elements(resources = [])
-      @missing_elements ||=
-        must_support_elements.select do |element_definition|
-          resources.none? do |resource|
-            path = element_definition[:path]
-            ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }
-              .map { |ex| ex[:url] }
-
-            value_found = find_a_value_at(resource, path) do |value|
-              if value.instance_of?(USCoreTestKit::PrimitiveType) && ms_extension_urls.present?
-                urls = value.extension&.map(&:url)
-                has_ms_extension = (urls & ms_extension_urls).present?
-              end
-
-              unless has_ms_extension
-                value = value.value if value.instance_of?(USCoreTestKit::PrimitiveType)
-                value_without_extensions =
-                  value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
-              end
-
-              (has_ms_extension || value_without_extensions.present? || value_without_extensions == false) &&
-                (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
-            end
-            # Note that false.present? => false, which is why we need to add this extra check
-            value_found.present? || value_found == false
-          end
-        end
+      @missing_elements ||= find_missing_elements(resources, must_support_elements)
       @missing_elements
+    end
+
+    def find_missing_elements(resources, must_support_elements)
+      must_support_elements.select do |element_definition|
+        resources.none? do |resource|
+          path = element_definition[:path]
+          ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }
+            .map { |ex| ex[:url] }
+
+          value_found = find_a_value_at(resource, path) do |value|
+            if value.instance_of?(USCoreTestKit::PrimitiveType) && ms_extension_urls.present?
+              urls = value.extension&.map(&:url)
+              has_ms_extension = (urls & ms_extension_urls).present?
+            end
+
+            unless has_ms_extension
+              value = value.value if value.instance_of?(USCoreTestKit::PrimitiveType)
+              value_without_extensions =
+                value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
+            end
+
+            (has_ms_extension || value_without_extensions.present? || value_without_extensions == false) &&
+              (element_definition[:fixed_value].blank? || value == element_definition[:fixed_value])
+          end
+          # Note that false.present? => false, which is why we need to add this extra check
+          value_found.present? || value_found == false
+        end
+      end
     end
 
     def must_support_slices

@@ -12,12 +12,6 @@ module USCoreTestKit
         Statement. This test will look through the Practitioner resources
         found previously for the following must support elements:
 
-        * Practitioner.address
-        * Practitioner.address.city
-        * Practitioner.address.country
-        * Practitioner.address.line
-        * Practitioner.address.postalCode
-        * Practitioner.address.state
         * Practitioner.identifier
         * Practitioner.identifier.system
         * Practitioner.identifier.value
