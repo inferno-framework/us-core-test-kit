@@ -1,3 +1,12 @@
+# 0.8.1
+* FI-3508 Retrieve primitive value from navigation result by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/194
+* FI-3042 Don't Include OperationOutcomes when Checking Granular Scope Search
+  Results by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/195
+* FI-3039 Add Support for Separately Returned Granular Scopes by @360dgries in
+  https://github.com/inferno-framework/us-core-test-kit/pull/196
+
 # 0.8.0
 * FI-2792 Add US Core Test Suite for US Core IG v7.0.0
 * FI-2959 Add code system check to MustSupport test on requiredBinding slice
