@@ -34,7 +34,6 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
     Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
-  let(:patient_id) { '85' }
   let(:practitioner_id) { '100' }
   let(:pr_id) { '200' }
   let(:practitioner) do
@@ -117,6 +116,8 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
 
       result = run(test_class, url:)
       expect(result.result).to eq('fail')
+      expect(result.result_message).to include('US Core PractitionerRole Profile resources')
+      expect(result.result_message).to include('MustSupport elements address.country in US Core Practitioner Profile resources')
     end
   end
 end

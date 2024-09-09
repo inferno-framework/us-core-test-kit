@@ -119,7 +119,7 @@ module USCoreTestKit
         return resource.contained.any? do |contained_resource|
             contained_resource&.id == reference.reference_id &&
               resource_is_valid_with_target_profile?(contained_resource, target_profile)
-          end
+        end
       end
 
       reference_type = reference.resource_type

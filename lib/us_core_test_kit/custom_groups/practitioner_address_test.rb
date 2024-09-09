@@ -27,7 +27,7 @@ module USCoreTestKit
       references = scratch.dig(:references, 'Practitioner')
       assert references.any?, 'No Pracitioner references found.'
 
-      missing_element_set = MUST_SUPPORT_ELEMENTS.to_set
+      @missing_elements = MUST_SUPPORT_ELEMENTS
       practitioners = []
 
       references.each do |reference|
@@ -36,21 +36,21 @@ module USCoreTestKit
         if resolved_resource.nil? ||
            resolved_resource.resourceType != resource_type ||
            resolved_resource.id != reference.reference_id
-          return false
+          next
         end
 
         practitioners << resolved_resource
 
-        missing_elements = find_missing_elements([resolved_resource], MUST_SUPPORT_ELEMENTS)
-        missing_element_set &= missing_elements.to_set
+        some_missing_elements = find_missing_elements([resolved_resource], MUST_SUPPORT_ELEMENTS)
+        @missing_elements &= some_missing_elements
 
-        break if missing_element_set.empty?
+        break if @missing_elements.empty?
       end
 
-      missing_elements_string = missing_element_set.map { |element| missing_element_string(element) }
+      missing_elements_string = @missing_elements.map { |element| missing_element_string(element) }
       support_practitioner_role = false
 
-      if missing_element_set.any?
+      if @missing_elements.any?
         resource_type = 'PractitionerRole'
         support_practitioner_role = practitioners.any? do |practitioner|
           search_params = { practitioner: practitioner.id }
@@ -77,8 +77,8 @@ module USCoreTestKit
 
       messages = []
       messages << 'US Core PractitionerRole Profile resources' unless support_practitioner_role
-      if missing_element_set.any?
-        messages << "these MustSupport elements #{missing_elements_string} in US Core Practitioner Profile resources"
+      if @missing_elements.any?
+        messages << "these MustSupport elements #{missing_elements_string.join(', ')} in US Core Practitioner Profile resources"
       end
 
       assert messages.length < 2, "Could not find #{messages.join(' and ')}. Please use patients with more information."
