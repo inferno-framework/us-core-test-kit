@@ -27,6 +27,7 @@ module USCoreTestKit
       def handle_special_cases
         add_must_support_choices
         add_patient_uscdi_elements
+        update_smoking_status_effective
       end
 
       def add_must_support_choices
@@ -79,7 +80,15 @@ module USCoreTestKit
             element[:path] = 'deceasedDateTime'
           end
         end
+      end
 
+      # US Core v6.1.0 Patch FHIR-43355, US Core Smoking Status Observation Profile may be supported
+      # either Observation.effectiveDateTime or Observation.effectivePeriod data element
+      def update_smoking_status_effective
+        return unless profile.id == 'us-core-smokingstatus'
+
+        must_supports[:slices].delete_if { |slice| slice[:slice_id] == 'Observation.effective[x]:effectiveDateTime' }
+        must_supports[:elements] << { path: 'effective[x]' }
 
       end
     end

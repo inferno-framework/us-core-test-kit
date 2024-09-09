@@ -17,11 +17,13 @@ module USCoreTestKit
       end
 
       def handle_special_cases
-        us_core_6_extractor.handle_special_cases
+        us_core_6_extractor.add_patient_uscdi_elements
         add_must_support_choices
       end
 
       def add_must_support_choices
+        us_core_6_extractor.add_must_support_choices
+
         more_choices = []
 
         case profile.type

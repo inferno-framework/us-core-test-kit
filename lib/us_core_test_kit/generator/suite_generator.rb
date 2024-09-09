@@ -18,7 +18,16 @@ module USCoreTestKit
       end
 
       def version_specific_message_filters
-        []
+        case ig_metadata.reformatted_version
+        when 'v610'
+          [
+            %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
+            %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
+            %r{Observation\.effective\.ofType\(Period\).*This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
+          ]
+        else
+          []
+        end
       end
 
       def template
