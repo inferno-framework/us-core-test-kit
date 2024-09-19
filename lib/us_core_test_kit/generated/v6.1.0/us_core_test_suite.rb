@@ -88,7 +88,11 @@ module USCoreTestKit
         %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
       ].freeze
 
-      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [
+        %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
+        %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
+        %r{Observation\.effective\.ofType\(Period\).*This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
+      ].freeze
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|

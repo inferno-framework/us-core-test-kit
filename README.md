@@ -17,8 +17,7 @@ these tests.  This test kit requires at least 10 GB of memory are available to D
 - Run `run.sh` in this repo.
 - Navigate to `http://localhost`. The US Core test suite will be available.
 
-See the [Inferno Framework
-Documentation](https://inferno-framework.github.io/inferno-core/getting-started.html#getting-started-for-inferno-users)
+See the [Inferno Documentation](https://inferno-framework.github.io/docs/)
 for more information on running Inferno.
 
 ## License

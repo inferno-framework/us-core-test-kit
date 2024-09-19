@@ -7111,12 +7111,6 @@
         :path: ''
         :code: social-history
         :system: http://terminology.hl7.org/CodeSystem/observation-category
-    - :slice_id: Observation.effective[x]:effectiveDateTime
-      :slice_name: effectiveDateTime
-      :path: effective[x]
-      :discriminator:
-        :type: type
-        :code: DateTime
     :elements:
     - :path: status
     - :path: category
@@ -7128,6 +7122,7 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
     - :path: valueCodeableConcept
       :original_path: value[x]
+    - :path: effective[x]
   :mandatory_elements:
   - Observation.status
   - Observation.category

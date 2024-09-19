@@ -15,7 +15,7 @@ module USCoreTestKit
         * Observation.category
         * Observation.category:SocialHistory
         * Observation.code
-        * Observation.effective[x]:effectiveDateTime
+        * Observation.effective[x]
         * Observation.status
         * Observation.subject
         * Observation.valueCodeableConcept
