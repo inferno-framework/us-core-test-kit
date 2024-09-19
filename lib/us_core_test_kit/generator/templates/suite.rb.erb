@@ -43,13 +43,13 @@ module USCoreTestKit
         /\A\S+: \S+: URL value '.*' does not resolve/,
         %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
       ].freeze
-
-      VERSION_SPECIFIC_MESSAGE_FILTERS = <%= if version_specific_message_filters.empty?
-        "[]"
-      else
-        "[\n" + version_specific_message_filters.map { |filter| "        %r{#{filter.source}}" }.join(",\n") + "\n      ]"
-      end %>.freeze
-
+<% if version_specific_message_filters.empty? %>
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+<% else %>
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [
+        <%= version_specific_message_filters.map { |filter| "%r{#{filter.source}}" }.join(",\n        ") %>
+      ].freeze
+<% end %>
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
             Generator::GroupMetadata.new(raw_metadata)
