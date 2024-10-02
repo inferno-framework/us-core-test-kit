@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/us_core_test_kit/custom_groups/v6.1.0/practitioner_address_test'
+require_relative '../../lib/us_core_test_kit/generated/v6.1.0/practitioner/practitioner_address_test'
 
 RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
   let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v610') }

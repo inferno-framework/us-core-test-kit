@@ -116,13 +116,6 @@ module USCoreTestKit
             file_name: '../../custom_groups/v4.0.0/document_reference_custodian_test.rb'
           )
         end
-
-        if group_metadata.version[1].to_i > 5 && group_metadata.resource == 'Practitioner'
-          group_metadata.add_test(
-            id: "us_core_#{group_metadata.reformatted_version}_practitioner_address_test",
-            file_name: "../../custom_groups/#{group_metadata.version}/practitioner_address_test.rb"
-          )
-        end
       end
 
       def test_id_list

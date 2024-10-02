@@ -15,6 +15,7 @@ require_relative 'generator/reference_resolution_test_generator'
 require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
 require_relative 'generator/validation_test_generator'
+require_relative 'generator/practitioner_address_test_generator'
 
 module USCoreTestKit
   class Generator
@@ -44,6 +45,7 @@ module USCoreTestKit
       generate_validation_tests
       generate_must_support_tests
       generate_reference_resolution_tests
+      generate_practitioner_address_tests
 
       generate_granular_scope_tests
 
@@ -118,6 +120,10 @@ module USCoreTestKit
 
     def generate_granular_scope_groups
       GranularScopeGroupGenerator.generate(ig_metadata, base_output_dir)
+    end
+
+    def generate_practitioner_address_tests
+      PractitionerAddressTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_suites
