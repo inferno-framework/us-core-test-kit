@@ -63,19 +63,19 @@ module USCoreTestKit
           next false if practitioner_roles.empty?
           next true if config.options[:skip_practitioner_role_validation]
 
-          target_profile_with_version = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
+          target_profile_with_version =
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
 
           practitioner_roles.any? { |pr| resource_is_valid_with_target_profile?(pr, target_profile_with_version) }
         end
       end
 
-      messages = []
-      messages << 'US Core PractitionerRole Profile resources' unless support_practitioner_role
-      if @missing_elements.any?
-        messages << "these MustSupport elements #{missing_elements_string.join(', ')} in US Core Practitioner Profile resources"
-      end
+      missing_must_support_message = "Could not find US Core PractitionerRole Profile resources and " \
+                                     "these MustSupport elements #{missing_elements_string.join(', ')} " \
+                                     "in US Core Practitioner Profile resources. " \
+                                     "Please use patients with more information."
 
-      assert messages.length < 2, "Could not find #{messages.join(' and ')}. Please use patients with more information."
+      assert (support_practitioner_role || @missing_elements.blank?), missing_must_support_message
     end
 
     def get_practitioner_ids(references)
