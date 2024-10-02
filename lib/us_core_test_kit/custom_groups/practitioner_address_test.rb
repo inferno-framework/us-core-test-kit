@@ -63,15 +63,9 @@ module USCoreTestKit
           next false if practitioner_roles.empty?
           next true if config.options[:skip_practitioner_role_validation]
 
-          validator = find_validator(:default)
           target_profile_with_version = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|#{metadata.profile_version}"
 
-          practitioner_roles.any? do |pr|
-            validator_response = validator.validate(pr, target_profile_with_version)
-            outcome = validator.operation_outcome_from_hl7_wrapped_response(validator_response)
-            message_hashes = outcome.issue&.map { |issue| validator.message_hash_from_issue(issue, pr) } || []
-            message_hashes.none? { |message_hash| message_hash[:type] == 'error' }
-          end
+          practitioner_roles.any? { |pr| resource_is_valid_with_target_profile?(pr, target_profile_with_version) }
         end
       end
 
