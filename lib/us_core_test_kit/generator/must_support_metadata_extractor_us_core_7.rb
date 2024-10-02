@@ -19,6 +19,7 @@ module USCoreTestKit
       def handle_special_cases
         us_core_6_extractor.add_patient_uscdi_elements
         add_must_support_choices
+        us_core_6_extractor.remove_practitioner_address
       end
 
       def add_must_support_choices

@@ -4,7 +4,7 @@ require_relative 'practitioner/practitioner_identifier_search_test'
 require_relative 'practitioner/practitioner_name_search_test'
 require_relative 'practitioner/practitioner_validation_test'
 require_relative 'practitioner/practitioner_must_support_test'
-require_relative '../../custom_groups/v7.0.0/practitioner_address_test'
+require_relative 'practitioner/practitioner_address_test'
 
 module USCoreTestKit
   module USCoreV700
