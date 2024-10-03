@@ -1,3 +1,9 @@
+# 0.8.2
+* FI-3060 Add MustSuport choice for Observation.effective[x] by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/199
+* FI-3059 MustSupport Choice between Practitioner.address and PractitionerRole
+  by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/198
+
 # 0.8.1
 * FI-3508 Retrieve primitive value from navigation result by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/194
