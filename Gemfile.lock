@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    us_core_test_kit (0.8.1)
+    us_core_test_kit (0.8.2)
       inferno_core (>= 0.4.37)
       smart_app_launch_test_kit (>= 0.4.0)
       tls_test_kit (~> 0.2.0)
