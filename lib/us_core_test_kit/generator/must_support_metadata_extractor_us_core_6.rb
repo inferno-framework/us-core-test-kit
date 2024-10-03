@@ -28,6 +28,7 @@ module USCoreTestKit
         add_must_support_choices
         add_patient_uscdi_elements
         update_smoking_status_effective
+        remove_practitioner_address
       end
 
       def add_must_support_choices
@@ -89,7 +90,12 @@ module USCoreTestKit
 
         must_supports[:slices].delete_if { |slice| slice[:slice_id] == 'Observation.effective[x]:effectiveDateTime' }
         must_supports[:elements] << { path: 'effective[x]' }
+      end
 
+      def remove_practitioner_address
+        return unless profile.type == 'Practitioner'
+
+        must_supports[:elements].delete_if { |element| element[:path].start_with?('address') }
       end
     end
   end

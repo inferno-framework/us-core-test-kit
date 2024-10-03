@@ -119,41 +119,49 @@ module USCoreTestKit
         return resource.contained.any? do |contained_resource|
             contained_resource&.id == reference.reference_id &&
               resource_is_valid_with_target_profile?(contained_resource, target_profile)
-          end
+        end
       end
 
       reference_type = reference.resource_type
       reference_id = reference.reference_id
 
-      resolved_resource =
-        begin
-          if reference.relative?
-            begin
-              reference.resource_class
-            rescue NameError
-              return false
-            end
+      resolved_resource = resolve_reference(reference)
 
-            fhir_read(reference_type, reference_id)&.resource
-          else
-            if reference.base_uri.chomp('/') == fhir_client.instance_variable_get(:@base_service_url).chomp('/')
-              fhir_read(reference_type, reference_id)&.resource
-            else
-              get(reference.reference)&.resource
-            end
-          end
-        rescue StandardError => e
-          Inferno::Application['logger'].error("Unable to resolve reference #{reference.reference}")
-          Inferno::Application['logger'].error(e.full_message)
-          return false
-        end
+      return false if resolved_resource.nil?
 
-      return false unless resolved_resource&.resourceType == reference_type && resolved_resource&.id == reference_id
+      return false unless resolved_resource.resourceType == reference_type && resolved_resource.id == reference_id
 
       return false unless resource_is_valid_with_target_profile?(resolved_resource, target_profile)
 
       record_resolved_reference(reference, target_profile)
       true
+    end
+
+    def resolve_reference(reference)
+      reference_type = reference.resource_type
+      reference_id = reference.reference_id
+
+      begin
+        if reference.relative?
+          begin
+            reference.resource_class
+          rescue NameError
+            return nil
+          end
+
+          fhir_read(reference_type, reference_id)&.resource
+        else
+          if reference.base_uri.chomp('/') == fhir_client.instance_variable_get(:@base_service_url).chomp('/')
+            fhir_read(reference_type, reference_id)&.resource
+          else
+            get(reference.reference)&.resource
+          end
+        end
+      rescue StandardError => e
+        Inferno::Application['logger'].error("Unable to resolve reference #{reference.reference}")
+        Inferno::Application['logger'].error(e.full_message)
+        return nil
+      end
     end
 
     def resource_is_valid_with_target_profile?(resource, target_profile)
