@@ -21,9 +21,9 @@ module USCoreTestKit
         case ig_metadata.reformatted_version
         when 'v610'
           [
-            %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
-            %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
-            %r{Observation\.effective\.ofType\(Period\).*This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
+            %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
+            %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
+            %r{Observation\.effective\.ofType\(Period\)\.end: This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
           ]
         else
           []

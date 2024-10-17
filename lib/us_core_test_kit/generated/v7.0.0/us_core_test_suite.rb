@@ -81,7 +81,7 @@ module USCoreTestKit
       )
       version VERSION
 
-      VALIDATION_MESSAGE_FILTERS = [
+      GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
@@ -95,6 +95,8 @@ module USCoreTestKit
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
 
+      VALIDATION_MESSAGE_FILTERS = GENERAL_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
             Generator::GroupMetadata.new(raw_metadata)
@@ -105,7 +107,7 @@ module USCoreTestKit
 
       fhir_resource_validator do
         igs 'hl7.fhir.us.core#7.0.0'
-        message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+        message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
 
