@@ -76,7 +76,7 @@ module USCoreTestKit
       )
       version VERSION
 
-      VALIDATION_MESSAGE_FILTERS = [
+      GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
@@ -89,10 +89,12 @@ module USCoreTestKit
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [
-        %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
-        %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus},
-        %r{Observation\.effective\.ofType\(Period\).*This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
+        %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
+        %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
+        %r{Observation\.effective\.ofType\(Period\)\.end: This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
       ].freeze
+
+      VALIDATION_MESSAGE_FILTERS = GENERAL_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
       def self.metadata
         @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
@@ -104,7 +106,7 @@ module USCoreTestKit
 
       fhir_resource_validator do
         igs 'hl7.fhir.us.core#6.1.0'
-        message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+        message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
 
@@ -156,7 +158,7 @@ module USCoreTestKit
         )
 
         group from: :us_core_v610_capability_statement
-      
+
         group from: :us_core_v610_patient
         group from: :us_core_v610_allergy_intolerance
         group from: :us_core_v610_care_plan
@@ -210,7 +212,7 @@ module USCoreTestKit
 
       group from: :us_core_v610_smart_granular_scopes,
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
-      
+
     end
   end
 end
