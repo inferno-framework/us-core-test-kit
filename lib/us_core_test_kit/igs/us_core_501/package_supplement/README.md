@@ -1,0 +1,13 @@
+# FHIR NPM Package Supplement Files
+
+The files in this directory will supplement files in the hl7.fhir.<version>.core.tgz package.
+Add files to this directory if you need to add information that may be missing from the package.
+These files will not supersede the files in the IG.
+
+# StructureDefinition-condition-assertedData.josn
+
+This file contains StructureDefinition for extension condition-assertedDate, which is defined in FHIR R4.
+
+# ValueSet-servicerequest-category.json
+
+This file contains ValueSet definition for servicerequest-category, which is defined in FHIR R4.

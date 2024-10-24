@@ -19,8 +19,19 @@ module USCoreTestKit
       end
 
       def load
+        load_excluded_files
         load_ig
         load_standalone_resources
+      end
+
+      def load_excluded_files
+        @excluded_files = []
+
+        file_name = File.join(ig_file_name.chomp('.tgz'), 'package_exclude', 'excluded_files.json')
+
+        if File.exist?(file_name)
+          @excluded_files = JSON.parse(File.read(file_name))
+        end
       end
 
       def load_ig
@@ -33,10 +44,9 @@ module USCoreTestKit
 
           file_name = entry.full_name.split('/').last
 
+          next if @excluded_files.include?(file_name)
           next if file_name.end_with? 'openapi.json'
-
           next unless file_name.end_with? '.json'
-
           next unless entry.full_name.start_with? 'package/'
 
           begin
@@ -54,7 +64,7 @@ module USCoreTestKit
       end
 
       def load_standalone_resources
-        ig_directory = ig_file_name.chomp('.tgz')
+        ig_directory = File.join(ig_file_name.chomp('.tgz'), 'package_supplement')
 
         return ig_resources unless File.exist? ig_directory
 
