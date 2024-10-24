@@ -3649,8 +3649,6 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
   :tests:
-  - :id: us_core_v700_location_read_test
-    :file_name: location_read_test.rb
   - :id: us_core_v700_location_address_search_test
     :file_name: location_address_search_test.rb
   - :id: us_core_v700_location_address_city_search_test
@@ -3661,6 +3659,8 @@
     :file_name: location_address_state_search_test.rb
   - :id: us_core_v700_location_name_search_test
     :file_name: location_name_search_test.rb
+  - :id: us_core_v700_location_read_test
+    :file_name: location_read_test.rb
   - :id: us_core_v700_location_validation_test
     :file_name: location_validation_test.rb
   - :id: us_core_v700_location_must_support_test
@@ -12027,12 +12027,12 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
   :tests:
-  - :id: us_core_v700_organization_read_test
-    :file_name: organization_read_test.rb
   - :id: us_core_v700_organization_address_search_test
     :file_name: organization_address_search_test.rb
   - :id: us_core_v700_organization_name_search_test
     :file_name: organization_name_search_test.rb
+  - :id: us_core_v700_organization_read_test
+    :file_name: organization_read_test.rb
   - :id: us_core_v700_organization_validation_test
     :file_name: organization_validation_test.rb
   - :id: us_core_v700_organization_must_support_test
@@ -12577,14 +12577,14 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
   :tests:
-  - :id: us_core_v700_practitioner_read_test
-    :file_name: practitioner_read_test.rb
   - :id: us_core_v700_practitioner__id_search_test
     :file_name: practitioner_id_search_test.rb
   - :id: us_core_v700_practitioner_identifier_search_test
     :file_name: practitioner_identifier_search_test.rb
   - :id: us_core_v700_practitioner_name_search_test
     :file_name: practitioner_name_search_test.rb
+  - :id: us_core_v700_practitioner_read_test
+    :file_name: practitioner_read_test.rb
   - :id: us_core_v700_practitioner_validation_test
     :file_name: practitioner_validation_test.rb
   - :id: us_core_v700_practitioner_must_support_test
@@ -12729,12 +12729,12 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
   :tests:
-  - :id: us_core_v700_practitioner_role_read_test
-    :file_name: practitioner_role_read_test.rb
   - :id: us_core_v700_practitioner_role_practitioner_search_test
     :file_name: practitioner_role_practitioner_search_test.rb
   - :id: us_core_v700_practitioner_role_specialty_search_test
     :file_name: practitioner_role_specialty_search_test.rb
+  - :id: us_core_v700_practitioner_role_read_test
+    :file_name: practitioner_role_read_test.rb
   - :id: us_core_v700_practitioner_role_validation_test
     :file_name: practitioner_role_validation_test.rb
   - :id: us_core_v700_practitioner_role_must_support_test
@@ -13520,8 +13520,6 @@
     :profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   :tests:
-  - :id: us_core_v700_related_person_read_test
-    :file_name: related_person_read_test.rb
   - :id: us_core_v700_related_person_patient_search_test
     :file_name: related_person_patient_search_test.rb
   - :id: us_core_v700_related_person__id_search_test
@@ -13530,6 +13528,8 @@
     :file_name: related_person_name_search_test.rb
   - :id: us_core_v700_related_person_patient_name_search_test
     :file_name: related_person_patient_name_search_test.rb
+  - :id: us_core_v700_related_person_read_test
+    :file_name: related_person_read_test.rb
   - :id: us_core_v700_related_person_provenance_revinclude_search_test
     :file_name: related_person_provenance_revinclude_search_test.rb
   - :id: us_core_v700_related_person_validation_test
@@ -14007,12 +14007,12 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Substance
   :tests:
-  - :id: us_core_v700_specimen_read_test
-    :file_name: specimen_read_test.rb
   - :id: us_core_v700_specimen_patient_search_test
     :file_name: specimen_patient_search_test.rb
   - :id: us_core_v700_specimen__id_search_test
     :file_name: specimen_id_search_test.rb
+  - :id: us_core_v700_specimen_read_test
+    :file_name: specimen_read_test.rb
   - :id: us_core_v700_specimen_validation_test
     :file_name: specimen_validation_test.rb
   - :id: us_core_v700_specimen_must_support_test

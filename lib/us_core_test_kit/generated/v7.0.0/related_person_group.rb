@@ -1,8 +1,8 @@
-require_relative 'related_person/related_person_read_test'
 require_relative 'related_person/related_person_patient_search_test'
 require_relative 'related_person/related_person_id_search_test'
 require_relative 'related_person/related_person_name_search_test'
 require_relative 'related_person/related_person_patient_name_search_test'
+require_relative 'related_person/related_person_read_test'
 require_relative 'related_person/related_person_provenance_revinclude_search_test'
 require_relative 'related_person/related_person_validation_test'
 require_relative 'related_person/related_person_must_support_test'
@@ -78,11 +78,11 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'related_person', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v700_related_person_read_test
       test from: :us_core_v700_related_person_patient_search_test
       test from: :us_core_v700_related_person__id_search_test
       test from: :us_core_v700_related_person_name_search_test
       test from: :us_core_v700_related_person_patient_name_search_test
+      test from: :us_core_v700_related_person_read_test
       test from: :us_core_v700_related_person_provenance_revinclude_search_test
       test from: :us_core_v700_related_person_validation_test
       test from: :us_core_v700_related_person_must_support_test

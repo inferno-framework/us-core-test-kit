@@ -1,4 +1,3 @@
-require_relative 'encounter/encounter_read_test'
 require_relative 'encounter/encounter_patient_search_test'
 require_relative 'encounter/encounter_id_search_test'
 require_relative 'encounter/encounter_identifier_search_test'
@@ -6,6 +5,7 @@ require_relative 'encounter/encounter_date_patient_search_test'
 require_relative 'encounter/encounter_patient_status_search_test'
 require_relative 'encounter/encounter_class_patient_search_test'
 require_relative 'encounter/encounter_patient_type_search_test'
+require_relative 'encounter/encounter_read_test'
 require_relative 'encounter/encounter_provenance_revinclude_search_test'
 require_relative 'encounter/encounter_validation_test'
 require_relative 'encounter/encounter_must_support_test'
@@ -83,7 +83,6 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'encounter', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v400_encounter_read_test
       test from: :us_core_v400_encounter_patient_search_test
       test from: :us_core_v400_encounter__id_search_test
       test from: :us_core_v400_encounter_identifier_search_test
@@ -91,6 +90,7 @@ read succeeds.
       test from: :us_core_v400_encounter_patient_status_search_test
       test from: :us_core_v400_encounter_class_patient_search_test
       test from: :us_core_v400_encounter_patient_type_search_test
+      test from: :us_core_v400_encounter_read_test
       test from: :us_core_v400_encounter_provenance_revinclude_search_test
       test from: :us_core_v400_encounter_validation_test
       test from: :us_core_v400_encounter_must_support_test

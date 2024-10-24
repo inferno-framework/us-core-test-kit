@@ -2063,8 +2063,6 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Encounter
   :tests:
-  - :id: us_core_v400_encounter_read_test
-    :file_name: encounter_read_test.rb
   - :id: us_core_v400_encounter_patient_search_test
     :file_name: encounter_patient_search_test.rb
   - :id: us_core_v400_encounter__id_search_test
@@ -2079,6 +2077,8 @@
     :file_name: encounter_class_patient_search_test.rb
   - :id: us_core_v400_encounter_patient_type_search_test
     :file_name: encounter_patient_type_search_test.rb
+  - :id: us_core_v400_encounter_read_test
+    :file_name: encounter_read_test.rb
   - :id: us_core_v400_encounter_provenance_revinclude_search_test
     :file_name: encounter_provenance_revinclude_search_test.rb
   - :id: us_core_v400_encounter_validation_test
@@ -7098,12 +7098,12 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Endpoint
   :tests:
-  - :id: us_core_v400_organization_read_test
-    :file_name: organization_read_test.rb
   - :id: us_core_v400_organization_name_search_test
     :file_name: organization_name_search_test.rb
   - :id: us_core_v400_organization_address_search_test
     :file_name: organization_address_search_test.rb
+  - :id: us_core_v400_organization_read_test
+    :file_name: organization_read_test.rb
   - :id: us_core_v400_organization_validation_test
     :file_name: organization_validation_test.rb
   - :id: us_core_v400_organization_must_support_test
@@ -7557,12 +7557,12 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
   :tests:
-  - :id: us_core_v400_practitioner_read_test
-    :file_name: practitioner_read_test.rb
   - :id: us_core_v400_practitioner_name_search_test
     :file_name: practitioner_name_search_test.rb
   - :id: us_core_v400_practitioner_identifier_search_test
     :file_name: practitioner_identifier_search_test.rb
+  - :id: us_core_v400_practitioner_read_test
+    :file_name: practitioner_read_test.rb
   - :id: us_core_v400_practitioner_validation_test
     :file_name: practitioner_validation_test.rb
   - :id: us_core_v400_practitioner_must_support_test

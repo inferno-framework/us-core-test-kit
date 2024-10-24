@@ -1,9 +1,9 @@
-require_relative 'location/location_read_test'
 require_relative 'location/location_address_search_test'
 require_relative 'location/location_address_city_search_test'
 require_relative 'location/location_address_postalcode_search_test'
 require_relative 'location/location_address_state_search_test'
 require_relative 'location/location_name_search_test'
+require_relative 'location/location_read_test'
 require_relative 'location/location_validation_test'
 require_relative 'location/location_must_support_test'
 require_relative 'location/location_reference_resolution_test'
@@ -79,12 +79,12 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'location', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v700_location_read_test
       test from: :us_core_v700_location_address_search_test
       test from: :us_core_v700_location_address_city_search_test
       test from: :us_core_v700_location_address_postalcode_search_test
       test from: :us_core_v700_location_address_state_search_test
       test from: :us_core_v700_location_name_search_test
+      test from: :us_core_v700_location_read_test
       test from: :us_core_v700_location_validation_test
       test from: :us_core_v700_location_must_support_test
       test from: :us_core_v700_location_reference_resolution_test

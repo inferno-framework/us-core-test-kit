@@ -42,7 +42,7 @@ module USCoreTestKit
           instance_variable_set(:"@#{key}", value)
         end
       end
-=begin
+
       def delayed?
         @is_delayed ||= if resource == 'Patient'
                           false
@@ -66,14 +66,14 @@ module USCoreTestKit
       def searchable_delayed_resource?
         SpecialCases::SEARCHABLE_DELAYED_RESOURCES.key?(resource) && SpecialCases::SEARCHABLE_DELAYED_RESOURCES[resource].include?(reformatted_version)
       end
-=end
+
       def add_test(id:, file_name:)
         self.tests ||= []
 
-        # test_metadata = {
-        #   id: id,
-        #   file_name: file_name
-        # }
+        test_metadata = {
+          id: id,
+          file_name: file_name
+        }
 
         # if delayed? && id.include?('read')
         #   self.tests.unshift(test_metadata)

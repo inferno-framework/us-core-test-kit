@@ -128,12 +128,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
-- :id: us_core_v501_organization_read_test
-  :file_name: organization_read_test.rb
 - :id: us_core_v501_organization_name_search_test
   :file_name: organization_name_search_test.rb
 - :id: us_core_v501_organization_address_search_test
   :file_name: organization_address_search_test.rb
+- :id: us_core_v501_organization_read_test
+  :file_name: organization_read_test.rb
 - :id: us_core_v501_organization_validation_test
   :file_name: organization_validation_test.rb
 - :id: us_core_v501_organization_must_support_test

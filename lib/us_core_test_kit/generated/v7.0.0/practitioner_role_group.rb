@@ -1,6 +1,6 @@
-require_relative 'practitioner_role/practitioner_role_read_test'
 require_relative 'practitioner_role/practitioner_role_practitioner_search_test'
 require_relative 'practitioner_role/practitioner_role_specialty_search_test'
+require_relative 'practitioner_role/practitioner_role_read_test'
 require_relative 'practitioner_role/practitioner_role_validation_test'
 require_relative 'practitioner_role/practitioner_role_must_support_test'
 require_relative 'practitioner_role/practitioner_role_reference_resolution_test'
@@ -78,9 +78,9 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner_role', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v700_practitioner_role_read_test
       test from: :us_core_v700_practitioner_role_practitioner_search_test
       test from: :us_core_v700_practitioner_role_specialty_search_test
+      test from: :us_core_v700_practitioner_role_read_test
       test from: :us_core_v700_practitioner_role_validation_test
       test from: :us_core_v700_practitioner_role_must_support_test
       test from: :us_core_v700_practitioner_role_reference_resolution_test

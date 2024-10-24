@@ -116,8 +116,6 @@
   :profiles:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 :tests:
-- :id: us_core_v700_related_person_read_test
-  :file_name: related_person_read_test.rb
 - :id: us_core_v700_related_person_patient_search_test
   :file_name: related_person_patient_search_test.rb
 - :id: us_core_v700_related_person__id_search_test
@@ -126,6 +124,8 @@
   :file_name: related_person_name_search_test.rb
 - :id: us_core_v700_related_person_patient_name_search_test
   :file_name: related_person_patient_name_search_test.rb
+- :id: us_core_v700_related_person_read_test
+  :file_name: related_person_read_test.rb
 - :id: us_core_v700_related_person_provenance_revinclude_search_test
   :file_name: related_person_provenance_revinclude_search_test.rb
 - :id: us_core_v700_related_person_validation_test

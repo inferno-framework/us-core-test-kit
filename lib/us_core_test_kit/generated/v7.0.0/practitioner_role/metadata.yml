@@ -134,12 +134,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
-- :id: us_core_v700_practitioner_role_read_test
-  :file_name: practitioner_role_read_test.rb
 - :id: us_core_v700_practitioner_role_practitioner_search_test
   :file_name: practitioner_role_practitioner_search_test.rb
 - :id: us_core_v700_practitioner_role_specialty_search_test
   :file_name: practitioner_role_specialty_search_test.rb
+- :id: us_core_v700_practitioner_role_read_test
+  :file_name: practitioner_role_read_test.rb
 - :id: us_core_v700_practitioner_role_validation_test
   :file_name: practitioner_role_validation_test.rb
 - :id: us_core_v700_practitioner_role_must_support_test

@@ -1,6 +1,6 @@
-require_relative 'practitioner/practitioner_read_test'
 require_relative 'practitioner/practitioner_name_search_test'
 require_relative 'practitioner/practitioner_identifier_search_test'
+require_relative 'practitioner/practitioner_read_test'
 require_relative 'practitioner/practitioner_validation_test'
 require_relative 'practitioner/practitioner_must_support_test'
 
@@ -75,9 +75,9 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'practitioner', 'metadata.yml'), aliases: true))
       end
   
-      test from: :us_core_v311_practitioner_read_test
       test from: :us_core_v311_practitioner_name_search_test
       test from: :us_core_v311_practitioner_identifier_search_test
+      test from: :us_core_v311_practitioner_read_test
       test from: :us_core_v311_practitioner_validation_test
       test from: :us_core_v311_practitioner_must_support_test
     end

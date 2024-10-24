@@ -168,8 +168,6 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Endpoint
 :tests:
-- :id: us_core_v700_location_read_test
-  :file_name: location_read_test.rb
 - :id: us_core_v700_location_address_search_test
   :file_name: location_address_search_test.rb
 - :id: us_core_v700_location_address_city_search_test
@@ -180,6 +178,8 @@
   :file_name: location_address_state_search_test.rb
 - :id: us_core_v700_location_name_search_test
   :file_name: location_name_search_test.rb
+- :id: us_core_v700_location_read_test
+  :file_name: location_read_test.rb
 - :id: us_core_v700_location_validation_test
   :file_name: location_validation_test.rb
 - :id: us_core_v700_location_must_support_test

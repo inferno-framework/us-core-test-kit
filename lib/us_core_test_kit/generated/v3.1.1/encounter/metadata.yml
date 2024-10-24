@@ -271,8 +271,6 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Encounter
 :tests:
-- :id: us_core_v311_encounter_read_test
-  :file_name: encounter_read_test.rb
 - :id: us_core_v311_encounter_patient_search_test
   :file_name: encounter_patient_search_test.rb
 - :id: us_core_v311_encounter__id_search_test
@@ -287,6 +285,8 @@
   :file_name: encounter_patient_type_search_test.rb
 - :id: us_core_v311_encounter_date_patient_search_test
   :file_name: encounter_date_patient_search_test.rb
+- :id: us_core_v311_encounter_read_test
+  :file_name: encounter_read_test.rb
 - :id: us_core_v311_encounter_provenance_revinclude_search_test
   :file_name: encounter_provenance_revinclude_search_test.rb
 - :id: us_core_v311_encounter_validation_test
