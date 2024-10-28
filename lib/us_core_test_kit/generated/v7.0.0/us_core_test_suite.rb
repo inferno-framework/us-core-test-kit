@@ -133,6 +133,10 @@ module USCoreTestKit
           {
             label: 'SMART App Launch 2.0.0',
             value: USCoreOptions::SMART_2
+          },
+          {
+            label: 'SMART App Launch 2.2.0',
+            value: USCoreOptions::SMART_2_2
           }
         ]
 
@@ -217,6 +221,9 @@ module USCoreTestKit
 
       group from: :us_core_v700_smart_granular_scopes,
             required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+      group from: :us_core_v700_smart_granular_scopes,
+            id: :us_core_v700_smart_granular_scopes_stu2_2,
+            required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
       
     end
   end
