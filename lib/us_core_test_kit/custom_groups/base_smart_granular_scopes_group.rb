@@ -1,12 +1,12 @@
 require 'inferno'
 require 'smart_app_launch_test_kit'
-require_relative './smart_ehr_launch_stu2'
-require_relative './smart_scopes_constants'
-require_relative './smart_standalone_launch_stu2_group'
+require_relative 'smart_ehr_launch_stu2'
+require_relative 'smart_scopes_constants'
+require_relative 'smart_standalone_launch_stu2_group'
 require_relative '../granular_scope_search_test'
 require_relative '../granular_scope_read_test'
 require_relative '../us_core_options'
-require_relative './granted_granular_scopes_test'
+require_relative 'granted_granular_scopes_test'
 
 module USCoreTestKit
   class BaseSmartGranularScopesGroup < Inferno::TestGroup
@@ -54,8 +54,10 @@ module USCoreTestKit
             smart_credentials: {
               name: :granular_scopes_1_credentials
             }
-          }        )
+          }
+        )
         group from: :us_core_smart_standalone_launch_stu2,
+              required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
               optional: true,
               config: {
                 inputs: {
@@ -73,7 +75,47 @@ module USCoreTestKit
                            }
                          }
         end
+        group from: :us_core_smart_standalone_launch_stu2_2,
+              required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT,
+              optional: true,
+              config: {
+                inputs: {
+                  smart_credentials: {
+                    name: :granular_scopes_1_credentials
+                  }
+                }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :standalone_received_scopes
+                             }
+                           }
+                         }
+        end
+
         group from: :us_core_smart_ehr_launch_stu2,
+              required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
+              optional: true,
+              config: {
+                inputs: {
+                  smart_credentials: {
+                    name: :granular_scopes_1_credentials
+                  }
+                }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :ehr_received_scopes
+                             }
+                           }
+                         }
+        end
+        group from: :us_core_smart_ehr_launch_stu2_2,
+              required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT,
               optional: true,
               config: {
                 inputs: {
@@ -113,6 +155,26 @@ module USCoreTestKit
         )
 
         group from: :us_core_smart_standalone_launch_stu2,
+              required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
+              optional: true,
+              config: {
+                inputs: {
+                  smart_credentials: {
+                    name: :granular_scopes_2_credentials
+                  }
+                }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :standalone_received_scopes
+                             }
+                           }
+                         }
+        end
+        group from: :us_core_smart_standalone_launch_stu2_2,
+              required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT,
               optional: true,
               config: {
                 inputs: {
@@ -131,8 +193,27 @@ module USCoreTestKit
                          }
         end
 
-
         group from: :us_core_smart_ehr_launch_stu2,
+              required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
+              optional: true,
+              config: {
+                inputs: {
+                  smart_credentials: {
+                    name: :granular_scopes_2_credentials
+                  }
+                }
+              } do
+          groups[1].test from: :us_core_granted_granular_scopes,
+                         config: {
+                           inputs: {
+                             received_scopes: {
+                               name: :ehr_received_scopes
+                             }
+                           }
+                         }
+        end
+        group from: :us_core_smart_ehr_launch_stu2_2,
+              required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT,
               optional: true,
               config: {
                 inputs: {
