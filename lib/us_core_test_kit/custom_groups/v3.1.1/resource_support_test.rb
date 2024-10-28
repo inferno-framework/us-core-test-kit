@@ -1,7 +1,7 @@
 module USCoreTestKit
   module USCoreV311
     class ProfileSupportTest < Inferno::Test
-      id :us_core_profile_support
+      id :us_core_v311_resource_support
       title 'Capability Statement lists support for required US Core Resoruce Types'
       description %(
         The US Core Implementation Guide states:
