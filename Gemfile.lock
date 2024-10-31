@@ -3,7 +3,7 @@ PATH
   specs:
     us_core_test_kit (0.8.2)
       inferno_core (>= 0.4.37)
-      smart_app_launch_test_kit (>= 0.4.0)
+      smart_app_launch_test_kit (>= 0.4.5)
       tls_test_kit (~> 0.2.0)
 
 GEM
@@ -259,7 +259,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (0.4.3)
+    smart_app_launch_test_kit (0.4.5)
       inferno_core (>= 0.4.2)
       json-jwt (~> 1.15.3)
       jwt (~> 2.6)
