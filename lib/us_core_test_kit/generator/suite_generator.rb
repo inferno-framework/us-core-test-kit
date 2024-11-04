@@ -84,7 +84,7 @@ module USCoreTestKit
       end
 
       def generate
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
       end
 
       def groups
@@ -144,6 +144,10 @@ module USCoreTestKit
 
       def smart_app_launch_file_name
         "../../custom_groups/#{ig_metadata.ig_version}/smart_app_launch_group"
+      end
+
+      def stu2_2_smart_app_launch_file_name
+        "../../custom_groups/#{ig_metadata.ig_version}/smart_app_launch_stu2_2_group"
       end
 
       def smart_app_launch_id
