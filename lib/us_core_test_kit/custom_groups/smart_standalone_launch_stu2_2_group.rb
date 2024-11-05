@@ -5,12 +5,12 @@ module USCoreTestKit
 
     run_as_group
 
-    group from: :smart_discovery_stu2,
+    group from: :smart_discovery_stu2_2,
           run_as_group: true
     group from: :smart_standalone_launch_stu2_2,
           run_as_group: true
 
-    group from: :smart_openid_connect do
+    group from: :smart_openid_connect_stu2_2 do
       run_as_group
       optional
       config(
