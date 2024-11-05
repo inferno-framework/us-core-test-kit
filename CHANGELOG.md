@@ -7,6 +7,8 @@
   https://github.com/inferno-framework/us-core-test-kit/pull/205
 * FI-3392: Integrate US Core Test Kit with smart-app-launch-test-kit v0.4.6 by @emichaud998 in
   https://github.com/inferno-framework/us-core-test-kit/pull/206
+* FI-3421 Remove media and media.link from DiagnosticReport's MustSupport list by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/208
 
 # 0.8.2
 * FI-3060 Add MustSuport choice for Observation.effective[x] by @yunwwang in
