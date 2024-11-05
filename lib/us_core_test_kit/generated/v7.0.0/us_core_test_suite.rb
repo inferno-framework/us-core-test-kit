@@ -144,7 +144,8 @@ module USCoreTestKit
       group from: :us_core_v700_smart_app_launch,
             required_suite_options: USCoreOptions::SMART_1_REQUIREMENT
       group from: :us_core_v700_smart_app_launch,
-            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
+            id: :us_core_v700_smart_app_launch_stu2
       group from: :us_core_v700_smart_app_launch_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
 
@@ -169,7 +170,7 @@ module USCoreTestKit
         )
 
         group from: :us_core_v700_capability_statement
-      
+
         group from: :us_core_v700_patient
         group from: :us_core_v700_allergy_intolerance
         group from: :us_core_v700_care_plan
@@ -230,7 +231,7 @@ module USCoreTestKit
       group from: :us_core_v700_smart_granular_scopes,
             id: :us_core_v700_smart_granular_scopes_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
-      
+
     end
   end
 end
