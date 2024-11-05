@@ -1,3 +1,13 @@
+# 0.9.0
+* FI-3079 Combine Test Suite's general filter and version specific filter by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/202
+* FI-3354 Remove duplicate id in US Core Test Kit by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/204
+* FI-3267: Integrate US Core Test Kit with smart-app-launch-test-kit v0.4.5 by @emichaud998 in
+  https://github.com/inferno-framework/us-core-test-kit/pull/205
+* FI-3392: Integrate US Core Test Kit with smart-app-launch-test-kit v0.4.6 by @emichaud998 in
+  https://github.com/inferno-framework/us-core-test-kit/pull/206
+
 # 0.8.2
 * FI-3060 Add MustSuport choice for Observation.effective[x] by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/199
