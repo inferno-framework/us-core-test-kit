@@ -29,6 +29,7 @@ module USCoreTestKit
         add_patient_uscdi_elements
         update_smoking_status_effective
         remove_practitioner_address
+        remove_diagnosticreport_media
       end
 
       def add_must_support_choices
@@ -92,10 +93,17 @@ module USCoreTestKit
         must_supports[:elements] << { path: 'effective[x]' }
       end
 
+      # US Core v6.1.0 Patch FI-44693, Add MustSupport choice between Practitioner.address and PractitionerRole
       def remove_practitioner_address
         return unless profile.type == 'Practitioner'
 
         must_supports[:elements].delete_if { |element| element[:path].start_with?('address') }
+      end
+
+      # US Core v6.1.0 Patch FI-46240, Remove the Must Support on media and media.link
+      def remove_diagnosticreport_media
+        return unless profile.id == 'us-core-diagnosticreport-note'
+        must_supports[:elements].delete_if { |element| element[:path].start_with?('media') }
       end
     end
   end
