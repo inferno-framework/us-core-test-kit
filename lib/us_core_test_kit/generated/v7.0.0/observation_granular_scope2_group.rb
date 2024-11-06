@@ -9,7 +9,7 @@ require_relative './granular_scope_tests/observation/observation_granular_scope_
 module USCoreTestKit
   module USCoreV700
     class ObservationGranularScope2Group < Inferno::TestGroup
-      title 'Observation Granular Scope Tests Tests'
+      title 'Observation Granular Scope Tests'
       short_description 'Verify support for the server capabilities required by the US Core Laboratory Result Observation Profile.'
       description %(
   The tests in this group repeat all of the searches from the US Core
