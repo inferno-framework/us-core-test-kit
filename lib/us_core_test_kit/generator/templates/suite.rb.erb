@@ -99,7 +99,8 @@ module USCoreTestKit
       group from: :<%= smart_app_launch_id %><% if us_core_7_and_above? %>,
             required_suite_options: USCoreOptions::SMART_1_REQUIREMENT
       group from: :<%= smart_app_launch_id %>,
-            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT
+            required_suite_options: USCoreOptions::SMART_2_REQUIREMENT,
+            id: :<%= smart_app_launch_id %>_stu2
       group from: :<%= smart_app_launch_id %>_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT<% end %>
 

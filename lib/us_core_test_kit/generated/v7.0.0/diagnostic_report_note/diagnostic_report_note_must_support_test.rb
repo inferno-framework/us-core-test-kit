@@ -18,6 +18,8 @@ module USCoreTestKit
         * DiagnosticReport.effectiveDateTime
         * DiagnosticReport.encounter
         * DiagnosticReport.issued
+        * DiagnosticReport.media
+        * DiagnosticReport.media.link
         * DiagnosticReport.performer
         * DiagnosticReport.presentedForm
         * DiagnosticReport.result

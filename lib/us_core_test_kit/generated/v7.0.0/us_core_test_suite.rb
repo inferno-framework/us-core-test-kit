@@ -170,7 +170,7 @@ module USCoreTestKit
         )
 
         group from: :us_core_v700_capability_statement
-
+      
         group from: :us_core_v700_patient
         group from: :us_core_v700_allergy_intolerance
         group from: :us_core_v700_care_plan
@@ -231,7 +231,7 @@ module USCoreTestKit
       group from: :us_core_v700_smart_granular_scopes,
             id: :us_core_v700_smart_granular_scopes_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
-
+      
     end
   end
 end
