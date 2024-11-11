@@ -1,3 +1,7 @@
+# 0.9.1
+* FI-3445 Add media and media.link back to US Core v7 DiagnosticReport must support by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/210
+
 # 0.9.0
 * FI-3079 Combine Test Suite's general filter and version specific filter by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/202
