@@ -93,14 +93,15 @@ module USCoreTestKit
         must_supports[:elements] << { path: 'effective[x]' }
       end
 
-      # US Core v6.1.0 Patch FI-44693, Add MustSupport choice between Practitioner.address and PractitionerRole
+      # US Core v6.1.0 Patch FHIR-44693, Add MustSupport choice between Practitioner.address and PractitionerRole
+      # This is fixed formally in US Core v7
       def remove_practitioner_address
         return unless profile.type == 'Practitioner'
 
         must_supports[:elements].delete_if { |element| element[:path].start_with?('address') }
       end
 
-      # US Core v6.1.0 Patch FI-46240, Remove the Must Support on media and media.link
+      # US Core v6.1.0 Patch FHIR-46240, Remove the Must Support on media and media.link
       def remove_diagnosticreport_media
         return unless profile.id == 'us-core-diagnosticreport-note'
         must_supports[:elements].delete_if { |element| element[:path].start_with?('media') }
