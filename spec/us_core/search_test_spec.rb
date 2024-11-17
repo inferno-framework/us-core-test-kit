@@ -1379,15 +1379,6 @@ RSpec.describe USCoreTestKit::SearchTest do
         ]
       )
     end
-    let(:bundle) do
-      FHIR::Bundle.new(
-        entry: [
-          {
-            resource: diagnostic_report
-          }
-        ]
-      )
-    end
 
     before do
       allow_any_instance_of(test_class)
