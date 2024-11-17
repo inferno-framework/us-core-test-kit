@@ -1343,4 +1343,66 @@ RSpec.describe USCoreTestKit::SearchTest do
       expect(values_found.length).to eq(0)
     end
   end
+
+  describe '#save_delayed_references' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::DiagnosticReportLabPatientCategorySearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:patient_id) { '85' }
+    let(:test_scratch) { {} }
+    let(:diagnostic_report) do
+      FHIR::DiagnosticReport.new(
+        subject: {
+          reference: "Patient/#{patient_id}"
+        },
+        category: [
+          {
+            coding: [
+              {
+                code: 'abc'
+              }
+            ]
+          }
+        ],
+        performer:[
+          {
+            reference: 'Organization/1'
+          },
+          {
+            type: 'Organization',
+            display: 'Unknown Performing Organization'
+          }
+        ]
+      )
+    end
+    let(:bundle) do
+      FHIR::Bundle.new(
+        entry: [
+          {
+            resource: diagnostic_report
+          }
+        ]
+      )
+    end
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch).and_return(test_scratch)
+    end
+
+    it 'passes with reference not populated' do
+      test.save_delayed_references([diagnostic_report])
+
+      result = test_scratch[:references]
+      expect(result).not_to be_empty
+      expect(result['Organization']).not_to be_empty
+      expect(result['Organization'].count).to be(1)
+      expect(result['Organization'].first.reference).to eq('Organization/1')
+    end
+  end
+
 end
