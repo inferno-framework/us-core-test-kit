@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    us_core_test_kit (0.9.1)
-      inferno_core (>= 0.4.37)
+    us_core_test_kit (0.9.2)
+      inferno_core (>= 0.5.0)
       smart_app_launch_test_kit (>= 0.4.6)
       tls_test_kit (~> 0.2.0)
 
@@ -175,15 +175,15 @@ GEM
       httpclient
     jwt (2.9.3)
       base64
-    kramdown (2.4.0)
-      rexml
+    kramdown (2.5.1)
+      rexml (>= 3.3.9)
     logger (1.6.1)
     method_source (1.1.0)
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1001)
-    mini_portile2 (2.8.7)
+    mime-types-data (3.2024.1105)
+    mini_portile2 (2.8.8)
     minitest (5.25.1)
     multi_json (1.15.0)
     multi_xml (0.7.1)
@@ -214,12 +214,12 @@ GEM
     oj (3.11.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pry (0.14.2)
+    pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-byebug (3.10.1)
+    pry-byebug (3.8.0)
       byebug (~> 11.0)
-      pry (>= 0.13, < 0.15)
+      pry (~> 0.10)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -240,7 +240,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.3.9)
-    rouge (4.4.0)
+    rouge (4.5.1)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -279,7 +279,7 @@ GEM
     strings-ansi (0.2.0)
     thor (1.2.2)
     tilt (2.4.0)
-    tls_test_kit (0.2.2)
+    tls_test_kit (0.2.3)
       inferno_core (>= 0.4.2)
     tty-color (0.6.0)
     tty-markdown (0.7.2)
