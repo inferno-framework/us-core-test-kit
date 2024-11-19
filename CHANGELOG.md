@@ -1,3 +1,9 @@
+# 0.9.2
+* FI-3474 Add check if Reference.reference is empty before processing by @yunwwang in
+  https://github.com/inferno-framework/us-core-test-kit/pull/212
+* FI-3486 Add validation message filter for US Core 6 Observation Smoking Status effectivePeriod.start
+  by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/213
+
 # 0.9.1
 * FI-3445 Add media and media.link back to US Core v7 DiagnosticReport must support by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/210
