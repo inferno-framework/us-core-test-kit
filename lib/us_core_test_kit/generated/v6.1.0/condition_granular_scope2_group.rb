@@ -13,7 +13,7 @@ require_relative './granular_scope_tests/condition/condition_granular_scope_read
 module USCoreTestKit
   module USCoreV610
     class ConditionGranularScope2Group < Inferno::TestGroup
-      title 'Condition Granular Scope Tests Tests'
+      title 'Condition Granular Scope Tests'
       short_description 'Verify support for the server capabilities required by the US Core Condition Encounter Diagnosis Profile.'
       description %(
   The tests in this group repeat all of the searches from the US Core

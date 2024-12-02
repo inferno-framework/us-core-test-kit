@@ -58,7 +58,7 @@ module USCoreTestKit
       end
 
       def title
-        "#{resource_type} Granular Scope Tests"
+        "#{resource_type} Granular Scope"
       end
 
       def short_description
