@@ -1,11 +1,12 @@
 # US Core Test Kit
 
-This is an [Inferno](https://inferno-framework.github.io/inferno-core/) test kit
+This is an [Inferno](https://inferno-framework.github.io/) test kit
 for the US Core Implementation Guide
-[v3.1.1](http://hl7.org/fhir/us/core/STU3.1.1/),
-[v4.0.0](http://hl7.org/fhir/us/core/STU4/),
-[v5.0.1](http://hl7.org/fhir/us/core/STU5.0.1/), and
-[v6.1.0](http://hl7.org/fhir/us/core/STU6.1/)
+[v3.1.1](https://hl7.org/fhir/us/core/STU3.1.1/),
+[v4.0.0](https://hl7.org/fhir/us/core/STU4/),
+[v5.0.1](https://hl7.org/fhir/us/core/STU5.0.1/),
+[v6.1.0](https://hl7.org/fhir/us/core/STU6.1/), and
+[v7.0.0](https://hl7.org/fhir/us/core/STU7/).
 
 ## Instructions
 
