@@ -1,3 +1,9 @@
+# 0.9.3
+* FI-3133 Fix test name typo for granular scope tests. by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/209
+* Improve README.md content and links by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/216
+* FI-3430 Sort SMART ALL Lauch Scopes by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/215
+* FI-3524 Update inferno_core dependency to v0.5.1 by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/215
+
 # 0.9.2
 * FI-3474 Add check if Reference.reference is empty before processing by @yunwwang in
   https://github.com/inferno-framework/us-core-test-kit/pull/212
