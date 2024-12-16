@@ -162,7 +162,7 @@ the generator is within the `lib/us_core_test_kit/generator` directory and
 the test suites that are generated are placed within the `lib/us_core_test_kit/generated`
 directory.
 
-Never update files in teh `generated` directory manually, as they will be
+Never update files in the `generated` directory manually, as they will be
 overwritten when the next time the files are regenerated.
 
 To regenerate the files, run:
