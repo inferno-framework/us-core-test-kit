@@ -81,7 +81,7 @@ Ensure that the directory for the cloned repository on your local machine is des
 * Navigate to the US Core Implementation Guide Download page at <https://hl7.org/fhir/us/core/downloads.html>.
 * Identify and select the Implementation Guide version that aligns with your project requirements.
 * Proceed to download the “Package File” (package.tgz).
-* Move the downloaded package.tgz file into the “./lib/igs” directory of the US Core Test kit repository on your local system.
+* Move the downloaded package.tgz file into the “./lib/us_core_test_kit/igs” directory of the US Core Test kit repository on your local system.
 * For clarity and version control, rename package.tgz to reflect the version it represents, e.g., “us\_core\_610.tgz”.
 * It's important to note that the US Core Implementation Guide may necessitate additional artifacts from the FHIR Core Specification that are not automatically included. These must be integrated manually if required.
 
