@@ -17,7 +17,7 @@ Tests for this Test Kit have been designed with the following principles:
 * Limit extraneous constraints: The tests should not place additional
   constraints on the system under test.  Leverage machine-readable content: As
   of US Core v7, the US Core developers purposefully encode many requirements in
-  machine-readable structures, and hte tests should leverage those when possible
+  machine-readable structures, and the tests should leverage those when possible
   to avoid mistakes.  Obey all non-machine-readable requirements and exception:
 * The tests should not ignore any requirements that are not encoded in
   machine-readable structures.
