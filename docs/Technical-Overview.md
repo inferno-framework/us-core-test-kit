@@ -22,7 +22,7 @@ Tests for this Test Kit have been designed with the following principles:
 * The tests should not ignore any requirements that are not encoded in
   machine-readable structures.
 
-Features of this test kit reflect these principals.  For example:
+Features of this test kit reflect these principles.  For example:
 * Systems do not need to load a specific set of data for these tests, as long as
   the data they provide are valid and demonstrate complete support for the US
   Core Test Kit.
