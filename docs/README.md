@@ -27,6 +27,8 @@ contributing to these tests:
 
 # Support
 
-This Test Kit is supported by the Inferno team.  Ask questions to the team on [FHIR Zulip](https://chat.fhir.org).
+For questions or issues with this Test Kit, please reach out to the Inferno team
+on the [#Inferno FHIR Zulip
+channel](https://chat.fhir.org/#narrow/stream/179309-inferno).
 
 Report bugs or provide suggestions in [GitHub Issues](/issues).

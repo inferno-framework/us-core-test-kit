@@ -15,12 +15,13 @@ Tests for this Test Kit have been designed with the following principles:
 * Easy testing: Users should be able to run the tests with minimal input or
   configuration, and tests should complete in a reasonable amount of time.
 * Limit extraneous constraints: The tests should not place additional
-  constraints on the system under test.  Leverage machine-readable content: As
-  of US Core v7, the US Core developers purposefully encode many requirements in
-  machine-readable structures, and the tests should leverage those when possible
-  to avoid mistakes.  Obey all non-machine-readable requirements and exception:
-* The tests should not ignore any requirements that are not encoded in
-  machine-readable structures.
+  constraints on the system under test.
+* Leverage machine-readable content: As of US Core v7, the US Core developers
+  purposefully encode many requirements in machine-readable structures, and the
+  tests should leverage those when possible to avoid mistakes.
+* Obey all non-machine-readable requirements and exceptions:
+  The tests should verify all requirements that are included in narrative, as they
+  are as important as the machine-readable constraints.
 
 Features of this test kit reflect these principles.  For example:
 * Systems do not need to load a specific set of data for these tests, as long as
@@ -53,8 +54,8 @@ Below is a description of the source code structure for the US Core Test Kit:
 root
 +--config
 | +--presets                   Preset configurations including: server URL, patient IDs, client credentials, etc*
-| +--lib                         Functional modules for common testing functionality, such as read test, search test, validation test
-| +--us_core_test_kit
+| +--lib
+| +--us_core_test_kit          Functional modules for common testing functionality, such as read test, search test, and validation test
 | | +--custom_groups           Manually created Tests and Groups, such as Clinical Notes tests, or Data Absent Reason tests
 | | | +--capability_statement  Tests for CapabilityStatement
 | | | +--v3.1.1
@@ -95,11 +96,11 @@ please refer to the README.md file on the GitHub repository.
 
 ## SMART App Launch Test Kit
 
-The Inferno US Core Test Kit incorporates an optional test group from the SMART
-App Launch Test Kit. The purpose of the SMART App Launch Test Kit is to confirm
-a server's ability to provide authorization and/or authentication services to
-client applications that access HL7® FHIR® APIs. You can find this test kit on
-GitHub at <https://github.com/inferno-framework/smart-app-launch-test-kit>.
+The Inferno US Core Test Kit incorporates a test group from the SMART App Launch
+Test Kit. The purpose of the SMART App Launch Test Kit is to confirm a server's
+ability to provide authorization and/or authentication services to client
+applications that access HL7® FHIR® APIs. You can find this test kit on GitHub
+at <https://github.com/inferno-framework/smart-app-launch-test-kit>.
 
 This test kit also contains tests for specific guidance provided by US Core
 regarding the implementation of SMART App Launch.  This is typically provided
@@ -123,7 +124,7 @@ End-to-End tests pass.
 The test kit contains many "unit" tests within the `spec` directory.  These
 tests are written in RSpec, and can be run with the following command:
 
-```bundle exec rake spec```
+```bundle exec rake```
 
 These tests should be run after any changes to the tests, and must pass before
 any changes to the tests are merged into the main branch.  It is not expected
