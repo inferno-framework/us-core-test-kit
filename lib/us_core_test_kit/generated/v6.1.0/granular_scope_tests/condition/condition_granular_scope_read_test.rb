@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server filters results for Condition reads based on granular scopes'
       description %(
-This test attempts Condition reads 
+This test attempts Condition reads
 and verifies that the results have been
 filtered based on the granted granular scopes.
 
