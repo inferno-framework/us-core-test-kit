@@ -1,12 +1,14 @@
 module USCoreTestKit
   class Generator
     module SpecialCases
+      # These resources are excluded from US Core Test Suite
       RESOURCES_TO_EXCLUDE = {
         'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700'],
+        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
         'PractitionerRole' => ['v311', 'v400']
       }.freeze
 
+      # These profiles are excluded from US Core Test Suite
       PROFILES_TO_EXCLUDE = [
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-survey',
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-vital-signs'
@@ -21,18 +23,20 @@ module USCoreTestKit
         'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation' => ['v610', 'v700']
       }.freeze
 
+      # These resources relies on references from other resources and do not have search tests.
+      # Test groups for these resources are placed at the bottom of US Core test group.
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
-        'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700'],
-        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700'],
-        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700'],
-        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700'],
-        'RelatedPerson' => ['v501', 'v610', 'v700']
+        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
+        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
+        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
+        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
+        'RelatedPerson' => ['v501', 'v610', 'v700', 'v800']
       }.freeze
 
+       # These resources relies on references from other resources but they also have mandatory search tests.
       SEARCHABLE_DELAYED_RESOURCES = {
-        'Location' => ['v700']
+        'Location' => ['v700', 'v800']
       }.freeze
 
       ALL_VERSION_CATEGORY_FIRST_PROFILES = [
@@ -51,8 +55,8 @@ module USCoreTestKit
       ].freeze
 
       VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES = {
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700'],
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700']
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis' => ['v610', 'v700', 'v800'],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns' => ['v610', 'v700', 'v800']
       }.freeze
 
       class << self
