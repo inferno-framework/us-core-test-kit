@@ -7,7 +7,7 @@ module USCoreTestKit
     class GranularScopeTestGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
-          return unless ['6', '7'].include? ig_metadata.ig_version[1]
+          return if ig_metadata.ig_version[1].to_i < 6
 
           scopes =
             SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP1[ig_metadata.reformatted_version] +

@@ -190,6 +190,7 @@ module USCoreTestKit
             }
           }.tap do |metadata|
             metadata[:discriminator][:values] = discriminators(sliced_element(current_element)).map do |discriminator|
+              binding.pry if current_element.id == 'CarePlan.category:AssessPlan'
               fixed_element = profile_elements.find do |element|
                 element.id.starts_with?(current_element.id) &&
                   element.path == "#{current_element.path}.#{discriminator.path}"
