@@ -4491,14 +4491,6 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :slice_id: Observation.category:SocialHistory
-      :slice_name: SocialHistory
-      :path: category
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: ''
-        :code: social-history
-        :system: http://terminology.hl7.org/CodeSystem/observation-category
     - :slice_id: Observation.effective[x]:effectiveDateTime
       :slice_name: effectiveDateTime
       :path: effective[x]
@@ -4511,6 +4503,14 @@
       :discriminator:
         :type: type
         :code: CodeableConcept
+    - :slice_id: Observation.category:SocialHistory
+      :slice_name: SocialHistory
+      :path: category
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: ''
+        :code: social-history
+        :system: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
     - :path: category
@@ -4754,14 +4754,6 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :slice_id: Observation.category:SocialHistory
-      :slice_name: SocialHistory
-      :path: category
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: ''
-        :code: social-history
-        :system: http://terminology.hl7.org/CodeSystem/observation-category
     - :slice_id: Observation.effective[x]:effectiveDateTime
       :slice_name: effectiveDateTime
       :path: effective[x]
@@ -4774,6 +4766,14 @@
       :discriminator:
         :type: type
         :code: CodeableConcept
+    - :slice_id: Observation.category:SocialHistory
+      :slice_name: SocialHistory
+      :path: category
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: ''
+        :code: social-history
+        :system: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
     - :path: category
@@ -5017,6 +5017,18 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :slice_id: Observation.effective[x]:effectivePeriod
+      :slice_name: effectivePeriod
+      :path: effective[x]
+      :discriminator:
+        :type: type
+        :code: Period
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
     - :slice_id: Observation.category:socialhistory
       :slice_name: socialhistory
       :path: category
@@ -5033,18 +5045,6 @@
         :path: code
         :code: 86188-0
         :system: http://loinc.org
-    - :slice_id: Observation.effective[x]:effectivePeriod
-      :slice_name: effectivePeriod
-      :path: effective[x]
-      :discriminator:
-        :type: type
-        :code: Period
-    - :slice_id: Observation.value[x]:valueCodeableConcept
-      :slice_name: valueCodeableConcept
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: CodeableConcept
     :elements:
     - :path: status
     - :path: category
@@ -6758,6 +6758,22 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :slice_id: Observation.value[x]:valueQuantity
+      :slice_name: valueQuantity
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: Quantity
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
+      :path: category
+      :discriminator:
+        :type: value
+        :values:
+        - :path: coding.code
+          :value: vital-signs
+        - :path: coding.system
+          :value: http://terminology.hl7.org/CodeSystem/observation-category
     - :slice_id: Observation.code.coding:PulseOx
       :slice_name: PulseOx
       :path: code.coding
@@ -6790,22 +6806,6 @@
         :path: code
         :code: 3150-0
         :system: http://loinc.org
-    - :slice_id: Observation.value[x]:valueQuantity
-      :slice_name: valueQuantity
-      :path: value[x]
-      :discriminator:
-        :type: type
-        :code: Quantity
-    - :slice_id: Observation.category:VSCat
-      :slice_name: VSCat
-      :path: category
-      :discriminator:
-        :type: value
-        :values:
-        - :path: coding.code
-          :value: vital-signs
-        - :path: coding.system
-          :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
     - :path: category
@@ -8787,6 +8787,16 @@
   :must_supports:
     :extensions: []
     :slices:
+    - :slice_id: Observation.category:VSCat
+      :slice_name: VSCat
+      :path: category
+      :discriminator:
+        :type: value
+        :values:
+        - :path: coding.code
+          :value: vital-signs
+        - :path: coding.system
+          :value: http://terminology.hl7.org/CodeSystem/observation-category
     - :slice_id: Observation.component:systolic
       :slice_name: systolic
       :path: component
@@ -8803,16 +8813,6 @@
         :path: code
         :code: 8462-4
         :system: http://loinc.org
-    - :slice_id: Observation.category:VSCat
-      :slice_name: VSCat
-      :path: category
-      :discriminator:
-        :type: value
-        :values:
-        - :path: coding.code
-          :value: vital-signs
-        - :path: coding.system
-          :value: http://terminology.hl7.org/CodeSystem/observation-category
     :elements:
     - :path: status
     - :path: category
