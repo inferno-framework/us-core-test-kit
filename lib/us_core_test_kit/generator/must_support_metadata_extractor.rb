@@ -70,73 +70,6 @@ module USCoreTestKit
         slice.slicing.discriminator
       end
 
-      def must_support_pattern_slice_elements
-        must_support_slice_elements.select do |element|
-          discriminators(sliced_element(element)).first.type == 'pattern'
-        end
-      end
-
-      def pattern_slices
-        must_support_pattern_slice_elements.map do |current_element|
-          {
-            slice_id: current_element.id,
-            slice_name: current_element.sliceName,
-            path: current_element.path.gsub("#{resource}.", '')
-          }.tap do |metadata|
-            discriminator = discriminators(sliced_element(current_element)).first
-            discriminator_path = discriminator.path
-            discriminator_path = '' if discriminator_path == '$this'
-            pattern_element =
-              if discriminator_path.present?
-                profile_elements.find { |element| element.id == "#{current_element.id}.#{discriminator_path}" }
-              else
-                current_element
-              end
-            metadata[:discriminator] =
-              if pattern_element.patternCodeableConcept.present?
-                {
-                  type: 'patternCodeableConcept',
-                  path: discriminator_path,
-                  code: pattern_element.patternCodeableConcept.coding.first.code,
-                  system: pattern_element.patternCodeableConcept.coding.first.system
-                }
-              elsif pattern_element.patternCoding.present?
-                {
-                  type: 'patternCoding',
-                  path: discriminator_path,
-                  code: pattern_element.patternCoding.code,
-                  system: pattern_element.patternCoding.system
-                }
-              elsif pattern_element.patternIdentifier.present?
-                {
-                  type: 'patternIdentifier',
-                  path: discriminator_path,
-                  system: pattern_element.patternIdentifier.system
-                }
-              elsif pattern_element.binding&.strength == 'required' &&
-                    pattern_element.binding&.valueSet.present?
-
-                value_extractor = ValueExactor.new(ig_resources, resource, profile_elements)
-
-                values = value_extractor.codings_from_value_set_binding(pattern_element).presence ||
-                         value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
-
-                {
-                  type: 'requiredBinding',
-                  path: discriminator_path,
-                  values: values
-                }
-              else
-                raise StandardError, 'Unsupported discriminator pattern type'
-              end
-
-            if is_uscdi_requirement_element?(current_element)
-              metadata[:uscdi_only] = true
-            end
-          end
-        end
-      end
-
       def must_support_type_slice_elements
         must_support_slice_elements.select do |element|
           discriminators(sliced_element(element)).first.type == 'type'
@@ -175,7 +108,10 @@ module USCoreTestKit
 
       def must_support_value_slice_elements
         must_support_slice_elements.select do |element|
-          discriminators(sliced_element(element)).first.type == 'value'
+          # 'pattern' is deparected in FHIR R5
+          # 'patten' type is used in US Core v7 and all earlier versions.
+          # Since US Core v8, all 'patten' types are moved to 'value' type
+          ['value','pattern'].include?(discriminators(sliced_element(element)).first.type)
         end
       end
 
@@ -184,22 +120,46 @@ module USCoreTestKit
           {
             slice_id: current_element.id,
             slice_name: current_element.sliceName,
-            path: current_element.path.gsub("#{resource}.", ''),
-            discriminator: {
-              type: 'value'
-            }
+            path: current_element.path.gsub("#{resource}.", '')
           }.tap do |metadata|
-            metadata[:discriminator][:values] = discriminators(sliced_element(current_element)).map do |discriminator|
-              binding.pry if current_element.id == 'CarePlan.category:AssessPlan'
-              fixed_element = profile_elements.find do |element|
-                element.id.starts_with?(current_element.id) &&
-                  element.path == "#{current_element.path}.#{discriminator.path}"
-              end
+            fixed_values = []
+            pattern_value = {}
 
-              {
-                path: discriminator.path,
-                value: fixed_element.fixedUri || fixed_element.fixedCode
+            discriminators(sliced_element(current_element)).each do |discriminator|
+              discriminator_path = discriminator.path
+              discriminator_path = '' if discriminator_path == '$this'
+              pattern_element =
+                if discriminator_path.present?
+                  sliced_target_path =
+                    discriminator_path.empty? ? current_element.path : "#{current_element.path}.#{discriminator_path}"
+
+                  profile_elements.find do |element|
+                    element.id.starts_with?(current_element.id) &&
+                      element.path == sliced_target_path
+                  end
+                else
+                  current_element
+                end
+
+              if pattern_element.fixedCode.present? || pattern_element.fixedUri.present?
+                fixed_values << {
+                  path: discriminator.path,
+                  value: pattern_element.fixedUri || pattern_element.fixedCode
+                }
+              elsif pattern_value.present?
+                raise StandardError, "Found more than one pattern slices for the same element #{pattern_element}."
+              else
+                pattern_value = save_pattern_slice(pattern_element, discriminator_path, metadata)
+              end
+            end
+
+            if !fixed_values.empty?
+              metadata[:discriminator] = {
+                type: 'value',
+                values: fixed_values
               }
+            elsif pattern_value.present?
+              metadata[:discriminator] = pattern_value
             end
 
             if is_uscdi_requirement_element?(current_element)
@@ -209,8 +169,48 @@ module USCoreTestKit
         end
       end
 
+      def save_pattern_slice(pattern_element, discriminator_path, metadata)
+        if pattern_element.patternCodeableConcept.present?
+          {
+            type: 'patternCodeableConcept',
+            path: discriminator_path,
+            code: pattern_element.patternCodeableConcept.coding.first.code,
+            system: pattern_element.patternCodeableConcept.coding.first.system
+          }
+        elsif pattern_element.patternCoding.present?
+          {
+            type: 'patternCoding',
+            path: discriminator_path,
+            code: pattern_element.patternCoding.code,
+            system: pattern_element.patternCoding.system
+          }
+        elsif pattern_element.patternIdentifier.present?
+          {
+            type: 'patternIdentifier',
+            path: discriminator_path,
+            system: pattern_element.patternIdentifier.system
+          }
+        elsif pattern_element.binding&.strength == 'required' &&
+              pattern_element.binding&.valueSet.present?
+
+          value_extractor = ValueExactor.new(ig_resources, resource, profile_elements)
+
+          values = value_extractor.codings_from_value_set_binding(pattern_element).presence ||
+                  value_extractor.values_from_resource_metadata([metadata[:path]]).presence || []
+
+          {
+            type: 'requiredBinding',
+            path: discriminator_path,
+            values: values
+          }
+        else
+          binding.pry
+          raise StandardError, 'Unsupported discriminator pattern type'
+        end
+      end
+
       def must_support_slices
-        pattern_slices + type_slices + value_slices
+        type_slices + value_slices
       end
 
       def plain_must_support_elements
