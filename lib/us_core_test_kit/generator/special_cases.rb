@@ -4,7 +4,7 @@ module USCoreTestKit
       # These resources are excluded from US Core Test Suite
       RESOURCES_TO_EXCLUDE = {
         'Location' => ['v311', 'v400', 'v501', 'v610'],
-        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
+        'Medication' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800_ballot'],
         'PractitionerRole' => ['v311', 'v400']
       }.freeze
 
@@ -27,16 +27,16 @@ module USCoreTestKit
       # Test groups for these resources are placed at the bottom of US Core test group.
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
-        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
-        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
-        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
-        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800'],
-        'RelatedPerson' => ['v501', 'v610', 'v700', 'v800']
+        'Organization' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800_ballot'],
+        'Practitioner' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800_ballot'],
+        'PractitionerRole' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800_ballot'],
+        'Provenance' => ['v311', 'v400', 'v501', 'v610', 'v700', 'v800_ballot'],
+        'RelatedPerson' => ['v501', 'v610', 'v700', 'v800_ballot']
       }.freeze
 
        # These resources relies on references from other resources but they also have mandatory search tests.
       SEARCHABLE_DELAYED_RESOURCES = {
-        'Location' => ['v700', 'v800']
+        'Location' => ['v700', 'v800_ballot']
       }.freeze
 
       ALL_VERSION_CATEGORY_FIRST_PROFILES = [

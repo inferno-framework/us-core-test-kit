@@ -7,7 +7,7 @@ module USCoreTestKit
     class GranularScopeResourceTypeGroupGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
-          return unless ['6', '7'].include? ig_metadata.ig_version[1]
+          return if ig_metadata.ig_version[1].to_i < 6
 
           [1, 2].each do |group_number|
             groups = ig_metadata.groups.select { |group| group.granular_scope_tests.present? }

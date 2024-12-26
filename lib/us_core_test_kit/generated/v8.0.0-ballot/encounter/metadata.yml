@@ -1,0 +1,407 @@
+---
+:name: us_core_encounter
+:class_name: USCorev800_ballotEncounterSequence
+:version: v8.0.0-ballot
+:reformatted_version: v800_ballot
+:resource: Encounter
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
+:profile_name: US Core Encounter Profile
+:profile_version: 8.0.0-ballot
+:title: Encounter
+:short_description: Verify support for the server capabilities required by the US
+  Core Encounter Profile.
+:is_delayed: false
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - identifier
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - status
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - _lastUpdated
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - date
+  - patient
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - type
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - location
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - discharge-disposition
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - class
+  - patient
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Encounter.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+    :multiple_or: MAY
+  :identifier:
+    :paths:
+    - identifier
+    :full_paths:
+    - Encounter.identifier
+    :comparators: {}
+    :values: []
+    :type: Identifier
+    :contains_multiple: true
+    :multiple_or: MAY
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Encounter.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Encounter.status
+    :comparators: {}
+    :values:
+    - planned
+    - arrived
+    - triaged
+    - in-progress
+    - onleave
+    - finished
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+    :multiple_or: MAY
+  :_lastUpdated:
+    :paths:
+    - meta.lastUpdated
+    :full_paths:
+    - Encounter.meta.lastUpdated
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: MAY
+      :ge: MAY
+      :lt: MAY
+      :le: MAY
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: instant
+    :contains_multiple: false
+    :multiple_or: MAY
+  :date:
+    :paths:
+    - period
+    :full_paths:
+    - Encounter.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
+    :contains_multiple: false
+    :multiple_or: MAY
+  :type:
+    :paths:
+    - type
+    :full_paths:
+    - Encounter.type
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
+  :location:
+    :paths:
+    - location.location
+    :full_paths:
+    - Encounter.location.location
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :discharge-disposition:
+    :paths:
+    - hospitalization.dischargeDisposition
+    :full_paths:
+    - Encounter.hospitalization.dischargeDisposition
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :class:
+    :paths:
+    - class
+    :full_paths:
+    - Encounter.class
+    :comparators: {}
+    :values: []
+    :type: Coding
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes:
+- Provenance:target
+:required_concepts: []
+:must_supports:
+  :extensions:
+  - :id: Encounter.extension:interpreterRequired
+    :path: extension
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed
+    :uscdi_only: true
+  :slices: []
+  :elements:
+  - :path: meta
+  - :path: meta.lastUpdated
+  - :path: identifier
+  - :path: identifier.system
+  - :path: identifier.value
+  - :path: status
+  - :path: class
+  - :path: type
+  - :path: subject
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - :path: participant
+  - :path: participant.type
+  - :path: participant.period
+  - :path: participant.individual
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - :path: period
+  - :path: reasonCode
+  - :path: reasonReference
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis
+  - :path: hospitalization
+  - :path: hospitalization.dischargeDisposition
+  - :path: location
+  - :path: location.location
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
+  - :path: serviceProvider
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+:mandatory_elements:
+- Encounter.identifier.system
+- Encounter.identifier.value
+- Encounter.status
+- Encounter.statusHistory.status
+- Encounter.statusHistory.period
+- Encounter.class
+- Encounter.classHistory.class
+- Encounter.classHistory.period
+- Encounter.type
+- Encounter.subject
+- Encounter.diagnosis.condition
+- Encounter.location.location
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/identifier-use
+  :path: identifier.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-status
+  :path: status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-status
+  :path: statusHistory.status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-location-status
+  :path: location.status
+- :type: Coding
+  :strength: required
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.16
+  :path: value
+  :extensions:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed
+:references:
+- :path: Encounter.identifier.assigner
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Encounter.subject
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/StructureDefinition/Group
+- :path: Encounter.episodeOfCare
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/EpisodeOfCare
+- :path: Encounter.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest
+- :path: Encounter.participant.individual
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+- :path: Encounter.appointment
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Appointment
+- :path: Encounter.reasonReference
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+- :path: Encounter.diagnosis.condition
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+  - http://hl7.org/fhir/StructureDefinition/Procedure
+- :path: Encounter.account
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Account
+- :path: Encounter.hospitalization.origin
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Encounter.hospitalization.destination
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+  - http://hl7.org/fhir/StructureDefinition/Organization
+- :path: Encounter.location.location
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
+- :path: Encounter.serviceProvider
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+- :path: Encounter.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter
+:tests:
+- :id: us_core_v800_ballot_encounter_patient_search_test
+  :file_name: encounter_patient_search_test.rb
+- :id: us_core_v800_ballot_encounter__id_search_test
+  :file_name: encounter_id_search_test.rb
+- :id: us_core_v800_ballot_encounter_identifier_search_test
+  :file_name: encounter_identifier_search_test.rb
+- :id: us_core_v800_ballot_encounter_patient_status_search_test
+  :file_name: encounter_patient_status_search_test.rb
+- :id: us_core_v800_ballot_encounter_patient__lastUpdated_search_test
+  :file_name: encounter_patient_lastupdated_search_test.rb
+- :id: us_core_v800_ballot_encounter_date_patient_search_test
+  :file_name: encounter_date_patient_search_test.rb
+- :id: us_core_v800_ballot_encounter_patient_type_search_test
+  :file_name: encounter_patient_type_search_test.rb
+- :id: us_core_v800_ballot_encounter_patient_location_search_test
+  :file_name: encounter_patient_location_search_test.rb
+- :id: us_core_v800_ballot_encounter_patient_discharge_disposition_search_test
+  :file_name: encounter_patient_discharge_disposition_search_test.rb
+- :id: us_core_v800_ballot_encounter_class_patient_search_test
+  :file_name: encounter_class_patient_search_test.rb
+- :id: us_core_v800_ballot_encounter_read_test
+  :file_name: encounter_read_test.rb
+- :id: us_core_v800_ballot_encounter_provenance_revinclude_search_test
+  :file_name: encounter_provenance_revinclude_search_test.rb
+- :id: us_core_v800_ballot_encounter_validation_test
+  :file_name: encounter_validation_test.rb
+- :id: us_core_v800_ballot_encounter_must_support_test
+  :file_name: encounter_must_support_test.rb
+- :id: us_core_v800_ballot_encounter_reference_resolution_test
+  :file_name: encounter_reference_resolution_test.rb
+:id: us_core_v800_ballot_encounter
+:file_name: encounter_group.rb
+:delayed_references:
+- :path: participant.individual
+  :resources:
+  - Practitioner
+  - PractitionerRole
+  - RelatedPerson
+- :path: location.location
+  :resources:
+  - Location
+- :path: serviceProvider
+  :resources:
+  - Organization
