@@ -7,9 +7,8 @@ module USCoreTestKit
     class GranularScopeReadTestGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
-          
-          return unless ['6', '7'].include? ig_metadata.ig_version[1]
-          
+          return if ig_metadata.ig_version[1].to_i < 6
+
           scopes =
             SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP1[ig_metadata.reformatted_version] +
             (SmartScopesConstants::SMART_GRANULAR_SCOPES_GROUP2[ig_metadata.reformatted_version] || [])
@@ -92,7 +91,7 @@ module USCoreTestKit
 
       def description
         <<~DESCRIPTION.gsub(/\n{3,}/, "\n\n")
-          This test attempts #{resource_type} reads 
+          This test attempts #{resource_type} reads
           and verifies that the results have been
           filtered based on the granted granular scopes.
         DESCRIPTION
