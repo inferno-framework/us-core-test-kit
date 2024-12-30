@@ -6,7 +6,10 @@ for the US Core Implementation Guide
 [v4.0.0](https://hl7.org/fhir/us/core/STU4/),
 [v5.0.1](https://hl7.org/fhir/us/core/STU5.0.1/),
 [v6.1.0](https://hl7.org/fhir/us/core/STU6.1/), and
-[v7.0.0](https://hl7.org/fhir/us/core/STU7/).
+[v7.0.0](https://hl7.org/fhir/us/core/STU7/).  This test kit
+provides testing for US Core Servers.
+
+Visit the [US Core Test Kit manual](wiki) for more information on using this test kit.
 
 ## Instructions
 

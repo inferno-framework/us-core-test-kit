@@ -111,13 +111,9 @@ activities in the US.
 # Testing Code Changes
 
 This test kit includes comprehensive "self testing" functionality to provide
-confidence that the tests perform as expected.  It also contains a set of data
-that can be loaded into a FHIR server, such as the Inferno Reference Server,
-to demonstrate the functionality of the tests against a known correct implementation.
-Both of these should be maintained along with the tests.
-
-Prior to altering tests, developers should ensure that both RSpec tests and
-End-to-End tests pass.
+confidence that the tests perform as expected.  Prior to committing changes to
+this test kit, developers should ensure that both RSpec tests and End-to-End
+tests pass.
 
 ## RSpec Tests
 
@@ -168,10 +164,10 @@ overwritten when the next time the files are regenerated.
 
 To regenerate the files, run:
 
-```bundle exec rake us\_core:generate```
+```bundle exec rake us_core:generate```
 
-Each version of the implementation guide provided in the
-`lib/us_core_test_kit/igs` directory will be created.
+Tests will be created for each version of the implementation guide provided in
+the `lib/us_core_test_kit/igs` directory.
 
 ## Updating shared component tests
 
@@ -185,14 +181,28 @@ Tests that are version specific reside in the
 `lib/us_core_test_kit/custom_groups` directory.
 
 
-## Overriding US Core Content
+## Overriding US Core IG Machine-readable Content
 
 Occasionally, the US Core authors publish incorrect content within the
 implementation guide that affects the generation of tests, or validation of
-systems at runtime.  In these cases, the Inferno team will override the content
-with the correct content.  This is done by placing the correct content in the
+systems at runtime.  In these cases, the test developers can override the IG
+content with the correct content, or modify the behavior of the generator to
+accommodate this incorrect content.  This can be done in one of several ways,
+depending on the nature of the issue.
+
+Individual files within the published IG can be replaced with an updated version
+of the same file name by placing it within the
 `lib/us_core_test_kit/igs/[version]/` directories.  The content in this
 directory will be used instead of the content in the implementation guide.
+
+Additionally, the generator can be updated on a per-version basis.  This is done
+in:
+
+* `lib/us_core_test_kit/generator/must_support_metadata_extractor_us_core_#.rb`
+* `lib/us_core_test_kit/generator/special_cases.rb`
+
+Please see those files for examples of how to modify the behavior of the generator
+based on issues in the published implementation guide.
 
 ## Overriding HL7 Validator Behavior
 

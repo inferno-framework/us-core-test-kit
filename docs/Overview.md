@@ -15,7 +15,6 @@ certification criterion, that may reference US Core.
 This guide is targeting users who would like to run the US Core Test Kit without
 being the context of another Implementation Guide or certification criterion.
 
-
 # Testing Options
 
 Users of the test kit are presented with two options:
@@ -81,6 +80,3 @@ They can only be run when the entire group US Core FHIR API group is run.
 
 This group tests the specific implementation details surrounding use of granular
 SMART App Launch scopes within US Core.
-
-
-
