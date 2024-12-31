@@ -19,9 +19,9 @@ based on the following granular scopes:
 
       )
 
-      input :granular_scopes_2_credentials,
+      input :granular_scopes_2_auth_info,
             title: 'SMART Credentials for Granular Scopes 2',
-            type: :oauth_credentials,
+            type: :auth_info,
             locked: true
 
       config(
@@ -40,7 +40,7 @@ based on the following granular scopes:
       )
 
       fhir_client do
-        oauth_credentials :granular_scopes_2_credentials
+        auth_info :granular_scopes_2_auth_info
         url :url
       end
 
