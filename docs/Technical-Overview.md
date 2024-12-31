@@ -8,7 +8,7 @@ complexity involved in developing tests for the US Core guide.
 Prior to reviewing this document, the developer is expected to be familiar
 with the US Core Test Kit and building tests with the Inferno Framework.
 
-# Test Design Principals and Features
+# Test Design Principles and Features
 
 Tests for this Test Kit have been designed with the following principles:
 
