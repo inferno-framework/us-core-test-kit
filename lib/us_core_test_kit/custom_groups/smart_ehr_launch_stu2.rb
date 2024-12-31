@@ -1,9 +1,25 @@
+require_relative 'smart_scopes_constants'
+
 module USCoreTestKit
   class SmartEHRLaunchSTU2 < Inferno::TestGroup
+    include SmartScopesConstants
+
     id :us_core_smart_ehr_launch_stu2
     title 'EHR Launch'
 
     run_as_group
+
+    config(
+      inputs: {
+        smart_auth_info: {
+          name: :standalone_smart_auth_info,
+          default: {
+            requested_scopes: SMART_V2_RESOURCE_LEVEL_SCOPES
+          }.to_json
+        },
+        received_scopes: { name: :ehr_received_scopes }
+      }
+    )
 
     group from: :smart_discovery_stu2,
           run_as_group: true
@@ -16,10 +32,6 @@ module USCoreTestKit
       config(
         inputs: {
           id_token: { name: :ehr_id_token },
-          client_id: { name: :ehr_client_id },
-          requested_scopes: { name: :ehr_requested_scopes },
-          access_token: { name: :ehr_access_token },
-          smart_credentials: { name: :ehr_smart_credentials }
         }
       )
     end
@@ -27,14 +39,6 @@ module USCoreTestKit
     group from: :smart_token_refresh do
       run_as_group
       optional
-      config(
-        inputs: {
-          refresh_token: { name: :ehr_refresh_token },
-          client_id: { name: :ehr_client_id },
-          client_secret: { name: :ehr_client_secret },
-          received_scopes: { name: :ehr_received_scopes }
-        }
-      )
     end
   end
 end
