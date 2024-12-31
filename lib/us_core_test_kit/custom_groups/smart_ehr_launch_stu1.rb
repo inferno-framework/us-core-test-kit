@@ -12,12 +12,17 @@ module USCoreTestKit
     config(
       inputs: {
         smart_auth_info: {
-          name: :ehr_smart_auth_info,
+          name: :smart_auth_info,
           default: {
             requested_scopes: SMART_V1_RESOURCE_LEVEL_SCOPES
           }.to_json
         },
         received_scopes: { name: :ehr_received_scopes }
+      },
+      outputs: {
+        smart_auth_info: {
+          name: :smart_auth_info
+        }
       }
     )
 
