@@ -31,9 +31,11 @@ above scopes.
         .first
         .config(
           inputs: {
-            requested_scopes: {
-              name: :requested_scopes_group1,
-              default: groups.first.default_group_scopes('v610')
+            smart_auth_info: {
+              name: :granular_scopes_1_auth_info,
+              default: {
+                requested_scopes: groups.first.default_group_scopes('v610')
+              }.to_json
             }
           },
           options: {
@@ -61,9 +63,11 @@ above scopes.
         .last
         .config(
           inputs: {
-            requested_scopes: {
-              name: :requested_scopes_group2,
-              default: groups.last.default_group_scopes('v610')
+            smart_auth_info: {
+              name: :granular_scopes_2_auth_info,
+              default: {
+                requested_scopes: groups.last.default_group_scopes('v610')
+              }.to_json
             }
           },
           options: {

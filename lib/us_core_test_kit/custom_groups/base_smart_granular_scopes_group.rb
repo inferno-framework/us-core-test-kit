@@ -51,8 +51,8 @@ module USCoreTestKit
 
         config(
           outputs: {
-            smart_credentials: {
-              name: :granular_scopes_1_credentials
+            smart_auth_info: {
+              name: :granular_scopes_1_auth_info
             }
           }
         )
@@ -61,8 +61,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_1_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_1_auth_info
                   }
                 }
               } do
@@ -80,8 +80,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_1_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_1_auth_info
                   }
                 }
               } do
@@ -100,8 +100,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_1_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_1_auth_info
                   }
                 }
               } do
@@ -119,8 +119,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_1_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_1_auth_info
                   }
                 }
               } do
@@ -148,8 +148,8 @@ module USCoreTestKit
 
         config(
           outputs: {
-            smart_credentials: {
-              name: :granular_scopes_2_credentials
+            smart_auth_info: {
+              name: :granular_scopes_2_auth_info
             }
           }
         )
@@ -159,8 +159,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_2_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_2_auth_info
                   }
                 }
               } do
@@ -178,8 +178,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_2_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_2_auth_info
                   }
                 }
               } do
@@ -198,8 +198,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_2_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_2_auth_info
                   }
                 }
               } do
@@ -217,8 +217,8 @@ module USCoreTestKit
               optional: true,
               config: {
                 inputs: {
-                  smart_credentials: {
-                    name: :granular_scopes_2_credentials
+                  smart_auth_info: {
+                    name: :granular_scopes_2_auth_info
                   }
                 }
               } do
