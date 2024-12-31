@@ -9,7 +9,7 @@ for the US Core Implementation Guide
 [v7.0.0](https://hl7.org/fhir/us/core/STU7/).  This test kit
 provides testing for US Core Servers.
 
-Visit the [US Core Test Kit manual](/inferno-framework/us-core-test-kit/wiki) for more information on using this test kit.
+Visit the [US Core Test Kit Manual](https://github.com/inferno-framework/us-core-test-kit/wiki) for more information on using this test kit.
 
 ## Instructions
 
