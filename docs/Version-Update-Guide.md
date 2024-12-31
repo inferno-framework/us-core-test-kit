@@ -322,7 +322,7 @@ The generated tests will be stored in the following directory:
 
 You should also be able to run the unit tests using
 
-`bundle exec rake rspec`
+`bundle exec rake`
 
 If there are any errors surfaced during this process, use the feedback provided
 by the rspec tests to correct the errors in the tests.  This may involve updating
