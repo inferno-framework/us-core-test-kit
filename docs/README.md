@@ -31,4 +31,4 @@ For questions or issues with this Test Kit, please reach out to the Inferno team
 on the [#Inferno FHIR Zulip
 channel](https://chat.fhir.org/#narrow/stream/179309-inferno).
 
-Report bugs or provide suggestions in [GitHub Issues](/issues).
+Report bugs or provide suggestions in [GitHub Issues](/inferno-framework/us-core-test-kit/issues).
