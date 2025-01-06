@@ -1,7 +1,7 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative '../../version'
 require_relative '../../custom_groups/v8.0.0-ballot/capability_statement_group'
-require_relative '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
+require_relative '../../custom_groups/v8.0.0/clinical_notes_guidance_group'
 require_relative '../../custom_groups/data_absent_reason_group'
 require_relative '../../custom_groups/smart_app_launch_group'
 require_relative '../../custom_groups/v8.0.0-ballot/smart_granular_scopes_group'
@@ -221,7 +221,7 @@ module USCoreTestKit
         group from: :us_core_v800_ballot_provenance
         group from: :us_core_v800_ballot_related_person
         group from: :us_core_v800_ballot_specimen
-        group from: :us_core_v400_clinical_notes_guidance
+        group from: :us_core_v800_clinical_notes_guidance
         group from: :us_core_v800_ballot_screening_assessment
         group from: :us_core_311_data_absent_reason
       end
