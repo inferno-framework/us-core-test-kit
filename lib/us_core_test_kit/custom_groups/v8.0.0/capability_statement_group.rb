@@ -6,9 +6,9 @@ require_relative '../capability_statement/profile_support_test'
 require_relative '../capability_statement/instantiate_test'
 
 module USCoreTestKit
-  module USCoreV800_BALLOT
+  module USCoreV800
     class CapabilityStatementGroup < Inferno::TestGroup
-      id :us_core_v800_ballot_capability_statement
+      id :us_core_v800_capability_statement
       title 'Capability Statement'
       short_description 'Retrieve information about supported server functionality' \
                         'using the FHIR capabilties interaction.'

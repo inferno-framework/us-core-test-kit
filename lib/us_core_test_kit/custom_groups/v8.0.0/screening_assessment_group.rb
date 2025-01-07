@@ -1,9 +1,9 @@
 require_relative '../screening_assessment_category_test'
 
 module USCoreTestKit
-  module USCoreV800_BALLOT
+  module USCoreV800
     class ScreeningAssessmentGroup < Inferno::TestGroup
-      id :us_core_v800_ballot_screening_assessment
+      id :us_core_v800_screening_assessment
       title 'Screening Assessments Guidance'
       short_description 'Verify Condition and Observation resources support the ' \
                         'US Core Screening And Assessments Guidance.'
