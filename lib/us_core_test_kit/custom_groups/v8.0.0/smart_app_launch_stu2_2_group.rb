@@ -2,9 +2,9 @@ require_relative '../smart_app_launch_group'
 require_relative 'smart_discovery_stu2_2_group'
 
 module USCoreTestKit
-  module USCoreV800_BALLOT
+  module USCoreV800
     class SmartAppLaunchSTU22Group < USCoreTestKit::SmartAppLaunchGroup
-      id :us_core_v800_ballot_smart_app_launch_stu2_2
+      id :us_core_v800_smart_app_launch_stu2_2
 
       groups[4].group from: :us_core_v800_smart_discovery_stu2_2
       groups[4].children[0] = groups[4].children.pop
