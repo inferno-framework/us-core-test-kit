@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem 'inferno_core',
+    path: '../inferno'
 gem 'smart_app_launch_test_kit',
     path: '../smart-app-launch-test-kit'
 
