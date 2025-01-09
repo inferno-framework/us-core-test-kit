@@ -23,8 +23,7 @@ module USCoreTestKit
         * Procedure.basedOn
         * Procedure.performer
         * Procedure.performer.actor
-        * Procedure.reasonCode
-        * Procedure.reasonReference
+        * Procedure.reasonCode or Procedure.reasonReference
       )
 
       id :us_core_v800_procedure_must_support_test
