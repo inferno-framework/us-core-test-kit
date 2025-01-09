@@ -15,10 +15,9 @@ module USCoreTestKit
         * Goal.description
         * Goal.expressedBy
         * Goal.lifecycleStatus
-        * Goal.startDate
+        * Goal.startDate or Goal.target.dueDate
         * Goal.subject
         * Goal.target
-        * Goal.target.dueDate
       )
 
       id :us_core_v800_goal_must_support_test

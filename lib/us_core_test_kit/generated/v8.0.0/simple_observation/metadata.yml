@@ -252,6 +252,10 @@
     :uscdi_only: true
     :types:
     - Reference
+  :choices:
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
 :mandatory_elements:
 - Observation.status
 - Observation.category

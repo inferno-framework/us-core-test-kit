@@ -19,7 +19,7 @@ module USCoreTestKit
         * Encounter.identifier.system
         * Encounter.identifier.value
         * Encounter.location
-        * Encounter.location.location
+        * Encounter.location.location or Encounter.serviceProvider
         * Encounter.meta
         * Encounter.meta.lastUpdated
         * Encounter.participant
@@ -27,16 +27,10 @@ module USCoreTestKit
         * Encounter.participant.period
         * Encounter.participant.type
         * Encounter.period
-        * Encounter.reasonCode
-        * Encounter.reasonReference
-        * Encounter.serviceProvider
+        * Encounter.reasonCode or Encounter.reasonReference
         * Encounter.status
         * Encounter.subject
         * Encounter.type
-
-        For ONC USCDI requirements, each Encounter must support the following additional elements:
-
-        * Encounter.extension:interpreterRequired
       )
 
       id :us_core_v800_encounter_must_support_test

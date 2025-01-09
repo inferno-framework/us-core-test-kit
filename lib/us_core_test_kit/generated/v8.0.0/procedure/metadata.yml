@@ -154,6 +154,11 @@
     :uscdi_only: true
     :types:
     - Reference
+  :choices:
+  - :paths:
+    - reasonCode
+    - reasonReference
+    :uscdi_only: true
 :mandatory_elements:
 - Procedure.status
 - Procedure.code

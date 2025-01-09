@@ -349,6 +349,10 @@
   - :path: content.attachment.data
   - :path: content.attachment.url
   - :path: content.format
+  :choices:
+  - :paths:
+    - content.attachment.data
+    - content.attachment.url
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

@@ -139,6 +139,10 @@
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  :choices:
+  - :paths:
+    - startDate
+    - target.dueDate
 :mandatory_elements:
 - Goal.lifecycleStatus
 - Goal.description

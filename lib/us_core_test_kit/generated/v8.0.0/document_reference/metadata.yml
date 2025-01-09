@@ -218,6 +218,10 @@
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
   - :path: context.period
+  :choices:
+  - :paths:
+    - content.attachment.data
+    - content.attachment.url
 :mandatory_elements:
 - DocumentReference.status
 - DocumentReference.type

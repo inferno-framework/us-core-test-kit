@@ -550,6 +550,10 @@
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+    :choices:
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
   :mandatory_elements:
   - CareTeam.subject
   - CareTeam.participant
@@ -911,6 +915,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -1353,6 +1362,11 @@
     - :path: abatementDateTime
       :original_path: abatement[x]
     - :path: recordedDate
+    :choices:
+    - :paths:
+      - onsetDateTime
+      :extension_ids:
+      - Condition.extension:assertedDate
   :mandatory_elements:
   - Condition.category
   - Condition.code
@@ -2613,6 +2627,10 @@
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
     - :path: context.period
+    :choices:
+    - :paths:
+      - content.attachment.data
+      - content.attachment.url
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -3063,6 +3081,10 @@
     - :path: content.attachment.data
     - :path: content.attachment.url
     - :path: content.format
+    :choices:
+    - :paths:
+      - content.attachment.data
+      - content.attachment.url
   :mandatory_elements:
   - DocumentReference.status
   - DocumentReference.type
@@ -3389,11 +3411,7 @@
   - Provenance:target
   :required_concepts: []
   :must_supports:
-    :extensions:
-    - :id: Encounter.extension:interpreterRequired
-      :path: extension
-      :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed
-      :uscdi_only: true
+    :extensions: []
     :slices: []
     :elements:
     - :path: meta
@@ -3438,6 +3456,13 @@
       - Reference
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+    - :paths:
+      - location.location
+      - serviceProvider
   :mandatory_elements:
   - Encounter.identifier.system
   - Encounter.identifier.value
@@ -3714,6 +3739,10 @@
       - Reference
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    :choices:
+    - :paths:
+      - startDate
+      - target.dueDate
   :mandatory_elements:
   - Goal.lifecycleStatus
   - Goal.description
@@ -4670,6 +4699,14 @@
     - :path: dispenseRequest
     - :path: dispenseRequest.numberOfRepeatsAllowed
     - :path: dispenseRequest.quantity
+    :choices:
+    - :paths:
+      - reportedBoolean
+      - reportedReference
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - MedicationRequest.status
   - MedicationRequest.intent
@@ -6607,6 +6644,10 @@
       :uscdi_only: true
       :types:
       - Reference
+    :choices:
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -10472,6 +10513,13 @@
       :target_profiles:
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
       - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
+    :choices:
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
+    - :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
   :mandatory_elements:
   - Observation.status
   - Observation.category
@@ -13085,9 +13133,8 @@
     :names:
     - death-date
     - family
-    :names_not_must_support_or_mandatory:
-    - death-date
-    :must_support_or_mandatory: false
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
   - :expectation: SHALL
     :names:
     - gender
@@ -13223,10 +13270,6 @@
       :path: extension
       :url: http://hl7.org/fhir/StructureDefinition/individual-pronouns
       :uscdi_only: true
-    - :id: Patient.extension:interpreterRequired
-      :path: extension
-      :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-interpreter-needed
-      :uscdi_only: true
     :slices: []
     :elements:
     - :path: identifier
@@ -13235,33 +13278,52 @@
     - :path: name
     - :path: name.use
       :uscdi_only: true
+      :fixed_value: old
+    - :path: name.use
+      :fixed_value: usual
+      :uscdi_only: true
     - :path: name.family
     - :path: name.given
     - :path: name.suffix
       :uscdi_only: true
-    - :path: name.period
+    - :path: name.period.end
       :uscdi_only: true
     - :path: telecom
       :uscdi_only: true
     - :path: telecom.system
+      :uscdi_only: true
     - :path: telecom.value
+      :uscdi_only: true
     - :path: telecom.use
+      :uscdi_only: true
     - :path: gender
     - :path: birthDate
-    - :path: deceased[x]
+    - :path: deceasedDateTime
       :uscdi_only: true
+      :original_path: deceased[x]
     - :path: address
     - :path: address.use
       :uscdi_only: true
+      :fixed_value: old
     - :path: address.line
     - :path: address.city
     - :path: address.state
     - :path: address.postalCode
-    - :path: address.period
+    - :path: address.period.end
       :uscdi_only: true
     - :path: communication
       :uscdi_only: true
     - :path: communication.language
+      :uscdi_only: true
+    :choices:
+    - :paths:
+      - address.period.end
+      - address.use
+      :uscdi_only: true
+    - :paths:
+      - name.period.end
+      - name.use
+      :uscdi_only: true
   :mandatory_elements:
   - Patient.identifier
   - Patient.identifier.system
@@ -13517,12 +13579,6 @@
     - :path: telecom
     - :path: telecom.system
     - :path: telecom.value
-    - :path: address
-    - :path: address.line
-    - :path: address.city
-    - :path: address.state
-    - :path: address.postalCode
-    - :path: address.country
   :mandatory_elements:
   - Practitioner.identifier
   - Practitioner.identifier.system
@@ -13898,6 +13954,11 @@
       :uscdi_only: true
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - Procedure.status
   - Procedure.code
@@ -14778,6 +14839,11 @@
       :uscdi_only: true
       :types:
       - Reference
+    :choices:
+    - :paths:
+      - reasonCode
+      - reasonReference
+      :uscdi_only: true
   :mandatory_elements:
   - ServiceRequest.status
   - ServiceRequest.intent

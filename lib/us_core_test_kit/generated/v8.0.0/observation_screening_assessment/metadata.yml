@@ -249,6 +249,13 @@
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
+  :choices:
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
+  - :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
 :mandatory_elements:
 - Observation.status
 - Observation.category
