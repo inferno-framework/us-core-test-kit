@@ -100,12 +100,6 @@
   - :path: telecom
   - :path: telecom.system
   - :path: telecom.value
-  - :path: address
-  - :path: address.line
-  - :path: address.city
-  - :path: address.state
-  - :path: address.postalCode
-  - :path: address.country
 :mandatory_elements:
 - Practitioner.identifier
 - Practitioner.identifier.system

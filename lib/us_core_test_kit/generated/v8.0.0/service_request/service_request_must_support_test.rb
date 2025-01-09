@@ -25,8 +25,7 @@ module USCoreTestKit
 
         For ONC USCDI requirements, each ServiceRequest must support the following additional elements:
 
-        * ServiceRequest.reasonCode
-        * ServiceRequest.reasonReference
+        * ServiceRequest.reasonCode or ServiceRequest.reasonReference
       )
 
       id :us_core_v800_service_request_must_support_test
