@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/inferno-framework/inferno-core.git
-  revision: 48dddfc0cb0a08a0986303ea36cfe7ce735edea4
+  revision: 0705272ea5c6baaf491362a01840e3a37428af7e
   branch: fi-3338-create-test-kit-specs
   specs:
     inferno_core (0.5.4)
