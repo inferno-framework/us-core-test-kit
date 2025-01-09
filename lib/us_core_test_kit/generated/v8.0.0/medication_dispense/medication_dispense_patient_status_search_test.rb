@@ -17,7 +17,7 @@ If any MedicationDispense resources use external references to
 Medications, the search will be repeated with
 `_include=MedicationDispense:medication`.
 
-[US Core Server CapabilityStatement](/CapabilityStatement-us-core-server.html)
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-server.html)
 
       )
 
