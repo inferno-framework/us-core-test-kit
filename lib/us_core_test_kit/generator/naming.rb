@@ -38,7 +38,7 @@ module USCoreTestKit
 
       class << self
         def resources_with_multiple_profiles
-          ['Condition', 'DiagnosticReport', 'Observation']
+          ['Condition', 'DiagnosticReport', 'Observation', 'DocumentReference']
         end
 
         def resource_has_multiple_profiles?(resource)
@@ -56,6 +56,7 @@ module USCoreTestKit
           group_metadata.name
             .delete_prefix('us_core_')
             .gsub('diagnosticreport', 'diagnostic_report')
+            .gsub('documentreference', 'document_reference')
             .underscore
         end
 
