@@ -29,8 +29,10 @@ module USCoreTestKit
       end
 
       def add_missing_supported_profiles
-        case ig_resources.ig.version
+        case ig_resources.ig.version.delete('-ballot')
         when '3.1.1'
+          # TODO: Remove these after v8.0.0 IG is fixed
+
           # The US Core v3.1.1 Server Capability Statement does not list support for the
           # required vital signs profiles, so they need to be added
           ig_resources.capability_statement.rest.first.resource
@@ -50,6 +52,24 @@ module USCoreTestKit
             .supportedProfile.concat [
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter'
             ]
+
+        when '8.0.0'
+          # The US Core v8.0.0 Server Capability Statement does not list support for the
+          # required adi documentation Observation profile, so it needs to be added
+          ig_resources.capability_statement.rest.first.resource
+            .find { |resource| resource.type == 'Observation' }
+            .supportedProfile.concat [
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation'
+            ]
+
+          # The US Core v8.0.0 Server Capability Statement does not list support for the
+          # required adi DocumentationReference profiles, so it needs to be added
+          ig_resources.capability_statement.rest.first.resource
+            .find { |resource| resource.type == 'DocumentReference' }
+            .supportedProfile.concat [
+              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference'
+            ]
+
         end
       end
 
