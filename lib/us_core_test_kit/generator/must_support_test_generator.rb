@@ -89,14 +89,31 @@ module USCoreTestKit
           .select { |extension| extension[:uscdi_only].presence == uscdi_only.presence }
           .map { |extension| extension[:id] }
 
-        group_metadata.must_supports[:choices]&.each do |choice|
-          next unless choice[:uscdi_only].presence == uscdi_only.presence && choice.key?(:paths)
+        choice_names = []
+        group_metadata.must_supports[:choices]&.map do |choice|
+          next unless choice[:uscdi_only].presence == uscdi_only.presence
 
-          choice[:paths].each { |path| element_names.delete("#{resource_type}.#{path}") }
-          element_names << choice[:paths].map { |path| "#{resource_type}.#{path}" }.join(' or ')
-        end
+          combined = []
+          if (choice.key?(:paths))
+            choice[:paths].each { |path| element_names.delete("#{resource_type}.#{path}") }
+            combined << choice[:paths].map { |path| "#{resource_type}.#{path}" }.join(' or ')
+          end
 
-        (slice_names + element_names + extension_names)
+          if (choice.key?(:extension_ids))
+            choice[:extension_ids].each { |extesnion_id| extension_names.delete(extesnion_id) }
+            combined << choice[:extension_ids].join(' or ')
+          end
+
+          if combined.any?
+            choice_names << combined.join(' or ')
+          end
+          # choice_paths = choice[:paths]&.map { |path| "#{resource_type}.#{path}" } || []
+          # choice_extensions = choice[:extensions]&.map { |extension| extension[:id] } || []
+
+          # choice_names << (choice_paths + choice_extensions).join(' or ')
+        end || []
+
+        (slice_names + element_names + extension_names + choice_names)
           .uniq
           .sort
           .map { |name| "#{' ' * 8}* #{name}" }
