@@ -4,6 +4,7 @@ require_relative 'must_support_metadata_extractor_us_core_4'
 require_relative 'must_support_metadata_extractor_us_core_5'
 require_relative 'must_support_metadata_extractor_us_core_6'
 require_relative 'must_support_metadata_extractor_us_core_7'
+require_relative 'must_support_metadata_extractor_us_core_8'
 
 module USCoreTestKit
   class Generator
@@ -349,6 +350,8 @@ module USCoreTestKit
           MustSupportMetadataExtractorUsCore6.new(profile, @must_supports).handle_special_cases
         when '7.0.0'
           MustSupportMetadataExtractorUsCore7.new(profile, @must_supports).handle_special_cases
+        when '8.0.0', '8.0.0-ballot'
+          MustSupportMetadataExtractorUsCore8.new(profile, @must_supports).handle_special_cases
         end
       end
 
