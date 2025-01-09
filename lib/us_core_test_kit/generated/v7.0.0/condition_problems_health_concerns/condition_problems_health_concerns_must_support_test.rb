@@ -18,10 +18,9 @@ module USCoreTestKit
         * Condition.category:us-core
         * Condition.clinicalStatus
         * Condition.code
-        * Condition.extension:assertedDate
         * Condition.meta
         * Condition.meta.lastUpdated
-        * Condition.onsetDateTime
+        * Condition.onsetDateTime or Condition.extension:assertedDate
         * Condition.recordedDate
         * Condition.subject
         * Condition.verificationStatus
