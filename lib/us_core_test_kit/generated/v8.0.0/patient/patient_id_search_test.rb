@@ -21,7 +21,7 @@ return the same number of results. Search by POST is required by the
 FHIR R4 specification, and these tests interpret search by GET as a
 requirement of US Core v8.0.0.
 
-[US Core Server CapabilityStatement](/CapabilityStatement-us-core-server.html)
+[US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-server.html)
 
       )
 
