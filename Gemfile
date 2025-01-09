@@ -10,4 +10,5 @@ gem 'inferno_core',
 
 group :development, :test do
   gem 'debug'
+  gem 'rack-test'
 end
