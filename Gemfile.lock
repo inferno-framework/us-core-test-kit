@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/inferno-framework/inferno-core.git
-  revision: 0705272ea5c6baaf491362a01840e3a37428af7e
+  revision: a971ab62ceac6e9b0f66fbbd2667f826d93cf5e6
   branch: fi-3338-create-test-kit-specs
   specs:
     inferno_core (0.5.4)
@@ -182,7 +182,7 @@ GEM
       base64
     kramdown (2.5.1)
       rexml (>= 3.3.9)
-    logger (1.6.4)
+    logger (1.6.5)
     method_source (1.1.0)
     mime-types (3.6.0)
       logger
@@ -203,12 +203,6 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.1)
       mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
-    nokogiri (1.18.1-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)

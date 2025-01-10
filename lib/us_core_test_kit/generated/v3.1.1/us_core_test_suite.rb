@@ -55,7 +55,6 @@ module USCoreTestKit
         the US Core Test Suite and the ONC Certification (g)(10) Standardized
         API Test Suite.
       )
-      version VERSION
 
       GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
