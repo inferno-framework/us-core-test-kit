@@ -13,9 +13,14 @@ module USCoreTestKit
       inputs: {
         smart_auth_info: {
           name: :smart_auth_info,
-          default: {
-            requested_scopes: SMART_V2_2_RESOURCE_LEVEL_SCOPES
-          }.to_json
+          options: {
+            components: [
+              {
+                name: :requested_scopes,
+                default: SMART_V2_2_RESOURCE_LEVEL_SCOPES
+              }
+            ]
+          }
         },
         received_scopes: { name: :standalone_received_scopes }
       },
