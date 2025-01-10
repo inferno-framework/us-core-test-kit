@@ -1,5 +1,5 @@
-This technical overview orients developers to the technical design of this Test
-Kit.  While the [Inferno Framework has
+This technical overview orients developers to the technical design of this test
+kit.  While the [Inferno Framework has
 documentation](https://inferno-framework.github.io) on how to create tests,
 additional documentation on the organization of this test kit is necessary due
 to the complexity involved in developing tests for the US Core guide.
