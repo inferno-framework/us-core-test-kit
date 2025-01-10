@@ -9,20 +9,27 @@ for the US Core Implementation Guide
 [v7.0.0](https://hl7.org/fhir/us/core/STU7/).  This test kit
 provides testing for US Core Servers.
 
-Visit the [US Core Test Kit Manual](https://github.com/inferno-framework/us-core-test-kit/wiki) for more information on using this test kit.
+Visit the [US Core Test Kit
+Documentation](https://github.com/inferno-framework/us-core-test-kit/wiki) for
+more information on using this test kit.
 
-## Instructions
+## Getting Started
 
-It is highly recommended that you use [Docker](https://www.docker.com/) to run
-these tests.  This test kit requires at least 10 GB of memory are available to Docker.
+The Inferno on HealthIT.gov platform hosts a [public
+instance](https://inferno.healthit.gov/test-kits/us-core/) of this test
+kit that developers and testers are welcome to use.  However, users are
+encouraged to download and run this tool locally.
 
-- Clone this repo.
-- Run `setup.sh` in this repo.
-- Run `run.sh` in this repo.
-- Navigate to `http://localhost`. The US Core test suite will be available.
+The quickest way to run this test kit locally is with [Docker](https://www.docker.com/).
 
-See the [Inferno Documentation](https://inferno-framework.github.io/docs/)
-for more information on running Inferno.
+- Install Docker
+- Clone this repository, or download an [official release](/releases).
+- Run `./setup.sh` within the test kit directory to download necessary dependencies
+- Run `./run.sh` within the test kit directory to start the application
+- Navigate to `http://localhost`
+
+See the [Inferno Documentation](https://inferno-framework.github.io/docs/getting-started-users.html#running-an-existing-test-kit)
+for more information on running Inferno locally.
 
 ## License
 

@@ -1,14 +1,13 @@
-# Background
-
-This guide orients developers to the technical design of this Test Kit.  While
-the Inferno Framework has documentation on how to create tests, additional
-documentation on the organization of this test kit is necessary due to the
-complexity involved in developing tests for the US Core guide.
+This technical overview orients developers to the technical design of this Test
+Kit.  While the [Inferno Framework has
+documentation](https://inferno-framework.github.io) on how to create tests,
+additional documentation on the organization of this test kit is necessary due
+to the complexity involved in developing tests for the US Core guide.
 
 Prior to reviewing this document, the developer is expected to be familiar
-with the US Core Test Kit and building tests with the Inferno Framework.
+with the US Core Test Kit and building tests with the [Inferno Framework](https://inferno-framework.github.io).
 
-# Test Design Principles and Features
+## Test Design Principles and Features
 
 Tests for this Test Kit have been designed with the following principles:
 
@@ -46,7 +45,7 @@ of Ruby development before attempting to alter these tests.  This Test Kit also
 uses RSpec to "unit test" components of these tests, and developers are expected
 to learn the basics of RSpec as well.
 
-# US Core Test Kit Project Source Code Structure:
+## US Core Test Kit Project Source Code Structure:
 
 Below is a description of the source code structure for the US Core Test Kit:
 
@@ -78,9 +77,9 @@ Importantly, code within the `generated` folder is generated using the
 generation script and should *not* be manually edited.  Instead, changes to the
 generator should be made in the `generator` folder.
 
-# Related Systems and Dependencies
+## Related Systems and Dependencies
 
-## Reference Server
+### Reference Server
 
 The Inferno Reference Server serves as a reference implementation server,
 supporting the US Core Implementation Guide, SMART App Launch, and Bulk Data
@@ -94,7 +93,7 @@ Inferno Reference Server to ensure it conforms to the latest Implementation
 Guide. For detailed instructions on how to load data into the server database,
 please refer to the README.md file on the GitHub repository.
 
-## SMART App Launch Test Kit
+### SMART App Launch Test Kit
 
 The Inferno US Core Test Kit incorporates a test group from the SMART App Launch
 Test Kit. The purpose of the SMART App Launch Test Kit is to confirm a server's
@@ -108,14 +107,14 @@ in response to any potential ambiguity that results from the combination of
 FHIR, US Core and SMART App Launch, particularly when relevant to certification
 activities in the US.
 
-# Testing Code Changes
+## Testing Code Changes
 
 This test kit includes comprehensive "self testing" functionality to provide
 confidence that the tests perform as expected.  Prior to committing changes to
 this test kit, developers should ensure that both RSpec tests and End-to-End
 tests pass.
 
-## RSpec Tests
+### RSpec Tests
 
 The test kit contains many "unit" tests within the `spec` directory.  These
 tests are written in RSpec, and can be run with the following command:
@@ -128,7 +127,7 @@ that the code base achieves 100% test coverage; instead, the team has followed a
 common sense approach to testing components that 1) are complicated or 2) are
 likely to change.
 
-## End-to-End testing
+### End-to-End testing
 
 Besides the unit tests provided within this Test Kit, after each update
 the tests should be validated against a complete server implementation
@@ -137,10 +136,10 @@ and contains data that passes all of these tests.  Note that if test changes
 have been made that require data on the Reference Server to change as well,
 that data set needs to be updated.
 
-# Updating the Test Kit
+## Updating the Test Kit
 
 **To update this test kit in response to a new version of the US Core Implementation
-Guide, please see the [Version Update Guide](Version-Update-Guide).  The Version
+Guide, please see the [Version Update Guide](Version-Update-Guide.md).  The Version
 Update Guide provides a detailed walkthrough of the components of the Test Kit
 that are changed during this process.**
 
@@ -151,7 +150,7 @@ certification activities for implementers, or even worse, encourage improper
 implementations just to make incorrect tests pass.  Therefore, 
 the tests should be updated to include the test fixes as soon as possible.
 
-## Updating Generating Tests
+### Updating Generating Tests
 
 The main testing logic for these tests are generated from machine-readable data
 provided by each version of the US Core Implementation Guide.  The code for
@@ -169,7 +168,7 @@ To regenerate the files, run:
 Tests will be created for each version of the implementation guide provided in
 the `lib/us_core_test_kit/igs` directory.
 
-## Updating shared component tests
+### Updating shared component tests
 
 While the generator creates code for each suite, the generated code typically
 references shared component tests. These component tests reside in the
@@ -181,7 +180,7 @@ Tests that are version specific reside in the
 `lib/us_core_test_kit/custom_groups` directory.
 
 
-## Overriding US Core IG Machine-readable Content
+### Overriding US Core IG Machine-readable Content
 
 Occasionally, the US Core authors publish incorrect content within the
 implementation guide that affects the generation of tests, or validation of
@@ -204,7 +203,7 @@ in:
 Please see those files for examples of how to modify the behavior of the generator
 based on issues in the published implementation guide.
 
-## Overriding HL7 Validator Behavior
+### Overriding HL7 Validator Behavior
 
 The HL7 Validator is used to validate resources at runtime.  Occasionally, the
 HL7 Validator will report validation errors that are considered to be out of
@@ -217,7 +216,7 @@ only applies to a certain version of US Core, you can update the
 `lib/us_core_test_kit/generator/suite_generator.rb` file by adding a version-specific
 exception.
 
-# Unusual Implementation Details
+## Unusual Implementation Details
 
 While code in this Test Kit is intended to be as simple and as easy-to-understand
 as possible, sometimes unanticipated testing requirements are introduced that
