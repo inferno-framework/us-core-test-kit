@@ -33,9 +33,14 @@ above scopes.
           inputs: {
             smart_auth_info: {
               name: :granular_scopes_1_auth_info,
-              default: {
-                requested_scopes: groups.first.default_group_scopes('v700')
-              }.to_json
+              options: {
+                components: [
+                  {
+                    name: :requested_scopes,
+                    default: groups.first.default_group_scopes('v700')
+                  }
+                ]
+              }
             }
           },
           options: {
@@ -65,9 +70,14 @@ above scopes.
           inputs: {
             smart_auth_info: {
               name: :granular_scopes_2_auth_info,
-              default: {
-                requested_scopes: groups.last.default_group_scopes('v700')
-              }.to_json
+              options: {
+                components: [
+                  {
+                    name: :requested_scopes,
+                    default: groups.last.default_group_scopes('v700')
+                  }
+                ]
+              }
             }
           },
           options: {
