@@ -4,12 +4,13 @@ documentation](https://inferno-framework.github.io) on how to create tests,
 additional documentation on the organization of this test kit is necessary due
 to the complexity involved in developing tests for the US Core guide.
 
-Prior to reviewing this document, the developer is expected to be familiar
-with the US Core Test Kit and building tests with the [Inferno Framework](https://inferno-framework.github.io).
+Prior to reviewing this document, the developer is expected to be familiar with
+the US Core Implementation Guide, using this test kit, and building tests with
+the [Inferno Framework](https://inferno-framework.github.io).
 
 ## Test Design Principles and Features
 
-Tests for this Test Kit have been designed with the following principles:
+Tests for this test kit have been designed with the following principles:
 
 * Easy testing: Users should be able to run the tests with minimal input or
   configuration, and tests should complete in a reasonable amount of time.
@@ -29,7 +30,7 @@ Features of this test kit reflect these principles.  For example:
 * Testers supply a very limited amount of information to the
   tests; the tests themselves learn about data provided by the system to
   and automatically generate inputs for subsequent tests.
-* This Test Kit generates tests from machine-readable content each time US Core
+* This test kit enerates tests from machine-readable content each time US Core
   is updated.  Additionally, the tests use the HL7 FHIR Validator to do runtime
   validation of resources against profiles provided within US Core.
 * Occasionally, the US Core Test Kit overrides machine-readable rules in narrative;
@@ -41,7 +42,7 @@ The US Core Test Kit manages this complexity through standard software design
 practices and approaches, leveraging the functionality provided by the Ruby
 programming language.  And while this code is intended to be accessible to
 developers new to the Ruby language, developers are expected to learn the basics
-of Ruby development before attempting to alter these tests.  This Test Kit also
+of Ruby development before attempting to alter these tests.  This test kit lso
 uses RSpec to "unit test" components of these tests, and developers are expected
 to learn the basics of RSpec as well.
 
@@ -129,7 +130,7 @@ likely to change.
 
 ### End-to-End testing
 
-Besides the unit tests provided within this Test Kit, after each update
+Besides the unit tests provided within this test kit, after each update
 the tests should be validated against a complete server implementation
 that is known to be correct.  The Inferno Reference Server provides this functionality,
 and contains data that passes all of these tests.  Note that if test changes
@@ -140,12 +141,12 @@ that data set needs to be updated.
 
 **To update this test kit in response to a new version of the US Core Implementation
 Guide, please see the [Version Update Guide](Version-Update-Guide.md).  The Version
-Update Guide provides a detailed walkthrough of the components of the Test Kit
-that are changed during this process.**
+Update Guide provides a detailed walkthrough of the components of the test kit
+at are changed during this process.**
 
-While developers of this Test Kit should aim to have completely correct tests,
-issues will likely be identified by the community over time.  Because this Test Kit
-exports tests to the ONC Certification (g)(10) Test Kit, incorrect tests may delay
+While developers of this test kit should aim to have completely correct tests,
+issues will likely be identified by the community over time.  Because this test kit
+ports tests to the ONC Certification (g)(10) Test Kit, incorrect tests may delay
 certification activities for implementers, or even worse, encourage improper
 implementations just to make incorrect tests pass.  Therefore, 
 the tests should be updated to include the test fixes as soon as possible.
@@ -218,7 +219,7 @@ exception.
 
 ## Unusual Implementation Details
 
-While code in this Test Kit is intended to be as simple and as easy-to-understand
+While code in this test kit is intended to be as simple and as easy-to-understand
 as possible, sometimes unanticipated testing requirements are introduced that
 require special handling by the US Core test kit.  The ability for Inferno
 to accommodate these requirements is a key feature of the Inferno framework.  However,

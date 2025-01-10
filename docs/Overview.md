@@ -8,7 +8,7 @@ and optional queries are checked.
 
 The US Core Test Kit serves two purposes:
 * Provide general testing to servers implementing the US Core Implementation Guide
-* Provide tests to other Test Kits that target other implementation guides, or
+* Provide tests to other test kit that target other implementation guides, or
 certification criterion, that may reference US Core.
 
 This guide is targeting users who would like to run the US Core Test Kit without
@@ -36,7 +36,7 @@ representative of the data that the system will be handling.
 
 ## Conformance Criteria
 
-Systems do NOT need to pass all tests within this Test Kit to be considered 'US
+Systems do NOT need to pass all tests within this test kit o be considered 'US
 Core Conformant'.  US Core allows systems to support a subset of content
 relevant to their use case.  The US Core Test Kit allows testers to choose which
 tests to run, and it is up to the tester to decide which set of tests are

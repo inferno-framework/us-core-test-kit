@@ -42,7 +42,7 @@ the final version is released, the ballot version is deleted.
 ## Updating the Test Kit
 
 Tests for a new version of the US Core Implementation Guide can be created
-for this Test Kit using the following steps:
+for this test kit using the following steps:
 
 1. Perform a structured review of the updates to the IG
 2. Generate a new version-specific suite
@@ -72,7 +72,7 @@ Guide, which is a good starting point for this activity.
 
 ## Step 2. Generate a New Version-specific Suite
 
-This Test Kit is organized into several version-specific test suites.  For example,
+This test kit is organized into several version-specific test suites.  For example,
 there is a US Core v3.1.1 test suite, and a US Core v4.0.0 test suite.  In order to
 support a new version of US Core, the test developer will create a new test suite
 by using the generator script that is provided a the US Core IG as a versioned packaged.
