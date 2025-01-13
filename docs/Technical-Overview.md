@@ -146,7 +146,7 @@ that are changed during this process.**
 
 While developers of this test kit should aim to have completely correct tests,
 issues will likely be identified by the community over time.  Because this test kit
-ports tests to the ONC Certification (g)(10) Test Kit, incorrect tests may delay
+exports tests to the ONC Certification (g)(10) Test Kit, incorrect tests may delay
 certification activities for implementers, or even worse, encourage improper
 implementations just to make incorrect tests pass.  Therefore, 
 the tests should be updated to include the test fixes as soon as possible.
