@@ -142,7 +142,7 @@ that data set needs to be updated.
 **To update this test kit in response to a new version of the US Core Implementation
 Guide, please see the [Version Update Guide](Version-Update-Guide.md).  The Version
 Update Guide provides a detailed walkthrough of the components of the test kit
-at are changed during this process.**
+that are changed during this process.**
 
 While developers of this test kit should aim to have completely correct tests,
 issues will likely be identified by the community over time.  Because this test kit
