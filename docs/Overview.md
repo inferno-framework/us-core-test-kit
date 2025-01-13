@@ -8,7 +8,7 @@ and optional queries are checked.
 
 The US Core Test Kit serves two purposes:
 * Provide general testing to servers implementing the US Core Implementation Guide
-* Provide tests to other test kit that target other implementation guides, or
+* Provide tests to other test kits that target other implementation guides, or
 certification criterion, that may reference US Core.
 
 This guide is targeting users who would like to run the US Core Test Kit without
