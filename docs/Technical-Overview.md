@@ -42,7 +42,7 @@ The US Core Test Kit manages this complexity through standard software design
 practices and approaches, leveraging the functionality provided by the Ruby
 programming language.  And while this code is intended to be accessible to
 developers new to the Ruby language, developers are expected to learn the basics
-of Ruby development before attempting to alter these tests.  This test kit lso
+of Ruby development before attempting to alter these tests.  This test kit also
 uses RSpec to "unit test" components of these tests, and developers are expected
 to learn the basics of RSpec as well.
 
