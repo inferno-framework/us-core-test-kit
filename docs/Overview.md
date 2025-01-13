@@ -36,7 +36,7 @@ representative of the data that the system will be handling.
 
 ## Conformance Criteria
 
-Systems do NOT need to pass all tests within this test kit o be considered 'US
+Systems do NOT need to pass all tests within this test kit to be considered 'US
 Core Conformant'.  US Core allows systems to support a subset of content
 relevant to their use case.  The US Core Test Kit allows testers to choose which
 tests to run, and it is up to the tester to decide which set of tests are
