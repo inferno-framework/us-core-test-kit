@@ -30,7 +30,7 @@ Features of this test kit reflect these principles.  For example:
 * Testers supply a very limited amount of information to the
   tests; the tests themselves learn about data provided by the system to
   and automatically generate inputs for subsequent tests.
-* This test kit enerates tests from machine-readable content each time US Core
+* This test kit generates tests from machine-readable content each time US Core
   is updated.  Additionally, the tests use the HL7 FHIR Validator to do runtime
   validation of resources against profiles provided within US Core.
 * Occasionally, the US Core Test Kit overrides machine-readable rules in narrative;
