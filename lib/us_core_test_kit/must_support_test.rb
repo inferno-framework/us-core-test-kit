@@ -45,12 +45,28 @@ module USCoreTestKit
     end
 
     def is_any_choice_supported? (choices)
-      choices.present? &&
-      (
-        choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
-        choices[:extension_ids]&.any? { |extension_id| missing_extensions.none? { |extension| extension[:id] == extension_id} } ||
-        choices[:slice_names]&.any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name} }
-      )
+      return false unless choices.present?
+
+      %i[paths extension_ids slice_names elements].any? do |key|
+        next unless choices[key]
+
+        case key
+        when :paths
+          choices[:paths].any? { |path| missing_elements.none? { |element| element[:path] == path } }
+        when :extension_ids
+          choices[:extension_ids].any? do |extension_id|
+            missing_extensions.none? { |extension| extension[:id] == extension_id }
+          end
+        when :slice_names
+          choices[:slice_names].any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name } }
+        when :elements
+          choices[:elements].any? do |choice|
+            missing_elements.none? do |element|
+              element[:path] == choice[:path] && element[:fixed_value] == choice[:fixed_value]
+            end
+          end
+        end
+      end
     end
 
     def missing_must_support_strings
