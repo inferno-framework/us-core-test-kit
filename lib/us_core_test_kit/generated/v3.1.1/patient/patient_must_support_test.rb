@@ -37,8 +37,8 @@ module USCoreTestKit
 
         For ONC USCDI requirements, each Patient must support the following additional elements:
 
-        * Patient.address.period.end or Patient.address.use
-        * Patient.name.period.end or Patient.name.use
+        * Patient.address.period.end or Patient.address.use:old
+        * Patient.name.period.end or Patient.name.use:old
       )
 
       id :us_core_v311_patient_must_support_test
