@@ -1,5 +1,3 @@
-# Background
-
 This guide walks developers through the process of creating tests for new
 versions of the US Core Implementation Guide.  While this test kit provides
 tools to support the creation of these tests based on machine-readable content
@@ -10,13 +8,13 @@ be automated.
 
 Prior to reviewing this document, the developer is expected to be familiar with
 using the US Core Test Kit and building test kits using the Inferno Framework.
-Please review the [Technical Overview](Technical-Overview) document for a
+Please review the [Technical Overview](Technical-Overview.md) document for a
 high-level overview of the test kit's design.
 
 This document should be updated after each new version of the US Core
 Implementation guide is incorporated into the Test Kit.
 
-# Versions of US Core Test Kit to Support
+## Supporting US Core Versions
 
 This test kit should be updated to provide testing for all versions of the US
 Core Implementation Guide that is approved for certification within the
@@ -41,10 +39,10 @@ release.  A general convention that this test kit has taken is to name suites
 that refer to a ballot using "-ballot" appended to the end of the suite ID.  Once
 the final version is released, the ballot version is deleted.
 
-# How to Update the Test Kit
+## Updating the Test Kit
 
 Tests for a new version of the US Core Implementation Guide can be created
-for this Test Kit using the following steps:
+for this test kit using the following steps:
 
 1. Perform a structured review of the updates to the IG
 2. Generate a new version-specific suite
@@ -74,7 +72,7 @@ Guide, which is a good starting point for this activity.
 
 ## Step 2. Generate a New Version-specific Suite
 
-This Test Kit is organized into several version-specific test suites.  For example,
+This test kit is organized into several version-specific test suites.  For example,
 there is a US Core v3.1.1 test suite, and a US Core v4.0.0 test suite.  In order to
 support a new version of US Core, the test developer will create a new test suite
 by using the generator script that is provided a the US Core IG as a versioned packaged.
