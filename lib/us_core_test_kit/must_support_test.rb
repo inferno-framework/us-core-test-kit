@@ -29,22 +29,25 @@ module USCoreTestKit
 
     def handle_must_support_choices
       missing_elements.delete_if do |element|
-        choices = metadata.must_supports[:choices].find { |choice| choice[:paths]&.include?(element[:path]) }
-        is_any_choice_supported?(choices)
+        choices = metadata.must_supports[:choices].find do |choice|
+          choice[:paths]&.include?(element[:path]) ||
+            choice[:elements]&.any? { |ms_element| ms_element[:path] == element[:path] }
+        end
+        any_choice_supported?(choices) if choices
       end
 
       missing_extensions.delete_if do |extension|
         choices = metadata.must_supports[:choices].find { |choice| choice[:extension_ids]&.include?(extension[:id]) }
-        is_any_choice_supported?(choices)
+        any_choice_supported?(choices) if choices
       end
 
       missing_slices.delete_if do |slice|
         choices = metadata.must_supports[:choices].find { |choice| choice[:slice_names]&.include?(slice[:name]) }
-        is_any_choice_supported?(choices)
+        any_choice_supported?(choices) if choices
       end
     end
 
-    def is_any_choice_supported? (choices)
+    def any_choice_supported?(choices)
       return false unless choices.present?
 
       %i[paths extension_ids slice_names elements].any? do |key|
