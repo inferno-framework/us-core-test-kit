@@ -9798,11 +9798,15 @@
     :choices:
     - :paths:
       - address.period.end
-      - address.use
+      :elements:
+      - :path: address.use
+        :fixed_value: old
       :uscdi_only: true
     - :paths:
       - name.period.end
-      - name.use
+      :elements:
+      - :path: name.use
+        :fixed_value: old
       :uscdi_only: true
   :mandatory_elements:
   - Patient.identifier
