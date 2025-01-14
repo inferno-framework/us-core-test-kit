@@ -104,6 +104,11 @@ module USCoreTestKit
             combined << choice[:extension_ids].join(' or ')
           end
 
+          if (choice.key?(:elements))
+            choice[:elements].each { |element| element_names.delete("#{resource_type}.#{element[:path]}") }
+            combined << choice[:elements].map { |element| "#{resource_type}.#{element[:path]}:#{element[:fixed_value]}"}.join(' or ')
+          end
+
           if combined.any?
             choice_names << combined.join(' or ')
           end
