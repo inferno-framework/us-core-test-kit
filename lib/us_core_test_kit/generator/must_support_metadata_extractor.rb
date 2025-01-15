@@ -131,8 +131,7 @@ module USCoreTestKit
               discriminator_path = '' if discriminator_path == '$this'
               pattern_element =
                 if discriminator_path.present?
-                  sliced_target_path =
-                    discriminator_path.empty? ? current_element.path : "#{current_element.path}.#{discriminator_path}"
+                  sliced_target_path = "#{current_element.path}.#{discriminator_path}"
 
                   profile_elements.find do |element|
                     element.id.starts_with?(current_element.id) &&
