@@ -61,7 +61,7 @@ module USCoreTestKit
         searches.each do |search|
           search[:names_not_must_support_or_mandatory] = search[:names].reject do |name|
             full_paths = search_definitions[name.to_sym][:full_paths]
-            any_must_support_elements = (must_supports[:elements]).any? do |element|
+            any_must_support_elements = must_supports[:elements].any? do |element|
               full_must_support_paths = ["#{resource}.#{element[:original_path]}", "#{resource}.#{element[:path]}"]
 
               full_paths.any? do |path|
@@ -78,7 +78,7 @@ module USCoreTestKit
                 full_must_support_path = "#{resource}.#{slice[:path].sub('[x]', slice[:discriminator][:code])}"
                 base_must_support_path = "#{resource}.#{slice[:path].sub('[x]', '')}"
 
-                full_paths.intersection([full_must_support_path,base_must_support_path]).present?
+                full_paths.intersection([full_must_support_path, base_must_support_path]).present?
               else
                 false
               end
@@ -98,22 +98,22 @@ module USCoreTestKit
       ### BEGIN SPECIAL CASES ###
       def category_first_profile?
         SpecialCases::ALL_VERSION_CATEGORY_FIRST_PROFILES.include?(profile_url) ||
-        SpecialCases::VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
+          SpecialCases::VERSION_SPECIFIC_CATEGORY_FIRST_PROFILES[profile_url]&.include?(reformatted_version)
       end
 
       def first_search_params
         @first_search_params ||=
-        if category_first_profile?
-          ['patient', 'category']
-        elsif resource == 'Observation'
-          ['patient', 'code']
-        elsif resource == 'MedicationRequest'
-          ['patient', 'intent']
-        elsif resource == 'CareTeam'
-          ['patient', 'status']
-        else
-          ['patient']
-        end
+          if category_first_profile? || (resource == 'DocumentReference' && profile_version.to_i > 7)
+            ['patient', 'category']
+          elsif resource == 'Observation'
+            ['patient', 'code']
+          elsif resource == 'MedicationRequest'
+            ['patient', 'intent']
+          elsif resource == 'CareTeam'
+            ['patient', 'status']
+          else
+            ['patient']
+          end
       end
 
       def handle_special_cases
@@ -178,7 +178,7 @@ module USCoreTestKit
       def title
         title = profile.title.gsub(/US\s*Core\s*/, '').gsub(/\s*Profile/, '').strip
 
-        if (Naming.resources_with_multiple_profiles.include?(resource)) && !title.start_with?(resource) && version != 'v3.1.1'
+        if Naming.resources_with_multiple_profiles.include?(resource) && !title.start_with?(resource) && version != 'v3.1.1'
           title = resource + ' ' + title.split(resource).map(&:strip).join(' ')
         end
 

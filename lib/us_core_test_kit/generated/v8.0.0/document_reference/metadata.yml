@@ -34,13 +34,19 @@
 - :code: docref
   :expectation: SHALL
 :searches:
-- :names:
+- :expectation: SHALL
+  :names:
   - patient
-  :expectation: SHALL
+  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :names:
   - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - patient
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
@@ -68,12 +74,6 @@
   :names:
   - patient
   - type
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -288,10 +288,12 @@
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 :tests:
-- :id: us_core_v800_document_reference_patient_search_test
-  :file_name: document_reference_patient_search_test.rb
+- :id: us_core_v800_document_reference_patient_category_search_test
+  :file_name: document_reference_patient_category_search_test.rb
 - :id: us_core_v800_document_reference__id_search_test
   :file_name: document_reference_id_search_test.rb
+- :id: us_core_v800_document_reference_patient_search_test
+  :file_name: document_reference_patient_search_test.rb
 - :id: us_core_v800_document_reference_patient_status_search_test
   :file_name: document_reference_patient_status_search_test.rb
 - :id: us_core_v800_document_reference_patient_category_date_search_test
@@ -300,8 +302,6 @@
   :file_name: document_reference_patient_type_period_search_test.rb
 - :id: us_core_v800_document_reference_patient_type_search_test
   :file_name: document_reference_patient_type_search_test.rb
-- :id: us_core_v800_document_reference_patient_category_search_test
-  :file_name: document_reference_patient_category_search_test.rb
 - :id: us_core_v800_document_reference_read_test
   :file_name: document_reference_read_test.rb
 - :id: us_core_v800_document_reference_provenance_revinclude_search_test
