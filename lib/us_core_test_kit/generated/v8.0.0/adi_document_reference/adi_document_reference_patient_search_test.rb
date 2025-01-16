@@ -13,19 +13,6 @@ patient on the DocumentReference resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
 
-This test verifies that the server supports searching by reference using
-the form `patient=[id]` as well as `patient=Patient/[id]`. The two
-different forms are expected to return the same number of results. US
-Core requires that both forms are supported by US Core responders.
-
-Because this is the first search of the sequence, resources in the
-response will be used for subsequent tests.
-
-Additionally, this test will check that GET and POST search methods
-return the same number of results. Search by POST is required by the
-FHIR R4 specification, and these tests interpret search by GET as a
-requirement of US Core v8.0.0.
-
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-server.html)
 
       )
@@ -37,13 +24,9 @@ requirement of US Core v8.0.0.
   
       def self.properties
         @properties ||= SearchTestProperties.new(
-          first_search: true,
-        resource_type: 'DocumentReference',
+          resource_type: 'DocumentReference',
         search_param_names: ['patient'],
-        saves_delayed_references: true,
-        possible_status_search: true,
-        test_reference_variants: true,
-        test_post_search: true
+        possible_status_search: true
         )
       end
 
