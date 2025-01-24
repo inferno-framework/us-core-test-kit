@@ -33,6 +33,7 @@ above scopes.
           inputs: {
             smart_auth_info: {
               name: :granular_scopes_1_auth_info,
+              title: 'Granular Scopes 1 Credentials',
               options: {
                 components: [
                   {
@@ -70,6 +71,7 @@ above scopes.
           inputs: {
             smart_auth_info: {
               name: :granular_scopes_2_auth_info,
+              title: 'Granular Scopes 2 Credentials',
               options: {
                 components: [
                   {
