@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/inferno-framework/smart-app-launch-test-kit.git
+  revision: d69ae620eb3b0d944f163970244ca979964f922a
+  branch: fi-3093-use-auth-info
+  specs:
+    smart_app_launch_test_kit (0.5.0)
+      inferno_core (>= 0.6.2)
+      json-jwt (~> 1.15.3)
+      jwt (~> 2.6)
+      tls_test_kit (~> 0.3.0)
+
 PATH
   remote: ../inferno
   specs:
@@ -29,15 +40,6 @@ PATH
       sqlite3 (~> 1.4)
       thor (~> 1.2.1)
       tty-markdown (~> 0.7.1)
-
-PATH
-  remote: ../smart-app-launch-test-kit
-  specs:
-    smart_app_launch_test_kit (0.5.0)
-      inferno_core (>= 0.6.2)
-      json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
-      tls_test_kit (~> 0.3.0)
 
 PATH
   remote: .
@@ -228,12 +230,12 @@ GEM
     oj (3.11.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pry (0.14.2)
+    pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-byebug (3.10.1)
+    pry-byebug (3.8.0)
       byebug (~> 11.0)
-      pry (>= 0.13, < 0.15)
+      pry (~> 0.10)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
