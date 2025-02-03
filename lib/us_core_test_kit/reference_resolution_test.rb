@@ -167,22 +167,7 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      # Only need to know if the resource is valid.
-      # Calling resource_is_valid? causes validation errors to be logged.
-      validator = find_validator(:default)
-
-      target_profile_with_version =  target_profile.include?('|') ? target_profile : "#{target_profile}|#{metadata.profile_version}"
-
-      validator_response = validator.validate(resource, target_profile_with_version)
-      outcome = validator.operation_outcome_from_hl7_wrapped_response(validator_response)
-
-      message_hashes = outcome.issue&.map { |issue| validator.message_hash_from_issue(issue, resource) } || []
-
-      message_hashes.concat(validator.additional_validation_messages(resource, target_profile_with_version))
-
-      validator.filter_messages(message_hashes)
-
-      message_hashes.none? { |message_hash| message_hash[:type] == 'error' }
+      resource_is_valid?(resource:, profile_url: target_profile, add_messages_to_runnable: false)
     end
   end
 end
