@@ -40,6 +40,15 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
     )
   end
 
+  let(:encounter_no_extension) do
+    FHIR::Encounter.new(
+      id: 789,
+      subject: {
+        reference: 'Patient/123'
+      }
+    )
+  end
+
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
     test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
@@ -66,7 +75,7 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
       allow_any_instance_of(test)
         .to receive(:scratch_encounter_resources).and_return(
           {
-            all: [encounter]
+            all: [encounter_no_extension, encounter]
           }
         )
     end
@@ -100,6 +109,7 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
 
     it 'fails if the interpreter required extension is not found on patient and no encounter resource is found' do
       encounter.subject.reference = 'Patient/456'
+      encounter_no_extension.subject.reference = 'Patient/456'
       patient.extension = nil
       result = run(test)
       expect(result.result).to eq('fail')
