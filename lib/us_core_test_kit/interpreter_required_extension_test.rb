@@ -13,8 +13,14 @@ module USCoreTestKit
     end
 
     def patient_encounter_resource(encounter_resources, patient_id)
-      encounter_resources.find do |encounter|
+      encounter_resources.select do |encounter|
         encounter.subject.reference.end_with?("Patient/#{patient_id}")
+      end
+    end
+
+    def encounter_interpreter_required_extension_exists?(encounter_resource)
+      encounter_resource.extension.present? && encounter_resource.extension.any? do |extension|
+        extension.url == interpreter_required_extension_url
       end
     end
 
@@ -27,18 +33,22 @@ module USCoreTestKit
           extension.url == interpreter_required_extension_url
         end
 
-        encounter_resource = patient_encounter_resource(encounter_resources, patient.id)
-        assert(encounter_resource.present?, %(
+        encounter_resources = patient_encounter_resource(encounter_resources, patient.id)
+        assert(encounter_resources.any?, %(
           Patient with id #{patient.id} did not include the US Core Interpreter Needed Extension, and no
-          Encounter resource for the Patient was found. The extension should be present on an Encounter resource if it
-          is not included on the Patient resource.
+          Encounter resource for the Patient was found. A certifying Server system SHALL support the
+          US Core Interpreter Needed Extension on at least one of the US Core Patient or US Core Encounter
+          Profiles.
         ))
-        assert(encounter_resource.extension.present? &&
-          encounter_resource.extension.any? { |extension| extension.url == interpreter_required_extension_url }, %(
-            A certifying Server system SHALL support the US Core Interpreter Needed Extension on at least one of the US
-            Core Patient or US Core Encounter Profiles, but the extension was not found on either profile for Patient
-            with id #{patient.id}.
-          ))
+        extension_found = encounter_resources.any? do |encounter_resource|
+          encounter_interpreter_required_extension_exists?(encounter_resource)
+        end
+
+        assert(extension_found, %(
+          A certifying Server system SHALL support the US Core Interpreter Needed Extension on at least one of the US
+          Core Patient or US Core Encounter Profiles, but the extension was not found on either profile for Patient
+          with id #{patient.id}.
+        ))
       end
     end
   end
