@@ -118,51 +118,15 @@
     - DocumentReference.category
     :comparators: {}
     :values:
-    - 11369-6
-    - 11485-0
-    - 11486-8
-    - 11488-4
-    - 11506-3
-    - 11543-6
-    - 15508-5
-    - 18726-0
-    - 18761-7
-    - 18842-5
-    - 26436-6
-    - 26441-6
-    - 26442-4
-    - 27895-2
-    - 27896-0
-    - 27897-8
-    - 27898-6
-    - 28570-0
-    - 28619-5
-    - 28634-4
-    - 29749-9
-    - 29750-7
-    - 29751-5
-    - 29752-3
-    - 34109-9
-    - 34117-2
-    - 34121-4
-    - 34122-2
-    - 34133-9
-    - 34140-4
-    - 34748-4
-    - 34775-7
-    - 47039-3
-    - 47042-7
-    - 47045-0
-    - 47046-8
-    - 47049-2
-    - 57017-6
-    - 57016-8
-    - 56445-0
-    - 53576-5
-    - 56447-6
-    - 18748-4
-    - 11504-8
-    - 57133-1
+    - 100821-8
+    - 104144-1
+    - 42348-3
+    - 64298-3
+    - 81334-5
+    - 84095-9
+    - 86533-7
+    - 92664-2
+    - 93037-0
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -233,95 +197,23 @@
       :path: ''
       :values:
       - :system: http://loinc.org
-        :code: 11369-6
+        :code: 100821-8
       - :system: http://loinc.org
-        :code: 11485-0
+        :code: 104144-1
       - :system: http://loinc.org
-        :code: 11486-8
+        :code: 42348-3
       - :system: http://loinc.org
-        :code: 11488-4
+        :code: 64298-3
       - :system: http://loinc.org
-        :code: 11506-3
+        :code: 81334-5
       - :system: http://loinc.org
-        :code: 11543-6
+        :code: 84095-9
       - :system: http://loinc.org
-        :code: 15508-5
+        :code: 86533-7
       - :system: http://loinc.org
-        :code: 18726-0
+        :code: 92664-2
       - :system: http://loinc.org
-        :code: 18761-7
-      - :system: http://loinc.org
-        :code: 18842-5
-      - :system: http://loinc.org
-        :code: 26436-6
-      - :system: http://loinc.org
-        :code: 26441-6
-      - :system: http://loinc.org
-        :code: 26442-4
-      - :system: http://loinc.org
-        :code: 27895-2
-      - :system: http://loinc.org
-        :code: 27896-0
-      - :system: http://loinc.org
-        :code: 27897-8
-      - :system: http://loinc.org
-        :code: 27898-6
-      - :system: http://loinc.org
-        :code: 28570-0
-      - :system: http://loinc.org
-        :code: 28619-5
-      - :system: http://loinc.org
-        :code: 28634-4
-      - :system: http://loinc.org
-        :code: 29749-9
-      - :system: http://loinc.org
-        :code: 29750-7
-      - :system: http://loinc.org
-        :code: 29751-5
-      - :system: http://loinc.org
-        :code: 29752-3
-      - :system: http://loinc.org
-        :code: 34109-9
-      - :system: http://loinc.org
-        :code: 34117-2
-      - :system: http://loinc.org
-        :code: 34121-4
-      - :system: http://loinc.org
-        :code: 34122-2
-      - :system: http://loinc.org
-        :code: 34133-9
-      - :system: http://loinc.org
-        :code: 34140-4
-      - :system: http://loinc.org
-        :code: 34748-4
-      - :system: http://loinc.org
-        :code: 34775-7
-      - :system: http://loinc.org
-        :code: 47039-3
-      - :system: http://loinc.org
-        :code: 47042-7
-      - :system: http://loinc.org
-        :code: 47045-0
-      - :system: http://loinc.org
-        :code: 47046-8
-      - :system: http://loinc.org
-        :code: 47049-2
-      - :system: http://loinc.org
-        :code: 57017-6
-      - :system: http://loinc.org
-        :code: 57016-8
-      - :system: http://loinc.org
-        :code: 56445-0
-      - :system: http://loinc.org
-        :code: 53576-5
-      - :system: http://loinc.org
-        :code: 56447-6
-      - :system: http://loinc.org
-        :code: 18748-4
-      - :system: http://loinc.org
-        :code: 11504-8
-      - :system: http://loinc.org
-        :code: 57133-1
+        :code: 93037-0
   :elements:
   - :path: identifier
   - :path: status
