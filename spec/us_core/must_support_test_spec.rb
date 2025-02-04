@@ -5,27 +5,28 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   let(:patient_ref) { 'Patient/85' }
   let(:patient) do
     FHIR::Patient.new(
-      identifier: [{system: 'system', value: 'value'}],
-      name: [{use: 'old', family: 'family', given: ['given'], suffix: ['suffix'], period: {end: '2022-12-12'}}],
-      telecom: [{system: 'phone', value: 'value', use: 'home'}],
+      identifier: [{ system: 'system', value: 'value' }],
+      name: [{ use: 'old', family: 'family', given: ['given'], suffix: ['suffix'], period: { end: '2022-12-12' } }],
+      telecom: [{ system: 'phone', value: 'value', use: 'home' }],
       gender: 'male',
       birthDate: '2020-01-01',
       deceasedDateTime: '2022-12-12',
-      address: [{use: 'old', line: 'line', city: 'city', state: 'state', postalCode: 'postalCode', period: {start: '2020-01-01'}}],
-      communication: [{language: {text: 'text'}}],
+      address: [{ use: 'old', line: 'line', city: 'city', state: 'state', postalCode: 'postalCode',
+                  period: { start: '2020-01-01' } }],
+      communication: [{ language: { text: 'text' } }],
       extension: [
         {
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race',
           extension: [
-            {url: 'ombCategory', valueCoding: {display: 'display'}},
-            {url: 'text', valueString: 'valueString'}
+            { url: 'ombCategory', valueCoding: { display: 'display' } },
+            { url: 'text', valueString: 'valueString' }
           ]
         },
         {
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity',
           extension: [
-            {url: 'ombCategory', valueCoding: {display: 'display'}},
-            {url: 'text', valueString: 'valueString'}
+            { url: 'ombCategory', valueCoding: { display: 'display' } },
+            { url: 'text', valueString: 'valueString' }
           ]
         },
         {
@@ -34,7 +35,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         },
         {
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation',
-          extension: [{url: 'tribalAffiliation', valueCodeableConcept: {text: 'text'}}]
+          extension: [{ url: 'tribalAffiliation', valueCodeableConcept: { text: 'text' } }]
         },
         {
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex',
@@ -42,7 +43,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         },
         {
           url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity',
-          valueCodeableConcept: {text: 'text'}
+          valueCodeableConcept: { text: 'text' }
         }
       ]
     )
@@ -63,7 +64,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   end
 
   describe 'must support test for choice elements and regular elements' do
-    let(:device_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_device_must_support_test')}
+    let(:device_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_device_must_support_test') }
     let(:device) do
       FHIR::Device.new(
         udiCarrier: [{ deviceIdentifier: '43069338026389', carrierHRF: 'carrierHRF' }],
@@ -123,7 +124,9 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   end
 
   describe 'must support test for extensions' do
-    let(:patient_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_patient_must_support_test')}
+    let(:patient_must_support_test) do
+      Inferno::Repositories::Tests.new.find('us_core_v311_patient_must_support_test')
+    end
 
     it 'passes if server suports all MS extensions' do
       allow_any_instance_of(patient_must_support_test)
@@ -156,7 +159,9 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
   describe 'must support test for slices' do
     context 'slicing with patternCodeableConcept' do
-      let(:care_plan_must_support_test) { Inferno::Repositories::Tests.new.find('us_core_v311_care_plan_must_support_test')}
+      let(:care_plan_must_support_test) do
+        Inferno::Repositories::Tests.new.find('us_core_v311_care_plan_must_support_test')
+      end
       let(:careplan) do
         FHIR::CarePlan.new(
           text: { status: 'status' },
@@ -185,7 +190,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               all: [careplan]
             }
           )
-
 
         result = run(care_plan_must_support_test)
 
@@ -284,7 +288,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               value: '123',
               name: 'group'
             }
-          ],
+          ]
         )
       end
 
@@ -303,7 +307,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
     context 'slicing with type' do
       let(:test_class) { USCoreTestKit::USCoreV400::SmokingstatusMustSupportTest }
-      let(:observation) {
+      let(:observation) do
         FHIR::Observation.new(
           status: 'final',
           category: [
@@ -338,16 +342,15 @@ RSpec.describe USCoreTestKit::MustSupportTest do
             ]
           }
         )
-      }
+      end
 
       it 'passes if server suports all MS slices' do
         allow_any_instance_of(test_class)
-        .to receive(:scratch_resources).and_return(
-          {
-            all: [observation]
-          }
-        )
-
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [observation]
+            }
+          )
 
         result = run(test_class)
 
@@ -355,14 +358,13 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       end
 
       it 'skips if datetime format is not correct' do
-        observation.effectiveDateTime = "not a date time"
+        observation.effectiveDateTime = 'not a date time'
         allow_any_instance_of(test_class)
-        .to receive(:scratch_resources).and_return(
-          {
-            all: [observation]
-          }
-        )
-
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [observation]
+            }
+          )
 
         result = run(test_class)
 
@@ -374,7 +376,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
     context 'slicing with requiredBinding' do
       context 'Condition ProblemsHealthConcerns' do
         let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
-        let(:condition) {
+        let(:condition) do
           FHIR::Condition.new(
             extension: [
               {
@@ -425,13 +427,13 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               ]
             },
             subject: {
-              reference: 'Patient/123',
+              reference: 'Patient/123'
             },
             recordedDate: '2016-08-10T07:15:07-08:00',
             onsetDateTime: '2016-08-10T07:15:07-08:00',
             abatementDateTime: '2016-08-10T07:15:07-08:00'
           )
-        }
+        end
 
         it 'passes if server suports all MS slices' do
           allow_any_instance_of(test_class)
@@ -441,7 +443,6 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               }
             )
 
-
           result = run(test_class)
           expect(result.result).to eq('pass')
         end
@@ -449,11 +450,11 @@ RSpec.describe USCoreTestKit::MustSupportTest do
         it 'skips if server does not support category:us-core slice' do
           condition.category.delete_if { |category| category.coding.first.code == 'problem-list-item' }
           allow_any_instance_of(test_class)
-          .to receive(:scratch_resources).and_return(
-            {
-              all: [condition]
-            }
-          )
+            .to receive(:scratch_resources).and_return(
+              {
+                all: [condition]
+              }
+            )
 
           result = run(test_class)
           expect(result.result).to eq('skip')
@@ -463,7 +464,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
       context 'MedicationRequest' do
         let(:test_class) { USCoreTestKit::USCoreV501::MedicationRequestMustSupportTest }
-        let(:medication_request_1) {
+        let(:medication_request_1) do
           FHIR::MedicationRequest.new(
             status: 'active',
             intent: 'order',
@@ -480,7 +481,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               reference: 'Medication/m1'
             },
             subject: {
-              reference: 'Patient/p1',
+              reference: 'Patient/p1'
             },
             encounter: {
               reference: 'Encounter/e1'
@@ -495,7 +496,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
               }
             ]
           )
-        }
+        end
 
         it 'passes if server suports all MS slices' do
           allow_any_instance_of(test_class)
@@ -514,7 +515,7 @@ RSpec.describe USCoreTestKit::MustSupportTest do
 
   describe 'must support test for choices' do
     let(:test_class) { USCoreTestKit::USCoreV501::ConditionProblemsHealthConcernsMustSupportTest }
-    let(:condition) {
+    let(:condition) do
       FHIR::Condition.new(
         extension: [
           {
@@ -565,13 +566,13 @@ RSpec.describe USCoreTestKit::MustSupportTest do
           ]
         },
         subject: {
-          reference: 'Patient/123',
+          reference: 'Patient/123'
         },
         recordedDate: '2016-08-10T07:15:07-08:00',
         onsetDateTime: '2016-08-10T07:15:07-08:00',
         abatementDateTime: '2016-08-10T07:15:07-08:00'
       )
-    }
+    end
 
     it 'passes if server suports assertDate extension' do
       condition.onsetDateTime = nil
@@ -681,108 +682,104 @@ RSpec.describe USCoreTestKit::MustSupportTest do
   end
 
   describe 'must support tests for sub elements of slices' do
-    let (:test_class) {
+    let(:test_class) do
       USCoreTestKit::USCoreV610::CoverageMustSupportTest
-    }
-    let (:group_class) {
-      FHIR::Coverage::Class.new.tap{ |loc_class|
-        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
-            coding.code = "group"
-          }]
-        }
-        loc_class.value = "group-class-value"
-        loc_class.name = "group-class-name"
-      }
-    }
-    let (:plan_class) {
-      FHIR::Coverage::Class.new.tap{ |loc_class|
-        loc_class.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-          code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-            coding.system = "http://terminology.hl7.org/CodeSystem/coverage-class"
-            coding.code = "plan"
-          }]
-        }
-      loc_class.value = "plan-class-value"
-      loc_class.name = "plan-class-name"
-      }
-    }
-    let (:coverage_with_two_classes) {
-      FHIR::Coverage.new.tap{ |cov|
-        cov.status = "active"
-        cov.type = FHIR::CodeableConcept.new.tap{ |code_concept|
-          code_concept.coding = [ FHIR::Coding.new.tap { |coding|
-              coding.system = "https://nahdo.org/sopt"
-              coding.code = "3712"
-              coding.display = "PPO"
-            },
-            FHIR::Coding.new.tap { |coding|
-              coding.system = "http://terminology.hl7.org/CodeSystem/v3-ActCode"
-              coding.code = "PPO"
-              coding.display = "preferred provider organization policy"
-            }
-          ],
-          code_concept.text = "PPO"
-        },
-        cov.subscriberId = "888009335"
-        cov.beneficiary = FHIR::Reference.new.tap { |ref|
-          ref.reference = "Patient/example"
-        }
-        cov.relationship = FHIR::CodeableConcept.new.tap { |code_concept|
-          code_concept.coding = [FHIR::Coding.new.tap { |coding|
-              coding.system ="http://terminology.hl7.org/CodeSystem/subscriber-relationship"
-              coding.code = "self"
-            }
-          ],
-          code_concept.text = "Self"
-        },
-        cov.period =  FHIR::Period.new.tap { |period|
-          period.start = "2020-01-01"
-        }
-        cov.payor = [ FHIR::Reference.new.tap { |ref|
-            ref.reference = "Organization/acme-payer"
-            ref.display = "Acme Health Plan"
-          }
-        ],
-        cov.local_class = [group_class, plan_class]
-        cov.identifier = [FHIR::Identifier.new.tap {|identifier|
-            identifier.type = FHIR::CodeableConcept.new.tap { |code_concept|
-              code_concept.coding = [FHIR::Coding.new.tap{ |coding|
-                coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-                coding.code = "MB"
-              }]
-            }
-            identifier.system = "https://github.com/inferno-framework/us-core-test-kit"
-            identifier.value = "f4a375d2-4e53-4f81-ba95-345e7573b550"
-          }
-        ]
-      }
-    }
+    end
+    let(:group_class) do
+      FHIR::Coverage::Class.new.tap do |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap do |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap do |coding|
+            coding.system = 'http://terminology.hl7.org/CodeSystem/coverage-class'
+            coding.code = 'group'
+          end]
+        end
+        loc_class.value = 'group-class-value'
+        loc_class.name = 'group-class-name'
+      end
+    end
+    let(:plan_class) do
+      FHIR::Coverage::Class.new.tap do |loc_class|
+        loc_class.type = FHIR::CodeableConcept.new.tap do |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap do |coding|
+            coding.system = 'http://terminology.hl7.org/CodeSystem/coverage-class'
+            coding.code = 'plan'
+          end]
+        end
+        loc_class.value = 'plan-class-value'
+        loc_class.name = 'plan-class-name'
+      end
+    end
+    let(:coverage_with_two_classes) do
+      FHIR::Coverage.new.tap do |cov|
+        cov.status = 'active'
+        cov.type = FHIR::CodeableConcept.new.tap do |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap do |coding|
+            coding.system = 'https://nahdo.org/sopt'
+            coding.code = '3712'
+            coding.display = 'PPO'
+          end,
+                                 FHIR::Coding.new.tap do |coding|
+                                   coding.system = 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
+                                   coding.code = 'PPO'
+                                   coding.display = 'preferred provider organization policy'
+                                 end],
+                                code_concept.text = 'PPO'
+        end,
+                   cov.subscriberId = '888009335'
+        cov.beneficiary = FHIR::Reference.new.tap do |ref|
+          ref.reference = 'Patient/example'
+        end
+        cov.relationship = FHIR::CodeableConcept.new.tap do |code_concept|
+          code_concept.coding = [FHIR::Coding.new.tap do |coding|
+            coding.system = 'http://terminology.hl7.org/CodeSystem/subscriber-relationship'
+            coding.code = 'self'
+          end],
+                                code_concept.text = 'Self'
+        end,
+                           cov.period = FHIR::Period.new.tap do |period|
+                             period.start = '2020-01-01'
+                           end
+        cov.payor = [FHIR::Reference.new.tap do |ref|
+          ref.reference = 'Organization/acme-payer'
+          ref.display = 'Acme Health Plan'
+        end],
+                    cov.local_class = [group_class, plan_class]
+        cov.identifier = [FHIR::Identifier.new.tap do |identifier|
+          identifier.type = FHIR::CodeableConcept.new.tap do |code_concept|
+            code_concept.coding = [FHIR::Coding.new.tap do |coding|
+              coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203'
+              coding.code = 'MB'
+            end]
+          end
+          identifier.system = 'https://github.com/inferno-framework/us-core-test-kit'
+          identifier.value = 'f4a375d2-4e53-4f81-ba95-345e7573b550'
+        end]
+      end
+    end
 
     it 'passes if resources cover all must support sub elements of slices' do
       allow_any_instance_of(test_class)
-          .to receive(:scratch_resources).and_return(
-            {
-              all: [coverage_with_two_classes]
-            }
-          )
-        result = run(test_class)
-        expect(result.result).to eq('pass')
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [coverage_with_two_classes]
+          }
+        )
+      result = run(test_class)
+      expect(result.result).to eq('pass')
     end
 
     it 'skips if resources do not cover all must support sub elements of slices' do
       coverage_with_just_group = coverage_with_two_classes.dup
       coverage_with_just_group.local_class = [group_class]
       allow_any_instance_of(test_class)
-          .to receive(:scratch_resources).and_return(
-            {
-              all: [coverage_with_just_group]
-            }
-          )
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [coverage_with_just_group]
+          }
+        )
 
-        result = run(test_class)
-        expect(result.result).to eq('skip')
+      result = run(test_class)
+      expect(result.result).to eq('skip')
     end
 
     it 'passes if resources cover all must support elements over multiple elements' do
@@ -791,14 +788,14 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       coverage_with_just_plan = coverage_with_two_classes.clone
       coverage_with_just_plan.local_class = [plan_class]
       allow_any_instance_of(test_class)
-          .to receive(:scratch_resources).and_return(
-            {
-              all: [coverage_with_just_group, coverage_with_just_plan]
-            }
-          )
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [coverage_with_just_group, coverage_with_just_plan]
+          }
+        )
 
-        result = run(test_class)
-        expect(result.result).to eq('pass')
+      result = run(test_class)
+      expect(result.result).to eq('pass')
     end
   end
 
@@ -950,6 +947,104 @@ RSpec.describe USCoreTestKit::MustSupportTest do
       result = run(test_class)
       expect(result.result).to eq('skip')
       expect(result.result_message).to include(' subject')
+    end
+  end
+
+  describe 'must support test for Observation ADI extension element' do
+    let(:observation_adi_must_support_test) do
+      Inferno::Repositories::Tests.new.find(
+        'us_core_v800_observation_adi_documentation_must_support_test'
+      )
+    end
+
+    let(:observation) do
+      FHIR::Observation.new(
+        status: 'final',
+        meta: {
+          profile: ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation|8.0.0-ballot']
+        },
+        extension: [{
+          url: 'http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo',
+          valueReference: {
+            reference: 'DocumentReference/POLST'
+          }
+        }],
+        category: [
+          {
+            coding: [
+              {
+                system: 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category',
+                code: 'observation-adi-documentation'
+              }
+            ]
+          }
+        ],
+        code: {
+          coding: [
+            {
+              system: 'http://loinc.org',
+              code: '45473-6'
+            }
+          ]
+        },
+        performer: [
+          {
+            reference: 'Practitioner/p2'
+          }
+        ],
+        subject: {
+          reference: 'Patient/902'
+        },
+        issued: '2013-04-23T21:07:05Z',
+        valueCodeableConcept: {
+          coding: [
+            {
+              system: 'http://snomed.info/sct',
+              code: '449868002'
+            }
+          ]
+        }
+      )
+    end
+
+    it 'passes if the MS element `value` is present on the supporting info extension' do
+      allow_any_instance_of(observation_adi_must_support_test)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [observation]
+          }
+        )
+
+      result = run(observation_adi_must_support_test)
+      expect(result.result).to eq('pass')
+    end
+
+    it 'skips if the MS element `value` is missing from the supporting info extension' do
+      observation.extension.first.valueReference = nil
+      allow_any_instance_of(observation_adi_must_support_test)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [observation]
+          }
+        )
+
+      result = run(observation_adi_must_support_test)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('extension:supporting-info.value[x]')
+    end
+
+    it 'skips if the Observation does not contain the supporting info extension' do
+      observation.extension = []
+      allow_any_instance_of(observation_adi_must_support_test)
+        .to receive(:scratch_resources).and_return(
+          {
+            all: [observation]
+          }
+        )
+
+      result = run(observation_adi_must_support_test)
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to include('extension:supporting-info.value[x]')
     end
   end
 end
