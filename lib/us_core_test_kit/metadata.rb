@@ -61,7 +61,7 @@ module USCoreTestKit
     DESCRIPTION
     suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700]
     tags ['SMART App Launch', 'US Core']
-    last_updated '2024-12-05'
+    last_updated LAST_UPDATED
     version VERSION
     maturity 'High'
     authors ['Stephen MacVicar', 'Yunwei Wang']
