@@ -2,6 +2,7 @@ require_relative '../../lib/us_core_test_kit/custom_groups/clinical_note_type_te
 
 RSpec.describe USCoreTestKit::ClinicalNoteTypeTest do
   let(:url) { 'http://example.com/fhir' }
+  let(:suite_id) { 'us_core_v311' }
   let(:patient_id) { '85' }
   let(:test_scratch) { {} }
   let(:test_class) do

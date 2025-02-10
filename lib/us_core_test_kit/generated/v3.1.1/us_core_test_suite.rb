@@ -55,7 +55,6 @@ module USCoreTestKit
         the US Core Test Suite and the ONC Certification (g)(10) Standardized
         API Test Suite.
       )
-      version VERSION
 
       GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
@@ -166,6 +165,24 @@ module USCoreTestKit
         group from: :us_core_v311_clinical_notes_guidance
         group from: :us_core_311_data_absent_reason
       end
+
+      links [
+        {
+          type: 'report_issue',
+          label: 'Report Issue',
+          url: 'https://github.com/inferno-framework/us-core-test-kit/issues/'
+        },
+        {
+          type: 'source_code',
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/us-core-test-kit/'
+        },
+        {
+          type: 'download',
+          label: 'Download', 
+          url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+        }
+      ]
     end
   end
 end
