@@ -1,3 +1,13 @@
+# 0.10.0
+* FI 3561 US Core Documentation by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/218
+* Fix link in the README. by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/220
+* Docs update; broken links. by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/221
+* FI-3642 Update docs publishing workflow to US Core test kit by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/223
+* Additional US Core Docs update by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/224
+* FI-3724 migrate changes by @Shaumik-Ashraf in https://github.com/inferno-framework/us-core-test-kit/pull/225
+  + FI-3663: Update the Reference Resolution test to use the updated resource_is_valid? method for resource validation without persisting messages by @vanessuniq
+  + FI-3648: Add Metadata and Conform to Platform Deployment Spec by @Shaumik-Ashraf
+
 # 0.9.3
 * FI-3133 Fix test name typo for granular scope tests. by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/209
 * Improve README.md content and links by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/216
