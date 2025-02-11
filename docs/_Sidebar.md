@@ -6,4 +6,4 @@
 
 **Contributing to this Test Kit**
   - [Technical Overview](Technical-Overview)
-  - [Version Update Guide](SVAP-Update-Guide)
+  - [Version Update Guide](Version-Update-Guide)
