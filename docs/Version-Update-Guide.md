@@ -8,7 +8,7 @@ be automated.
 
 Prior to reviewing this document, the developer is expected to be familiar with
 using the US Core Test Kit and building test kits using the Inferno Framework.
-Please review the [Technical Overview](Technical-Overview.md) document for a
+Please review the [Technical Overview](Technical-Overview) document for a
 high-level overview of the test kit's design.
 
 This document should be updated after each new version of the US Core
@@ -46,7 +46,8 @@ for this test kit using the following steps:
 
 1. Perform a structured review of the updates to the IG
 2. Generate a new version-specific suite
-4. Validate tests against a reference server that includes complete example data
+3. Validate tests against a reference server that includes complete example data
+4. Update Validation Message Filter
 5. Iterate based on feedback from implementers
 
 Each of these steps is described below.
@@ -326,14 +327,14 @@ If there are any errors surfaced during this process, use the feedback provided
 by the rspec tests to correct the errors in the tests.  This may involve updating
 the generator.
 
-### Step 3: Validate tests against a reference server that includes complete example data
+## Step 3: Validate tests against a reference server that includes complete example data
 
 Once the tests are successfully generated and passing the unit tests, they should now
 be run against a known good implementation.  The inferno team uses the Inferno Reference
 Server for this.  Prior to running the tests, additional example data should be used on the
 reference server.
 
-### Update Validation Message Filter
+## Step 4. Update Validation Message Filter
 
 During testing, there could be validation errors which are caused by underlying
 issues in the Implementation Guide, validator, or terminology services rather
