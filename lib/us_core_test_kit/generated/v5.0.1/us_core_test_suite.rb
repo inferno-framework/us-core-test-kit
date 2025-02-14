@@ -112,6 +112,7 @@ module USCoreTestKit
 
       suite_option :smart_app_launch_version,
         title: 'SMART App Launch Version',
+        default: USCoreOptions::SMART_2,
         list_options: [
           {
             label: 'SMART App Launch 1.0.0',
@@ -120,7 +121,6 @@ module USCoreTestKit
           {
             label: 'SMART App Launch 2.0.0',
             value: USCoreOptions::SMART_2,
-            default: true
           },
           {
             label: 'SMART App Launch 2.2.0',
