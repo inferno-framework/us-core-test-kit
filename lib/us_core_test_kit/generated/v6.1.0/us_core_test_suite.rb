@@ -130,7 +130,8 @@ module USCoreTestKit
           },
           {
             label: 'SMART App Launch 2.0.0',
-            value: USCoreOptions::SMART_2
+            value: USCoreOptions::SMART_2,
+            default: true
           },
           {
             label: 'SMART App Launch 2.2.0',
