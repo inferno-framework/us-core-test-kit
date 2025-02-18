@@ -66,7 +66,7 @@ module USCoreTestKit
         %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
         /\A\S+: \S+: URL value '.*' does not resolve/,
         %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'}, # Known issue with the Pulse Oximetry Profile
-        %r{Slice 'Observation.value\[x\]:valueQuantity': a matching slice is required, but not found \(from \[http://hl7\.org/fhir/StructureDefinition/bmi\|4\.0\.1\|http://hl7\.org/fhir/StructureDefinition/bmi%7C4\.0\.1\]\)}
+        %r{Slice 'Observation\.value\[x\]:valueQuantity': a matching slice is required, but not found \(from (http://hl7\.org/fhir/StructureDefinition/bmi\|4\.0\.1|http://hl7\.org/fhir/StructureDefinition/bmi\%7C4\.0\.1)\)}
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
