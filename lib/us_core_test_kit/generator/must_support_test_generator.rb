@@ -94,28 +94,24 @@ module USCoreTestKit
           next unless choice[:uscdi_only].presence == uscdi_only.presence
 
           combined = []
-          if (choice.key?(:paths))
+          if choice.key?(:paths)
             choice[:paths].each { |path| element_names.delete("#{resource_type}.#{path}") }
             combined << choice[:paths].map { |path| "#{resource_type}.#{path}" }.join(' or ')
           end
 
-          if (choice.key?(:extension_ids))
+          if choice.key?(:extension_ids)
             choice[:extension_ids].each { |extesnion_id| extension_names.delete(extesnion_id) }
             combined << choice[:extension_ids].join(' or ')
           end
 
-          if (choice.key?(:elements))
+          if choice.key?(:elements)
             choice[:elements].each { |element| element_names.delete("#{resource_type}.#{element[:path]}") }
-            combined << choice[:elements].map { |element| "#{resource_type}.#{element[:path]}:#{element[:fixed_value]}"}.join(' or ')
+            combined << choice[:elements].map { |element|
+              "#{resource_type}.#{element[:path]}:#{element[:fixed_value]}"
+            }.join(' or ')
           end
 
-          if combined.any?
-            choice_names << combined.join(' or ')
-          end
-          # choice_paths = choice[:paths]&.map { |path| "#{resource_type}.#{path}" } || []
-          # choice_extensions = choice[:extensions]&.map { |extension| extension[:id] } || []
-
-          # choice_names << (choice_paths + choice_extensions).join(' or ')
+          choice_names << combined.join(' or ') if combined.any?
         end || []
 
         (slice_names + element_names + extension_names + choice_names)
@@ -127,7 +123,7 @@ module USCoreTestKit
 
       def generate
         FileUtils.mkdir_p(output_file_directory)
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
 
         group_metadata.add_test(
           id: test_id,
