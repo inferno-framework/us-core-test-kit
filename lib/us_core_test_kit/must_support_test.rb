@@ -20,43 +20,60 @@ module USCoreTestKit
 
       handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      if (missing_elements + missing_slices + missing_extensions).length.zero?
-        pass
-      end
+      pass if (missing_elements + missing_slices + missing_extensions).empty?
       skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
            "provided #{resource_type} resource(s)"
     end
 
     def handle_must_support_choices
       missing_elements.delete_if do |element|
-        choices = metadata.must_supports[:choices].find { |choice| choice[:paths]&.include?(element[:path]) }
-        is_any_choice_supported?(choices)
+        choices = metadata.must_supports[:choices].find do |choice|
+          choice[:paths]&.include?(element[:path]) ||
+            choice[:elements]&.any? { |ms_element| ms_element[:path] == element[:path] }
+        end
+        any_choice_supported?(choices) if choices
       end
 
       missing_extensions.delete_if do |extension|
         choices = metadata.must_supports[:choices].find { |choice| choice[:extension_ids]&.include?(extension[:id]) }
-        is_any_choice_supported?(choices)
+        any_choice_supported?(choices) if choices
       end
 
       missing_slices.delete_if do |slice|
         choices = metadata.must_supports[:choices].find { |choice| choice[:slice_names]&.include?(slice[:name]) }
-        is_any_choice_supported?(choices)
+        any_choice_supported?(choices) if choices
       end
     end
 
-    def is_any_choice_supported? (choices)
-      choices.present? &&
-      (
-        choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
-        choices[:extension_ids]&.any? { |extension_id| missing_extensions.none? { |extension| extension[:id] == extension_id} } ||
-        choices[:slice_names]&.any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name} }
-      )
+    def any_choice_supported?(choices)
+      return false unless choices.present?
+
+      %i[paths extension_ids slice_names elements].any? do |key|
+        next unless choices[key]
+
+        case key
+        when :paths
+          choices[:paths].any? { |path| missing_elements.none? { |element| element[:path] == path } }
+        when :extension_ids
+          choices[:extension_ids].any? do |extension_id|
+            missing_extensions.none? { |extension| extension[:id] == extension_id }
+          end
+        when :slice_names
+          choices[:slice_names].any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name } }
+        when :elements
+          choices[:elements].any? do |choice|
+            missing_elements.none? do |element|
+              element[:path] == choice[:path] && element[:fixed_value] == choice[:fixed_value]
+            end
+          end
+        end
+      end
     end
 
     def missing_must_support_strings
       missing_elements.map { |element_definition| missing_element_string(element_definition) } +
-      missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
-      missing_extensions.map { |extension_definition| extension_definition[:id] }
+        missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
+        missing_extensions.map { |extension_definition| extension_definition[:id] }
     end
 
     def missing_element_string(element_definition)
@@ -73,7 +90,7 @@ module USCoreTestKit
 
     def must_support_extensions
       if exclude_uscdi_only_test?
-        metadata.must_supports[:extensions].reject{ |extension| extension[:uscdi_only] }
+        metadata.must_supports[:extensions].reject { |extension| extension[:uscdi_only] }
       else
         metadata.must_supports[:extensions]
       end
@@ -100,7 +117,7 @@ module USCoreTestKit
 
     def must_support_elements
       if exclude_uscdi_only_test?
-        metadata.must_supports[:elements].reject{ |element| element[:uscdi_only] }
+        metadata.must_supports[:elements].reject { |element| element[:uscdi_only] }
       else
         metadata.must_supports[:elements]
       end
@@ -115,6 +132,22 @@ module USCoreTestKit
       must_support_elements.select do |element_definition|
         resources.none? do |resource|
           path = element_definition[:path]
+
+          if path.start_with?('extension:')
+            path = path.delete_prefix('extension:')
+            extension_split = path.split('.')
+            extension_name = extension_split.first
+            extension_path = extension_split.last
+
+            found_extension_url = must_support_extensions.find { |ex| ex[:id].include?(extension_name) }[:url]
+            ms_element_extension = resource.extension.find { |ex| ex.url == found_extension_url }
+
+            if ms_element_extension.present?
+              resource = ms_element_extension
+              path = extension_path
+            end
+          end
+
           ms_extension_urls = must_support_extensions.select { |ex| ex[:path] == "#{path}.extension" }
             .map { |ex| ex[:url] }
 
@@ -141,7 +174,7 @@ module USCoreTestKit
 
     def must_support_slices
       if exclude_uscdi_only_test?
-        metadata.must_supports[:slices].reject{ |slice| slice[:uscdi_only] }
+        metadata.must_supports[:slices].reject { |slice| slice[:uscdi_only] }
       else
         metadata.must_supports[:slices]
       end
@@ -222,8 +255,11 @@ module USCoreTestKit
                 .all? { |value_definition| value_definition[:value] == el_found }
 
             child_element_values_match =
-              child_element_value_definitions.present? ?
-                find_slice_by_values(el_found, child_element_value_definitions) : true
+              if child_element_value_definitions.present?
+                find_slice_by_values(el_found, child_element_value_definitions)
+              else
+                true
+              end
 
             current_element_values_match && child_element_values_match
           end

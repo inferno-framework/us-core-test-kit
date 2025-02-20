@@ -113,6 +113,11 @@ module USCoreTestKit
       filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(resources_returned) if resource_type == 'Device'
 
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(resources_returned)
+      # end
+
       if first_search?
         all_scratch_resources.concat(resources_returned).uniq!
         scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
@@ -144,13 +149,18 @@ module USCoreTestKit
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
 
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(post_search_resources)
+      # end
+
       get_resource_count = get_search_resources.length
       post_resource_count = post_search_resources.length
 
       search_variant_test_records[:post_variant] = true
 
       assert get_resource_count == post_resource_count,
-             "Expected search by POST to return the same results as search by GET, " \
+             'Expected search by POST to return the same results as search by GET, ' \
              "but GET search returned #{get_resource_count} resources, and POST search " \
              "returned #{post_resource_count} resources."
     end
@@ -168,6 +178,16 @@ module USCoreTestKit
       # HL7 JIRA FHIR-37917. US Core v5.0.1 does not required patient+category.
       # In order to distinguish which resources matches the current profile, Inferno has to manually filter
       # the result of first search, which is searching by patient.
+      resources.select! do |resource|
+        resource.category.any? do |category|
+          category.coding.any? do |coding|
+            metadata.search_definitions[:category][:values].include? coding.code
+          end
+        end
+      end
+    end
+
+    def filter_adi_document_reference(resources)
       resources.select! do |resource|
         resource.category.any? do |category|
           category.coding.any? do |coding|
@@ -270,6 +290,11 @@ module USCoreTestKit
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
 
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(reference_with_type_resources)
+      # end
+
       new_resource_count = reference_with_type_resources.count
 
       assert new_resource_count == resource_count,
@@ -293,18 +318,18 @@ module USCoreTestKit
         fetch_all_bundled_resources(params: search_params)
           .select { |resource| resource.resourceType == resource_type }
 
-      assert resources_returned.present?, "No resources were returned when searching by `system|code`"
+      assert resources_returned.present?, 'No resources were returned when searching by `system|code`'
 
       search_variant_test_records[:token_variants] = true
     end
 
     def perform_search_with_status(
-          original_params,
-          patient_id,
-          status_search_values: self.status_search_values,
-          resource_type: self.resource_type
-        )
-      assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
+      original_params,
+      patient_id,
+      status_search_values: self.status_search_values,
+      resource_type: self.resource_type
+    )
+      assert resource.is_a?(FHIR::OperationOutcome), 'Server returned a status of 400 without an OperationOutcome'
       # TODO: warn about documenting status requirements
       status_search_values.flat_map do |status_value|
         search_params = original_params.merge("#{status_search_param_name}": status_value)
@@ -336,7 +361,6 @@ module USCoreTestKit
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : Array.wrap(definition[:values])
     end
 
-
     def perform_multiple_or_search_test
       resolved_one = false
 
@@ -350,7 +374,8 @@ module USCoreTestKit
         multiple_or_search_params.each do |param_name|
           search_value = default_search_values(param_name.to_sym)
           search_params = search_params.merge("#{param_name}" => search_value)
-          existing_values[param_name.to_sym] = scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
+          existing_values[param_name.to_sym] =
+            scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
         end
 
         # skip patient without multiple-or values
@@ -365,7 +390,8 @@ module USCoreTestKit
             .select { |resource| resource.resourceType == resource_type }
 
         multiple_or_search_params.each do |param_name|
-          missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
+          missing_values[param_name.to_sym] =
+            existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
         end
 
         missing_value_message = missing_values
@@ -373,7 +399,8 @@ module USCoreTestKit
           .map { |param_name, missing_value| "#{missing_value.join(',')} values from #{param_name}" }
           .join(' and ')
 
-        assert missing_value_message.blank?, "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
+        assert missing_value_message.blank?,
+               "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
 
         break if resolved_one
       end
@@ -428,7 +455,8 @@ module USCoreTestKit
       end
 
       not_matched_included_medications_string = not_matched_included_medications.join(',')
-      assert not_matched_included_medications.empty?, "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
+      assert not_matched_included_medications.empty?,
+             "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
 
@@ -438,8 +466,8 @@ module USCoreTestKit
       search_variant_test_records[:medication_inclusion] = true
     end
 
-    def is_reference_match? (reference, local_reference)
-      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
+    def is_reference_match?(reference, local_reference)
+      regex_pattern = %r{^(#{Regexp.escape(local_reference)}|\S+/#{Regexp.escape(local_reference)}(?:[/|]\S+)*)$}
       reference.match?(regex_pattern)
     end
 
@@ -468,7 +496,7 @@ module USCoreTestKit
 
     def fixed_value_search_params(value, patient_id)
       search_param_names.each_with_object({}) do |name, params|
-        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+        params[name] = patient_id_param?(name) ? patient_id : value
       end
     end
 
@@ -482,9 +510,14 @@ module USCoreTestKit
         end
       end
 
-      params_with_partial_value = resources.each_with_object({}) do |resource, outer_params|
+      resources.each_with_object({}) do |resource, outer_params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
-          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource, include_system: include_system)
+          value = if patient_id_param?(name)
+                    patient_id
+                  else
+                    search_param_value(name, resource,
+                                       include_system: include_system)
+                  end
           params[name] = value
         end
 
@@ -493,8 +526,6 @@ module USCoreTestKit
         # stop if all parameter values are found
         return outer_params if outer_params.all? { |_key, value| value.present? }
       end
-
-      params_with_partial_value
     end
 
     def patient_id_list
@@ -513,9 +544,7 @@ module USCoreTestKit
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class'
-        paths[0] = 'local_class'
-      end
+      paths[0] = 'local_class' if paths.first == 'class'
 
       paths
     end
@@ -539,20 +568,20 @@ module USCoreTestKit
     def no_resources_skip_message(resource_type = self.resource_type)
       msg = "No #{resource_type} resources appear to be available"
 
-      if (resource_type == 'Device' && implantable_device_codes.present?)
+      if resource_type == 'Device' && implantable_device_codes.present?
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
       end
 
-      msg + ". Please use patients with more information"
+      msg + '. Please use patients with more information'
     end
 
     def fetch_all_bundled_resources(
-          reply_handler: nil,
-          max_pages: 20,
-          additional_resource_types: [],
-          resource_type: self.resource_type,
-          params: nil
-        )
+      reply_handler: nil,
+      max_pages: 20,
+      additional_resource_types: [],
+      resource_type: self.resource_type,
+      params: nil
+    )
       page_count = 1
       resources = []
       bundle = resource
@@ -582,13 +611,13 @@ module USCoreTestKit
 
       invalid_resource_types =
         resources.reject { |entry| valid_resource_types.include? entry.resourceType }
-                 .map(&:resourceType)
-                 .uniq
+          .map(&:resourceType)
+          .uniq
 
       if invalid_resource_types.any?
         info "Received resource type(s) #{invalid_resource_types.join(', ')} in search bundle, " \
              "but only expected resource types #{valid_resource_types.join(', ')}. " + \
-             "This is unusual but allowed if the server believes additional resource types are relevant."
+             'This is unusual but allowed if the server believes additional resource types are relevant.'
       end
 
       resources
@@ -643,8 +672,8 @@ module USCoreTestKit
               #   Goal.target-date has day precision
               #   All others have second + time offset precision
               if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
-                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
-                "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+                 (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYY-MM-DD AND Resource is NOT Goal
+                "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
               else
                 element
               end
@@ -656,8 +685,7 @@ module USCoreTestKit
         break if search_value.present?
       end
 
-      escaped_value = search_value&.gsub(',', '\\,')
-      escaped_value
+      search_value&.gsub(',', '\\,')
     end
 
     def element_has_valid_value?(element, include_system)
@@ -693,12 +721,14 @@ module USCoreTestKit
       scratch[:references][resource_type] << reference
     end
 
-    def save_delayed_references(resources, containing_resource_type = self.resource_type)
+    def save_delayed_references(resources, containing_resource_type = resource_type)
       resources.each do |resource|
         references_to_save(containing_resource_type).each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
-            .select { |reference| reference.is_a?(FHIR::Reference) &&
-              !reference.contained? && reference.reference.present? }
+            .select do |reference|
+            reference.is_a?(FHIR::Reference) &&
+              !reference.contained? && reference.reference.present?
+          end
             .each do |reference|
               resource_type = reference.resource_class.name.demodulize
               need_to_save = reference_to_save[:resources].include?(resource_type)
@@ -803,7 +833,7 @@ module USCoreTestKit
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+            searched_values = search_value.downcase.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
             values_found.any? do |value_found|
               searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
             end

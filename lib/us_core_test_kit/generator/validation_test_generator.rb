@@ -96,7 +96,7 @@ module USCoreTestKit
 
       def generate
         FileUtils.mkdir_p(output_file_directory)
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
 
         test_metadata = {
           id: test_id,
@@ -112,26 +112,26 @@ module USCoreTestKit
 
       def description
         <<~DESCRIPTION
-        #{description_intro}
-        It verifies the presence of mandatory elements and that elements with
-        required bindings contain appropriate values. CodeableConcept element
-        bindings will fail if none of their codings have a code/system belonging
-        to the bound ValueSet. Quantity, Coding, and code element bindings will
-        fail if their code/system are not found in the valueset.
+          #{description_intro}
+          It verifies the presence of mandatory elements and that elements with
+          required bindings contain appropriate values. CodeableConcept element
+          bindings will fail if none of their codings have a code/system belonging
+          to the bound ValueSet. Quantity, Coding, and code element bindings will
+          fail if their code/system are not found in the valueset.
         DESCRIPTION
       end
 
       def description_intro
         if resource_type == 'Medication'
           <<~MEDICATION_INTRO
-          This test verifies resources returned from previous tests conform to
-          the [#{profile_name}](#{profile_url}).
+            This test verifies resources returned from previous tests conform to
+            the [#{profile_name}](#{profile_url}).
           MEDICATION_INTRO
         else
           <<~GENERIC_INTRO
-          This test verifies resources returned from the first search conform to
-          the [#{profile_name}](#{profile_url}).
-          Systems must demonstrate at least one valid example in order to pass this test.
+            This test verifies resources returned from the first search conform to
+            the [#{profile_name}](#{profile_url}).
+            Systems must demonstrate at least one valid example in order to pass this test.
           GENERIC_INTRO
         end
       end

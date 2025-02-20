@@ -6,7 +6,7 @@ module USCoreTestKit
     class GranularScopeGroupGenerator
       class << self
         def generate(ig_metadata, base_output_dir)
-          return unless ['6', '7'].include? ig_metadata.ig_version[1]
+          return if ig_metadata.ig_version[1].to_i < 6
 
           [1, 2].each do |group_number|
             new(ig_metadata, base_output_dir, group_number).generate

@@ -1,11 +1,7 @@
-require_relative 'must_support_metadata_extractor_us_core_6'
-
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractorUsCore7
       attr_accessor :profile, :must_supports
-
-      US_CORE_CATEGORY = ['sdoh', 'functional-status', 'disability-status', 'cognitive-status'].freeze
 
       def initialize(profile, must_supports)
         self.profile = profile
