@@ -546,54 +546,6 @@ module USCoreTestKit
       msg + ". Please use patients with more information"
     end
 
-    def fetch_all_bundled_resources(
-          reply_handler: nil,
-          max_pages: 20,
-          additional_resource_types: [],
-          resource_type: self.resource_type,
-          params: nil
-        )
-      page_count = 1
-      resources = []
-      bundle = resource
-
-      until bundle.nil? || page_count == max_pages
-        resources += bundle&.entry&.map { |entry| entry&.resource }
-        next_bundle_link = bundle&.link&.find { |link| link.relation == 'next' }&.url
-        reply_handler&.call(response)
-
-        break if next_bundle_link.blank?
-
-        reply = fhir_client.raw_read_url(next_bundle_link)
-
-        store_request('outgoing', tags: tags(params)) { reply }
-        error_message = cant_resolve_next_bundle_message(next_bundle_link)
-
-        assert_response_status(200)
-        assert_valid_json(reply.body, error_message)
-
-        bundle = fhir_client.parse_reply(FHIR::Bundle, fhir_client.default_format, reply)
-
-        page_count += 1
-      end
-
-      valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
-
-      invalid_resource_types =
-        resources.reject { |entry| valid_resource_types.include? entry.resourceType }
-                 .map(&:resourceType)
-                 .uniq
-
-      if invalid_resource_types.any?
-        info "Received resource type(s) #{invalid_resource_types.join(', ')} in search bundle, " \
-             "but only expected resource types #{valid_resource_types.join(', ')}. " + \
-             "This is unusual but allowed if the server believes additional resource types are relevant."
-      end
-
-      resources
-    end
-
     def cant_resolve_next_bundle_message(link)
       "Could not resolve next bundle: #{link}"
     end
