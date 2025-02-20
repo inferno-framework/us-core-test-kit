@@ -19,7 +19,7 @@ module USCoreTestKit
       end
 
       def remove_patient_and_encounter_interpreter_extension
-        return unless profile.type == 'Patient' || profile.type == 'Encounter'
+        return unless ['Patient', 'Encounter'].include?(profile.type)
 
         must_supports[:extensions].delete_if { |extension| extension[:url].end_with?('us-core-interpreter-needed') }
       end
@@ -58,9 +58,7 @@ module USCoreTestKit
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner'
             ]
           }
-        end
 
-        if more_choices.present?
           must_supports[:choices] ||= []
           must_supports[:choices].concat(more_choices)
         end
