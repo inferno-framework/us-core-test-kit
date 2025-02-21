@@ -558,9 +558,7 @@ module USCoreTestKit
 
         assert_handler = Proc.new do |response|
           assert_response_status(200, response: response)
-
-          # error_message = cant_resolve_next_bundle_message(response[:body])
-          assert_valid_json(response[:body])#, TODO error_message)
+          assert_valid_json(response[:body], "Could not resolve bundle as JSON: #{response[:body]}")
         end
 
         if reply_handler
@@ -573,10 +571,6 @@ module USCoreTestKit
         end
 
         fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:, additional_resource_types:, tags:)
-    end
-
-    def cant_resolve_next_bundle_message(link)
-      "Could not resolve next bundle: #{link}"
     end
 
     def search_param_value(name, resource, include_system: false)
