@@ -555,6 +555,7 @@ module USCoreTestKit
         )
         tags = tags(params)
         bundle = resource
+        additional_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
 
         assert_handler = Proc.new do |response|
           assert_response_status(200, response: response)
