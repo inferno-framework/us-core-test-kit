@@ -23,6 +23,12 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
     )
   end
 
+  let(:patient2) do
+    FHIR::Patient.new(
+      id: 456
+    )
+  end
+
   let(:encounter) do
     FHIR::Encounter.new(
       id: 456,
@@ -68,7 +74,7 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
       allow_any_instance_of(test)
         .to receive(:scratch_patient_resources).and_return(
           {
-            all: [patient]
+            all: [patient2, patient]
           }
         )
 
@@ -80,24 +86,24 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
         )
     end
 
-    it 'passes when both patient and encounter have interpreter required extension' do
+    it 'passes when both a patient and encounter resource have interpreter required extension' do
       result = run(test)
       expect(result.result).to eq('pass')
     end
 
-    it 'passes when only the encounter resource has interpreter required extension' do
+    it 'passes when only one encounter resource has interpreter required extension' do
       patient.extension = nil
       result = run(test)
       expect(result.result).to eq('pass')
     end
 
-    it 'passes when only the patient resource has interpreter required extension' do
+    it 'passes when only one patient resource has interpreter required extension' do
       encounter.extension = nil
       result = run(test)
       expect(result.result).to eq('pass')
     end
 
-    it 'fails if the interpreter required extension is not found on the patient or encounter resource' do
+    it 'fails if the interpreter required extension is not found any patient or encounter resources' do
       encounter.extension = nil
       patient.extension = nil
       result = run(test)
@@ -107,14 +113,14 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
       )
     end
 
-    it 'fails if the interpreter required extension is not found on patient and no encounter resource is found' do
-      encounter.subject.reference = 'Patient/456'
-      encounter_no_extension.subject.reference = 'Patient/456'
+    it 'fails if the interpreter required extension is not found on any patient and no encounter resources are found' do
+      encounter.subject.reference = 'Patient/567'
+      encounter_no_extension.subject.reference = 'Patient/567'
       patient.extension = nil
       result = run(test)
       expect(result.result).to eq('fail')
       expect(result.result_message).to match(
-        'Patient with id 123 did not include the US Core Interpreter Needed Extension, and no'
+        'A certifying Server system SHALL support the US Core Interpreter Needed Extension on at least one'
       )
     end
   end
