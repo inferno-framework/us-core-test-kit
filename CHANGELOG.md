@@ -1,3 +1,9 @@
+# 0.10.1
+* FI-3471 Minor fixes to docs based on usage by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/227
+* FI-3754 Default suites to use smart v2.0.0 in new metadata by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/229
+* FI-3752: Observation BMI dataAbsentReason Validation Filter by @emichaud998 in https://github.com/inferno-framework/us-core-test-kit/pull/230
+* Remove USCoreTestKit::SearchTest#fetch_all_bundled_resources by @Shaumik-Ashraf in https://github.com/inferno-framework/us-core-test-kit/pull/231
+
 # 0.10.0
 * FI 3561 US Core Documentation by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/218
 * Fix link in the README. by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/220
