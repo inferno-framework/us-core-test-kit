@@ -28,7 +28,8 @@ module USCoreTestKit
           if request.status != 200
             []
           else
-            fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+            fetch_all_bundled_resources(resource_type: resource_type, bundle: resource)
+              .select { |resource| resource.resourceType == resource_type }
           end
 
         mismatched_ids = mismatched_resource_ids(found_resources)

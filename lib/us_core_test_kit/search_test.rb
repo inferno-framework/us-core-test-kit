@@ -69,7 +69,7 @@ module USCoreTestKit
 
             # TODO: check that only provenance resources for resources matching
             # granular scopes returned
-            fetch_all_bundled_resources(additional_resource_types: ['Provenance'], params:)
+            fetch_and_assert_all_bundled_resources(additional_resource_types: ['Provenance'], params:)
               .select { |resource| resource.resourceType == 'Provenance' }
           end
         end
@@ -104,7 +104,7 @@ module USCoreTestKit
       check_search_response
 
       resources_returned =
-        fetch_all_bundled_resources(params:).select { |resource| resource.resourceType == resource_type }
+        fetch_and_assert_all_bundled_resources(params:).select { |resource| resource.resourceType == resource_type }
 
       return [] if resources_returned.blank?
 
@@ -139,7 +139,7 @@ module USCoreTestKit
 
       check_search_response
 
-      post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+      post_search_resources = fetch_and_assert_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
@@ -247,7 +247,7 @@ module USCoreTestKit
 
           search_and_check_response(params_with_comparator)
 
-          comparator_resources = fetch_all_bundled_resources(params: params_with_comparator).each do |resource|
+          comparator_resources = fetch_and_assert_all_bundled_resources(params: params_with_comparator).each do |resource|
             check_resource_against_params(resource, params_with_comparator) if resource.resourceType == resource_type
           end
         end
@@ -264,7 +264,7 @@ module USCoreTestKit
       search_and_check_response(new_search_params)
 
       reference_with_type_resources =
-        fetch_all_bundled_resources(params: new_search_params)
+        fetch_and_assert_all_bundled_resources(params: new_search_params)
           .select { |resource| resource.resourceType == resource_type }
 
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
@@ -290,7 +290,7 @@ module USCoreTestKit
       search_and_check_response(search_params)
 
       resources_returned =
-        fetch_all_bundled_resources(params: search_params)
+        fetch_and_assert_all_bundled_resources(params: search_params)
           .select { |resource| resource.resourceType == resource_type }
 
       assert resources_returned.present?, "No resources were returned when searching by `system|code`"
@@ -361,7 +361,7 @@ module USCoreTestKit
         search_and_check_response(search_params)
 
         resources_returned =
-          fetch_all_bundled_resources(params: search_params)
+          fetch_and_assert_all_bundled_resources(params: search_params)
             .select { |resource| resource.resourceType == resource_type }
 
         multiple_or_search_params.each do |param_name|
@@ -409,7 +409,7 @@ module USCoreTestKit
       search_and_check_response(search_params)
 
       medications =
-        fetch_all_bundled_resources(params: search_params)
+        fetch_and_assert_all_bundled_resources(params: search_params)
           .select { |resource| resource.resourceType == 'Medication' }
       assert medications.present?, 'No Medications were included in the search results'
 
@@ -546,56 +546,32 @@ module USCoreTestKit
       msg + ". Please use patients with more information"
     end
 
-    def fetch_all_bundled_resources(
+    def fetch_and_assert_all_bundled_resources(
+          resource_type: self.resource_type,
           reply_handler: nil,
           max_pages: 20,
           additional_resource_types: [],
-          resource_type: self.resource_type,
           params: nil
         )
-      page_count = 1
-      resources = []
-      bundle = resource
+        tags = tags(params)
+        bundle = resource
+        additional_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
 
-      until bundle.nil? || page_count == max_pages
-        resources += bundle&.entry&.map { |entry| entry&.resource }
-        next_bundle_link = bundle&.link&.find { |link| link.relation == 'next' }&.url
-        reply_handler&.call(response)
+        assert_handler = Proc.new do |response|
+          assert_response_status(200, response: response)
+          assert_valid_json(response[:body], "Could not resolve bundle as JSON: #{response[:body]}")
+        end
 
-        break if next_bundle_link.blank?
+        if reply_handler
+          reply_and_assert_handler = Proc.new do |response|
+            assert_handler.call(response)
+            reply_handler.call(response)
+          end
+        else
+          reply_and_assert_handler = assert_handler
+        end
 
-        reply = fhir_client.raw_read_url(next_bundle_link)
-
-        store_request('outgoing', tags: tags(params)) { reply }
-        error_message = cant_resolve_next_bundle_message(next_bundle_link)
-
-        assert_response_status(200)
-        assert_valid_json(reply.body, error_message)
-
-        bundle = fhir_client.parse_reply(FHIR::Bundle, fhir_client.default_format, reply)
-
-        page_count += 1
-      end
-
-      valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
-
-      invalid_resource_types =
-        resources.reject { |entry| valid_resource_types.include? entry.resourceType }
-                 .map(&:resourceType)
-                 .uniq
-
-      if invalid_resource_types.any?
-        info "Received resource type(s) #{invalid_resource_types.join(', ')} in search bundle, " \
-             "but only expected resource types #{valid_resource_types.join(', ')}. " + \
-             "This is unusual but allowed if the server believes additional resource types are relevant."
-      end
-
-      resources
-    end
-
-    def cant_resolve_next_bundle_message(link)
-      "Could not resolve next bundle: #{link}"
+        fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:, additional_resource_types:, tags:)
     end
 
     def search_param_value(name, resource, include_system: false)
