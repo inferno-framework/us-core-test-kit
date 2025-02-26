@@ -4,7 +4,7 @@ module USCoreTestKit
   module PractitionerAddressTest
     include SearchTest
     include ReferenceResolutionTest
-    include MustSupportTest
+    include Inferno::DSL::MustSupportTest
 
     MUST_SUPPORT_ELEMENTS = [
       { path: 'address' },
@@ -25,7 +25,7 @@ module USCoreTestKit
 
     def verify_practitioner_address
       references = scratch.dig(:references, 'Practitioner')
-      assert references.any?, 'No Pracitioner references found.'
+      assert references.any?, 'No Practitioner references found.'
 
       @missing_elements = MUST_SUPPORT_ELEMENTS
       practitioners = []
