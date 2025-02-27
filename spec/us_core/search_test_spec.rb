@@ -886,6 +886,107 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
   end
 
+  describe 'search with DocumentReference type filtering' do
+    context 'when a list of codes is provided' do
+      let(:patient_id) { '123' }
+      let(:category_code) { 'clinical-note' }
+      let(:date) { '2020-05-14T11:02:00+05:00' }
+      let(:doc_ref_type_code1) { 'code1' }
+      let(:doc_ref_type_code2) { 'code2' }
+      let(:doc_ref_type_code3) { 'code3' }
+      let(:document_reference_codes) do
+        [doc_ref_type_code1, doc_ref_type_code2, doc_ref_type_code3]
+      end
+      let(:document_references) do
+        document_reference_codes.map do |code|
+          FHIR::DocumentReference.new(
+            subject: {
+              reference: "Patient/#{patient_id}"
+            },
+            category: [
+              {
+                coding: [
+                  {
+                    code: category_code
+                  }
+                ]
+              }
+            ],
+            type: {
+              coding: [{ system: "#{code}_system", code: code }]
+            },
+            date: date
+          )
+        end
+      end
+
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV311::DocumentReferencePatientSearchTest) do
+          fhir_client { url :url }
+          input :url, :patient_ids, :document_reference_type_codes
+        end
+      end
+      let(:bundle) do
+        entries = document_references.map do |document_reference|
+          { resource: document_reference }
+        end
+        FHIR::Bundle.new(entry: entries)
+      end
+
+      let(:test_scratch) { {} }
+
+      before do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch).and_return(test_scratch)
+
+        stub_request(:get, "#{url}/DocumentReference?patient=#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:get, "#{url}/DocumentReference?patient=Patient/#{patient_id}")
+          .to_return(status: 200, body: bundle.to_json)
+        stub_request(:post, "#{url}/DocumentReference/_search")
+          .with(body: { 'patient' => patient_id })
+          .to_return(status: 200, body: bundle.to_json)
+      end
+
+      it 'only stores document references matching those codes' do
+        document_reference_resources = document_references[0..1]
+        excluded_document_reference = document_references.last
+        code_input = doc_ref_type_code3
+        result = run(test_class, patient_ids: patient_id, url: url, document_reference_type_codes: code_input)
+        expect(result.result).to eq('pass')
+        expect(test_scratch[:document_reference_resources][:all]).to eq(document_reference_resources)
+        expect(test_scratch[:document_reference_resources][:all]).to_not include(excluded_document_reference)
+      end
+
+      it 'only stores document references matching those codes and system' do
+        document_reference_resources = document_references[0..1]
+        excluded_document_reference = document_references.last
+        code_input = "#{doc_ref_type_code3}_system|#{doc_ref_type_code3}"
+        result = run(test_class, patient_ids: patient_id, url: url, document_reference_type_codes: code_input)
+        expect(result.result).to eq('pass')
+        expect(test_scratch[:document_reference_resources][:all]).to eq(document_reference_resources)
+        expect(test_scratch[:document_reference_resources][:all]).to_not include(excluded_document_reference)
+      end
+
+      it 'does not stores document references matching those codes but not system' do
+        excluded_document_reference = document_references.last
+        code_input = "other_system|#{doc_ref_type_code3}"
+        result = run(test_class, patient_ids: patient_id, url: url, document_reference_type_codes: code_input)
+        expect(result.result).to eq('pass')
+        expect(test_scratch[:document_reference_resources][:all]).to eq(document_references)
+        expect(test_scratch[:document_reference_resources][:all]).to include(excluded_document_reference)
+      end
+
+      it 'skips if all documentreferences match code input' do
+        code_input = "#{doc_ref_type_code1}, #{doc_ref_type_code2}, #{doc_ref_type_code3}_system|#{doc_ref_type_code3}"
+        result = run(test_class, patient_ids: patient_id, url: url, document_reference_type_codes: code_input)
+
+        expect(result.result).to eq('skip')
+        expect(result.result_message).to include('excluding the following DocumentReference Type codes: code1, code2,')
+      end
+    end
+  end
+
   describe '#search_param_value' do
     context 'Array element having DAR extension' do
       let(:test_class) { USCoreTestKit::USCoreV311::PatientNameSearchTest }
