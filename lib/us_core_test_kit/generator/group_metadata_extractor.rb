@@ -103,7 +103,8 @@ module USCoreTestKit
 
       def first_search_params
         @first_search_params ||=
-          if category_first_profile? || (resource == 'DocumentReference' && profile_version.to_i > 7)
+          if category_first_profile? ||
+             (profile_url.end_with?('us-core-adi-documentreference') && profile_version.to_i > 7)
             ['patient', 'category']
           elsif resource == 'Observation'
             ['patient', 'code']
