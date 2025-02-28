@@ -4,7 +4,7 @@ module USCoreTestKit
   module PractitionerAddressTest
     include SearchTest
     include ReferenceResolutionTest
-    include Inferno::DSL::MustSupportTest
+    include MustSupportTest
 
     MUST_SUPPORT_ELEMENTS = [
       { path: 'address' },
