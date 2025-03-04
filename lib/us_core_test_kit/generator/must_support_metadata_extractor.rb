@@ -204,7 +204,6 @@ module USCoreTestKit
             values: values
           }
         else
-          binding.pry
           raise StandardError, 'Unsupported discriminator pattern type'
         end
       end
