@@ -601,7 +601,9 @@ module USCoreTestKit
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
       end
 
-      if resource_type == 'DocumentReference' && document_reference_type_codes.present?
+      if resource_type == 'DocumentReference' &&
+         metadata.name == 'us_core_documentreference' &&
+         document_reference_type_codes.present?
         msg.concat(" when excluding the following DocumentReference Type codes: #{document_reference_type_codes}")
       end
 
