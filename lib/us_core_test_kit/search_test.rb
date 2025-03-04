@@ -193,6 +193,7 @@ module USCoreTestKit
     end
 
     def filter_document_references(resources)
+      return resources unless metadata.name == 'us_core_documentreference'
       codes_to_exclude = document_reference_type_codes&.split(',')&.map(&:strip)
       return resources if codes_to_exclude.blank?
 
