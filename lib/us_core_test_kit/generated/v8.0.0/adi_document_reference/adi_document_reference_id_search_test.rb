@@ -22,7 +22,7 @@ none are returned, the test is skipped.
         title: 'DocumentReference Type Code',
         description: %(
           Enter the code for a DocumentReference type you want to exclude, or multiple codes separated by commas.
-          You can provide the system along with the code, in the format <SYSTEM_URL|CODE> or simply just the code.
+          You can provide the system along with the code, in the format `{system|}[code]`.
           If blank, Inferno will validate all DocumentReference resources against the DocumentReference profile
         ),
         optional: true
