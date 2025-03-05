@@ -82,7 +82,6 @@ module USCoreTestKit
         the US Core Test Suite and the ONC Certification (g)(10) Standardized
         API Test Suite.
       )
-      version VERSION
 
       GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
@@ -93,7 +92,8 @@ module USCoreTestKit
         %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
         %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
         /\A\S+: \S+: URL value '.*' does not resolve/,
-        %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
+        %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'}, # Known issue with the Pulse Oximetry Profile
+        %r{Slice 'Observation\.value\[x\]:valueQuantity': a matching slice is required, but not found \(from (http://hl7\.org/fhir/StructureDefinition/bmi\|4\.0\.1|http://hl7\.org/fhir/StructureDefinition/bmi\%7C4\.0\.1)\)}
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
@@ -128,6 +128,7 @@ module USCoreTestKit
 
       suite_option :smart_app_launch_version,
         title: 'SMART App Launch Version',
+        default: USCoreOptions::SMART_2,
         list_options: [
           {
             label: 'SMART App Launch 1.0.0',
@@ -135,7 +136,7 @@ module USCoreTestKit
           },
           {
             label: 'SMART App Launch 2.0.0',
-            value: USCoreOptions::SMART_2
+            value: USCoreOptions::SMART_2,
           },
           {
             label: 'SMART App Launch 2.2.0',
@@ -236,6 +237,24 @@ module USCoreTestKit
             id: :us_core_v800_smart_granular_scopes_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
       
+
+      links [
+        {
+          type: 'report_issue',
+          label: 'Report Issue',
+          url: 'https://github.com/inferno-framework/us-core-test-kit/issues/'
+        },
+        {
+          type: 'source_code',
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/us-core-test-kit/'
+        },
+        {
+          type: 'download',
+          label: 'Download', 
+          url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+        }
+      ]
     end
   end
 end

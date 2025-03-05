@@ -10,7 +10,7 @@ require_relative 'adi_document_reference/adi_document_reference_provenance_revin
 require_relative 'adi_document_reference/adi_document_reference_validation_test'
 require_relative 'adi_document_reference/adi_document_reference_must_support_test'
 require_relative 'adi_document_reference/adi_document_reference_reference_resolution_test'
-require_relative '../../custom_groups/v4.0.0/document_reference_custodian_test'
+require_relative '../../custom_groups/v8.0.0/adi_document_reference_custodian_test'
 
 module USCoreTestKit
   module USCoreV800
@@ -98,7 +98,7 @@ read succeeds.
       test from: :us_core_v800_adi_document_reference_validation_test
       test from: :us_core_v800_adi_document_reference_must_support_test
       test from: :us_core_v800_adi_document_reference_reference_resolution_test
-      test from: :us_core_v400_document_reference_custodian_test
+      test from: :us_core_v800_adi_document_reference_custodian_test
     end
   end
 end
