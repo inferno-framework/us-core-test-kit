@@ -114,9 +114,11 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
     end
 
     it 'fails if the interpreter required extension is not found on any patient and no encounter resources are found' do
-      encounter.subject.reference = 'Patient/567'
-      encounter_no_extension.subject.reference = 'Patient/567'
+      allow_any_instance_of(test)
+        .to receive(:scratch_encounter_resources).and_return({})
+
       patient.extension = nil
+
       result = run(test)
       expect(result.result).to eq('fail')
       expect(result.result_message).to match(
