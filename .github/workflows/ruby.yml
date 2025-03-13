@@ -36,6 +36,11 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
+      - name: Debug Git Status
+        run: |
+          bundle exec rake us_core:generate
+          git status
+          git diff
       - name: Verify test generation is up to date
         run: |
           bundle exec rake us_core:generate
