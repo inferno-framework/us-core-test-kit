@@ -1,5 +1,6 @@
 /data/*.db
 /data/*.db-journal
+/data/igs/*.tgz
 /data/redis/*.rdb
 /data/redis/*.aof
 /data/redis/appendonlydir
