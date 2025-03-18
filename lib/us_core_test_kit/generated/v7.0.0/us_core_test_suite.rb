@@ -151,14 +151,14 @@ module USCoreTestKit
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
 
       group do
-        input :smart_credentials,
+        input :smart_auth_info,
           title: 'OAuth Credentials',
-          type: :oauth_credentials,
+          type: :auth_info,
           optional: true
 
         fhir_client do
           url :url
-          oauth_credentials :smart_credentials
+          auth_info :smart_auth_info
         end
 
         title 'US Core FHIR API'

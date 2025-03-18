@@ -1,9 +1,35 @@
+require_relative 'smart_scopes_constants'
+
 module USCoreTestKit
   class SmartStandaloneLaunchSTU2 < Inferno::TestGroup
+    include SmartScopesConstants
+
     id :us_core_smart_standalone_launch_stu2
     title 'Standalone Launch'
 
     run_as_group
+
+    config(
+      inputs: {
+        smart_auth_info: {
+          name: :smart_auth_info,
+          options: {
+            components: [
+              {
+                name: :requested_scopes,
+                default: SMART_V2_RESOURCE_LEVEL_SCOPES
+              }
+            ]
+          }
+        },
+        received_scopes: { name: :standalone_received_scopes }
+      },
+      outputs: {
+        smart_auth_info: {
+          name: :smart_auth_info
+        }
+      }
+    )
 
     group from: :smart_discovery_stu2,
           run_as_group: true
@@ -15,11 +41,7 @@ module USCoreTestKit
       optional
       config(
         inputs: {
-          id_token: { name: :standalone_id_token },
-          client_id: { name: :standalone_client_id },
-          requested_scopes: { name: :standalone_requested_scopes },
-          access_token: { name: :standalone_access_token },
-          smart_credentials: { name: :standalone_smart_credentials }
+          id_token: { name: :standalone_id_token }
         }
       )
     end
@@ -27,14 +49,6 @@ module USCoreTestKit
     group from: :smart_token_refresh do
       run_as_group
       optional
-      config(
-        inputs: {
-          refresh_token: { name: :standalone_refresh_token },
-          client_id: { name: :standalone_client_id },
-          client_secret: { name: :standalone_client_secret },
-          received_scopes: { name: :standalone_received_scopes }
-        }
-      )
     end
   end
 end
