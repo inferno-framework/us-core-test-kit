@@ -1,3 +1,8 @@
+## What's Changed
+* FI-3765: Validation Message Filter Unit Test by @emichaud998 in https://github.com/inferno-framework/us-core-test-kit/pull/233
+* FI-3879: Typo and outdated details in Capability Statement Tests by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/235
+* FI-3586: Migrate to authinfo by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/228
+
 # 0.10.1
 * FI-3471 Minor fixes to docs based on usage by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/227
 * FI-3754 Default suites to use smart v2.0.0 in new metadata by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/229
