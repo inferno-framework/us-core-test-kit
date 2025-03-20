@@ -21,6 +21,30 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
+  verify-test-generation:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.3.6']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Ensure full history for git diff
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+      - name: Verify test generation is up to date
+        run: |
+          bundle exec rake us_core:generate
+          if [[ -n "$(git status --porcelain lib/us_core_test_kit/generated)" ]]; then
+            echo "Generated tests are outdated. Run 'bundle exec rake us_core:generate' and commit the changes."
+            git diff
+            exit 1
+          fi
+
   test:
     needs: build
     runs-on: ubuntu-latest
