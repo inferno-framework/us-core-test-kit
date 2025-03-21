@@ -340,21 +340,24 @@ module USCoreTestKit
 
     def extract_param_value(param_value)
       return param_value.reference if param_value.is_a? FHIR::Reference
+      return param_value.flat_map(&:coding).map(&:code) if param_value.is_a? FHIR::CodeableConcept
 
       param_value
     end
 
-    def extract_search_params(existing_search_params)
-      return existing_search_params.first if existing_search_params.is_a? Array
+    def matching_param_values(existing_search_param, resource_search_param)
+      return existing_search_param.first.include?(resource_search_param) if existing_search_param.is_a? Array
 
-      existing_search_params
+      return resource_search_param.include?(existing_search_param) if resource_search_param.is_a? Array
+
+      existing_search_param.include?(resource_search_param)
     end
 
     def contains_all_search_params(resource, search_params)
       search_params.keys.all? do |param_name|
         param_value = resource.instance_variable_get("@#{param_name}")
         (param_value.present? &&
-        extract_search_params(search_params[param_name]).include?(extract_param_value(param_value))) ||
+        matching_param_values(search_params[param_name], extract_param_value(param_value))) ||
           param_name == 'patient'
       end
     end
