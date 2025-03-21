@@ -422,10 +422,6 @@ RSpec.describe USCoreTestKit::SearchTest do
       FHIR::Bundle.new(entry: [{ resource: medication_request_2 }])
     end
 
-    let(:bundle_3) do
-      FHIR::Bundle.new(entry: [{ resource: medication_request_1 }, { resource: medication_request_2 }])
-    end
-
     before do
       Inferno::Repositories::Tests.new.insert(multiple_or_search_test)
       allow_any_instance_of(multiple_or_search_test)
@@ -450,12 +446,11 @@ RSpec.describe USCoreTestKit::SearchTest do
 
     it 'passes if multiple-or search test does not return all existing values if associated resources do not contain all search params' do
       medication_request_2.encounter = nil
-      bundle_2.entry[0].resource.encounter = nil
 
       stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle_1.to_json)
       stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
-        .to_return(status: 200, body: bundle_3.to_json)
+        .to_return(status: 200, body: bundle_1.to_json)
       result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
 
       expect(result.result).to eq('pass')
