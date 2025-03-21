@@ -338,9 +338,24 @@ module USCoreTestKit
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : Array.wrap(definition[:values])
     end
 
+    def extract_param_value(param_value)
+      return param_value.reference if param_value.is_a? FHIR::Reference
+
+      param_value
+    end
+
+    def extract_search_params(existing_search_params)
+      return existing_search_params.first if existing_search_params.is_a? Array
+
+      existing_search_params
+    end
+
     def contains_all_search_params(resource, search_params)
       search_params.keys.all? do |param_name|
-        resource.instance_variable_get("@#{param_name}").present? || param_name == 'patient'
+        param_value = resource.instance_variable_get("@#{param_name}")
+        (param_value.present? &&
+        extract_search_params(search_params[param_name]).include?(extract_param_value(param_value))) ||
+          param_name == 'patient'
       end
     end
 

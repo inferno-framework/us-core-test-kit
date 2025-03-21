@@ -434,26 +434,42 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
 
     it 'fails if multiple-or search test does not return all existing values' do
-      stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
+      request_one = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle_1.to_json)
-      stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
+      request_two = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
         .to_return(status: 200, body: bundle_2.to_json)
       result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq("Could not find order values from intent in any of the resources returned for Patient/#{patient_id}")
+      expect(request_one).to have_been_made
+      expect(request_two).to have_been_made
     end
 
     it 'passes if multiple-or search test does not return all existing values if associated resources do not contain all search params' do
       medication_request_2.encounter = nil
 
-      stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
+      request_one = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle_1.to_json)
-      stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
+      request_two = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
         .to_return(status: 200, body: bundle_1.to_json)
       result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
-
       expect(result.result).to eq('pass')
+      expect(request_one).to have_been_made
+      expect(request_two).to have_been_made
+    end
+
+    it 'passes if multiple-or search test does not return all existing values if associated resources do not contain same search param values' do
+      medication_request_2.encounter.reference = 'Patient/678'
+
+      request_one = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=#{intent_1}&patient=#{patient_id}")
+        .to_return(status: 200, body: bundle_1.to_json)
+      request_two = stub_request(:get, "#{url}/MedicationRequest?encounter=Encounter/#{encounter_id}&intent=proposal,plan,order,original-order,reflex-order,filler-order,instance-order,option&patient=#{patient_id}")
+        .to_return(status: 200, body: bundle_1.to_json)
+      result = run(multiple_or_search_test, patient_ids: patient_id, url: url)
+      expect(result.result).to eq('pass')
+      expect(request_one).to have_been_made
+      expect(request_two).to have_been_made
     end
   end
 
