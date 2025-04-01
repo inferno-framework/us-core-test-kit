@@ -51,7 +51,7 @@ module USCoreTestKit
           res = nil
         end
 
-        assert (!res || (resource && resource.resourceType != resource_type)), "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
+        assert (!res || res.resourceType != resource_type), "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
       else
         info "Unable to find a resource that does not match scopes."
       end
