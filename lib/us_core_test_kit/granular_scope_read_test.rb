@@ -51,7 +51,7 @@ module USCoreTestKit
           res = nil
         end
 
-        assert (!res || res.resourceType == 'OperationOutcome'), "Read should fail due to scopes. Server shall return 4xx status code with an optional OperationOutcome payload."
+        assert (!res || res.resourceType == 'OperationOutcome'), "Read shall fail due to scopes. Server shall return 4xx status code with an optional OperationOutcome payload."
       else
         info "Unable to find a resource that does not match scopes."
       end
