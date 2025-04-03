@@ -76,6 +76,8 @@ read succeeds.
 
       id :us_core_v610_observation_sexual_orientation
       run_as_group
+      optional
+      
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation_sexual_orientation', 'metadata.yml'), aliases: true))

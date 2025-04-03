@@ -33,7 +33,6 @@ module USCoreTestKit
         * Patient.communication.language
         * Patient.deceasedDateTime
         * Patient.extension:ethnicity
-        * Patient.extension:genderIdentity
         * Patient.extension:race
         * Patient.extension:sex
         * Patient.extension:tribalAffiliation
