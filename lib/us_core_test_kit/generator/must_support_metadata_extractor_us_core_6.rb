@@ -108,6 +108,8 @@ module USCoreTestKit
         must_supports[:elements].delete_if { |element| element[:path].start_with?('media') }
       end
 
+      # genderIdentify is removed as ASTP/ONC enforcement discretion issued on March 21, 2025:
+      # https://www.healthit.gov/topic/certification-ehrs/enforcement-discretion
       def remove_patient_gender_identity
         return unless profile.type == 'Patient'
         must_supports[:extensions].delete_if { |extension| extension[:id] == 'Patient.extension:genderIdentity' }

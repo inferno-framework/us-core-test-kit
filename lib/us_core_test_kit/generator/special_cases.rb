@@ -17,9 +17,12 @@ module USCoreTestKit
         'QuestionnaireResponse'
       ].freeze
 
-      OPTIONAL_PROFILES = [
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
-      ].freeze
+      # us-core-observation-sexual-orientation is changed to optional as ASTP/ONC enforcement discretion issued on March 21, 2025:
+      # https://www.healthit.gov/topic/certification-ehrs/enforcement-discretion
+      OPTIONAL_PROFILES = {
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation' => ['v610', 'v700'],
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation' => ['v610', 'v700']
+      }.freeze
 
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],
