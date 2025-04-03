@@ -30,6 +30,7 @@ module USCoreTestKit
         update_smoking_status_effective
         remove_practitioner_address
         remove_diagnosticreport_media
+        remove_patient_gender_identity
       end
 
       def add_must_support_choices
@@ -105,6 +106,11 @@ module USCoreTestKit
       def remove_diagnosticreport_media
         return unless profile.id == 'us-core-diagnosticreport-note'
         must_supports[:elements].delete_if { |element| element[:path].start_with?('media') }
+      end
+
+      def remove_patient_gender_identity
+        return unless profile.type == 'Patient'
+        must_supports[:extensions].delete_if { |extension| extension[:id] == 'Patient.extension:genderIdentity' }
       end
     end
   end
