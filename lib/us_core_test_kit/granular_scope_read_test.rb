@@ -22,7 +22,7 @@ module USCoreTestKit
               "No #{resource_type} reads found"
       previous_resources_for_reads = previous_request_resources.values.flatten
 
-      resource_specific_granular_scope_search_params.each do |scope| 
+      resource_specific_granular_scope_search_params.each do |scope|
         current_scope = granular_scopes.find {|granular| granular.include?(scope[:name]) && granular.include?(scope[:value])}
 
         resource_matching_scope = previous_resources_for_reads.find do |prev_resource|
@@ -37,19 +37,26 @@ module USCoreTestKit
       end
 
       nonmatching_resource = previous_resources_for_reads.find do |prev_resource|
-        resource_specific_granular_scope_search_params.none? do |scope| 
+        resource_specific_granular_scope_search_params.none? do |scope|
           resource_matches_param?(prev_resource, scope[:name], scope[:value])
         end
       end
       if nonmatching_resource
         fhir_read resource_type, nonmatching_resource.id
         assert (response && response[:status]) != 200, "Server incorrectly responded with a successful status, read should fail due to scopes."
-        assert (resource && resource.resourceType != resource_type), "Server incorrectly returned a #{resource_type}, read should fail due to scopes"
+
+        begin
+          res = resource
+        rescue NoMethodError
+          res = nil
+        end
+
+        assert (!res || res.resourceType == 'OperationOutcome'), "Read shall fail due to scopes. Server shall return 4xx status code with an optional OperationOutcome payload."
       else
         info "Unable to find a resource that does not match scopes."
       end
     end
-    
+
     def load_previous_requests
       params = metadata.searches.first[:names]
       search_params_as_hash = params.each_with_object({}) do |name, hash|

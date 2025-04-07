@@ -106,7 +106,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
       let(:received_scopes) { 'patient/Condition.rs?category=http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis patient/Condition.rs?category=http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern' }
 
       context "with previous requests having available resources" do
-        
+
         let!(:request) do
           repo_create(
             :request,
@@ -132,7 +132,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
             .to_return(body: FHIR::OperationOutcome.new().to_json, status: 401)
 
           result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
-          
+
           expect(result.result).to eq('fail')
           expect(result.result_message.include?('expected 200,')).to eq(true)
         end
@@ -164,11 +164,33 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
           expect(result.result).to eq('pass')
         end
 
-        
+        it 'passes if matching resource returned and no matched resource returned 401 without body' do
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource.id}")
+            .to_return(body: matching_resource.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource2.id}")
+            .to_return(body: matching_resource2.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{not_matching_resource.id}")
+            .to_return(status: 401)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+          expect(result.result).to eq('pass')
+        end
+
+        it 'passes if matching resource returned and no matched resource returned 401 with empty body' do
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource.id}")
+            .to_return(body: matching_resource.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{matching_resource2.id}")
+            .to_return(body: matching_resource2.to_json)
+          stub_request(request.verb.to_sym, request.url+"/#{not_matching_resource.id}")
+            .to_return(body: '', status: 401)
+
+          result = run(granular_scope_read_test, url:, patient_ids:, received_scopes:)
+          expect(result.result).to eq('pass')
+        end
       end
 
       context "with previous requests not populated with resource" do
-        let!(:empty_request) do 
+        let!(:empty_request) do
           repo_create(
             :request,
             url: 'http://example.com/fhir/Condition',
@@ -196,7 +218,7 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
       end
 
       context "with previous requests populated, but no out of scope resources" do
-        let!(:request_with_all_matching) do 
+        let!(:request_with_all_matching) do
           repo_create(
             :request,
             url: 'http://example.com/fhir/Condition',
