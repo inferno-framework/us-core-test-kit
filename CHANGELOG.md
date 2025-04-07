@@ -1,4 +1,9 @@
-## What's Changed
+# 0.11.1
+* FI-3813: Use core Must Support assertion by @dehall in https://github.com/inferno-framework/us-core-test-kit/pull/239
+* FI-3292: Add CI job to verify test generation is up to date by @vanessuniq in https://github.com/inferno-framework/us-core-test-kit/pull/237
+* FI-3823 Fix Granular Read Test fails when server returns 4xx response without FHIR OperationOutcome payload by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/240
+
+# 0.11.0
 * FI-3765: Validation Message Filter Unit Test by @emichaud998 in https://github.com/inferno-framework/us-core-test-kit/pull/233
 * FI-3879: Typo and outdated details in Capability Statement Tests by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/235
 * FI-3586: Migrate to authinfo by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/228
