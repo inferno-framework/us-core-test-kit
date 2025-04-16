@@ -11,26 +11,19 @@ module USCoreTestKit
       scratch_resources[:all]
     end
 
-    def exclude_uscdi_only_test?
-      config.options[:exclude_uscdi_only_test] == true
-    end
-
-    def must_support_extensions
-      if exclude_uscdi_only_test?
-        metadata.must_supports[:extensions].reject{ |extension| extension[:uscdi_only] }
-      else
-        metadata.must_supports[:extensions]
-      end
-    end
-
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
+      modified_metadata = metadata
+
       if (self.id.start_with?('g10_certification'))
-        metadata
+        modified_metadata = metadata.dup
+        modified_metadata[:must_supports] = metadata[:must_supports].transform_values do |items|
+          items.reject { |item| item[:exclude_from_certification] }
+        end
       end
 
-      skip { assert_must_support_elements_present(resources, nil, metadata:) }
+      skip { assert_must_support_elements_present(resources, nil, metadata: modified_metadata) }
     end
   end
 end
