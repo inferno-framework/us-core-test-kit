@@ -12233,6 +12233,7 @@
       :path: extension
       :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
       :uscdi_only: true
+      :exclude_from_certification: true
     :slices: []
     :elements:
     - :path: identifier

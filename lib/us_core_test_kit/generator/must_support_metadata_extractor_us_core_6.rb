@@ -30,6 +30,7 @@ module USCoreTestKit
         update_smoking_status_effective
         remove_practitioner_address
         remove_diagnosticreport_media
+        exclude_from_certification
       end
 
       def add_must_support_choices
@@ -105,6 +106,16 @@ module USCoreTestKit
       def remove_diagnosticreport_media
         return unless profile.id == 'us-core-diagnosticreport-note'
         must_supports[:elements].delete_if { |element| element[:path].start_with?('media') }
+      end
+
+      # genderIdentify is excluded from certification test as directed by ASTP/ONC enforcement discretion issued on March 21, 2025:
+      # https://www.healthit.gov/topic/certification-ehrs/enforcement-discretion
+      def exclude_from_certification
+        return unless profile.type == 'Patient'
+        extension = must_supports[:extensions].find { |extension| extension[:id] == 'Patient.extension:genderIdentity' }
+
+        return unless extension
+        extension[:exclude_from_certification] = true;
       end
     end
   end
