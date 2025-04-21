@@ -1,0 +1,51 @@
+# frozen_string_literal: true
+
+module USCoreTestKit
+  module Client
+    module <%= module_name %>
+      class <%= class_name %> < Inferno::TestGroup
+        include URLs
+
+        id :<%= group_id %>
+
+        title '<%= title %>'
+
+        description %(
+          <%= description %>
+        )
+
+        test do
+          id :<%= test_id %>
+
+          title '<%= title %>'
+
+          description %(
+            <%= description %>
+          )
+
+          input :access_token
+
+          run do
+            wait(
+              identifier: access_token,
+              message: %(
+Inferno will now wait for the client under test to make the required requests against the following base URL:
+
+#{fhir_url}
+
+All requests will be recorded. When finished, the requests will be inspected to ensure that the client under test is making the required requests.
+
+The following requirements will be checked:
+
+<%= check_list %>
+
+[Click here](#{resume_pass_url}?id=#{access_token}) when finished.
+              ),
+              timeout: 900
+            )
+          end
+        end
+      end
+    end
+  end
+end
