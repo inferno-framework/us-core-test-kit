@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+require_relative '../../server_proxy'
+require_relative 'tags'
+
+module USCoreTestKit
+  module Client
+    class SearchEndpoint < Inferno::DSL::SuiteEndpoint
+      include ServerProxy
+
+      def test_run_identifier
+        request.get_header('HTTP_AUTHORIZATION')&.split&.last
+      end
+
+      def make_response
+        server_response = proxy_request
+        response.status = server_response.status
+        response.body = server_response.body
+      end
+
+      def proxy_request
+        puts request_params
+        proxy_client.get(resource_type, request_params)
+      end
+
+      def tags
+        [SEARCH_REQUEST_TAG, resource_to_tag(resource_type)]
+      end
+
+      def resource_to_tag(resource)
+        case resource
+          <%- resources.each do |resource| -%>
+          when '<%= resource %>'
+            SEARCH_<%= resource.underscore.upcase %>_TAG
+          <%- end -%>
+        end
+      end
+
+      def resource_type
+        request.params[:resource_type]
+      end
+
+      def request_params
+        request.params.to_h.except(:resource_type).stringify_keys
+      end
+    end
+  end
+end

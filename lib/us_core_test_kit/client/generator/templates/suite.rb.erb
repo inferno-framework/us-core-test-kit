@@ -1,0 +1,67 @@
+# frozen_string_literal: true
+
+require_relative '../../../version'
+require_relative 'tags'
+require_relative 'urls'
+require_relative 'read_endpoint'
+require_relative 'search_endpoint'
+require_relative '../../test_helper'
+require_relative 'wait_group'
+<%- group_file_list.each do |group| -%>
+require_relative '<%= group %>'
+<%- end -%>
+
+module USCoreTestKit
+  module Client
+    module <%= module_name %>
+      class <%= class_name %> < Inferno::TestSuite
+        include URLs
+
+        id :<%= suite_id %>
+
+        title '<%= title %>'
+
+        description %(
+          <%= description %>
+        )
+
+        links [
+          {
+            type: 'report_issue',
+            label: 'Report Issue',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/issues/'
+          },
+          {
+            type: 'source_code',
+            label: 'Open Source',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/'
+          },
+          {
+            type: 'download',
+            label: 'Download',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+          }
+        ]
+
+        suite_endpoint :get, READ_ROUTE, ReadEndpoint
+        suite_endpoint :get, SEARCH_ROUTE, SearchEndpoint
+
+        resume_test_route :get, RESUME_PASS_ROUTE do |request|
+          request.query_parameters['id']
+        end
+
+        group do
+          title 'Read & Search'
+
+          run_as_group
+
+          group from: :<%= wait_group_id %>
+
+          <%- group_id_list.each do |group| -%>
+          group from: :<%= group %>
+          <%- end -%>
+        end
+      end
+    end
+  end
+end

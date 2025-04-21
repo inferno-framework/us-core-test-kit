@@ -24,4 +24,13 @@ namespace :us_core do
 
     USCoreTestKit::Generator.generate
   end
+
+  namespace :client do
+    desc 'Generate tests'
+    task :generate do
+      require_relative 'lib/us_core_test_kit/client/generator'
+
+      USCoreTestKit::Client::Generator.generate
+    end
+  end
 end
