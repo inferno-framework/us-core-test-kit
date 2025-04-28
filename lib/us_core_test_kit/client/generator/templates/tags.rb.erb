@@ -2,20 +2,22 @@
 
 module USCoreTestKit
   module Client
-    # READ tags
+    module <%= module_name %>
+      # READ tags
 
-    READ_REQUEST_TAG = 'us_core_read_request'
+      READ_REQUEST_TAG = 'us_core_read_request'
 
-    <%- resources.each do |resource| -%>
-    READ_<%= resource.underscore.upcase %>_TAG = 'us_core_<%= resource.underscore.downcase %>_read'
-    <%- end -%>
+      <%- resources.each do |resource| -%>
+      READ_<%= resource.underscore.upcase %>_TAG = 'us_core_<%= resource.underscore.downcase %>_read'
+      <%- end -%>
 
-    # SEARCH tags
+      # SEARCH tags
 
-    SEARCH_REQUEST_TAG = 'us_core_search_request'
+      SEARCH_REQUEST_TAG = 'us_core_search_request'
 
-    <%- resources.each do |resource| -%>
-    SEARCH_<%= resource.underscore.upcase %>_TAG = 'us_core_<%= resource.underscore.downcase %>_search'
-    <%- end -%>
+      <%- resources.each do |resource| -%>
+      SEARCH_<%= resource.underscore.upcase %>_TAG = 'us_core_<%= resource.underscore.downcase %>_search'
+      <%- end -%>
+    end
   end
 end

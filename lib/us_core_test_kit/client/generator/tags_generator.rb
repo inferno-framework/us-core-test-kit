@@ -17,6 +17,10 @@ module USCoreTestKit
           self.base_output_dir = base_output_dir
         end
 
+        def module_name
+          "USCoreClient#{ig_metadata.reformatted_version.upcase}"
+        end
+
         def template
           @template ||= File.read(File.join(__dir__, 'templates', 'tags.rb.erb'))
         end
