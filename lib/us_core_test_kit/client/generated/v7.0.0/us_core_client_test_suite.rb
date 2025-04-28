@@ -211,7 +211,7 @@ please provide feedback so the limitations can be addressed.
 
 To try out these tests without an actual US Core client implementation, you may run them using the
 [included Ruby script](https://github.com/inferno-framework/us-core-test-kit/blob/main/lib/us-core-test-kit/client/docs/us_core_client.rb).
-This script will simulate a client by making requests to Inferno.
+This script will simulate a client by making requests to Inferno. Set the access token to "test".
 
 # Current Limitations
 
