@@ -21,16 +21,9 @@ namespace :us_core do
   desc 'Generate tests'
   task :generate do
     require_relative 'lib/us_core_test_kit/generator'
+    require_relative 'lib/us_core_test_kit/client/generator'
 
     USCoreTestKit::Generator.generate
-  end
-
-  namespace :client do
-    desc 'Generate tests'
-    task :generate do
-      require_relative 'lib/us_core_test_kit/client/generator'
-
-      USCoreTestKit::Client::Generator.generate
-    end
+    USCoreTestKit::Client::Generator.generate
   end
 end

@@ -19,7 +19,7 @@ module USCoreTestKit
         end
 
         def failure_message
-          "Did not recieve a request for `Organization` with required search parameters: `#{required_params.join(' + ')}`"
+          "Did not receive a request for `Organization` with required search parameters: `#{required_params.join(' + ')}`"
         end
 
         run do

@@ -31,6 +31,15 @@ The quickest way to run this test kit locally is with [Docker](https://www.docke
 See the [Inferno Documentation](https://inferno-framework.github.io/docs/getting-started-users.html#running-an-existing-test-kit)
 for more information on running Inferno locally.
 
+### Client
+
+The client test suites require a running instance of the
+[Inferno Reference Server](https://github.com/inferno-framework/inferno-reference-server).
+Instructions for setting up and running an instance are available on the GitHub
+repository page.
+
+The local environment variable `FHIR_REFERENCE_SERVER` should point to this instance.
+
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
