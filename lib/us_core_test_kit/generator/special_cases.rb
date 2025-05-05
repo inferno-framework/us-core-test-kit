@@ -17,9 +17,9 @@ module USCoreTestKit
         'QuestionnaireResponse'
       ].freeze
 
-      OPTIONAL_PROFILES = [
-        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation'
-      ].freeze
+      OPTIONAL_PROFILES = {
+        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation' => ['v610', 'v700']
+      }.freeze
 
       NON_USCDI_RESOURCES = {
         'Encounter' => ['v311', 'v400'],

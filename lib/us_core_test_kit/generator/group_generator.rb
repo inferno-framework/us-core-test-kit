@@ -95,8 +95,7 @@ module USCoreTestKit
 
 
       def optional?
-        SpecialCases::OPTIONAL_RESOURCES.include?(resource_type) ||
-        SpecialCases::OPTIONAL_PROFILES.include?(profile_url)
+        SpecialCases::OPTIONAL_RESOURCES.include?(resource_type) || group_metadata.optional_profile?
       end
 
       def generate

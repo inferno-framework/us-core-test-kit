@@ -63,6 +63,10 @@ module USCoreTestKit
         SpecialCases::NON_USCDI_RESOURCES.key?(resource) && SpecialCases::NON_USCDI_RESOURCES[resource].include?(reformatted_version)
       end
 
+      def optional_profile?
+        SpecialCases::OPTIONAL_PROFILES.key?(profile_url) && SpecialCases::OPTIONAL_PROFILES[profile_url].include?(reformatted_version)
+      end
+
       def searchable_delayed_resource?
         SpecialCases::SEARCHABLE_DELAYED_RESOURCES.key?(resource) && SpecialCases::SEARCHABLE_DELAYED_RESOURCES[resource].include?(reformatted_version)
       end
