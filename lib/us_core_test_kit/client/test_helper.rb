@@ -17,8 +17,6 @@ module USCoreTestKit
 
       def filter_requests_by_search_parameters(requests, search_parameters)
         requests.select do |request|
-          puts request.url
-
           included_params = url_params(request.url).keys
           search_parameters.all? { |param| included_params.include? param }
         end
