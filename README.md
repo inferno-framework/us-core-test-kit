@@ -38,7 +38,10 @@ The client test suites require a running instance of the
 Instructions for setting up and running an instance are available on the GitHub
 repository page.
 
-The local environment variable `FHIR_REFERENCE_SERVER` should point to this instance.
+The local environment variable `FHIR_REFERENCE_SERVER` should point to this instance. Similarly,
+the `HOST_HEADER` environment variable should be set according to the running instance of
+the Inferno Reference Server. See [.env.development](.env.development) and
+[.env.production](.env.production) for examples.
 
 ## License
 
