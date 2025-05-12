@@ -155,6 +155,21 @@ This script will simulate a client by making requests to Inferno. Set the access
 This test suite is still in draft form and does not test all of the client requirements and features
 described in the US Core Implementation guide.
 
+The current version of this test suite supports:
+- Testing a client's ability to perform read requests against a FHIR server for all US Core Profiles
+summarized in the US Core Capability Statement.
+- Testing a client's ability to perform searches using the SHALL conformance search parameters
+summarized in the US Core Capability Statement.
+
+The current version of this test suite does not support:
+- Testing searches with/via:
+  - date comparator
+  - multiple-OR
+  - _revInclude
+  - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
+- Other must support requirements not outlined above.
+
+
         )
 
         links [
