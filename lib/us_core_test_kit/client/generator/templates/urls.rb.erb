@@ -7,6 +7,10 @@ module USCoreTestKit
       FHIR_ROUTE = '/fhir'
       READ_ROUTE = "#{FHIR_ROUTE}/:resource_type/:resource_id"
       SEARCH_ROUTE = "#{FHIR_ROUTE}/:resource_type"
+      TOKEN_PATH = '/auth/token'.freeze
+      AUTHORIZATION_PATH = '/auth/authorization'.freeze
+      JKWS_PATH = '/.well-known/jwks.json'.freeze
+      SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
 
       module URLs
         def base_url
@@ -27,6 +31,14 @@ module USCoreTestKit
 
         def search_url
           base_url + SEARCH_ROUTE
+        end
+
+        def token_url
+          @token_url ||= base_url + TOKEN_PATH
+        end
+
+        def authorization_url
+          @authorization_url ||= base_url + AUTHORIZATION_PATH
         end
 
         def suite_id

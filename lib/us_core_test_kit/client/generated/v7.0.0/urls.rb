@@ -7,6 +7,11 @@ module USCoreTestKit
       FHIR_ROUTE = '/fhir'
       READ_ROUTE = "#{FHIR_ROUTE}/:resource_type/:resource_id"
       SEARCH_ROUTE = "#{FHIR_ROUTE}/:resource_type"
+      METADATA_PATH = "#{FHIR_ROUTE}/metadata"
+      TOKEN_PATH = '/auth/token'.freeze
+      AUTHORIZATION_PATH = '/auth/authorization'.freeze
+      JKWS_PATH = '/.well-known/jwks.json'.freeze
+      SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
 
       module URLs
         def base_url
@@ -21,12 +26,24 @@ module USCoreTestKit
           base_url + FHIR_ROUTE
         end
 
+        def client_fhir_base_url # alias for OIDC from SMART / UDAP client tests
+          fhir_url
+        end
+
         def read_url
           base_url + READ_ROUTE
         end
 
         def search_url
           base_url + SEARCH_ROUTE
+        end
+
+        def token_url
+          @token_url ||= base_url + TOKEN_PATH
+        end
+
+        def authorization_url
+          @authorization_url ||= base_url + AUTHORIZATION_PATH
         end
 
         def suite_id

@@ -14,7 +14,7 @@ require 'active_support/all'
 require 'fhir_client'
 
 BASE_URL = 'http://localhost:4567/custom/us_core_client_v700/fhir'
-TOKEN = 'test'
+TOKEN = 'eyJjbGllbnRfaWQiOiJkZW1vIn0' # client_id = demo
 
 client = FHIR::Client.new(BASE_URL)
 client.additional_headers = { Authorization: "Bearer #{TOKEN}" }
