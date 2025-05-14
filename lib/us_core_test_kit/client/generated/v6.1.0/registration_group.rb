@@ -11,9 +11,9 @@ module USCoreTestKit
         id :us_core_client_v610_registration
         title 'Client Registration'
         description %(
-          Register the client under test with Inferno's simulated CARIN Server,
+          Register the client under test with Inferno's simulated US Core Server,
           including configuration of the system under test to hit the correct endpoints and
-          enable authentication and authorization of CARIN requests.
+          enable authentication and authorization of US Core requests.
         )
         run_as_group
 

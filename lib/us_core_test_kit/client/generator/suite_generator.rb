@@ -88,7 +88,7 @@ module USCoreTestKit
             See the *Auth Configuration Details* section below for details.
 
             Once registration is complete, run the "Read & Search" group to have Inferno wait for US Core
-            read and search requests from the client, return the requested CARIN
+            read and search requests from the client, return the requested US Core
             resources to the client, and verify the interactions. The Patient that the client
             needs to request data for has the following demographic details:
             - **Resource ID**: us-core-client-tests-patient
