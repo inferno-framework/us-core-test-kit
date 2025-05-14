@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'smart_app_launch_test_kit'
+
 module USCoreTestKit
   module Client
     module USCoreClientV311
@@ -31,17 +33,48 @@ parameters for each resource type.
 
           )
 
-          input :access_token
+          input :client_id,
+                title: 'Client Id',
+                type: 'text',
+                optional: true,
+                locked: true,
+                description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
+          input :smart_launch_urls,
+                title: 'SMART App Launch URL(s)',
+                type: 'textarea',
+                locked: true,
+                optional: true,
+                description: SMARTAppLaunch::INPUT_SMART_LAUNCH_URLS_DESCRIPTION_LOCKED
+          input :launch_context,
+                title: 'Launch Context',
+                type: 'textarea',
+                optional: true,
+                description: SMARTAppLaunch::INPUT_LAUNCH_CONTEXT_DESCRIPTION       
+          input :fhir_user_relative_reference,
+                title: 'FHIR User Relative Reference',
+                type: 'text',
+                optional: true,
+                description: SMARTAppLaunch::INPUT_FHIR_USER_RELATIVE_REFERENCE
+          
+          input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
+          output :launch_key
 
           run do
+            if smart_launch_urls.present?
+              launch_key = SecureRandom.hex(32)
+              output(launch_key:)
+            end
+            
             wait(
-              identifier: access_token,
+              identifier: client_id,
               message: %(
 Inferno will now wait for the client under test to make the required requests against the following base URL:
 
 #{fhir_url}
 
 All requests will be recorded. When finished, the requests will be inspected to ensure that the client under test is making the required requests.
+
+[Click here](#{resume_pass_url}?token=#{client_id}) when finished.
 
 The following requirements will be checked:
 
@@ -288,7 +321,7 @@ The following requirements will be checked:
   * searches:
 
 
-[Click here](#{resume_pass_url}?id=#{access_token}) when finished.
+[Click here](#{resume_pass_url}?token=#{client_id}) when finished.
               ),
               timeout: 900
             )

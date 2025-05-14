@@ -11,7 +11,7 @@ module USCoreTestKit
         description %(
           This test provides all the information needed for testers to configure
           the client under test to communicate with Inferno's simulated US Core server
-          including SMART endpoints to obtain access tokens using the SMART App Launch flow.
+          including SMART endpoints to obtain access tokens.
         )
 
         input :client_id

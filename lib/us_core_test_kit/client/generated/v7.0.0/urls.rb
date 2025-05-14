@@ -10,8 +10,6 @@ module USCoreTestKit
       METADATA_PATH = "#{FHIR_ROUTE}/metadata"
       TOKEN_PATH = '/auth/token'.freeze
       AUTHORIZATION_PATH = '/auth/authorization'.freeze
-      JKWS_PATH = '/.well-known/jwks.json'.freeze
-      SMART_CONFIG_PATH = '/.well-known/smart-configuration'.freeze
 
       module URLs
         def base_url

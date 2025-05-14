@@ -74,7 +74,6 @@ module USCoreTestKit
     module USCoreClientV700
       class USCoreClientTestSuite < Inferno::TestSuite
         include URLs
-        # include MetadataHelper
 
         id :us_core_client_v700
 
@@ -286,7 +285,7 @@ The current version of this test suite does not support:
                         }
                       ]
 
-        route(:get, METADATA_PATH, USCoreTestKit::Client::MetadataHelper.get_metadata('v7.0.0'))
+        route(:get, METADATA_PATH, USCoreTestKit::Client::MetadataHelper.get_metadata('v700'))
         route(:get, UDAPSecurityTestKit::UDAP_DISCOVERY_PATH, lambda { |_env|
           UDAPSecurityTestKit::MockUDAPServer.udap_server_metadata(id)
         })

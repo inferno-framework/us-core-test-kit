@@ -11,7 +11,7 @@ module USCoreTestKit
         description %(
           This test provides all the information needed for testers to configure
           the client under test to communicate with Inferno's simulated US Core server
-          including UDAP endpoints to obtain access tokens using the authorization_code flow.
+          including UDAP endpoints to obtain access tokens.
         )
 
         input :client_id
@@ -22,7 +22,7 @@ module USCoreTestKit
             message: %(
               **Inferno Simulated Server Details**:
 
-              FHIR Base URL: `#{fhir_base_url}`
+              FHIR Base URL: `#{fhir_url}`
 
               Authentication Details:
               - UDAP Client Id: `#{client_id}`

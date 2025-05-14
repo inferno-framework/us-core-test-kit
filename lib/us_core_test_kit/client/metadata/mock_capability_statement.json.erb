@@ -9,7 +9,7 @@
   ],
   "implementation": {
       "description": "Inferno US Core Testing Simulation Server",
-      "url": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_v700/fhir"
+      "url": "<%= Inferno::Application['base_url'] %>/custom/us_core_client_<%= version %>/fhir"
   },
   "fhirVersion": "4.0.1",
   "format": [
@@ -28,11 +28,11 @@
                 "extension": [
                     {
                         "url": "token",
-                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_v700/auth/token"
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_<%= version %>/auth/token"
                     },
                     {
                         "url": "authorize",
-                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_v700/auth/authorization"
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_<%= version %>/auth/authorization"
                     }
                 ]
             }

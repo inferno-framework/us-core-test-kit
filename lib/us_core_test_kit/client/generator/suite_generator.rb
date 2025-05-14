@@ -127,6 +127,10 @@ module USCoreTestKit
         def wait_group_id
           "us_core_client_wait_group_#{ig_metadata.reformatted_version.downcase}"
         end
+
+        def registration_group_id
+          "us_core_client_#{ig_metadata.reformatted_version.downcase}_registration"
+        end
       end
     end
   end

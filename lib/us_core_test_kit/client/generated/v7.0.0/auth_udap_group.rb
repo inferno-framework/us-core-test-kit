@@ -12,9 +12,6 @@ module USCoreTestKit
           simulated UDAP authorization server in a conformant manner when requesting access tokens
           and that the client under test was able to use provided access tokens to make US Core
           requests.
-
-          Before running these tests, perform the Data Access group so that the client
-          will request an access token and use it on a data access request.
         )
         run_as_group
 
