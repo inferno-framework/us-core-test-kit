@@ -233,7 +233,27 @@ needs to request data for has the following demographic details:
 To try out these tests without an actual US Core client implementation, you may run them against
 the US Core Server tests using the following steps:
 
-1. 
+1. In separate tabs, create test sessions for corresponding versions of
+   - The "US Core" test suite, choosing the "SMART App Launch 2.2.0" option
+   - The "US Core Client" test suite, choosing the "SMART App Launch Public Client" option
+2. In the US Core Client test session, select the "Demo: Run Against the US Core Server Suite"
+   preset in the upper left, click the "RUN ALL TESTS" button in the upper right, and then click
+   "SUBMIT" at the bottom of the input dialog that appears. Confirm the configuration of the client
+   by clicking the link in the first "User Action Required" dialog that appears, so that a second
+   one appears asking for US Core requests to be made.
+3. In the US Core Server test session, select the "Standalone Launch" group from the list
+   at the left, select the "Demo: Run Against the US Core Client Suite"
+   preset in the upper left, click the "RUN TESTS" button in the upper right, and then click
+   "SUBMIT" at the bottom of the input dialog that appears. When a "User Action Required" dialog
+   appears, click the link to authorize with the server and the test run will complete. A few tests
+   may fail.
+4. Select the "US Core FHIR API" group from the list at the left, click the "RUN ALL TESTS" button
+   in the upper right, and then click "SUBMIT" at the bottom of the input dialog that appears.
+   These tests will run for a while and may result in test failures around must support and
+   conformance features.
+5. Once the server tests have completed, return to the client test session and click the link
+   in the "User Action Required" dialog to continue the tests and evaluate the client's
+   interactions. These tests will also run for a while and may result in some failures.
 
 # Input Details
 
