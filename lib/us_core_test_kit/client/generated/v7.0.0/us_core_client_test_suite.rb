@@ -305,8 +305,9 @@ The current version of this test suite does not support:
         suite_endpoint :get,  UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
         suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
 
-        suite_endpoint :get, READ_ROUTE, ReadEndpoint
+        suite_endpoint :post, SEARCH_POST_ROUTE, SearchEndpoint
         suite_endpoint :get, SEARCH_ROUTE, SearchEndpoint
+        suite_endpoint :get, READ_ROUTE, ReadEndpoint
 
         resume_test_route :get, RESUME_PASS_ROUTE do |request|
           request.query_parameters['token']

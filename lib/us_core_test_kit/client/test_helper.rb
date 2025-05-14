@@ -17,7 +17,14 @@ module USCoreTestKit
 
       def filter_requests_by_search_parameters(requests, search_parameters)
         requests.select do |request|
-          included_params = url_params(request.url).keys
+          included_params = 
+            if request.verb.downcase == 'get'
+              url_params(request.url).keys
+            elsif request.verb.downcase == 'post'
+              CGI.parse(request.request_body).keys
+            end
+          next unless included_params.present?
+
           search_parameters.all? { |param| included_params.include? param }
         end
       end

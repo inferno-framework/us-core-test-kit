@@ -7,6 +7,7 @@ module USCoreTestKit
       FHIR_ROUTE = '/fhir'
       READ_ROUTE = "#{FHIR_ROUTE}/:resource_type/:resource_id"
       SEARCH_ROUTE = "#{FHIR_ROUTE}/:resource_type"
+      SEARCH_POST_ROUTE = "#{FHIR_ROUTE}/:resource_type/_search"
       METADATA_PATH = "#{FHIR_ROUTE}/metadata"
       TOKEN_PATH = '/auth/token'.freeze
       AUTHORIZATION_PATH = '/auth/authorization'.freeze
