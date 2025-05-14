@@ -112,10 +112,6 @@ module USCoreTestKit
 
           group from: :<%= wait_group_id %>
 
-          <%- group_id_list.each do |group| -%>
-          group from: :<%= group %>
-          <%- end -%>
-
           group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alca,
               required_suite_options: {
                 client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
@@ -132,6 +128,10 @@ module USCoreTestKit
                 required_suite_options: {
                   client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
                 }
+
+          <%- group_id_list.each do |group| -%>
+          group from: :<%= group %>
+          <%- end -%>
         end
       end
     end
