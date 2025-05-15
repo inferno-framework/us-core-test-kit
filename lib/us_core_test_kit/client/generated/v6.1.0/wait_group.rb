@@ -58,6 +58,7 @@ parameters for each resource type.
           
           input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
           output :launch_key
+          config options: { accepts_multiple_requests: true }
 
           run do
             if smart_launch_urls.present?
