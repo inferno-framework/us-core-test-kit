@@ -52,6 +52,12 @@ module USCoreTestKit
           output :launch_key
           config options: { accepts_multiple_requests: true }
 
+          def suite_id
+            return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
+            
+            '<%= suite_id %>'
+          end
+
           run do
             if smart_launch_urls.present?
               launch_key = SecureRandom.hex(32)

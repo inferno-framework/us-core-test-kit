@@ -60,6 +60,12 @@ parameters for each resource type.
           output :launch_key
           config options: { accepts_multiple_requests: true }
 
+          def suite_id
+            return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
+            
+            'us_core_client_v700'
+          end
+
           run do
             if smart_launch_urls.present?
               launch_key = SecureRandom.hex(32)
