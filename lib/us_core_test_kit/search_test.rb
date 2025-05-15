@@ -595,12 +595,12 @@ module USCoreTestKit
             element.reference
           when FHIR::CodeableConcept
             coding =
-              find_a_value_at(element, 'coding') { |coding| coding.code.present? && WellKnownCodeSystems.include?(coding.system) }
+              find_a_value_at(element, 'coding') { |c| c.code.present? && WellKnownCodeSystems.include?(c.system) }
 
             if include_system
               if coding.nil?
                 coding =
-                  find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+                  find_a_value_at(element, 'coding') { |c| c.code.present? && c.system.present? }
               end
               "#{coding.system}|#{coding.code}"
             else
