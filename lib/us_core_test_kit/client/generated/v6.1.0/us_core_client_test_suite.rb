@@ -382,6 +382,7 @@ The current version of this test suite does not support:
         group from: :us_core_client_v610_registration
 
         group do
+          id :us_core_client_read_search_group_v610
           title 'Read & Search'
 
           run_as_group

@@ -106,6 +106,7 @@ module USCoreTestKit
         group from: :<%= registration_group_id %>
 
         group do
+          id :us_core_client_read_search_group_<%= ig_metadata.reformatted_version.downcase %>
           title 'Read & Search'
 
           run_as_group
