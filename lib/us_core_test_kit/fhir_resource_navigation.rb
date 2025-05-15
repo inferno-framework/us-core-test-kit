@@ -19,7 +19,7 @@ module USCoreTestKit
       end.compact
     end
 
-    def find_a_value_at(element, path, include_dar: false)
+    def find_a_value_at(element, path, include_dar: false, prefer_well_known_code_sytem: false)
       return nil if element.nil?
 
       elements = Array.wrap(element)
