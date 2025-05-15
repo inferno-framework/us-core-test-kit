@@ -2,6 +2,7 @@ require_relative 'date_search_validation'
 require_relative 'fhir_resource_navigation'
 require_relative 'resource_search_param_checker'
 require_relative 'search_test_properties'
+require_relative 'well_known_code_systems'
 
 module USCoreTestKit
   module SearchTest
@@ -9,6 +10,7 @@ module USCoreTestKit
     include DateSearchValidation
     include FHIRResourceNavigation
     include ResourceSearchParamChecker
+    include WellKnownCodeSystems
 
     def_delegators 'self.class', :metadata, :provenance_metadata, :properties
     def_delegators 'properties',
@@ -592,12 +594,17 @@ module USCoreTestKit
           when FHIR::Reference
             element.reference
           when FHIR::CodeableConcept
+            coding =
+              find_a_value_at(element, 'coding') { |coding| coding.code.present? && WellKnownCodeSystems.include?(coding.system) }
+
             if include_system
-              coding =
-                find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+              if coding.nil?
+                coding =
+                  find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
+              end
               "#{coding.system}|#{coding.code}"
             else
-              find_a_value_at(element, 'coding.code')
+              coding.nil? ? find_a_value_at(element, 'coding.code') : coding.code
             end
           when FHIR::Identifier
             include_system ? "#{element.system}|#{element.value}" : element.value
