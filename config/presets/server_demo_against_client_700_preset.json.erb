@@ -1,0 +1,30 @@
+{
+  "title": "Demo: Run Against the US Core Client Suite",
+  "id": "demo_us_core_server_against_client_v700",
+  "test_suite_id": "us_core_v700",
+  "inputs": [
+    {
+      "name": "url",
+      "type": "text",
+      "title": "FHIR Endpoint",
+      "description": "URL of the FHIR endpoint",
+      "value": "<%= Inferno::Application['base_url'] %>/custom/us_core_client_v700/fhir"
+    },
+    {
+      "name": "smart_auth_info",
+      "type": "auth_info",
+      "value": {
+        "auth_type": "public",
+        "use_discovery": "true",
+        "client_id": "us_core_client_demo"
+      }
+    },
+    {
+      "name": "patient_ids",
+      "type": "text",
+      "title": "Patient IDs",
+      "description": "Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements",
+      "value": "us-core-client-tests-patient"
+    }
+  ]
+}

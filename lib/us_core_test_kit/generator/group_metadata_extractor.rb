@@ -3,6 +3,7 @@ require_relative 'ig_metadata'
 require_relative 'must_support_metadata_extractor'
 require_relative 'search_metadata_extractor'
 require_relative 'terminology_binding_metadata_extractor'
+require_relative 'naming'
 
 module USCoreTestKit
   class Generator

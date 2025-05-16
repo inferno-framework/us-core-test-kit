@@ -1,0 +1,54 @@
+{
+  "resourceType": "CapabilityStatement",
+  "status": "active",
+  "date": "2021-06-17T18:03:00+00:00",
+  "publisher": "MITRE",
+  "kind": "instance",
+  "instantiates": [
+    "http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server"
+  ],
+  "implementation": {
+      "description": "Inferno US Core Testing Simulation Server",
+      "url": "<%= Inferno::Application['base_url'] %>/custom/us_core_client_<%= version %>/fhir"
+  },
+  "fhirVersion": "4.0.1",
+  "format": [
+      "application/fhir+json"
+  ],
+  "implementationGuide": [
+    "http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "security": {
+        "extension": [
+            {
+                "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
+                "extension": [
+                    {
+                        "url": "token",
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_<%= version %>/auth/token"
+                    },
+                    {
+                        "url": "authorize",
+                        "valueUri": "<%= Inferno::Application['base_url']  %>/custom/us_core_client_<%= version %>/auth/authorization"
+                    }
+                ]
+            }
+        ],
+        "service": [
+            {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/restful-security-service",
+                        "code": "SMART-on-FHIR"
+                    }
+                ],
+                "text": "OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org)"
+            }
+        ]
+      }
+    }
+  ]
+}
