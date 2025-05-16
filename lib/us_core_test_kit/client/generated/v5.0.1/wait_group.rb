@@ -9,9 +9,7 @@ module USCoreTestKit
         include URLs
 
         id :us_core_client_wait_group_v501
-
         title 'Wait for Requests'
-
         description %(
           
 This test will wait for the client under test to submit requests for resources for
@@ -20,11 +18,15 @@ parameters for each resource type.
 
         )
 
+        def suite_id
+          return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
+          
+          'us_core_client_v501'
+        end
+
         test do
           id :us_core_client_wait_test_v501
-
           title 'Wait for Requests'
-
           description %(
             
 This test will wait for the client under test to submit requests for resources for
@@ -59,12 +61,6 @@ parameters for each resource type.
           input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
           output :launch_key
           config options: { accepts_multiple_requests: true }
-
-          def suite_id
-            return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
-            
-            'us_core_client_v501'
-          end
 
           run do
             if smart_launch_urls.present?

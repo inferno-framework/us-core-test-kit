@@ -9,18 +9,20 @@ module USCoreTestKit
         include URLs
 
         id :<%= group_id %>
-
         title '<%= title %>'
-
         description %(
           <%= description %>
         )
 
+        def suite_id
+          return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
+          
+          '<%= suite_id %>'
+        end
+
         test do
           id :<%= test_id %>
-
           title '<%= title %>'
-
           description %(
             <%= description %>
           )
@@ -51,12 +53,6 @@ module USCoreTestKit
           input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
           output :launch_key
           config options: { accepts_multiple_requests: true }
-
-          def suite_id
-            return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
-            
-            '<%= suite_id %>'
-          end
 
           run do
             if smart_launch_urls.present?
