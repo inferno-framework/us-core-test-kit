@@ -49,6 +49,10 @@ module USCoreTestKit
           "us_core_client_wait_test_#{ig_metadata.reformatted_version.downcase}"
         end
 
+        def suite_id
+          "us_core_client_#{ig_metadata.reformatted_version}"
+        end
+
         def title
           'Wait for Requests'
         end

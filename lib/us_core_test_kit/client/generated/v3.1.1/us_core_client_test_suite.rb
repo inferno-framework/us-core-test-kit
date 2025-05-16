@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
+require 'udap_security_test_kit'
+require 'smart_app_launch_test_kit'
 require_relative '../../../version'
 require_relative 'tags'
 require_relative 'urls'
+require_relative '../../metadata_helper'
+require_relative 'authorization_endpoint'
+require_relative 'token_endpoint'
 require_relative 'read_endpoint'
 require_relative 'search_endpoint'
 require_relative '../../test_helper'
+require_relative '../../us_core_client_options'
+require_relative 'registration_group'
 require_relative 'wait_group'
+require_relative 'auth_smart_alca_group'
+require_relative 'auth_smart_alcs_group'
+require_relative 'auth_smart_alp_group'
+require_relative 'auth_udap_group'
 require_relative 'patient_client_group'
 require_relative 'allergy_intolerance_client_group'
 require_relative 'care_plan_client_group'
@@ -134,21 +145,98 @@ to verify that they demonstrate that the client:
 
 ## Quick Start
 
-Inferno needs to be able to identify when requests come from the client under test. Testers
-must provide a bearer access token that will be provided within the Authentication header
-(Bearer <token>) on all requests made to Inferno endpoints during the test. Inferno uses this
-information to associate the message with the test session and determine how to respond. How
-the token provided to Inferno is generated is up to the tester.
+Inferno's simulated US Core endpoints require authentication using the OAuth flows
+conforming to one of the following:
+- SMART [App Launch flow](https://hl7.org/fhir/smart-app-launch/STU2.2/app-launch.html), or
+- UDAP [Consumer-Facing flow](https://hl7.org/fhir/us/udap-security/STU1/consumer.html).
 
-Note: authentication options for these tests have not been finalized and are subject to change
-as the requirements evolve. If the implemented approach prevents you from using these tests,
-please provide feedback so the limitations can be addressed.
+When creating a test session, select the Client Security Type corresponding to an
+authentication approach supported by the client. Then, start by running the "Client Registration"
+group which will guide you through the registration process, including what inputs to provide.
+See the *Auth Configuration Details* section below for details.
 
-## Sample Execution
+Once registration is complete, run the "Read & Search" group to have Inferno wait for US Core
+read and search requests from the client, return the requested US Core
+resources to the client, and verify the interactions. The Patient that the client
+needs to request data for has the following demographic details:
+- **Resource ID**: us-core-client-tests-patient
+- **Name**: ClientTests USCore
+- **Member Identifier**: us-core-client-tests-patient (system: Inferno)
+- **Date of Birth**: 1940-03-29
+- **Gender**: male
 
-To try out these tests without an actual US Core client implementation, you may run them using the
-[included Ruby script](https://github.com/inferno-framework/us-core-test-kit/blob/main/lib/us-core-test-kit/client/docs/us_core_client.rb).
-This script will simulate a client by making requests to Inferno. Set the access token to "test".
+## Demonstration
+
+To try out these tests without an actual US Core client implementation, you may run them against
+the US Core Server tests using the following steps:
+
+1. In separate tabs, create test sessions for corresponding versions of
+   - The "US Core" test suite, choosing the "SMART App Launch 2.2.0" option
+   - The "US Core Client" test suite, choosing the "SMART App Launch Public Client" option
+2. In the US Core Client test session, select the "Demo: Run Against the US Core Server Suite"
+   preset in the upper left, click the "RUN ALL TESTS" button in the upper right, and then click
+   "SUBMIT" at the bottom of the input dialog that appears. Confirm the configuration of the client
+   by clicking the link in the first "User Action Required" dialog that appears, so that a second
+   one appears asking for US Core requests to be made.
+3. In the US Core Server test session, select the "Standalone Launch" group from the list
+   at the left, select the "Demo: Run Against the US Core Client Suite"
+   preset in the upper left, click the "RUN TESTS" button in the upper right, and then click
+   "SUBMIT" at the bottom of the input dialog that appears. When a "User Action Required" dialog
+   appears, click the link to authorize with the server and the test run will complete. A few tests
+   may fail.
+4. Select the "US Core FHIR API" group from the list at the left, click the "RUN ALL TESTS" button
+   in the upper right, and then click "SUBMIT" at the bottom of the input dialog that appears.
+   These tests will run for a while and may result in test failures around must support and
+   conformance features.
+5. Once the server tests have completed, return to the client test session and click the link
+   in the "User Action Required" dialog to continue the tests and evaluate the client's
+   interactions. These tests will also run for a while and may result in some failures.
+
+# Input Details
+
+## Auth Configuration Details
+
+When running these tests there are 4 options for authentication, which also allows 
+Inferno to identify which session the requests are for. The choice is made when the
+session is created with the selected Client Security Type option, which determines
+what details the tester needs to provide during the Client Registration tests:
+
+- **SMART App Launch Client**: the system under test will manually register
+  with Inferno and request access tokens to use when accessing FHIR endpoints
+  as per the SMART App Luanch specification, which includes providing one or more
+  redirect URI(s) in the **SMART App Launch Redirect URI(s)** input, and optionally,
+  launch URL(s) in the **SMART App Launch URL(s)** input. Additionally, testers may provide
+  a **Client Id** if they want their client assigned a specific one. Depending on the
+  specific SMART flavor chosen, additional inputs for authentication may be needed:
+  - **SMART App Launch Public Client**: no additional authentication inputs
+  - **SMART App Launch Confidential Symmetric Client**: provide a secret using the
+    **SMART Confidential Symmetric Client Secret** input.
+  - **SMART App Launch Confidential Asymmetric Client**: provide a URL that resolves
+    to a JWKS or a raw JWKS in JSON format using the **SMART JSON Web Key Set (JWKS)** input.
+- **UDAP Authorization Code Client**: the system under test will dynamically register
+  with Inferno and request access tokens used to access FHIR endpoints
+  as per the UDAP specification. It requires the **UDAP Client URI** input
+  to be populated with the URI that the client will use when dynamically
+  registering with Inferno. This will be used to generate a client id (each
+  unique UDAP Client URI will always get the same client id). All other details
+  that Inferno needs will be provided as a part of the dynamic registration.
+
+## Inputs Controlling Token Responses
+
+Inferno's SMART simulation does not include the details needed to populate
+the token response [context data](https://hl7.org/fhir/smart-app-launch/STU2.2/scopes-and-launch-context.html)
+when requested by apps using scopes during the *SMART App Launch* flow. If the tested app
+needs and will request these details, the tester must provide them for Inferno
+to respond with using the following inputs:
+- **Launch Context**: Testers can provide a JSON
+  array for Inferno to use as the base for building a token response on. This can include
+  keys like `"patient"` when the `launch/patient` scope will be requested. Note that when keys that Inferno
+  also populates (e.g. `access_token` or `id_token`) are included, the Inferno value will be returned.
+- **FHIR User Relative Reference**: Testers
+  can provide a FHIR relative reference (`<resource type>/<id>`) for the FHIR user record
+  to return with the `id_token` when the `openid` and `fhirUser` scopes are requested.
+  If populated, ensure that the referenced resource is available in Inferno's simulated
+  FHIR server so that it can be accessed.
 
 # Current Limitations
 
@@ -168,6 +256,7 @@ The current version of this test suite does not support:
   - _revInclude
   - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
 - Other must support requirements not outlined above.
+- Clients that cannot follow the SMART App Launch or UDAP Consumer-Facing OAuth flows to obtain an access token.
 
 
         )
@@ -190,19 +279,81 @@ The current version of this test suite does not support:
           }
         ]
 
-        suite_endpoint :get, READ_ROUTE, ReadEndpoint
+        suite_option  :client_type,
+                      title: 'Client Security Type',
+                      list_options: [
+                        {
+                          label: 'SMART App Launch Public Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
+                        },
+                        {
+                          label: 'SMART App Launch Confidential Symmetric Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
+                        },
+                        {
+                          label: 'SMART App Launch Confidential Asymmetric Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
+                        },
+                        {
+                          label: 'UDAP Authorization Code Client',
+                          value: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
+                        }
+                      ]
+
+        route(:get, METADATA_PATH, USCoreTestKit::Client::MetadataHelper.get_metadata('v311'))
+        route(:get, UDAPSecurityTestKit::UDAP_DISCOVERY_PATH, lambda { |_env|
+          UDAPSecurityTestKit::MockUDAPServer.udap_server_metadata(id)
+        })
+        route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
+          SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
+        })
+        route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, ->(_env) {SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id) }) 
+        route(
+          :get,
+          SMARTAppLaunch::OIDC_JWKS_PATH,
+          ->(_env) { [200, { 'Content-Type' => 'application/json' }, [SMARTAppLaunch::OIDCJWKS.jwks_json]] }
+        )
+
+        suite_endpoint :post, UDAPSecurityTestKit::REGISTRATION_PATH,
+                        UDAPSecurityTestKit::MockUDAPServer::RegistrationEndpoint
+        suite_endpoint :post, UDAPSecurityTestKit::TOKEN_PATH, MockUdapSmartServer::TokenEndpoint
+        suite_endpoint :get,  UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
+        suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
+
+        suite_endpoint :post, SEARCH_POST_ROUTE, SearchEndpoint
         suite_endpoint :get, SEARCH_ROUTE, SearchEndpoint
+        suite_endpoint :get, READ_ROUTE, ReadEndpoint
 
         resume_test_route :get, RESUME_PASS_ROUTE do |request|
-          request.query_parameters['id']
+          request.query_parameters['token']
         end
 
+        group from: :us_core_client_v311_registration
+
         group do
+          id :us_core_client_read_search_group_v311
           title 'Read & Search'
 
           run_as_group
 
           group from: :us_core_client_wait_group_v311
+
+          group from: :us_core_client_v311_auth_smart_alca,
+              required_suite_options: {
+                client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
+              }
+          group from: :us_core_client_v311_auth_smart_alcs,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
+                }
+          group from: :us_core_client_v311_auth_smart_alp,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
+                }
+          group from: :us_core_client_v311_auth_udap,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
+                }
 
           group from: :us_core_client_v311_patient
           group from: :us_core_client_v311_allergy_intolerance

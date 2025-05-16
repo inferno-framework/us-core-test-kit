@@ -10,7 +10,9 @@ module USCoreTestKit
         include ServerProxy
 
         def test_run_identifier
-          request.get_header('HTTP_AUTHORIZATION')&.split&.last
+          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+            request.headers['authorization']&.delete_prefix('Bearer ')
+          )
         end
 
         def make_response

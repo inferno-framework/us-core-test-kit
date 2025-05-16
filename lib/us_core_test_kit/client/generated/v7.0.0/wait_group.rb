@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'smart_app_launch_test_kit'
+
 module USCoreTestKit
   module Client
     module USCoreClientV700
@@ -7,9 +9,7 @@ module USCoreTestKit
         include URLs
 
         id :us_core_client_wait_group_v700
-
         title 'Wait for Requests'
-
         description %(
           
 This test will wait for the client under test to submit requests for resources for
@@ -18,11 +18,15 @@ parameters for each resource type.
 
         )
 
+        def suite_id
+          return config.options[:endpoint_suite_id] if config.options[:endpoint_suite_id].present?
+          
+          'us_core_client_v700'
+        end
+
         test do
           id :us_core_client_wait_test_v700
-
           title 'Wait for Requests'
-
           description %(
             
 This test will wait for the client under test to submit requests for resources for
@@ -31,17 +35,55 @@ parameters for each resource type.
 
           )
 
-          input :access_token
+          input :client_id,
+                title: 'Client Id',
+                type: 'text',
+                optional: true,
+                locked: true,
+                description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
+          input :smart_launch_urls,
+                title: 'SMART App Launch URL(s)',
+                type: 'textarea',
+                locked: true,
+                optional: true,
+                description: SMARTAppLaunch::INPUT_SMART_LAUNCH_URLS_DESCRIPTION_LOCKED
+          input :launch_context,
+                title: 'Launch Context',
+                type: 'textarea',
+                optional: true,
+                description: SMARTAppLaunch::INPUT_LAUNCH_CONTEXT_DESCRIPTION       
+          input :fhir_user_relative_reference,
+                title: 'FHIR User Relative Reference',
+                type: 'text',
+                optional: true,
+                description: SMARTAppLaunch::INPUT_FHIR_USER_RELATIVE_REFERENCE
+          
+          input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
+          output :launch_key
+          config options: { accepts_multiple_requests: true }
 
           run do
+            if smart_launch_urls.present?
+              launch_key = SecureRandom.hex(32)
+              output(launch_key:)
+            end
+            
             wait(
-              identifier: access_token,
+              identifier: client_id,
               message: %(
 Inferno will now wait for the client under test to make the required requests against the following base URL:
 
 #{fhir_url}
 
 All requests will be recorded. When finished, the requests will be inspected to ensure that the client under test is making the required requests.
+Requests should target the following patient record:
+- **Resource ID**: us-core-client-tests-patient
+- **Name**: ClientTests USCore
+- **Member Identifier**: us-core-client-tests-patient (system: Inferno)
+- **Date of Birth**: 1940-03-29
+- **Gender**: male
+
+[Click here](#{resume_pass_url}?token=#{client_id}) when finished.
 
 The following requirements will be checked:
 
@@ -513,7 +555,7 @@ The following requirements will be checked:
     * patient
     * _id
 
-[Click here](#{resume_pass_url}?id=#{access_token}) when finished.
+[Click here](#{resume_pass_url}?token=#{client_id}) when finished.
               ),
               timeout: 900
             )
