@@ -202,7 +202,7 @@ the US Core Server tests using the following steps:
 
 ## Auth Configuration Details
 
-When running these tests there are 4 options for authentication, which also allows 
+When running these tests there are 4 options for authentication, which also allows
 Inferno to identify which session the requests are for. The choice is made when the
 session is created with the selected Client Security Type option, which determines
 what details the tester needs to provide during the Client Registration tests:
@@ -261,7 +261,7 @@ The current version of this test suite does not support:
   - multiple-OR
   - _revInclude
   - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
-- Other must support requirements not outlined above.
+- The Must Support Conformance Requirements for clients/requestors specified in US Core IG v4.0.0
 - Clients that cannot follow the SMART App Launch or UDAP Consumer-Facing OAuth flows to obtain an access token.
 
 
