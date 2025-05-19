@@ -603,7 +603,7 @@ module USCoreTestKit
           when FHIR::Reference
             element.reference
           when FHIR::CodeableConcept
-            coding = prefer_well_known_code_sytem(element, include_system)
+            coding = prefer_well_known_code_system(element, include_system)
             include_system ? "#{coding.system}|#{coding.code}" : coding.code
           when FHIR::Identifier
             include_system ? "#{element.system}|#{element.value}" : element.value
@@ -647,7 +647,7 @@ module USCoreTestKit
       when FHIR::Reference
         element.reference.present?
       when FHIR::CodeableConcept
-        coding = prefer_well_known_code_sytem(element, include_system)
+        coding = prefer_well_known_code_system(element, include_system)
         coding.present?
       when FHIR::Identifier
         include_system ? element.value.present? && element.system.present? : element.value.present?
