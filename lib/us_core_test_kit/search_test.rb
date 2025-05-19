@@ -576,7 +576,7 @@ module USCoreTestKit
         fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:, additional_resource_types:, tags:)
     end
 
-    def prefer_well_known_code_sytem(element, include_system)
+    def prefer_well_known_code_system(element, include_system)
       coding =
         find_a_value_at(element, 'coding') { |c| c.code.present? && WellKnownCodeSystems.include?(c.system) }
 
