@@ -1,0 +1,140 @@
+# frozen_string_literal: true
+
+require 'udap_security_test_kit'
+require 'smart_app_launch_test_kit'
+require_relative '../../../version'
+require_relative 'tags'
+require_relative 'urls'
+require_relative '../../metadata_helper'
+require_relative 'authorization_endpoint'
+require_relative 'token_endpoint'
+require_relative 'read_endpoint'
+require_relative 'search_endpoint'
+require_relative '../../test_helper'
+require_relative '../../us_core_client_options'
+require_relative 'registration_group'
+require_relative 'wait_group'
+require_relative 'auth_smart_alca_group'
+require_relative 'auth_smart_alcs_group'
+require_relative 'auth_smart_alp_group'
+require_relative 'auth_udap_group'
+<%- group_file_list.each do |group| -%>
+require_relative '<%= group %>'
+<%- end -%>
+
+module USCoreTestKit
+  module Client
+    module <%= module_name %>
+      class <%= class_name %> < Inferno::TestSuite
+        include URLs
+
+        id :<%= suite_id %>
+
+        title '<%= title %>'
+
+        description %(
+          <%= description %>
+        )
+
+        links [
+          {
+            type: 'report_issue',
+            label: 'Report Issue',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/issues/'
+          },
+          {
+            type: 'source_code',
+            label: 'Open Source',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/'
+          },
+          {
+            type: 'download',
+            label: 'Download',
+            url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+          }
+        ]
+
+        suite_option  :client_type,
+                      title: 'Client Security Type',
+                      list_options: [
+                        {
+                          label: 'SMART App Launch Public Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
+                        },
+                        {
+                          label: 'SMART App Launch Confidential Symmetric Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
+                        },
+                        {
+                          label: 'SMART App Launch Confidential Asymmetric Client',
+                          value: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
+                        },
+                        {
+                          label: 'UDAP Authorization Code Client',
+                          value: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
+                        }
+                      ]
+
+        route(:get, METADATA_PATH, USCoreTestKit::Client::MetadataHelper.get_metadata('<%= ig_metadata.reformatted_version.downcase %>'))
+        route(:get, UDAPSecurityTestKit::UDAP_DISCOVERY_PATH, lambda { |_env|
+          UDAPSecurityTestKit::MockUDAPServer.udap_server_metadata(id)
+        })
+        route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
+          SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
+        })
+        route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, ->(_env) {SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id) }) 
+        route(
+          :get,
+          SMARTAppLaunch::OIDC_JWKS_PATH,
+          ->(_env) { [200, { 'Content-Type' => 'application/json' }, [SMARTAppLaunch::OIDCJWKS.jwks_json]] }
+        )
+
+        suite_endpoint :post, UDAPSecurityTestKit::REGISTRATION_PATH,
+                        UDAPSecurityTestKit::MockUDAPServer::RegistrationEndpoint
+        suite_endpoint :post, UDAPSecurityTestKit::TOKEN_PATH, MockUdapSmartServer::TokenEndpoint
+        suite_endpoint :get,  UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
+        suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
+
+        suite_endpoint :post, SEARCH_POST_ROUTE, SearchEndpoint
+        suite_endpoint :get, SEARCH_ROUTE, SearchEndpoint
+        suite_endpoint :get, READ_ROUTE, ReadEndpoint
+
+        resume_test_route :get, RESUME_PASS_ROUTE do |request|
+          request.query_parameters['token']
+        end
+
+        group from: :<%= registration_group_id %>
+
+        group do
+          id :us_core_client_read_search_group_<%= ig_metadata.reformatted_version.downcase %>
+          title 'Read & Search'
+
+          run_as_group
+
+          group from: :<%= wait_group_id %>
+
+          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alca,
+              required_suite_options: {
+                client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
+              }
+          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alcs,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
+                }
+          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alp,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
+                }
+          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_udap,
+                required_suite_options: {
+                  client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
+                }
+
+          <%- group_id_list.each do |group| -%>
+          group from: :<%= group %>
+          <%- end -%>
+        end
+      end
+    end
+  end
+end

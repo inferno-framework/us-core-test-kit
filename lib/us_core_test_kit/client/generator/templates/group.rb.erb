@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+<%- test_file_list.each do |file_name| -%>
+require_relative '<%= file_name %>'
+<%- end -%>
+
+module USCoreTestKit
+  module Client
+    module <%= module_name %>
+      class <%= class_name %> < Inferno::TestGroup
+        id :<%= group_id %>
+
+        title '<%= title %>'
+
+        description %(
+          <%= description %>
+        )
+
+        run_as_group
+
+        <%- test_id_list.each do |test| -%>
+        test from: :<%= test %>
+        <%- end -%>
+      end
+    end
+  end
+end
