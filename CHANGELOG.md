@@ -1,3 +1,11 @@
+# 0.11.3
+* US Core Client read/search tests by @holmesie
+  in https://github.com/inferno-framework/us-core-test-kit/pull/243
+* Add Client Auth framework support by @karlnaden
+  in https://github.com/inferno-framework/us-core-test-kit/pull/245
+* FI-4061 Avoid purple error when there is no practitioner references by @yunwwang
+  in https://github.com/inferno-framework/us-core-test-kit/pull/246
+
 # 0.11.2
 * FHIR-3946 Apply ASTP/ONC Enforcement Discretion issued on March 21, 2025 by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/241
 
