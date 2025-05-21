@@ -30,7 +30,8 @@ module USCoreTestKit
       @missing_elements = MUST_SUPPORT_ELEMENTS
       practitioners = []
 
-      references.each do |reference|
+      references.each do |reference_info|
+        reference = reference_info[:reference]
         resolved_resource = resolve_reference(reference)
 
         if resolved_resource.nil? ||
@@ -58,7 +59,7 @@ module USCoreTestKit
           search_and_check_response(search_params, resource_type)
 
           practitioner_roles = fetch_all_bundled_resources(resource_type:)
-                               .select { |resource| resource.resourceType == resource_type }
+            .select { |resource| resource.resourceType == resource_type }
 
           next false if practitioner_roles.empty?
           next true if config.options[:skip_practitioner_role_validation]
@@ -70,10 +71,10 @@ module USCoreTestKit
         end
       end
 
-      missing_must_support_message = "Could not find US Core PractitionerRole Profile resources and " \
+      missing_must_support_message = 'Could not find US Core PractitionerRole Profile resources and ' \
                                      "these MustSupport elements #{missing_elements_string.join(', ')} " \
-                                     "in US Core Practitioner Profile resources. " \
-                                     "Please use patients with more information."
+                                     'in US Core Practitioner Profile resources. ' \
+                                     'Please use patients with more information.'
 
       assert (support_practitioner_role || @missing_elements.blank?), missing_must_support_message
     end
