@@ -77,9 +77,9 @@ Inferno will now wait for the client under test to make the required requests ag
 
 All requests will be recorded. When finished, the requests will be inspected to ensure that the client under test is making the required requests.
 Requests should target the following patient record:
-- **Resource ID**: us-core-client-tests-patient
+- **Resource ID**: `us-core-client-tests-patient`
 - **Name**: ClientTests USCore
-- **Member Identifier**: us-core-client-tests-patient (system: Inferno)
+- **Member Identifier**: `us-core-client-tests-patient` (system: `urn:inferno:mrn`)
 - **Date of Birth**: 1940-03-29
 - **Gender**: male
 

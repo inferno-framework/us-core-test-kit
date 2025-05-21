@@ -210,9 +210,9 @@ Once registration is complete, run the "Read & Search" group to have Inferno wai
 read and search requests from the client, return the requested US Core
 resources to the client, and verify the interactions. The Patient that the client
 needs to request data for has the following demographic details:
-- **Resource ID**: us-core-client-tests-patient
+- **Resource ID**: `us-core-client-tests-patient`
 - **Name**: ClientTests USCore
-- **Member Identifier**: us-core-client-tests-patient (system: Inferno)
+- **Member Identifier**: `us-core-client-tests-patient` (system: `urn:inferno:mrn`)
 - **Date of Birth**: 1940-03-29
 - **Gender**: male
 
