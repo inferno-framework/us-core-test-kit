@@ -19,7 +19,7 @@ module USCoreTestKit
       end
 
       run do
-        perform_read_test(scratch.dig(:references, 'RelatedPerson'))
+        perform_read_test(scratch.dig(:references, 'RelatedPerson'), delayed_reference: true)
       end
     end
   end
