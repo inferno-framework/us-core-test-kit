@@ -669,10 +669,10 @@ module USCoreTestKit
       end
     end
 
-    def save_resource_reference(resource_type, reference, reference_parent_resource)
+    def save_resource_reference(resource_type, reference, referencing_resource)
       scratch[:references] ||= {}
       scratch[:references][resource_type] ||= Set.new
-      scratch[:references][resource_type] << { reference: reference, parent_resource: reference_parent_resource }
+      scratch[:references][resource_type] << { reference: reference, referencing_resource: referencing_resource }
     end
 
     def save_delayed_references(resources, containing_resource_type = resource_type)
@@ -688,12 +688,12 @@ module USCoreTestKit
               need_to_save = reference_to_save[:resources].include?(resource_type)
               next unless need_to_save
 
-              resource_type = resource.resourceType
-              resource_id = resource.id
+              reference_resource_type = resource.resourceType
+              reference_resource_id = resource.id
 
-              reference_parent_resource = "#{resource_type}/#{resource_id}"
+              referencing_resource = "#{reference_resource_type}/#{reference_resource_id}"
 
-              save_resource_reference(resource_type, reference, reference_parent_resource)
+              save_resource_reference(resource_type, reference, referencing_resource)
             end
         end
       end
