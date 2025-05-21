@@ -77,7 +77,10 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
           {
             references: {
               'Practitioner' => [
-                FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}")
+                {
+                  reference: FHIR::Reference.new(reference: "Practitioner/#{practitioner_id}"),
+                  referencing_resource: 'CareTeam/test_care_team'
+                }
               ]
             }
           }
