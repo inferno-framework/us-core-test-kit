@@ -2,12 +2,14 @@
 
 require_relative '../../server_proxy'
 require_relative 'tags'
+require_relative 'urls'
 
 module USCoreTestKit
   module Client
     module USCoreClientV311
       class ReadEndpoint < Inferno::DSL::SuiteEndpoint
         include ServerProxy
+        include URLs
 
         def test_run_identifier
           UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
@@ -16,13 +18,7 @@ module USCoreTestKit
         end
 
         def make_response
-          server_response = proxy_request
-          response.status = server_response.status
-          response.body = server_response.body
-        end
-
-        def proxy_request
-          proxy_client.get("#{resource_type}/#{resource_id}", request_params)
+          build_proxied_read_response
         end
 
         def tags
@@ -78,6 +74,10 @@ module USCoreTestKit
 
         def request_params
           request.params.to_h.except(:resource_id, :resource_type).stringify_keys
+        end
+
+        def suite_id
+          USCoreClientTestSuite.id
         end
       end
     end
