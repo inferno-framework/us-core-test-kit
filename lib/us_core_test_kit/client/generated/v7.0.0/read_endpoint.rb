@@ -84,10 +84,6 @@ module USCoreTestKit
           request.params[:resource_type]
         end
 
-        def request_params
-          request.params.to_h.except(:resource_id, :resource_type).stringify_keys
-        end
-
         def suite_id
           USCoreClientTestSuite.id
         end
