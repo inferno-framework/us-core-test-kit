@@ -78,10 +78,6 @@ module USCoreTestKit
           end
         end
 
-        def resource_id
-          request.params[:resource_id]
-        end
-
         def resource_type
           request.params[:resource_type]
         end
