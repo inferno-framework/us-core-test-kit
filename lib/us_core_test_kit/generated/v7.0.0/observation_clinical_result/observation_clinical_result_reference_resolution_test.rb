@@ -18,6 +18,7 @@ module USCoreTestKit
         * Observation.encounter
         * Observation.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@105', 'hl7.fhir.us.core_7.0.0@109'
 
       id :us_core_v700_observation_clinical_result_reference_resolution_test
 

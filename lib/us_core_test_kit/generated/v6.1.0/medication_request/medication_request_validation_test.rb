@@ -19,6 +19,7 @@ to the bound ValueSet. Quantity, Coding, and code element bindings will
 fail if their code/system are not found in the valueset.
 
       )
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@74'
       output :dar_code_found, :dar_extension_found
 
       def resource_type

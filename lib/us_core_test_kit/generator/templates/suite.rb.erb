@@ -128,8 +128,18 @@ module USCoreTestKit
         group from: :<%= capability_statement_group_id %>
       <% group_id_list.each do |id| %>
         group from: :<%= id %><% end %>
-        group from: :<%= clinical_notes_guidance_group_id %><%if us_core_6_and_above? %>
-        group from: :<%= screening_assessment_id %><% end %>
+        <%- if module_name == 'USCoreV610'-%>
+        group from: :<%= clinical_notes_guidance_group_id %>,
+              verifies_requirements: ['hl7.fhir.us.core_6.1.0@206', 'hl7.fhir.us.core_6.1.0@207', 'hl7.fhir.us.core_6.1.0@208', 'hl7.fhir.us.core_6.1.0@209', 'hl7.fhir.us.core_6.1.0@210', 'hl7.fhir.us.core_6.1.0@214', 'hl7.fhir.us.core_6.1.0@215', 'hl7.fhir.us.core_6.1.0@216', 'hl7.fhir.us.core_6.1.0@220', 'hl7.fhir.us.core_6.1.0@221', 'hl7.fhir.us.core_6.1.0@223', 'hl7.fhir.us.core_6.1.0@224', 'hl7.fhir.us.core_6.1.0@231']
+        <%- elsif module_name == 'USCoreV700'-%>
+        group from: :<%= clinical_notes_guidance_group_id %>,
+              verifies_requirements: ['hl7.fhir.us.core_7.0.0@206', 'hl7.fhir.us.core_7.0.0@207', 'hl7.fhir.us.core_7.0.0@208', 'hl7.fhir.us.core_7.0.0@209', 'hl7.fhir.us.core_7.0.0@210', 'hl7.fhir.us.core_7.0.0@214', 'hl7.fhir.us.core_7.0.0@215', 'hl7.fhir.us.core_7.0.0@216', 'hl7.fhir.us.core_7.0.0@220', 'hl7.fhir.us.core_7.0.0@221', 'hl7.fhir.us.core_7.0.0@223', 'hl7.fhir.us.core_7.0.0@224', 'hl7.fhir.us.core_7.0.0@231']
+        <%- else -%>
+        group from: :<%= clinical_notes_guidance_group_id %>
+        <%- end -%>
+        <%- if us_core_6_and_above? -%>
+        group from: :<%= screening_assessment_id %>
+        <%- end -%>
         group from: :us_core_311_data_absent_reason
       end<% if us_core_6_and_above? %>
 

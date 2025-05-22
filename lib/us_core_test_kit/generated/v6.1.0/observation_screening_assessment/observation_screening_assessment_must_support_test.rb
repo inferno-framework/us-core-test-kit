@@ -26,6 +26,10 @@ module USCoreTestKit
         * Observation.valueQuantity
         * Observation.valueString
       )
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
+                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
+                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
+                            'hl7.fhir.us.core_6.1.0@91'
 
       id :us_core_v610_observation_screening_assessment_must_support_test
 
