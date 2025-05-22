@@ -118,7 +118,8 @@ module USCoreTestKit
 
       test from: :us_core_profile_support do
         config(
-          options: { us_core_profiles: PROFILES.values.flatten }
+          options: { us_core_profiles: PROFILES.values.flatten },
+          verifies_requirements: ['hl7.fhir.us.core_7.0.0@16']
         )
       end
 
