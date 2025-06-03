@@ -59,7 +59,8 @@ module USCoreTestKit
       [issues section](https://github.com/inferno-framework/us-core-test-kit/issues)
       of the repository.
     DESCRIPTION
-    suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700]
+    suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700, :us_core_client_v311,
+               :us_core_client_v400, :us_core_client_v501, :us_core_client_v610, :us_core_client_v700]
     tags ['SMART App Launch', 'US Core']
     last_updated LAST_UPDATED
     version VERSION
