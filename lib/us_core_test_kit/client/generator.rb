@@ -13,10 +13,7 @@ require_relative 'generator/search_test_generator'
 require_relative 'generator/wait_group_generator'
 require_relative 'generator/read_endpoint_generator'
 require_relative 'generator/search_endpoint_generator'
-require_relative 'generator/authorization_endpoint_generator'
-require_relative 'generator/token_endpoint_generator'
 require_relative 'generator/auth_smart_group_generator'
-require_relative 'generator/auth_udap_group_generator'
 require_relative 'generator/registration_group_generator'
 require_relative 'generator/registration_configuration_display_test_generator'
 
@@ -102,22 +99,18 @@ module USCoreTestKit
       def generate_endpoints
         ReadEndpointGenerator.generate(ig_metadata, base_output_dir)
         SearchEndpointGenerator.generate(ig_metadata, base_output_dir)
-        AuthorizationEndpointGenerator.generate(ig_metadata, base_output_dir)
-        TokenEndpointGenerator.generate(ig_metadata, base_output_dir)
       end
 
       def generate_registration_tests
         RegistrationGroupGenerator.generate(ig_metadata, base_output_dir)
         FileUtils.mkdir_p(File.join(base_output_dir, 'registration'))
         RegistrationConfigurationDisplayTestGenerator.generate(ig_metadata, base_output_dir, 'smart')
-        RegistrationConfigurationDisplayTestGenerator.generate(ig_metadata, base_output_dir, 'udap')
       end
 
       def generate_auth_tests
         AuthSMARTGroupGenerator.generate(ig_metadata, base_output_dir, 'alca')
         AuthSMARTGroupGenerator.generate(ig_metadata, base_output_dir, 'alcs')
         AuthSMARTGroupGenerator.generate(ig_metadata, base_output_dir, 'alp')
-        AuthUDAPGroupGenerator.generate(ig_metadata, base_output_dir)
       end
     end
   end

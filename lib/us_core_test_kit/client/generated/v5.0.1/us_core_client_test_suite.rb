@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require 'udap_security_test_kit'
 require 'smart_app_launch_test_kit'
 require_relative '../../../version'
 require_relative 'tags'
 require_relative 'urls'
 require_relative '../../metadata_helper'
-require_relative 'authorization_endpoint'
-require_relative 'token_endpoint'
 require_relative 'read_endpoint'
 require_relative 'search_endpoint'
 require_relative '../../test_helper'
@@ -17,7 +14,6 @@ require_relative 'wait_group'
 require_relative 'auth_smart_alca_group'
 require_relative 'auth_smart_alcs_group'
 require_relative 'auth_smart_alp_group'
-require_relative 'auth_udap_group'
 require_relative 'patient_client_group'
 require_relative 'allergy_intolerance_client_group'
 require_relative 'care_plan_client_group'
@@ -182,9 +178,7 @@ to verify that they demonstrate that the client:
 ## Quick Start
 
 Inferno's simulated US Core endpoints require authentication using the OAuth flows
-conforming to one of the following:
-- SMART [App Launch flow](https://hl7.org/fhir/smart-app-launch/STU2.2/app-launch.html), or
-- UDAP [Consumer-Facing flow](https://hl7.org/fhir/us/udap-security/STU1/consumer.html).
+conforming the SMART [App Launch flow](https://hl7.org/fhir/smart-app-launch/STU2.2/app-launch.html).
 
 When creating a test session, select the Client Security Type corresponding to an
 authentication approach supported by the client. Then, start by running the "Client Registration"
@@ -232,30 +226,22 @@ the US Core Server tests using the following steps:
 
 ## Auth Configuration Details
 
-When running these tests there are 4 options for authentication, which also allows
+When running these tests there are 3 options for SMART authentication, which also allows
 Inferno to identify which session the requests are for. The choice is made when the
 session is created with the selected Client Security Type option, which determines
-what details the tester needs to provide during the Client Registration tests:
+what details the tester needs to provide during manual SMART registration with Inferno.
 
-- **SMART App Launch Client**: the system under test will manually register
-  with Inferno and request access tokens to use when accessing FHIR endpoints
-  as per the SMART App Luanch specification, which includes providing one or more
-  redirect URI(s) in the **SMART App Launch Redirect URI(s)** input, and optionally,
-  launch URL(s) in the **SMART App Launch URL(s)** input. Additionally, testers may provide
-  a **Client Id** if they want their client assigned a specific one. Depending on the
-  specific SMART flavor chosen, additional inputs for authentication may be needed:
-  - **SMART App Launch Public Client**: no additional authentication inputs
-  - **SMART App Launch Confidential Symmetric Client**: provide a secret using the
-    **SMART Confidential Symmetric Client Secret** input.
-  - **SMART App Launch Confidential Asymmetric Client**: provide a URL that resolves
-    to a JWKS or a raw JWKS in JSON format using the **SMART JSON Web Key Set (JWKS)** input.
-- **UDAP Authorization Code Client**: the system under test will dynamically register
-  with Inferno and request access tokens used to access FHIR endpoints
-  as per the UDAP specification. It requires the **UDAP Client URI** input
-  to be populated with the URI that the client will use when dynamically
-  registering with Inferno. This will be used to generate a client id (each
-  unique UDAP Client URI will always get the same client id). All other details
-  that Inferno needs will be provided as a part of the dynamic registration.
+In all cases, testers will provide:
+- One or more redirect URI(s) in the **SMART App Launch Redirect URI(s)** input.
+- Zero or more launch URL(s) in the **SMART App Launch URL(s)** input.
+- Optionally, a **Client Id** if they want their client assigned a specific id. 
+  
+Depending on the specific SMART flavor chosen, additional inputs for authentication may be needed:
+- **SMART App Launch Public Client**: no additional authentication inputs
+- **SMART App Launch Confidential Symmetric Client**: provide a secret using the
+  **SMART Confidential Symmetric Client Secret** input.
+- **SMART App Launch Confidential Asymmetric Client**: provide a URL that resolves
+  to a JWKS or a raw JWKS in JSON format using the **SMART JSON Web Key Set (JWKS)** input.
 
 ## Inputs Controlling Token Responses
 
@@ -292,7 +278,7 @@ The current version of this test suite does not support:
   - _revInclude
   - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
 - The Must Support Conformance Requirements for clients/requestors specified in US Core IG v5.0.1
-- Clients that cannot follow the SMART App Launch or UDAP Consumer-Facing OAuth flows to obtain an access token.
+- Clients that cannot follow the SMART App Launch OAuth flow to obtain an access token.
 
 
         )
@@ -329,17 +315,10 @@ The current version of this test suite does not support:
                         {
                           label: 'SMART App Launch Confidential Asymmetric Client',
                           value: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
-                        },
-                        {
-                          label: 'UDAP Authorization Code Client',
-                          value: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
                         }
                       ]
 
         route(:get, METADATA_PATH, USCoreTestKit::Client::MetadataHelper.get_metadata('v501'))
-        route(:get, UDAPSecurityTestKit::UDAP_DISCOVERY_PATH, lambda { |_env|
-          UDAPSecurityTestKit::MockUDAPServer.udap_server_metadata(id)
-        })
         route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
           SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
         })
@@ -350,11 +329,9 @@ The current version of this test suite does not support:
           ->(_env) { [200, { 'Content-Type' => 'application/json' }, [SMARTAppLaunch::OIDCJWKS.jwks_json]] }
         )
 
-        suite_endpoint :post, UDAPSecurityTestKit::REGISTRATION_PATH,
-                        UDAPSecurityTestKit::MockUDAPServer::RegistrationEndpoint
-        suite_endpoint :post, UDAPSecurityTestKit::TOKEN_PATH, MockUdapSmartServer::TokenEndpoint
-        suite_endpoint :get,  UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
-        suite_endpoint :post, UDAPSecurityTestKit::AUTHORIZATION_PATH, MockUdapSmartServer::AuthorizationEndpoint
+        suite_endpoint :post, SMARTAppLaunch::TOKEN_PATH, SMARTAppLaunch::MockSMARTServer::TokenEndpoint
+        suite_endpoint :get,  SMARTAppLaunch::AUTHORIZATION_PATH, SMARTAppLaunch::MockSMARTServer::AuthorizationEndpoint
+        suite_endpoint :post, SMARTAppLaunch::AUTHORIZATION_PATH, SMARTAppLaunch::MockSMARTServer::AuthorizationEndpoint
 
         suite_endpoint :post, SEARCH_POST_ROUTE, SearchEndpoint
         suite_endpoint :get, SEARCH_ROUTE, SearchEndpoint
@@ -385,10 +362,6 @@ The current version of this test suite does not support:
           group from: :us_core_client_v501_auth_smart_alp,
                 required_suite_options: {
                   client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
-                }
-          group from: :us_core_client_v501_auth_udap,
-                required_suite_options: {
-                  client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
                 }
 
           group from: :us_core_client_v501_patient

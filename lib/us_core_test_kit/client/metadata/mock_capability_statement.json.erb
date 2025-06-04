@@ -47,6 +47,16 @@
                 ],
                 "text": "OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org)"
             }
+        ],
+        "resource" : [
+            {
+                  "type": "Patient",
+                  "supportedProfile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"],
+                  "interaction" : [
+                      { "code" : "read" },
+                      { "code" : "search-type" }
+                  ]
+            }
         ]
       }
     }
