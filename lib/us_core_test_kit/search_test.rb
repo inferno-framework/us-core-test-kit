@@ -2,6 +2,7 @@ require_relative 'date_search_validation'
 require_relative 'fhir_resource_navigation'
 require_relative 'resource_search_param_checker'
 require_relative 'search_test_properties'
+require_relative 'well_known_code_systems'
 
 module USCoreTestKit
   module SearchTest
@@ -9,6 +10,7 @@ module USCoreTestKit
     include DateSearchValidation
     include FHIRResourceNavigation
     include ResourceSearchParamChecker
+    include WellKnownCodeSystems
 
     def_delegators 'self.class', :metadata, :provenance_metadata, :properties
     def_delegators 'properties',
@@ -574,6 +576,15 @@ module USCoreTestKit
         fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:, additional_resource_types:, tags:)
     end
 
+    def prefer_well_known_code_system(element, include_system)
+      coding =
+        find_a_value_at(element, 'coding') { |c| c.code.present? && WellKnownCodeSystems.include?(c.system) }
+
+      return coding if coding.present?
+
+      find_a_value_at(element, 'coding') { |c| c.code.present? && (!include_system || c.system.present?) }
+    end
+
     def search_param_value(name, resource, include_system: false)
       paths = search_param_paths(name)
       search_value = nil
@@ -592,13 +603,8 @@ module USCoreTestKit
           when FHIR::Reference
             element.reference
           when FHIR::CodeableConcept
-            if include_system
-              coding =
-                find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-              "#{coding.system}|#{coding.code}"
-            else
-              find_a_value_at(element, 'coding.code')
-            end
+            coding = prefer_well_known_code_system(element, include_system)
+            include_system ? "#{coding.system}|#{coding.code}" : coding.code
           when FHIR::Identifier
             include_system ? "#{element.system}|#{element.value}" : element.value
           when FHIR::Coding
@@ -641,13 +647,8 @@ module USCoreTestKit
       when FHIR::Reference
         element.reference.present?
       when FHIR::CodeableConcept
-        if include_system
-          coding =
-            find_a_value_at(element, 'coding') { |coding| coding.code.present? && coding.system.present? }
-          coding.present?
-        else
-          find_a_value_at(element, 'coding.code').present?
-        end
+        coding = prefer_well_known_code_system(element, include_system)
+        coding.present?
       when FHIR::Identifier
         include_system ? element.value.present? && element.system.present? : element.value.present?
       when FHIR::Coding
