@@ -141,7 +141,9 @@ module USCoreTestKit
 
       check_search_response
 
-      post_search_resources = fetch_and_assert_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
+      post_search_resources = fetch_and_assert_all_bundled_resources.select do |resource|
+        resource.resourceType == resource_type
+      end
 
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
@@ -152,7 +154,7 @@ module USCoreTestKit
       search_variant_test_records[:post_variant] = true
 
       assert get_resource_count == post_resource_count,
-             "Expected search by POST to return the same results as search by GET, " \
+             'Expected search by POST to return the same results as search by GET, ' \
              "but GET search returned #{get_resource_count} resources, and POST search " \
              "returned #{post_resource_count} resources."
     end
@@ -295,18 +297,18 @@ module USCoreTestKit
         fetch_and_assert_all_bundled_resources(params: search_params)
           .select { |resource| resource.resourceType == resource_type }
 
-      assert resources_returned.present?, "No resources were returned when searching by `system|code`"
+      assert resources_returned.present?, 'No resources were returned when searching by `system|code`'
 
       search_variant_test_records[:token_variants] = true
     end
 
     def perform_search_with_status(
-          original_params,
-          patient_id,
-          status_search_values: self.status_search_values,
-          resource_type: self.resource_type
-        )
-      assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
+      original_params,
+      patient_id,
+      status_search_values: self.status_search_values,
+      resource_type: self.resource_type
+    )
+      assert resource.is_a?(FHIR::OperationOutcome), 'Server returned a status of 400 without an OperationOutcome'
       # TODO: warn about documenting status requirements
       status_search_values.flat_map do |status_value|
         search_params = original_params.merge("#{status_search_param_name}": status_value)
@@ -338,7 +340,6 @@ module USCoreTestKit
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : Array.wrap(definition[:values])
     end
 
-
     def perform_multiple_or_search_test
       resolved_one = false
 
@@ -352,7 +353,8 @@ module USCoreTestKit
         multiple_or_search_params.each do |param_name|
           search_value = default_search_values(param_name.to_sym)
           search_params = search_params.merge("#{param_name}" => search_value)
-          existing_values[param_name.to_sym] = scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
+          existing_values[param_name.to_sym] =
+            scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
         end
 
         # skip patient without multiple-or values
@@ -367,7 +369,8 @@ module USCoreTestKit
             .select { |resource| resource.resourceType == resource_type }
 
         multiple_or_search_params.each do |param_name|
-          missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
+          missing_values[param_name.to_sym] =
+            existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
         end
 
         missing_value_message = missing_values
@@ -375,7 +378,8 @@ module USCoreTestKit
           .map { |param_name, missing_value| "#{missing_value.join(',')} values from #{param_name}" }
           .join(' and ')
 
-        assert missing_value_message.blank?, "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
+        assert missing_value_message.blank?,
+               "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
 
         break if resolved_one
       end
@@ -430,7 +434,8 @@ module USCoreTestKit
       end
 
       not_matched_included_medications_string = not_matched_included_medications.join(',')
-      assert not_matched_included_medications.empty?, "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
+      assert not_matched_included_medications.empty?,
+             "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
 
@@ -440,8 +445,8 @@ module USCoreTestKit
       search_variant_test_records[:medication_inclusion] = true
     end
 
-    def is_reference_match? (reference, local_reference)
-      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
+    def is_reference_match?(reference, local_reference)
+      regex_pattern = %r{^(#{Regexp.escape(local_reference)}|\S+/#{Regexp.escape(local_reference)}(?:[/|]\S+)*)$}
       reference.match?(regex_pattern)
     end
 
@@ -470,7 +475,7 @@ module USCoreTestKit
 
     def fixed_value_search_params(value, patient_id)
       search_param_names.each_with_object({}) do |name, params|
-        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+        params[name] = patient_id_param?(name) ? patient_id : value
       end
     end
 
@@ -484,9 +489,14 @@ module USCoreTestKit
         end
       end
 
-      params_with_partial_value = resources.each_with_object({}) do |resource, outer_params|
+      resources.each_with_object({}) do |resource, outer_params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
-          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource, include_system: include_system)
+          value = if patient_id_param?(name)
+                    patient_id
+                  else
+                    search_param_value(name, resource,
+                                       include_system: include_system)
+                  end
           params[name] = value
         end
 
@@ -495,8 +505,6 @@ module USCoreTestKit
         # stop if all parameter values are found
         return outer_params if outer_params.all? { |_key, value| value.present? }
       end
-
-      params_with_partial_value
     end
 
     def patient_id_list
@@ -515,9 +523,7 @@ module USCoreTestKit
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class'
-        paths[0] = 'local_class'
-      end
+      paths[0] = 'local_class' if paths.first == 'class'
 
       paths
     end
@@ -541,39 +547,40 @@ module USCoreTestKit
     def no_resources_skip_message(resource_type = self.resource_type)
       msg = "No #{resource_type} resources appear to be available"
 
-      if (resource_type == 'Device' && implantable_device_codes.present?)
+      if resource_type == 'Device' && implantable_device_codes.present?
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
       end
 
-      msg + ". Please use patients with more information"
+      msg + '. Please use patients with more information'
     end
 
     def fetch_and_assert_all_bundled_resources(
-          resource_type: self.resource_type,
-          reply_handler: nil,
-          max_pages: 20,
-          additional_resource_types: [],
-          params: nil
-        )
-        tags = tags(params)
-        bundle = resource
-        additional_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
+      resource_type: self.resource_type,
+      reply_handler: nil,
+      max_pages: 20,
+      additional_resource_types: [],
+      params: nil
+    )
+      tags = tags(params)
+      bundle = resource
+      additional_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
 
-        assert_handler = Proc.new do |response|
-          assert_response_status(200, response: response)
-          assert_valid_json(response[:body], "Could not resolve bundle as JSON: #{response[:body]}")
-        end
+      assert_handler = proc do |response|
+        assert_response_status(200, response: response)
+        assert_valid_json(response[:body], "Could not resolve bundle as JSON: #{response[:body]}")
+      end
 
-        if reply_handler
-          reply_and_assert_handler = Proc.new do |response|
-            assert_handler.call(response)
-            reply_handler.call(response)
-          end
-        else
-          reply_and_assert_handler = assert_handler
-        end
+      reply_and_assert_handler = if reply_handler
+                                   proc do |response|
+                                     assert_handler.call(response)
+                                     reply_handler.call(response)
+                                   end
+                                 else
+                                   assert_handler
+                                 end
 
-        fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:, additional_resource_types:, tags:)
+      fetch_all_bundled_resources(resource_type:, bundle:, reply_handler: reply_and_assert_handler, max_pages:,
+                                  additional_resource_types:, tags:)
     end
 
     def prefer_well_known_code_system(element, include_system)
@@ -625,8 +632,8 @@ module USCoreTestKit
               #   Goal.target-date has day precision
               #   All others have second + time offset precision
               if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
-                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
-                "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+                 (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYY-MM-DD AND Resource is NOT Goal
+                "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
               else
                 element
               end
@@ -638,8 +645,7 @@ module USCoreTestKit
         break if search_value.present?
       end
 
-      escaped_value = search_value&.gsub(',', '\\,')
-      escaped_value
+      search_value&.gsub(',', '\\,')
     end
 
     def element_has_valid_value?(element, include_system)
@@ -664,24 +670,31 @@ module USCoreTestKit
       end
     end
 
-    def save_resource_reference(resource_type, reference)
+    def save_resource_reference(resource_type, reference, referencing_resource)
       scratch[:references] ||= {}
       scratch[:references][resource_type] ||= Set.new
-      scratch[:references][resource_type] << reference
+      scratch[:references][resource_type] << { reference: reference, referencing_resource: referencing_resource }
     end
 
-    def save_delayed_references(resources, containing_resource_type = self.resource_type)
+    def save_delayed_references(resources, containing_resource_type = resource_type)
       resources.each do |resource|
         references_to_save(containing_resource_type).each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
-            .select { |reference| reference.is_a?(FHIR::Reference) &&
-              !reference.contained? && reference.reference.present? }
+            .select do |reference|
+            reference.is_a?(FHIR::Reference) &&
+              !reference.contained? && reference.reference.present?
+          end
             .each do |reference|
               resource_type = reference.resource_class.name.demodulize
               need_to_save = reference_to_save[:resources].include?(resource_type)
               next unless need_to_save
 
-              save_resource_reference(resource_type, reference)
+              reference_resource_type = resource.resourceType
+              reference_resource_id = resource.id
+
+              referencing_resource = "#{reference_resource_type}/#{reference_resource_id}"
+
+              save_resource_reference(resource_type, reference, referencing_resource)
             end
         end
       end
@@ -780,7 +793,7 @@ module USCoreTestKit
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+            searched_values = search_value.downcase.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
             values_found.any? do |value_found|
               searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
             end
