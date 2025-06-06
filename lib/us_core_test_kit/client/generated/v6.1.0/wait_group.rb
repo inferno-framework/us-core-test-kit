@@ -56,7 +56,12 @@ parameters for each resource type.
                 title: 'FHIR User Relative Reference',
                 type: 'text',
                 optional: true,
-                description: SMARTAppLaunch::INPUT_FHIR_USER_RELATIVE_REFERENCE
+                description: %(
+                  A FHIR relative reference (<resource type>/<id>) for the FHIR user record to return
+                  when the openid and fhirUser scopes are requested. If populated, ensure that the
+                  referenced resource is available in Inferno's simulated FHIR server so that it can
+                  be accessed.
+                )
           
           input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
           output :launch_key

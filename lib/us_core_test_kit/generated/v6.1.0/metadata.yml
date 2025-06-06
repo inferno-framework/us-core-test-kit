@@ -155,6 +155,7 @@
   :id: us_core_v610_allergy_intolerance
   :file_name: allergy_intolerance_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careplan
   :class_name: USCorev610CareplanSequence
   :version: v6.1.0
@@ -436,6 +437,7 @@
   :id: us_core_v610_care_plan
   :file_name: care_plan_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careteam
   :class_name: USCorev610CareteamSequence
   :version: v6.1.0
@@ -613,6 +615,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_condition_encounter_diagnosis
   :class_name: USCorev610ConditionEncounterDiagnosisSequence
   :version: v6.1.0
@@ -989,6 +992,7 @@
   :id: us_core_v610_condition_encounter_diagnosis
   :file_name: condition_encounter_diagnosis_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_condition_problems_health_concerns
   :class_name: USCorev610ConditionProblemsHealthConcernsSequence
   :version: v6.1.0
@@ -1362,6 +1366,7 @@
   :id: us_core_v610_condition_problems_health_concerns
   :file_name: condition_problems_health_concerns_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_coverage
   :class_name: USCorev610CoverageSequence
   :version: v6.1.0
@@ -1528,6 +1533,7 @@
     :resources:
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_implantable_device
   :class_name: USCorev610ImplantableDeviceSequence
   :version: v6.1.0
@@ -1694,6 +1700,7 @@
   :id: us_core_v610_device
   :file_name: device_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev610DiagnosticreportNoteSequence
   :version: v6.1.0
@@ -1970,6 +1977,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev610DiagnosticreportLabSequence
   :version: v6.1.0
@@ -2227,6 +2235,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_documentreference
   :class_name: USCorev610DocumentreferenceSequence
   :version: v6.1.0
@@ -2548,6 +2557,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_encounter
   :class_name: USCorev610EncounterSequence
   :version: v6.1.0
@@ -2916,6 +2926,7 @@
   - :path: serviceProvider
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_goal
   :class_name: USCorev610GoalSequence
   :version: v6.1.0
@@ -3107,6 +3118,7 @@
   :id: us_core_v610_goal
   :file_name: goal_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_immunization
   :class_name: USCorev610ImmunizationSequence
   :version: v6.1.0
@@ -3280,6 +3292,7 @@
   :id: us_core_v610_immunization
   :file_name: immunization_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_location
   :class_name: USCorev610LocationSequence
   :version: v6.1.0
@@ -3450,6 +3463,7 @@
   - :path: managingOrganization
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medication
   :class_name: USCorev610MedicationSequence
   :version: v6.1.0
@@ -3505,6 +3519,7 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medicationdispense
   :class_name: USCorev610MedicationdispenseSequence
   :version: v6.1.0
@@ -3739,6 +3754,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medicationrequest
   :class_name: USCorev610MedicationrequestSequence
   :version: v6.1.0
@@ -4059,6 +4075,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_lab
   :class_name: USCorev610ObservationLabSequence
   :version: v6.1.0
@@ -4341,6 +4358,7 @@
   - :path: specimen
     :resources:
     - Specimen
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_pregnancystatus
   :class_name: USCorev610ObservationPregnancystatusSequence
   :version: v6.1.0
@@ -4603,6 +4621,7 @@
   :id: us_core_v610_observation_pregnancystatus
   :file_name: observation_pregnancystatus_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_pregnancyintent
   :class_name: USCorev610ObservationPregnancyintentSequence
   :version: v6.1.0
@@ -4865,6 +4884,7 @@
   :id: us_core_v610_observation_pregnancyintent
   :file_name: observation_pregnancyintent_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_occupation
   :class_name: USCorev610ObservationOccupationSequence
   :version: v6.1.0
@@ -5138,6 +5158,7 @@
   :id: us_core_v610_observation_occupation
   :file_name: observation_occupation_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_respiratory_rate
   :class_name: USCorev610RespiratoryRateSequence
   :version: v6.1.0
@@ -5426,6 +5447,7 @@
   :id: us_core_v610_respiratory_rate
   :file_name: respiratory_rate_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_simple_observation
   :class_name: USCorev610SimpleObservationSequence
   :version: v6.1.0
@@ -5732,6 +5754,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_heart_rate
   :class_name: USCorev610HeartRateSequence
   :version: v6.1.0
@@ -6020,6 +6043,7 @@
   :id: us_core_v610_heart_rate
   :file_name: heart_rate_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_temperature
   :class_name: USCorev610BodyTemperatureSequence
   :version: v6.1.0
@@ -6311,6 +6335,7 @@
   :id: us_core_v610_body_temperature
   :file_name: body_temperature_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
   :version: v6.1.0
@@ -6599,6 +6624,7 @@
   :id: us_core_v610_pediatric_weight_for_height
   :file_name: pediatric_weight_for_height_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_pulse_oximetry
   :class_name: USCorev610PulseOximetrySequence
   :version: v6.1.0
@@ -6963,6 +6989,7 @@
   :id: us_core_v610_pulse_oximetry
   :file_name: pulse_oximetry_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_smokingstatus
   :class_name: USCorev610SmokingstatusSequence
   :version: v6.1.0
@@ -7210,6 +7237,7 @@
   :id: us_core_v610_smokingstatus
   :file_name: smokingstatus_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_sexual_orientation
   :class_name: USCorev610ObservationSexualOrientationSequence
   :version: v6.1.0
@@ -7459,6 +7487,7 @@
   :id: us_core_v610_observation_sexual_orientation
   :file_name: observation_sexual_orientation_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_head_circumference
   :class_name: USCorev610HeadCircumferenceSequence
   :version: v6.1.0
@@ -7750,6 +7779,7 @@
   :id: us_core_v610_head_circumference
   :file_name: head_circumference_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_height
   :class_name: USCorev610BodyHeightSequence
   :version: v6.1.0
@@ -8041,6 +8071,7 @@
   :id: us_core_v610_body_height
   :file_name: body_height_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_bmi
   :class_name: USCorev610BmiSequence
   :version: v6.1.0
@@ -8329,6 +8360,7 @@
   :id: us_core_v610_bmi
   :file_name: bmi_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_screening_assessment
   :class_name: USCorev610ObservationScreeningAssessmentSequence
   :version: v6.1.0
@@ -8622,6 +8654,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_blood_pressure
   :class_name: USCorev610BloodPressureSequence
   :version: v6.1.0
@@ -8946,6 +8979,7 @@
   :id: us_core_v610_blood_pressure
   :file_name: blood_pressure_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_clinical_result
   :class_name: USCorev610ObservationClinicalResultSequence
   :version: v6.1.0
@@ -9220,6 +9254,7 @@
   :id: us_core_v610_observation_clinical_result
   :file_name: observation_clinical_result_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
   :version: v6.1.0
@@ -9508,6 +9543,7 @@
   :id: us_core_v610_pediatric_bmi_for_age
   :file_name: pediatric_bmi_for_age_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
   :version: v6.1.0
@@ -9797,6 +9833,7 @@
   :id: us_core_v610_head_circumference_percentile
   :file_name: head_circumference_percentile_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_weight
   :class_name: USCorev610BodyWeightSequence
   :version: v6.1.0
@@ -10088,6 +10125,7 @@
   :id: us_core_v610_body_weight
   :file_name: body_weight_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_organization
   :class_name: USCorev610OrganizationSequence
   :version: v6.1.0
@@ -10230,6 +10268,7 @@
   :id: us_core_v610_organization
   :file_name: organization_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_patient
   :class_name: USCorev610PatientSequence
   :version: v6.1.0
@@ -10618,6 +10657,7 @@
   :id: us_core_v610_patient
   :file_name: patient_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitioner
   :class_name: USCorev610PractitionerSequence
   :version: v6.1.0
@@ -10780,6 +10820,7 @@
   :id: us_core_v610_practitioner
   :file_name: practitioner_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitionerrole
   :class_name: USCorev610PractitionerroleSequence
   :version: v6.1.0
@@ -10934,6 +10975,7 @@
   - :path: organization
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_procedure
   :class_name: USCorev610ProcedureSequence
   :version: v6.1.0
@@ -11168,6 +11210,7 @@
   :id: us_core_v610_procedure
   :file_name: procedure_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_provenance
   :class_name: USCorev610ProvenanceSequence
   :version: v6.1.0
@@ -11331,6 +11374,7 @@
   - :path: agent.onBehalfOf
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_questionnaireresponse
   :class_name: USCorev610QuestionnaireresponseSequence
   :version: v6.1.0
@@ -11566,6 +11610,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHOULD
 - :name: us_core_relatedperson
   :class_name: USCorev610RelatedpersonSequence
   :version: v6.1.0
@@ -11704,6 +11749,7 @@
   :id: us_core_v610_related_person
   :file_name: related_person_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_servicerequest
   :class_name: USCorev610ServicerequestSequence
   :version: v6.1.0
@@ -12039,6 +12085,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_specimen
   :class_name: USCorev610SpecimenSequence
   :version: v6.1.0
@@ -12156,6 +12203,7 @@
   :id: us_core_v610_specimen
   :file_name: specimen_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 :granular_scope_resource_type_groups:
   Condition:
   - :id: us_core_v610_condition_granular_scope_1_group

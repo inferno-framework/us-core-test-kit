@@ -42,9 +42,9 @@ require_relative 'provenance_group'
 module USCoreTestKit
   module USCoreV400
     class USCoreTestSuite < Inferno::TestSuite
-      title 'US Core v4.0.0'
+      title 'US Core Server v4.0.0'
       description %(
-        The US Core Test Kit tests systems for their conformance to the [US Core
+        The US Core Server Test Kit tests server systems for their conformance to the [US Core
         Implementation Guide](http://hl7.org/fhir/us/core/STU4).
 
         HL7® FHIR® resources are validated with the Java validator using

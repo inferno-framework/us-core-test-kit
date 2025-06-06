@@ -291,3 +291,4 @@
 :id: us_core_v700_observation_pregnancyintent
 :file_name: observation_pregnancyintent_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -273,3 +273,4 @@
 :id: us_core_v610_observation_occupation
 :file_name: observation_occupation_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

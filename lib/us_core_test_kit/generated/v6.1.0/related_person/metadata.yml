@@ -137,3 +137,4 @@
 :id: us_core_v610_related_person
 :file_name: related_person_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -30,7 +30,8 @@ module USCoreTestKit
         :granular_scope_tests,
         :id,
         :file_name,
-        :delayed_references
+        :delayed_references,
+        :resource_conformance_expectation
       ].freeze
 
       ATTRIBUTES.each { |name| attr_accessor name }

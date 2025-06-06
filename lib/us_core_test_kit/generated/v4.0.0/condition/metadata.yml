@@ -216,3 +216,4 @@
 :id: us_core_v400_condition
 :file_name: condition_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

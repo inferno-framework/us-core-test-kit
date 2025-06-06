@@ -281,3 +281,4 @@
 :id: us_core_v700_care_plan
 :file_name: care_plan_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

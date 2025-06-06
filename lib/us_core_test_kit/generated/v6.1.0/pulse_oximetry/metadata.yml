@@ -364,3 +364,4 @@
 :id: us_core_v610_pulse_oximetry
 :file_name: pulse_oximetry_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -301,3 +301,4 @@
 - :path: participant.individual
   :resources:
   - Practitioner
+:resource_conformance_expectation: SHALL

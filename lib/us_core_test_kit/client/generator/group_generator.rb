@@ -33,21 +33,50 @@ module USCoreTestKit
 
             # Background
 
-            This test group verifies that the client under test is
-            able to perform the required #{resource_type} queries.
+            This test group verifies that the client can access #{resource_type} data
+            conforming to the #{profile_name}.
 
             # Testing Methodology
+            
+            ## Data Access Supported
+
+            Clients may not be required to support the #{resource_type} FHIR resource type. However, if they
+            do support it, they must support the #{profile_name} and the resource type's search parameters.
+            The tests in this group will not execute if client makes no attempt to access data for the
+            #{resource_type} resource type. In this case, the test will be marked as skip if support
+            for the resource type is required, and omitted otherwise.
 
             ## Reading
-            This sequence will check that the client performed a search with the following ID:
+            This test will check that the client performed a read of the following id:
 
             * `us-core-client-tests-#{profile_identifier.underscore.dasherize}`
 
             ## Searching
-            This sequence will check that the client performed searches with the following parameters:
+            These tests will check that the client performed searches agains the
+            #{resource_type} resource type with the following required parameters:
 
             #{search_param_name_string}
+            
+            Inferno will also look for searches using the following optional parameters:
+
+            #{optional_search_param_name_string}
+            
           DESCRIPTION
+        end
+
+        def optional_searches
+          group_metadata.searches.select { |search| search[:expectation] != 'SHALL' }
+        end
+
+        def optional_search_param_name_string
+          optional_searches
+            .map { |search| search[:names].join(' + ') }
+            .map { |names| "* #{names}" }
+            .join("\n")
+        end
+
+        def conformance_optional?
+          group_metadata.resource_conformance_expectation != 'SHALL'
         end
 
         def generate

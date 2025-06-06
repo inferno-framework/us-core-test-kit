@@ -162,3 +162,4 @@
 - :path: agent.onBehalfOf
   :resources:
   - Organization
+:resource_conformance_expectation: SHALL

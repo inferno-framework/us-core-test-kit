@@ -283,3 +283,4 @@
 :id: us_core_v400_pediatric_weight_for_height
 :file_name: pediatric_weight_for_height_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

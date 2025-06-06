@@ -316,3 +316,4 @@
 :id: us_core_v311_bp
 :file_name: bp_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

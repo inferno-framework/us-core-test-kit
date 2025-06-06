@@ -2,7 +2,9 @@
 
 **Using this Test Kit**
   - [Getting Started](https://github.com/inferno-framework/us-core-test-kit/?tab=readme-ov-file#getting-started)
-  - [Test Kit Overview](Overview.md)
+  - Test Suite Overviews
+    - [Server Suite Overview](Overview-Server.md)
+    - [Client Suite Overview](Overview-Client.md)
 
 **Contributing to this Test Kit**
   - [Technical Overview](Technical-Overview)

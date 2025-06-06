@@ -255,3 +255,4 @@
 :id: us_core_v501_observation_lab
 :file_name: observation_lab_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

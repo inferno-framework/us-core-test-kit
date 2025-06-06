@@ -151,3 +151,4 @@
 :id: us_core_v311_allergy_intolerance
 :file_name: allergy_intolerance_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -233,3 +233,4 @@
 :id: us_core_v610_procedure
 :file_name: procedure_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

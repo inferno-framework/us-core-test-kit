@@ -185,3 +185,4 @@
 - :path: location
   :resources:
   - Location
+:resource_conformance_expectation: SHALL

@@ -289,3 +289,4 @@
 :id: us_core_v311_bodyheight
 :file_name: bodyheight_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

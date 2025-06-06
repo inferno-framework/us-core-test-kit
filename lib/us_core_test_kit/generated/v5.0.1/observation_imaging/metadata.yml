@@ -255,3 +255,4 @@
 :id: us_core_v501_observation_imaging
 :file_name: observation_imaging_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

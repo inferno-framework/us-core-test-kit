@@ -288,3 +288,4 @@
 :id: us_core_v610_heart_rate
 :file_name: heart_rate_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

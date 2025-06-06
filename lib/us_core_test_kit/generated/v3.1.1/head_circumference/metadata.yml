@@ -284,3 +284,4 @@
 :id: us_core_v311_head_circumference
 :file_name: head_circumference_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

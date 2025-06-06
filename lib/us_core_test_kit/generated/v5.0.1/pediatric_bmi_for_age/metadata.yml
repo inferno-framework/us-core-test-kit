@@ -283,3 +283,4 @@
 :id: us_core_v501_pediatric_bmi_for_age
 :file_name: pediatric_bmi_for_age_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

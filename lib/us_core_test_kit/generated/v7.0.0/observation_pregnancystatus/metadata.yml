@@ -291,3 +291,4 @@
 :id: us_core_v700_observation_pregnancystatus
 :file_name: observation_pregnancystatus_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

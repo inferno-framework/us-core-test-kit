@@ -12,7 +12,7 @@ module USCoreTestKit
         include URLs
 
         def test_run_identifier
-          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+          SMARTAppLaunch::MockSMARTServer.issued_token_to_client_id(
             request.headers['authorization']&.delete_prefix('Bearer ')
           )
         end

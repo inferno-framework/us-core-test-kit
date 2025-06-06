@@ -243,3 +243,4 @@
 :id: us_core_v311_smokingstatus
 :file_name: smokingstatus_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

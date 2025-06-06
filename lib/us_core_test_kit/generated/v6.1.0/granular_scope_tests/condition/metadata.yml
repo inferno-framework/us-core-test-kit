@@ -375,3 +375,4 @@
 :id: us_core_v610_condition_granular_scope_2_group
 :file_name: condition_granular_scope2_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL
