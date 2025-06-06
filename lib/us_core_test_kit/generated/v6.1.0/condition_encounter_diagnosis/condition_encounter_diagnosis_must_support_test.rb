@@ -15,14 +15,10 @@ module USCoreTestKit
         * Condition.abatementDateTime
         * Condition.category
         * Condition.category:us-core
-        * Condition.clinicalStatus
         * Condition.code
         * Condition.encounter
-        * Condition.extension:assertedDate
-        * Condition.onsetDateTime
         * Condition.recordedDate
         * Condition.subject
-        * Condition.verificationStatus
       )
 
       id :us_core_v610_condition_encounter_diagnosis_must_support_test

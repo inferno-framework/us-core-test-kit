@@ -140,7 +140,6 @@
     :types:
     - Reference
     :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: authorizingPrescription
     :types:

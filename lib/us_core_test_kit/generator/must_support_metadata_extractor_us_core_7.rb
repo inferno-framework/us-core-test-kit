@@ -21,6 +21,9 @@ module USCoreTestKit
         add_must_support_choices
         us_core_6_extractor.remove_practitioner_address
         us_core_6_extractor.remove_patient_gender_identity
+        us_core_6_extractor.remove_coverage_group_name
+        us_core_6_extractor.remove_medicationdispense_practitioner
+        us_core_6_extractor.remove_must_supports_from_encounter_diagnosis
       end
 
       def add_must_support_choices
