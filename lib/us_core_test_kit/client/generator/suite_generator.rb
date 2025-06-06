@@ -2,6 +2,7 @@
 
 require_relative '../../generator/suite_generator'
 require_relative '../../generator/special_cases'
+require_relative 'naming'
 
 module USCoreTestKit
   module Client
@@ -50,7 +51,7 @@ module USCoreTestKit
           <<~DESCRIPTION
 
             The US Core Test Kit Client Suite tests client systems for their conformance
-            to the US Core Implementation Guide.
+            to the [US Core Implementation Guide](#{ig_link}).
 
             # Scope
 
@@ -61,17 +62,36 @@ module USCoreTestKit
 
             # Test Methodology
 
-            For these tests Inferno simulates the FHIR server. Inferno's simulated server contains
-            data for each of the following US Core Profiles:
-
-            #{profiles_description}
-
+            For these tests Inferno simulates the FHIR server containing data for each US Core Profile
+            (see the *Available Instances* section below for details on the data served by Inferno).
             During execution, Inferno will wait for the client under test to issue requests and will
             respond to them with the requested data. Inferno will then evaluate the requests in aggregate
             to verify that they demonstrate that the client:
 
-            * Retrieved instances of each profile
+            * Retrieved a target instance for each profile.
             * Performed searches using the required search parameters and search parameter combinations
+              for the profile's resource type.
+
+            # Interpreting the Results
+             
+            These tests will check for support for requesting data for every US Core profile.
+            The "Read & Search" group includes a sub-group for each US Core profile. Groups
+            for profiles of resources that are required by the US Core Client CapabilityStatement
+            are marked as required while groups for others are optional. Each profile group will be
+            evaluated on every run through these tests, but feedback will only be provided on
+            profiles of resource types that the client makes requests for.
+            - If a client makes a request for a given resource type, support for all profiles of that
+              resource type will be evaluated, meaning that the group for each profile of that resource
+              type will be executed, checking that the client read the target instance for that profile
+              and perform searches with all required search parameters and combinations for the resource
+              type. The executed group will pass or fail and include details of the issues encountered by
+              Inferno.
+            - If a client makes no requests for a given resource type, support is not evaluated. If support
+              for the resource type is required, the tests will be marked as skiped, forcing an overall
+              failure. Otherwise, the tests will be marked as omitted on the assumption that the client
+              does not support the optional resource type and profile represented by the group.
+
+            The tests will not pass unless at least one profile group passes.
 
             # Running the Tests
 
@@ -85,15 +105,19 @@ module USCoreTestKit
             group which will guide you through the registration process, including what inputs to provide.
             See the *Auth Configuration Details* section below for details.
 
-            Once registration is complete, run the "Read & Search" group to have Inferno wait for US Core
-            read and search requests from the client, return the requested US Core
-            resources to the client, and verify the interactions. The Patient that the client
+            Once registration is complete, run the "Read & Search" group to activate Inferno's
+            simulated US Core server, allowing it to wait for US Core read and search requests
+            from the client and return the requested US Core resources. The Patient that the client
             needs to request data for has the following demographic details:
             - **Resource ID**: `us-core-client-tests-patient`
             - **Name**: ClientTests USCore
             - **Member Identifier**: `us-core-client-tests-patient` (system: `urn:inferno:mrn`)
             - **Date of Birth**: 1940-03-29
             - **Gender**: male
+
+            While waiting, Inferno will display a "User Action Needed" dialog with the above details and
+            more. Once the client has made all the requests, click the link in that dialog to have
+            Inferno evaluate the requests made.
 
             ## Demonstration
 
@@ -116,11 +140,11 @@ module USCoreTestKit
                may fail.
             4. Select the "US Core FHIR API" group from the list at the left, click the "RUN ALL TESTS" button
                in the upper right, and then click "SUBMIT" at the bottom of the input dialog that appears.
-               These tests will run for a while and may result in test failures around must support and
-               conformance features.
+               These tests will run for a while. Most groups will skip due to incomplete coverage of must support
+               elements in the client test's data set.
             5. Once the server tests have completed, return to the client test session and click the link
                in the "User Action Required" dialog to continue the tests and evaluate the client's
-               interactions. These tests will also run for a while and may result in some failures.
+               interactions. These tests will also run for a while and may result in some failures or skips.
 
             # Input Details
 
@@ -160,26 +184,43 @@ module USCoreTestKit
               If populated, ensure that the referenced resource is available in Inferno's simulated
               FHIR server so that it can be accessed.
 
+            # Available Instances
+             
+            Inferno's simulated US Core server includes the following target instances for the test patient
+
+            #{profiles_description}
+
             # Current Limitations
 
             This test suite is still in draft form and does not test all of the client requirements and features
             described in the US Core Implementation guide.
 
-            The current version of this test suite supports:
+            The current version of this test suite supports the following tests using a specific Inferno-specified patient:
             - Testing a client's ability to perform read requests against a FHIR server for all US Core Profiles
-            summarized in the US Core Capability Statement.
-            - Testing a client's ability to perform searches using the SHALL conformance search parameters
-            summarized in the US Core Capability Statement.
+              listed in the [US Core Client CapabilityStatement](#{ig_link}/CapabilityStatement-us-core-client.html).
+            - Testing a client's ability to perform searches using search parameters and combinations
+              listed for each resource type in the [US Core Client CapabilityStatement](#{ig_link}/CapabilityStatement-us-core-client.html).
 
-            The current version of this test suite does not support:
-            - Testing searches with/via:
+            The current version of this test suite does not:
+            - Support esting searches with/via:
               - date comparator
               - multiple-OR
               - _revInclude
-              - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
-            - The Must Support Conformance Requirements for clients/requestors specified in US Core IG #{ig_metadata.ig_version}
-            - Clients that cannot follow the SMART App Launch OAuth flow to obtain an access token.
+            - Verify that date and dateTime search parameter values are provided at the required level of precision.
+            - Check the Must Support Conformance Requirements for clients/requestors specified in US Core IG #{ig_metadata.ig_version}
+            - Support clients that cannot follow the SMART App Launch OAuth flow to obtain an access token.
+            - Allow testers to bring their own data. Testers must manually configure their client system to connect
+              to a specific target patient and must access and process specific curated sample US Core data.
 
+          DESCRIPTION
+        end
+
+        def read_and_search_description
+          <<~DESCRIPTION
+            
+            During these tests, the US Core client system will interact with Inferno's simulated US Core Server
+            and demonstrate its ability to perform the FHIR interactions described in the [US Core Client CapabilityStatement](#{ig_link}/CapabilityStatement-us-core-client.html).
+          
           DESCRIPTION
         end
 
@@ -187,7 +228,7 @@ module USCoreTestKit
           groups
             .map do |group|
               profile = USCoreTestKit::Generator::Naming.snake_case_for_profile(group)
-              "* **#{profile.camelize}**\n  * id: us-core-client-tests-#{profile.underscore.dasherize}"
+              "* **[#{group.profile_name}](#{group.profile_url}|#{group.profile_version})** (id: #{Naming.instance_id_for_profile_identifier(profile)})"
             end
             .join("\n")
         end

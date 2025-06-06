@@ -3,6 +3,7 @@
 require_relative '../../generator/read_test_generator'
 require_relative '../../generator/naming'
 require_relative '../../generator/special_cases'
+require_relative 'naming'
 
 module USCoreTestKit
   module Client
@@ -33,7 +34,7 @@ module USCoreTestKit
         end
 
         def expected_resource_id
-          "us-core-client-tests-#{profile_identifier.underscore.dasherize}"
+          Naming.instance_id_for_profile_identifier(profile_identifier)
         end
 
         def title

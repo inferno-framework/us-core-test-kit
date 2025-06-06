@@ -7,22 +7,35 @@ module USCoreTestKit
         include TestHelper
 
         id :<%= test_id %>
-
         title '<%= title %>'
-
         description %(
           <%= description %>
         )
 
+        input :<%= resource_type.underscore.downcase %>_support,
+              optional: true
+
+        def parent_optional?
+          Inferno::Repositories::Tests.new.find(id)&.parent&.optional?
+        end
+
+        def skip_message
+          "Inferno did not receive any requests for the `<%= resource_type %>` resource type, so support for <%= group_metadata.profile_name %> is not expected."
+        end
+
         def failure_message
-          "Did not receive a request for `<%= resource_type %>` with id: `<%= expected_resource_id %>`."
+          "Inferno did not receive the expected read request for the target instance of the <%= group_metadata.profile_name %>: `<%= resource_type %>/<%= expected_resource_id %>`."
         end
 
         run do
+          if parent_optional?
+            omit_if <%= resource_type.underscore.downcase %>_support.blank?, skip_message
+          else
+            skip_if <%= resource_type.underscore.downcase %>_support.blank?, skip_message
+          end
+          
           requests = load_tagged_requests(READ_<%= resource.underscore.upcase %>_TAG)
-          requests = load_tagged_requests(READ_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, '<%= resource_type %>')
-          requests_for_id = filter_requests_by_resource_id(requests_of_type, '<%= expected_resource_id %>')
+          requests_for_id = filter_requests_by_resource_id(requests, '<%= expected_resource_id %>')
           assert requests_for_id.any?, failure_message
         end
       end

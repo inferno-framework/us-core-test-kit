@@ -25,9 +25,7 @@ module USCoreTestKit
         include URLs
 
         id :<%= suite_id %>
-
         title '<%= title %>'
-
         description %(
           <%= description %>
         )
@@ -47,6 +45,10 @@ module USCoreTestKit
             type: 'download',
             label: 'Download',
             url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+          },
+          {
+            label: 'Implementation Guide',
+            url: '<%= ig_link %>'
           }
         ]
 
@@ -95,6 +97,9 @@ module USCoreTestKit
         group do
           id :us_core_client_read_search_group_<%= ig_metadata.reformatted_version.downcase %>
           title 'Read & Search'
+          description %(
+            <%= read_and_search_description %>
+          )
 
           run_as_group
 
@@ -116,6 +121,16 @@ module USCoreTestKit
           <%- group_id_list.each do |group| -%>
           group from: :<%= group %>
           <%- end -%>
+
+          run do
+            passing_profile_group = groups.find do |group|
+              next if group.id.include?('wait') || group.id.include?('auth')
+
+              results[group.id]&.result == 'pass'
+            end
+
+            assert passing_profile_group.present?, 'At least one profile group must pass.'
+          end
         end
       end
     end

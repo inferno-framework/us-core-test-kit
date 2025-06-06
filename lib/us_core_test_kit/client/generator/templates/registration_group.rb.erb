@@ -9,9 +9,10 @@ module USCoreTestKit
         id :us_core_client_<%= version %>_registration
         title 'Client Registration'
         description %(
-          Register the client under test with Inferno's simulated US Core Server,
+          During these tests, the client will register with Inferno's simulated US Core Server,
           including configuration of the system under test to hit the correct endpoints and
-          enable authentication and authorization of US Core requests.
+          enable authentication and authorization of US Core requests. Inferno will verify
+          that the registration details are conformant.
         )
         run_as_group
 

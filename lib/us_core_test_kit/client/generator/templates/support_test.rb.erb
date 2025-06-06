@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+module USCoreTestKit
+  module Client
+    module <%= module_name %>
+      class <%= class_name %> < Inferno::Test
+        include TestHelper
+
+        id :<%= test_id %>
+        title '<%= title %>'
+        description %(
+          <%= description %>
+        )
+
+        output :<%= resource_type.underscore.downcase %>_support
+
+        def parent_optional?
+          Inferno::Repositories::Tests.new.find(id)&.parent&.optional?
+        end
+
+        def skip_message
+          "No requests made for `<%= resource_type %>`."
+        end
+
+        run do
+          <%= resource_type.underscore.downcase %>_read_requests = load_tagged_requests(READ_<%= resource_type.underscore.upcase %>_TAG)
+          <%= resource_type.underscore.downcase %>_search_requests = load_tagged_requests(SEARCH_<%= resource_type.underscore.upcase %>_TAG)
+          <%= resource_type.underscore.downcase %>_support = 
+            <%= resource_type.underscore.downcase %>_read_requests.length > 0 ||
+            <%= resource_type.underscore.downcase %>_search_requests.length > 0
+          if parent_optional?
+            omit_if !<%= resource_type.underscore.downcase %>_support, skip_message
+          else
+            skip_if !<%= resource_type.underscore.downcase %>_support, skip_message
+          end
+
+          (output <%= resource_type.underscore.downcase %>_support:)
+        end
+      end
+    end
+  end
+end
