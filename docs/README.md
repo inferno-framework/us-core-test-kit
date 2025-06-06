@@ -7,7 +7,9 @@ test kit.
 
 ## Using this Test Kit
 * [Getting Started](https://github.com/inferno-framework/us-core-test-kit/?tab=readme-ov-file#getting-started): Installation instructions for this test kit.
-* [Test Kit Overview](Overview.md): An overview of the test kit and its tests.
+* Test Suite Overviews: Overviews of the two kinds of test suites in this test kit and their tests.
+    - [Server Suite Overview](Overview-Server.md)
+    - [Client Suite Overview](Overview-Client.md)
 
 ## Contributing to this Test Kit
 Developers contributing to this test kit should be familiar with [authoring
