@@ -68,13 +68,11 @@ module USCoreTestKit
         include URLs
 
         id :us_core_client_v610
-
         title 'US Core Client v6.1.0'
-
         description %(
           
 The US Core Test Kit Client Suite tests client systems for their conformance
-to the US Core Implementation Guide.
+to the [US Core Implementation Guide](http://hl7.org/fhir/us/core/STU6.1).
 
 # Scope
 
@@ -85,108 +83,36 @@ requirements and may change the test verification logic.
 
 # Test Methodology
 
-For these tests Inferno simulates the FHIR server. Inferno's simulated server contains
-data for each of the following US Core Profiles:
-
-* **Patient**
-  * id: us-core-client-tests-patient
-* **AllergyIntolerance**
-  * id: us-core-client-tests-allergy-intolerance
-* **CarePlan**
-  * id: us-core-client-tests-care-plan
-* **CareTeam**
-  * id: us-core-client-tests-care-team
-* **ConditionEncounterDiagnosis**
-  * id: us-core-client-tests-condition-encounter-diagnosis
-* **ConditionProblemsHealthConcerns**
-  * id: us-core-client-tests-condition-problems-health-concerns
-* **Coverage**
-  * id: us-core-client-tests-coverage
-* **Device**
-  * id: us-core-client-tests-device
-* **DiagnosticReportNote**
-  * id: us-core-client-tests-diagnostic-report-note
-* **DiagnosticReportLab**
-  * id: us-core-client-tests-diagnostic-report-lab
-* **DocumentReference**
-  * id: us-core-client-tests-document-reference
-* **Encounter**
-  * id: us-core-client-tests-encounter
-* **Goal**
-  * id: us-core-client-tests-goal
-* **Immunization**
-  * id: us-core-client-tests-immunization
-* **MedicationDispense**
-  * id: us-core-client-tests-medication-dispense
-* **MedicationRequest**
-  * id: us-core-client-tests-medication-request
-* **ObservationLab**
-  * id: us-core-client-tests-observation-lab
-* **ObservationPregnancystatus**
-  * id: us-core-client-tests-observation-pregnancystatus
-* **ObservationPregnancyintent**
-  * id: us-core-client-tests-observation-pregnancyintent
-* **ObservationOccupation**
-  * id: us-core-client-tests-observation-occupation
-* **RespiratoryRate**
-  * id: us-core-client-tests-respiratory-rate
-* **SimpleObservation**
-  * id: us-core-client-tests-simple-observation
-* **HeartRate**
-  * id: us-core-client-tests-heart-rate
-* **BodyTemperature**
-  * id: us-core-client-tests-body-temperature
-* **PediatricWeightForHeight**
-  * id: us-core-client-tests-pediatric-weight-for-height
-* **PulseOximetry**
-  * id: us-core-client-tests-pulse-oximetry
-* **Smokingstatus**
-  * id: us-core-client-tests-smokingstatus
-* **ObservationSexualOrientation**
-  * id: us-core-client-tests-observation-sexual-orientation
-* **HeadCircumference**
-  * id: us-core-client-tests-head-circumference
-* **BodyHeight**
-  * id: us-core-client-tests-body-height
-* **Bmi**
-  * id: us-core-client-tests-bmi
-* **ObservationScreeningAssessment**
-  * id: us-core-client-tests-observation-screening-assessment
-* **BloodPressure**
-  * id: us-core-client-tests-blood-pressure
-* **ObservationClinicalResult**
-  * id: us-core-client-tests-observation-clinical-result
-* **PediatricBmiForAge**
-  * id: us-core-client-tests-pediatric-bmi-for-age
-* **HeadCircumferencePercentile**
-  * id: us-core-client-tests-head-circumference-percentile
-* **BodyWeight**
-  * id: us-core-client-tests-body-weight
-* **Procedure**
-  * id: us-core-client-tests-procedure
-* **QuestionnaireResponse**
-  * id: us-core-client-tests-questionnaire-response
-* **ServiceRequest**
-  * id: us-core-client-tests-service-request
-* **Organization**
-  * id: us-core-client-tests-organization
-* **Practitioner**
-  * id: us-core-client-tests-practitioner
-* **PractitionerRole**
-  * id: us-core-client-tests-practitioner-role
-* **Provenance**
-  * id: us-core-client-tests-provenance
-* **RelatedPerson**
-  * id: us-core-client-tests-related-person
-* **Specimen**
-  * id: us-core-client-tests-specimen
-
+For these tests Inferno simulates the FHIR server containing data for each US Core Profile
+(see the *Available Instances* section below for details on the data served by Inferno).
 During execution, Inferno will wait for the client under test to issue requests and will
 respond to them with the requested data. Inferno will then evaluate the requests in aggregate
 to verify that they demonstrate that the client:
 
-* Retrieved instances of each profile
+* Retrieved a target instance for each profile.
 * Performed searches using the required search parameters and search parameter combinations
+  for the profile's resource type.
+
+# Interpreting the Results
+ 
+These tests will check for support for requesting data for every US Core profile.
+The "Read & Search" group includes a sub-group for each US Core profile. Groups
+for profiles of resources that are required by the US Core Client CapabilityStatement
+are marked as required while groups for others are optional. Each profile group will be
+evaluated on every run through these tests, but feedback will only be provided on
+profiles of resource types that the client makes requests for.
+- If a client makes a request for a given resource type, support for all profiles of that
+  resource type will be evaluated, meaning that the group for each profile of that resource
+  type will be executed, checking that the client read the target instance for that profile
+  and perform searches with all required search parameters and combinations for the resource
+  type. The executed group will pass or fail and include details of the issues encountered by
+  Inferno.
+- If a client makes no requests for a given resource type, support is not evaluated. If support
+  for the resource type is required, the tests will be marked as skiped, forcing an overall
+  failure. Otherwise, the tests will be marked as omitted on the assumption that the client
+  does not support the optional resource type and profile represented by the group.
+
+The tests will not pass unless at least one profile group passes.
 
 # Running the Tests
 
@@ -200,15 +126,19 @@ authentication approach supported by the client. Then, start by running the "Cli
 group which will guide you through the registration process, including what inputs to provide.
 See the *Auth Configuration Details* section below for details.
 
-Once registration is complete, run the "Read & Search" group to have Inferno wait for US Core
-read and search requests from the client, return the requested US Core
-resources to the client, and verify the interactions. The Patient that the client
+Once registration is complete, run the "Read & Search" group to activate Inferno's
+simulated US Core server, allowing it to wait for US Core read and search requests
+from the client and return the requested US Core resources. The Patient that the client
 needs to request data for has the following demographic details:
 - **Resource ID**: `us-core-client-tests-patient`
 - **Name**: ClientTests USCore
 - **Member Identifier**: `us-core-client-tests-patient` (system: `urn:inferno:mrn`)
 - **Date of Birth**: 1940-03-29
 - **Gender**: male
+
+While waiting, Inferno will display a "User Action Needed" dialog with the above details and
+more. Once the client has made all the requests, click the link in that dialog to have
+Inferno evaluate the requests made.
 
 ## Demonstration
 
@@ -231,11 +161,11 @@ the US Core Server tests using the following steps:
    may fail.
 4. Select the "US Core FHIR API" group from the list at the left, click the "RUN ALL TESTS" button
    in the upper right, and then click "SUBMIT" at the bottom of the input dialog that appears.
-   These tests will run for a while and may result in test failures around must support and
-   conformance features.
+   These tests will run for a while. Most groups will skip due to incomplete coverage of must support
+   elements in the client test's data set.
 5. Once the server tests have completed, return to the client test session and click the link
    in the "User Action Required" dialog to continue the tests and evaluate the client's
-   interactions. These tests will also run for a while and may result in some failures.
+   interactions. These tests will also run for a while and may result in some failures or skips.
 
 # Input Details
 
@@ -275,25 +205,78 @@ to respond with using the following inputs:
   If populated, ensure that the referenced resource is available in Inferno's simulated
   FHIR server so that it can be accessed.
 
+# Available Instances
+ 
+Inferno's simulated US Core server includes the following target instances for the test patient
+
+* **[US Core Patient Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|6.1.0)** (id: us-core-client-tests-patient)
+* **[US Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance|6.1.0)** (id: us-core-client-tests-allergy-intolerance)
+* **[US Core CarePlan Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan|6.1.0)** (id: us-core-client-tests-care-plan)
+* **[US Core CareTeam Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|6.1.0)** (id: us-core-client-tests-care-team)
+* **[US Core Condition Encounter Diagnosis Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|6.1.0)** (id: us-core-client-tests-condition-encounter-diagnosis)
+* **[US Core Condition Problems and Health Concerns Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|6.1.0)** (id: us-core-client-tests-condition-problems-health-concerns)
+* **[US Core Coverage Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|6.1.0)** (id: us-core-client-tests-coverage)
+* **[US Core Implantable Device Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device|6.1.0)** (id: us-core-client-tests-device)
+* **[US Core DiagnosticReport Profile for Report and Note Exchange](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|6.1.0)** (id: us-core-client-tests-diagnostic-report-note)
+* **[US Core DiagnosticReport Profile for Laboratory Results Reporting](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|6.1.0)** (id: us-core-client-tests-diagnostic-report-lab)
+* **[US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|6.1.0)** (id: us-core-client-tests-document-reference)
+* **[US Core Encounter Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|6.1.0)** (id: us-core-client-tests-encounter)
+* **[US Core Goal Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|6.1.0)** (id: us-core-client-tests-goal)
+* **[US Core Immunization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|6.1.0)** (id: us-core-client-tests-immunization)
+* **[US Core MedicationDispense Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense|6.1.0)** (id: us-core-client-tests-medication-dispense)
+* **[US Core MedicationRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|6.1.0)** (id: us-core-client-tests-medication-request)
+* **[US Core Laboratory Result Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|6.1.0)** (id: us-core-client-tests-observation-lab)
+* **[US Core Observation Pregnancy Status Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus|6.1.0)** (id: us-core-client-tests-observation-pregnancystatus)
+* **[US Core Observation Pregnancy Intent Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent|6.1.0)** (id: us-core-client-tests-observation-pregnancyintent)
+* **[US Core Observation Occupation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation|6.1.0)** (id: us-core-client-tests-observation-occupation)
+* **[US Core Respiratory Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate|6.1.0)** (id: us-core-client-tests-respiratory-rate)
+* **[US Core Simple Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|6.1.0)** (id: us-core-client-tests-simple-observation)
+* **[US Core Heart Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate|6.1.0)** (id: us-core-client-tests-heart-rate)
+* **[US Core Body Temperature Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature|6.1.0)** (id: us-core-client-tests-body-temperature)
+* **[US Core Pediatric Weight for Height Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height|6.1.0)** (id: us-core-client-tests-pediatric-weight-for-height)
+* **[US Core Pulse Oximetry Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|6.1.0)** (id: us-core-client-tests-pulse-oximetry)
+* **[US Core Smoking Status Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0)** (id: us-core-client-tests-smokingstatus)
+* **[US Core Observation Sexual Orientation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|6.1.0)** (id: us-core-client-tests-observation-sexual-orientation)
+* **[US Core Head Circumference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference|6.1.0)** (id: us-core-client-tests-head-circumference-percentile)
+* **[US Core Body Height Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height|6.1.0)** (id: us-core-client-tests-body-height)
+* **[US Core BMI Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi|6.1.0)** (id: us-core-client-tests-bmi)
+* **[US Core Observation Screening Assessment Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|6.1.0)** (id: us-core-client-tests-observation-screening-assessment)
+* **[US Core Blood Pressure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure|6.1.0)** (id: us-core-client-tests-blood-pressure)
+* **[US Core Observation Clinical Result Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result|6.1.0)** (id: us-core-client-tests-observation-clinical-result)
+* **[US Core Pediatric BMI for Age Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age|6.1.0)** (id: us-core-client-tests-pediatric-bmi-for-age)
+* **[US Core Pediatric Head Occipital Frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile|6.1.0)** (id: us-core-client-tests-head-circumference-percentile)
+* **[US Core Body Weight Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight|6.1.0)** (id: us-core-client-tests-body-weight)
+* **[US Core Procedure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|6.1.0)** (id: us-core-client-tests-procedure)
+* **[US Core QuestionnaireResponse Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|6.1.0)** (id: us-core-client-tests-questionnaire-response)
+* **[US Core ServiceRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|6.1.0)** (id: us-core-client-tests-service-request)
+* **[US Core Organization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|6.1.0)** (id: us-core-client-tests-organization)
+* **[US Core Practitioner Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|6.1.0)** (id: us-core-client-tests-practitioner)
+* **[US Core PractitionerRole Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|6.1.0)** (id: us-core-client-tests-practitioner-role)
+* **[US Core Provenance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance|6.1.0)** (id: us-core-client-tests-provenance)
+* **[US Core RelatedPerson Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson|6.1.0)** (id: us-core-client-tests-related-person)
+* **[US Core Specimen Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen|6.1.0)** (id: us-core-client-tests-specimen)
+
 # Current Limitations
 
 This test suite is still in draft form and does not test all of the client requirements and features
 described in the US Core Implementation guide.
 
-The current version of this test suite supports:
+The current version of this test suite supports the following tests using a specific Inferno-specified patient:
 - Testing a client's ability to perform read requests against a FHIR server for all US Core Profiles
-summarized in the US Core Capability Statement.
-- Testing a client's ability to perform searches using the SHALL conformance search parameters
-summarized in the US Core Capability Statement.
+  listed in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-client.html).
+- Testing a client's ability to perform searches using search parameters and combinations
+  listed for each resource type in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-client.html).
 
-The current version of this test suite does not support:
-- Testing searches with/via:
+The current version of this test suite does not:
+- Support esting searches with/via:
   - date comparator
   - multiple-OR
   - _revInclude
-  - The client SHALL provide values precise to the day for elements of datatype date and to the second + time offset for elements of datatype dateTime.
-- The Must Support Conformance Requirements for clients/requestors specified in US Core IG v6.1.0
-- Clients that cannot follow the SMART App Launch OAuth flow to obtain an access token.
+- Verify that date and dateTime search parameter values are provided at the required level of precision.
+- Check the Must Support Conformance Requirements for clients/requestors specified in US Core IG v6.1.0
+- Support clients that cannot follow the SMART App Launch OAuth flow to obtain an access token.
+- Allow testers to bring their own data. Testers must manually configure their client system to connect
+  to a specific target patient and must access and process specific curated sample US Core data.
 
 
         )
@@ -313,6 +296,10 @@ The current version of this test suite does not support:
             type: 'download',
             label: 'Download',
             url: 'https://github.com/inferno-framework/us-core-test-kit/releases/'
+          },
+          {
+            label: 'Implementation Guide',
+            url: 'http://hl7.org/fhir/us/core/STU6.1'
           }
         ]
 
@@ -361,6 +348,13 @@ The current version of this test suite does not support:
         group do
           id :us_core_client_read_search_group_v610
           title 'Read & Search'
+          description %(
+            
+During these tests, the US Core client system will interact with Inferno's simulated US Core Server
+and demonstrate its ability to perform the FHIR interactions described in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-client.html).
+
+
+          )
 
           run_as_group
 
@@ -425,6 +419,16 @@ The current version of this test suite does not support:
           group from: :us_core_client_v610_provenance
           group from: :us_core_client_v610_related_person
           group from: :us_core_client_v610_specimen
+
+          run do
+            passing_profile_group = groups.find do |group|
+              next if group.id.include?('wait') || group.id.include?('auth')
+
+              results[group.id]&.result == 'pass'
+            end
+
+            assert passing_profile_group.present?, 'At least one profile group must pass.'
+          end
         end
       end
     end

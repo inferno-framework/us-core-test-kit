@@ -43,6 +43,8 @@ module USCoreTestKit
               READ_DIAGNOSTIC_REPORT_TAG
             when 'DocumentReference'
               READ_DOCUMENT_REFERENCE_TAG
+            when 'Encounter'
+              READ_ENCOUNTER_TAG
             when 'Goal'
               READ_GOAL_TAG
             when 'Immunization'
@@ -51,14 +53,12 @@ module USCoreTestKit
               READ_MEDICATION_REQUEST_TAG
             when 'Observation'
               READ_OBSERVATION_TAG
-            when 'Procedure'
-              READ_PROCEDURE_TAG
-            when 'Encounter'
-              READ_ENCOUNTER_TAG
             when 'Organization'
               READ_ORGANIZATION_TAG
             when 'Practitioner'
               READ_PRACTITIONER_TAG
+            when 'Procedure'
+              READ_PROCEDURE_TAG
             when 'Provenance'
               READ_PROVENANCE_TAG
           end

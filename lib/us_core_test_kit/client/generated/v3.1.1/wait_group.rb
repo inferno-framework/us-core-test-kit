@@ -56,7 +56,12 @@ parameters for each resource type.
                 title: 'FHIR User Relative Reference',
                 type: 'text',
                 optional: true,
-                description: SMARTAppLaunch::INPUT_FHIR_USER_RELATIVE_REFERENCE
+                description: %(
+                  A FHIR relative reference (<resource type>/<id>) for the FHIR user record to return
+                  when the openid and fhirUser scopes are requested. If populated, ensure that the
+                  referenced resource is available in Inferno's simulated FHIR server so that it can
+                  be accessed.
+                )
           
           input_order :launch_context, :fhir_user_relative_reference, :smart_launch_urls, :client_id
           output :launch_key
@@ -92,6 +97,10 @@ The following requirements will be checked:
     * us-core-client-tests-patient
   * searches:
     * _id
+    * birthdate
+    * family
+    * gender
+    * given
     * identifier
     * name
     * birthdate + family
@@ -103,12 +112,17 @@ The following requirements will be checked:
     * us-core-client-tests-allergy-intolerance
   * searches:
     * patient
+    * clinical-status
     * patient + clinical-status
 * **CarePlan**
   * read id:
     * us-core-client-tests-care-plan
   * searches:
     * patient + category
+    * category
+    * date
+    * patient
+    * status
     * patient + category + status + date
     * patient + category + status
     * patient + category + date
@@ -117,11 +131,17 @@ The following requirements will be checked:
     * us-core-client-tests-care-team
   * searches:
     * patient + status
+    * patient
+    * status
 * **Condition**
   * read id:
     * us-core-client-tests-condition
   * searches:
     * patient
+    * category
+    * clinical-status
+    * onset-date
+    * code
     * patient + onset-date
     * patient + category
     * patient + clinical-status
@@ -131,13 +151,18 @@ The following requirements will be checked:
     * us-core-client-tests-device
   * searches:
     * patient
+    * type
     * patient + type
 * **DiagnosticReportNote**
   * read id:
     * us-core-client-tests-diagnostic-report-note
   * searches:
     * patient + category
+    * status
     * patient
+    * category
+    * code
+    * date
     * patient + category + date
     * patient + status
     * patient + code + date
@@ -147,7 +172,11 @@ The following requirements will be checked:
     * us-core-client-tests-diagnostic-report-lab
   * searches:
     * patient + category
+    * status
     * patient
+    * category
+    * code
+    * date
     * patient + category + date
     * patient + status
     * patient + code + date
@@ -158,16 +187,38 @@ The following requirements will be checked:
   * searches:
     * patient
     * _id
+    * status
+    * category
+    * type
+    * date
+    * period
     * patient + type + period
     * patient + type
     * patient + category + date
     * patient + status
     * patient + category
+* **Encounter**
+  * read id:
+    * us-core-client-tests-encounter
+  * searches:
+    * patient
+    * _id
+    * class
+    * date
+    * identifier
+    * status
+    * type
+    * class + patient
+    * patient + status
+    * patient + type
+    * date + patient
 * **Goal**
   * read id:
     * us-core-client-tests-goal
   * searches:
     * patient
+    * lifecycle-status
+    * target-date
     * patient + lifecycle-status
     * patient + target-date
 * **Immunization**
@@ -175,6 +226,8 @@ The following requirements will be checked:
     * us-core-client-tests-immunization
   * searches:
     * patient
+    * status
+    * date
     * patient + date
     * patient + status
 * **MedicationRequest**
@@ -182,6 +235,11 @@ The following requirements will be checked:
     * us-core-client-tests-medication-request
   * searches:
     * patient + intent
+    * status
+    * intent
+    * patient
+    * encounter
+    * authoredon
     * patient + intent + encounter
     * patient + intent + authoredon
     * patient + intent + status
@@ -190,6 +248,11 @@ The following requirements will be checked:
     * us-core-client-tests-smokingstatus
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -199,6 +262,11 @@ The following requirements will be checked:
     * us-core-client-tests-pediatric-weight-for-height
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -208,6 +276,11 @@ The following requirements will be checked:
     * us-core-client-tests-observation-lab
   * searches:
     * patient + category
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -217,6 +290,11 @@ The following requirements will be checked:
     * us-core-client-tests-pediatric-bmi-for-age
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -226,6 +304,11 @@ The following requirements will be checked:
     * us-core-client-tests-pulse-oximetry
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -235,6 +318,11 @@ The following requirements will be checked:
     * us-core-client-tests-head-circumference
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -244,6 +332,11 @@ The following requirements will be checked:
     * us-core-client-tests-bodyheight
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -253,6 +346,11 @@ The following requirements will be checked:
     * us-core-client-tests-bodytemp
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -262,6 +360,11 @@ The following requirements will be checked:
     * us-core-client-tests-bp
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -271,6 +374,11 @@ The following requirements will be checked:
     * us-core-client-tests-bodyweight
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -280,6 +388,11 @@ The following requirements will be checked:
     * us-core-client-tests-heartrate
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
@@ -289,29 +402,15 @@ The following requirements will be checked:
     * us-core-client-tests-resprate
   * searches:
     * patient + code
+    * status
+    * category
+    * code
+    * date
+    * patient
     * patient + category + date
     * patient + category + status
     * patient + code + date
     * patient + category
-* **Procedure**
-  * read id:
-    * us-core-client-tests-procedure
-  * searches:
-    * patient
-    * patient + date
-    * patient + status
-    * patient + code + date
-* **Encounter**
-  * read id:
-    * us-core-client-tests-encounter
-  * searches:
-    * patient
-    * _id
-    * identifier
-    * class + patient
-    * patient + status
-    * patient + type
-    * date + patient
 * **Organization**
   * read id:
     * us-core-client-tests-organization
@@ -324,6 +423,17 @@ The following requirements will be checked:
   * searches:
     * name
     * identifier
+* **Procedure**
+  * read id:
+    * us-core-client-tests-procedure
+  * searches:
+    * patient
+    * status
+    * date
+    * code
+    * patient + date
+    * patient + status
+    * patient + code + date
 * **Provenance**
   * read id:
     * us-core-client-tests-provenance
