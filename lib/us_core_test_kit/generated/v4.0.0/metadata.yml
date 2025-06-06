@@ -155,6 +155,7 @@
   :id: us_core_v400_allergy_intolerance
   :file_name: allergy_intolerance_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careplan
   :class_name: USCorev400CareplanSequence
   :version: v4.0.0
@@ -437,6 +438,7 @@
   :id: us_core_v400_care_plan
   :file_name: care_plan_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careteam
   :class_name: USCorev400CareteamSequence
   :version: v4.0.0
@@ -578,6 +580,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_condition
   :class_name: USCorev400ConditionSequence
   :version: v4.0.0
@@ -795,6 +798,7 @@
   :id: us_core_v400_condition
   :file_name: condition_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_implantable_device
   :class_name: USCorev400ImplantableDeviceSequence
   :version: v4.0.0
@@ -938,6 +942,7 @@
   :id: us_core_v400_device
   :file_name: device_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev400DiagnosticreportLabSequence
   :version: v4.0.0
@@ -1198,6 +1203,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev400DiagnosticreportNoteSequence
   :version: v4.0.0
@@ -1455,6 +1461,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_documentreference
   :class_name: USCorev400DocumentreferenceSequence
   :version: v4.0.0
@@ -1768,6 +1775,7 @@
   - :path: context.encounter
     :resources:
     - Encounter
+  :resource_conformance_expectation: SHALL
 - :name: us_core_encounter
   :class_name: USCorev400EncounterSequence
   :version: v4.0.0
@@ -2097,6 +2105,7 @@
   - :path: serviceProvider
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_goal
   :class_name: USCorev400GoalSequence
   :version: v4.0.0
@@ -2264,6 +2273,7 @@
   :id: us_core_v400_goal
   :file_name: goal_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_immunization
   :class_name: USCorev400ImmunizationSequence
   :version: v4.0.0
@@ -2438,6 +2448,7 @@
   :id: us_core_v400_immunization
   :file_name: immunization_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_location
   :class_name: USCorev400LocationSequence
   :version: v4.0.0
@@ -2608,6 +2619,7 @@
   - :path: managingOrganization
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medication
   :class_name: USCorev400MedicationSequence
   :version: v4.0.0
@@ -2663,6 +2675,7 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medicationrequest
   :class_name: USCorev400MedicationrequestSequence
   :version: v4.0.0
@@ -2953,6 +2966,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_lab
   :class_name: USCorev400ObservationLabSequence
   :version: v4.0.0
@@ -3209,6 +3223,7 @@
   :id: us_core_v400_observation_lab
   :file_name: observation_lab_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_blood_pressure
   :class_name: USCorev400BloodPressureSequence
   :version: v4.0.0
@@ -3530,6 +3545,7 @@
   :id: us_core_v400_blood_pressure
   :file_name: blood_pressure_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_bmi
   :class_name: USCorev400BmiSequence
   :version: v4.0.0
@@ -3813,6 +3829,7 @@
   :id: us_core_v400_bmi
   :file_name: bmi_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_head_circumference
   :class_name: USCorev400HeadCircumferenceSequence
   :version: v4.0.0
@@ -4099,6 +4116,7 @@
   :id: us_core_v400_head_circumference
   :file_name: head_circumference_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_height
   :class_name: USCorev400BodyHeightSequence
   :version: v4.0.0
@@ -4385,6 +4403,7 @@
   :id: us_core_v400_body_height
   :file_name: body_height_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_weight
   :class_name: USCorev400BodyWeightSequence
   :version: v4.0.0
@@ -4671,6 +4690,7 @@
   :id: us_core_v400_body_weight
   :file_name: body_weight_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_temperature
   :class_name: USCorev400BodyTemperatureSequence
   :version: v4.0.0
@@ -4957,6 +4977,7 @@
   :id: us_core_v400_body_temperature
   :file_name: body_temperature_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_heart_rate
   :class_name: USCorev400HeartRateSequence
   :version: v4.0.0
@@ -5240,6 +5261,7 @@
   :id: us_core_v400_heart_rate
   :file_name: heart_rate_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
   :version: v4.0.0
@@ -5523,6 +5545,7 @@
   :id: us_core_v400_pediatric_bmi_for_age
   :file_name: pediatric_bmi_for_age_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
   :version: v4.0.0
@@ -5807,6 +5830,7 @@
   :id: us_core_v400_head_circumference_percentile
   :file_name: head_circumference_percentile_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
   :version: v4.0.0
@@ -6090,6 +6114,7 @@
   :id: us_core_v400_pediatric_weight_for_height
   :file_name: pediatric_weight_for_height_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_pulse_oximetry
   :class_name: USCorev400PulseOximetrySequence
   :version: v4.0.0
@@ -6430,6 +6455,7 @@
   :id: us_core_v400_pulse_oximetry
   :file_name: pulse_oximetry_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_respiratory_rate
   :class_name: USCorev400RespiratoryRateSequence
   :version: v4.0.0
@@ -6713,6 +6739,7 @@
   :id: us_core_v400_respiratory_rate
   :file_name: respiratory_rate_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_smokingstatus
   :class_name: USCorev400SmokingstatusSequence
   :version: v4.0.0
@@ -6969,6 +6996,7 @@
   :id: us_core_v400_smokingstatus
   :file_name: smokingstatus_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_organization
   :class_name: USCorev400OrganizationSequence
   :version: v4.0.0
@@ -7111,6 +7139,7 @@
   :id: us_core_v400_organization
   :file_name: organization_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_patient
   :class_name: USCorev400PatientSequence
   :version: v4.0.0
@@ -7446,6 +7475,7 @@
   :id: us_core_v400_patient
   :file_name: patient_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitioner
   :class_name: USCorev400PractitionerSequence
   :version: v4.0.0
@@ -7570,6 +7600,7 @@
   :id: us_core_v400_practitioner
   :file_name: practitioner_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitionerrole
   :class_name: USCorev400PractitionerroleSequence
   :version: v4.0.0
@@ -7709,6 +7740,7 @@
   - :path: organization
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_procedure
   :class_name: USCorev400ProcedureSequence
   :version: v4.0.0
@@ -7940,6 +7972,7 @@
   :id: us_core_v400_procedure
   :file_name: procedure_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_provenance
   :class_name: USCorev400ProvenanceSequence
   :version: v4.0.0
@@ -8103,5 +8136,6 @@
   - :path: agent.onBehalfOf
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 :granular_scope_resource_type_groups: {}
 :granular_scope_groups: []

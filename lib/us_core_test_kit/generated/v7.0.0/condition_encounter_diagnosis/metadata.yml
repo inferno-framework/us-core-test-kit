@@ -406,3 +406,4 @@
 :id: us_core_v700_condition_encounter_diagnosis
 :file_name: condition_encounter_diagnosis_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

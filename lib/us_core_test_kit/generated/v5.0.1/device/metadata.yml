@@ -142,3 +142,4 @@
 :id: us_core_v501_device
 :file_name: device_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

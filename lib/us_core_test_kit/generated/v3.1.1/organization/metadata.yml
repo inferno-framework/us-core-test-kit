@@ -129,3 +129,4 @@
 :id: us_core_v311_organization
 :file_name: organization_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

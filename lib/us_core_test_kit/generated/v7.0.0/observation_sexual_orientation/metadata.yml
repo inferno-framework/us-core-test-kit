@@ -279,3 +279,4 @@
 :id: us_core_v700_observation_sexual_orientation
 :file_name: observation_sexual_orientation_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

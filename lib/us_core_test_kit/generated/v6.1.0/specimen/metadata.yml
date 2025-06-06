@@ -116,3 +116,4 @@
 :id: us_core_v610_specimen
 :file_name: specimen_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

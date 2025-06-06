@@ -172,3 +172,4 @@
 :id: us_core_v610_immunization
 :file_name: immunization_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

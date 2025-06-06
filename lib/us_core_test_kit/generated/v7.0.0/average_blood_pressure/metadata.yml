@@ -323,3 +323,4 @@
 :id: us_core_v700_average_blood_pressure
 :file_name: average_blood_pressure_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -286,3 +286,4 @@
 :id: us_core_v311_resprate
 :file_name: resprate_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

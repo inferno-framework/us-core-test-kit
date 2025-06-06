@@ -283,3 +283,4 @@
 :id: us_core_v700_care_experience_preference
 :file_name: care_experience_preference_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

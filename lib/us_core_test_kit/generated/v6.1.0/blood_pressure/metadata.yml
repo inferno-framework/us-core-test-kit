@@ -324,3 +324,4 @@
 :id: us_core_v610_blood_pressure
 :file_name: blood_pressure_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL
