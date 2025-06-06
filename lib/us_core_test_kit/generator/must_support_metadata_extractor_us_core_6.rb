@@ -31,6 +31,9 @@ module USCoreTestKit
         remove_practitioner_address
         remove_diagnosticreport_media
         remove_patient_gender_identity
+        remove_medicationdispense_practitioner
+        remove_coverage_group_name
+        remove_must_supports_from_encounter_diagnosis
       end
 
       def add_must_support_choices
@@ -113,6 +116,36 @@ module USCoreTestKit
       def remove_patient_gender_identity
         return unless profile.type == 'Patient'
         must_supports[:extensions].delete_if { |extension| extension[:id] == 'Patient.extension:genderIdentity' }
+      end
+
+      # US Core v6.1.0 Patch FHIR-50239, Remove MustSupport target profile from MedicationDispense.performer.actor
+      # - US Core Practitioner
+      def remove_medicationdispense_practitioner
+        return unless profile.type == 'MedicationDispense'
+
+        element = must_supports[:elements].find { |element| element[:path] == 'performer.actor' }
+        element[:target_profiles].delete_if do |url|
+          url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner'
+        end
+      end
+
+      # US Core v6.1.0 Patch FHIR-50283, Remove MustSupport element from Coverage:
+      # - group name
+      def remove_coverage_group_name
+        return unless profile.type == 'Coverage'
+        must_supports[:elements].delete_if { |element| element[:path] == 'class:group.name' }
+      end
+
+      # US Core v6.1.0 Patch FHIR-50288, Remove these MustSupport elements from US Core Condition Encounter Diagnosis:
+      # - Condition.extension:assertedDate
+      # - Condition.onsetDateTime
+      # - clinical status
+      # - verification status
+      def remove_must_supports_from_encounter_diagnosis
+        return unless profile.id == 'us-core-condition-encounter-diagnosis'
+        must_supports[:extensions].delete_if { |extension| extension[:id] == 'Condition.extension:assertedDate' }
+        must_supports[:elements].delete_if { |element| ['onsetDateTime', 'clinicalStatus', 'verificationStatus'].include?(element[:path]) }
+        must_supports[:choices].delete_if { |choice| choice[:paths].include?('onsetDateTime') }
       end
     end
   end
