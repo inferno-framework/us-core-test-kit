@@ -5,7 +5,7 @@ module USCoreTestKit
     id :us_core_test_kit
     title 'US Core Test Kit'
     description <<~DESCRIPTION
-      The US Core Test Kit validates the conformance of a server implementation to a specific
+      The US Core Test Kit validates the conformance of server and client implementations to a specific
       version of the [US Core IG](http://hl7.org/fhir/us/core). Currently, Inferno can test
       against implementations of following versions of the US Core IG:
       [v3.1.1](http://hl7.org/fhir/us/core/STU3.1.1/),
@@ -26,9 +26,13 @@ module USCoreTestKit
       ## Status
 
       The US Core Test Kit is actively developed and regularly updated. Starting with STU3,
-      each STU sequence is kept up-to-date with the latest version.
+      each STU sequence is kept up-to-date with the latest version. See the test descriptions
+      within the test kit for detail on the specific validations performed as part of testing
+      these requirements.
 
-      The test kit currently tests the following requirements:
+      ### Server Suites
+
+      The US Core Server suites are mature tests and currently verify the following requirements:
 
       - Support for Capability Statement
       - Support for all US Core Profiles
@@ -39,8 +43,13 @@ module USCoreTestKit
       - Clinical Notes Guidance
       - Missing Data Guidance
 
-      See the test descriptions within the test kit for detail on the specific validations
-      performed as part of testing these requirements.
+      ### Client suites
+      
+      The US Core Client suites are less mature and currently verify the following requirements:
+
+      - Support for making requests for data on all US Core Profiles
+      - Support for read and search interaction requests
+      - Initiate searches using each required search parameter combination
 
       ## Repository
 
