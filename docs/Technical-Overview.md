@@ -157,13 +157,15 @@ that data set needs to be updated.
 
 For end-to-end testing of the client suites, presets are also available to run the server and
 client test suites against each other. While the tests are not expected to completely pass due
-to a lack of must support element coverage in the data supporting the client tests, neither
+to a lack of must support element and Provenance coverage in the data supporting the client tests, neither
 the client nor server tests should include many failures when run against each other. Exceptions
 include
-- `tx.fhir.org` one-off errors on specific resources in specific US Core versions during
+- one-off `tx.fhir.org` errors on specific resources in specific US Core versions during
   validation run by the server test suite.
 - cases where the server test suite does not read the target instance from the client suite due
   to ordering details in search responses even though data for the particular profile is accessed.
+- failures in the server tests due to optional search parameter combinations that the Inferno
+  Reference Server does not support.
 
 ## Updating the Test Kit
 
@@ -179,7 +181,7 @@ certification activities for implementers, or even worse, encourage improper
 implementations just to make incorrect tests pass.  Therefore, 
 the tests should be updated to include the test fixes as soon as possible.
 
-### Updating Generating Tests
+### Updating Generated Tests
 
 The main testing logic for these tests are generated from machine-readable data
 provided by each version of the US Core Implementation Guide.  The code for

@@ -40,12 +40,11 @@ US Core Server.
 
 Systems do NOT need to pass all tests within this test kit to be considered 'US
 Core Conformant'.  US Core allows systems to support a subset of content
-relevant to their use case. While evaluating requests made by the client
-the US Core Client Suites will look at all US Core Profiles. However, when
-the client makes no requests for data for a particular profile's resource
-type, the suite will skip the evaluation and provide no feedback on the
-assumption that the client does not support that profile or does not
-want to get feedback on it during the current test run.
+relevant to their use case. The US Core Client Suites allow testers to run
+all the tests, or only evaluated access for a subset of profiles that the
+client supports. In either case, when running a profile group and
+the client has not made any requests for data for that profile's resource
+type, the tests will be skipped.
 
 ## Test Groups
 
@@ -66,8 +65,15 @@ This group contains the majority of the US Core client tests and involve a two-s
 process where
 - Inferno waits while the client makes requests to access data on Inferno's simulated
   US Core server.
-- Once the tester indicates they are done, Inferno evaluates the requests made.
+- Once the tester indicates they are done, Inferno evaluates the requests made
+  againsts the requirements for each profile.
 
-These two steps are always run together. Testers may run the group over and over
-again to evaluate different sets of client requests. Each time, Inferno will
-consider only requests that were made during the current iteration.
+These two steps can be run together by running the Read & Search group, or testers
+can choose to evaluate only a subset of the profiles defined by the selected US Core
+version by first running the Client Access subgroup followed by any number of profile
+groups. In either case, testers may run this sequence over and over
+again to evaluate different sets of client requests. When executing a profile group,
+Inferno will consider only requests that were made during the last run of the Client Access
+group (NOTE: data access requests can also be made during the registration display
+test. If any such requests were made during the last execution of that test, they will
+also be included in the analysis performed by a profile group).
