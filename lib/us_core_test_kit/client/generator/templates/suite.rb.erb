@@ -101,22 +101,7 @@ module USCoreTestKit
             <%= read_and_search_description %>
           )
 
-          run_as_group
-
-          group from: :<%= wait_group_id %>
-
-          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alca,
-              required_suite_options: {
-                client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
-              }
-          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alcs,
-                required_suite_options: {
-                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
-                }
-          group from: :us_core_client_<%= ig_metadata.reformatted_version.downcase %>_auth_smart_alp,
-                required_suite_options: {
-                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
-                }
+          group from: :<%= access_group_id %>
 
           <%- group_id_list.each do |group| -%>
           group from: :<%= group %>

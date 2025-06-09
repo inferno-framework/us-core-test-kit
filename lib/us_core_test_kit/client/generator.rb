@@ -8,7 +8,6 @@ require_relative 'generator/group_generator'
 require_relative 'generator/tags_generator'
 require_relative 'generator/urls_generator'
 require_relative 'generator/suite_generator'
-require_relative 'generator/support_test_generator'
 require_relative 'generator/read_test_generator'
 require_relative 'generator/search_test_generator'
 require_relative 'generator/wait_group_generator'
@@ -43,7 +42,6 @@ module USCoreTestKit
 
         generate_tags
         generate_urls
-        generate_support_tests
         generate_read_tests
         generate_search_tests
         generate_wait_group
@@ -88,10 +86,6 @@ module USCoreTestKit
 
       def generate_wait_group
         WaitGroupGenerator.generate(ig_metadata, base_output_dir)
-      end
-
-      def generate_support_tests
-        SupportTestGenerator.generate(ig_metadata, base_output_dir)
       end
       
       def generate_read_tests

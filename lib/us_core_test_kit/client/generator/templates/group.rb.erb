@@ -16,8 +16,7 @@ module USCoreTestKit
         optional <%= conformance_optional? %>
         run_as_group
 
-        test from: :<%= test_id_list.find { |test| test.include?('_client_support_test')} %>
-        <%- test_id_list.each do |test| next if test.include?('_client_support_test') -%>
+        <%- test_id_list.each do |test| -%>
         test from: :<%= test %>
         <%- end -%>
       end

@@ -233,8 +233,8 @@ module USCoreTestKit
             .join("\n")
         end
 
-        def wait_group_id
-          "us_core_client_wait_group_#{ig_metadata.reformatted_version.downcase}"
+        def access_group_id
+          "us_core_client_access_group_#{ig_metadata.reformatted_version.downcase}"
         end
 
         def registration_group_id
