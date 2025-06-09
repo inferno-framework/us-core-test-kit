@@ -12,15 +12,8 @@ module USCoreTestKit
           The client demonstrates SHALL support for reading RespiratoryRate.
         )
 
-        input :observation_support,
-              optional: true
-
-        def parent_optional?
-          Inferno::Repositories::Tests.new.find(id)&.parent&.optional?
-        end
-
         def skip_message
-          "Inferno did not receive any requests for the `Observation` resource type, so support for US Core Respiratory Rate Profile is not expected."
+          "Inferno did not receive any read requests for the `Observation` resource type."
         end
 
         def failure_message
@@ -28,13 +21,9 @@ module USCoreTestKit
         end
 
         run do
-          if parent_optional?
-            omit_if observation_support.blank?, skip_message
-          else
-            skip_if observation_support.blank?, skip_message
-          end
-          
           requests = load_tagged_requests(READ_OBSERVATION_TAG)
+          skip_if requests.blank?, skip_message
+
           requests_for_id = filter_requests_by_resource_id(requests, 'us-core-client-tests-respiratory-rate')
           assert requests_for_id.any?, failure_message
         end

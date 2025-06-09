@@ -322,22 +322,7 @@ and demonstrate its ability to perform the FHIR interactions described in the [U
 
           )
 
-          run_as_group
-
-          group from: :us_core_client_wait_group_v311
-
-          group from: :us_core_client_v311_auth_smart_alca,
-              required_suite_options: {
-                client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_ASYMMETRIC
-              }
-          group from: :us_core_client_v311_auth_smart_alcs,
-                required_suite_options: {
-                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_CONFIDENTIAL_SYMMETRIC
-                }
-          group from: :us_core_client_v311_auth_smart_alp,
-                required_suite_options: {
-                  client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
-                }
+          group from: :us_core_client_access_group_v311
 
           group from: :us_core_client_v311_patient
           group from: :us_core_client_v311_allergy_intolerance

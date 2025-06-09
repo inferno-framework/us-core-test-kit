@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'document_reference/document_reference_client_read_test'
-require_relative 'document_reference/document_reference_client_support_test'
 require_relative 'document_reference/document_reference_patient_client_search_test'
 require_relative 'document_reference/document_reference_id_client_search_test'
 require_relative 'document_reference/document_reference_status_client_search_test'
@@ -69,7 +68,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v400_document_reference_client_support_test
         test from: :us_core_v400_document_reference_client_read_test
         test from: :us_core_v400_document_reference_patient_client_search_test
         test from: :us_core_v400_document_reference_id_client_search_test

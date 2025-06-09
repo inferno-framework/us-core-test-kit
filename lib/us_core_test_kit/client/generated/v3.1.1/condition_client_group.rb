@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'condition/condition_client_read_test'
-require_relative 'condition/condition_client_support_test'
 require_relative 'condition/condition_patient_client_search_test'
 require_relative 'condition/condition_category_client_search_test'
 require_relative 'condition/condition_clinical_status_client_search_test'
@@ -63,7 +62,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v311_condition_client_support_test
         test from: :us_core_v311_condition_client_read_test
         test from: :us_core_v311_condition_patient_client_search_test
         test from: :us_core_v311_condition_category_client_search_test

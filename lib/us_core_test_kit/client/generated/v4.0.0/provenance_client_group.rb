@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'provenance/provenance_client_read_test'
-require_relative 'provenance/provenance_client_support_test'
 
 module USCoreTestKit
   module Client
@@ -46,7 +45,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v400_provenance_client_support_test
         test from: :us_core_v400_provenance_client_read_test
       end
     end

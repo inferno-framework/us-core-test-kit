@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'questionnaire_response/questionnaire_response_client_support_test'
 require_relative 'questionnaire_response/questionnaire_response_client_read_test'
 require_relative 'questionnaire_response/questionnaire_response_patient_client_search_test'
 require_relative 'questionnaire_response/questionnaire_response_id_client_search_test'
@@ -58,7 +57,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v501_questionnaire_response_client_support_test
         test from: :us_core_v501_questionnaire_response_client_read_test
         test from: :us_core_v501_questionnaire_response_patient_client_search_test
         test from: :us_core_v501_questionnaire_response_id_client_search_test

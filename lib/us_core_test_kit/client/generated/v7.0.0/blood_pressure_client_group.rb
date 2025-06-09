@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'blood_pressure/blood_pressure_client_support_test'
 require_relative 'blood_pressure/blood_pressure_client_read_test'
 require_relative 'blood_pressure/blood_pressure_patient_code_client_search_test'
 require_relative 'blood_pressure/blood_pressure_patient_category_date_client_search_test'
@@ -56,7 +55,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v700_blood_pressure_client_support_test
         test from: :us_core_v700_blood_pressure_client_read_test
         test from: :us_core_v700_blood_pressure_patient_code_client_search_test
         test from: :us_core_v700_blood_pressure_patient_category_date_client_search_test

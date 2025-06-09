@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'immunization/immunization_client_read_test'
-require_relative 'immunization/immunization_client_support_test'
 require_relative 'immunization/immunization_patient_client_search_test'
 require_relative 'immunization/immunization_status_client_search_test'
 require_relative 'immunization/immunization_date_client_search_test'
@@ -55,7 +54,6 @@ Inferno will also look for searches using the following optional parameters:
         optional true
         run_as_group
 
-        test from: :us_core_v400_immunization_client_support_test
         test from: :us_core_v400_immunization_client_read_test
         test from: :us_core_v400_immunization_patient_client_search_test
         test from: :us_core_v400_immunization_status_client_search_test
