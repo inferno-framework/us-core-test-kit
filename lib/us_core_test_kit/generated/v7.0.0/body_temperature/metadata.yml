@@ -320,3 +320,4 @@
 :id: us_core_v700_body_temperature
 :file_name: body_temperature_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

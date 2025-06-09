@@ -7,26 +7,29 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v311_practitioner_name_client_search_test
-
-        title 'SHALL support name search of Practitioner'
-
+        title 'SHOULD support name search of Practitioner'
         description %(
-          The client demonstrates SHALL support for searching name on Practitioner.
+          The client demonstrates SHOULD support for searching name on Practitioner.
         )
+        optional true
 
         def required_params
           ["name"]
         end
 
+        def skip_message
+          "Inferno did not receive any search requests for the `Practitioner` resource type."
+        end
+
         def failure_message
-          "Did not receive a request for `Practitioner` with required search parameters: `#{required_params.join(' + ')}`"
+          "Inferno did not receive the expected search made for the `Practitioner` resource type with required search parameters: `#{required_params.join(' + ')}`."
         end
 
         run do
           requests = load_tagged_requests(SEARCH_PRACTITIONER_TAG)
-          requests = load_tagged_requests(SEARCH_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, 'Practitioner')
-          requests_with_params = filter_requests_by_search_parameters(requests_of_type, required_params)
+          skip_if requests.blank?, skip_message
+
+          requests_with_params = filter_requests_by_search_parameters(requests, required_params)
           assert requests_with_params.any?, failure_message
         end
       end

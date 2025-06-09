@@ -46,7 +46,8 @@ module USCoreTestKit
             must_supports: must_supports,
             mandatory_elements: mandatory_elements,
             bindings: bindings,
-            references: references
+            references: references,
+            resource_conformance_expectation: resource_conformance_expectation
             # tests: []
           }
 
@@ -287,6 +288,13 @@ module USCoreTestKit
                 profiles: reference_definition.type.first.targetProfile
               }
             end
+      end
+
+      def resource_conformance_expectation
+        @resource_conformance_expectation ||= 
+          resource_capabilities.extension.find do |extension| 
+            extension.url == 'http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation'
+          end&.valueCode
       end
     end
   end

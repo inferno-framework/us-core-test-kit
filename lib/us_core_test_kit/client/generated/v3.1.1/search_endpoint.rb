@@ -12,7 +12,7 @@ module USCoreTestKit
         include URLs
 
         def test_run_identifier
-          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+          SMARTAppLaunch::MockSMARTServer.issued_token_to_client_id(
             request.headers['authorization']&.delete_prefix('Bearer ')
           )
         end
@@ -43,6 +43,8 @@ module USCoreTestKit
               SEARCH_DIAGNOSTIC_REPORT_TAG
             when 'DocumentReference'
               SEARCH_DOCUMENT_REFERENCE_TAG
+            when 'Encounter'
+              SEARCH_ENCOUNTER_TAG
             when 'Goal'
               SEARCH_GOAL_TAG
             when 'Immunization'
@@ -51,14 +53,12 @@ module USCoreTestKit
               SEARCH_MEDICATION_REQUEST_TAG
             when 'Observation'
               SEARCH_OBSERVATION_TAG
-            when 'Procedure'
-              SEARCH_PROCEDURE_TAG
-            when 'Encounter'
-              SEARCH_ENCOUNTER_TAG
             when 'Organization'
               SEARCH_ORGANIZATION_TAG
             when 'Practitioner'
               SEARCH_PRACTITIONER_TAG
+            when 'Procedure'
+              SEARCH_PROCEDURE_TAG
             when 'Provenance'
               SEARCH_PROVENANCE_TAG
           end

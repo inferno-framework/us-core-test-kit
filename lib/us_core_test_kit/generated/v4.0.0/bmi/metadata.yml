@@ -283,3 +283,4 @@
 :id: us_core_v400_bmi
 :file_name: bmi_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

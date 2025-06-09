@@ -33,37 +33,8 @@ module USCoreTestKit
           "#{class_name.underscore}.rb"
         end
 
-        def module_name
-          "USCoreClient#{ig_metadata.reformatted_version.upcase}"
-        end
-
         def output_file_name
           File.join(base_output_dir, base_output_file_name)
-        end
-
-        def group_id
-          "us_core_client_wait_group_#{ig_metadata.reformatted_version.downcase}"
-        end
-
-        def test_id
-          "us_core_client_wait_test_#{ig_metadata.reformatted_version.downcase}"
-        end
-
-        def suite_id
-          "us_core_client_#{ig_metadata.reformatted_version}"
-        end
-
-        def title
-          'Wait for Requests'
-        end
-
-        def description
-          <<~DESCRIPTION
-
-            This test will wait for the client under test to submit requests for resources for
-            each of the US Core profiles, and for requests including all of the required search
-            parameters for each resource type.
-          DESCRIPTION
         end
 
         def groups

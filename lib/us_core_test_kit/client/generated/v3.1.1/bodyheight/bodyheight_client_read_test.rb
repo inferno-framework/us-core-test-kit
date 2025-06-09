@@ -7,22 +7,24 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v311_bodyheight_client_read_test
-
         title 'SHALL support read of Bodyheight'
-
         description %(
           The client demonstrates SHALL support for reading Bodyheight.
         )
 
+        def skip_message
+          "Inferno did not receive any read requests for the `Observation` resource type."
+        end
+
         def failure_message
-          "Did not receive a request for `Observation` with id: `us-core-client-tests-bodyheight`."
+          "Inferno did not receive the expected read request for the target instance of the Observation Body Height Profile: `Observation/us-core-client-tests-body-height`."
         end
 
         run do
           requests = load_tagged_requests(READ_OBSERVATION_TAG)
-          requests = load_tagged_requests(READ_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, 'Observation')
-          requests_for_id = filter_requests_by_resource_id(requests_of_type, 'us-core-client-tests-bodyheight')
+          skip_if requests.blank?, skip_message
+
+          requests_for_id = filter_requests_by_resource_id(requests, 'us-core-client-tests-body-height')
           assert requests_for_id.any?, failure_message
         end
       end

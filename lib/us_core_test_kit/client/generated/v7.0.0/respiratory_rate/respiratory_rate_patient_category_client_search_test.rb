@@ -7,26 +7,29 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v700_respiratory_rate_patient_category_client_search_test
-
         title 'SHALL support patient + category search of RespiratoryRate'
-
         description %(
           The client demonstrates SHALL support for searching patient + category on RespiratoryRate.
         )
+        optional false
 
         def required_params
           ["patient", "category"]
         end
 
+        def skip_message
+          "Inferno did not receive any search requests for the `Observation` resource type."
+        end
+
         def failure_message
-          "Did not receive a request for `Observation` with required search parameters: `#{required_params.join(' + ')}`"
+          "Inferno did not receive the expected search made for the `Observation` resource type with required search parameters: `#{required_params.join(' + ')}`."
         end
 
         run do
           requests = load_tagged_requests(SEARCH_OBSERVATION_TAG)
-          requests = load_tagged_requests(SEARCH_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, 'Observation')
-          requests_with_params = filter_requests_by_search_parameters(requests_of_type, required_params)
+          skip_if requests.blank?, skip_message
+
+          requests_with_params = filter_requests_by_search_parameters(requests, required_params)
           assert requests_with_params.any?, failure_message
         end
       end

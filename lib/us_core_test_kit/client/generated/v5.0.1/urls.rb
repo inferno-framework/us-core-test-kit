@@ -25,7 +25,7 @@ module USCoreTestKit
           base_url + FHIR_ROUTE
         end
 
-        def client_fhir_base_url # alias for OIDC from SMART / UDAP client tests
+        def client_fhir_base_url # alias for OIDC from SMART client tests
           fhir_url
         end
 

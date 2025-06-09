@@ -15,8 +15,6 @@ module USCoreTestKit
                        .select { |group| group.searches.present? }
                        .each do |group|
               group.searches.each do |search|
-                next unless search[:expectation] == 'SHALL'
-
                 new(group, search, base_output_dir).generate
               end
             end

@@ -190,3 +190,4 @@
 :id: us_core_v610_goal
 :file_name: goal_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

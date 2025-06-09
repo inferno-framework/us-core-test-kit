@@ -320,3 +320,4 @@
 :id: us_core_v700_body_height
 :file_name: body_height_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

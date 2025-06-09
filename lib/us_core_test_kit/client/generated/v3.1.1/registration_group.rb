@@ -1,8 +1,6 @@
-require 'udap_security_test_kit'
 require 'smart_app_launch_test_kit'
 require_relative '../../us_core_client_options'
 require_relative 'registration/configuration_display_smart_test'
-require_relative 'registration/configuration_display_udap_test'
 
 module USCoreTestKit
   module Client
@@ -11,9 +9,10 @@ module USCoreTestKit
         id :us_core_client_v311_registration
         title 'Client Registration'
         description %(
-          Register the client under test with Inferno's simulated US Core Server,
+          During these tests, the client will register with Inferno's simulated US Core Server,
           including configuration of the system under test to hit the correct endpoints and
-          enable authentication and authorization of US Core requests.
+          enable authentication and authorization of US Core requests. Inferno will verify
+          that the registration details are conformant.
         )
         run_as_group
 
@@ -44,24 +43,6 @@ module USCoreTestKit
               id: :us_core_client_v311_reg_config_smart_alp_display,
               required_suite_options: {
                 client_type: USCoreClientOptions::SMART_APP_LAUNCH_PUBLIC
-              }
-
-        # udap registration tests
-        test from: :udap_client_registration_interaction,
-            id: :us_core_client_v311_reg_udap_interaction,
-            config: { options: { endpoint_suite_id: :us_core_client_v311 } },
-            required_suite_options: {
-              client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
-            }
-        test from: :udap_client_registration_ac_verification,
-            id: :us_core_client_v311_reg_udap_verification,
-            config: { options: { endpoint_suite_id: :us_core_client_v311 } },
-            required_suite_options: {
-              client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
-            }
-        test from: :us_core_client_v311_reg_config_udap_display,
-              required_suite_options: {
-                client_type: USCoreClientOptions::UDAP_AUTHORIZATION_CODE
               }
       end
     end
