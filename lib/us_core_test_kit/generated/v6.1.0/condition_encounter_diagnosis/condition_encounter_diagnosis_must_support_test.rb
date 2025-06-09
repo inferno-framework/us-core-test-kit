@@ -24,10 +24,12 @@ module USCoreTestKit
         * Condition.subject
         * Condition.verificationStatus
       )
+
       verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
                             'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
                             'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
-                            'hl7.fhir.us.core_6.1.0@91'
+                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@325',
+                            'hl7.fhir.us.core_6.1.0@326'
 
       id :us_core_v610_condition_encounter_diagnosis_must_support_test
 
