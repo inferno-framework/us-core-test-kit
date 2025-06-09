@@ -12,6 +12,10 @@ module USCoreTestKit
           @template ||= File.read(File.join(__dir__, 'templates', 'read_test.rb.erb'))
         end
 
+        def output
+          @output ||= ERB.new(template, trim_mode: '-').result(binding)
+        end
+
         def group_name
           "#{profile_identifier.camelize}ClientGroup"
         end

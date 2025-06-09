@@ -27,3 +27,23 @@ namespace :us_core do
     USCoreTestKit::Client::Generator.generate
   end
 end
+
+namespace :requirements do
+  desc 'Generate requirements coverage CSV'
+  task :generate_coverage do
+    require 'inferno'
+    Inferno::Application.start(:suites)
+
+    require_relative 'lib/inferno_requirements_tools/tasks/requirements_coverage'
+    InfernoRequirementsTools::Tasks::RequirementsCoverage.new.run
+  end
+
+  desc 'Check if requirements coverage CSV is up-to-date'
+  task :check_coverage do
+    require 'inferno'
+    Inferno::Application.start(:suites)
+
+    require_relative 'lib/inferno_requirements_tools/tasks/requirements_coverage'
+    InfernoRequirementsTools::Tasks::RequirementsCoverage.new.run_check
+  end
+end

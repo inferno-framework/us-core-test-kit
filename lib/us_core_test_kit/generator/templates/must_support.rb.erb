@@ -18,6 +18,44 @@ module USCoreTestKit
 
 <%= uscdi_list_string %><% end %>
       )
+      <%- if module_name == 'USCoreV610' -%>
+        <%- if resource_type == 'AllergyIntolerance' -%>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
+                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
+                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
+                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@304'
+        <%- elsif class_name == 'ConditionEncounterDiagnosisMustSupportTest'%>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
+                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
+                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
+                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@325',
+                            'hl7.fhir.us.core_6.1.0@326'
+        <%- else -%>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
+                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
+                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
+                            'hl7.fhir.us.core_6.1.0@91'
+        <%- end -%>
+      <%- end -%>
+      <%- if module_name == 'USCoreV700' -%>
+        <%- if resource_type == 'AllergyIntolerance' -%>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
+                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
+                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
+                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@304'
+        <%- elsif class_name == 'ConditionEncounterDiagnosisMustSupportTest'%>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
+                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
+                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
+                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@325',
+                            'hl7.fhir.us.core_7.0.0@326'
+        <%- else -%>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
+                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
+                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
+                            'hl7.fhir.us.core_7.0.0@91'
+        <%- end -%>
+      <%- end -%>
 
       id :<%= test_id %>
 
