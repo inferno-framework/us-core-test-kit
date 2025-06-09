@@ -1,15 +1,16 @@
-
-The US Core Test Kit provides client testing for several versions of US Core.
-Tests are designed to simulate a realistic server that includes conformant data
-for all US Core profiles and can return US Core data in response to client requests.
+The US Core Test Kit includes client suites for several versions of US Core.
+These tests include a simulation of a US Core server that can return US Core data in
+response to client requests, including conformant data for all US Core profiles.
+During the tests, clients will interact with the simulated server and Inferno
+will verify the interactions.
 
 The US Core Client Test Suites serve two purposes:
 * Provide general testing to servers implementing the US Core Implementation Guide
 * Provide tests to other test kits that target other implementation guides, or
 certification criterion, that may reference US Core.
 
-This guide is targeting users who would like to run the US Core Test Kit without
-being the context of another Implementation Guide or certification criterion.
+This guide targets users who would like to run the US Core Test Kit outside
+the context of another Implementation Guide or certification criterion.
 
 ## Testing Options
 
@@ -34,14 +35,14 @@ to pre-register a patient with the following demographics in the client system:
 - **Gender**: male
 
 This corresponds to the Patient with id `us-core-client-tests-patient` on Inferno's simulated
-US Core Server.
+US Core Server. This patient has conformant data for each US Core profile.
 
 ## Conformance Criteria
 
 Systems do NOT need to pass all tests within this test kit to be considered 'US
-Core Conformant'.  US Core allows systems to support a subset of content
+Core Conformant'. US Core allows systems to support a subset of content
 relevant to their use case. The US Core Client Suites allow testers to run
-all the tests, or only evaluated access for a subset of profiles that the
+all the tests, or only evaluate access for a subset of profiles that the
 client supports. In either case, when running a profile group and
 the client has not made any requests for data for that profile's resource
 type, the tests will be skipped.
@@ -61,7 +62,7 @@ Inferno to register the client and Inferno will
 
 ### 2 Read & Search
 
-This group contains the majority of the US Core client tests and involve a two-step
+This group contains the majority of the US Core client tests. Execution involves a two-step
 process where
 - Inferno waits while the client makes requests to access data on Inferno's simulated
   US Core server.
