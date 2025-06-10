@@ -117,9 +117,9 @@ module USCoreTestKit
       test from: :us_core_json_support
 
       test from: :us_core_profile_support do
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@16'
         config(
-          options: { us_core_profiles: PROFILES.values.flatten },
-          verifies_requirements: ['hl7.fhir.us.core_7.0.0@16']
+          options: { us_core_profiles: PROFILES.values.flatten }
         )
       end
 

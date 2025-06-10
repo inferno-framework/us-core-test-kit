@@ -7,7 +7,6 @@ module USCoreTestKit
         verify that the server instantiates http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server
       )
     uses_request :capability_statement
-    verifies_requirements 'hl7.fhir.us.core_6.1.0@1'
 
     run do
       assert_resource_type(:capability_statement)

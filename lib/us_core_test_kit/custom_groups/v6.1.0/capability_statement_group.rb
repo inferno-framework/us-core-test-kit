@@ -119,7 +119,7 @@ module USCoreTestKit
       end
 
       test from: :us_core_instantiate,
-           verifies_requirements: 'hl7.fhir.us.core_6.1.0@14'
+           verifies_requirements: ['hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@14']
     end
   end
 end

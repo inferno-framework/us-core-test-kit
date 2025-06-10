@@ -17,7 +17,7 @@ none are returned, the test is skipped.
 
       )
       verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
-                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_6.1.0@58'
+                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58'
 
       id :us_core_v700_bmi_patient_category_date_search_test
       input :patient_ids,
