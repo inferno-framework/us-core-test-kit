@@ -15,7 +15,6 @@ module USCoreTestKit
         * Coverage.beneficiary
         * Coverage.class
         * Coverage.class:group
-        * Coverage.class:group.name
         * Coverage.class:group.value
         * Coverage.class:plan
         * Coverage.class:plan.name
