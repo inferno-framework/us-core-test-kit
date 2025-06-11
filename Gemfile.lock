@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     us_core_test_kit (0.10.1)
-      inferno_core (>= 0.6.4)
-      smart_app_launch_test_kit (>= 0.6.0)
+      inferno_core (>= 0.6.11)
+      smart_app_launch_test_kit (>= 0.6.3)
       tls_test_kit (~> 0.3.0)
 
 GEM
