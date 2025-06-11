@@ -225,7 +225,8 @@ module USCoreTestKit
         group from: :us_core_v400_clinical_notes_guidance,
               verifies_requirements: ['hl7.fhir.us.core_7.0.0@206', 'hl7.fhir.us.core_7.0.0@207', 'hl7.fhir.us.core_7.0.0@208', 'hl7.fhir.us.core_7.0.0@209', 'hl7.fhir.us.core_7.0.0@210', 'hl7.fhir.us.core_7.0.0@214', 'hl7.fhir.us.core_7.0.0@215', 'hl7.fhir.us.core_7.0.0@216', 'hl7.fhir.us.core_7.0.0@220', 'hl7.fhir.us.core_7.0.0@221', 'hl7.fhir.us.core_7.0.0@223', 'hl7.fhir.us.core_7.0.0@224', 'hl7.fhir.us.core_7.0.0@231']
         group from: :us_core_v700_screening_assessment
-        group from: :us_core_311_data_absent_reason
+        group from: :us_core_311_data_absent_reason,
+              verifies_requirements: ['hl7.fhir.us.core_7.0.0@41', 'hl7.fhir.us.core_7.0.0@45']
       end
 
       group from: :us_core_v700_smart_granular_scopes,

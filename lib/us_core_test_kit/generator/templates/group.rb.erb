@@ -12,7 +12,17 @@ module USCoreTestKit
       id :<%= group_id %>
       run_as_group<% if optional? %>
       optional
-      <% end %>
+      <% end 
+  # for some reason, the '<%-' whitespace trick isn't working, so needed to blend some erb tags to make
+  # whitespace look appropriate in final generated code.
+  requirement_map = {
+        'QuestionnaireResponseGroup' => '511'
+  }
+  if module_name == 'USCoreV610' && requirement_map[class_name] %>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@<%= requirement_map[class_name] %>'
+  <% elsif module_name == 'USCoreV700' && requirement_map[class_name] %>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@<%= requirement_map[class_name] %>'
+  <% end %>
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml'), aliases: true))

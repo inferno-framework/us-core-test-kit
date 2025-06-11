@@ -11,9 +11,15 @@ module USCoreTestKit
 <%= description %>
       )
       <%-if module_name == 'USCoreV610' -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@74'
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@18', 'hl7.fhir.us.core_6.1.0@19',
+                            'hl7.fhir.us.core_6.1.0@20', 'hl7.fhir.us.core_6.1.0@21',
+                            'hl7.fhir.us.core_6.1.0@23', 'hl7.fhir.us.core_6.1.0@27',
+                            'hl7.fhir.us.core_6.1.0@40', 'hl7.fhir.us.core_6.1.0@74'
       <%- elsif module_name == 'USCoreV700' -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@74'
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@18', 'hl7.fhir.us.core_7.0.0@19',
+                            'hl7.fhir.us.core_7.0.0@20', 'hl7.fhir.us.core_7.0.0@21',
+                            'hl7.fhir.us.core_7.0.0@23', 'hl7.fhir.us.core_7.0.0@27',
+                            'hl7.fhir.us.core_7.0.0@40', 'hl7.fhir.us.core_7.0.0@74'
       <%- end -%>
       output :dar_code_found, :dar_extension_found
 

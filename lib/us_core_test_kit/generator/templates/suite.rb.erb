@@ -140,7 +140,15 @@ module USCoreTestKit
         <%- if us_core_6_and_above? -%>
         group from: :<%= screening_assessment_id %>
         <%- end -%>
+        <%- if module_name == 'USCoreV610'-%>
+        group from: :us_core_311_data_absent_reason,
+              verifies_requirements: ['hl7.fhir.us.core_6.1.0@41', 'hl7.fhir.us.core_6.1.0@45']
+        <%- elsif module_name == 'USCoreV700'-%>
+        group from: :us_core_311_data_absent_reason,
+              verifies_requirements: ['hl7.fhir.us.core_7.0.0@41', 'hl7.fhir.us.core_7.0.0@45']
+        <%- else -%>
         group from: :us_core_311_data_absent_reason
+        <%- end -%>
       end<% if us_core_6_and_above? %>
 
       group from: :<%= granular_scopes_id %>,
