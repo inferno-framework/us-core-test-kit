@@ -18,49 +18,30 @@ module USCoreTestKit
 
 <%= uscdi_list_string %><% end %>
       )
+      <%-
+  requirement_map = {
+        'AllergyIntoleranceMustSupportTest' => ['304'],
+        'ConditionEncounterDiagnosisMustSupportTest' => ['325', '326']
+  }-%>
       <%- if module_name == 'USCoreV610' -%>
-        <%- if resource_type == 'AllergyIntolerance' -%>
       verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
                             'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
                             'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
                             'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@111',
-                            'hl7.fhir.us.core_6.1.0@115', 'hl7.fhir.us.core_6.1.0@304'
-        <%- elsif class_name == 'ConditionEncounterDiagnosisMustSupportTest'%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
-                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
-                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
-                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@111',
-                            'hl7.fhir.us.core_6.1.0@115', 'hl7.fhir.us.core_6.1.0@325',
-                            'hl7.fhir.us.core_6.1.0@326'
-        <%- else -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
-                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
-                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
-                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@111',
-                            'hl7.fhir.us.core_6.1.0@115'
+                            'hl7.fhir.us.core_6.1.0@115'<% if requirement_map[class_name] %>,
+                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_6.1.0@#{id}'" }.join(', ') %>
         <%- end -%>
+
       <%- end -%>
       <%- if module_name == 'USCoreV700' -%>
-        <%- if resource_type == 'AllergyIntolerance' -%>
       verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
                             'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
                             'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
                             'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111',
-                            'hl7.fhir.us.core_7.0.0@115', 'hl7.fhir.us.core_7.0.0@304'
-        <%- elsif class_name == 'ConditionEncounterDiagnosisMustSupportTest'%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
-                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
-                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
-                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111',
-                            'hl7.fhir.us.core_7.0.0@115', 'hl7.fhir.us.core_7.0.0@325',
-                            'hl7.fhir.us.core_7.0.0@326'
-        <%- else -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
-                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
-                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
-                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111',
-                            'hl7.fhir.us.core_7.0.0@115'
+                            'hl7.fhir.us.core_7.0.0@115'<% if requirement_map[class_name] %>,
+                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
         <%- end -%>
+
       <%- end -%>
 
       id :<%= test_id %>
