@@ -13,7 +13,8 @@ module USCoreTestKit
       <%-
   requirement_map = {
         'DiagnosticReportLabValidationTest' => ['356', '357'],
-        'ObservationClinicalResultValidationTest' => ['427']
+        'ObservationClinicalResultValidationTest' => ['427'],
+        'AverageBloodPressureValidationTest' => ['421']
   }-%>
       <%-if module_name == 'USCoreV610' -%>
       verifies_requirements 'hl7.fhir.us.core_6.1.0@18', 'hl7.fhir.us.core_6.1.0@19',
