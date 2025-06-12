@@ -114,10 +114,12 @@ module USCoreTestKit
            }
       test from: :us_core_conformance_support
       test from: :us_core_fhir_version
-      test from: :us_core_json_support
+      test from: :us_core_json_support,
+           verifies_requirements: ['hl7.fhir.us.core_7.0.0@540']
 
       test from: :us_core_profile_support do
-        verifies_requirements 'hl7.fhir.us.core_7.0.0@16'
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@16', 'hl7.fhir.us.core_7.0.0@533',
+                              'hl7.fhir.us.core_7.0.0@534'
         config(
           options: { us_core_profiles: PROFILES.values.flatten }
         )

@@ -106,6 +106,8 @@ module USCoreTestKit
 
       id :us_core_v700
 
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@535'
+
       fhir_resource_validator do
         igs 'hl7.fhir.us.core#7.0.0'
         message_filters = VALIDATION_MESSAGE_FILTERS
