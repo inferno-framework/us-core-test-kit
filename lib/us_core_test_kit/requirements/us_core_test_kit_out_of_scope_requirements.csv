@@ -1,1 +1,62 @@
 ﻿Req Set,ID,Reason,Details
+hl7.fhir.us.core_7.0.0,132,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,133,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,134,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,135,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,136,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,137,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,138,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,139,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,140,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,141,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,142,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,143,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,144,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,145,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,146,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,147,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,148,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,149,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,150,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,151,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,152,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,153,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,154,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,155,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,411,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,412,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,413,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,414,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,415,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,416,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,459,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,460,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,461,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,462,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,463,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,464,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,465,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,469,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,471,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,482,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,483,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,484,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,485,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,486,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,487,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,488,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,516,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,517,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,518,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,519,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,520,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,521,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,522,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,391,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,405,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,516,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,517,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,518,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,519,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,520,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,521,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
