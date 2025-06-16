@@ -1,6 +1,6 @@
 test_kit_id: us_core_test_kit
 
-suites: 
+suites:
   - id: us_core_v700
     class_name: USCoreTestKit::USCoreV700::USCoreTestSuite
     suite_actor: Server

@@ -10,7 +10,7 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
-      <%- if module_name == "USCoreV610" && !optional? && test_medication_inclusion? -%> 
+      <%- if module_name == "USCoreV610" && !optional? && test_medication_inclusion? -%>
       verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
                             'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58',
                             'hl7.fhir.us.core_6.1.0@250'
@@ -18,7 +18,7 @@ module USCoreTestKit
       verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
                             'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58',
                             'hl7.fhir.us.core_7.0.0@250'
-      <%- elsif module_name == "USCoreV610" && !optional? -%> 
+      <%- elsif module_name == "USCoreV610" && !optional? -%>
       verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
                             'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58'
       <%- elsif module_name == "USCoreV700" && !optional? -%>

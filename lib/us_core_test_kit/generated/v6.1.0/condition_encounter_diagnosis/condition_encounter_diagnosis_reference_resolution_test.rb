@@ -18,7 +18,6 @@ module USCoreTestKit
         * Condition.encounter
         * Condition.subject
       )
- 
       verifies_requirements 'hl7.fhir.us.core_6.1.0@105', 'hl7.fhir.us.core_6.1.0@109'
 
       id :us_core_v610_condition_encounter_diagnosis_reference_resolution_test

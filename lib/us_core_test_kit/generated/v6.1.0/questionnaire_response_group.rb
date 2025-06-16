@@ -78,7 +78,7 @@ read succeeds.
       optional
       
       verifies_requirements 'hl7.fhir.us.core_6.1.0@511'
-  
+
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'questionnaire_response', 'metadata.yml'), aliases: true))

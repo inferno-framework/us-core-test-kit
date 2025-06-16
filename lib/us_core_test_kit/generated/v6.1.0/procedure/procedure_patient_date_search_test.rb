@@ -16,7 +16,6 @@ none are returned, the test is skipped.
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-server.html)
 
       )
- 
       verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
                             'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58'
 
