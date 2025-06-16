@@ -9,13 +9,11 @@ module USCoreTestKit
     module <%= module_name %>
       class <%= class_name %> < Inferno::TestGroup
         id :<%= group_id %>
-
         title '<%= title %>'
-
         description %(
           <%= description %>
         )
-
+        optional <%= conformance_optional? %>
         run_as_group
 
         <%- test_id_list.each do |test| -%>

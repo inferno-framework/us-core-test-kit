@@ -314,3 +314,4 @@
 - :path: subject
   :resources:
   - Location
+:resource_conformance_expectation: SHALL

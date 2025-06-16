@@ -2,28 +2,23 @@
 
 require_relative '../../server_proxy'
 require_relative 'tags'
+require_relative 'urls'
 
 module USCoreTestKit
   module Client
     module USCoreClientV311
       class SearchEndpoint < Inferno::DSL::SuiteEndpoint
         include ServerProxy
+        include URLs
 
         def test_run_identifier
-          UDAPSecurityTestKit::MockUDAPServer.issued_token_to_client_id(
+          SMARTAppLaunch::MockSMARTServer.issued_token_to_client_id(
             request.headers['authorization']&.delete_prefix('Bearer ')
           )
         end
 
         def make_response
-          server_response = proxy_request
-          response.status = server_response.status
-          response.body = server_response.body
-        end
-
-        def proxy_request
-          puts request_params
-          proxy_client.get(resource_type, request_params)
+          build_proxied_search_response
         end
 
         def tags
@@ -48,6 +43,8 @@ module USCoreTestKit
               SEARCH_DIAGNOSTIC_REPORT_TAG
             when 'DocumentReference'
               SEARCH_DOCUMENT_REFERENCE_TAG
+            when 'Encounter'
+              SEARCH_ENCOUNTER_TAG
             when 'Goal'
               SEARCH_GOAL_TAG
             when 'Immunization'
@@ -56,14 +53,12 @@ module USCoreTestKit
               SEARCH_MEDICATION_REQUEST_TAG
             when 'Observation'
               SEARCH_OBSERVATION_TAG
-            when 'Procedure'
-              SEARCH_PROCEDURE_TAG
-            when 'Encounter'
-              SEARCH_ENCOUNTER_TAG
             when 'Organization'
               SEARCH_ORGANIZATION_TAG
             when 'Practitioner'
               SEARCH_PRACTITIONER_TAG
+            when 'Procedure'
+              SEARCH_PROCEDURE_TAG
             when 'Provenance'
               SEARCH_PROVENANCE_TAG
           end
@@ -73,8 +68,8 @@ module USCoreTestKit
           request.params[:resource_type]
         end
 
-        def request_params
-          request.params.to_h.except(:resource_type).stringify_keys
+        def suite_id
+          USCoreClientTestSuite.id
         end
       end
     end

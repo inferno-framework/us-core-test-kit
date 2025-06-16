@@ -373,3 +373,4 @@
 :id: us_core_v610_condition_problems_health_concerns
 :file_name: condition_problems_health_concerns_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

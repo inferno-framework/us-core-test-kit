@@ -23,20 +23,23 @@ module USCoreTestKit
         verifies_requirements 'hl7.fhir.us.core_7.0.0@316'
         <%- end -%>
         title '<%= title %>'
-
         description %(
           <%= description %>
         )
 
+        def skip_message
+          "Inferno did not receive any read requests for the `<%= resource_type %>` resource type."
+        end
+
         def failure_message
-          "Did not receive a request for `<%= resource_type %>` with id: `<%= expected_resource_id %>`."
+          "Inferno did not receive the expected read request for the target instance of the <%= group_metadata.profile_name %>: `<%= resource_type %>/<%= expected_resource_id %>`."
         end
 
         run do
           requests = load_tagged_requests(READ_<%= resource.underscore.upcase %>_TAG)
-          requests = load_tagged_requests(READ_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, '<%= resource_type %>')
-          requests_for_id = filter_requests_by_resource_id(requests_of_type, '<%= expected_resource_id %>')
+          skip_if requests.blank?, skip_message
+
+          requests_for_id = filter_requests_by_resource_id(requests, '<%= expected_resource_id %>')
           assert requests_for_id.any?, failure_message
         end
       end

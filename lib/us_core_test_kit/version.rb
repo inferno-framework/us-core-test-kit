@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module USCoreTestKit
-  VERSION = '0.11.3'
-  LAST_UPDATED = '2025-05-20'
+  VERSION = '0.11.4'
+  LAST_UPDATED = '2025-06-10'
 end

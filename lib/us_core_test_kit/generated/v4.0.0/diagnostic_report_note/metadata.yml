@@ -257,3 +257,4 @@
   - Practitioner
   - Organization
   - PractitionerRole
+:resource_conformance_expectation: SHALL

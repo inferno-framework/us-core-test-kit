@@ -99,7 +99,6 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: class
   - :path: class:group.value
-  - :path: class:group.name
   - :path: class:plan.value
   - :path: class:plan.name
 :mandatory_elements:
@@ -165,3 +164,4 @@
   :resources:
   - Organization
   - RelatedPerson
+:resource_conformance_expectation: SHALL

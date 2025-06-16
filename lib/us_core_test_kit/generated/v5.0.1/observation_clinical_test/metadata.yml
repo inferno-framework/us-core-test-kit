@@ -716,3 +716,4 @@
 :id: us_core_v501_observation_clinical_test
 :file_name: observation_clinical_test_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

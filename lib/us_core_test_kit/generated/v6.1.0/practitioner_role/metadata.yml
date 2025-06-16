@@ -153,3 +153,4 @@
 - :path: organization
   :resources:
   - Organization
+:resource_conformance_expectation: SHALL

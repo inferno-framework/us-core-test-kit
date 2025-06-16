@@ -1,0 +1,38 @@
+# frozen_string_literal: true
+
+module USCoreTestKit
+  module Client
+    module USCoreClientV610
+      class MedicationDispensePatientStatusTypeClientSearchTest < Inferno::Test
+        include TestHelper
+
+        id :us_core_v610_medication_dispense_patient_status_type_client_search_test
+        title 'SHOULD support patient + status + type search of MedicationDispense'
+        description %(
+          The client demonstrates SHOULD support for searching patient + status + type on MedicationDispense.
+        )
+        optional true
+
+        def required_params
+          ["patient", "status", "type"]
+        end
+
+        def skip_message
+          "Inferno did not receive any search requests for the `MedicationDispense` resource type."
+        end
+
+        def failure_message
+          "Inferno did not receive the expected search made for the `MedicationDispense` resource type with required search parameters: `#{required_params.join(' + ')}`."
+        end
+
+        run do
+          requests = load_tagged_requests(SEARCH_MEDICATION_DISPENSE_TAG)
+          skip_if requests.blank?, skip_message
+
+          requests_with_params = filter_requests_by_search_parameters(requests, required_params)
+          assert requests_with_params.any?, failure_message
+        end
+      end
+    end
+  end
+end

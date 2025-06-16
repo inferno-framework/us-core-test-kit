@@ -15,14 +15,10 @@ module USCoreTestKit
         * Condition.abatementDateTime
         * Condition.category
         * Condition.category:us-core
-        * Condition.clinicalStatus
         * Condition.code
         * Condition.encounter
-        * Condition.extension:assertedDate
-        * Condition.onsetDateTime
         * Condition.recordedDate
         * Condition.subject
-        * Condition.verificationStatus
       )
       verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
                             'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',

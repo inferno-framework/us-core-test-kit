@@ -63,7 +63,7 @@ module USCoreTestKit
       end
 
       def title
-        "US Core #{ig_metadata.ig_version}"
+        "US Core Server #{ig_metadata.ig_version}"
       end
 
       def ig_identifier

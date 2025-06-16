@@ -59,9 +59,9 @@ require_relative 'specimen_group'
 module USCoreTestKit
   module USCoreV610
     class USCoreTestSuite < Inferno::TestSuite
-      title 'US Core v6.1.0'
+      title 'US Core Server v6.1.0'
       description %(
-        The US Core Test Kit tests systems for their conformance to the [US Core
+        The US Core Server Test Kit tests server systems for their conformance to the [US Core
         Implementation Guide](http://hl7.org/fhir/us/core/STU6.1).
 
         HL7® FHIR® resources are validated with the Java validator using

@@ -1,3 +1,11 @@
+# 0.11.4
+* Fix client target patient MRN system by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/249
+* Improve Proxied Responses by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/250
+* FI-3948 Prefers search with codings from Well-Known code system by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/247
+* FI-4125: client suite release polish by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/253
+* FI-4173 Apply US Core patches by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/254
+* Upgrade inferno core to v0.6.11
+
 # 0.11.3
 * US Core Client read/search tests by @holmesie
   in https://github.com/inferno-framework/us-core-test-kit/pull/243

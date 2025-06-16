@@ -61,14 +61,16 @@
   - patient
   - category
   - clinical-status
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
+  :names_not_must_support_or_mandatory:
+  - clinical-status
+  :must_support_or_mandatory: false
 - :expectation: SHOULD
   :names:
   - patient
   - onset-date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
+  :names_not_must_support_or_mandatory:
+  - onset-date
+  :must_support_or_mandatory: false
 - :expectation: SHOULD
   :names:
   - patient
@@ -79,8 +81,9 @@
   :names:
   - patient
   - clinical-status
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
+  :names_not_must_support_or_mandatory:
+  - clinical-status
+  :must_support_or_mandatory: false
 - :expectation: SHOULD
   :names:
   - patient
@@ -240,10 +243,7 @@
 - clinicalStatus
 - verificationStatus
 :must_supports:
-  :extensions:
-  - :id: Condition.extension:assertedDate
-    :path: extension
-    :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
+  :extensions: []
   :slices:
   - :slice_id: Condition.category:us-core
     :slice_name: us-core
@@ -254,8 +254,6 @@
       :code: encounter-diagnosis
       :system: http://terminology.hl7.org/CodeSystem/condition-category
   :elements:
-  - :path: clinicalStatus
-  - :path: verificationStatus
   - :path: category
   - :path: code
   - :path: subject
@@ -268,16 +266,10 @@
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
-  - :path: onsetDateTime
-    :original_path: onset[x]
   - :path: abatementDateTime
     :original_path: abatement[x]
   - :path: recordedDate
-  :choices:
-  - :paths:
-    - onsetDateTime
-    :extension_ids:
-    - Condition.extension:assertedDate
+  :choices: []
 :mandatory_elements:
 - Condition.category
 - Condition.code
@@ -375,3 +367,4 @@
 :id: us_core_v610_condition_encounter_diagnosis
 :file_name: condition_encounter_diagnosis_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

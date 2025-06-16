@@ -2,46 +2,79 @@
 
 require_relative 'body_weight/body_weight_client_read_test'
 require_relative 'body_weight/body_weight_patient_code_client_search_test'
-require_relative 'body_weight/body_weight_patient_category_client_search_test'
+require_relative 'body_weight/body_weight_status_client_search_test'
+require_relative 'body_weight/body_weight_category_client_search_test'
+require_relative 'body_weight/body_weight_code_client_search_test'
+require_relative 'body_weight/body_weight_date_client_search_test'
+require_relative 'body_weight/body_weight_patient_client_search_test'
+require_relative 'body_weight/body_weight_patient_category_status_client_search_test'
+require_relative 'body_weight/body_weight_patient_code_date_client_search_test'
 require_relative 'body_weight/body_weight_patient_category_date_client_search_test'
+require_relative 'body_weight/body_weight_patient_category_client_search_test'
 
 module USCoreTestKit
   module Client
     module USCoreClientV400
       class BodyWeightClientGroup < Inferno::TestGroup
         id :us_core_client_v400_body_weight
-
         title 'Observation Body Weight'
-
         description %(
           
 # Background
 
-This test group verifies that the client under test is
-able to perform the required Observation queries.
+This test group verifies that the client can access Observation data
+conforming to the US Core Body Weight Profile.
 
 # Testing Methodology
 
+## Data Access Supported
+
+Clients may not be required to support the Observation FHIR resource type. However, if they
+do support it, they must support the US Core Body Weight Profile and the resource type's search parameters.
+The tests in this group will not execute if client makes no attempt to access data for the
+Observation resource type. In this case, the test will be marked as skip if support
+for the resource type is required, and omitted otherwise.
+
 ## Reading
-This sequence will check that the client performed a search with the following ID:
+This test will check that the client performed a read of the following id:
 
 * `us-core-client-tests-body-weight`
 
 ## Searching
-This sequence will check that the client performed searches with the following parameters:
+These tests will check that the client performed searches agains the
+Observation resource type with the following required parameters:
+
+
+
+Inferno will also look for searches using the following optional parameters:
 
 * patient + code
-* patient + category
+* status
+* category
+* code
+* date
+* patient
+* patient + category + status
+* patient + code + date
 * patient + category + date
+* patient + category
+
 
         )
-
+        optional true
         run_as_group
 
         test from: :us_core_v400_body_weight_client_read_test
         test from: :us_core_v400_body_weight_patient_code_client_search_test
-        test from: :us_core_v400_body_weight_patient_category_client_search_test
+        test from: :us_core_v400_body_weight_status_client_search_test
+        test from: :us_core_v400_body_weight_category_client_search_test
+        test from: :us_core_v400_body_weight_code_client_search_test
+        test from: :us_core_v400_body_weight_date_client_search_test
+        test from: :us_core_v400_body_weight_patient_client_search_test
+        test from: :us_core_v400_body_weight_patient_category_status_client_search_test
+        test from: :us_core_v400_body_weight_patient_code_date_client_search_test
         test from: :us_core_v400_body_weight_patient_category_date_client_search_test
+        test from: :us_core_v400_body_weight_patient_category_client_search_test
       end
     end
   end

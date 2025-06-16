@@ -7,22 +7,24 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v700_average_blood_pressure_client_read_test
-
         title 'SHALL support read of AverageBloodPressure'
-
         description %(
           The client demonstrates SHALL support for reading AverageBloodPressure.
         )
 
+        def skip_message
+          "Inferno did not receive any read requests for the `Observation` resource type."
+        end
+
         def failure_message
-          "Did not receive a request for `Observation` with id: `us-core-client-tests-average-blood-pressure`."
+          "Inferno did not receive the expected read request for the target instance of the US Core Average Blood Pressure Profile: `Observation/us-core-client-tests-average-blood-pressure`."
         end
 
         run do
           requests = load_tagged_requests(READ_OBSERVATION_TAG)
-          requests = load_tagged_requests(READ_REQUEST_TAG) if requests.empty?
-          requests_of_type = filter_requests_by_resource_type(requests, 'Observation')
-          requests_for_id = filter_requests_by_resource_id(requests_of_type, 'us-core-client-tests-average-blood-pressure')
+          skip_if requests.blank?, skip_message
+
+          requests_for_id = filter_requests_by_resource_id(requests, 'us-core-client-tests-average-blood-pressure')
           assert requests_for_id.any?, failure_message
         end
       end

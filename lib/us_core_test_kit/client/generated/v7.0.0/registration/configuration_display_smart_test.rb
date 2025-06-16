@@ -7,7 +7,7 @@ module USCoreTestKit
         include URLs
 
         id :us_core_client_v700_reg_config_smart_display
-        title 'Confirm client configuration'
+        title 'Confirm Client Configuration'
         description %(
           This test provides all the information needed for testers to configure
           the client under test to communicate with Inferno's simulated US Core server

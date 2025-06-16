@@ -39,9 +39,9 @@ release.  A general convention that this test kit has taken is to name suites
 that refer to a ballot using "-ballot" appended to the end of the suite ID.  Once
 the final version is released, the ballot version is deleted.
 
-## Updating the Test Kit
+## Updating the Server Test Suites
 
-Tests for a new version of the US Core Implementation Guide can be created
+Server tests for a new version of the US Core Implementation Guide can be created
 for this test kit using the following steps:
 
 1. Perform a structured review of the updates to the IG
@@ -345,6 +345,88 @@ should be included to indicate the reason for a message filter.
 After such decision has been made, the changes should be applied to
 VALIDATION\_MESSAGE\_FILTERS constant in the
 `./lib/us_core_test_kit/generator/templates/suite.rb.erb` file.
+
+## Step 5. Iterate based on feedback from implementers
+
+It is very challenging to create tests that are completely correct without
+validating them against real implementer systems.  Since these tests are typically
+implemented prior to the availability of any other systems to test against, the initial
+release of the tests may contain issues.  Test developers should expect that
+issues will arise as real systems use these tests, and plan to make successive updates
+to them to address them as soon as possible.
+
+## Updating the Client Test Suites
+
+The client tests are less mature than the server tests and the update process is
+therefore less formalized. The expected update steps include:
+
+1. Verify Client CapabilityStatement Assumptions
+2. Generate a New Version-specific Suite
+3. Add Target Instances for New Profiles
+4. Resolve New Conformance Issues in Existing Instances
+5. Iterate based on feedback from implementers
+
+Note that verifying this process requires that the server suite for the new
+version be created as well, so the server instructions above should be
+followed as well.
+
+### Step 1. Verify Client CapabilityStatement Assumptions
+
+At this time, all of the tests for the client suites
+are automatically generated and there are few special cases.
+However, the generation logic depends on properties of the
+[Client CapabilityStatement](https://hl7.org/fhir/us/core/CapabilityStatement-us-core-client.html)
+that should be verified as a part of each new version. Specifically,
+1. Each resource type has a SHOULD conformance expectation (`CapabilityStatement.rest.resource.extension`
+   with url `http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation` - NOTE
+   this extension is used heavily so the position of the `extension` element matters).
+2. Each `supportedProfile` has a SHALL conformance expectation (`CapabilityStatement.rest.resource.supportedProfile.extension`
+   with url `http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation` - NOTE, in JSON the extensions
+   for the `supportedProfile` element will be under the `_supportedProfile` field as they
+   `supportedProfile` is a primitive element).
+
+This test kit interprets that to mean that if a client supports a given resource type, it must demonstrate support for all
+profiles on that resource type. If the CapabilityStatement changes to no longer follow that pattern, the client
+tests will need to be redesigned.
+
+### Step 2. Generate a New Version-specific Suite
+
+Follow the server instructions above, if not already done. Specifically, steps 2.1 and 2.6
+are needed to generate the client tests for the new version of US Core.
+
+Additionally, target resources servered by
+Inferno for the client tests may need to be updated to reflect new profile constraints
+or added to for new profiles.
+
+### Step 3. Add Target Instances for New Profiles
+
+For each new profile added to the new version of the US Core IG, a new instance will need to be
+added to the [US Core Client Patient Bundle](https://github.com/inferno-framework/inferno-reference-server-data/blob/main/resources/uscore_bundle_patient_client_test.json)
+in the [inferno-reference-server-data repository](https://github.com/inferno-framework/inferno-reference-server-data).
+Generally, you will need to
+1. Obtain an example from the IG of n instance conforming to the profile.
+2. Add it as a Bundle entry to the [patient bundle](https://github.com/inferno-framework/inferno-reference-server-data/blob/main/resources/uscore_bundle_patient_client_test.json).
+3. Update the instance id to follow the form `us-core-client-tests-<us core profile id suffix>`. This includes in both
+   the `resource` body and the `request.url` element of the Bundle `entry`. 
+   - For example, the US Core Patient profile's canonical URL ends with `us-core-patient`, of which `patient` is unique to the
+     profile, so the Patient instance id is `us-core-client-tests-patient`.
+   - Another example: the instance for profile with canonical URL
+     `http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment` will be 
+     `us-core-client-tests-observation-screening-assessment`.
+4. Adjust the resource to fit the patient by adjusting the patient and any other references. If the instance is not directly
+   linked to the client test patient, add a reference to this instance from another instance to allow the server tests
+   to find it.
+
+### Step 4. Resolve New Conformance Issues in Existing Instances
+
+Run the client and server tests for the new version against each other using a Inferno reference server instance
+loaded with any new instances created in Step 3. Check the results of the server suite for conformance
+issues flagged by the validator for target instances served for the client tests. If issues are found,
+research them and determine whether to
+1. Update the instance to be conformant with the new version. If taking this approach, try to keep it conformant
+   with previous versions. If this is not possible (hasn't happened yet), additional exception case handling
+   may need to be designed.
+1. Add validator filters to ignore the errors if they are spurious (last resort).
 
 ## Step 5. Iterate based on feedback from implementers
 

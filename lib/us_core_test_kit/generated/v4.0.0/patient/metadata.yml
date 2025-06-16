@@ -334,3 +334,4 @@
 :id: us_core_v400_patient
 :file_name: patient_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL
