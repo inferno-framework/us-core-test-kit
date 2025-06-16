@@ -8,6 +8,7 @@ module USCoreTestKit
 
         id :us_core_v700_related_person_client_read_test
 
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@316'
         title 'SHALL support read of RelatedPerson'
 
         description %(

@@ -8,6 +8,7 @@ module USCoreTestKit
 
         id :us_core_v700_practitioner_client_read_test
 
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@314'
         title 'SHALL support read of Practitioner'
 
         description %(

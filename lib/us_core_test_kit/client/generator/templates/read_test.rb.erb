@@ -15,6 +15,13 @@ module USCoreTestKit
         <%- elsif test_id == 'us_core_v610_related_person_client_read_test' &&  module_name == 'USCoreClientV610' -%>
         verifies_requirements 'hl7.fhir.us.core_6.1.0@316'
         <%- end -%>
+        <%- if test_id == 'us_core_v700_practitioner_client_read_test' &&  module_name == 'USCoreClientV700' -%>
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@314'
+        <%- elsif test_id == 'us_core_v700_practitioner_role_client_read_test' &&  module_name == 'USCoreClientV700' -%>
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@315'
+        <%- elsif test_id == 'us_core_v700_related_person_client_read_test' &&  module_name == 'USCoreClientV700' -%>
+        verifies_requirements 'hl7.fhir.us.core_7.0.0@316'
+        <%- end -%>
         title '<%= title %>'
 
         description %(

@@ -12,7 +12,7 @@ suites:
     suite_actor: Client
   - id: us_core_client_v610
     class_name: USCoreTestKit::Client::USCoreClientV610::USCoreClientTestSuite
-    suite_actor: Server
+    suite_actor: Client
 
 requirement_sets:
   - id: hl7.fhir.us.core_7.0.0
