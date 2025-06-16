@@ -70,7 +70,8 @@ RSpec.describe USCoreTestKit::SearchTest do
                 code: 'vital-signs'
               }
             ]
-          }],
+          }
+        ],
         code: [
           {
             coding: [
@@ -79,25 +80,26 @@ RSpec.describe USCoreTestKit::SearchTest do
                 code: '8302-2'
               }
             ]
-          }],
+          }
+        ],
         subject: {
           reference: "Patient/#{patient_id}"
-        },
+        }
       )
     end
     let(:bundle) do
-      FHIR::Bundle.new(entry: [{resource: observation}])
+      FHIR::Bundle.new(entry: [{ resource: observation }])
     end
 
     before do
       Inferno::Repositories::Tests.new.insert(status_search_test)
       allow_any_instance_of(status_search_test)
         .to receive(:scratch_resources).and_return(
-              {
-                all: [observation],
-                patient_id => [observation]
-              }
-            )
+          {
+            all: [observation],
+            patient_id => [observation]
+          }
+        )
     end
 
     it 'passes if a 200 is received' do
@@ -152,17 +154,17 @@ RSpec.describe USCoreTestKit::SearchTest do
       )
     end
     let(:bundle) do
-      FHIR::Bundle.new(entry: [{resource: encounter}])
+      FHIR::Bundle.new(entry: [{ resource: encounter }])
     end
 
     before do
       allow_any_instance_of(test_class)
         .to receive(:scratch_resources).and_return(
-              {
-                all: [encounter],
-                patient_id => [encounter]
-              }
-            )
+          {
+            all: [encounter],
+            patient_id => [encounter]
+          }
+        )
     end
 
     it 'succeeds if a 400 is received with an OperationOutcome and the status search succeeds' do
@@ -223,7 +225,7 @@ RSpec.describe USCoreTestKit::SearchTest do
               resource_type: 'MedicationRequest',
               search_param_names: ['patient'],
               possible_status_search: true,
-              test_medication_inclusion: true,
+              test_medication_inclusion: true
             )
           end
 
@@ -254,7 +256,7 @@ RSpec.describe USCoreTestKit::SearchTest do
         end
       end
       let(:bundle) do
-        FHIR::Bundle.new(entry: [{resource: medication_request}])
+        FHIR::Bundle.new(entry: [{ resource: medication_request }])
       end
       let(:test_scratch) { {} }
 
@@ -321,7 +323,7 @@ RSpec.describe USCoreTestKit::SearchTest do
         stub_request(:get, "#{url}/Device?patient=Patient/#{patient_id}")
           .to_return(status: 200, body: bundle.to_json)
         stub_request(:post, "#{url}/Device/_search")
-          .with(body: {"patient"=>patient_id})
+          .with(body: { 'patient' => patient_id })
           .to_return(status: 200, body: bundle.to_json)
       end
 
@@ -407,21 +409,21 @@ RSpec.describe USCoreTestKit::SearchTest do
       )
     end
     let(:bundle_1) do
-      FHIR::Bundle.new(entry: [{resource: medication_request_1}])
+      FHIR::Bundle.new(entry: [{ resource: medication_request_1 }])
     end
     let(:bundle_2) do
-      FHIR::Bundle.new(entry: [{resource: medication_request_2}])
+      FHIR::Bundle.new(entry: [{ resource: medication_request_2 }])
     end
 
     before do
       Inferno::Repositories::Tests.new.insert(multiple_or_search_test)
       allow_any_instance_of(multiple_or_search_test)
         .to receive(:scratch_resources).and_return(
-              {
-                all: [medication_request_1, medication_request_2],
-                patient_id => [medication_request_1, medication_request_2]
-              }
-            )
+          {
+            all: [medication_request_1, medication_request_2],
+            patient_id => [medication_request_1, medication_request_2]
+          }
+        )
     end
 
     it 'fails if multiple-or search test does not return all existing values' do
@@ -438,6 +440,7 @@ RSpec.describe USCoreTestKit::SearchTest do
 
   describe 'search date/dateTime precision' do
     let(:patient_id) { '123' }
+
     context 'with date precision' do
       let(:test_class) do
         Class.new(USCoreTestKit::USCoreV400::GoalPatientTargetDateSearchTest) do
@@ -468,20 +471,20 @@ RSpec.describe USCoreTestKit::SearchTest do
         )
       end
       let(:goal_datetime) do
-          FHIR::Goal.new(
-            id: 'datetime',
-            subject: {
-              reference: "Patient/#{patient_id}"
-            },
-            target: [
-              { dueDate: '2020-03-04T13:01:01-04:00' }
-            ]
-          )
+        FHIR::Goal.new(
+          id: 'datetime',
+          subject: {
+            reference: "Patient/#{patient_id}"
+          },
+          target: [
+            { dueDate: '2020-03-04T13:01:01-04:00' }
+          ]
+        )
       end
 
-      let(:bundle_year) { FHIR::Bundle.new(entry: [ {resource: goal_year} ]) }
-      let(:bundle_date) { FHIR::Bundle.new(entry: [ {resource: goal_date} ]) }
-      let(:bundle_datetime) { FHIR::Bundle.new(entry: [ {resource: goal_datetime} ]) }
+      let(:bundle_year) { FHIR::Bundle.new(entry: [{ resource: goal_year }]) }
+      let(:bundle_date) { FHIR::Bundle.new(entry: [{ resource: goal_date }]) }
+      let(:bundle_datetime) { FHIR::Bundle.new(entry: [{ resource: goal_datetime }]) }
 
       it 'uses comparator search if value is year' do
         allow_any_instance_of(test_class)
@@ -505,7 +508,7 @@ RSpec.describe USCoreTestKit::SearchTest do
           .to_return(status: 200, body: bundle_year.to_json)
 
         result = run(test_class, patient_ids: patient_id, url: url)
-        expect(request).not_to have_been_made
+        expect(request).to_not have_been_made
         expect(result.result).to eq('pass')
       end
 
@@ -588,18 +591,18 @@ RSpec.describe USCoreTestKit::SearchTest do
         )
       end
       let(:immunization_datetime) do
-          FHIR::Immunization.new(
-            id: 'datetime',
-            patient: {
-              reference: "Patient/#{patient_id}"
-            },
-            occurrenceDateTime: '2020-03-04T13:01:01-04:00'
-          )
+        FHIR::Immunization.new(
+          id: 'datetime',
+          patient: {
+            reference: "Patient/#{patient_id}"
+          },
+          occurrenceDateTime: '2020-03-04T13:01:01-04:00'
+        )
       end
 
-      let(:bundle_year) { FHIR::Bundle.new(entry: [ {resource: immunization_year} ]) }
-      let(:bundle_date) { FHIR::Bundle.new(entry: [ {resource: immunization_date} ]) }
-      let(:bundle_datetime) { FHIR::Bundle.new(entry: [ {resource: immunization_datetime} ]) }
+      let(:bundle_year) { FHIR::Bundle.new(entry: [{ resource: immunization_year }]) }
+      let(:bundle_date) { FHIR::Bundle.new(entry: [{ resource: immunization_date }]) }
+      let(:bundle_datetime) { FHIR::Bundle.new(entry: [{ resource: immunization_datetime }]) }
 
       it 'uses comparator search if value is year' do
         allow_any_instance_of(test_class)
@@ -623,7 +626,7 @@ RSpec.describe USCoreTestKit::SearchTest do
           .to_return(status: 200, body: bundle_year.to_json)
 
         result = run(test_class, patient_ids: patient_id, url: url)
-        expect(request).not_to have_been_made
+        expect(request).to_not have_been_made
         expect(result.result).to eq('pass')
       end
 
@@ -649,7 +652,7 @@ RSpec.describe USCoreTestKit::SearchTest do
           .to_return(status: 200, body: bundle_date.to_json)
 
         result = run(test_class, patient_ids: patient_id, url: url)
-        expect(request).not_to have_been_made.once
+        expect(request).to_not have_been_made.once
         expect(result.result).to eq('pass')
       end
 
@@ -684,11 +687,11 @@ RSpec.describe USCoreTestKit::SearchTest do
   describe '#all_search_params' do
     let(:test_class) { USCoreTestKit::USCoreV311::DocumentReferencePatientCategoryDateSearchTest }
     let(:test) { test_class.new }
-    let(:patient_id) {'123'}
-    let(:patient_no_resource) {'no-resource'}
-    let(:category_code) {'clinical-note'}
-    let(:date) {'2020-05-14T11:02:00+05:00'}
-    let(:resource_with_category_date) {
+    let(:patient_id) { '123' }
+    let(:patient_no_resource) { 'no-resource' }
+    let(:category_code) { 'clinical-note' }
+    let(:date) { '2020-05-14T11:02:00+05:00' }
+    let(:resource_with_category_date) do
       FHIR::DocumentReference.new(
         subject: {
           reference: "Patient/#{patient_id}"
@@ -704,7 +707,7 @@ RSpec.describe USCoreTestKit::SearchTest do
         ],
         date: date
       )
-    }
+    end
 
     before do
       allow_any_instance_of(test_class)
@@ -721,20 +724,20 @@ RSpec.describe USCoreTestKit::SearchTest do
     it 'handles patient with or without resources' do
       params = test.all_search_params
 
-      expect(params).not_to be_empty
+      expect(params).to_not be_empty
       expect(params[patient_no_resource]).to be_empty
-      expect(params[patient_id]).not_to be_empty
+      expect(params[patient_id]).to_not be_empty
     end
   end
 
   describe '#search_params_with_values' do
     let(:test_class) { USCoreTestKit::USCoreV311::DocumentReferencePatientCategoryDateSearchTest }
     let(:test) { test_class.new }
-    let(:patient_id) {'123'}
-    let(:patient_no_resource) {'456'}
-    let(:category_code) {'something-else'}
-    let(:date) {'2020-05-14T11:02:00+05:00'}
-    let(:resource_with_category) {
+    let(:patient_id) { '123' }
+    let(:patient_no_resource) { '456' }
+    let(:category_code) { 'something-else' }
+    let(:date) { '2020-05-14T11:02:00+05:00' }
+    let(:resource_with_category) do
       FHIR::DocumentReference.new(
         subject: {
           reference: "Patient/#{patient_id}"
@@ -749,8 +752,8 @@ RSpec.describe USCoreTestKit::SearchTest do
           }
         ]
       )
-    }
-    let(:resource_with_category_date) {
+    end
+    let(:resource_with_category_date) do
       FHIR::DocumentReference.new(
         subject: {
           reference: "Patient/#{patient_id}"
@@ -766,18 +769,18 @@ RSpec.describe USCoreTestKit::SearchTest do
         ],
         date: date
       )
-    }
+    end
 
     it 'returns search values from the same resource' do
       allow_any_instance_of(test_class)
         .to receive(:scratch_resources_for_patient).and_return([
-          resource_with_category,
-          resource_with_category_date
-        ])
+                                                                 resource_with_category,
+                                                                 resource_with_category_date
+                                                               ])
 
       params = test.search_params_with_values(test.search_param_names, patient_id)
 
-      expect(params).not_to be_empty
+      expect(params).to_not be_empty
       expect(params['patient']).to eq(patient_id)
       expect(params['category']).to eq(category_code)
       expect(params['date']).to eq(date)
@@ -791,7 +794,7 @@ RSpec.describe USCoreTestKit::SearchTest do
 
       params = test.search_params_with_values(test.search_param_names, patient_id)
 
-      expect(params).not_to be_empty
+      expect(params).to_not be_empty
       expect(params['patient']).to eq(patient_id)
       expect(params['category']).to be_nil
       expect(params['date']).to be_nil
@@ -887,8 +890,8 @@ RSpec.describe USCoreTestKit::SearchTest do
     context 'Array element having DAR extension' do
       let(:test_class) { USCoreTestKit::USCoreV311::PatientNameSearchTest }
       let(:test) { test_class.new }
-      let(:search_value) {'family_name'}
-      let(:patient) {
+      let(:search_value) { 'family_name' }
+      let(:patient) do
         FHIR::Patient.new(
           name: [
             {
@@ -907,7 +910,7 @@ RSpec.describe USCoreTestKit::SearchTest do
             }
           ]
         )
-      }
+      end
 
       it 'returns search value from the first none-DAR name of name array' do
         element = test.search_param_value('name', Array.wrap(patient))
@@ -972,7 +975,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
     let(:test) { test_class.new }
     let(:patient_id) { '85' }
-    let(:immunization) {
+    let(:immunization) do
       FHIR::Immunization.new(
         id: 'datetime',
         patient: {
@@ -980,15 +983,15 @@ RSpec.describe USCoreTestKit::SearchTest do
         },
         occurrenceDateTime: '2020-03-04T13:01:01-04:00'
       )
-    }
-    let(:bundle) {
+    end
+    let(:bundle) do
       FHIR::Bundle.new(
         entry: [
           { resource: immunization },
           { resource: FHIR::OperationOutcome.new }
         ]
       )
-    }
+    end
 
     it 'passes with additional OperationOutcome entry' do
       allow_any_instance_of(test_class)
@@ -1020,7 +1023,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
     let(:test) { test_class.new }
     let(:patient_id) { '85' }
-    let(:diagnostic_report) {
+    let(:diagnostic_report) do
       FHIR::DiagnosticReport.new(
         id: '1',
         subject: {
@@ -1028,25 +1031,25 @@ RSpec.describe USCoreTestKit::SearchTest do
         },
         category: [
           {
-            "coding":
+            coding:
             [
               {
-                "system": "urn:oid:1.2.840.114350.1.13.1545.1.7.10.798268.30",
-                "code": "Path,Cyt"
+                system: 'urn:oid:1.2.840.114350.1.13.1545.1.7.10.798268.30',
+                code: 'Path,Cyt'
               }
             ]
           }
         ],
-        effectiveDateTime: '2021-11-24T15:55:00Z',
+        effectiveDateTime: '2021-11-24T15:55:00Z'
       )
-    }
-    let(:bundle) {
+    end
+    let(:bundle) do
       FHIR::Bundle.new(
         entry: [
           { resource: diagnostic_report }
         ]
       )
-    }
+    end
 
     it 'passes with comma in search value' do
       allow_any_instance_of(test_class)
@@ -1080,7 +1083,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
     let(:test) { test_class.new }
     let(:patient_id) { '85' }
-    let(:condition) {
+    let(:condition) do
       FHIR::Condition.new(
         id: '1',
         extension: [
@@ -1103,21 +1106,21 @@ RSpec.describe USCoreTestKit::SearchTest do
           }
         ]
       )
-    }
-    let(:bundle) {
+    end
+    let(:bundle) do
       FHIR::Bundle.new(
         entry: [
           { resource: condition }
         ]
       )
-    }
+    end
 
     it 'allows searching in extension' do
       allow_any_instance_of(test_class)
         .to receive(:scratch_resources_for_patient)
         .and_return([condition])
 
-        stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=2021-11-24T15:55:00Z")
+      stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=2021-11-24T15:55:00Z")
         .to_return(status: 200, body: bundle.to_json)
       stub_request(:get, "#{url}/Condition?patient=#{patient_id}&asserted-date=gt2021-11-23T15:55:00%2B00:00")
         .to_return(status: 200, body: bundle.to_json)
@@ -1144,7 +1147,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     let(:patient_id) { '85' }
     let(:test_scratch) { {} }
     let(:intent) { 'order' }
-    let(:medication_request_1) {
+    let(:medication_request_1) do
       FHIR::MedicationRequest.new(
         id: 'medication-request-local-reference',
         subject: {
@@ -1155,8 +1158,8 @@ RSpec.describe USCoreTestKit::SearchTest do
           reference: 'Medication/medication-1'
         }
       )
-    }
-    let(:medication_request_2) {
+    end
+    let(:medication_request_2) do
       FHIR::MedicationRequest.new(
         id: 'medication-request-url',
         subject: {
@@ -1167,36 +1170,36 @@ RSpec.describe USCoreTestKit::SearchTest do
           reference: 'http://example.com/Medication/medication-2'
         }
       )
-    }
-    let(:medication_requests) {
+    end
+    let(:medication_requests) do
       [
         medication_request_1,
         medication_request_2
       ]
-    }
-    let(:medication_1) {
+    end
+    let(:medication_1) do
       FHIR::Medication.new(
         id: 'medication-1'
       )
-    }
-    let(:medication_2) {
+    end
+    let(:medication_2) do
       FHIR::Medication.new(
         id: 'medication-2'
       )
-    }
-    let(:medication_3) {
+    end
+    let(:medication_3) do
       FHIR::Medication.new(
         id: 'medication-3'
       )
-    }
-    let(:bundle) {
+    end
+    let(:bundle) do
       FHIR::Bundle.new(
         entry: [
           { resource: medication_request_1 },
           { resource: medication_request_2 }
         ]
       )
-    }
+    end
 
     before do
       allow_any_instance_of(test_class)
@@ -1219,7 +1222,7 @@ RSpec.describe USCoreTestKit::SearchTest do
       stub_request(:get, "#{url}/MedicationRequest?patient=#{patient_id}&intent=order")
         .to_return(status: 200, body: bundle.to_json)
       stub_request(:post, "#{url}/MedicationRequest/_search")
-        .with(body: {patient: patient_id, intent: 'order'})
+        .with(body: { patient: patient_id, intent: 'order' })
         .to_return(status: 200, body: bundle.to_json)
       stub_request(:get, "#{url}/MedicationRequest?patient=Patient/#{patient_id}&intent=order")
         .to_return(status: 200, body: bundle.to_json)
@@ -1228,7 +1231,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
 
     it 'passes when references and included Medications are exact match' do
-      bundle.entry.concat([ {resource: medication_1 }, {resource: medication_2}])
+      bundle.entry.concat([{ resource: medication_1 }, { resource: medication_2 }])
       stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle.to_json)
 
@@ -1237,7 +1240,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
 
     it 'passes when there are more references than included Medications' do
-      bundle.entry.concat([ {resource: medication_1 }])
+      bundle.entry.concat([{ resource: medication_1 }])
       stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle.to_json)
 
@@ -1246,7 +1249,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     end
 
     it 'fails when there are less references than included Medications' do
-      bundle.entry.concat([ {resource: medication_1}, {resource: medication_2}, {resource: medication_3 }])
+      bundle.entry.concat([{ resource: medication_1 }, { resource: medication_2 }, { resource: medication_3 }])
       stub_request(:get, "#{url}/MedicationRequest?_include=MedicationRequest:medication&intent=#{intent}&patient=#{patient_id}")
         .to_return(status: 200, body: bundle.to_json)
 
@@ -1259,7 +1262,7 @@ RSpec.describe USCoreTestKit::SearchTest do
   describe '#is_reference_match' do
     let(:test_class) { USCoreTestKit::USCoreV311::MedicationRequestPatientIntentSearchTest }
     let(:test) { test_class.new }
-    let(:pattern_reference) {'Medication/1'}
+    let(:pattern_reference) { 'Medication/1' }
 
     it 'handles local reference' do
       result = test.is_reference_match?('Medication/1', pattern_reference)
@@ -1297,7 +1300,6 @@ RSpec.describe USCoreTestKit::SearchTest do
     let(:test) { test_class.new }
     let(:patient_gender) { 'male' }
     let(:patient_id) { '85' }
-
 
     it 'matches the primitive value' do
       patient = FHIR::Patient.new(
@@ -1356,6 +1358,7 @@ RSpec.describe USCoreTestKit::SearchTest do
     let(:test_scratch) { {} }
     let(:diagnostic_report) do
       FHIR::DiagnosticReport.new(
+        id: 'test_diagnostic_report',
         subject: {
           reference: "Patient/#{patient_id}"
         },
@@ -1368,7 +1371,7 @@ RSpec.describe USCoreTestKit::SearchTest do
             ]
           }
         ],
-        performer:[
+        performer: [
           {
             reference: 'Organization/1'
           },
@@ -1389,11 +1392,11 @@ RSpec.describe USCoreTestKit::SearchTest do
       test.save_delayed_references([diagnostic_report])
 
       result = test_scratch[:references]
-      expect(result).not_to be_empty
-      expect(result['Organization']).not_to be_empty
+      expect(result).to_not be_empty
+      expect(result['Organization']).to_not be_empty
       expect(result['Organization'].count).to be(1)
-      expect(result['Organization'].first.reference).to eq('Organization/1')
+      expect(result['Organization'].first[:reference].reference).to eq('Organization/1')
+      expect(result['Organization'].first[:referencing_resource]).to eq('DiagnosticReport/test_diagnostic_report')
     end
   end
-
 end

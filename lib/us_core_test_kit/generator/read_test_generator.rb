@@ -70,7 +70,7 @@ module USCoreTestKit
 
       def resource_collection_string
         if group_metadata.delayed? && resource_type != 'Provenance'
-          "scratch.dig(:references, '#{resource_type}')"
+          "scratch.dig(:references, '#{resource_type}'), delayed_reference: true"
         else
           'all_scratch_resources'
         end
@@ -82,7 +82,7 @@ module USCoreTestKit
 
       def generate
         FileUtils.mkdir_p(output_file_directory)
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
 
         group_metadata.add_test(
           id: test_id,
