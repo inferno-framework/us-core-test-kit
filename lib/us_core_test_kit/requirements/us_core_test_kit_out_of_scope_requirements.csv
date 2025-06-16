@@ -1,4 +1,7 @@
 ﻿Req Set,ID,Reason,Details
+hl7.fhir.us.core_7.0.0,11,Not Tested,This requirement is specific to testing for the 21st Century Cures Act and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,12,Not Tested,This requirement is specific to testing for the 21st Century Cures Act and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,84,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,132,Not Tested,Inconsistent language in IG around what scopes must be supported.
 hl7.fhir.us.core_7.0.0,133,Not Tested,Inconsistent language in IG around what scopes must be supported.
 hl7.fhir.us.core_7.0.0,134,Not Tested,Inconsistent language in IG around what scopes must be supported.
@@ -23,6 +26,9 @@ hl7.fhir.us.core_7.0.0,152,Not Tested,Inconsistent language in IG around what sc
 hl7.fhir.us.core_7.0.0,153,Not Tested,Inconsistent language in IG around what scopes must be supported.
 hl7.fhir.us.core_7.0.0,154,Not Tested,Inconsistent language in IG around what scopes must be supported.
 hl7.fhir.us.core_7.0.0,155,Not Tested,Inconsistent language in IG around what scopes must be supported.
+hl7.fhir.us.core_7.0.0,391,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,405,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_7.0.0,406,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,411,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,412,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,413,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
@@ -52,8 +58,12 @@ hl7.fhir.us.core_7.0.0,519,Not Tested,This requirement is specific to certificat
 hl7.fhir.us.core_7.0.0,520,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,521,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_7.0.0,522,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,11,Not Tested,This requirement is specific to testing for the 21st Century Cures Act and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,12,Not Tested,This requirement is specific to testing for the 21st Century Cures Act and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,84,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_6.1.0,391,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_6.1.0,405,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
+hl7.fhir.us.core_6.1.0,416,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_6.1.0,516,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_6.1.0,517,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
 hl7.fhir.us.core_6.1.0,518,Not Tested,This requirement is specific to certification testing and is not relevant to the IG tests
