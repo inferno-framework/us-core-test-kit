@@ -7,7 +7,6 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v610_practitioner_role_client_read_test
-
         verifies_requirements 'hl7.fhir.us.core_6.1.0@315'
         title 'SHALL support read of PractitionerRole'
         description %(
