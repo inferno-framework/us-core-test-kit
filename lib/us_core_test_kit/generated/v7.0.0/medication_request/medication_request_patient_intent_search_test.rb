@@ -33,6 +33,9 @@ requirement of US Core v7.0.0.
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU7/CapabilityStatement-us-core-server.html)
 
       )
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
+                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58',
+                            'hl7.fhir.us.core_7.0.0@250'
 
       id :us_core_v700_medication_request_patient_intent_search_test
       input :patient_ids,

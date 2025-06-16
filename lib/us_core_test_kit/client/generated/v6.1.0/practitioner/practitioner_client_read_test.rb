@@ -7,6 +7,7 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v610_practitioner_client_read_test
+        verifies_requirements 'hl7.fhir.us.core_6.1.0@314'
         title 'SHALL support read of Practitioner'
         description %(
           The client demonstrates SHALL support for reading Practitioner.

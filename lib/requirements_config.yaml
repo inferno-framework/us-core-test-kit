@@ -1,0 +1,29 @@
+test_kit_id: us_core_test_kit
+
+suites:
+  - id: us_core_v700
+    class_name: USCoreTestKit::USCoreV700::USCoreTestSuite
+    suite_actor: Server
+  - id: us_core_v610
+    class_name: USCoreTestKit::USCoreV610::USCoreTestSuite
+    suite_actor: Server
+  - id: us_core_client_v700
+    class_name: USCoreTestKit::Client::USCoreClientV700::USCoreClientTestSuite
+    suite_actor: Client
+  - id: us_core_client_v610
+    class_name: USCoreTestKit::Client::USCoreClientV610::USCoreClientTestSuite
+    suite_actor: Client
+
+requirement_sets:
+  - id: hl7.fhir.us.core_7.0.0
+    folder: US Core
+    requirements: All
+    actor_map:
+      - {spec: Client, test_kit: Client}
+      - {spec: Server, test_kit: Server}
+  - id: hl7.fhir.us.core_6.1.0
+    folder: US Core
+    requirements: All
+    actor_map:
+      - {spec: Client, test_kit: Client}
+      - {spec: Server, test_kit: Server}

@@ -7,6 +7,7 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v610_related_person_client_read_test
+        verifies_requirements 'hl7.fhir.us.core_6.1.0@316'
         title 'SHALL support read of RelatedPerson'
         description %(
           The client demonstrates SHALL support for reading RelatedPerson.

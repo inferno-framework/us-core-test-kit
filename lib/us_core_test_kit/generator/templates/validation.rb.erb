@@ -10,6 +10,29 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
+      <%-
+  requirement_map = {
+        'DiagnosticReportLabValidationTest' => ['356', '357'],
+        'ObservationClinicalResultValidationTest' => ['427'],
+        'AverageBloodPressureValidationTest' => ['421']
+  }-%>
+      <%-if module_name == 'USCoreV610' -%>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@18', 'hl7.fhir.us.core_6.1.0@19',
+                            'hl7.fhir.us.core_6.1.0@20', 'hl7.fhir.us.core_6.1.0@21',
+                            'hl7.fhir.us.core_6.1.0@23', 'hl7.fhir.us.core_6.1.0@27',
+                            'hl7.fhir.us.core_6.1.0@40', 'hl7.fhir.us.core_6.1.0@74'<% if requirement_map[class_name] %>,
+                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_6.1.0@#{id}'" }.join(', ') %>
+        <%- end -%>
+
+      <%- elsif module_name == 'USCoreV700' -%>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@18', 'hl7.fhir.us.core_7.0.0@19',
+                            'hl7.fhir.us.core_7.0.0@20', 'hl7.fhir.us.core_7.0.0@21',
+                            'hl7.fhir.us.core_7.0.0@23', 'hl7.fhir.us.core_7.0.0@27',
+                            'hl7.fhir.us.core_7.0.0@40', 'hl7.fhir.us.core_7.0.0@74'<% if requirement_map[class_name] %>,
+                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
+        <%- end -%>
+
+      <%- end -%>
       output :dar_code_found, :dar_extension_found
 
       def resource_type

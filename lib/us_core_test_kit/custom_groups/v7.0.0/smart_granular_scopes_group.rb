@@ -8,6 +8,15 @@ module USCoreTestKit
       id :us_core_v700_smart_granular_scopes
       title 'US Core SMART Granular Scopes'
 
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@158',
+                            'hl7.fhir.us.core_7.0.0@159',
+                            'hl7.fhir.us.core_7.0.0@160',
+                            'hl7.fhir.us.core_7.0.0@161',
+                            'hl7.fhir.us.core_7.0.0@162',
+                            'hl7.fhir.us.core_7.0.0@163',
+                            'hl7.fhir.us.core_7.0.0@164',
+                            'hl7.fhir.us.core_7.0.0@165'
+
       def self.scopes_string(scopes)
         scopes
           .map { |scope| scope.delete_prefix 'patient/' }
