@@ -10,6 +10,9 @@ require_relative '../../provenance_validator'
 require_relative '../../us_core_options'<% if us_core_7_and_above? %>
 require_relative '<%= smart_app_launch_file_name %>'
 require_relative '<%= stu2_2_smart_app_launch_file_name %>'<% end %>
+<%- if module_name == 'USCoreV700'-%>
+require_relative '../../custom_groups/v7.0.0/visual_inspection_and_attestation'
+<%- end -%>
 
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
@@ -164,6 +167,10 @@ module USCoreTestKit
             id: :<%= granular_scopes_id %>_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
       <% end %>
+      <%- if module_name == 'USCoreV700'-%>
+      group from: :us_core_v700_visual_inspection_and_attestation,
+            optional: true
+      <%- end -%>
 
       links [
         {

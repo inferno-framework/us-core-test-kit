@@ -329,6 +329,7 @@ DEPENDENCIES
   debug
   factory_bot (~> 6.1)
   rack-test
+  roo (~> 2.10.1)
   rspec (~> 3.10)
   us_core_test_kit!
   webmock (~> 3.11)

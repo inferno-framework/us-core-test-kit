@@ -10,6 +10,7 @@ require_relative '../../provenance_validator'
 require_relative '../../us_core_options'
 require_relative '../../custom_groups/v7.0.0/smart_app_launch_group'
 require_relative '../../custom_groups/v7.0.0/smart_app_launch_stu2_2_group'
+require_relative '../../custom_groups/v7.0.0/visual_inspection_and_attestation'
 
 require_relative 'patient_group'
 require_relative 'allergy_intolerance_group'
@@ -237,6 +238,8 @@ module USCoreTestKit
             id: :us_core_v700_smart_granular_scopes_stu2_2,
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
       
+      group from: :us_core_v700_visual_inspection_and_attestation,
+            optional: true
 
       links [
         {
