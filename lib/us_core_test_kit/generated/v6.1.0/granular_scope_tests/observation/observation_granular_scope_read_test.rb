@@ -8,7 +8,7 @@ module USCoreTestKit
 
       title 'Server filters results for Observation reads based on granular scopes'
       description %(
-This test attempts Observation reads 
+This test attempts Observation reads
 and verifies that the results have been
 filtered based on the granted granular scopes.
 
