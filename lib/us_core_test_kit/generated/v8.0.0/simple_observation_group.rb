@@ -77,8 +77,6 @@ read succeeds.
 
       id :us_core_v800_simple_observation
       run_as_group
-      optional
-      
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'simple_observation', 'metadata.yml'), aliases: true))

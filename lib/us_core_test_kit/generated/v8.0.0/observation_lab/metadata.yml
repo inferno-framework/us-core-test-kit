@@ -336,3 +336,4 @@
 - :path: specimen
   :resources:
   - Specimen
+:resource_conformance_expectation: SHALL
