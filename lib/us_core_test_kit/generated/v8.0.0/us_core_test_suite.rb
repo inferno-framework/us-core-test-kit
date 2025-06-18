@@ -67,9 +67,9 @@ require_relative 'specimen_group'
 module USCoreTestKit
   module USCoreV800
     class USCoreTestSuite < Inferno::TestSuite
-      title 'US Core v8.0.0'
+      title 'US Core Server v8.0.0'
       description %(
-        The US Core Test Kit tests systems for their conformance to the [US Core
+        The US Core Server Test Kit tests server systems for their conformance to the [US Core
         Implementation Guide](http://hl7.org/fhir/us/core/2025Jan).
 
         HL7® FHIR® resources are validated with the Java validator using
@@ -153,14 +153,14 @@ module USCoreTestKit
             required_suite_options: USCoreOptions::SMART_2_2_REQUIREMENT
 
       group do
-        input :smart_credentials,
+        input :smart_auth_info,
           title: 'OAuth Credentials',
-          type: :oauth_credentials,
+          type: :auth_info,
           optional: true
 
         fhir_client do
           url :url
-          oauth_credentials :smart_credentials
+          auth_info :smart_auth_info
         end
 
         title 'US Core FHIR API'

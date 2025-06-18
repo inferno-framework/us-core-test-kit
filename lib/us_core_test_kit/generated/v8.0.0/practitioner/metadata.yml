@@ -161,3 +161,4 @@
 :id: us_core_v800_practitioner
 :file_name: practitioner_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

@@ -1,0 +1,65 @@
+# frozen_string_literal: true
+
+require_relative 'questionnaire_response/questionnaire_response_client_read_test'
+require_relative 'questionnaire_response/questionnaire_response_patient_client_search_test'
+require_relative 'questionnaire_response/questionnaire_response_id_client_search_test'
+require_relative 'questionnaire_response/questionnaire_response_patient_status_client_search_test'
+require_relative 'questionnaire_response/questionnaire_response_patient_questionnaire_client_search_test'
+require_relative 'questionnaire_response/questionnaire_response_patient_authored_client_search_test'
+
+module USCoreTestKit
+  module Client
+    module USCoreClientV800
+      class QuestionnaireResponseClientGroup < Inferno::TestGroup
+        id :us_core_client_v800_questionnaire_response
+        title 'QuestionnaireResponse'
+        description %(
+          
+# Background
+
+This test group verifies that the client can access QuestionnaireResponse data
+conforming to the US Core QuestionnaireResponse Profile.
+
+# Testing Methodology
+
+## Data Access Supported
+
+Clients may not be required to support the QuestionnaireResponse FHIR resource type. However, if they
+do support it, they must support the US Core QuestionnaireResponse Profile and the resource type's search parameters.
+The tests in this group will not execute if client makes no attempt to access data for the
+QuestionnaireResponse resource type. In this case, the test will be marked as skip if support
+for the resource type is required, and omitted otherwise.
+
+## Reading
+This test will check that the client performed a read of the following id:
+
+* `us-core-client-tests-questionnaire-response`
+
+## Searching
+These tests will check that the client performed searches agains the
+QuestionnaireResponse resource type with the following required parameters:
+
+* patient
+* _id
+
+Inferno will also look for searches using the following optional parameters:
+
+* patient + status
+* patient + questionnaire
+* patient + authored
+
+
+        )
+        optional true
+        run_as_group
+
+        test from: :us_core_v800_questionnaire_response_client_read_test
+        test from: :us_core_v800_questionnaire_response_patient_client_search_test
+        test from: :us_core_v800_questionnaire_response_id_client_search_test
+        test from: :us_core_v800_questionnaire_response_patient_status_client_search_test
+        test from: :us_core_v800_questionnaire_response_patient_questionnaire_client_search_test
+        test from: :us_core_v800_questionnaire_response_patient_authored_client_search_test
+      end
+    end
+  end
+end

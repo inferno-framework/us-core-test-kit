@@ -155,6 +155,7 @@
   :id: us_core_v800_allergy_intolerance
   :file_name: allergy_intolerance_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careplan
   :class_name: USCorev800CareplanSequence
   :version: v8.0.0
@@ -437,6 +438,7 @@
   :id: us_core_v800_care_plan
   :file_name: care_plan_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_careteam
   :class_name: USCorev800CareteamSequence
   :version: v8.0.0
@@ -615,6 +617,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_condition_encounter_diagnosis
   :class_name: USCorev800ConditionEncounterDiagnosisSequence
   :version: v8.0.0
@@ -1022,6 +1025,7 @@
   :id: us_core_v800_condition_encounter_diagnosis
   :file_name: condition_encounter_diagnosis_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_condition_problems_health_concerns
   :class_name: USCorev800ConditionProblemsHealthConcernsSequence
   :version: v8.0.0
@@ -1449,6 +1453,7 @@
   :id: us_core_v800_condition_problems_health_concerns
   :file_name: condition_problems_health_concerns_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_coverage
   :class_name: USCorev800CoverageSequence
   :version: v8.0.0
@@ -1615,6 +1620,7 @@
     :resources:
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_implantable_device
   :class_name: USCorev800ImplantableDeviceSequence
   :version: v8.0.0
@@ -1781,6 +1787,7 @@
   :id: us_core_v800_device
   :file_name: device_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_note
   :class_name: USCorev800DiagnosticreportNoteSequence
   :version: v8.0.0
@@ -2101,6 +2108,7 @@
     :resources:
     - Practitioner
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_diagnosticreport_lab
   :class_name: USCorev800DiagnosticreportLabSequence
   :version: v8.0.0
@@ -2408,6 +2416,7 @@
     :resources:
     - Practitioner
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_documentreference
   :class_name: USCorev800DocumentreferenceSequence
   :version: v8.0.0
@@ -2732,6 +2741,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_adi_documentreference
   :class_name: USCorev800AdiDocumentreferenceSequence
   :version: v8.0.0
@@ -3080,6 +3090,7 @@
     - Practitioner
     - Organization
     - PractitionerRole
+  :resource_conformance_expectation: SHALL
 - :name: us_core_encounter
   :class_name: USCorev800EncounterSequence
   :version: v8.0.0
@@ -3491,6 +3502,7 @@
   - :path: serviceProvider
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_goal
   :class_name: USCorev800GoalSequence
   :version: v8.0.0
@@ -3693,6 +3705,7 @@
     :resources:
     - Practitioner
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_immunization
   :class_name: USCorev800ImmunizationSequence
   :version: v8.0.0
@@ -3891,6 +3904,7 @@
     - Practitioner
     - PractitionerRole
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_location
   :class_name: USCorev800LocationSequence
   :version: v8.0.0
@@ -4084,6 +4098,7 @@
   - :path: managingOrganization
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medication
   :class_name: USCorev800MedicationSequence
   :version: v8.0.0
@@ -4139,6 +4154,7 @@
     :profiles:
     - http://hl7.org/fhir/StructureDefinition/Organization
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medicationdispense
   :class_name: USCorev800MedicationdispenseSequence
   :version: v8.0.0
@@ -4380,6 +4396,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_medicationrequest
   :class_name: USCorev800MedicationrequestSequence
   :version: v8.0.0
@@ -4720,6 +4737,7 @@
     - Organization
     - PractitionerRole
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_lab
   :class_name: USCorev800ObservationLabSequence
   :version: v8.0.0
@@ -5057,6 +5075,7 @@
   - :path: specimen
     :resources:
     - Specimen
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_pregnancystatus
   :class_name: USCorev800ObservationPregnancystatusSequence
   :version: v8.0.0
@@ -5357,6 +5376,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_pregnancyintent
   :class_name: USCorev800ObservationPregnancyintentSequence
   :version: v8.0.0
@@ -5657,6 +5677,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_occupation
   :class_name: USCorev800ObservationOccupationSequence
   :version: v8.0.0
@@ -5959,6 +5980,7 @@
   :id: us_core_v800_observation_occupation
   :file_name: observation_occupation_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_respiratory_rate
   :class_name: USCorev800RespiratoryRateSequence
   :version: v8.0.0
@@ -6284,6 +6306,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_simple_observation
   :class_name: USCorev800SimpleObservationSequence
   :version: v8.0.0
@@ -6642,6 +6665,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_treatment_intervention_preference
   :class_name: USCorev800TreatmentInterventionPreferenceSequence
   :version: v8.0.0
@@ -6925,6 +6949,7 @@
   :id: us_core_v800_treatment_intervention_preference
   :file_name: treatment_intervention_preference_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_care_experience_preference
   :class_name: USCorev800CareExperiencePreferenceSequence
   :version: v8.0.0
@@ -7208,6 +7233,7 @@
   :id: us_core_v800_care_experience_preference
   :file_name: care_experience_preference_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_heart_rate
   :class_name: USCorev800HeartRateSequence
   :version: v8.0.0
@@ -7533,6 +7559,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_temperature
   :class_name: USCorev800BodyTemperatureSequence
   :version: v8.0.0
@@ -7861,6 +7888,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_weight_for_height
   :class_name: PediatricWeightForHeightSequence
   :version: v8.0.0
@@ -8186,6 +8214,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_pulse_oximetry
   :class_name: USCorev800PulseOximetrySequence
   :version: v8.0.0
@@ -8587,6 +8616,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_smokingstatus
   :class_name: USCorev800SmokingstatusSequence
   :version: v8.0.0
@@ -8887,6 +8917,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_sexual_orientation
   :class_name: USCorev800ObservationSexualOrientationSequence
   :version: v8.0.0
@@ -9175,6 +9206,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_head_circumference
   :class_name: USCorev800HeadCircumferenceSequence
   :version: v8.0.0
@@ -9503,6 +9535,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_height
   :class_name: USCorev800BodyHeightSequence
   :version: v8.0.0
@@ -9831,6 +9864,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_bmi
   :class_name: USCorev800BmiSequence
   :version: v8.0.0
@@ -10156,6 +10190,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_screening_assessment
   :class_name: USCorev800ObservationScreeningAssessmentSequence
   :version: v8.0.0
@@ -10514,6 +10549,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_average_blood_pressure
   :class_name: USCorev800AverageBloodPressureSequence
   :version: v8.0.0
@@ -10846,6 +10882,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_blood_pressure
   :class_name: USCorev800BloodPressureSequence
   :version: v8.0.0
@@ -11207,6 +11244,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_clinical_result
   :class_name: USCorev800ObservationClinicalResultSequence
   :version: v8.0.0
@@ -11531,6 +11569,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: pediatric_bmi_for_age
   :class_name: PediatricBmiForAgeSequence
   :version: v8.0.0
@@ -11856,6 +11895,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: head_occipital_frontal_circumference_percentile
   :class_name: HeadOccipitalFrontalCircumferencePercentileSequence
   :version: v8.0.0
@@ -12182,6 +12222,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_body_weight
   :class_name: USCorev800BodyWeightSequence
   :version: v8.0.0
@@ -12510,6 +12551,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_observation_adi_documentation
   :class_name: USCorev800ObservationAdiDocumentationSequence
   :version: v8.0.0
@@ -12819,6 +12861,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_organization
   :class_name: USCorev800OrganizationSequence
   :version: v8.0.0
@@ -12961,6 +13004,7 @@
   :id: us_core_v800_organization
   :file_name: organization_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_patient
   :class_name: USCorev800PatientSequence
   :version: v8.0.0
@@ -13374,6 +13418,7 @@
   :id: us_core_v800_patient
   :file_name: patient_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitioner
   :class_name: USCorev800PractitionerSequence
   :version: v8.0.0
@@ -13536,6 +13581,7 @@
   :id: us_core_v800_practitioner
   :file_name: practitioner_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_practitionerrole
   :class_name: USCorev800PractitionerroleSequence
   :version: v8.0.0
@@ -13695,6 +13741,7 @@
   - :path: location
     :resources:
     - Location
+  :resource_conformance_expectation: SHALL
 - :name: us_core_procedure
   :class_name: USCorev800ProcedureSequence
   :version: v8.0.0
@@ -13960,6 +14007,7 @@
     - PractitionerRole
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_provenance
   :class_name: USCorev800ProvenanceSequence
   :version: v8.0.0
@@ -14123,6 +14171,7 @@
   - :path: agent.onBehalfOf
     :resources:
     - Organization
+  :resource_conformance_expectation: SHALL
 - :name: us_core_questionnaireresponse
   :class_name: USCorev800QuestionnaireresponseSequence
   :version: v8.0.0
@@ -14359,6 +14408,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHOULD
 - :name: us_core_relatedperson
   :class_name: USCorev800RelatedpersonSequence
   :version: v8.0.0
@@ -14497,6 +14547,7 @@
   :id: us_core_v800_related_person
   :file_name: related_person_group.rb
   :delayed_references: []
+  :resource_conformance_expectation: SHALL
 - :name: us_core_servicerequest
   :class_name: USCorev800ServicerequestSequence
   :version: v8.0.0
@@ -14852,6 +14903,7 @@
     - Practitioner
     - Organization
     - RelatedPerson
+  :resource_conformance_expectation: SHALL
 - :name: us_core_specimen
   :class_name: USCorev800SpecimenSequence
   :version: v8.0.0
@@ -14984,6 +15036,7 @@
   - :path: subject
     :resources:
     - Location
+  :resource_conformance_expectation: SHALL
 :granular_scope_resource_type_groups:
   Condition:
   - :id: us_core_v800_condition_granular_scope_1_group

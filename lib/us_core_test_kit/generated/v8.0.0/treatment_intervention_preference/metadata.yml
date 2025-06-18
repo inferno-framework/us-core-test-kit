@@ -283,3 +283,4 @@
 :id: us_core_v800_treatment_intervention_preference
 :file_name: treatment_intervention_preference_group.rb
 :delayed_references: []
+:resource_conformance_expectation: SHALL

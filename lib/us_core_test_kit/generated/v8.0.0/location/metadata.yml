@@ -192,3 +192,4 @@
 - :path: managingOrganization
   :resources:
   - Organization
+:resource_conformance_expectation: SHALL
