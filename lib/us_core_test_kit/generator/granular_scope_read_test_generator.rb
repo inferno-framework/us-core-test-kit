@@ -1,4 +1,4 @@
-require_relative 'naming'
+srequire_relative 'naming'
 require_relative 'special_cases'
 require_relative '../custom_groups/smart_scopes_constants'
 

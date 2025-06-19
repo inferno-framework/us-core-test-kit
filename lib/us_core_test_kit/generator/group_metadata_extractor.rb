@@ -292,8 +292,8 @@ module USCoreTestKit
       end
 
       def resource_conformance_expectation
-        @resource_conformance_expectation ||= 
-          resource_capabilities.extension.find do |extension| 
+        @resource_conformance_expectation ||=
+          resource_capabilities.extension.find do |extension|
             extension.url == 'http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation'
           end&.valueCode
       end

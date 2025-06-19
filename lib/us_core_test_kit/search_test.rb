@@ -121,6 +121,11 @@ module USCoreTestKit
       #   filter_adi_document_reference(resources_returned)
       # end
 
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(resources_returned)
+      # end
+
       if first_search?
         all_scratch_resources.concat(resources_returned).uniq!
         scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
@@ -154,6 +159,11 @@ module USCoreTestKit
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
       filter_document_references(post_search_resources) if resource_type == 'DocumentReference'
+
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(post_search_resources)
+      # end
 
       # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
       # if metadata.profile_url.end_with?('us-core-adi-documentreference')
@@ -318,6 +328,11 @@ module USCoreTestKit
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
       filter_document_references(reference_with_type_resources) if resource_type == 'DocumentReference'
+
+      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
+      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
+      #   filter_adi_document_reference(reference_with_type_resources)
+      # end
 
       # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
       # if metadata.profile_url.end_with?('us-core-adi-documentreference')
