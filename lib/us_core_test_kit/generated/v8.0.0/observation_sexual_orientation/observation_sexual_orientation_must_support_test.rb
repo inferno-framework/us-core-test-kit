@@ -17,10 +17,6 @@ module USCoreTestKit
         * Observation.status
         * Observation.subject
         * Observation.value[x]:valueCodeableConcept
-
-        For ONC USCDI requirements, each Observation must support the following additional elements:
-
-        * Observation.performer
       )
 
       id :us_core_v800_observation_sexual_orientation_must_support_test

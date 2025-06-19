@@ -16,6 +16,8 @@ module USCoreTestKit
         * Practitioner.identifier.system
         * Practitioner.identifier.value
         * Practitioner.identifier:NPI
+        * Practitioner.identifier:NPI.system
+        * Practitioner.identifier:NPI.value
         * Practitioner.name
         * Practitioner.name.family
         * Practitioner.telecom

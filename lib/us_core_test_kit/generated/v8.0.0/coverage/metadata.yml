@@ -6,7 +6,7 @@
 :resource: Coverage
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage
 :profile_name: US Core Coverage Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Coverage
 :short_description: Verify support for the server capabilities required by the US
   Core Coverage Profile.
@@ -99,7 +99,6 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
   - :path: class
   - :path: class:group.value
-  - :path: class:group.name
   - :path: class:plan.value
   - :path: class:plan.name
 :mandatory_elements:

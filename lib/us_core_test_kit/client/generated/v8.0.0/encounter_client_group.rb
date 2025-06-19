@@ -4,9 +4,9 @@ require_relative 'encounter/encounter_client_read_test'
 require_relative 'encounter/encounter_patient_client_search_test'
 require_relative 'encounter/encounter_id_client_search_test'
 require_relative 'encounter/encounter_identifier_client_search_test'
-require_relative 'encounter/encounter_patient_status_client_search_test'
-require_relative 'encounter/encounter_patient_lastupdated_client_search_test'
 require_relative 'encounter/encounter_date_patient_client_search_test'
+require_relative 'encounter/encounter_patient_lastupdated_client_search_test'
+require_relative 'encounter/encounter_patient_status_client_search_test'
 require_relative 'encounter/encounter_patient_type_client_search_test'
 require_relative 'encounter/encounter_patient_location_client_search_test'
 require_relative 'encounter/encounter_patient_discharge_disposition_client_search_test'
@@ -51,8 +51,8 @@ Encounter resource type with the following required parameters:
 Inferno will also look for searches using the following optional parameters:
 
 * identifier
-* patient + status
 * patient + _lastUpdated
+* patient + status
 * patient + type
 * patient + location
 * patient + discharge-disposition
@@ -67,9 +67,9 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_encounter_patient_client_search_test
         test from: :us_core_v800_encounter_id_client_search_test
         test from: :us_core_v800_encounter_identifier_client_search_test
-        test from: :us_core_v800_encounter_patient_status_client_search_test
-        test from: :us_core_v800_encounter_patient_lastupdated_client_search_test
         test from: :us_core_v800_encounter_date_patient_client_search_test
+        test from: :us_core_v800_encounter_patient_lastupdated_client_search_test
+        test from: :us_core_v800_encounter_patient_status_client_search_test
         test from: :us_core_v800_encounter_patient_type_client_search_test
         test from: :us_core_v800_encounter_patient_location_client_search_test
         test from: :us_core_v800_encounter_patient_discharge_disposition_client_search_test

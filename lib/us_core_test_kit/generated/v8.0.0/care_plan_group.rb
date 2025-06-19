@@ -1,6 +1,6 @@
 require_relative 'care_plan/care_plan_patient_category_search_test'
-require_relative 'care_plan/care_plan_patient_category_status_date_search_test'
 require_relative 'care_plan/care_plan_patient_category_status_search_test'
+require_relative 'care_plan/care_plan_patient_category_status_date_search_test'
 require_relative 'care_plan/care_plan_patient_category_date_search_test'
 require_relative 'care_plan/care_plan_read_test'
 require_relative 'care_plan/care_plan_provenance_revinclude_search_test'
@@ -79,8 +79,8 @@ read succeeds.
       end
   
       test from: :us_core_v800_care_plan_patient_category_search_test
-      test from: :us_core_v800_care_plan_patient_category_status_date_search_test
       test from: :us_core_v800_care_plan_patient_category_status_search_test
+      test from: :us_core_v800_care_plan_patient_category_status_date_search_test
       test from: :us_core_v800_care_plan_patient_category_date_search_test
       test from: :us_core_v800_care_plan_read_test
       test from: :us_core_v800_care_plan_provenance_revinclude_search_test

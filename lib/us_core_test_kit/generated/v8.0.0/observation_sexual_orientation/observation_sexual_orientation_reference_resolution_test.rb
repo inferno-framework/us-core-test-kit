@@ -15,7 +15,6 @@ module USCoreTestKit
 
         Elements which may provide external references include:
 
-        * Observation.performer
         * Observation.subject
       )
 

@@ -104,10 +104,8 @@ module USCoreTestKit
     * _id
     * identifier
     * name
-    * family + gender
     * birthdate + name
     * death-date + family
-    * gender + name
     * birthdate + family
 * **AllergyIntolerance**
   * read id:
@@ -120,8 +118,8 @@ module USCoreTestKit
     * us-core-client-tests-care-plan
   * searches:
     * patient + category
-    * patient + category + status + date
     * patient + category + status
+    * patient + category + status + date
     * patient + category + date
 * **CareTeam**
   * read id:
@@ -136,30 +134,30 @@ module USCoreTestKit
   * searches:
     * patient + category
     * patient
-    * patient + onset-date
-    * patient + _lastUpdated
     * patient + category + encounter
-    * patient + category + clinical-status
     * patient + recorded-date
-    * patient + asserted-date
-    * patient + abatement-date
+    * patient + _lastUpdated
+    * patient + category + clinical-status
+    * patient + onset-date
     * patient + code
     * patient + clinical-status
+    * patient + asserted-date
+    * patient + abatement-date
 * **ConditionProblemsHealthConcerns**
   * read id:
     * us-core-client-tests-condition-problems-health-concerns
   * searches:
     * patient + category
     * patient
-    * patient + onset-date
-    * patient + _lastUpdated
     * patient + category + encounter
-    * patient + category + clinical-status
     * patient + recorded-date
-    * patient + asserted-date
-    * patient + abatement-date
+    * patient + _lastUpdated
+    * patient + category + clinical-status
+    * patient + onset-date
     * patient + code
     * patient + clinical-status
+    * patient + asserted-date
+    * patient + abatement-date
 * **Coverage**
   * read id:
     * us-core-client-tests-coverage
@@ -170,30 +168,30 @@ module USCoreTestKit
     * us-core-client-tests-device
   * searches:
     * patient
-    * patient + type
     * patient + status
+    * patient + type
 * **DiagnosticReportNote**
   * read id:
     * us-core-client-tests-diagnostic-report-note
   * searches:
     * patient + category
     * patient
+    * patient + category + _lastUpdated
     * patient + status
-    * patient + code + date
     * patient + category + date
     * patient + code
-    * patient + category + _lastUpdated
+    * patient + code + date
 * **DiagnosticReportLab**
   * read id:
     * us-core-client-tests-diagnostic-report-lab
   * searches:
     * patient + category
     * patient
+    * patient + category + _lastUpdated
     * patient + status
-    * patient + code + date
     * patient + category + date
     * patient + code
-    * patient + category + _lastUpdated
+    * patient + code + date
 * **DocumentReference**
   * read id:
     * us-core-client-tests-document-reference
@@ -201,10 +199,21 @@ module USCoreTestKit
     * patient
     * _id
     * patient + status
+    * patient + category
     * patient + category + date
     * patient + type + period
     * patient + type
+* **AdiDocumentReference**
+  * read id:
+    * us-core-client-tests-adi-document-reference
+  * searches:
     * patient + category
+    * _id
+    * patient
+    * patient + status
+    * patient + category + date
+    * patient + type + period
+    * patient + type
 * **AdiDocumentReference**
   * read id:
     * us-core-client-tests-adi-document-reference
@@ -223,9 +232,9 @@ module USCoreTestKit
     * patient
     * _id
     * identifier
-    * patient + status
-    * patient + _lastUpdated
     * date + patient
+    * patient + _lastUpdated
+    * patient + status
     * patient + type
     * patient + location
     * patient + discharge-disposition
@@ -235,9 +244,9 @@ module USCoreTestKit
     * us-core-client-tests-goal
   * searches:
     * patient
-    * patient + target-date
     * patient + lifecycle-status
     * patient + description
+    * patient + target-date
 * **Immunization**
   * read id:
     * us-core-client-tests-immunization
@@ -250,266 +259,276 @@ module USCoreTestKit
     * us-core-client-tests-medication-dispense
   * searches:
     * patient
-    * patient + status
     * patient + status + type
+    * patient + status
 * **MedicationRequest**
   * read id:
     * us-core-client-tests-medication-request
   * searches:
     * patient + intent
-    * patient + intent + authoredon
-    * patient + intent + status
     * patient + intent + encounter
-* **ObservationLab**
-  * read id:
-    * us-core-client-tests-observation-lab
-  * searches:
-    * patient + category
-    * patient + code + date
-    * patient + category + date
-    * patient + code
-    * patient + category + _lastUpdated
-    * patient + category + status
-* **ObservationPregnancystatus**
-  * read id:
-    * us-core-client-tests-observation-pregnancystatus
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **ObservationPregnancyintent**
-  * read id:
-    * us-core-client-tests-observation-pregnancyintent
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **ObservationOccupation**
-  * read id:
-    * us-core-client-tests-observation-occupation
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **RespiratoryRate**
-  * read id:
-    * us-core-client-tests-respiratory-rate
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **SimpleObservation**
-  * read id:
-    * us-core-client-tests-simple-observation
-  * searches:
-    * patient + category
-    * patient + code + date
-    * patient + category + date
-    * patient + code
-    * patient + category + _lastUpdated
-    * patient + category + status
-* **TreatmentInterventionPreference**
-  * read id:
-    * us-core-client-tests-treatment-intervention-preference
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **CareExperiencePreference**
-  * read id:
-    * us-core-client-tests-care-experience-preference
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **HeartRate**
-  * read id:
-    * us-core-client-tests-heart-rate
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **BodyTemperature**
-  * read id:
-    * us-core-client-tests-body-temperature
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **PediatricWeightForHeight**
-  * read id:
-    * us-core-client-tests-pediatric-weight-for-height
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **PulseOximetry**
-  * read id:
-    * us-core-client-tests-pulse-oximetry
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **Smokingstatus**
-  * read id:
-    * us-core-client-tests-smokingstatus
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **ObservationSexualOrientation**
-  * read id:
-    * us-core-client-tests-observation-sexual-orientation
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **HeadCircumference**
-  * read id:
-    * us-core-client-tests-head-circumference
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **BodyHeight**
-  * read id:
-    * us-core-client-tests-body-height
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **Bmi**
-  * read id:
-    * us-core-client-tests-bmi
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **ObservationScreeningAssessment**
-  * read id:
-    * us-core-client-tests-observation-screening-assessment
-  * searches:
-    * patient + category
-    * patient + code + date
-    * patient + category + date
-    * patient + code
-    * patient + category + _lastUpdated
-    * patient + category + status
-* **AverageBloodPressure**
-  * read id:
-    * us-core-client-tests-average-blood-pressure
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **BloodPressure**
-  * read id:
-    * us-core-client-tests-blood-pressure
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **ObservationClinicalResult**
-  * read id:
-    * us-core-client-tests-observation-clinical-result
-  * searches:
-    * patient + category
-    * patient + code + date
-    * patient + category + date
-    * patient + code
-    * patient + category + _lastUpdated
-    * patient + category + status
-* **PediatricBmiForAge**
-  * read id:
-    * us-core-client-tests-pediatric-bmi-for-age
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **HeadCircumferencePercentile**
-  * read id:
-    * us-core-client-tests-head-circumference-percentile
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-* **BodyWeight**
-  * read id:
-    * us-core-client-tests-body-weight
-  * searches:
-    * patient + code
-    * patient + code + date
-    * patient + category + date
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
+    * patient + intent + status
+    * patient + intent + authoredon
 * **ObservationAdiDocumentation**
   * read id:
     * us-core-client-tests-observation-adi-documentation
   * searches:
     * patient + code
-    * patient + code + date
-    * patient + category + date
     * patient + category + _lastUpdated
     * patient + category
     * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationLab**
+  * read id:
+    * us-core-client-tests-observation-lab
+  * searches:
+    * patient + category
+    * patient + category + _lastUpdated
+    * patient + category + status
+    * patient + category + date
+    * patient + code
+    * patient + code + date
+* **ObservationPregnancystatus**
+  * read id:
+    * us-core-client-tests-observation-pregnancystatus
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationPregnancyintent**
+  * read id:
+    * us-core-client-tests-observation-pregnancyintent
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationOccupation**
+  * read id:
+    * us-core-client-tests-observation-occupation
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **RespiratoryRate**
+  * read id:
+    * us-core-client-tests-respiratory-rate
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **SimpleObservation**
+  * read id:
+    * us-core-client-tests-simple-observation
+  * searches:
+    * patient + category
+    * patient + category + _lastUpdated
+    * patient + category + status
+    * patient + category + date
+    * patient + code
+    * patient + code + date
+* **TreatmentInterventionPreference**
+  * read id:
+    * us-core-client-tests-treatment-intervention-preference
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **CareExperiencePreference**
+  * read id:
+    * us-core-client-tests-care-experience-preference
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **HeartRate**
+  * read id:
+    * us-core-client-tests-heart-rate
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **BodyTemperature**
+  * read id:
+    * us-core-client-tests-body-temperature
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **PediatricWeightForHeight**
+  * read id:
+    * us-core-client-tests-pediatric-weight-for-height
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **PulseOximetry**
+  * read id:
+    * us-core-client-tests-pulse-oximetry
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **Smokingstatus**
+  * read id:
+    * us-core-client-tests-smokingstatus
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationSexualOrientation**
+  * read id:
+    * us-core-client-tests-observation-sexual-orientation
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **HeadCircumference**
+  * read id:
+    * us-core-client-tests-head-circumference
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **BodyHeight**
+  * read id:
+    * us-core-client-tests-body-height
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **Bmi**
+  * read id:
+    * us-core-client-tests-bmi
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationScreeningAssessment**
+  * read id:
+    * us-core-client-tests-observation-screening-assessment
+  * searches:
+    * patient + category
+    * patient + category + _lastUpdated
+    * patient + category + status
+    * patient + category + date
+    * patient + code
+    * patient + code + date
+* **AverageBloodPressure**
+  * read id:
+    * us-core-client-tests-average-blood-pressure
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **BloodPressure**
+  * read id:
+    * us-core-client-tests-blood-pressure
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationClinicalResult**
+  * read id:
+    * us-core-client-tests-observation-clinical-result
+  * searches:
+    * patient + category
+    * patient + category + _lastUpdated
+    * patient + category + status
+    * patient + category + date
+    * patient + code
+    * patient + code + date
+* **PediatricBmiForAge**
+  * read id:
+    * us-core-client-tests-pediatric-bmi-for-age
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **HeadCircumferencePercentile**
+  * read id:
+    * us-core-client-tests-head-circumference-percentile
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **BodyWeight**
+  * read id:
+    * us-core-client-tests-body-weight
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
+* **ObservationAdiDocumentation**
+  * read id:
+    * us-core-client-tests-observation-adi-documentation
+  * searches:
+    * patient + code
+    * patient + category + _lastUpdated
+    * patient + category
+    * patient + category + status
+    * patient + category + date
+    * patient + code + date
 * **Procedure**
   * read id:
     * us-core-client-tests-procedure
@@ -524,9 +543,9 @@ module USCoreTestKit
   * searches:
     * patient
     * _id
+    * patient + authored
     * patient + status
     * patient + questionnaire
-    * patient + authored
 * **ServiceRequest**
   * read id:
     * us-core-client-tests-service-request
@@ -534,10 +553,10 @@ module USCoreTestKit
     * patient
     * _id
     * patient + status
-    * patient + code + authored
-    * patient + code
-    * patient + category + authored
     * patient + category
+    * patient + code + authored
+    * patient + category + authored
+    * patient + code
 * **Location**
   * read id:
     * us-core-client-tests-location

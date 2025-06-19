@@ -2,9 +2,9 @@
 
 require_relative 'medication_request/medication_request_client_read_test'
 require_relative 'medication_request/medication_request_patient_intent_client_search_test'
-require_relative 'medication_request/medication_request_patient_intent_authoredon_client_search_test'
-require_relative 'medication_request/medication_request_patient_intent_status_client_search_test'
 require_relative 'medication_request/medication_request_patient_intent_encounter_client_search_test'
+require_relative 'medication_request/medication_request_patient_intent_status_client_search_test'
+require_relative 'medication_request/medication_request_patient_intent_authoredon_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -43,8 +43,8 @@ MedicationRequest resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + intent + authoredon
 * patient + intent + encounter
+* patient + intent + authoredon
 
 
         )
@@ -53,9 +53,9 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_medication_request_client_read_test
         test from: :us_core_v800_medication_request_patient_intent_client_search_test
-        test from: :us_core_v800_medication_request_patient_intent_authoredon_client_search_test
-        test from: :us_core_v800_medication_request_patient_intent_status_client_search_test
         test from: :us_core_v800_medication_request_patient_intent_encounter_client_search_test
+        test from: :us_core_v800_medication_request_patient_intent_status_client_search_test
+        test from: :us_core_v800_medication_request_patient_intent_authoredon_client_search_test
       end
     end
   end

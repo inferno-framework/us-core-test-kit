@@ -6,7 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference
 :profile_name: US Core Treatment Intervention Preference Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Observation Treatment Intervention Preference
 :short_description: Verify support for the server capabilities required by the US
   Core Treatment Intervention Preference Profile.
@@ -41,20 +41,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
   - category
   - _lastUpdated
   :names_not_must_support_or_mandatory:
@@ -73,6 +59,20 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :paths:
@@ -82,36 +82,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values:
-    - 75773-2
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -162,6 +132,36 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 75773-2
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -189,6 +189,10 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
+  - :path: performer
+    :uscdi_only: true
+    :types:
+    - Reference
   - :path: valueString
     :original_path: value[x]
   - :path: valueCodeableConcept
@@ -231,12 +235,12 @@
   - http://hl7.org/fhir/StructureDefinition/Encounter
 - :path: Observation.performer
   :profiles:
-  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  - http://hl7.org/fhir/StructureDefinition/Organization
-  - http://hl7.org/fhir/StructureDefinition/CareTeam
-  - http://hl7.org/fhir/StructureDefinition/Patient
-  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
 - :path: Observation.specimen
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Specimen
@@ -260,16 +264,16 @@
 :tests:
 - :id: us_core_v800_treatment_intervention_preference_patient_code_search_test
   :file_name: treatment_intervention_preference_patient_code_search_test.rb
-- :id: us_core_v800_treatment_intervention_preference_patient_code_date_search_test
-  :file_name: treatment_intervention_preference_patient_code_date_search_test.rb
-- :id: us_core_v800_treatment_intervention_preference_patient_category_date_search_test
-  :file_name: treatment_intervention_preference_patient_category_date_search_test.rb
 - :id: us_core_v800_treatment_intervention_preference_patient_category__lastUpdated_search_test
   :file_name: treatment_intervention_preference_patient_category_lastupdated_search_test.rb
 - :id: us_core_v800_treatment_intervention_preference_patient_category_search_test
   :file_name: treatment_intervention_preference_patient_category_search_test.rb
 - :id: us_core_v800_treatment_intervention_preference_patient_category_status_search_test
   :file_name: treatment_intervention_preference_patient_category_status_search_test.rb
+- :id: us_core_v800_treatment_intervention_preference_patient_category_date_search_test
+  :file_name: treatment_intervention_preference_patient_category_date_search_test.rb
+- :id: us_core_v800_treatment_intervention_preference_patient_code_date_search_test
+  :file_name: treatment_intervention_preference_patient_code_date_search_test.rb
 - :id: us_core_v800_treatment_intervention_preference_read_test
   :file_name: treatment_intervention_preference_read_test.rb
 - :id: us_core_v800_treatment_intervention_preference_provenance_revinclude_search_test
@@ -282,5 +286,10 @@
   :file_name: treatment_intervention_preference_reference_resolution_test.rb
 :id: us_core_v800_treatment_intervention_preference
 :file_name: treatment_intervention_preference_group.rb
-:delayed_references: []
+:delayed_references:
+- :path: performer
+  :resources:
+  - Practitioner
+  - Organization
+  - RelatedPerson
 :resource_conformance_expectation: SHALL

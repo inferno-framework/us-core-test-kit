@@ -1,6 +1,6 @@
 require_relative 'device/device_patient_search_test'
-require_relative 'device/device_patient_type_search_test'
 require_relative 'device/device_patient_status_search_test'
+require_relative 'device/device_patient_type_search_test'
 require_relative 'device/device_read_test'
 require_relative 'device/device_provenance_revinclude_search_test'
 require_relative 'device/device_validation_test'
@@ -78,8 +78,8 @@ read succeeds.
       end
   
       test from: :us_core_v800_device_patient_search_test
-      test from: :us_core_v800_device_patient_type_search_test
       test from: :us_core_v800_device_patient_status_search_test
+      test from: :us_core_v800_device_patient_type_search_test
       test from: :us_core_v800_device_read_test
       test from: :us_core_v800_device_provenance_revinclude_search_test
       test from: :us_core_v800_device_validation_test

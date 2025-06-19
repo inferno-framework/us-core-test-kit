@@ -2,8 +2,8 @@
 
 require_relative 'care_plan/care_plan_client_read_test'
 require_relative 'care_plan/care_plan_patient_category_client_search_test'
-require_relative 'care_plan/care_plan_patient_category_status_date_client_search_test'
 require_relative 'care_plan/care_plan_patient_category_status_client_search_test'
+require_relative 'care_plan/care_plan_patient_category_status_date_client_search_test'
 require_relative 'care_plan/care_plan_patient_category_date_client_search_test'
 
 module USCoreTestKit
@@ -42,8 +42,8 @@ CarePlan resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + category + status + date
 * patient + category + status
+* patient + category + status + date
 * patient + category + date
 
 
@@ -53,8 +53,8 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_care_plan_client_read_test
         test from: :us_core_v800_care_plan_patient_category_client_search_test
-        test from: :us_core_v800_care_plan_patient_category_status_date_client_search_test
         test from: :us_core_v800_care_plan_patient_category_status_client_search_test
+        test from: :us_core_v800_care_plan_patient_category_status_date_client_search_test
         test from: :us_core_v800_care_plan_patient_category_date_client_search_test
       end
     end

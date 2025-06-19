@@ -2,11 +2,11 @@
 
 require_relative 'observation_lab/observation_lab_client_read_test'
 require_relative 'observation_lab/observation_lab_patient_category_client_search_test'
-require_relative 'observation_lab/observation_lab_patient_code_date_client_search_test'
-require_relative 'observation_lab/observation_lab_patient_category_date_client_search_test'
-require_relative 'observation_lab/observation_lab_patient_code_client_search_test'
 require_relative 'observation_lab/observation_lab_patient_category_lastupdated_client_search_test'
 require_relative 'observation_lab/observation_lab_patient_category_status_client_search_test'
+require_relative 'observation_lab/observation_lab_patient_category_date_client_search_test'
+require_relative 'observation_lab/observation_lab_patient_code_client_search_test'
+require_relative 'observation_lab/observation_lab_patient_code_date_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -46,9 +46,9 @@ Observation resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + code + date
 * patient + category + _lastUpdated
 * patient + category + status
+* patient + code + date
 
 
         )
@@ -57,11 +57,11 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_observation_lab_client_read_test
         test from: :us_core_v800_observation_lab_patient_category_client_search_test
-        test from: :us_core_v800_observation_lab_patient_code_date_client_search_test
-        test from: :us_core_v800_observation_lab_patient_category_date_client_search_test
-        test from: :us_core_v800_observation_lab_patient_code_client_search_test
         test from: :us_core_v800_observation_lab_patient_category_lastupdated_client_search_test
         test from: :us_core_v800_observation_lab_patient_category_status_client_search_test
+        test from: :us_core_v800_observation_lab_patient_category_date_client_search_test
+        test from: :us_core_v800_observation_lab_patient_code_client_search_test
+        test from: :us_core_v800_observation_lab_patient_code_date_client_search_test
       end
     end
   end

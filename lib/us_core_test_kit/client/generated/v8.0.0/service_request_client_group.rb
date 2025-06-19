@@ -4,10 +4,10 @@ require_relative 'service_request/service_request_client_read_test'
 require_relative 'service_request/service_request_patient_client_search_test'
 require_relative 'service_request/service_request_id_client_search_test'
 require_relative 'service_request/service_request_patient_status_client_search_test'
-require_relative 'service_request/service_request_patient_code_authored_client_search_test'
-require_relative 'service_request/service_request_patient_code_client_search_test'
-require_relative 'service_request/service_request_patient_category_authored_client_search_test'
 require_relative 'service_request/service_request_patient_category_client_search_test'
+require_relative 'service_request/service_request_patient_code_authored_client_search_test'
+require_relative 'service_request/service_request_patient_category_authored_client_search_test'
+require_relative 'service_request/service_request_patient_code_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -43,9 +43,9 @@ ServiceRequest resource type with the following required parameters:
 
 * patient
 * _id
-* patient + code
-* patient + category + authored
 * patient + category
+* patient + category + authored
+* patient + code
 
 Inferno will also look for searches using the following optional parameters:
 
@@ -61,10 +61,10 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_service_request_patient_client_search_test
         test from: :us_core_v800_service_request_id_client_search_test
         test from: :us_core_v800_service_request_patient_status_client_search_test
-        test from: :us_core_v800_service_request_patient_code_authored_client_search_test
-        test from: :us_core_v800_service_request_patient_code_client_search_test
-        test from: :us_core_v800_service_request_patient_category_authored_client_search_test
         test from: :us_core_v800_service_request_patient_category_client_search_test
+        test from: :us_core_v800_service_request_patient_code_authored_client_search_test
+        test from: :us_core_v800_service_request_patient_category_authored_client_search_test
+        test from: :us_core_v800_service_request_patient_code_client_search_test
       end
     end
   end

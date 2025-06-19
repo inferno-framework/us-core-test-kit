@@ -3,15 +3,15 @@
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_client_read_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_client_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_client_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_onset_date_client_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_lastupdated_client_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_encounter_client_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_clinical_status_client_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_recorded_date_client_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_asserted_date_client_search_test'
-require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_abatement_date_client_search_test'
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_lastupdated_client_search_test'
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_category_clinical_status_client_search_test'
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_onset_date_client_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_code_client_search_test'
 require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_clinical_status_client_search_test'
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_asserted_date_client_search_test'
+require_relative 'condition_encounter_diagnosis/condition_encounter_diagnosis_patient_abatement_date_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -50,15 +50,15 @@ Condition resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + onset-date
-* patient + _lastUpdated
 * patient + category + encounter
-* patient + category + clinical-status
 * patient + recorded-date
-* patient + asserted-date
-* patient + abatement-date
+* patient + _lastUpdated
+* patient + category + clinical-status
+* patient + onset-date
 * patient + code
 * patient + clinical-status
+* patient + asserted-date
+* patient + abatement-date
 
 
         )
@@ -68,15 +68,15 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_condition_encounter_diagnosis_client_read_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_category_client_search_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_client_search_test
-        test from: :us_core_v800_condition_encounter_diagnosis_patient_onset_date_client_search_test
-        test from: :us_core_v800_condition_encounter_diagnosis_patient_lastupdated_client_search_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_category_encounter_client_search_test
-        test from: :us_core_v800_condition_encounter_diagnosis_patient_category_clinical_status_client_search_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_recorded_date_client_search_test
-        test from: :us_core_v800_condition_encounter_diagnosis_patient_asserted_date_client_search_test
-        test from: :us_core_v800_condition_encounter_diagnosis_patient_abatement_date_client_search_test
+        test from: :us_core_v800_condition_encounter_diagnosis_patient_lastupdated_client_search_test
+        test from: :us_core_v800_condition_encounter_diagnosis_patient_category_clinical_status_client_search_test
+        test from: :us_core_v800_condition_encounter_diagnosis_patient_onset_date_client_search_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_code_client_search_test
         test from: :us_core_v800_condition_encounter_diagnosis_patient_clinical_status_client_search_test
+        test from: :us_core_v800_condition_encounter_diagnosis_patient_asserted_date_client_search_test
+        test from: :us_core_v800_condition_encounter_diagnosis_patient_abatement_date_client_search_test
       end
     end
   end

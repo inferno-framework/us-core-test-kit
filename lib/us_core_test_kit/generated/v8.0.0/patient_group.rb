@@ -1,10 +1,8 @@
 require_relative 'patient/patient_id_search_test'
 require_relative 'patient/patient_identifier_search_test'
 require_relative 'patient/patient_name_search_test'
-require_relative 'patient/patient_family_gender_search_test'
 require_relative 'patient/patient_birthdate_name_search_test'
 require_relative 'patient/patient_death_date_family_search_test'
-require_relative 'patient/patient_gender_name_search_test'
 require_relative 'patient/patient_birthdate_family_search_test'
 require_relative 'patient/patient_read_test'
 require_relative 'patient/patient_provenance_revinclude_search_test'
@@ -34,7 +32,6 @@ following parameters:
 * identifier
 * name
 * birthdate + name
-* gender + name
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -88,10 +85,8 @@ read succeeds.
       test from: :us_core_v800_patient__id_search_test
       test from: :us_core_v800_patient_identifier_search_test
       test from: :us_core_v800_patient_name_search_test
-      test from: :us_core_v800_patient_family_gender_search_test
       test from: :us_core_v800_patient_birthdate_name_search_test
       test from: :us_core_v800_patient_death_date_family_search_test
-      test from: :us_core_v800_patient_gender_name_search_test
       test from: :us_core_v800_patient_birthdate_family_search_test
       test from: :us_core_v800_patient_read_test
       test from: :us_core_v800_patient_provenance_revinclude_search_test

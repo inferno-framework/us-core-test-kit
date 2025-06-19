@@ -6,7 +6,7 @@
 :resource: CarePlan
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan
 :profile_name: US Core CarePlan Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: CarePlan
 :short_description: Verify support for the server capabilities required by the US
   Core CarePlan Profile.
@@ -43,17 +43,17 @@
   - patient
   - category
   - status
-  - date
-  :names_not_must_support_or_mandatory:
-  - date
-  :must_support_or_mandatory: false
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
   - category
   - status
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
+  - date
+  :names_not_must_support_or_mandatory:
+  - date
+  :must_support_or_mandatory: false
 - :expectation: SHOULD
   :names:
   - patient
@@ -147,6 +147,10 @@
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - :path: contributor
+    :uscdi_only: true
+    :types:
+    - Reference
 :mandatory_elements:
 - CarePlan.text.status
 - CarePlan.text.div
@@ -204,13 +208,13 @@
   - http://hl7.org/fhir/StructureDefinition/CareTeam
 - :path: CarePlan.contributor
   :profiles:
-  - http://hl7.org/fhir/StructureDefinition/Patient
-  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
   - http://hl7.org/fhir/StructureDefinition/Device
-  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
-  - http://hl7.org/fhir/StructureDefinition/Organization
-  - http://hl7.org/fhir/StructureDefinition/CareTeam
 - :path: CarePlan.careTeam
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/CareTeam
@@ -262,10 +266,10 @@
 :tests:
 - :id: us_core_v800_care_plan_patient_category_search_test
   :file_name: care_plan_patient_category_search_test.rb
-- :id: us_core_v800_care_plan_patient_category_status_date_search_test
-  :file_name: care_plan_patient_category_status_date_search_test.rb
 - :id: us_core_v800_care_plan_patient_category_status_search_test
   :file_name: care_plan_patient_category_status_search_test.rb
+- :id: us_core_v800_care_plan_patient_category_status_date_search_test
+  :file_name: care_plan_patient_category_status_date_search_test.rb
 - :id: us_core_v800_care_plan_patient_category_date_search_test
   :file_name: care_plan_patient_category_date_search_test.rb
 - :id: us_core_v800_care_plan_read_test
@@ -280,5 +284,10 @@
   :file_name: care_plan_reference_resolution_test.rb
 :id: us_core_v800_care_plan
 :file_name: care_plan_group.rb
-:delayed_references: []
+:delayed_references:
+- :path: contributor
+  :resources:
+  - Practitioner
+  - Organization
+  - RelatedPerson
 :resource_conformance_expectation: SHALL

@@ -6,7 +6,7 @@
 :resource: ServiceRequest
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest
 :profile_name: US Core ServiceRequest Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: ServiceRequest
 :short_description: Verify support for the server capabilities required by the US
   Core ServiceRequest Profile.
@@ -48,6 +48,12 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 - :expectation: SHOULD
   :names:
   - patient
@@ -58,12 +64,6 @@
 - :expectation: SHALL
   :names:
   - patient
-  - code
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
   - category
   - authored
   :names_not_must_support_or_mandatory: []
@@ -71,7 +71,7 @@
 - :expectation: SHALL
   :names:
   - patient
-  - category
+  - code
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -112,6 +112,30 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :category:
+    :paths:
+    - category
+    :full_paths:
+    - ServiceRequest.category
+    :comparators: {}
+    :values:
+    - sdoh
+    - functional-status
+    - disability-status
+    - cognitive-status
+    - treatment-intervention-preference
+    - care-experience-preference
+    - observation-adi-documentation
+    - '386053000'
+    - '410606002'
+    - '108252007'
+    - '363679005'
+    - '409063005'
+    - '409073007'
+    - '387713003'
+    :type: CodeableConcept
+    :contains_multiple: true
+    :multiple_or: MAY
   :code:
     :paths:
     - code
@@ -140,30 +164,6 @@
     :values: []
     :type: dateTime
     :contains_multiple: false
-    :multiple_or: MAY
-  :category:
-    :paths:
-    - category
-    :full_paths:
-    - ServiceRequest.category
-    :comparators: {}
-    :values:
-    - sdoh
-    - functional-status
-    - disability-status
-    - cognitive-status
-    - treatment-intervention-preference
-    - care-experience-preference
-    - observation-adi-documentation
-    - '386053000'
-    - '410606002'
-    - '108252007'
-    - '363679005'
-    - '409063005'
-    - '409073007'
-    - '387713003'
-    :type: CodeableConcept
-    :contains_multiple: true
     :multiple_or: MAY
 :include_params: []
 :revincludes:
@@ -213,6 +213,8 @@
   - :path: intent
   - :path: category
   - :path: code
+  - :path: code.text
+    :uscdi_only: true
   - :path: subject
     :types:
     - Reference
@@ -325,14 +327,14 @@
   :file_name: service_request_id_search_test.rb
 - :id: us_core_v800_service_request_patient_status_search_test
   :file_name: service_request_patient_status_search_test.rb
-- :id: us_core_v800_service_request_patient_code_authored_search_test
-  :file_name: service_request_patient_code_authored_search_test.rb
-- :id: us_core_v800_service_request_patient_code_search_test
-  :file_name: service_request_patient_code_search_test.rb
-- :id: us_core_v800_service_request_patient_category_authored_search_test
-  :file_name: service_request_patient_category_authored_search_test.rb
 - :id: us_core_v800_service_request_patient_category_search_test
   :file_name: service_request_patient_category_search_test.rb
+- :id: us_core_v800_service_request_patient_code_authored_search_test
+  :file_name: service_request_patient_code_authored_search_test.rb
+- :id: us_core_v800_service_request_patient_category_authored_search_test
+  :file_name: service_request_patient_category_authored_search_test.rb
+- :id: us_core_v800_service_request_patient_code_search_test
+  :file_name: service_request_patient_code_search_test.rb
 - :id: us_core_v800_service_request_read_test
   :file_name: service_request_read_test.rb
 - :id: us_core_v800_service_request_provenance_revinclude_search_test

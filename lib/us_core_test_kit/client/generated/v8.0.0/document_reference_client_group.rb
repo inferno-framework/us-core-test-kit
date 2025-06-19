@@ -4,10 +4,10 @@ require_relative 'document_reference/document_reference_client_read_test'
 require_relative 'document_reference/document_reference_patient_client_search_test'
 require_relative 'document_reference/document_reference_id_client_search_test'
 require_relative 'document_reference/document_reference_patient_status_client_search_test'
+require_relative 'document_reference/document_reference_patient_category_client_search_test'
 require_relative 'document_reference/document_reference_patient_category_date_client_search_test'
 require_relative 'document_reference/document_reference_patient_type_period_client_search_test'
 require_relative 'document_reference/document_reference_patient_type_client_search_test'
-require_relative 'document_reference/document_reference_patient_category_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -43,9 +43,9 @@ DocumentReference resource type with the following required parameters:
 
 * patient
 * _id
+* patient + category
 * patient + category + date
 * patient + type
-* patient + category
 
 Inferno will also look for searches using the following optional parameters:
 
@@ -61,10 +61,10 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_document_reference_patient_client_search_test
         test from: :us_core_v800_document_reference_id_client_search_test
         test from: :us_core_v800_document_reference_patient_status_client_search_test
+        test from: :us_core_v800_document_reference_patient_category_client_search_test
         test from: :us_core_v800_document_reference_patient_category_date_client_search_test
         test from: :us_core_v800_document_reference_patient_type_period_client_search_test
         test from: :us_core_v800_document_reference_patient_type_client_search_test
-        test from: :us_core_v800_document_reference_patient_category_client_search_test
       end
     end
   end

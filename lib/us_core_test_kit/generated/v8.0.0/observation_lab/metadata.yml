@@ -6,7 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
 :profile_name: US Core Laboratory Result Observation Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Observation Laboratory Result
 :short_description: Verify support for the server capabilities required by the US
   Core Laboratory Result Observation Profile.
@@ -41,26 +41,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - code
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
   - category
   - _lastUpdated
   :names_not_must_support_or_mandatory: []
@@ -72,6 +52,26 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - code
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :paths:
@@ -81,35 +81,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values: []
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -160,6 +131,35 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -181,6 +181,8 @@
   - :path: status
   - :path: category
   - :path: code
+  - :path: code.text
+    :uscdi_only: true
   - :path: subject
     :types:
     - Reference
@@ -287,16 +289,16 @@
 :tests:
 - :id: us_core_v800_observation_lab_patient_category_search_test
   :file_name: observation_lab_patient_category_search_test.rb
-- :id: us_core_v800_observation_lab_patient_code_date_search_test
-  :file_name: observation_lab_patient_code_date_search_test.rb
-- :id: us_core_v800_observation_lab_patient_category_date_search_test
-  :file_name: observation_lab_patient_category_date_search_test.rb
-- :id: us_core_v800_observation_lab_patient_code_search_test
-  :file_name: observation_lab_patient_code_search_test.rb
 - :id: us_core_v800_observation_lab_patient_category__lastUpdated_search_test
   :file_name: observation_lab_patient_category_lastupdated_search_test.rb
 - :id: us_core_v800_observation_lab_patient_category_status_search_test
   :file_name: observation_lab_patient_category_status_search_test.rb
+- :id: us_core_v800_observation_lab_patient_category_date_search_test
+  :file_name: observation_lab_patient_category_date_search_test.rb
+- :id: us_core_v800_observation_lab_patient_code_search_test
+  :file_name: observation_lab_patient_code_search_test.rb
+- :id: us_core_v800_observation_lab_patient_code_date_search_test
+  :file_name: observation_lab_patient_code_date_search_test.rb
 - :id: us_core_v800_observation_lab_read_test
   :file_name: observation_lab_read_test.rb
 - :id: us_core_v800_observation_lab_provenance_revinclude_search_test
@@ -307,21 +309,6 @@
   :file_name: observation_lab_must_support_test.rb
 - :id: us_core_v800_observation_lab_reference_resolution_test
   :file_name: observation_lab_reference_resolution_test.rb
-:granular_scope_tests:
-- :id: us_core_v800_Observation_patient_category_granular_scope_search_test
-  :file_name: observation_patient_category_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_code_date_granular_scope_search_test
-  :file_name: observation_patient_code_date_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_category_date_granular_scope_search_test
-  :file_name: observation_patient_category_date_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_code_granular_scope_search_test
-  :file_name: observation_patient_code_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_category__lastUpdated_granular_scope_search_test
-  :file_name: observation_patient_category_lastupdated_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_category_status_granular_scope_search_test
-  :file_name: observation_patient_category_status_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_granular_scope_read_test
-  :file_name: observation_granular_scope_read_test.rb
 :id: us_core_v800_observation_lab
 :file_name: observation_lab_group.rb
 :delayed_references:

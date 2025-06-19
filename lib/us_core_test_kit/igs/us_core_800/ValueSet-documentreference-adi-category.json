@@ -1,0 +1,48 @@
+{
+  "resourceType": "ValueSet",
+  "id": "2.16.840.1.113883.11.20.9.69.4",
+  "meta": {
+    "versionId": "47",
+    "lastUpdated": "2025-04-02T01:08:06.000-04:00",
+    "profile": [ "http://hl7.org/fhir/StructureDefinition/shareablevalueset", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-valueset-cqfm", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/valueset-author",
+    "valueContactDetail": {
+      "name": "ADVault Author"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/StructureDefinition/resource-lastReviewDate",
+    "valueDate": "2025-04-02"
+  }, {
+    "url": "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
+    "valueDate": "2025-04-02"
+  } ],
+  "url": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.11.20.9.69.4",
+  "identifier": [ {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:oid:2.16.840.1.113883.11.20.9.69.4"
+  } ],
+  "version": "20250402",
+  "name": "AdvanceHealthcareDirectiveCategoriesLOINC",
+  "title": "Advance Healthcare Directive Categories LOINC",
+  "status": "active",
+  "date": "2025-04-02T01:08:06-04:00",
+  "publisher": "ADVault",
+  "jurisdiction": [ {
+    "extension": [ {
+      "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+      "valueCode": "unknown"
+    } ]
+  } ],
+  "purpose": "(Clinical Focus: Categories of advance healthcare directive documents.),(Data Element Scope: Used for concepts that categorize advance healthcare directive documents and document reference indexes for search and retrieval.),(Inclusion Criteria: Includes high-level concepts from LOINC that indicate a advance healthcare directive document.),(Exclusion Criteria: Exclude concepts from LOINC that indicate a specific type of advance healthcare directive document.)",
+  "compose": {
+    "include": [ {
+      "system": "http://loinc.org",
+      "concept": [ {
+        "code": "42348-3",
+        "display": "Advance directives"
+      } ]
+    } ]
+  }
+}

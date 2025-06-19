@@ -15,6 +15,7 @@ module USCoreTestKit
 
         Elements which may provide external references include:
 
+        * CarePlan.contributor
         * CarePlan.subject
       )
 

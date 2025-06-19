@@ -41,6 +41,7 @@ requirement of US Core v8.0.0.
         fixed_value_search: true,
         resource_type: 'CarePlan',
         search_param_names: ['patient', 'category'],
+        saves_delayed_references: true,
         possible_status_search: true,
         token_search_params: ['category'],
         test_reference_variants: true,

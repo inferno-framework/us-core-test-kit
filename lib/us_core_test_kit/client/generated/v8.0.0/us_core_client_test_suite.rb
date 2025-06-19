@@ -26,11 +26,13 @@ require_relative 'diagnostic_report_note_client_group'
 require_relative 'diagnostic_report_lab_client_group'
 require_relative 'document_reference_client_group'
 require_relative 'adi_document_reference_client_group'
+require_relative 'adi_document_reference_client_group'
 require_relative 'encounter_client_group'
 require_relative 'goal_client_group'
 require_relative 'immunization_client_group'
 require_relative 'medication_dispense_client_group'
 require_relative 'medication_request_client_group'
+require_relative 'observation_adi_documentation_client_group'
 require_relative 'observation_lab_client_group'
 require_relative 'observation_pregnancystatus_client_group'
 require_relative 'observation_pregnancyintent_client_group'
@@ -215,58 +217,60 @@ to respond with using the following inputs:
  
 Inferno's simulated US Core server includes the following target instances for the test patient
 
-* **[US Core Patient Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|8.0.0-ballot)** (id: us-core-client-tests-patient)
-* **[US Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance|8.0.0-ballot)** (id: us-core-client-tests-allergy-intolerance)
-* **[US Core CarePlan Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan|8.0.0-ballot)** (id: us-core-client-tests-care-plan)
-* **[US Core CareTeam Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|8.0.0-ballot)** (id: us-core-client-tests-care-team)
-* **[US Core Condition Encounter Diagnosis Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|8.0.0-ballot)** (id: us-core-client-tests-condition-encounter-diagnosis)
-* **[US Core Condition Problems and Health Concerns Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|8.0.0-ballot)** (id: us-core-client-tests-condition-problems-health-concerns)
-* **[US Core Coverage Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|8.0.0-ballot)** (id: us-core-client-tests-coverage)
-* **[US Core Implantable Device Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device|8.0.0-ballot)** (id: us-core-client-tests-device)
-* **[US Core DiagnosticReport Profile for Report and Note Exchange](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|8.0.0-ballot)** (id: us-core-client-tests-diagnostic-report-note)
-* **[US Core DiagnosticReport Profile for Laboratory Results Reporting](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|8.0.0-ballot)** (id: us-core-client-tests-diagnostic-report-lab)
-* **[US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|8.0.0-ballot)** (id: us-core-client-tests-document-reference)
-* **[US Core ADI DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|8.0.0-ballot)** (id: us-core-client-tests-adi-document-reference)
-* **[US Core Encounter Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|8.0.0-ballot)** (id: us-core-client-tests-encounter)
-* **[US Core Goal Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|8.0.0-ballot)** (id: us-core-client-tests-goal)
-* **[US Core Immunization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|8.0.0-ballot)** (id: us-core-client-tests-immunization)
-* **[US Core MedicationDispense Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense|8.0.0-ballot)** (id: us-core-client-tests-medication-dispense)
-* **[US Core MedicationRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|8.0.0-ballot)** (id: us-core-client-tests-medication-request)
-* **[US Core Laboratory Result Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0-ballot)** (id: us-core-client-tests-observation-lab)
-* **[US Core Observation Pregnancy Status Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus|8.0.0-ballot)** (id: us-core-client-tests-observation-pregnancystatus)
-* **[US Core Observation Pregnancy Intent Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent|8.0.0-ballot)** (id: us-core-client-tests-observation-pregnancyintent)
-* **[US Core Observation Occupation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation|8.0.0-ballot)** (id: us-core-client-tests-observation-occupation)
-* **[US Core Respiratory Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate|8.0.0-ballot)** (id: us-core-client-tests-respiratory-rate)
-* **[US Core Simple Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|8.0.0-ballot)** (id: us-core-client-tests-simple-observation)
-* **[US Core Treatment Intervention Preference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference|8.0.0-ballot)** (id: us-core-client-tests-treatment-intervention-preference)
-* **[US Core Care Experience Preference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-care-experience-preference|8.0.0-ballot)** (id: us-core-client-tests-care-experience-preference)
-* **[US Core Heart Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate|8.0.0-ballot)** (id: us-core-client-tests-heart-rate)
-* **[US Core Body Temperature Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature|8.0.0-ballot)** (id: us-core-client-tests-body-temperature)
-* **[US Core Pediatric Weight for Height Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height|8.0.0-ballot)** (id: us-core-client-tests-pediatric-weight-for-height)
-* **[US Core Pulse Oximetry Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|8.0.0-ballot)** (id: us-core-client-tests-pulse-oximetry)
-* **[US Core Smoking Status Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|8.0.0-ballot)** (id: us-core-client-tests-smokingstatus)
-* **[US Core Observation Sexual Orientation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|8.0.0-ballot)** (id: us-core-client-tests-observation-sexual-orientation)
-* **[US Core Head Circumference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference|8.0.0-ballot)** (id: us-core-client-tests-head-circumference-percentile)
-* **[US Core Body Height Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height|8.0.0-ballot)** (id: us-core-client-tests-body-height)
-* **[US Core BMI Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi|8.0.0-ballot)** (id: us-core-client-tests-bmi)
-* **[US Core Observation Screening Assessment Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0-ballot)** (id: us-core-client-tests-observation-screening-assessment)
-* **[US Core Average Blood Pressure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure|8.0.0-ballot)** (id: us-core-client-tests-average-blood-pressure)
-* **[US Core Blood Pressure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure|8.0.0-ballot)** (id: us-core-client-tests-blood-pressure)
-* **[US Core Observation Clinical Result Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result|8.0.0-ballot)** (id: us-core-client-tests-observation-clinical-result)
-* **[US Core Pediatric BMI for Age Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age|8.0.0-ballot)** (id: us-core-client-tests-pediatric-bmi-for-age)
-* **[US Core Pediatric Head Occipital Frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile|8.0.0-ballot)** (id: us-core-client-tests-head-circumference-percentile)
-* **[US Core Body Weight Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight|8.0.0-ballot)** (id: us-core-client-tests-body-weight)
-* **[US Core Observation ADI Documentation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation|8.0.0-ballot)** (id: us-core-client-tests-observation-adi-documentation)
-* **[US Core Procedure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|8.0.0-ballot)** (id: us-core-client-tests-procedure)
-* **[US Core QuestionnaireResponse Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|8.0.0-ballot)** (id: us-core-client-tests-questionnaire-response)
-* **[US Core ServiceRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|8.0.0-ballot)** (id: us-core-client-tests-service-request)
-* **[US Core Location Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0-ballot)** (id: us-core-client-tests-location)
-* **[US Core Organization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0-ballot)** (id: us-core-client-tests-organization)
-* **[US Core Practitioner Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|8.0.0-ballot)** (id: us-core-client-tests-practitioner)
-* **[US Core PractitionerRole Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|8.0.0-ballot)** (id: us-core-client-tests-practitioner-role)
-* **[US Core Provenance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance|8.0.0-ballot)** (id: us-core-client-tests-provenance)
-* **[US Core RelatedPerson Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson|8.0.0-ballot)** (id: us-core-client-tests-related-person)
-* **[US Core Specimen Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen|8.0.0-ballot)** (id: us-core-client-tests-specimen)
+* **[US Core Patient Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|8.0.0)** (id: us-core-client-tests-patient)
+* **[US Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance|8.0.0)** (id: us-core-client-tests-allergy-intolerance)
+* **[US Core CarePlan Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan|8.0.0)** (id: us-core-client-tests-care-plan)
+* **[US Core CareTeam Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|8.0.0)** (id: us-core-client-tests-care-team)
+* **[US Core Condition Encounter Diagnosis Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|8.0.0)** (id: us-core-client-tests-condition-encounter-diagnosis)
+* **[US Core Condition Problems and Health Concerns Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|8.0.0)** (id: us-core-client-tests-condition-problems-health-concerns)
+* **[US Core Coverage Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage|8.0.0)** (id: us-core-client-tests-coverage)
+* **[US Core Implantable Device Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device|8.0.0)** (id: us-core-client-tests-device)
+* **[US Core DiagnosticReport Profile for Report and Note Exchange](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|8.0.0)** (id: us-core-client-tests-diagnostic-report-note)
+* **[US Core DiagnosticReport Profile for Laboratory Results Reporting](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|8.0.0)** (id: us-core-client-tests-diagnostic-report-lab)
+* **[US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|8.0.0)** (id: us-core-client-tests-document-reference)
+* **[US Core ADI DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|8.0.0)** (id: us-core-client-tests-adi-document-reference)
+* **[US Core ADI DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|8.0.0)** (id: us-core-client-tests-adi-document-reference)
+* **[US Core Encounter Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|8.0.0)** (id: us-core-client-tests-encounter)
+* **[US Core Goal Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|8.0.0)** (id: us-core-client-tests-goal)
+* **[US Core Immunization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|8.0.0)** (id: us-core-client-tests-immunization)
+* **[US Core MedicationDispense Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense|8.0.0)** (id: us-core-client-tests-medication-dispense)
+* **[US Core MedicationRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|8.0.0)** (id: us-core-client-tests-medication-request)
+* **[US Core Observation ADI Documentation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation|8.0.0)** (id: us-core-client-tests-observation-adi-documentation)
+* **[US Core Laboratory Result Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|8.0.0)** (id: us-core-client-tests-observation-lab)
+* **[US Core Observation Pregnancy Status Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus|8.0.0)** (id: us-core-client-tests-observation-pregnancystatus)
+* **[US Core Observation Pregnancy Intent Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent|8.0.0)** (id: us-core-client-tests-observation-pregnancyintent)
+* **[US Core Observation Occupation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation|8.0.0)** (id: us-core-client-tests-observation-occupation)
+* **[US Core Respiratory Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate|8.0.0)** (id: us-core-client-tests-respiratory-rate)
+* **[US Core Simple Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|8.0.0)** (id: us-core-client-tests-simple-observation)
+* **[US Core Treatment Intervention Preference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference|8.0.0)** (id: us-core-client-tests-treatment-intervention-preference)
+* **[US Core Care Experience Preference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-care-experience-preference|8.0.0)** (id: us-core-client-tests-care-experience-preference)
+* **[US Core Heart Rate Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate|8.0.0)** (id: us-core-client-tests-heart-rate)
+* **[US Core Body Temperature Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature|8.0.0)** (id: us-core-client-tests-body-temperature)
+* **[US Core Pediatric Weight for Height Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height|8.0.0)** (id: us-core-client-tests-pediatric-weight-for-height)
+* **[US Core Pulse Oximetry Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|8.0.0)** (id: us-core-client-tests-pulse-oximetry)
+* **[US Core Smoking Status Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|8.0.0)** (id: us-core-client-tests-smokingstatus)
+* **[US Core Observation Sexual Orientation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation|8.0.0)** (id: us-core-client-tests-observation-sexual-orientation)
+* **[US Core Head Circumference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference|8.0.0)** (id: us-core-client-tests-head-circumference-percentile)
+* **[US Core Body Height Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height|8.0.0)** (id: us-core-client-tests-body-height)
+* **[US Core BMI Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi|8.0.0)** (id: us-core-client-tests-bmi)
+* **[US Core Observation Screening Assessment Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|8.0.0)** (id: us-core-client-tests-observation-screening-assessment)
+* **[US Core Average Blood Pressure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure|8.0.0)** (id: us-core-client-tests-average-blood-pressure)
+* **[US Core Blood Pressure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure|8.0.0)** (id: us-core-client-tests-blood-pressure)
+* **[US Core Observation Clinical Result Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result|8.0.0)** (id: us-core-client-tests-observation-clinical-result)
+* **[US Core Pediatric BMI for Age Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age|8.0.0)** (id: us-core-client-tests-pediatric-bmi-for-age)
+* **[US Core Pediatric Head Occipital Frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile|8.0.0)** (id: us-core-client-tests-head-circumference-percentile)
+* **[US Core Body Weight Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight|8.0.0)** (id: us-core-client-tests-body-weight)
+* **[US Core Observation ADI Documentation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation|8.0.0)** (id: us-core-client-tests-observation-adi-documentation)
+* **[US Core Procedure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|8.0.0)** (id: us-core-client-tests-procedure)
+* **[US Core QuestionnaireResponse Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|8.0.0)** (id: us-core-client-tests-questionnaire-response)
+* **[US Core ServiceRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|8.0.0)** (id: us-core-client-tests-service-request)
+* **[US Core Location Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-location|8.0.0)** (id: us-core-client-tests-location)
+* **[US Core Organization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|8.0.0)** (id: us-core-client-tests-organization)
+* **[US Core Practitioner Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|8.0.0)** (id: us-core-client-tests-practitioner)
+* **[US Core PractitionerRole Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|8.0.0)** (id: us-core-client-tests-practitioner-role)
+* **[US Core Provenance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance|8.0.0)** (id: us-core-client-tests-provenance)
+* **[US Core RelatedPerson Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson|8.0.0)** (id: us-core-client-tests-related-person)
+* **[US Core Specimen Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen|8.0.0)** (id: us-core-client-tests-specimen)
 
 # Current Limitations
 
@@ -382,11 +386,13 @@ and demonstrate its ability to perform the FHIR interactions described in the [U
           group from: :us_core_client_v800_diagnostic_report_lab
           group from: :us_core_client_v800_document_reference
           group from: :us_core_client_v800_adi_document_reference
+          group from: :us_core_client_v800_adi_document_reference
           group from: :us_core_client_v800_encounter
           group from: :us_core_client_v800_goal
           group from: :us_core_client_v800_immunization
           group from: :us_core_client_v800_medication_dispense
           group from: :us_core_client_v800_medication_request
+          group from: :us_core_client_v800_observation_adi_documentation
           group from: :us_core_client_v800_observation_lab
           group from: :us_core_client_v800_observation_pregnancystatus
           group from: :us_core_client_v800_observation_pregnancyintent

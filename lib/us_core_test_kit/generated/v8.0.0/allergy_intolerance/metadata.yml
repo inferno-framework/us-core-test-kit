@@ -6,7 +6,7 @@
 :resource: AllergyIntolerance
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
 :profile_name: US Core AllergyIntolerance Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: AllergyIntolerance
 :short_description: Verify support for the server capabilities required by the US
   Core AllergyIntolerance Profile.
@@ -85,6 +85,10 @@
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - :path: recorder
+    :uscdi_only: true
+    :types:
+    - Reference
   - :path: reaction
   - :path: reaction.manifestation
 :mandatory_elements:
@@ -125,10 +129,10 @@
   - http://hl7.org/fhir/StructureDefinition/Encounter
 - :path: AllergyIntolerance.recorder
   :profiles:
-  - http://hl7.org/fhir/StructureDefinition/Practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  - http://hl7.org/fhir/StructureDefinition/Patient
-  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
 - :path: AllergyIntolerance.asserter
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Patient
@@ -152,5 +156,9 @@
   :file_name: allergy_intolerance_reference_resolution_test.rb
 :id: us_core_v800_allergy_intolerance
 :file_name: allergy_intolerance_group.rb
-:delayed_references: []
+:delayed_references:
+- :path: recorder
+  :resources:
+  - Practitioner
+  - RelatedPerson
 :resource_conformance_expectation: SHALL

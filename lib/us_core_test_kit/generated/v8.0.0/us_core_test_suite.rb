@@ -23,11 +23,13 @@ require_relative 'diagnostic_report_note_group'
 require_relative 'diagnostic_report_lab_group'
 require_relative 'document_reference_group'
 require_relative 'adi_document_reference_group'
+require_relative 'adi_document_reference_group'
 require_relative 'encounter_group'
 require_relative 'goal_group'
 require_relative 'immunization_group'
 require_relative 'medication_dispense_group'
 require_relative 'medication_request_group'
+require_relative 'observation_adi_documentation_group'
 require_relative 'observation_lab_group'
 require_relative 'observation_pregnancystatus_group'
 require_relative 'observation_pregnancyintent_group'
@@ -186,11 +188,13 @@ module USCoreTestKit
         group from: :us_core_v800_diagnostic_report_lab
         group from: :us_core_v800_document_reference
         group from: :us_core_v800_adi_document_reference
+        group from: :us_core_v800_adi_document_reference
         group from: :us_core_v800_encounter
         group from: :us_core_v800_goal
         group from: :us_core_v800_immunization
         group from: :us_core_v800_medication_dispense
         group from: :us_core_v800_medication_request
+        group from: :us_core_v800_observation_adi_documentation
         group from: :us_core_v800_observation_lab
         group from: :us_core_v800_observation_pregnancystatus
         group from: :us_core_v800_observation_pregnancyintent

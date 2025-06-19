@@ -6,7 +6,7 @@
 :resource: Goal
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal
 :profile_name: US Core Goal Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Goal
 :short_description: Verify support for the server capabilities required by the US
   Core Goal Profile.
@@ -40,12 +40,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - target-date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
   - lifecycle-status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
@@ -53,6 +47,12 @@
   :names:
   - patient
   - description
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - target-date
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -64,25 +64,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :target-date:
-    :paths:
-    - target.dueDate
-    :full_paths:
-    - Goal.target.dueDate
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :lifecycle-status:
@@ -112,6 +93,25 @@
     :comparators: {}
     :values: []
     :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: MAY
+  :target-date:
+    :paths:
+    - target.dueDate
+    :full_paths:
+    - Goal.target.dueDate
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
     :contains_multiple: false
     :multiple_or: MAY
 :include_params: []
@@ -178,12 +178,12 @@
 :tests:
 - :id: us_core_v800_goal_patient_search_test
   :file_name: goal_patient_search_test.rb
-- :id: us_core_v800_goal_patient_target_date_search_test
-  :file_name: goal_patient_target_date_search_test.rb
 - :id: us_core_v800_goal_patient_lifecycle_status_search_test
   :file_name: goal_patient_lifecycle_status_search_test.rb
 - :id: us_core_v800_goal_patient_description_search_test
   :file_name: goal_patient_description_search_test.rb
+- :id: us_core_v800_goal_patient_target_date_search_test
+  :file_name: goal_patient_target_date_search_test.rb
 - :id: us_core_v800_goal_read_test
   :file_name: goal_read_test.rb
 - :id: us_core_v800_goal_provenance_revinclude_search_test

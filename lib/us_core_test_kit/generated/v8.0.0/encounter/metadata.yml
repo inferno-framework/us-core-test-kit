@@ -6,7 +6,7 @@
 :resource: Encounter
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
 :profile_name: US Core Encounter Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Encounter
 :short_description: Verify support for the server capabilities required by the US
   Core Encounter Profile.
@@ -47,10 +47,10 @@
   :expectation: SHOULD
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :expectation: SHOULD
+- :expectation: SHALL
   :names:
+  - date
   - patient
-  - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -59,10 +59,10 @@
   - _lastUpdated
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :expectation: SHALL
+- :expectation: SHOULD
   :names:
-  - date
   - patient
+  - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -120,23 +120,23 @@
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
-  :status:
+  :date:
     :paths:
-    - status
+    - period
     :full_paths:
-    - Encounter.status
-    :comparators: {}
-    :values:
-    - planned
-    - arrived
-    - triaged
-    - in-progress
-    - onleave
-    - finished
-    - cancelled
-    - entered-in-error
-    - unknown
-    :type: code
+    - Encounter.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
     :contains_multiple: false
     :multiple_or: MAY
   :_lastUpdated:
@@ -158,23 +158,23 @@
     :type: instant
     :contains_multiple: false
     :multiple_or: MAY
-  :date:
+  :status:
     :paths:
-    - period
+    - status
     :full_paths:
-    - Encounter.period
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: Period
+    - Encounter.status
+    :comparators: {}
+    :values:
+    - planned
+    - arrived
+    - triaged
+    - in-progress
+    - onleave
+    - finished
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
     :contains_multiple: false
     :multiple_or: MAY
   :type:
@@ -370,12 +370,12 @@
   :file_name: encounter_id_search_test.rb
 - :id: us_core_v800_encounter_identifier_search_test
   :file_name: encounter_identifier_search_test.rb
-- :id: us_core_v800_encounter_patient_status_search_test
-  :file_name: encounter_patient_status_search_test.rb
-- :id: us_core_v800_encounter_patient__lastUpdated_search_test
-  :file_name: encounter_patient_lastupdated_search_test.rb
 - :id: us_core_v800_encounter_date_patient_search_test
   :file_name: encounter_date_patient_search_test.rb
+- :id: us_core_v800_encounter_patient__lastUpdated_search_test
+  :file_name: encounter_patient_lastupdated_search_test.rb
+- :id: us_core_v800_encounter_patient_status_search_test
+  :file_name: encounter_patient_status_search_test.rb
 - :id: us_core_v800_encounter_patient_type_search_test
   :file_name: encounter_patient_type_search_test.rb
 - :id: us_core_v800_encounter_patient_location_search_test

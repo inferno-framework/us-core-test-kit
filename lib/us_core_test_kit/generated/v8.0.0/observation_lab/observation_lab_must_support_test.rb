@@ -28,6 +28,10 @@ module USCoreTestKit
         * Observation.valueCodeableConcept
         * Observation.valueQuantity
         * Observation.valueString
+
+        For ONC USCDI requirements, each Observation must support the following additional elements:
+
+        * Observation.code.text
       )
 
       id :us_core_v800_observation_lab_must_support_test

@@ -2,9 +2,9 @@
 
 require_relative 'goal/goal_client_read_test'
 require_relative 'goal/goal_patient_client_search_test'
-require_relative 'goal/goal_patient_target_date_client_search_test'
 require_relative 'goal/goal_patient_lifecycle_status_client_search_test'
 require_relative 'goal/goal_patient_description_client_search_test'
+require_relative 'goal/goal_patient_target_date_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -42,9 +42,9 @@ Goal resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + target-date
 * patient + lifecycle-status
 * patient + description
+* patient + target-date
 
 
         )
@@ -53,9 +53,9 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_goal_client_read_test
         test from: :us_core_v800_goal_patient_client_search_test
-        test from: :us_core_v800_goal_patient_target_date_client_search_test
         test from: :us_core_v800_goal_patient_lifecycle_status_client_search_test
         test from: :us_core_v800_goal_patient_description_client_search_test
+        test from: :us_core_v800_goal_patient_target_date_client_search_test
       end
     end
   end

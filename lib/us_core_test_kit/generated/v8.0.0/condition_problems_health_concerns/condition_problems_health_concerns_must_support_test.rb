@@ -14,7 +14,6 @@ module USCoreTestKit
 
         * Condition.abatementDateTime
         * Condition.category
-        * Condition.category:screening-assessment
         * Condition.category:us-core
         * Condition.clinicalStatus
         * Condition.code
@@ -24,6 +23,11 @@ module USCoreTestKit
         * Condition.recordedDate
         * Condition.subject
         * Condition.verificationStatus
+
+        For ONC USCDI requirements, each Condition must support the following additional elements:
+
+        * Condition.category:screening-assessment
+        * Condition.recorder
       )
 
       id :us_core_v800_condition_problems_health_concerns_must_support_test

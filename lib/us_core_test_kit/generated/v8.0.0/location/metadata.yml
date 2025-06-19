@@ -6,7 +6,7 @@
 :resource: Location
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
 :profile_name: US Core Location Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Location
 :short_description: Verify support for the server capabilities required by the US
   Core Location Profile.
@@ -121,6 +121,9 @@
   - :path: status
   - :path: name
   - :path: type
+  - :path: type.coding
+  - :path: type.coding.system
+  - :path: type.coding.code
   - :path: telecom
   - :path: address
   - :path: address.line
@@ -134,6 +137,9 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
 :mandatory_elements:
 - Location.name
+- Location.type.coding
+- Location.type.coding.system
+- Location.type.coding.code
 - Location.position.longitude
 - Location.position.latitude
 :bindings:

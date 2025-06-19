@@ -18,6 +18,10 @@ module USCoreTestKit
         * AllergyIntolerance.reaction
         * AllergyIntolerance.reaction.manifestation
         * AllergyIntolerance.verificationStatus
+
+        For ONC USCDI requirements, each AllergyIntolerance must support the following additional elements:
+
+        * AllergyIntolerance.recorder
       )
 
       id :us_core_v800_allergy_intolerance_must_support_test

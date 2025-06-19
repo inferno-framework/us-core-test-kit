@@ -20,6 +20,10 @@ module USCoreTestKit
         * Observation.subject
         * Observation.valueCodeableConcept
         * Observation.valueString
+
+        For ONC USCDI requirements, each Observation must support the following additional elements:
+
+        * Observation.performer
       )
 
       id :us_core_v800_treatment_intervention_preference_must_support_test

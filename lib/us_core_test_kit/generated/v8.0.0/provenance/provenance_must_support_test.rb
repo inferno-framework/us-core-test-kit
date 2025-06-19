@@ -17,9 +17,13 @@ module USCoreTestKit
         * Provenance.agent.type
         * Provenance.agent.who
         * Provenance.agent:ProvenanceAuthor
+        * Provenance.agent:ProvenanceAuthor.onBehalfOf
         * Provenance.agent:ProvenanceAuthor.type
+        * Provenance.agent:ProvenanceAuthor.who
         * Provenance.agent:ProvenanceTransmitter
+        * Provenance.agent:ProvenanceTransmitter.onBehalfOf
         * Provenance.agent:ProvenanceTransmitter.type
+        * Provenance.agent:ProvenanceTransmitter.who
         * Provenance.recorded
         * Provenance.target
         * Provenance.target.reference
