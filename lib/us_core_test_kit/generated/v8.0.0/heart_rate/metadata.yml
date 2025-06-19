@@ -6,7 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate
 :profile_name: US Core Heart Rate Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Observation Heart Rate
 :short_description: Verify support for the server capabilities required by the US
   Core Heart Rate Profile.
@@ -41,20 +41,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
   - category
   - _lastUpdated
   :names_not_must_support_or_mandatory:
@@ -73,6 +59,20 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :paths:
@@ -82,36 +82,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values:
-    - 8867-4
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -162,6 +132,36 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 8867-4
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -297,16 +297,16 @@
 :tests:
 - :id: us_core_v800_heart_rate_patient_code_search_test
   :file_name: heart_rate_patient_code_search_test.rb
-- :id: us_core_v800_heart_rate_patient_code_date_search_test
-  :file_name: heart_rate_patient_code_date_search_test.rb
-- :id: us_core_v800_heart_rate_patient_category_date_search_test
-  :file_name: heart_rate_patient_category_date_search_test.rb
 - :id: us_core_v800_heart_rate_patient_category__lastUpdated_search_test
   :file_name: heart_rate_patient_category_lastupdated_search_test.rb
 - :id: us_core_v800_heart_rate_patient_category_search_test
   :file_name: heart_rate_patient_category_search_test.rb
 - :id: us_core_v800_heart_rate_patient_category_status_search_test
   :file_name: heart_rate_patient_category_status_search_test.rb
+- :id: us_core_v800_heart_rate_patient_category_date_search_test
+  :file_name: heart_rate_patient_category_date_search_test.rb
+- :id: us_core_v800_heart_rate_patient_code_date_search_test
+  :file_name: heart_rate_patient_code_date_search_test.rb
 - :id: us_core_v800_heart_rate_read_test
   :file_name: heart_rate_read_test.rb
 - :id: us_core_v800_heart_rate_provenance_revinclude_search_test

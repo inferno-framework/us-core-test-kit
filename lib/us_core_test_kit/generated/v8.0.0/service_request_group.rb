@@ -1,10 +1,10 @@
 require_relative 'service_request/service_request_patient_search_test'
 require_relative 'service_request/service_request_id_search_test'
 require_relative 'service_request/service_request_patient_status_search_test'
-require_relative 'service_request/service_request_patient_code_authored_search_test'
-require_relative 'service_request/service_request_patient_code_search_test'
-require_relative 'service_request/service_request_patient_category_authored_search_test'
 require_relative 'service_request/service_request_patient_category_search_test'
+require_relative 'service_request/service_request_patient_code_authored_search_test'
+require_relative 'service_request/service_request_patient_category_authored_search_test'
+require_relative 'service_request/service_request_patient_code_search_test'
 require_relative 'service_request/service_request_read_test'
 require_relative 'service_request/service_request_provenance_revinclude_search_test'
 require_relative 'service_request/service_request_validation_test'
@@ -32,9 +32,9 @@ following parameters:
 
 * patient
 * _id
-* patient + code
-* patient + category + authored
 * patient + category
+* patient + category + authored
+* patient + code
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -88,10 +88,10 @@ read succeeds.
       test from: :us_core_v800_service_request_patient_search_test
       test from: :us_core_v800_service_request__id_search_test
       test from: :us_core_v800_service_request_patient_status_search_test
-      test from: :us_core_v800_service_request_patient_code_authored_search_test
-      test from: :us_core_v800_service_request_patient_code_search_test
-      test from: :us_core_v800_service_request_patient_category_authored_search_test
       test from: :us_core_v800_service_request_patient_category_search_test
+      test from: :us_core_v800_service_request_patient_code_authored_search_test
+      test from: :us_core_v800_service_request_patient_category_authored_search_test
+      test from: :us_core_v800_service_request_patient_code_search_test
       test from: :us_core_v800_service_request_read_test
       test from: :us_core_v800_service_request_provenance_revinclude_search_test
       test from: :us_core_v800_service_request_validation_test

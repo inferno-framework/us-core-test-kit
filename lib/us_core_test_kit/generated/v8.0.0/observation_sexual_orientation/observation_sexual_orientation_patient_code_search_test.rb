@@ -41,7 +41,6 @@ requirement of US Core v8.0.0.
         fixed_value_search: true,
         resource_type: 'Observation',
         search_param_names: ['patient', 'code'],
-        saves_delayed_references: true,
         possible_status_search: true,
         token_search_params: ['code'],
         test_reference_variants: true,

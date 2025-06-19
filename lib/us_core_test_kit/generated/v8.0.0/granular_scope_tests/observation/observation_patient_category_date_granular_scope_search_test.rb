@@ -17,6 +17,8 @@ filtered based on the granted granular scopes.
       )
 
       id :us_core_v800_Observation_patient_category_date_granular_scope_search_test
+      optional
+
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'

@@ -1,9 +1,9 @@
 require_relative 'simple_observation/simple_observation_patient_category_search_test'
-require_relative 'simple_observation/simple_observation_patient_code_date_search_test'
-require_relative 'simple_observation/simple_observation_patient_category_date_search_test'
-require_relative 'simple_observation/simple_observation_patient_code_search_test'
 require_relative 'simple_observation/simple_observation_patient_category_lastupdated_search_test'
 require_relative 'simple_observation/simple_observation_patient_category_status_search_test'
+require_relative 'simple_observation/simple_observation_patient_category_date_search_test'
+require_relative 'simple_observation/simple_observation_patient_code_search_test'
+require_relative 'simple_observation/simple_observation_patient_code_date_search_test'
 require_relative 'simple_observation/simple_observation_read_test'
 require_relative 'simple_observation/simple_observation_provenance_revinclude_search_test'
 require_relative 'simple_observation/simple_observation_validation_test'
@@ -83,11 +83,11 @@ read succeeds.
       end
   
       test from: :us_core_v800_simple_observation_patient_category_search_test
-      test from: :us_core_v800_simple_observation_patient_code_date_search_test
-      test from: :us_core_v800_simple_observation_patient_category_date_search_test
-      test from: :us_core_v800_simple_observation_patient_code_search_test
       test from: :us_core_v800_simple_observation_patient_category__lastUpdated_search_test
       test from: :us_core_v800_simple_observation_patient_category_status_search_test
+      test from: :us_core_v800_simple_observation_patient_category_date_search_test
+      test from: :us_core_v800_simple_observation_patient_code_search_test
+      test from: :us_core_v800_simple_observation_patient_code_date_search_test
       test from: :us_core_v800_simple_observation_read_test
       test from: :us_core_v800_simple_observation_provenance_revinclude_search_test
       test from: :us_core_v800_simple_observation_validation_test

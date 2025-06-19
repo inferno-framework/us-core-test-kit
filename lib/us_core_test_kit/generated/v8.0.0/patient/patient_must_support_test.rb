@@ -18,7 +18,6 @@ module USCoreTestKit
         * Patient.address.postalCode
         * Patient.address.state
         * Patient.birthDate
-        * Patient.gender
         * Patient.identifier
         * Patient.identifier.system
         * Patient.identifier.value
@@ -33,11 +32,8 @@ module USCoreTestKit
         * Patient.communication.language
         * Patient.deceasedDateTime
         * Patient.extension:ethnicity
-        * Patient.extension:genderIdentity
-        * Patient.extension:personalPronouns
         * Patient.extension:race
         * Patient.extension:sex
-        * Patient.extension:sexParameterForClinicalUse
         * Patient.extension:tribalAffiliation
         * Patient.name.period.end or Patient.name.use:old
         * Patient.name.suffix

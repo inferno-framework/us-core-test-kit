@@ -3,11 +3,11 @@
 require_relative 'diagnostic_report_note/diagnostic_report_note_client_read_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_category_client_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_client_search_test'
+require_relative 'diagnostic_report_note/diagnostic_report_note_patient_category_lastupdated_client_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_status_client_search_test'
-require_relative 'diagnostic_report_note/diagnostic_report_note_patient_code_date_client_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_category_date_client_search_test'
 require_relative 'diagnostic_report_note/diagnostic_report_note_patient_code_client_search_test'
-require_relative 'diagnostic_report_note/diagnostic_report_note_patient_category_lastupdated_client_search_test'
+require_relative 'diagnostic_report_note/diagnostic_report_note_patient_code_date_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -48,9 +48,9 @@ DiagnosticReport resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
+* patient + category + _lastUpdated
 * patient + status
 * patient + code + date
-* patient + category + _lastUpdated
 
 
         )
@@ -60,11 +60,11 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_diagnostic_report_note_client_read_test
         test from: :us_core_v800_diagnostic_report_note_patient_category_client_search_test
         test from: :us_core_v800_diagnostic_report_note_patient_client_search_test
+        test from: :us_core_v800_diagnostic_report_note_patient_category_lastupdated_client_search_test
         test from: :us_core_v800_diagnostic_report_note_patient_status_client_search_test
-        test from: :us_core_v800_diagnostic_report_note_patient_code_date_client_search_test
         test from: :us_core_v800_diagnostic_report_note_patient_category_date_client_search_test
         test from: :us_core_v800_diagnostic_report_note_patient_code_client_search_test
-        test from: :us_core_v800_diagnostic_report_note_patient_category_lastupdated_client_search_test
+        test from: :us_core_v800_diagnostic_report_note_patient_code_date_client_search_test
       end
     end
   end

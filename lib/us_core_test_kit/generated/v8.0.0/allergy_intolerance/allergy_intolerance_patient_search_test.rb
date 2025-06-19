@@ -40,6 +40,7 @@ requirement of US Core v8.0.0.
           first_search: true,
         resource_type: 'AllergyIntolerance',
         search_param_names: ['patient'],
+        saves_delayed_references: true,
         possible_status_search: true,
         test_reference_variants: true,
         test_post_search: true

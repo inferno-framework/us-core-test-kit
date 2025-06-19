@@ -12,16 +12,17 @@ module USCoreTestKit
         Statement. This test will look through the Condition resources
         found previously for the following must support elements:
 
-        * Condition.abatementDateTime
         * Condition.category
         * Condition.category:us-core
-        * Condition.clinicalStatus
         * Condition.code
         * Condition.encounter
         * Condition.onsetDateTime or Condition.extension:assertedDate
         * Condition.recordedDate
         * Condition.subject
-        * Condition.verificationStatus
+
+        For ONC USCDI requirements, each Condition must support the following additional elements:
+
+        * Condition.recorder
       )
 
       id :us_core_v800_condition_encounter_diagnosis_must_support_test

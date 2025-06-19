@@ -6,7 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure
 :profile_name: US Core Average Blood Pressure Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Observation Average Blood Pressure
 :short_description: Verify support for the server capabilities required by the US
   Core Average Blood Pressure Profile.
@@ -41,20 +41,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
   - category
   - _lastUpdated
   :names_not_must_support_or_mandatory:
@@ -73,6 +59,20 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :paths:
@@ -82,36 +82,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values:
-    - 96607-7
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -162,6 +132,36 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 96607-7
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -217,8 +217,10 @@
   - :path: component.dataAbsentReason
   - :path: component:systolic.code
   - :path: component:systolic.value[x]
+  - :path: component:systolic.dataAbsentReason
   - :path: component:diastolic.code
   - :path: component:diastolic.value[x]
+  - :path: component:diastolic.dataAbsentReason
 :mandatory_elements:
 - Observation.status
 - Observation.category
@@ -304,16 +306,16 @@
 :tests:
 - :id: us_core_v800_average_blood_pressure_patient_code_search_test
   :file_name: average_blood_pressure_patient_code_search_test.rb
-- :id: us_core_v800_average_blood_pressure_patient_code_date_search_test
-  :file_name: average_blood_pressure_patient_code_date_search_test.rb
-- :id: us_core_v800_average_blood_pressure_patient_category_date_search_test
-  :file_name: average_blood_pressure_patient_category_date_search_test.rb
 - :id: us_core_v800_average_blood_pressure_patient_category__lastUpdated_search_test
   :file_name: average_blood_pressure_patient_category_lastupdated_search_test.rb
 - :id: us_core_v800_average_blood_pressure_patient_category_search_test
   :file_name: average_blood_pressure_patient_category_search_test.rb
 - :id: us_core_v800_average_blood_pressure_patient_category_status_search_test
   :file_name: average_blood_pressure_patient_category_status_search_test.rb
+- :id: us_core_v800_average_blood_pressure_patient_category_date_search_test
+  :file_name: average_blood_pressure_patient_category_date_search_test.rb
+- :id: us_core_v800_average_blood_pressure_patient_code_date_search_test
+  :file_name: average_blood_pressure_patient_code_date_search_test.rb
 - :id: us_core_v800_average_blood_pressure_read_test
   :file_name: average_blood_pressure_read_test.rb
 - :id: us_core_v800_average_blood_pressure_provenance_revinclude_search_test

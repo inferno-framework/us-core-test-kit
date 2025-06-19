@@ -25,6 +25,7 @@ module USCoreTestKit
 
         For ONC USCDI requirements, each ServiceRequest must support the following additional elements:
 
+        * ServiceRequest.code.text
         * ServiceRequest.reasonCode or ServiceRequest.reasonReference
       )
 

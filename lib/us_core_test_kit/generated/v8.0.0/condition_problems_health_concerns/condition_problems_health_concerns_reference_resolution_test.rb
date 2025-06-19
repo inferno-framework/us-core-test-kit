@@ -15,6 +15,7 @@ module USCoreTestKit
 
         Elements which may provide external references include:
 
+        * Condition.recorder
         * Condition.subject
       )
 

@@ -1,8 +1,8 @@
 require_relative 'questionnaire_response/questionnaire_response_patient_search_test'
 require_relative 'questionnaire_response/questionnaire_response_id_search_test'
+require_relative 'questionnaire_response/questionnaire_response_patient_authored_search_test'
 require_relative 'questionnaire_response/questionnaire_response_patient_status_search_test'
 require_relative 'questionnaire_response/questionnaire_response_patient_questionnaire_search_test'
-require_relative 'questionnaire_response/questionnaire_response_patient_authored_search_test'
 require_relative 'questionnaire_response/questionnaire_response_read_test'
 require_relative 'questionnaire_response/questionnaire_response_provenance_revinclude_search_test'
 require_relative 'questionnaire_response/questionnaire_response_validation_test'
@@ -84,9 +84,9 @@ read succeeds.
   
       test from: :us_core_v800_questionnaire_response_patient_search_test
       test from: :us_core_v800_questionnaire_response__id_search_test
+      test from: :us_core_v800_questionnaire_response_patient_authored_search_test
       test from: :us_core_v800_questionnaire_response_patient_status_search_test
       test from: :us_core_v800_questionnaire_response_patient_questionnaire_search_test
-      test from: :us_core_v800_questionnaire_response_patient_authored_search_test
       test from: :us_core_v800_questionnaire_response_read_test
       test from: :us_core_v800_questionnaire_response_provenance_revinclude_search_test
       test from: :us_core_v800_questionnaire_response_validation_test

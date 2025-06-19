@@ -2,8 +2,8 @@
 
 require_relative 'medication_dispense/medication_dispense_client_read_test'
 require_relative 'medication_dispense/medication_dispense_patient_client_search_test'
-require_relative 'medication_dispense/medication_dispense_patient_status_client_search_test'
 require_relative 'medication_dispense/medication_dispense_patient_status_type_client_search_test'
+require_relative 'medication_dispense/medication_dispense_patient_status_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -41,8 +41,8 @@ MedicationDispense resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + status
 * patient + status + type
+* patient + status
 
 
         )
@@ -51,8 +51,8 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_medication_dispense_client_read_test
         test from: :us_core_v800_medication_dispense_patient_client_search_test
-        test from: :us_core_v800_medication_dispense_patient_status_client_search_test
         test from: :us_core_v800_medication_dispense_patient_status_type_client_search_test
+        test from: :us_core_v800_medication_dispense_patient_status_client_search_test
       end
     end
   end

@@ -4,10 +4,8 @@ require_relative 'patient/patient_client_read_test'
 require_relative 'patient/patient_id_client_search_test'
 require_relative 'patient/patient_identifier_client_search_test'
 require_relative 'patient/patient_name_client_search_test'
-require_relative 'patient/patient_family_gender_client_search_test'
 require_relative 'patient/patient_birthdate_name_client_search_test'
 require_relative 'patient/patient_death_date_family_client_search_test'
-require_relative 'patient/patient_gender_name_client_search_test'
 require_relative 'patient/patient_birthdate_family_client_search_test'
 
 module USCoreTestKit
@@ -46,11 +44,9 @@ Patient resource type with the following required parameters:
 * identifier
 * name
 * birthdate + name
-* gender + name
 
 Inferno will also look for searches using the following optional parameters:
 
-* family + gender
 * death-date + family
 * birthdate + family
 
@@ -63,10 +59,8 @@ Inferno will also look for searches using the following optional parameters:
         test from: :us_core_v800_patient_id_client_search_test
         test from: :us_core_v800_patient_identifier_client_search_test
         test from: :us_core_v800_patient_name_client_search_test
-        test from: :us_core_v800_patient_family_gender_client_search_test
         test from: :us_core_v800_patient_birthdate_name_client_search_test
         test from: :us_core_v800_patient_death_date_family_client_search_test
-        test from: :us_core_v800_patient_gender_name_client_search_test
         test from: :us_core_v800_patient_birthdate_family_client_search_test
       end
     end

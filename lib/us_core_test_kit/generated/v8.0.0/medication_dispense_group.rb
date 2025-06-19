@@ -1,6 +1,6 @@
 require_relative 'medication_dispense/medication_dispense_patient_search_test'
-require_relative 'medication_dispense/medication_dispense_patient_status_search_test'
 require_relative 'medication_dispense/medication_dispense_patient_status_type_search_test'
+require_relative 'medication_dispense/medication_dispense_patient_status_search_test'
 require_relative 'medication_dispense/medication_dispense_read_test'
 require_relative 'medication_dispense/medication_dispense_provenance_revinclude_search_test'
 require_relative 'medication_dispense/medication_dispense_validation_test'
@@ -78,8 +78,8 @@ read succeeds.
       end
   
       test from: :us_core_v800_medication_dispense_patient_search_test
-      test from: :us_core_v800_medication_dispense_patient_status_search_test
       test from: :us_core_v800_medication_dispense_patient_status_type_search_test
+      test from: :us_core_v800_medication_dispense_patient_status_search_test
       test from: :us_core_v800_medication_dispense_read_test
       test from: :us_core_v800_medication_dispense_provenance_revinclude_search_test
       test from: :us_core_v800_medication_dispense_validation_test

@@ -16,6 +16,7 @@ module USCoreTestKit
         Elements which may provide external references include:
 
         * AllergyIntolerance.patient
+        * AllergyIntolerance.recorder
       )
 
       id :us_core_v800_allergy_intolerance_reference_resolution_test

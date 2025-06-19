@@ -6,7 +6,7 @@
 :resource: QuestionnaireResponse
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse
 :profile_name: US Core QuestionnaireResponse Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: QuestionnaireResponse
 :short_description: Verify support for the server capabilities required by the US
   Core QuestionnaireResponse Profile.
@@ -45,6 +45,12 @@
 - :expectation: SHOULD
   :names:
   - patient
+  - authored
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :expectation: SHOULD
+  :names:
+  - patient
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
@@ -52,12 +58,6 @@
   :names:
   - patient
   - questionnaire
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
-  - authored
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 :search_definitions:
@@ -79,6 +79,25 @@
     :comparators: {}
     :values: []
     :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :authored:
+    :paths:
+    - authored
+    :full_paths:
+    - QuestionnaireResponse.authored
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: dateTime
     :contains_multiple: false
     :multiple_or: MAY
   :status:
@@ -104,25 +123,6 @@
     :comparators: {}
     :values: []
     :type: canonical
-    :contains_multiple: false
-    :multiple_or: MAY
-  :authored:
-    :paths:
-    - authored
-    :full_paths:
-    - QuestionnaireResponse.authored
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: dateTime
     :contains_multiple: false
     :multiple_or: MAY
 :include_params: []
@@ -211,12 +211,12 @@
   :file_name: questionnaire_response_patient_search_test.rb
 - :id: us_core_v800_questionnaire_response__id_search_test
   :file_name: questionnaire_response_id_search_test.rb
+- :id: us_core_v800_questionnaire_response_patient_authored_search_test
+  :file_name: questionnaire_response_patient_authored_search_test.rb
 - :id: us_core_v800_questionnaire_response_patient_status_search_test
   :file_name: questionnaire_response_patient_status_search_test.rb
 - :id: us_core_v800_questionnaire_response_patient_questionnaire_search_test
   :file_name: questionnaire_response_patient_questionnaire_search_test.rb
-- :id: us_core_v800_questionnaire_response_patient_authored_search_test
-  :file_name: questionnaire_response_patient_authored_search_test.rb
 - :id: us_core_v800_questionnaire_response_read_test
   :file_name: questionnaire_response_read_test.rb
 - :id: us_core_v800_questionnaire_response_provenance_revinclude_search_test

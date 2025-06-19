@@ -1,7 +1,7 @@
 require_relative 'goal/goal_patient_search_test'
-require_relative 'goal/goal_patient_target_date_search_test'
 require_relative 'goal/goal_patient_lifecycle_status_search_test'
 require_relative 'goal/goal_patient_description_search_test'
+require_relative 'goal/goal_patient_target_date_search_test'
 require_relative 'goal/goal_read_test'
 require_relative 'goal/goal_provenance_revinclude_search_test'
 require_relative 'goal/goal_validation_test'
@@ -79,9 +79,9 @@ read succeeds.
       end
   
       test from: :us_core_v800_goal_patient_search_test
-      test from: :us_core_v800_goal_patient_target_date_search_test
       test from: :us_core_v800_goal_patient_lifecycle_status_search_test
       test from: :us_core_v800_goal_patient_description_search_test
+      test from: :us_core_v800_goal_patient_target_date_search_test
       test from: :us_core_v800_goal_read_test
       test from: :us_core_v800_goal_provenance_revinclude_search_test
       test from: :us_core_v800_goal_validation_test

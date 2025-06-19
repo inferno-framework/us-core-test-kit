@@ -1,9 +1,9 @@
 require_relative 'respiratory_rate/respiratory_rate_patient_code_search_test'
-require_relative 'respiratory_rate/respiratory_rate_patient_code_date_search_test'
-require_relative 'respiratory_rate/respiratory_rate_patient_category_date_search_test'
 require_relative 'respiratory_rate/respiratory_rate_patient_category_lastupdated_search_test'
 require_relative 'respiratory_rate/respiratory_rate_patient_category_search_test'
 require_relative 'respiratory_rate/respiratory_rate_patient_category_status_search_test'
+require_relative 'respiratory_rate/respiratory_rate_patient_category_date_search_test'
+require_relative 'respiratory_rate/respiratory_rate_patient_code_date_search_test'
 require_relative 'respiratory_rate/respiratory_rate_read_test'
 require_relative 'respiratory_rate/respiratory_rate_provenance_revinclude_search_test'
 require_relative 'respiratory_rate/respiratory_rate_validation_test'
@@ -30,8 +30,8 @@ with this resource. This sequence will perform searches with the
 following parameters:
 
 * patient + code
-* patient + category + date
 * patient + category
+* patient + category + date
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -83,11 +83,11 @@ read succeeds.
       end
   
       test from: :us_core_v800_respiratory_rate_patient_code_search_test
-      test from: :us_core_v800_respiratory_rate_patient_code_date_search_test
-      test from: :us_core_v800_respiratory_rate_patient_category_date_search_test
       test from: :us_core_v800_respiratory_rate_patient_category__lastUpdated_search_test
       test from: :us_core_v800_respiratory_rate_patient_category_search_test
       test from: :us_core_v800_respiratory_rate_patient_category_status_search_test
+      test from: :us_core_v800_respiratory_rate_patient_category_date_search_test
+      test from: :us_core_v800_respiratory_rate_patient_code_date_search_test
       test from: :us_core_v800_respiratory_rate_read_test
       test from: :us_core_v800_respiratory_rate_provenance_revinclude_search_test
       test from: :us_core_v800_respiratory_rate_validation_test

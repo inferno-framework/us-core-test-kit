@@ -6,7 +6,7 @@
 :resource: Patient
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 :profile_name: US Core Patient Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Patient
 :short_description: Verify support for the server capabilities required by the US
   Core Patient Profile.
@@ -47,12 +47,6 @@
   :expectation: SHALL
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - family
-  - gender
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 - :expectation: SHALL
   :names:
   - birthdate
@@ -63,12 +57,6 @@
   :names:
   - death-date
   - family
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - gender
-  - name
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -108,26 +96,6 @@
     :type: HumanName
     :contains_multiple: true
     :multiple_or: MAY
-  :family:
-    :paths:
-    - name.family
-    :full_paths:
-    - Patient.name.family
-    :comparators: {}
-    :values: []
-    :type: string
-    :contains_multiple: false
-    :multiple_or: MAY
-  :gender:
-    :paths:
-    - gender
-    :full_paths:
-    - Patient.gender
-    :comparators: {}
-    :values: []
-    :type: code
-    :contains_multiple: false
-    :multiple_or: MAY
   :birthdate:
     :paths:
     - birthDate
@@ -166,6 +134,16 @@
     :type: date
     :contains_multiple: false
     :multiple_or: MAY
+  :family:
+    :paths:
+    - name.family
+    :full_paths:
+    - Patient.name.family
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+    :multiple_or: MAY
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -187,18 +165,6 @@
   - :id: Patient.extension:sex
     :path: extension
     :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex
-    :uscdi_only: true
-  - :id: Patient.extension:sexParameterForClinicalUse
-    :path: extension
-    :url: http://hl7.org/fhir/StructureDefinition/patient-sexParameterForClinicalUse
-    :uscdi_only: true
-  - :id: Patient.extension:genderIdentity
-    :path: extension
-    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
-    :uscdi_only: true
-  - :id: Patient.extension:personalPronouns
-    :path: extension
-    :url: http://hl7.org/fhir/StructureDefinition/individual-pronouns
     :uscdi_only: true
   :slices: []
   :elements:
@@ -226,7 +192,6 @@
     :uscdi_only: true
   - :path: telecom.use
     :uscdi_only: true
-  - :path: gender
   - :path: birthDate
   - :path: deceasedDateTime
     :uscdi_only: true
@@ -265,7 +230,6 @@
 - Patient.name
 - Patient.telecom.system
 - Patient.telecom.value
-- Patient.gender
 - Patient.communication.language
 - Patient.link.other
 - Patient.link.type
@@ -308,28 +272,28 @@
   :path: link.type
 - :type: Coding
   :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/omb-race-category
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.2.575
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
   - ombCategory
 - :type: Coding
   :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/detailed-race
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.25
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
   - detailed
 - :type: Coding
   :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.40.2.48.3
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
   - ombCategory
 - :type: Coding
   :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/detailed-ethnicity
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.4.642.40.2.48.1
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
@@ -341,24 +305,12 @@
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation
   - tribalAffiliation
-- :type: code
-  :strength: required
-  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.24
-  :path: value
-  :extensions:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
-- :type: code
+- :type: Coding
   :strength: extensible
-  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1240.3
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121
   :path: value
   :extensions:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex
-- :type: CodeableConcept
-  :strength: extensible
-  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.32
-  :path: value
-  :extensions:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-genderIdentity
 - :type: Coding
   :strength: required
   :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.16
@@ -391,14 +343,10 @@
   :file_name: patient_identifier_search_test.rb
 - :id: us_core_v800_patient_name_search_test
   :file_name: patient_name_search_test.rb
-- :id: us_core_v800_patient_family_gender_search_test
-  :file_name: patient_family_gender_search_test.rb
 - :id: us_core_v800_patient_birthdate_name_search_test
   :file_name: patient_birthdate_name_search_test.rb
 - :id: us_core_v800_patient_death_date_family_search_test
   :file_name: patient_death_date_family_search_test.rb
-- :id: us_core_v800_patient_gender_name_search_test
-  :file_name: patient_gender_name_search_test.rb
 - :id: us_core_v800_patient_birthdate_family_search_test
   :file_name: patient_birthdate_family_search_test.rb
 - :id: us_core_v800_patient_read_test

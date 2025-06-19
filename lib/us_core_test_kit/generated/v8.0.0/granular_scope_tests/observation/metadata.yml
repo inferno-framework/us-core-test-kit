@@ -1,15 +1,15 @@
 ---
-:name: us_core_observation_lab
-:class_name: USCorev800ObservationLabSequence
+:name: us_core_observation_adi_documentation
+:class_name: USCorev800ObservationAdiDocumentationSequence
 :version: v8.0.0
 :reformatted_version: v800
 :resource: Observation
-:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
-:profile_name: US Core Laboratory Result Observation Profile
-:profile_version: 8.0.0-ballot
-:title: Observation Laboratory Result
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation
+:profile_name: US Core Observation ADI Documentation Profile
+:profile_version: 8.0.0
+:title: Observation ADI Documentation
 :short_description: Verify support for the server capabilities required by the US
-  Core Laboratory Result Observation Profile.
+  Core Observation ADI Documentation Profile.
 :is_delayed: false
 :interactions:
 - :code: create
@@ -35,26 +35,6 @@
 - :expectation: SHALL
   :names:
   - patient
-  - category
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHOULD
-  :names:
-  - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
   - code
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
@@ -63,6 +43,13 @@
   - patient
   - category
   - _lastUpdated
+  :names_not_must_support_or_mandatory:
+  - _lastUpdated
+  :must_support_or_mandatory: false
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
 - :expectation: SHOULD
@@ -72,6 +59,22 @@
   - status
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory:
+  - date
+  :must_support_or_mandatory: false
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory:
+  - date
+  :must_support_or_mandatory: false
 :search_definitions:
   :patient:
     :paths:
@@ -83,35 +86,6 @@
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values: []
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
-    :contains_multiple: false
-    :multiple_or: MAY
   :category:
     :paths:
     - category
@@ -119,7 +93,7 @@
     - Observation.category
     :comparators: {}
     :values:
-    - laboratory
+    - observation-adi-documentation
     :type: CodeableConcept
     :contains_multiple: true
     :multiple_or: MAY
@@ -139,7 +113,7 @@
       :eb: MAY
       :ap: MAY
     :values: []
-    :type: instant
+    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :status:
@@ -160,12 +134,45 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 45473-6
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
 :required_concepts: []
 :must_supports:
-  :extensions: []
+  :extensions:
+  - :id: Observation.extension:supporting-info
+    :path: extension
+    :url: http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo
   :slices:
   - :slice_id: Observation.category:us-core
     :slice_name: us-core
@@ -173,47 +180,34 @@
     :discriminator:
       :type: patternCodeableConcept
       :path: ''
-      :code: laboratory
-      :system: http://terminology.hl7.org/CodeSystem/observation-category
+      :code: observation-adi-documentation
+      :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-category
   :elements:
-  - :path: meta
-  - :path: meta.lastUpdated
+  - :path: extension:supporting-info.value[x]
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference
   - :path: status
   - :path: category
-  - :path: code
+  - :path: code.coding.code
+    :fixed_value: 45473-6
   - :path: subject
     :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
-  - :path: encounter
-    :types:
-    - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
-  - :path: effectiveDateTime
-    :original_path: effective[x]
+  - :path: issued
   - :path: performer
     :types:
     - Reference
     :target_profiles:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
-  - :path: valueQuantity
-    :original_path: value[x]
-  - :path: valueCodeableConcept
-    :original_path: value[x]
-  - :path: valueString
-    :original_path: value[x]
-  - :path: interpretation
-  - :path: specimen
-    :types:
-    - Reference
-    :target_profiles:
-    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
-  - :path: referenceRange
+  - :path: value[x]
 :mandatory_elements:
+- Observation.extension.url
+- Observation.extension.value[x]
 - Observation.status
-- Observation.category
 - Observation.code
 - Observation.subject
 - Observation.component.code
@@ -224,10 +218,13 @@
   :path: status
 - :type: CodeableConcept
   :strength: required
-  :system: http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-result-observation-category
-  :path: category
-  :required_binding_slice: true
+  :system: http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1267.16
+  :path: value
 :references:
+- :path: Observation.extension.value[x]
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference
+  - http://hl7.org/fhir/StructureDefinition/Resource
 - :path: Observation.basedOn
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/CarePlan
@@ -247,15 +244,12 @@
 - :path: Observation.subject
   :profiles:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
-  - http://hl7.org/fhir/StructureDefinition/Group
-  - http://hl7.org/fhir/StructureDefinition/Device
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
 - :path: Observation.focus
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Resource
 - :path: Observation.encounter
   :profiles:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
+  - http://hl7.org/fhir/StructureDefinition/Encounter
 - :path: Observation.performer
   :profiles:
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
@@ -266,7 +260,7 @@
   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
 - :path: Observation.specimen
   :profiles:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen
+  - http://hl7.org/fhir/StructureDefinition/Specimen
 - :path: Observation.device
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Device
@@ -285,55 +279,49 @@
   - http://hl7.org/fhir/StructureDefinition/Observation
   - http://hl7.org/fhir/StructureDefinition/MolecularSequence
 :tests:
-- :id: us_core_v800_observation_lab_patient_category_search_test
-  :file_name: observation_lab_patient_category_search_test.rb
-- :id: us_core_v800_observation_lab_patient_code_date_search_test
-  :file_name: observation_lab_patient_code_date_search_test.rb
-- :id: us_core_v800_observation_lab_patient_category_date_search_test
-  :file_name: observation_lab_patient_category_date_search_test.rb
-- :id: us_core_v800_observation_lab_patient_code_search_test
-  :file_name: observation_lab_patient_code_search_test.rb
-- :id: us_core_v800_observation_lab_patient_category__lastUpdated_search_test
-  :file_name: observation_lab_patient_category_lastupdated_search_test.rb
-- :id: us_core_v800_observation_lab_patient_category_status_search_test
-  :file_name: observation_lab_patient_category_status_search_test.rb
-- :id: us_core_v800_observation_lab_read_test
-  :file_name: observation_lab_read_test.rb
-- :id: us_core_v800_observation_lab_provenance_revinclude_search_test
-  :file_name: observation_lab_provenance_revinclude_search_test.rb
-- :id: us_core_v800_observation_lab_validation_test
-  :file_name: observation_lab_validation_test.rb
-- :id: us_core_v800_observation_lab_must_support_test
-  :file_name: observation_lab_must_support_test.rb
-- :id: us_core_v800_observation_lab_reference_resolution_test
-  :file_name: observation_lab_reference_resolution_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_code_search_test
+  :file_name: observation_adi_documentation_patient_code_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_category__lastUpdated_search_test
+  :file_name: observation_adi_documentation_patient_category_lastupdated_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_category_search_test
+  :file_name: observation_adi_documentation_patient_category_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_category_status_search_test
+  :file_name: observation_adi_documentation_patient_category_status_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_category_date_search_test
+  :file_name: observation_adi_documentation_patient_category_date_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_patient_code_date_search_test
+  :file_name: observation_adi_documentation_patient_code_date_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_read_test
+  :file_name: observation_adi_documentation_read_test.rb
+- :id: us_core_v800_observation_adi_documentation_provenance_revinclude_search_test
+  :file_name: observation_adi_documentation_provenance_revinclude_search_test.rb
+- :id: us_core_v800_observation_adi_documentation_validation_test
+  :file_name: observation_adi_documentation_validation_test.rb
+- :id: us_core_v800_observation_adi_documentation_must_support_test
+  :file_name: observation_adi_documentation_must_support_test.rb
+- :id: us_core_v800_observation_adi_documentation_reference_resolution_test
+  :file_name: observation_adi_documentation_reference_resolution_test.rb
 :granular_scope_tests:
-- :id: us_core_v800_Observation_patient_category_granular_scope_search_test
-  :file_name: observation_patient_category_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_code_date_granular_scope_search_test
-  :file_name: observation_patient_code_date_granular_scope_search_test.rb
-- :id: us_core_v800_Observation_patient_category_date_granular_scope_search_test
-  :file_name: observation_patient_category_date_granular_scope_search_test.rb
 - :id: us_core_v800_Observation_patient_code_granular_scope_search_test
   :file_name: observation_patient_code_granular_scope_search_test.rb
 - :id: us_core_v800_Observation_patient_category__lastUpdated_granular_scope_search_test
   :file_name: observation_patient_category_lastupdated_granular_scope_search_test.rb
+- :id: us_core_v800_Observation_patient_category_granular_scope_search_test
+  :file_name: observation_patient_category_granular_scope_search_test.rb
 - :id: us_core_v800_Observation_patient_category_status_granular_scope_search_test
   :file_name: observation_patient_category_status_granular_scope_search_test.rb
+- :id: us_core_v800_Observation_patient_category_date_granular_scope_search_test
+  :file_name: observation_patient_category_date_granular_scope_search_test.rb
+- :id: us_core_v800_Observation_patient_code_date_granular_scope_search_test
+  :file_name: observation_patient_code_date_granular_scope_search_test.rb
 - :id: us_core_v800_Observation_granular_scope_read_test
   :file_name: observation_granular_scope_read_test.rb
 :id: us_core_v800_observation_granular_scope_2_group
 :file_name: observation_granular_scope2_group.rb
 :delayed_references:
-- :path: subject
-  :resources:
-  - Location
 - :path: performer
   :resources:
   - Practitioner
   - Organization
   - RelatedPerson
-- :path: specimen
-  :resources:
-  - Specimen
 :resource_conformance_expectation: SHALL

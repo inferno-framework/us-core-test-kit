@@ -1,10 +1,10 @@
 require_relative 'document_reference/document_reference_patient_search_test'
 require_relative 'document_reference/document_reference_id_search_test'
 require_relative 'document_reference/document_reference_patient_status_search_test'
+require_relative 'document_reference/document_reference_patient_category_search_test'
 require_relative 'document_reference/document_reference_patient_category_date_search_test'
 require_relative 'document_reference/document_reference_patient_type_period_search_test'
 require_relative 'document_reference/document_reference_patient_type_search_test'
-require_relative 'document_reference/document_reference_patient_category_search_test'
 require_relative 'document_reference/document_reference_read_test'
 require_relative 'document_reference/document_reference_provenance_revinclude_search_test'
 require_relative 'document_reference/document_reference_validation_test'
@@ -33,9 +33,9 @@ following parameters:
 
 * patient
 * _id
+* patient + category
 * patient + category + date
 * patient + type
-* patient + category
 
 ### Search Parameters
 The first search uses the selected patient(s) from the prior launch
@@ -89,10 +89,10 @@ read succeeds.
       test from: :us_core_v800_document_reference_patient_search_test
       test from: :us_core_v800_document_reference__id_search_test
       test from: :us_core_v800_document_reference_patient_status_search_test
+      test from: :us_core_v800_document_reference_patient_category_search_test
       test from: :us_core_v800_document_reference_patient_category_date_search_test
       test from: :us_core_v800_document_reference_patient_type_period_search_test
       test from: :us_core_v800_document_reference_patient_type_search_test
-      test from: :us_core_v800_document_reference_patient_category_search_test
       test from: :us_core_v800_document_reference_read_test
       test from: :us_core_v800_document_reference_provenance_revinclude_search_test
       test from: :us_core_v800_document_reference_validation_test

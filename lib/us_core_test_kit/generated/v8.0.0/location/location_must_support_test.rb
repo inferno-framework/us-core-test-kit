@@ -23,6 +23,9 @@ module USCoreTestKit
         * Location.status
         * Location.telecom
         * Location.type
+        * Location.type.coding
+        * Location.type.coding.code
+        * Location.type.coding.system
       )
 
       id :us_core_v800_location_must_support_test

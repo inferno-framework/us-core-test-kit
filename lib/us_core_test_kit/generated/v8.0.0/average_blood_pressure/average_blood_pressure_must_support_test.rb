@@ -21,9 +21,11 @@ module USCoreTestKit
         * Observation.component.valueQuantity
         * Observation.component:diastolic
         * Observation.component:diastolic.code
+        * Observation.component:diastolic.dataAbsentReason
         * Observation.component:diastolic.value[x]
         * Observation.component:systolic
         * Observation.component:systolic.code
+        * Observation.component:systolic.dataAbsentReason
         * Observation.component:systolic.value[x]
         * Observation.effectivePeriod
         * Observation.performer

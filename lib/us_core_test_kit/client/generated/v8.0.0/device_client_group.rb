@@ -2,8 +2,8 @@
 
 require_relative 'device/device_client_read_test'
 require_relative 'device/device_patient_client_search_test'
-require_relative 'device/device_patient_type_client_search_test'
 require_relative 'device/device_patient_status_client_search_test'
+require_relative 'device/device_patient_type_client_search_test'
 
 module USCoreTestKit
   module Client
@@ -41,8 +41,8 @@ Device resource type with the following required parameters:
 
 Inferno will also look for searches using the following optional parameters:
 
-* patient + type
 * patient + status
+* patient + type
 
 
         )
@@ -51,8 +51,8 @@ Inferno will also look for searches using the following optional parameters:
 
         test from: :us_core_v800_device_client_read_test
         test from: :us_core_v800_device_patient_client_search_test
-        test from: :us_core_v800_device_patient_type_client_search_test
         test from: :us_core_v800_device_patient_status_client_search_test
+        test from: :us_core_v800_device_patient_type_client_search_test
       end
     end
   end

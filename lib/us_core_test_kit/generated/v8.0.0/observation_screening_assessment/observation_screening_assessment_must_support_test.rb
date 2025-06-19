@@ -13,7 +13,6 @@ module USCoreTestKit
         found previously for the following must support elements:
 
         * Observation.category
-        * Observation.category:screening-assessment
         * Observation.category:survey
         * Observation.code
         * Observation.derivedFrom
@@ -25,6 +24,10 @@ module USCoreTestKit
         * Observation.valueCodeableConcept
         * Observation.valueQuantity
         * Observation.valueString
+
+        For ONC USCDI requirements, each Observation must support the following additional elements:
+
+        * Observation.category:screening-assessment
       )
 
       id :us_core_v800_observation_screening_assessment_must_support_test

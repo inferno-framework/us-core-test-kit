@@ -6,7 +6,7 @@
 :resource: Observation
 :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation
 :profile_name: US Core Observation Sexual Orientation Profile
-:profile_version: 8.0.0-ballot
+:profile_version: 8.0.0
 :title: Observation Sexual Orientation
 :short_description: Verify support for the server capabilities required by the US
   Core Observation Sexual Orientation Profile.
@@ -41,21 +41,6 @@
 - :expectation: SHOULD
   :names:
   - patient
-  - code
-  - date
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
-- :expectation: SHALL
-  :names:
-  - patient
-  - category
-  - date
-  :names_not_must_support_or_mandatory:
-  - category
-  :must_support_or_mandatory: false
-- :expectation: SHOULD
-  :names:
-  - patient
   - category
   - _lastUpdated
   :names_not_must_support_or_mandatory:
@@ -77,6 +62,21 @@
   :names_not_must_support_or_mandatory:
   - category
   :must_support_or_mandatory: false
+- :expectation: SHALL
+  :names:
+  - patient
+  - category
+  - date
+  :names_not_must_support_or_mandatory:
+  - category
+  :must_support_or_mandatory: false
+- :expectation: SHOULD
+  :names:
+  - patient
+  - code
+  - date
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
 :search_definitions:
   :patient:
     :paths:
@@ -86,36 +86,6 @@
     :comparators: {}
     :values: []
     :type: Reference
-    :contains_multiple: false
-    :multiple_or: MAY
-  :code:
-    :paths:
-    - code
-    :full_paths:
-    - Observation.code
-    :comparators: {}
-    :values:
-    - 76690-7
-    :type: CodeableConcept
-    :contains_multiple: false
-    :multiple_or: SHOULD
-  :date:
-    :paths:
-    - effective
-    :full_paths:
-    - Observation.effective
-    :comparators:
-      :eq: MAY
-      :ne: MAY
-      :gt: SHALL
-      :ge: SHALL
-      :lt: SHALL
-      :le: SHALL
-      :sa: MAY
-      :eb: MAY
-      :ap: MAY
-    :values: []
-    :type: date
     :contains_multiple: false
     :multiple_or: MAY
   :category:
@@ -165,6 +135,36 @@
     :type: code
     :contains_multiple: false
     :multiple_or: SHALL
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: SHALL
+      :ge: SHALL
+      :lt: SHALL
+      :le: SHALL
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+    :multiple_or: MAY
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values:
+    - 76690-7
+    :type: CodeableConcept
+    :contains_multiple: false
+    :multiple_or: SHOULD
 :include_params: []
 :revincludes:
 - Provenance:target
@@ -189,10 +189,6 @@
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
   - :path: effectiveDateTime
     :original_path: effective[x]
-  - :path: performer
-    :uscdi_only: true
-    :types:
-    - Reference
 :mandatory_elements:
 - Observation.status
 - Observation.code
@@ -231,12 +227,12 @@
   - http://hl7.org/fhir/StructureDefinition/Encounter
 - :path: Observation.performer
   :profiles:
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+  - http://hl7.org/fhir/StructureDefinition/Practitioner
   - http://hl7.org/fhir/StructureDefinition/PractitionerRole
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam
-  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson
+  - http://hl7.org/fhir/StructureDefinition/Organization
+  - http://hl7.org/fhir/StructureDefinition/CareTeam
+  - http://hl7.org/fhir/StructureDefinition/Patient
+  - http://hl7.org/fhir/StructureDefinition/RelatedPerson
 - :path: Observation.specimen
   :profiles:
   - http://hl7.org/fhir/StructureDefinition/Specimen
@@ -260,16 +256,16 @@
 :tests:
 - :id: us_core_v800_observation_sexual_orientation_patient_code_search_test
   :file_name: observation_sexual_orientation_patient_code_search_test.rb
-- :id: us_core_v800_observation_sexual_orientation_patient_code_date_search_test
-  :file_name: observation_sexual_orientation_patient_code_date_search_test.rb
-- :id: us_core_v800_observation_sexual_orientation_patient_category_date_search_test
-  :file_name: observation_sexual_orientation_patient_category_date_search_test.rb
 - :id: us_core_v800_observation_sexual_orientation_patient_category__lastUpdated_search_test
   :file_name: observation_sexual_orientation_patient_category_lastupdated_search_test.rb
 - :id: us_core_v800_observation_sexual_orientation_patient_category_search_test
   :file_name: observation_sexual_orientation_patient_category_search_test.rb
 - :id: us_core_v800_observation_sexual_orientation_patient_category_status_search_test
   :file_name: observation_sexual_orientation_patient_category_status_search_test.rb
+- :id: us_core_v800_observation_sexual_orientation_patient_category_date_search_test
+  :file_name: observation_sexual_orientation_patient_category_date_search_test.rb
+- :id: us_core_v800_observation_sexual_orientation_patient_code_date_search_test
+  :file_name: observation_sexual_orientation_patient_code_date_search_test.rb
 - :id: us_core_v800_observation_sexual_orientation_read_test
   :file_name: observation_sexual_orientation_read_test.rb
 - :id: us_core_v800_observation_sexual_orientation_provenance_revinclude_search_test
@@ -282,10 +278,5 @@
   :file_name: observation_sexual_orientation_reference_resolution_test.rb
 :id: us_core_v800_observation_sexual_orientation
 :file_name: observation_sexual_orientation_group.rb
-:delayed_references:
-- :path: performer
-  :resources:
-  - Practitioner
-  - Organization
-  - RelatedPerson
+:delayed_references: []
 :resource_conformance_expectation: SHALL

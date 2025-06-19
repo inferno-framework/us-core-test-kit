@@ -20,6 +20,10 @@ module USCoreTestKit
         * CarePlan.text
         * CarePlan.text.div
         * CarePlan.text.status
+
+        For ONC USCDI requirements, each CarePlan must support the following additional elements:
+
+        * CarePlan.contributor
       )
 
       id :us_core_v800_care_plan_must_support_test
