@@ -1,4 +1,5 @@
-require_relative 'visual_inspection_and_attestation/authenticated_api_group'
+require_relative 'visual_inspection_and_attestation/capability_statement_group'
+require_relative 'visual_inspection_and_attestation/must_support_group'
 
 module USCoreTestKit
   module USCoreV700
@@ -11,16 +12,9 @@ module USCoreTestKit
         to the US Core IG requirements.
       DESCRIPTION
 
-      group from: :us_core_v700_security_group
+      group from: :us_core_v700_att_capability_statement
+      group from: :us_core_v700_att_must_support
 
-      puts "## IDs ##"
-      USCoreOptions.recursive_puts_children(self, "")
-
-      puts "#######"
-      USCoreOptions.recursive_puts_inputs(self)
-      USCoreOptions.recursive_remove_input(self, :url)
-      USCoreOptions.recursive_puts_inputs(self)
-      puts "#######"
     end
   end
 end

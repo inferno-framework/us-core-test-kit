@@ -15,15 +15,5 @@ module USCoreTestKit
       runnable.input_order.delete(input)
       runnable.children.each { |child_runnable| recursive_remove_input(child_runnable, input) }
     end
-
-    def recursive_puts_inputs(runnable)
-      puts runnable.inputs
-      runnable.children.each { |child_runnable| recursive_puts_inputs(child_runnable) }
-    end
-
-    def recursive_puts_children(runnable, spaces)
-      puts spaces + runnable.id
-      runnable.children.each { |child_runnable| recursive_puts_children(child_runnable, spaces+"  ") }
-    end
   end
 end

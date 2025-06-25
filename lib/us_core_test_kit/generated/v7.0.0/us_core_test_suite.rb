@@ -240,6 +240,7 @@ module USCoreTestKit
       
       group from: :us_core_v700_visual_inspection_and_attestation,
             optional: true
+      USCoreOptions::recursive_remove_input(groups.last, :url)
 
       links [
         {
