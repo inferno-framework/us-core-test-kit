@@ -4,8 +4,8 @@ module USCoreTestKit
       title 'Processes Must Support and Mandatory elements'
       id :us_core_v700_att_ms_element_processing
       description %(
-        Health IT Module is able to process [Must Support](https://hl7.org/fhir/us/core/must-support.html)
-        and [Mandatory](https://hl7.org/fhir/us/core/must-support.html) elements.
+        The Health IT Module is able to process [Must Support](https://hl7.org/fhir/us/core/must-support.html)
+        and [Mandatory](https://hl7.org/fhir/us/core/must-support.html#mandatory-elements) elements.
       )
       verifies_requirements 'hl7.fhir.us.core_7.0.0@31'
 

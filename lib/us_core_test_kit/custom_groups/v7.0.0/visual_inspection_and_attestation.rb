@@ -1,5 +1,6 @@
 require_relative 'visual_inspection_and_attestation/capability_statement_group'
 require_relative 'visual_inspection_and_attestation/must_support_group'
+require_relative 'visual_inspection_and_attestation/missing_data_group'
 
 module USCoreTestKit
   module USCoreV700
@@ -14,6 +15,7 @@ module USCoreTestKit
 
       group from: :us_core_v700_att_capability_statement
       group from: :us_core_v700_att_must_support
+      group from: :us_core_v700_att_missing_data
 
     end
   end

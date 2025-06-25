@@ -4,7 +4,7 @@ module USCoreTestKit
       title 'Specifies capability details'
       id :us_core_v700_att_capability_details
       description %(
-        Health IT Module specifies the full capability details from the US Core CapabilityStatement it claims to implement by
+        The Health IT Module specifies the full capability details from the US Core CapabilityStatement it claims to implement by
         - Declaring support for the US Core Profile by including its official URL in the server’s
           `CapabilityStatement.rest.resource.supportedProfile` element
         - Declaring support for the US Core Profile’s FHIR RESTful transactions
