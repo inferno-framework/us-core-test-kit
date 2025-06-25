@@ -78,3 +78,32 @@ They can only be run when the entire group US Core FHIR API group is run.
 
 This group tests the specific implementation details surrounding use of granular
 SMART App Launch scopes within US Core.
+
+## Test Coverage
+
+The US Core Test Kits for versions 6.1.0 and 7.0.0 include references to specific
+requirements extracted from the US Core Implementation Guide (IG). These references
+are intended to clarify which requirements are validated by each test. Tests that
+reference requirements include links to the relevant text, and the Test Kit
+provides an overview page showing requirement coverage across the IG. This mapping
+is provided to support transparency and traceability.
+
+Some requirements are validated through optional Visual Inspection and Attestation
+tests rather than automated tests. These allow testers and developers to record
+confirmation of expected system behavior that cannot be automatically verified.
+
+For more information about requirements in Inferno, visit Inferno's [documentation
+page on requirements](www.TODO.example.com).
+
+**Note:** The Test Kit does not attempt to cover all requirements in the US Core IG.
+
+The following types of requirements are intentionally excluded:
+- Requirements using “MAY,” “SHOULD,” or “SHOULD NOT” conformance verbs
+- Conditional requirements where the condition is optional
+  - Example:
+    > [For systems that require a status parameter to be provided, they] SHALL NOT
+      restrict search results (i.e., apply ‘hidden’ filters) when a client includes status
+      parameters in the query.”
+    
+    This requirement applies only to systems that require a status parameter, but the US Core IG strongly discourages servers from imposing such a restriction. Because the condition is both optional and discouraged, the Test Kit does not include tests for this scenario.
+- Requirements related to [SMART App Launch authentication and authorization workflows](https://hl7.org/fhir/us/core/scopes.html) (see the [SMART App Launch Test Kit](https://inferno.healthit.gov/test-kits/smart-app-launch/) for dedicated coverage)
