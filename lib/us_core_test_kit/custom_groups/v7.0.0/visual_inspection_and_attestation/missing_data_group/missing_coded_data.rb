@@ -1,7 +1,7 @@
 module USCoreTestKit
   module USCoreV700
     class MissingDataExtensibleBindingTest < Inferno::Test
-      title 'Handles missing data for mandatory coded elements'
+      title 'Handles missing data for mandatory coded elements with example, preferred, or extensible binding strength'
       id :us_core_v700_att_missing_data_extensible
 
       description %(
@@ -20,7 +20,7 @@ module USCoreTestKit
                             'hl7.fhir.us.core_7.0.0@44'
 
       input :missing_data_extensible,
-            title: 'Handles missing data for mandatory coded elements',
+            title: 'Handles missing data for mandatory coded elements with example, preferred, or extensible binding strength',
             description: %(
               The developer of the Health IT Module attests that the Health IT Module handles missing data for
               [mandatory](https://hl7.org/fhir/us/core/must-support.html#mandatory-elements)
