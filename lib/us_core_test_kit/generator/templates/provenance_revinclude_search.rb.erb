@@ -15,11 +15,50 @@ module USCoreTestKit
       %)
 
       id :<%= test_id %>
-  <% if needs_patient_id? %>
+  
+      <%-
+        requirement_map = {
+              'AllergyIntoleranceProvenanceRevincludeSearchTest' => '489',
+              'CarePlanProvenanceRevincludeSearchTest' => '490',
+              'CareTeamProvenanceRevincludeSearchTest' => '491',
+              'ConditionEncounterDiagnosisProvenanceRevincludeSearchTest' => '492',
+              'ConditionProblemsHealthConcernsProvenanceRevincludeSearchTest' => '492',
+              'CoverageProvenanceRevincludeSearchTest' => '493',
+              'DeviceProvenanceRevincludeSearchTest' => '494',
+              'DiagnosticReportLabProvenanceRevincludeSearchTest' => '495',
+              'DiagnosticReportNoteProvenanceRevincludeSearchTest' => '495',
+              'DocumentReferenceProvenanceRevincludeSearchTest' => '496',
+              'EncounterProvenanceRevincludeSearchTest' => '497',
+              'GoalProvenanceRevincludeSearchTest' => '498',
+              'ImmunizationProvenanceRevincludeSearchTest' => '499',
+              'MedicationDispenseProvenanceRevincludeSearchTest' => '500',
+              'MedicationRequestProvenanceRevincludeSearchTest' => '501',
+              'ObservationLabProvenanceRevincludeSearchTest' => '502',
+              'ObservationOccupationProvenanceRevincludeSearchTest' => '502',
+              'ObservationPregnancyintentProvenanceRevincludeSearchTest' => '502',
+              'ObservationPregnancystatusProvenanceRevincludeSearchTest' => '502',
+              'ObservationScreeningAssessmentProvenanceRevincludeSearchTest' => '502',
+              'ObservationSexualOrientationProvenanceRevincludeSearchTest' => '502',
+              'PatientProvenanceRevincludeSearchTest' => '503',
+              'ProcedureProvenanceRevincludeSearchTest' => '504',
+              'QuestionnaireResponseProvenanceRevincludeSearchTest' => '505',
+              'RelatedPersonProvenanceRevincludeSearchTest' => '506',
+              'ServiceRequestProvenanceRevincludeSearchTest' => '507'
+        }
+        if module_name == 'USCoreV610' && requirement_map[class_name]
+      -%>
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@<%= requirement_map[class_name] %>'
+
+      <%- elsif module_name == 'USCoreV700' && requirement_map[class_name] -%>
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@<%= requirement_map[class_name] %>'
+
+      <%- end -%>
+      <%- if needs_patient_id? -%>
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
-  <% end %>
+  
+      <%- end -%>
       def properties
         @properties ||= SearchTestProperties.new(
   <%= search_test_properties_string %>

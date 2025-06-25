@@ -16,6 +16,8 @@ module USCoreTestKit
 
       id :us_core_v700_medication_dispense_provenance_revinclude_search_test
   
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@500'
+
       input :patient_ids,
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'

@@ -29,6 +29,8 @@ requirement of US Core v6.1.0.
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-server.html)
 
       )
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
+                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58'
 
       id :us_core_v610_procedure_patient_search_test
       input :patient_ids,
