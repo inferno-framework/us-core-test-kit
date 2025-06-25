@@ -7,11 +7,11 @@ module USCoreTestKit
         include TestHelper
 
         id :us_core_v610_practitioner_role_client_read_test
-        verifies_requirements 'hl7.fhir.us.core_6.1.0@315'
         title 'SHALL support read of PractitionerRole'
         description %(
           The client demonstrates SHALL support for reading PractitionerRole.
         )
+        verifies_requirements 'hl7.fhir.us.core_6.1.0@315'
 
         def skip_message
           "Inferno did not receive any read requests for the `PractitionerRole` resource type."
