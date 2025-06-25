@@ -26,7 +26,6 @@ require_relative 'diagnostic_report_note_client_group'
 require_relative 'diagnostic_report_lab_client_group'
 require_relative 'document_reference_client_group'
 require_relative 'adi_document_reference_client_group'
-require_relative 'adi_document_reference_client_group'
 require_relative 'encounter_client_group'
 require_relative 'goal_client_group'
 require_relative 'immunization_client_group'
@@ -57,7 +56,6 @@ require_relative 'observation_clinical_result_client_group'
 require_relative 'pediatric_bmi_for_age_client_group'
 require_relative 'head_circumference_percentile_client_group'
 require_relative 'body_weight_client_group'
-require_relative 'observation_adi_documentation_client_group'
 require_relative 'procedure_client_group'
 require_relative 'questionnaire_response_client_group'
 require_relative 'service_request_client_group'
@@ -229,7 +227,6 @@ Inferno's simulated US Core server includes the following target instances for t
 * **[US Core DiagnosticReport Profile for Laboratory Results Reporting](http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|8.0.0)** (id: us-core-client-tests-diagnostic-report-lab)
 * **[US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|8.0.0)** (id: us-core-client-tests-document-reference)
 * **[US Core ADI DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|8.0.0)** (id: us-core-client-tests-adi-document-reference)
-* **[US Core ADI DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|8.0.0)** (id: us-core-client-tests-adi-document-reference)
 * **[US Core Encounter Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|8.0.0)** (id: us-core-client-tests-encounter)
 * **[US Core Goal Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|8.0.0)** (id: us-core-client-tests-goal)
 * **[US Core Immunization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|8.0.0)** (id: us-core-client-tests-immunization)
@@ -260,7 +257,6 @@ Inferno's simulated US Core server includes the following target instances for t
 * **[US Core Pediatric BMI for Age Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age|8.0.0)** (id: us-core-client-tests-pediatric-bmi-for-age)
 * **[US Core Pediatric Head Occipital Frontal Circumference Percentile Profile](http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile|8.0.0)** (id: us-core-client-tests-head-circumference-percentile)
 * **[US Core Body Weight Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight|8.0.0)** (id: us-core-client-tests-body-weight)
-* **[US Core Observation ADI Documentation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation|8.0.0)** (id: us-core-client-tests-observation-adi-documentation)
 * **[US Core Procedure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|8.0.0)** (id: us-core-client-tests-procedure)
 * **[US Core QuestionnaireResponse Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|8.0.0)** (id: us-core-client-tests-questionnaire-response)
 * **[US Core ServiceRequest Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|8.0.0)** (id: us-core-client-tests-service-request)
@@ -386,7 +382,6 @@ and demonstrate its ability to perform the FHIR interactions described in the [U
           group from: :us_core_client_v800_diagnostic_report_lab
           group from: :us_core_client_v800_document_reference
           group from: :us_core_client_v800_adi_document_reference
-          group from: :us_core_client_v800_adi_document_reference
           group from: :us_core_client_v800_encounter
           group from: :us_core_client_v800_goal
           group from: :us_core_client_v800_immunization
@@ -417,7 +412,6 @@ and demonstrate its ability to perform the FHIR interactions described in the [U
           group from: :us_core_client_v800_pediatric_bmi_for_age
           group from: :us_core_client_v800_head_circumference_percentile
           group from: :us_core_client_v800_body_weight
-          group from: :us_core_client_v800_observation_adi_documentation
           group from: :us_core_client_v800_procedure
           group from: :us_core_client_v800_questionnaire_response
           group from: :us_core_client_v800_service_request

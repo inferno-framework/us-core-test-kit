@@ -214,17 +214,6 @@ module USCoreTestKit
     * patient + category + date
     * patient + type + period
     * patient + type
-* **AdiDocumentReference**
-  * read id:
-    * us-core-client-tests-adi-document-reference
-  * searches:
-    * patient + category
-    * _id
-    * patient
-    * patient + status
-    * patient + category + date
-    * patient + type + period
-    * patient + type
 * **Encounter**
   * read id:
     * us-core-client-tests-encounter
@@ -512,16 +501,6 @@ module USCoreTestKit
 * **BodyWeight**
   * read id:
     * us-core-client-tests-body-weight
-  * searches:
-    * patient + code
-    * patient + category + _lastUpdated
-    * patient + category
-    * patient + category + status
-    * patient + category + date
-    * patient + code + date
-* **ObservationAdiDocumentation**
-  * read id:
-    * us-core-client-tests-observation-adi-documentation
   * searches:
     * patient + code
     * patient + category + _lastUpdated

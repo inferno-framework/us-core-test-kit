@@ -114,7 +114,7 @@ module USCoreTestKit
 
       filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(resources_returned) if resource_type == 'Device'
-      filter_document_references(resources_returned) if resource_type == 'DocumentReference'
+      #filter_document_references(resources_returned) if resource_type == 'DocumentReference'
 
       # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
       # if metadata.profile_url.end_with?('us-core-adi-documentreference')
@@ -153,7 +153,7 @@ module USCoreTestKit
 
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
-      filter_document_references(post_search_resources) if resource_type == 'DocumentReference'
+      #filter_document_references(post_search_resources) if resource_type == 'DocumentReference'
 
       # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
       # if metadata.profile_url.end_with?('us-core-adi-documentreference')
@@ -189,16 +189,6 @@ module USCoreTestKit
           code = exclude_code
           coding.code == code
         end
-      end
-    end
-
-    def filter_document_references(resources)
-      return resources unless metadata.name == 'us_core_documentreference'
-      codes_to_exclude = document_reference_type_codes&.split(',')&.map(&:strip)
-      return resources if codes_to_exclude.blank?
-
-      resources.reject! do |resource|
-        resource&.type&.coding&.any? { |coding| excluded_code?(coding, codes_to_exclude) }
       end
     end
 
@@ -317,7 +307,7 @@ module USCoreTestKit
 
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
-      filter_document_references(reference_with_type_resources) if resource_type == 'DocumentReference'
+      #filter_document_references(reference_with_type_resources) if resource_type == 'DocumentReference'
 
       # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
       # if metadata.profile_url.end_with?('us-core-adi-documentreference')
@@ -599,12 +589,6 @@ module USCoreTestKit
 
       if resource_type == 'Device' && implantable_device_codes.present?
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
-      end
-
-      if resource_type == 'DocumentReference' &&
-         metadata.name == 'us_core_documentreference' &&
-         document_reference_type_codes.present?
-        msg.concat(" when excluding the following DocumentReference Type codes: #{document_reference_type_codes}")
       end
 
       msg + '. Please use patients with more information'

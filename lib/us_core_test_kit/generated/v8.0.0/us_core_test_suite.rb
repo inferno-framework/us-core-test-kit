@@ -23,7 +23,6 @@ require_relative 'diagnostic_report_note_group'
 require_relative 'diagnostic_report_lab_group'
 require_relative 'document_reference_group'
 require_relative 'adi_document_reference_group'
-require_relative 'adi_document_reference_group'
 require_relative 'encounter_group'
 require_relative 'goal_group'
 require_relative 'immunization_group'
@@ -54,7 +53,6 @@ require_relative 'observation_clinical_result_group'
 require_relative 'pediatric_bmi_for_age_group'
 require_relative 'head_circumference_percentile_group'
 require_relative 'body_weight_group'
-require_relative 'observation_adi_documentation_group'
 require_relative 'procedure_group'
 require_relative 'questionnaire_response_group'
 require_relative 'service_request_group'
@@ -188,7 +186,6 @@ module USCoreTestKit
         group from: :us_core_v800_diagnostic_report_lab
         group from: :us_core_v800_document_reference
         group from: :us_core_v800_adi_document_reference
-        group from: :us_core_v800_adi_document_reference
         group from: :us_core_v800_encounter
         group from: :us_core_v800_goal
         group from: :us_core_v800_immunization
@@ -219,7 +216,6 @@ module USCoreTestKit
         group from: :us_core_v800_pediatric_bmi_for_age
         group from: :us_core_v800_head_circumference_percentile
         group from: :us_core_v800_body_weight
-        group from: :us_core_v800_observation_adi_documentation
         group from: :us_core_v800_procedure
         group from: :us_core_v800_questionnaire_response
         group from: :us_core_v800_service_request
