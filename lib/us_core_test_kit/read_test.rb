@@ -49,9 +49,14 @@ module USCoreTestKit
 
     def readable_references(resources)
       resources
-        .select { |resource| resource[:reference].present? && resource[:reference].is_a?(FHIR::Reference) }
-        .select { |resource| resource[:reference].reference.split('/').last.present? }
-        .compact
+        .filter_map do |resource|
+          next unless resource[:reference].present? && resource[:reference].is_a?(FHIR::Reference)
+
+          reference_id = resource[:reference].reference&.split('/')&.last
+          next unless reference_id&.present?
+
+          resource
+        end
         .uniq { |resource| resource[:reference].reference.split('/').last }
     end
 
