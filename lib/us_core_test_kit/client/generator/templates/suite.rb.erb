@@ -29,6 +29,25 @@ module USCoreTestKit
         description %(
           <%= description %>
         )
+        <%- if module_name == 'USCoreClientV610'-%>
+
+        requirement_sets(
+          {
+            identifier: 'hl7.fhir.us.core_6.1.0',
+            title: 'US Core Implementation Guide',
+            actor: 'Client'
+          }
+        )
+        <%- elsif module_name == 'USCoreClientV700'-%>
+
+        requirement_sets(
+          {
+            identifier: 'hl7.fhir.us.core_7.0.0',
+            title: 'US Core Implementation Guide',
+            actor: 'Client'
+          }
+        )
+        <%- end -%>
 
         links [
           {

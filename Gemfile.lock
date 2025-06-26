@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     us_core_test_kit (0.11.4)
-      inferno_core (>= 0.6.11)
-      smart_app_launch_test_kit (>= 0.6.3)
+      inferno_core (>= 0.6.15)
+      smart_app_launch_test_kit (>= 0.6.4)
       tls_test_kit (~> 0.3.0)
 
 GEM
@@ -140,7 +140,7 @@ GEM
       mutex_m
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    inferno_core (0.6.11)
+    inferno_core (0.6.15)
       activesupport (~> 6.1.7.5)
       base62-rb (= 0.3.1)
       blueprinter (= 0.25.2)
@@ -279,8 +279,8 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (0.6.3)
-      inferno_core (>= 0.6.3)
+    smart_app_launch_test_kit (0.6.4)
+      inferno_core (>= 0.6.15)
       json-jwt (~> 1.15.3)
       jwt (~> 2.6)
       tls_test_kit (~> 0.3.0)

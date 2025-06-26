@@ -289,6 +289,14 @@ The current version of this test suite does not:
 
         )
 
+        requirement_sets(
+          {
+            identifier: 'hl7.fhir.us.core_7.0.0',
+            title: 'US Core Implementation Guide',
+            actor: 'Client'
+          }
+        )
+
         links [
           {
             type: 'report_issue',
