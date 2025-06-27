@@ -4,20 +4,60 @@ module USCoreTestKit
       scratch_resources[:all] ||= []
     end
 
-    def perform_read_test(resources, reply_handler = nil)
+    def perform_read_test(resources, reply_handler = nil, delayed_reference: false)
       skip_if resources.blank?, no_resources_skip_message
 
-      resources_to_read = readable_resources(resources)
+      resources_to_read = if delayed_reference
+                            readable_references(resources)
+                          else
+                            readable_resources(resources)
+                          end
 
       assert resources_to_read.present?, "No #{resource_type} id found."
 
       if config.options[:read_all_resources]
+        if delayed_reference
+          all_referencing_resources = referencing_resources(resources_to_read)
+          info %(
+            The #{resource_type} references used for this test were pulled from the following resources:
+            #{all_referencing_resources}
+          )
+          resources_to_read.map!(&:reference)
+        end
+
         resources_to_read.each do |resource|
           read_and_validate(resource)
         end
       else
-        read_and_validate(resources_to_read.first)
+        first_resource = resources_to_read.first
+        if delayed_reference.present?
+          info %(
+            The #{resource_type} reference used for this test was pulled from resource
+            #{first_resource[:referencing_resource]}
+          )
+          first_resource = first_resource[:reference]
+        end
+        read_and_validate(first_resource)
       end
+    end
+
+    def referencing_resources(readable_resources)
+      readable_resources
+        .map { |resource| resource[:referencing_resource] }
+        .join(', ')
+    end
+
+    def readable_references(resources)
+      resources
+        .filter_map do |resource|
+          next unless resource[:reference].present? && resource[:reference].is_a?(FHIR::Reference)
+
+          reference_id = resource[:reference].reference&.split('/')&.last
+          next unless reference_id&.present?
+
+          resource
+        end
+        .uniq { |resource| resource[:reference].reference.split('/').last }
     end
 
     def readable_resources(resources)
@@ -37,9 +77,9 @@ module USCoreTestKit
       assert_resource_type(resource_type)
       assert resource.id.present? && resource.id == id, bad_resource_id_message(id)
 
-      if resource_to_read.is_a? FHIR::Reference
-        all_scratch_resources << resource
-      end
+      return unless resource_to_read.is_a? FHIR::Reference
+
+      all_scratch_resources << resource
     end
 
     def resource_id(resource)
@@ -48,7 +88,7 @@ module USCoreTestKit
 
     def no_resources_skip_message
       "No #{resource_type} resources appear to be available. " \
-      'Please use patients with more information.'
+        'Please use patients with more information.'
     end
 
     def bad_resource_id_message(expected_id)
