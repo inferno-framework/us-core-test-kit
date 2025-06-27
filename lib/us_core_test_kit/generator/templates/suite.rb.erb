@@ -58,6 +58,8 @@ module USCoreTestKit
             Generator::GroupMetadata.new(raw_metadata)
           end
       end
+
+      id :<%= suite_id %>
       <%- if module_name == 'USCoreV610'-%>
 
       requirement_sets(
@@ -77,8 +79,6 @@ module USCoreTestKit
         }
       )
       <%- end -%>
-
-      id :<%= suite_id %>
       <%- if module_name == 'USCoreV610'-%>
 
       verifies_requirements 'hl7.fhir.us.core_6.1.0@535'

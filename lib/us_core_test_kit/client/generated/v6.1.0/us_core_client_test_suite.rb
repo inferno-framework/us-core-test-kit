@@ -281,14 +281,6 @@ The current version of this test suite does not:
 
         )
 
-        requirement_sets(
-          {
-            identifier: 'hl7.fhir.us.core_6.1.0',
-            title: 'US Core Implementation Guide',
-            actor: 'Client'
-          }
-        )
-
         links [
           {
             type: 'report_issue',
@@ -310,6 +302,14 @@ The current version of this test suite does not:
             url: 'http://hl7.org/fhir/us/core/STU6.1'
           }
         ]
+
+        requirement_sets(
+          {
+            identifier: 'hl7.fhir.us.core_6.1.0',
+            title: 'US Core Implementation Guide',
+            actor: 'Client'
+          }
+        )
 
         suite_option  :client_type,
                       title: 'Client Security Type',

@@ -104,6 +104,8 @@ module USCoreTestKit
           end
       end
 
+      id :us_core_v700
+
       requirement_sets(
         {
           identifier: 'hl7.fhir.us.core_7.0.0',
@@ -111,8 +113,6 @@ module USCoreTestKit
           actor: 'Server'
         }
       )
-
-      id :us_core_v700
 
       verifies_requirements 'hl7.fhir.us.core_7.0.0@535'
 
