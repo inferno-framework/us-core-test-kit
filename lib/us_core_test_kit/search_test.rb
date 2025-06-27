@@ -1,5 +1,4 @@
 require_relative 'date_search_validation'
-require_relative 'fhir_resource_navigation'
 require_relative 'resource_search_param_checker'
 require_relative 'search_test_properties'
 require_relative 'well_known_code_systems'
@@ -8,7 +7,7 @@ module USCoreTestKit
   module SearchTest
     extend Forwardable
     include DateSearchValidation
-    include FHIRResourceNavigation
+    include Inferno::DSL::FHIRResourceNavigation
     include ResourceSearchParamChecker
     include WellKnownCodeSystems
 
@@ -620,7 +619,7 @@ module USCoreTestKit
             element.family || element.given&.first || element.text
           when FHIR::Address
             element.text || element.city || element.state || element.postalCode || element.country
-          when USCoreTestKit::PrimitiveType
+          when Inferno::DSL::PrimitiveType
             element.value
           else
             if metadata.version != 'v3.1.1' &&
@@ -663,7 +662,7 @@ module USCoreTestKit
         (element.family || element.given&.first || element.text).present?
       when FHIR::Address
         (element.text || element.city || element.state || element.postalCode || element.country).present?
-      when USCoreTestKit::PrimitiveType
+      when Inferno::DSL::PrimitiveType
         element.value.present?
       else
         true
@@ -733,7 +732,7 @@ module USCoreTestKit
           values_found <<
             if value.is_a? FHIR::Reference
               value.reference
-            elsif value.is_a? USCoreTestKit::PrimitiveType
+            elsif value.is_a? Inferno::DSL::PrimitiveType
               value.value
             else
               value

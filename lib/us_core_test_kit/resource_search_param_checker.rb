@@ -1,8 +1,6 @@
-require_relative 'fhir_resource_navigation'
-
 module USCoreTestKit
   module ResourceSearchParamChecker
-    include FHIRResourceNavigation
+    include Inferno::DSL::FHIRResourceNavigation
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
