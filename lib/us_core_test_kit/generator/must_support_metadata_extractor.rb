@@ -110,7 +110,7 @@ module USCoreTestKit
       def must_support_value_slice_elements
         must_support_slice_elements.select do |element|
           # 'pattern' is deparected in FHIR R5
-          # 'patten' type is used in US Core v7 and all earlier versions.
+          # 'pattern' type is used in US Core v7 and all earlier versions.
           # Since US Core v8, all 'patten' types are moved to 'value' type
           ['value','pattern'].include?(discriminators(sliced_element(element)).first.type)
         end
@@ -302,6 +302,14 @@ module USCoreTestKit
           {
             path: current_element.id.gsub("#{resource}.", '')
           }.tap do |current_metadata|
+
+            #binding.pry if current_element.id == 'Organization.identifier:NPI.system'
+            if current_element.id.include?(':') && !current_element.id.include?('extension')
+              slice_name = current_element.id.match(/:(\w+)/)[1]
+
+              next if must_support_slice_elements.none? { |slice| slice.sliceName == slice_name }
+            end
+
             if is_uscdi_requirement_element?(current_element)
               current_metadata[:uscdi_only] = true
             end
@@ -319,10 +327,6 @@ module USCoreTestKit
               handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first&.code == 'Reference'
 
               handle_fixed_values(current_metadata, current_element)
-
-              must_support_elements_metadata.delete_if do |metadata|
-                metadata[:path] == current_metadata[:path] && metadata[:fixed_value].blank?
-              end
 
               must_support_elements_metadata << current_metadata
             end
