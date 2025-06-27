@@ -22,10 +22,6 @@ module USCoreTestKit
         * Organization.identifier
         * Organization.identifier.system
         * Organization.identifier.value
-        * Organization.identifier:CLIA.system
-        * Organization.identifier:CLIA.value
-        * Organization.identifier:NAIC.system
-        * Organization.identifier:NAIC.value
         * Organization.identifier:NPI
         * Organization.identifier:NPI.system
         * Organization.identifier:NPI.value
