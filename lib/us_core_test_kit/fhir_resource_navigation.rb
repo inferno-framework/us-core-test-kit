@@ -101,7 +101,7 @@ module USCoreTestKit
             slice_value = discriminator[:path].present? ? slice.send(discriminator[:path]) : slice
             slice_value&.code == discriminator[:code] && slice_value&.system == discriminator[:system]
           when 'patternIdentifier'
-            slice.identifier.system == discriminator[:system]
+            slice.system == discriminator[:system]
           when 'value'
             values = discriminator[:values].map { |value| value.merge(path: value[:path].split('.')) }
             verify_slice_by_values(slice, values)
