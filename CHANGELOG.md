@@ -1,3 +1,9 @@
+0.11.5
+* FI-4064/4068: verifies_requirements annotations by @elsaperelli in https://github.com/inferno-framework/us-core-test-kit/pull/252
+* FI-4108: Add Delayed Reference Resource Context by @emichaud998 in https://github.com/inferno-framework/us-core-test-kit/pull/251
+* FI-4174: Update filters for validator update by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/257
+* FI-4164: Requirements Conversion by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/258
+
 # 0.11.4
 * Fix client target patient MRN system by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/249
 * Improve Proxied Responses by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/250
