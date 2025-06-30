@@ -62,6 +62,25 @@ module USCoreTestKit
       id :<%= suite_id %>
       <%- if module_name == 'USCoreV610'-%>
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.us.core_6.1.0',
+          title: 'US Core Implementation Guide',
+          actor: 'Server'
+        }
+      )
+      <%- elsif module_name == 'USCoreV700'-%>
+
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.us.core_7.0.0',
+          title: 'US Core Implementation Guide',
+          actor: 'Server'
+        }
+      )
+      <%- end -%>
+      <%- if module_name == 'USCoreV610'-%>
+
       verifies_requirements 'hl7.fhir.us.core_6.1.0@535'
       <%- elsif module_name == 'USCoreV700'-%>
 
