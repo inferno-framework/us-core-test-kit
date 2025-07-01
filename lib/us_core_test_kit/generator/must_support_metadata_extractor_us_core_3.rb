@@ -84,24 +84,12 @@ module USCoreTestKit
         must_supports[:choices] ||= []
 
         must_supports[:choices] << {
-          paths: ['address.period.end'],
-          elements: [
-            {
-              path: 'address.use',
-              fixed_value: 'old'
-            }
-          ],
+          paths: ['address.period.end', 'address.use'],
           uscdi_only: true
         }
 
         must_supports[:choices] << {
-          paths: ['name.period.end'],
-          elements: [
-            {
-              path: 'name.use',
-              fixed_value: 'old'
-            }
-          ],
+          paths: ['name.period.end', 'name.use'],
           uscdi_only: true
         }
 

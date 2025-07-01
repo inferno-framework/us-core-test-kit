@@ -190,15 +190,11 @@
   :choices:
   - :paths:
     - address.period.end
-    :elements:
-    - :path: address.use
-      :fixed_value: old
+    - address.use
     :uscdi_only: true
   - :paths:
     - name.period.end
-    :elements:
-    - :path: name.use
-      :fixed_value: old
+    - name.use
     :uscdi_only: true
 :mandatory_elements:
 - Patient.identifier
