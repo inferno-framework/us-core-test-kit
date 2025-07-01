@@ -1,9 +1,7 @@
-require_relative 'fhir_resource_navigation'
-
 module USCoreTestKit
   module ReferenceResolutionTest
+    include Inferno::DSL::FHIRResourceNavigation
     extend Forwardable
-    include FHIRResourceNavigation
 
     def_delegators 'self.class', :metadata
 

@@ -273,16 +273,10 @@ list should be maintained as the repository evolves.
 
 * Replace nested groups - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/custom_groups/v7.0.0/smart_app_launch_group.rb#L9-L13) 
 
-* Extract elements from FHIR resources - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/fhir_resource_navigation.rb)
-
 * Extract FHIR resources from requests - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/granular_scope.rb#L40-L60)
-
-* Check whether a resource is valid without adding validation messages  - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/reference_resolution_test.rb#L167-L186)
 
 * Check whether a resource matches search params  - [link](
     https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/resource_search_param_checker.rb)
-
-* Retrieve all Bundle pages  - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/search_test.rb#L549 )
 
 * Find a possible value for a search parameter from a resource  - [link](https://github.com/inferno-framework/us-core-test-kit/blob/1ecf2146596c884f02e3f5dd5793985d9f29dbb1/lib/us_core_test_kit/search_test.rb#L601)
 
