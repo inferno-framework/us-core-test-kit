@@ -22,7 +22,8 @@ module USCoreTestKit
             The #{resource_type} references used for this test were pulled from the following resources:
             #{all_referencing_resources}
           )
-          resources_to_read.map!(&:reference)
+
+          resources_to_read.map! { |resource| resource[:reference] }
         end
 
         resources_to_read.each do |resource|
