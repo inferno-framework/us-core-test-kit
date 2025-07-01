@@ -34,7 +34,7 @@ module USCoreTestKit
         'v5.0.1' => 'http://hl7.org/fhir/us/core/STU5.0.1',
         'v6.1.0' => 'http://hl7.org/fhir/us/core/STU6.1',
         'v7.0.0' => 'http://hl7.org/fhir/us/core/STU7',
-        'v8.0.0' => 'http://hl7.org/fhir/us/core/2025Jan' # TODO: Update this when IG is updated
+        'v8.0.0' => 'http://hl7.org/fhir/us/core/STU8'
       }.freeze
 
       class << self
