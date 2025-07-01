@@ -70,7 +70,7 @@ module USCoreTestKit
       title 'US Core Server v8.0.0'
       description %(
         The US Core Server Test Kit tests server systems for their conformance to the [US Core
-        Implementation Guide](http://hl7.org/fhir/us/core/2025Jan).
+        Implementation Guide](http://hl7.org/fhir/us/core/STU8).
 
         HL7® FHIR® resources are validated with the Java validator using
         `tx.fhir.org` as the terminology server. Users should note that the

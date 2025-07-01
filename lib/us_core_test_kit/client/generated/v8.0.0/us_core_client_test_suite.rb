@@ -78,7 +78,7 @@ module USCoreTestKit
         description %(
           
 The US Core Test Kit Client Suite tests client systems for their conformance
-to the [US Core Implementation Guide](http://hl7.org/fhir/us/core/2025Jan).
+to the [US Core Implementation Guide](http://hl7.org/fhir/us/core/STU8).
 
 # Scope
 
@@ -275,9 +275,9 @@ described in the US Core Implementation guide.
 
 The current version of this test suite supports the following tests using a specific Inferno-specified patient:
 - Testing a client's ability to perform read requests against a FHIR server for all US Core Profiles
-  listed in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-client.html).
+  listed in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU8/CapabilityStatement-us-core-client.html).
 - Testing a client's ability to perform searches using search parameters and combinations
-  listed for each resource type in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-client.html).
+  listed for each resource type in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU8/CapabilityStatement-us-core-client.html).
 
 The current version of this test suite does not:
 - Support esting searches with/via:
@@ -311,7 +311,7 @@ The current version of this test suite does not:
           },
           {
             label: 'Implementation Guide',
-            url: 'http://hl7.org/fhir/us/core/2025Jan'
+            url: 'http://hl7.org/fhir/us/core/STU8'
           }
         ]
 
@@ -363,7 +363,7 @@ The current version of this test suite does not:
           description %(
             
 During these tests, the US Core client system will interact with Inferno's simulated US Core Server
-and demonstrate its ability to perform the FHIR interactions described in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/2025Jan/CapabilityStatement-us-core-client.html).
+and demonstrate its ability to perform the FHIR interactions described in the [US Core Client CapabilityStatement](http://hl7.org/fhir/us/core/STU8/CapabilityStatement-us-core-client.html).
 
 
           )
