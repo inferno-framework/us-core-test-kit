@@ -1,5 +1,3 @@
-require_relative 'must_support_metadata_extractor_us_core_6'
-
 module USCoreTestKit
   class Generator
     class MustSupportMetadataExtractorUsCore8
@@ -26,23 +24,9 @@ module USCoreTestKit
 
       def handle_special_cases
         us_core_6_extractor.add_patient_uscdi_elements
-        add_patient_name_to_use
         add_must_support_choices
         us_core_6_extractor.remove_practitioner_address
         remove_patient_and_encounter_interpreter_extension
-      end
-
-      def add_patient_name_to_use
-        return unless profile.type == 'Patient'
-
-        # We know the name.use = old already exists
-        index = must_supports[:elements].index { |item| item[:path] == 'name.use' }
-        new_item = {
-          path: 'name.use',
-          fixed_value: 'usual',
-          uscdi_only: true
-        }
-        must_supports[:elements].insert(index + 1, new_item)
       end
 
       def add_must_support_choices
