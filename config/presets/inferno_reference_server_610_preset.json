@@ -24,7 +24,7 @@
       "type": "text",
       "title": "Patient IDs",
       "description": "Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements",
-      "value": "85,355"
+      "value": "85,70,355"
     },
     {
       "name": "implantable_device_codes",
