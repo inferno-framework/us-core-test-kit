@@ -112,8 +112,8 @@ module USCoreTestKit
 
       def clinical_notes_guidance_file_name
         if ig_metadata.ig_version == 'v3.1.1'
-          "../../custom_groups/#{ig_metadata.ig_version}/clinical_notes_guidance_group"
-        elsif ['v4.0.0', 'v5.0.1', 'v6.1.0', 'v7.0.0'].include?(ig_metadata.ig_version)
+          '../../custom_groups/v3.1.1/clinical_notes_guidance_group'
+        elsif ig_metadata.ig_version[1].to_i < 8
           '../../custom_groups/v4.0.0/clinical_notes_guidance_group'
         else
           '../../custom_groups/v8.0.0/clinical_notes_guidance_group'
@@ -122,8 +122,8 @@ module USCoreTestKit
 
       def clinical_notes_guidance_group_id
         if ig_metadata.reformatted_version == 'v311'
-          "us_core_#{ig_metadata.reformatted_version}_clinical_notes_guidance"
-        elsif ['v400', 'v501', 'v610', 'v700'].include?(ig_metadata.reformatted_version)
+          'us_core_v311_clinical_notes_guidance'
+        elsif ig_metadata.ig_version[1].to_i < 8
           'us_core_v400_clinical_notes_guidance'
         else
           'us_core_v800_clinical_notes_guidance'

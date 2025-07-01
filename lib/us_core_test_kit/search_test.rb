@@ -114,12 +114,6 @@ module USCoreTestKit
 
       filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(resources_returned) if resource_type == 'Device'
-      #filter_document_references(resources_returned) if resource_type == 'DocumentReference'
-
-      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
-      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
-      #   filter_adi_document_reference(resources_returned)
-      # end
 
       if first_search?
         all_scratch_resources.concat(resources_returned).uniq!
@@ -153,12 +147,6 @@ module USCoreTestKit
 
       filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(post_search_resources) if resource_type == 'Device'
-      #filter_document_references(post_search_resources) if resource_type == 'DocumentReference'
-
-      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
-      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
-      #   filter_adi_document_reference(post_search_resources)
-      # end
 
       get_resource_count = get_search_resources.length
       post_resource_count = post_search_resources.length
@@ -307,12 +295,6 @@ module USCoreTestKit
 
       filter_conditions(reference_with_type_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
       filter_devices(reference_with_type_resources) if resource_type == 'Device'
-      #filter_document_references(reference_with_type_resources) if resource_type == 'DocumentReference'
-
-      # potential solution: commenting out while waiting for US Core IG to distinguish two document reference profiles
-      # if metadata.profile_url.end_with?('us-core-adi-documentreference')
-      #   filter_adi_document_reference(reference_with_type_resources)
-      # end
 
       new_resource_count = reference_with_type_resources.count
 
