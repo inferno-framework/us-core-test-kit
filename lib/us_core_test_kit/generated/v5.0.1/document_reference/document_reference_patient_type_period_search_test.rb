@@ -24,15 +24,6 @@ none are returned, the test is skipped.
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
   
-      input :document_reference_type_codes,
-        title: 'DocumentReference Type Code',
-        description: %(
-          Enter the code for a DocumentReference type you want to exclude, or multiple codes separated by commas.
-          You can provide the system along with the code, in the format `{system|}[code]`.
-          If blank, Inferno will validate all DocumentReference resources against the DocumentReference profile
-        ),
-        optional: true
-  
       def self.properties
         @properties ||= SearchTestProperties.new(
           resource_type: 'DocumentReference',

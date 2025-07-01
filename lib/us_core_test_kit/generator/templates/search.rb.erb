@@ -38,15 +38,6 @@ module USCoreTestKit
         description: 'Enter the code for an Implantable Device type, or multiple codes separated by commas. '\
                     'If blank, Inferno will validate all Device resources against the Implantable Device profile',
         optional: true
-  <% end %><% if profile_identifier == 'document_reference' %>
-      input :document_reference_type_codes,
-        title: 'DocumentReference Type Code',
-        description: %(
-          Enter the code for a DocumentReference type you want to exclude, or multiple codes separated by commas.
-          You can provide the system along with the code, in the format `{system|}[code]`.
-          If blank, Inferno will validate all DocumentReference resources against the DocumentReference profile
-        ),
-        optional: true
   <% end %>
       def self.properties
         @properties ||= SearchTestProperties.new(
