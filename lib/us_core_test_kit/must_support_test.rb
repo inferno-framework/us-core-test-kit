@@ -1,3 +1,5 @@
+require_relative 'fhir_resource_navigation'
+
 module USCoreTestKit
   module MustSupportTest
     include Inferno::DSL::FHIRResourceNavigation
