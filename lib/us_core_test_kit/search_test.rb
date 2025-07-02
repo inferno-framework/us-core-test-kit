@@ -2,6 +2,7 @@ require_relative 'date_search_validation'
 require_relative 'resource_search_param_checker'
 require_relative 'search_test_properties'
 require_relative 'well_known_code_systems'
+require_relative 'fhir_resource_navigation'
 
 module USCoreTestKit
   module SearchTest
