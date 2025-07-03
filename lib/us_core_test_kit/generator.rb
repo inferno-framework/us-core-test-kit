@@ -16,6 +16,7 @@ require_relative 'generator/search_test_generator'
 require_relative 'generator/suite_generator'
 require_relative 'generator/validation_test_generator'
 require_relative 'generator/practitioner_address_test_generator'
+require_relative 'generator/interpreter_required_extension_test_generator'
 
 module USCoreTestKit
   class Generator
@@ -46,6 +47,7 @@ module USCoreTestKit
       generate_must_support_tests
       generate_reference_resolution_tests
       generate_practitioner_address_tests
+      generate_interpreter_required_extension_test_generator
 
       generate_granular_scope_tests
 
@@ -67,9 +69,7 @@ module USCoreTestKit
     end
 
     def write_metadata
-      File.open(File.join(base_output_dir, 'metadata.yml'), 'w') do |file|
-        file.write(YAML.dump(ig_metadata.to_hash))
-      end
+      File.write(File.join(base_output_dir, 'metadata.yml'), YAML.dump(ig_metadata.to_hash))
     end
 
     def base_output_dir
@@ -124,6 +124,10 @@ module USCoreTestKit
 
     def generate_practitioner_address_tests
       PractitionerAddressTestGenerator.generate(ig_metadata, base_output_dir)
+    end
+
+    def generate_interpreter_required_extension_test_generator
+      InterpreterRequiredExtensionTestGenerator.generate(ig_metadata, base_output_dir)
     end
 
     def generate_suites

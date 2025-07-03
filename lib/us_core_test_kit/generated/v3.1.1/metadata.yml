@@ -4133,22 +4133,6 @@
   :must_supports:
     :extensions: []
     :slices:
-    - :slice_id: Observation.component:FlowRate
-      :slice_name: FlowRate
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3151-8
-        :system: http://loinc.org
-    - :slice_id: Observation.component:Concentration
-      :slice_name: Concentration
-      :path: component
-      :discriminator:
-        :type: patternCodeableConcept
-        :path: code
-        :code: 3150-0
-        :system: http://loinc.org
     - :slice_id: Observation.value[x]:valueQuantity
       :slice_name: valueQuantity
       :path: value[x]
@@ -4175,6 +4159,22 @@
           :value: 59408-5
         - :path: system
           :value: http://loinc.org
+    - :slice_id: Observation.component:FlowRate
+      :slice_name: FlowRate
+      :path: component
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: code
+        :code: 3151-8
+        :system: http://loinc.org
+    - :slice_id: Observation.component:Concentration
+      :slice_name: Concentration
+      :path: component
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: code
+        :code: 3150-0
+        :system: http://loinc.org
     :elements:
     - :path: status
     - :path: category

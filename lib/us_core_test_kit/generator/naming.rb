@@ -33,12 +33,13 @@ module USCoreTestKit
         'v4.0.0' => 'http://hl7.org/fhir/us/core/STU4',
         'v5.0.1' => 'http://hl7.org/fhir/us/core/STU5.0.1',
         'v6.1.0' => 'http://hl7.org/fhir/us/core/STU6.1',
-        'v7.0.0' => 'http://hl7.org/fhir/us/core/STU7'
+        'v7.0.0' => 'http://hl7.org/fhir/us/core/STU7',
+        'v8.0.0' => 'http://hl7.org/fhir/us/core/STU8'
       }.freeze
 
       class << self
         def resources_with_multiple_profiles
-          ['Condition', 'DiagnosticReport', 'Observation']
+          ['Condition', 'DiagnosticReport', 'Observation', 'DocumentReference']
         end
 
         def resource_has_multiple_profiles?(resource)
@@ -56,6 +57,7 @@ module USCoreTestKit
           group_metadata.name
             .delete_prefix('us_core_')
             .gsub('diagnosticreport', 'diagnostic_report')
+            .gsub('documentreference', 'document_reference')
             .underscore
         end
 

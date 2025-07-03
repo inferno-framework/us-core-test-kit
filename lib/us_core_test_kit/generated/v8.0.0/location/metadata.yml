@@ -1,0 +1,201 @@
+---
+:name: us_core_location
+:class_name: USCorev800LocationSequence
+:version: v8.0.0
+:reformatted_version: v800
+:resource: Location
+:profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
+:profile_name: US Core Location Profile
+:profile_version: 8.0.0
+:title: Location
+:short_description: Verify support for the server capabilities required by the US
+  Core Location Profile.
+:is_delayed: true
+:interactions:
+- :code: create
+  :expectation: MAY
+- :code: search-type
+  :expectation: SHALL
+- :code: read
+  :expectation: SHALL
+- :code: vread
+  :expectation: SHOULD
+- :code: update
+  :expectation: MAY
+- :code: patch
+  :expectation: MAY
+- :code: delete
+  :expectation: MAY
+- :code: history-instance
+  :expectation: SHOULD
+- :code: history-type
+  :expectation: MAY
+:operations: []
+:searches:
+- :names:
+  - address
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - address-city
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - address-postalcode
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - address-state
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - name
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :address:
+    :paths:
+    - address
+    :full_paths:
+    - Location.address
+    :comparators: {}
+    :values: []
+    :type: Address
+    :contains_multiple: false
+    :multiple_or: MAY
+  :address-city:
+    :paths:
+    - address.city
+    :full_paths:
+    - Location.address.city
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+    :multiple_or: MAY
+  :address-postalcode:
+    :paths:
+    - address.postalCode
+    :full_paths:
+    - Location.address.postalCode
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+    :multiple_or: MAY
+  :address-state:
+    :paths:
+    - address.state
+    :full_paths:
+    - Location.address.state
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+    :multiple_or: MAY
+  :name:
+    :paths:
+    - name
+    - alias
+    :full_paths:
+    - Location.name
+    - Location.alias
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+    :multiple_or: MAY
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: identifier
+  - :path: status
+  - :path: name
+  - :path: type
+  - :path: type.coding
+  - :path: type.coding.system
+  - :path: type.coding.code
+  - :path: telecom
+  - :path: address
+  - :path: address.line
+  - :path: address.city
+  - :path: address.state
+  - :path: address.postalCode
+  - :path: managingOrganization
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+:mandatory_elements:
+- Location.name
+- Location.type.coding
+- Location.type.coding.system
+- Location.type.coding.code
+- Location.position.longitude
+- Location.position.latitude
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/location-status
+  :path: status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/location-mode
+  :path: mode
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/address-use
+  :path: address.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/address-type
+  :path: address.type
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/days-of-week
+  :path: hoursOfOperation.daysOfWeek
+:references:
+- :path: Location.managingOrganization
+  :profiles:
+  - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+- :path: Location.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location
+- :path: Location.endpoint
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Endpoint
+:tests:
+- :id: us_core_v800_location_read_test
+  :file_name: location_read_test.rb
+- :id: us_core_v800_location_address_search_test
+  :file_name: location_address_search_test.rb
+- :id: us_core_v800_location_address_city_search_test
+  :file_name: location_address_city_search_test.rb
+- :id: us_core_v800_location_address_postalcode_search_test
+  :file_name: location_address_postalcode_search_test.rb
+- :id: us_core_v800_location_address_state_search_test
+  :file_name: location_address_state_search_test.rb
+- :id: us_core_v800_location_name_search_test
+  :file_name: location_name_search_test.rb
+- :id: us_core_v800_location_validation_test
+  :file_name: location_validation_test.rb
+- :id: us_core_v800_location_must_support_test
+  :file_name: location_must_support_test.rb
+- :id: us_core_v800_location_reference_resolution_test
+  :file_name: location_reference_resolution_test.rb
+:id: us_core_v800_location
+:file_name: location_group.rb
+:delayed_references:
+- :path: managingOrganization
+  :resources:
+  - Organization
+:resource_conformance_expectation: SHALL
