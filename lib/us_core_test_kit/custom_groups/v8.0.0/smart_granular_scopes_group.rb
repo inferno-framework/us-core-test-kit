@@ -31,11 +31,6 @@ above scopes.
         .first
         .config(
           inputs: {
-<<<<<<< HEAD
-            requested_scopes: {
-              name: :requested_scopes_group1,
-              default: groups.first.default_group_scopes('v800')
-=======
             smart_auth_info: {
               name: :granular_scopes_1_auth_info,
               title: 'Granular Scopes 1 Credentials',
@@ -47,7 +42,6 @@ above scopes.
                   }
                 ]
               }
->>>>>>> 15d4f8f2 (squashing commits)
             }
           },
           options: {
@@ -75,11 +69,6 @@ above scopes.
         .last
         .config(
           inputs: {
-<<<<<<< HEAD
-            requested_scopes: {
-              name: :requested_scopes_group2,
-              default: groups.last.default_group_scopes('v800')
-=======
             smart_auth_info: {
               name: :granular_scopes_2_auth_info,
               title: 'Granular Scopes 2 Credentials',
@@ -91,7 +80,6 @@ above scopes.
                   }
                 ]
               }
->>>>>>> 15d4f8f2 (squashing commits)
             }
           },
           options: {
