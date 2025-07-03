@@ -12,8 +12,7 @@ module USCoreTestKit
         Statement. This test will look through the Specimen resources
         found previously for the following must support elements:
 
-        * Specimen.accessionIdentifier
-        * Specimen.identifier
+        * Specimen.identifier or Specimen.accessionIdentifier
         * Specimen.subject
         * Specimen.type
 

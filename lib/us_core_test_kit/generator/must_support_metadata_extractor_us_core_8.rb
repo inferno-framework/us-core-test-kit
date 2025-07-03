@@ -42,7 +42,11 @@ module USCoreTestKit
               'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner'
             ]
           }
+        when 'us-core-specimen'
+          more_choices << { paths: ['identifier', 'accessionIdentifier'] }
+        end
 
+        if more_choices.any?
           must_supports[:choices] ||= []
           must_supports[:choices].concat(more_choices)
         end

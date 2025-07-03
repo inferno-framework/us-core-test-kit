@@ -84,6 +84,10 @@
     :uscdi_only: true
   - :path: condition
     :uscdi_only: true
+  :choices:
+  - :paths:
+    - identifier
+    - accessionIdentifier
 :mandatory_elements:
 - Specimen.type
 :bindings:
