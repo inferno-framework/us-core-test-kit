@@ -1,6 +1,6 @@
 module USCoreTestKit
   class ProvenanceValidator
-    include FHIRResourceNavigation
+    include Inferno::DSL::FHIRResourceNavigation
 
     def self.validate(...)
       new(...).validate
