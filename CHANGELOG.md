@@ -1,3 +1,8 @@
+# 0.11.6
+* FI-4176: Update implementation docs by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/259
+* FI-4194: Restore FHIRResourceNavigation and PrimitiveType constants by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/261
+* FI-3553/4166: Generate US Core v8 by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/219
+
 # 0.11.5
 * FI-4064/4068: verifies_requirements annotations by @elsaperelli in https://github.com/inferno-framework/us-core-test-kit/pull/252
 * FI-4108: Add Delayed Reference Resource Context by @emichaud998 in https://github.com/inferno-framework/us-core-test-kit/pull/251
