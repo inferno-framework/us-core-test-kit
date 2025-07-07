@@ -2,5 +2,5 @@
 
 module USCoreTestKit
   VERSION = '0.11.6'
-  LAST_UPDATED = '2025-07-03'
+  LAST_UPDATED = '2025-07-07'
 end
