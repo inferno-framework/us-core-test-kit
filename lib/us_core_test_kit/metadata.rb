@@ -12,8 +12,9 @@ module USCoreTestKit
       [v4.0.0](http://hl7.org/fhir/us/core/STU4/),
       [v5.0.1](http://hl7.org/fhir/us/core/STU5.0.1/),
       [v6.1.0](https://hl7.org/fhir/us/core/STU6.1/),
+      [v7.0.0](https://hl7.org/fhir/us/core/STU7/),
       and
-      [v7.0.0](https://hl7.org/fhir/us/core/STU7/).
+      [v8.0.0](https://hl7.org/fhir/us/core/STU8/).
       <!-- break -->
 
       This test kit is [open source](https://github.com/inferno-framework/us-core-test-kit#license)
@@ -44,7 +45,7 @@ module USCoreTestKit
       - Missing Data Guidance
 
       ### Client suites
-      
+
       The US Core Client suites are less mature and currently verify the following requirements:
 
       - Support for making requests for data on all US Core Profiles
@@ -68,7 +69,7 @@ module USCoreTestKit
       [issues section](https://github.com/inferno-framework/us-core-test-kit/issues)
       of the repository.
     DESCRIPTION
-    suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700, :us_core_client_v311,
+    suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700, :us_core_v800, :us_core_client_v311,
                :us_core_client_v400, :us_core_client_v501, :us_core_client_v610, :us_core_client_v700]
     tags ['SMART App Launch', 'US Core']
     last_updated LAST_UPDATED
