@@ -20,6 +20,7 @@ module USCoreTestKit
         * PractitionerRole.organization
         * PractitionerRole.practitioner
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_practitioner_role_reference_resolution_test
 

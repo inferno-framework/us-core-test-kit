@@ -22,6 +22,8 @@ module USCoreTestKit
       verifies_requirements 'hl7.fhir.us.core_6.1.0@<%= requirement_map[class_name] -%>'
       <%- elsif module_name == 'USCoreV700' && requirement_map[class_name] -%>
       verifies_requirements 'hl7.fhir.us.core_7.0.0@<%= requirement_map[class_name] %>'
+      <%- elsif module_name == 'USCoreV800' && requirement_map[class_name] -%>
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@<%= requirement_map[class_name] %>'
       <%- end -%>
 
       def self.metadata

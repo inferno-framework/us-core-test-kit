@@ -20,6 +20,7 @@ module USCoreTestKit
         * Observation.specimen
         * Observation.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_observation_lab_reference_resolution_test
 

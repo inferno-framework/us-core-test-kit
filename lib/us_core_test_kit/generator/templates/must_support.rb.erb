@@ -32,24 +32,46 @@ module USCoreTestKit
         'OrganizationMustSupportTest' => ['455']
   }-%>
       <%- if module_name == 'USCoreV610' -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
-                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
-                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
-                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@111',
-                            'hl7.fhir.us.core_6.1.0@115'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_6.1.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
+      <%- v610_ids = [
+        'hl7.fhir.us.core_6.1.0@1',
+        'hl7.fhir.us.core_6.1.0@13',
+        'hl7.fhir.us.core_6.1.0@75',
+        'hl7.fhir.us.core_6.1.0@87',
+        'hl7.fhir.us.core_6.1.0@88',
+        'hl7.fhir.us.core_6.1.0@90',
+        'hl7.fhir.us.core_6.1.0@91',
+        'hl7.fhir.us.core_6.1.0@111',
+        'hl7.fhir.us.core_6.1.0@115'
+      ] + (requirement_map[class_name] ? requirement_map[class_name].map { |id| "hl7.fhir.us.core_6.1.0@#{id}" } : []) -%>
+      verifies_requirements <%= v610_ids.map { |id| "'#{id}'" }.join(', ') %>
       <%- end -%>
       <%- if module_name == 'USCoreV700' -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
-                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
-                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
-                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111',
-                            'hl7.fhir.us.core_7.0.0@115'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
+      <%- v700_ids = [
+        'hl7.fhir.us.core_7.0.0@1',
+        'hl7.fhir.us.core_7.0.0@13',
+        'hl7.fhir.us.core_7.0.0@75',
+        'hl7.fhir.us.core_7.0.0@87',
+        'hl7.fhir.us.core_7.0.0@88',
+        'hl7.fhir.us.core_7.0.0@90',
+        'hl7.fhir.us.core_7.0.0@91',
+        'hl7.fhir.us.core_7.0.0@111',
+        'hl7.fhir.us.core_7.0.0@115'
+      ] + (requirement_map[class_name] ? requirement_map[class_name].map { |id| "hl7.fhir.us.core_7.0.0@#{id}" } : []) -%>
+      verifies_requirements <%= v700_ids.map { |id| "'#{id}'" }.join(', ') %>
+      <%- end -%>
+      <%- if module_name == 'USCoreV800' -%>
+      <%- v800_ids = [
+        'hl7.fhir.us.core_8.0.0@1',
+        'hl7.fhir.us.core_8.0.0@13',
+        'hl7.fhir.us.core_8.0.0@75',
+        'hl7.fhir.us.core_8.0.0@87',
+        'hl7.fhir.us.core_8.0.0@88',
+        'hl7.fhir.us.core_8.0.0@90',
+        'hl7.fhir.us.core_8.0.0@91',
+        'hl7.fhir.us.core_8.0.0@111',
+        'hl7.fhir.us.core_8.0.0@115'
+      ] + (requirement_map[class_name] ? requirement_map[class_name].reject { |id| ['325', '326'].include?(id) }.map { |id| "hl7.fhir.us.core_8.0.0@#{id}" } : []) -%>
+      verifies_requirements <%= v800_ids.map { |id| "'#{id}'" }.join(', ') %>
       <%- end -%>
 
       id :<%= test_id %>

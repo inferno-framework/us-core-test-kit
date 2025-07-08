@@ -32,6 +32,14 @@ module USCoreTestKit
                             <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
         <%- end -%>
 
+      <%- elsif module_name == 'USCoreV800' -%>
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@18', 'hl7.fhir.us.core_8.0.0@19',
+                            'hl7.fhir.us.core_8.0.0@20', 'hl7.fhir.us.core_8.0.0@21',
+                            'hl7.fhir.us.core_8.0.0@23', 'hl7.fhir.us.core_8.0.0@27',
+                            'hl7.fhir.us.core_8.0.0@40', 'hl7.fhir.us.core_8.0.0@74'<% if requirement_map[class_name] %>,
+                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_8.0.0@#{id}'" }.join(', ') %>
+        <%- end -%>
+
       <%- end -%>
       output :dar_code_found, :dar_extension_found
 

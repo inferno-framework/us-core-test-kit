@@ -17,7 +17,11 @@ module USCoreTestKit
     verifies_requirements 'hl7.fhir.us.core_7.0.0@167',
                           'hl7.fhir.us.core_7.0.0@168',
                           'hl7.fhir.us.core_7.0.0@171',
-                          'hl7.fhir.us.core_7.0.0@173'
+                          'hl7.fhir.us.core_7.0.0@173',
+                          'hl7.fhir.us.core_8.0.0@167',
+                          'hl7.fhir.us.core_8.0.0@168',
+                          'hl7.fhir.us.core_8.0.0@171',
+                          'hl7.fhir.us.core_8.0.0@173'
 
     run do
       skip_if well_known_configuration.blank?, 'No well-known SMART configuration found.'

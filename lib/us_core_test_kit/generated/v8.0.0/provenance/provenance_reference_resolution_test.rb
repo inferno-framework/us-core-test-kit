@@ -23,6 +23,7 @@ module USCoreTestKit
         * Provenance.agent:ProvenanceTransmitter.who
         * Provenance.target
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_provenance_reference_resolution_test
 

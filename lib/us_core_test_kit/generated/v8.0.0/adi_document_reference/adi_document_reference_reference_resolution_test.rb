@@ -19,6 +19,7 @@ module USCoreTestKit
         * DocumentReference.author
         * DocumentReference.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_adi_document_reference_reference_resolution_test
 

@@ -18,6 +18,7 @@ module USCoreTestKit
         * Condition.recorder
         * Condition.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_condition_problems_health_concerns_reference_resolution_test
 

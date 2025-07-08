@@ -21,6 +21,8 @@ module USCoreTestKit
       verifies_requirements 'hl7.fhir.us.core_6.1.0@105', 'hl7.fhir.us.core_6.1.0@109'
       <%- elsif module_name == "USCoreV700" -%>
       verifies_requirements 'hl7.fhir.us.core_7.0.0@105', 'hl7.fhir.us.core_7.0.0@109'
+      <%- elsif module_name == "USCoreV800" -%>
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
       <%- end -%>
 
       id :<%= test_id %>
