@@ -14,7 +14,7 @@ high-level overview of the test kit's design.
 This document should be updated after each new version of the US Core
 Implementation guide is incorporated into the Test Kit.
 
-## Supporting US Core Versions
+# Supporting US Core Versions
 
 This test kit should be updated to provide testing for all versions of the US
 Core Implementation Guide that is approved for certification within the
@@ -39,7 +39,12 @@ release.  A general convention that this test kit has taken is to name suites
 that refer to a ballot using "-ballot" appended to the end of the suite ID.  Once
 the final version is released, the ballot version is deleted.
 
-## Updating the Server Test Suites
+Supported US Core versions are documented in three files:
+* ./README.md
+* ./docs/README.md
+* ./lib/us_core_test_kit/metadata.rb
+
+# Updating the Server Test Suites
 
 Server tests for a new version of the US Core Implementation Guide can be created
 for this test kit using the following steps:
@@ -136,7 +141,7 @@ the IG. The Custom Groups folder includes tests that derive from the US Core
 Guidance section rather than the Profile section. Examples of such tests include
 those for Clinical Notes and SMART scopes, which apply across all profiles. This
 approach ensures coverage of specific requirements not directly linked to
-profile validations. 
+profile validations.
 
 For example, in v6.1.0, the following custom groups are included:
 * `capability_statement_group.rb`: Provides custom validations of the capability
@@ -355,7 +360,7 @@ release of the tests may contain issues.  Test developers should expect that
 issues will arise as real systems use these tests, and plan to make successive updates
 to them to address them as soon as possible.
 
-## Updating the Client Test Suites
+# Updating the Client Test Suites
 
 The client tests are less mature than the server tests and the update process is
 therefore less formalized. The expected update steps include:
@@ -370,7 +375,7 @@ Note that verifying this process requires that the server suite for the new
 version be created as well, so the server instructions above should be
 followed as well.
 
-### Step 1. Verify Client CapabilityStatement Assumptions
+## Step 1. Verify Client CapabilityStatement Assumptions
 
 At this time, all of the tests for the client suites
 are automatically generated and there are few special cases.
@@ -389,7 +394,7 @@ This test kit interprets that to mean that if a client supports a given resource
 profiles on that resource type. If the CapabilityStatement changes to no longer follow that pattern, the client
 tests will need to be redesigned.
 
-### Step 2. Generate a New Version-specific Suite
+## Step 2. Generate a New Version-specific Suite
 
 Follow the server instructions above, if not already done. Specifically, steps 2.1 and 2.6
 are needed to generate the client tests for the new version of US Core.
@@ -398,7 +403,7 @@ Additionally, target resources servered by
 Inferno for the client tests may need to be updated to reflect new profile constraints
 or added to for new profiles.
 
-### Step 3. Add Target Instances for New Profiles
+## Step 3. Add Target Instances for New Profiles
 
 For each new profile added to the new version of the US Core IG, a new instance will need to be
 added to the [US Core Client Patient Bundle](https://github.com/inferno-framework/inferno-reference-server-data/blob/main/resources/uscore_bundle_patient_client_test.json)
@@ -407,17 +412,17 @@ Generally, you will need to
 1. Obtain an example from the IG of n instance conforming to the profile.
 2. Add it as a Bundle entry to the [patient bundle](https://github.com/inferno-framework/inferno-reference-server-data/blob/main/resources/uscore_bundle_patient_client_test.json).
 3. Update the instance id to follow the form `us-core-client-tests-<us core profile id suffix>`. This includes in both
-   the `resource` body and the `request.url` element of the Bundle `entry`. 
+   the `resource` body and the `request.url` element of the Bundle `entry`.
    - For example, the US Core Patient profile's canonical URL ends with `us-core-patient`, of which `patient` is unique to the
      profile, so the Patient instance id is `us-core-client-tests-patient`.
    - Another example: the instance for profile with canonical URL
-     `http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment` will be 
+     `http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment` will be
      `us-core-client-tests-observation-screening-assessment`.
 4. Adjust the resource to fit the patient by adjusting the patient and any other references. If the instance is not directly
    linked to the client test patient, add a reference to this instance from another instance to allow the server tests
    to find it.
 
-### Step 4. Resolve New Conformance Issues in Existing Instances
+## Step 4. Resolve New Conformance Issues in Existing Instances
 
 Run the client and server tests for the new version against each other using a Inferno reference server instance
 loaded with any new instances created in Step 3. Check the results of the server suite for conformance

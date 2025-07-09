@@ -1,7 +1,7 @@
 The **US Core Test Kit** is an automated conformance testing tool for servers
 implementing the [US Core FHIR Implementation
 Guide](https://hl7.org/fhir/us/core/) . It contains server tests for several
-versions of US Core, including v3.1.1, v4.0.0, v5.0.1, v6.1.0, and v7.0.0 of US
+versions of US Core, including v3.1.1, v4.0.0, v5.0.1, v6.1.0, v7.0.0, and v8.0.0 of US
 Core. The following documentation describes how to use and contribute to this
 test kit.
 
