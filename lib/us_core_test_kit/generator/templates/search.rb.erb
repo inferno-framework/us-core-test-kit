@@ -10,27 +10,33 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
-      <%- if module_name == "USCoreV610" && !optional? && test_medication_inclusion? -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
-                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58',
-                            'hl7.fhir.us.core_6.1.0@250'
-      <%- elsif module_name == "USCoreV700" && !optional? && test_medication_inclusion? -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
-                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58',
-                            'hl7.fhir.us.core_7.0.0@250'
-      <%- elsif module_name == "USCoreV800" && !optional? && test_medication_inclusion? -%>
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@51', 'hl7.fhir.us.core_8.0.0@52',
-                            'hl7.fhir.us.core_8.0.0@55', 'hl7.fhir.us.core_8.0.0@58',
-                            'hl7.fhir.us.core_8.0.0@250'
-      <%- elsif module_name == "USCoreV610" && !optional? -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
-                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58'
-      <%- elsif module_name == "USCoreV700" && !optional? -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
-                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58'
-      <%- elsif module_name == "USCoreV800" && !optional? -%>
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@51', 'hl7.fhir.us.core_8.0.0@52',
-                            'hl7.fhir.us.core_8.0.0@55', 'hl7.fhir.us.core_8.0.0@58'
+      <%-
+      base_requirement_ids = ['51', '52', '55', '58']
+      test_medication_inclusion_requirement_ids = ['250']
+      v800_requirement_map = {
+            'MedicationRequestPatientIntentStatusSearchTest' => ['820']
+      }
+
+      namespace = case module_name
+      when 'USCoreV610' then 'hl7.fhir.us.core_6.1.0'
+      when 'USCoreV700' then 'hl7.fhir.us.core_7.0.0'
+      when 'USCoreV800' then 'hl7.fhir.us.core_8.0.0'
+      end
+
+      all_ids = base_requirement_ids
+      if test_medication_inclusion?
+        all_ids += test_medication_inclusion_requirement_ids
+      end
+      if module_name == 'USCoreV800' && v800_requirement_map[class_name]
+          all_ids += v800_requirement_map[class_name]
+      end
+
+      if namespace && !optional?
+        num_spaces = '      verifies_requirements '.length
+      -%>
+      verifies_requirements <%= 
+        all_ids.map.with_index { |id, i| (i > 0 ? ' ' * num_spaces : '') + "'#{namespace}@#{id}'" + (i < all_ids.size - 1 ? ',' : '') }.join("\n") 
+      %>
       <%- end -%>
 
       id :<%= test_id %><% if optional? %>
