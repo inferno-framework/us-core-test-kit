@@ -29,8 +29,10 @@ requirement of US Core v8.0.0.
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU8/CapabilityStatement-us-core-server.html)
 
       )
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@51', 'hl7.fhir.us.core_8.0.0@52',
-                            'hl7.fhir.us.core_8.0.0@55', 'hl7.fhir.us.core_8.0.0@58'
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@51',
+                            'hl7.fhir.us.core_8.0.0@52',
+                            'hl7.fhir.us.core_8.0.0@55',
+                            'hl7.fhir.us.core_8.0.0@58'
 
       id :us_core_v800_diagnostic_report_note_patient_category_search_test
       input :patient_ids,
