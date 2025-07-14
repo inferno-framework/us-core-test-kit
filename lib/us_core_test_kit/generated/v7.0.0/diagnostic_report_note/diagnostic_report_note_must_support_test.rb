@@ -26,7 +26,16 @@ module USCoreTestKit
         * DiagnosticReport.status
         * DiagnosticReport.subject
       )
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13', 'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87', 'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90', 'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111', 'hl7.fhir.us.core_7.0.0@115', 'hl7.fhir.us.core_7.0.0@360'
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@1',
+                            'hl7.fhir.us.core_7.0.0@13',
+                            'hl7.fhir.us.core_7.0.0@75',
+                            'hl7.fhir.us.core_7.0.0@87',
+                            'hl7.fhir.us.core_7.0.0@88',
+                            'hl7.fhir.us.core_7.0.0@90',
+                            'hl7.fhir.us.core_7.0.0@91',
+                            'hl7.fhir.us.core_7.0.0@111',
+                            'hl7.fhir.us.core_7.0.0@115',
+                            'hl7.fhir.us.core_7.0.0@360'
 
       id :us_core_v700_diagnostic_report_note_must_support_test
 
