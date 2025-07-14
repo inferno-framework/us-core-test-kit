@@ -15,11 +15,13 @@ module USCoreTestKit
       base_requirement_map = {
             'DiagnosticReportLabValidationTest' => ['356', '357'],
             'ImmunizationValidationTest' => ['391'],
-            'MedicationRequestValidationTest' => ['414'],
             'AverageBloodPressureValidationTest' => ['421'],
-            'ObservationClinicalResultValidationTest' => ['427'],
-            'ProcedureValidationTest' => ['486'],
-            'ServiceRequestValidationTest' => ['520']
+            'ObservationClinicalResultValidationTest' => ['427']
+      }
+      v700_requirement_map = {
+        'MedicationRequestValidationTest' => ['414'],
+        'ProcedureValidationTest' => ['486'],
+        'ServiceRequestValidationTest' => ['520']
       }
       v800_base_requirement_ids = ['808', '809', '810', '811']
       v800_requirement_map = {
@@ -35,6 +37,12 @@ module USCoreTestKit
       all_ids = base_requirement_ids
       if base_requirement_map[class_name]
         all_ids += base_requirement_map[class_name]
+      end
+
+      if module_name == 'USCoreV700' || module_name == 'USCoreV800'
+        if  v700_requirement_map[class_name]
+          all_ids += v700_requirement_map[class_name]
+        end
       end
 
       if module_name == 'USCoreV800'

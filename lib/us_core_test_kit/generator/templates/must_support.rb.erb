@@ -28,11 +28,14 @@ module USCoreTestKit
               'DocumentReferenceMustSupportTest' => ['368'],
               'EncounterMustSupportTest' => ['375', '379'],
               'GoalMustSupportTest' => ['387'],
-              'MedicationRequestMustSupportTest' => ['405', '406', '408', '411'],
+              'MedicationRequestMustSupportTest' => ['405', '408'],
               'ObservationScreeningAssessmentMustSupportTest' => ['439'],
-              'OrganizationMustSupportTest' => ['455'],
-              'ProcedureMustSupportTest' => ['482', '484'],
-              'ServiceRequestMustSupportTest' => ['518']
+              'OrganizationMustSupportTest' => ['455']
+        }
+        v700_requirement_map = {
+          'MedicationRequestMustSupportTest' => ['406', '411'],
+          'ProcedureMustSupportTest' => ['482', '484'],
+          'ServiceRequestMustSupportTest' => ['516', '518']
         }
         v800_base_requirement_ids = ['801', '802', '803', '804', '805', '812', '814', '870', '872']
         v800_requirement_map = {
@@ -51,6 +54,12 @@ module USCoreTestKit
         all_ids = base_requirement_ids
         if base_requirement_map[class_name]
           all_ids += base_requirement_map[class_name]
+        end
+
+        if module_name == 'USCoreV700' || module_name == 'USCoreV800'
+          if  v700_requirement_map[class_name]
+            all_ids += v700_requirement_map[class_name]
+          end
         end
 
         if module_name == 'USCoreV800'
