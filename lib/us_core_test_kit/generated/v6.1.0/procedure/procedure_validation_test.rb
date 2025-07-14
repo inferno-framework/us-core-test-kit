@@ -26,8 +26,7 @@ fail if their code/system are not found in the valueset.
                             'hl7.fhir.us.core_6.1.0@23',
                             'hl7.fhir.us.core_6.1.0@27',
                             'hl7.fhir.us.core_6.1.0@40',
-                            'hl7.fhir.us.core_6.1.0@74',
-                            'hl7.fhir.us.core_6.1.0@486'
+                            'hl7.fhir.us.core_6.1.0@74'
       output :dar_code_found, :dar_extension_found
 
       def resource_type

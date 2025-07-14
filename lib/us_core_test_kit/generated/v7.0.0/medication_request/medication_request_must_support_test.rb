@@ -46,8 +46,8 @@ module USCoreTestKit
                             'hl7.fhir.us.core_7.0.0@111',
                             'hl7.fhir.us.core_7.0.0@115',
                             'hl7.fhir.us.core_7.0.0@405',
-                            'hl7.fhir.us.core_7.0.0@406',
                             'hl7.fhir.us.core_7.0.0@408',
+                            'hl7.fhir.us.core_7.0.0@406',
                             'hl7.fhir.us.core_7.0.0@411'
 
       id :us_core_v700_medication_request_must_support_test

@@ -36,6 +36,7 @@ module USCoreTestKit
                             'hl7.fhir.us.core_7.0.0@91',
                             'hl7.fhir.us.core_7.0.0@111',
                             'hl7.fhir.us.core_7.0.0@115',
+                            'hl7.fhir.us.core_7.0.0@516',
                             'hl7.fhir.us.core_7.0.0@518'
 
       id :us_core_v700_service_request_must_support_test
