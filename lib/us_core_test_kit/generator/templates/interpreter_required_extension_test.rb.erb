@@ -15,6 +15,10 @@ module USCoreTestKit
         one.
       )
 
+      <%- if module_name == 'USCoreV800' -%>
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@840', 'hl7.fhir.us.core_8.0.0@852'
+      <%- end -%>
+
       id :<%= test_id %>
 
       run do

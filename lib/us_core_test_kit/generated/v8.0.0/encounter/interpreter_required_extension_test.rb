@@ -15,6 +15,8 @@ module USCoreTestKit
         one.
       )
 
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@840', 'hl7.fhir.us.core_8.0.0@852'
+
       id :us_core_v800_interpreter_required_extension_test
 
       run do
