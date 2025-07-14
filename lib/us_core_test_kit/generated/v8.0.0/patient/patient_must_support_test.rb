@@ -51,6 +51,13 @@ module USCoreTestKit
                             'hl7.fhir.us.core_8.0.0@91',
                             'hl7.fhir.us.core_8.0.0@111',
                             'hl7.fhir.us.core_8.0.0@115',
+                            'hl7.fhir.us.core_8.0.0@801',
+                            'hl7.fhir.us.core_8.0.0@802',
+                            'hl7.fhir.us.core_8.0.0@803',
+                            'hl7.fhir.us.core_8.0.0@804',
+                            'hl7.fhir.us.core_8.0.0@805',
+                            'hl7.fhir.us.core_8.0.0@812',
+                            'hl7.fhir.us.core_8.0.0@814',
                             'hl7.fhir.us.core_8.0.0@870',
                             'hl7.fhir.us.core_8.0.0@872'
 
