@@ -14,17 +14,28 @@ module USCoreTestKit
       optional
       <% end %>
       <%-
-        requirement_map = {
+        base_requirement_map = {
               'QuestionnaireResponseGroup' => '511'
         }
+        v800_requirement_map = {
+          'ObservationScreeningAssessmentGroup' => '820'
+        }
+        requirement_map = base_requirement_map.dup
+
         if module_name == 'USCoreV610' && requirement_map[class_name]
       -%>
       verifies_requirements 'hl7.fhir.us.core_6.1.0@<%= requirement_map[class_name] -%>'
       <%- elsif module_name == 'USCoreV700' && requirement_map[class_name] -%>
       verifies_requirements 'hl7.fhir.us.core_7.0.0@<%= requirement_map[class_name] %>'
-      <%- elsif module_name == 'USCoreV800' && requirement_map[class_name] -%>
+      <%- elsif module_name == 'USCoreV800'
+        requirement_map = requirement_map.merge(v800_requirement_map)
+        if requirement_map[class_name]
+      -%>
       verifies_requirements 'hl7.fhir.us.core_8.0.0@<%= requirement_map[class_name] %>'
-      <%- end -%>
+      <%-
+        end
+      end
+      -%>
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml'), aliases: true))

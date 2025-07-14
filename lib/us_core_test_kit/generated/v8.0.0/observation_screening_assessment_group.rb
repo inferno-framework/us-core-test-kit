@@ -77,6 +77,7 @@ read succeeds.
 
       id :us_core_v800_observation_screening_assessment
       run_as_group
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@820'
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation_screening_assessment', 'metadata.yml'), aliases: true))
