@@ -18,7 +18,8 @@ module USCoreTestKit
         * Observation.performer
         * Observation.subject
       )
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105',
+                            'hl7.fhir.us.core_8.0.0@109'
 
       id :us_core_v800_respiratory_rate_reference_resolution_test
 

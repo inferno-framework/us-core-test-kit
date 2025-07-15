@@ -17,7 +17,8 @@ module USCoreTestKit
 
         * RelatedPerson.patient
       )
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@105', 'hl7.fhir.us.core_7.0.0@109'
+      verifies_requirements 'hl7.fhir.us.core_7.0.0@105',
+                            'hl7.fhir.us.core_7.0.0@109'
 
       id :us_core_v700_related_person_reference_resolution_test
 
