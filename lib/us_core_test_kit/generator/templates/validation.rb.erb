@@ -10,55 +10,28 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
-      <%-
-      base_requirement_ids = ['18', '19', '20', '21', '23', '27', '40', '74']
-      base_requirement_map = {
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['18', '19', '20', '21', '23', '27', '40', '74']
+      verifies_requirements.requirement_lists['USCoreV610'][:map] = {
             'DiagnosticReportLabValidationTest' => ['356', '357'],
             'ImmunizationValidationTest' => ['391'],
             'AverageBloodPressureValidationTest' => ['421'],
             'ObservationClinicalResultValidationTest' => ['427']
-      }
-      v700_requirement_map = {
+        }
+      verifies_requirements.requirement_lists['USCoreV700'][:map] = {
         'MedicationRequestValidationTest' => ['414'],
         'ProcedureValidationTest' => ['486'],
         'ServiceRequestValidationTest' => ['520']
-      }
-      v800_base_requirement_ids = ['808', '809', '810', '811']
-      v800_requirement_map = {
+        }
+      verifies_requirements.requirement_lists['USCoreV800'][:base] = ['808', '809', '810', '811']
+      verifies_requirements.requirement_lists['USCoreV800'][:map] = {
             'ProcedureValidationTest' => ['856']
-      }
-        
-      namespace = case module_name
-      when 'USCoreV610' then 'hl7.fhir.us.core_6.1.0'
-      when 'USCoreV700' then 'hl7.fhir.us.core_7.0.0'
-      when 'USCoreV800' then 'hl7.fhir.us.core_8.0.0'
-      end
-
-      all_ids = base_requirement_ids
-      if base_requirement_map[class_name]
-        all_ids += base_requirement_map[class_name]
-      end
-
-      if module_name == 'USCoreV700' || module_name == 'USCoreV800'
-        if  v700_requirement_map[class_name]
-          all_ids += v700_requirement_map[class_name]
-        end
-      end
-
-      if module_name == 'USCoreV800'
-        all_ids += v800_base_requirement_ids
-        if  v800_requirement_map[class_name]
-          all_ids += v800_requirement_map[class_name]
-        end
-      end
-
-      if namespace
-        num_spaces = '      verifies_requirements '.length
-      -%>
-      verifies_requirements <%= 
-        all_ids.map.with_index { |id, i| (i > 0 ? ' ' * num_spaces : '') + "'#{namespace}@#{id}'" + (i < all_ids.size - 1 ? ',' : '') }.join("\n") 
-      %>
-      <%- end -%>
+        }
+-%>
+<%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
+<%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>
+<%- end -%>
       output :dar_code_found, :dar_extension_found
 
       def resource_type

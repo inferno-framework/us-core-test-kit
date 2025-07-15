@@ -13,29 +13,18 @@ module USCoreTestKit
       run_as_group<% if optional? %>
       optional
       <% end %>
-      <%-
-        base_requirement_map = {
-              'QuestionnaireResponseGroup' => '511'
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      verifies_requirements.requirement_lists['USCoreV610'][:map] = {
+              'QuestionnaireResponseGroup' => ['511']
         }
-        v800_requirement_map = {
-          'ObservationScreeningAssessmentGroup' => '820'
+      verifies_requirements.requirement_lists['USCoreV800'][:map] = {
+          'ObservationScreeningAssessmentGroup' => ['820']
         }
-        requirement_map = base_requirement_map.dup
-
-        if module_name == 'USCoreV610' && requirement_map[class_name]
-      -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@<%= requirement_map[class_name] -%>'
-      <%- elsif module_name == 'USCoreV700' && requirement_map[class_name] -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@<%= requirement_map[class_name] %>'
-      <%- elsif module_name == 'USCoreV800'
-        requirement_map = requirement_map.merge(v800_requirement_map)
-        if requirement_map[class_name]
-      -%>
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@<%= requirement_map[class_name] %>'
-      <%-
-        end
-      end
-      -%>
+-%>
+<%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
+<%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>
+<%- end -%>
 
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '<%= profile_identifier %>', 'metadata.yml'), aliases: true))

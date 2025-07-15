@@ -17,13 +17,13 @@ module USCoreTestKit
 
 <%= must_support_reference_list_string %>
       )
-      <%- if module_name == "USCoreV610" -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@105', 'hl7.fhir.us.core_6.1.0@109'
-      <%- elsif module_name == "USCoreV700" -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@105', 'hl7.fhir.us.core_7.0.0@109'
-      <%- elsif module_name == "USCoreV800" -%>
-      verifies_requirements 'hl7.fhir.us.core_8.0.0@105', 'hl7.fhir.us.core_8.0.0@109'
-      <%- end -%>
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['105', '109']
+-%>
+<%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
+<%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>
+<%- end -%>
 
       id :<%= test_id %>
 
