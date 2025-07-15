@@ -1531,7 +1531,11 @@
       - DocumentReference.type
       :comparators: {}
       :values:
-      - UNK
+      - 18842-5
+      - 11488-4
+      - 34117-2
+      - 11506-3
+      - 28570-0
       :type: CodeableConcept
       :contains_multiple: false
       :multiple_or: MAY
