@@ -8,6 +8,8 @@ module USCoreTestKit
       V700 = 'USCoreV700'
       V800 = 'USCoreV800'
 
+      MIN_VERSION = V610
+
       MODULE_NAMESPACE_MAP = {
         V610 => 'hl7.fhir.us.core_6.1.0',
         V700 => 'hl7.fhir.us.core_7.0.0',
@@ -35,7 +37,7 @@ module USCoreTestKit
       end
 
       def get_ids(module_name, class_name)
-        if module_name < V610
+        if module_name < MIN_VERSION
           return
         end
 
@@ -63,7 +65,7 @@ module USCoreTestKit
       end
 
       def create_verifies_requirements(module_name, class_name, indent_spaces = 6)
-        if module_name < V610
+        if module_name < MIN_VERSION
           return
         end
 
@@ -72,7 +74,7 @@ module USCoreTestKit
       end
 
       def create_verifies_requirements_from_ids(module_name, ids, indent_spaces = 6)
-        if module_name < V610
+        if module_name < MIN_VERSION
           return
         end
 
