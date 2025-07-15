@@ -66,6 +66,19 @@ module USCoreTestKit
 
         target_slice[:discriminator][:values].delete_if { |value| value[:code] != 'sdoh' }
       end
+
+      # US Core v8 Condition Problems and Health Concerns Implementation Guidance:
+      # The category of "problem-list-item" or "health-concern" is required, and, at a minimum,
+      # Certifying Systems SHALL support, a category of "sdoh"
+      def apply_condition_sdoh_guaidance
+        return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns'
+
+        target_slice = must_supports[:slices].find { |slice| slice[:slice_id] == 'Condition.category:screening-assessment' }
+        return unless target_slice
+
+        target_slice[:discriminator][:values].delete_if { |value| value[:code] != 'sdoh'}
+
+      end
     end
   end
 end
