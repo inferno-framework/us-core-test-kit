@@ -27,7 +27,7 @@ module USCoreTestKit
         add_must_support_choices
         us_core_6_extractor.remove_practitioner_address
         remove_patient_and_encounter_interpreter_extension
-        apply_condition_sdoh_guaidance
+        apply_condition_sdoh_guidance
       end
 
       def add_must_support_choices
@@ -56,7 +56,7 @@ module USCoreTestKit
       # US Core v8 Condition Problems and Health Concerns Implementation Guidance:
       # The category of "problem-list-item" or "health-concern" is required, and, at a minimum,
       # Certifying Systems SHALL support, a category of "sdoh"
-      def apply_condition_sdoh_guaidance
+      def apply_condition_sdoh_guidance
         return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns'
 
         target_slice = must_supports[:slices].find { |slice| slice[:slice_id] == 'Condition.category:screening-assessment' }
