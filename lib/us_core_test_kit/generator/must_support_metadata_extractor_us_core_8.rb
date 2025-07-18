@@ -47,10 +47,10 @@ module USCoreTestKit
           more_choices << { paths: ['identifier', 'accessionIdentifier'] }
         end
 
-        if more_choices.any?
-          must_supports[:choices] ||= []
-          must_supports[:choices].concat(more_choices)
-        end
+        return unless more_choices.any?
+
+        must_supports[:choices] ||= []
+        must_supports[:choices].concat(more_choices)
       end
 
       # US Core v8 Condition Problems and Health Concerns Implementation Guidance:
@@ -59,11 +59,12 @@ module USCoreTestKit
       def apply_condition_sdoh_guidance
         return unless profile.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns'
 
-        target_slice = must_supports[:slices].find { |slice| slice[:slice_id] == 'Condition.category:screening-assessment' }
+        target_slice = must_supports[:slices].find do |slice|
+          slice[:slice_id] == 'Condition.category:screening-assessment'
+        end
         return unless target_slice
 
-        target_slice[:discriminator][:values].delete_if { |value| value[:code] != 'sdoh'}
-
+        target_slice[:discriminator][:values].delete_if { |value| value[:code] != 'sdoh' }
       end
     end
   end
