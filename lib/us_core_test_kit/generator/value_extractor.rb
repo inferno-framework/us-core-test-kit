@@ -47,22 +47,21 @@ module USCoreTestKit
         binding = value_set_binding(the_element)
         target_valueset = binding&.valueSet
 
-        additional_binding = binding&.extension&.find do |ext|
-          ext.url == 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding'
+        additional_binding_ext = binding&.extension&.find do |ext|
+          ext.url == 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding' &&
+          ext.extension.any { |sub_ext| sub_ext.url == 'purpose' && sub_ext.valueCode == 'minimum' }
         end
 
-        if additional_binding.present?
-          has_min_binding =
-            additional_binding.extension.any? { |ext| ext.url == 'purpose' && ext.valueCode == 'minimum' }
+        min_valueset_ext = binding&.extension&.find do |ext|
+          ext.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet'
+        end
 
-          min_valueset = additional_binding.extension.find { |ext| ext.url == 'valueSet' }
+        if additional_binding_ext.present?
+          min_valueset = additional_binding_ext.extension.find { |ext| ext.url == 'valueSet' }
 
           target_valueset = min_valueset.valueCanonical if has_min_binding && min_valueset.present?
-        else
-          min_valueset = binding&.extension&.find do |ext|
-            ext.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet'
-          end
-          target_valueset = min_valueset.valueCanonical if min_valueset.present?
+        elsif min_valueset_ext.present?
+          target_valueset = min_valueset_ext.valueCanonical
         end
 
         ig_resources.value_set_by_url(target_valueset)
