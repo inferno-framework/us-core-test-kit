@@ -20,6 +20,14 @@ module USCoreTestKit
 <%-
       verifies_requirements = VerifiesRequirements.new
       verifies_requirements.requirement_lists['USCoreV610'][:base] = ['105', '109']
+      verifies_requirements.requirement_lists['USCoreV610'][:map] = {
+        'CareTeamReferenceResolutionTest' => ['313'],
+        'ObservationScreeningAssessmentReferenceResolutionTest' => ['439']
+      }
+      verifies_requirements.requirement_lists['USCoreV800'][:base] = ['808', '809', '810', '811']
+      verifies_requirements.requirement_lists['USCoreV800'][:map] = {
+        'SimpleObservationReferenceResolutionTest' => ['868']
+      }
 -%>
 <%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
 <%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>

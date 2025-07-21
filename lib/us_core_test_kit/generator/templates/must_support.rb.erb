@@ -20,17 +20,15 @@ module USCoreTestKit
       )
 <%-
       verifies_requirements = VerifiesRequirements.new
-      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['1','13','75','87','88','90','91','111','115']
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['1','13','75','87','90','91','93','94','97','99','111','115']
       verifies_requirements.requirement_lists['USCoreV610'][:map] = {
-              'AllergyIntoleranceMustSupportTest' => ['304'],
+              'AllergyIntoleranceMustSupportTest' => ['587', '588'],
               'ConditionEncounterDiagnosisMustSupportTest' => ['325', '326'],
-              'CareTeamMustSupportTest' => ['313'],
               'DiagnosticReportNoteMustSupportTest' => ['360'],
               'DocumentReferenceMustSupportTest' => ['368'],
               'EncounterMustSupportTest' => ['375', '379'],
               'GoalMustSupportTest' => ['387'],
               'MedicationRequestMustSupportTest' => ['405', '408'],
-              'ObservationScreeningAssessmentMustSupportTest' => ['439'],
               'OrganizationMustSupportTest' => ['455']
         }
       verifies_requirements.requirement_lists['USCoreV700'][:map] = {
@@ -38,9 +36,9 @@ module USCoreTestKit
           'ProcedureMustSupportTest' => ['482', '484'],
           'ServiceRequestMustSupportTest' => ['516', '518']
         }
-      verifies_requirements.requirement_lists['USCoreV800'][:base] = ['801', '802', '803', '804', '805', '812', '814', '870', '872']
+      verifies_requirements.requirement_lists['USCoreV800'][:base] = ['801', '802', '803', '804', '805', '812', '814', '872']
       verifies_requirements.requirement_lists['USCoreV800'][:map] = {
-              'SimpleObservationMustSupportTest' => ['822', '868'],
+              'SimpleObservationMustSupportTest' => ['822'],
               'ObservationScreeningAssessmentMustSupportTest' => ['823', '845'],
               'ConditionProblemsHealthConcernsMustSupportTest' => ['824', '831', '832'],
         }
