@@ -32,7 +32,9 @@ requirement of US Core v6.1.0.
       verifies_requirements 'hl7.fhir.us.core_6.1.0@51',
                             'hl7.fhir.us.core_6.1.0@52',
                             'hl7.fhir.us.core_6.1.0@55',
-                            'hl7.fhir.us.core_6.1.0@58'
+                            'hl7.fhir.us.core_6.1.0@58',
+                            'hl7.fhir.us.core_6.1.0@61',
+                            'hl7.fhir.us.core_6.1.0@62'
 
       id :us_core_v610_service_request_patient_search_test
       input :patient_ids,

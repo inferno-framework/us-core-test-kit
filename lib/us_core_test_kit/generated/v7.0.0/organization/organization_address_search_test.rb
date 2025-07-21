@@ -27,7 +27,9 @@ requirement of US Core v7.0.0.
       verifies_requirements 'hl7.fhir.us.core_7.0.0@51',
                             'hl7.fhir.us.core_7.0.0@52',
                             'hl7.fhir.us.core_7.0.0@55',
-                            'hl7.fhir.us.core_7.0.0@58'
+                            'hl7.fhir.us.core_7.0.0@58',
+                            'hl7.fhir.us.core_7.0.0@61',
+                            'hl7.fhir.us.core_7.0.0@62'
 
       id :us_core_v700_organization_address_search_test
       def self.properties

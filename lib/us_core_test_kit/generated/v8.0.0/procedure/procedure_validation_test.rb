@@ -28,10 +28,6 @@ fail if their code/system are not found in the valueset.
                             'hl7.fhir.us.core_8.0.0@40',
                             'hl7.fhir.us.core_8.0.0@74',
                             'hl7.fhir.us.core_8.0.0@486',
-                            'hl7.fhir.us.core_8.0.0@808',
-                            'hl7.fhir.us.core_8.0.0@809',
-                            'hl7.fhir.us.core_8.0.0@810',
-                            'hl7.fhir.us.core_8.0.0@811',
                             'hl7.fhir.us.core_8.0.0@856'
       output :dar_code_found, :dar_extension_found
 

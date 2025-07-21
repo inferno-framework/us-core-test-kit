@@ -27,9 +27,12 @@ module USCoreTestKit
                             'hl7.fhir.us.core_8.0.0@13',
                             'hl7.fhir.us.core_8.0.0@75',
                             'hl7.fhir.us.core_8.0.0@87',
-                            'hl7.fhir.us.core_8.0.0@88',
                             'hl7.fhir.us.core_8.0.0@90',
                             'hl7.fhir.us.core_8.0.0@91',
+                            'hl7.fhir.us.core_8.0.0@93',
+                            'hl7.fhir.us.core_8.0.0@94',
+                            'hl7.fhir.us.core_8.0.0@97',
+                            'hl7.fhir.us.core_8.0.0@99',
                             'hl7.fhir.us.core_8.0.0@111',
                             'hl7.fhir.us.core_8.0.0@115',
                             'hl7.fhir.us.core_8.0.0@801',
@@ -39,7 +42,6 @@ module USCoreTestKit
                             'hl7.fhir.us.core_8.0.0@805',
                             'hl7.fhir.us.core_8.0.0@812',
                             'hl7.fhir.us.core_8.0.0@814',
-                            'hl7.fhir.us.core_8.0.0@870',
                             'hl7.fhir.us.core_8.0.0@872'
 
       id :us_core_v800_smokingstatus_must_support_test
