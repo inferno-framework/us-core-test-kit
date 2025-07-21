@@ -49,7 +49,7 @@ module USCoreTestKit
 
         additional_binding_ext = binding&.extension&.find do |ext|
           ext.url == 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding' &&
-          ext.extension.any { |sub_ext| sub_ext.url == 'purpose' && sub_ext.valueCode == 'minimum' }
+          ext.extension.any? { |sub_ext| sub_ext.url == 'purpose' && sub_ext.valueCode == 'minimum' }
         end
 
         min_valueset_ext = binding&.extension&.find do |ext|
@@ -59,7 +59,7 @@ module USCoreTestKit
         if additional_binding_ext.present?
           min_valueset = additional_binding_ext.extension.find { |ext| ext.url == 'valueSet' }
 
-          target_valueset = min_valueset.valueCanonical if has_min_binding && min_valueset.present?
+          target_valueset = min_valueset.valueCanonical if min_valueset.present?
         elsif min_valueset_ext.present?
           target_valueset = min_valueset_ext.valueCanonical
         end
