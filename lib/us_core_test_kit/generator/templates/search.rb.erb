@@ -10,21 +10,19 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
-      <%- if module_name == "USCoreV610" && !optional? && test_medication_inclusion? -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
-                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58',
-                            'hl7.fhir.us.core_6.1.0@250'
-      <%- elsif module_name == "USCoreV700" && !optional? && test_medication_inclusion? -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
-                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58',
-                            'hl7.fhir.us.core_7.0.0@250'
-      <%- elsif module_name == "USCoreV610" && !optional? -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
-                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58'
-      <%- elsif module_name == "USCoreV700" && !optional? -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@51', 'hl7.fhir.us.core_7.0.0@52',
-                            'hl7.fhir.us.core_7.0.0@55', 'hl7.fhir.us.core_7.0.0@58'
-      <%- end -%>
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      test_medication_inclusion_requirement_ids = ['250']
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['51', '52', '55', '58', '61', '62']
+
+      all_ids = verifies_requirements.get_ids(module_name, class_name)
+      if all_ids && test_medication_inclusion?
+        all_ids += test_medication_inclusion_requirement_ids
+      end
+-%>
+<%- if all_ids && all_ids.any? && !optional? -%>
+<%= verifies_requirements.create_verifies_requirements_from_ids(module_name, all_ids) %>
+<%- end -%>
 
       id :<%= test_id %><% if optional? %>
       optional

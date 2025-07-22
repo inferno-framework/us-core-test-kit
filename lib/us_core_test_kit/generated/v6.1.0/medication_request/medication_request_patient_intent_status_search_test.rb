@@ -20,8 +20,12 @@ Medications, the search will be repeated with
 [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU6.1/CapabilityStatement-us-core-server.html)
 
       )
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@51', 'hl7.fhir.us.core_6.1.0@52',
-                            'hl7.fhir.us.core_6.1.0@55', 'hl7.fhir.us.core_6.1.0@58',
+      verifies_requirements 'hl7.fhir.us.core_6.1.0@51',
+                            'hl7.fhir.us.core_6.1.0@52',
+                            'hl7.fhir.us.core_6.1.0@55',
+                            'hl7.fhir.us.core_6.1.0@58',
+                            'hl7.fhir.us.core_6.1.0@61',
+                            'hl7.fhir.us.core_6.1.0@62',
                             'hl7.fhir.us.core_6.1.0@250'
 
       id :us_core_v610_medication_request_patient_intent_status_search_test

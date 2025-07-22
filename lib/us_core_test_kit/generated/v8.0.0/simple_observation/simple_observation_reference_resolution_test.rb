@@ -19,6 +19,13 @@ module USCoreTestKit
         * Observation.performer
         * Observation.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105',
+                            'hl7.fhir.us.core_8.0.0@109',
+                            'hl7.fhir.us.core_8.0.0@808',
+                            'hl7.fhir.us.core_8.0.0@809',
+                            'hl7.fhir.us.core_8.0.0@810',
+                            'hl7.fhir.us.core_8.0.0@811',
+                            'hl7.fhir.us.core_8.0.0@868'
 
       id :us_core_v800_simple_observation_reference_resolution_test
 

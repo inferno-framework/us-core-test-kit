@@ -18,39 +18,35 @@ module USCoreTestKit
 
 <%= uscdi_list_string %><% end %>
       )
-      <%-
-  requirement_map = {
-        'AllergyIntoleranceMustSupportTest' => ['304'],
-        'ConditionEncounterDiagnosisMustSupportTest' => ['325', '326'],
-        'CareTeamMustSupportTest' => ['313'],
-        'DiagnosticReportNoteMustSupportTest' => ['360'],
-        'DocumentReferenceMustSupportTest' => ['368'],
-        'EncounterMustSupportTest' => ['375', '379'],
-        'GoalMustSupportTest' => ['387'],
-        'MedicationRequestMustSupportTest' => ['408'],
-        'ObservationScreeningAssessmentMustSupportTest' => ['439'],
-        'OrganizationMustSupportTest' => ['455']
-  }-%>
-      <%- if module_name == 'USCoreV610' -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@1', 'hl7.fhir.us.core_6.1.0@13',
-                            'hl7.fhir.us.core_6.1.0@75', 'hl7.fhir.us.core_6.1.0@87',
-                            'hl7.fhir.us.core_6.1.0@88', 'hl7.fhir.us.core_6.1.0@90',
-                            'hl7.fhir.us.core_6.1.0@91', 'hl7.fhir.us.core_6.1.0@111',
-                            'hl7.fhir.us.core_6.1.0@115'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_6.1.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
-      <%- end -%>
-      <%- if module_name == 'USCoreV700' -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@1', 'hl7.fhir.us.core_7.0.0@13',
-                            'hl7.fhir.us.core_7.0.0@75', 'hl7.fhir.us.core_7.0.0@87',
-                            'hl7.fhir.us.core_7.0.0@88', 'hl7.fhir.us.core_7.0.0@90',
-                            'hl7.fhir.us.core_7.0.0@91', 'hl7.fhir.us.core_7.0.0@111',
-                            'hl7.fhir.us.core_7.0.0@115'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
-      <%- end -%>
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['1','13','75','87','90','91','93','94','97','99','111','115']
+      verifies_requirements.requirement_lists['USCoreV610'][:map] = {
+              'AllergyIntoleranceMustSupportTest' => ['587', '588'],
+              'ConditionEncounterDiagnosisMustSupportTest' => ['325', '326'],
+              'DiagnosticReportNoteMustSupportTest' => ['360'],
+              'DocumentReferenceMustSupportTest' => ['368'],
+              'EncounterMustSupportTest' => ['375', '379'],
+              'GoalMustSupportTest' => ['387'],
+              'MedicationRequestMustSupportTest' => ['405', '408'],
+              'OrganizationMustSupportTest' => ['455']
+        }
+      verifies_requirements.requirement_lists['USCoreV700'][:map] = {
+          'MedicationRequestMustSupportTest' => ['406', '411'],
+          'ProcedureMustSupportTest' => ['482', '484'],
+          'ServiceRequestMustSupportTest' => ['516', '518']
+        }
+      verifies_requirements.requirement_lists['USCoreV800'][:base] = ['801', '802', '803', '804', '805', '812', '814', '872']
+      verifies_requirements.requirement_lists['USCoreV800'][:map] = {
+              'SimpleObservationMustSupportTest' => ['822'],
+              'ObservationScreeningAssessmentMustSupportTest' => ['823', '845'],
+              'ConditionProblemsHealthConcernsMustSupportTest' => ['824', '831', '832'],
+        }
+      verifies_requirements.requirement_lists['USCoreV800'][:remove] = ['325', '326']
+-%>
+<%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
+<%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>
+<%- end -%>
 
       id :<%= test_id %>
 

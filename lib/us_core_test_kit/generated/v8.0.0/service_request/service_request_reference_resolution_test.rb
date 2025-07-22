@@ -20,6 +20,12 @@ module USCoreTestKit
         * ServiceRequest.requester
         * ServiceRequest.subject
       )
+      verifies_requirements 'hl7.fhir.us.core_8.0.0@105',
+                            'hl7.fhir.us.core_8.0.0@109',
+                            'hl7.fhir.us.core_8.0.0@808',
+                            'hl7.fhir.us.core_8.0.0@809',
+                            'hl7.fhir.us.core_8.0.0@810',
+                            'hl7.fhir.us.core_8.0.0@811'
 
       id :us_core_v800_service_request_reference_resolution_test
 

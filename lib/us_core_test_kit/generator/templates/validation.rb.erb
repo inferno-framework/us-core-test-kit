@@ -10,29 +10,27 @@ module USCoreTestKit
       description %(
 <%= description %>
       )
-      <%-
-  requirement_map = {
-        'DiagnosticReportLabValidationTest' => ['356', '357'],
-        'ObservationClinicalResultValidationTest' => ['427'],
-        'AverageBloodPressureValidationTest' => ['421']
-  }-%>
-      <%-if module_name == 'USCoreV610' -%>
-      verifies_requirements 'hl7.fhir.us.core_6.1.0@18', 'hl7.fhir.us.core_6.1.0@19',
-                            'hl7.fhir.us.core_6.1.0@20', 'hl7.fhir.us.core_6.1.0@21',
-                            'hl7.fhir.us.core_6.1.0@23', 'hl7.fhir.us.core_6.1.0@27',
-                            'hl7.fhir.us.core_6.1.0@40', 'hl7.fhir.us.core_6.1.0@74'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_6.1.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
-      <%- elsif module_name == 'USCoreV700' -%>
-      verifies_requirements 'hl7.fhir.us.core_7.0.0@18', 'hl7.fhir.us.core_7.0.0@19',
-                            'hl7.fhir.us.core_7.0.0@20', 'hl7.fhir.us.core_7.0.0@21',
-                            'hl7.fhir.us.core_7.0.0@23', 'hl7.fhir.us.core_7.0.0@27',
-                            'hl7.fhir.us.core_7.0.0@40', 'hl7.fhir.us.core_7.0.0@74'<% if requirement_map[class_name] %>,
-                            <%= requirement_map[class_name].map { |id| "'hl7.fhir.us.core_7.0.0@#{id}'" }.join(', ') %>
-        <%- end -%>
-
-      <%- end -%>
+<%-
+      verifies_requirements = VerifiesRequirements.new
+      verifies_requirements.requirement_lists['USCoreV610'][:base] = ['18', '19', '20', '21', '23', '27', '40', '74']
+      verifies_requirements.requirement_lists['USCoreV610'][:map] = {
+            'DiagnosticReportLabValidationTest' => ['356', '357'],
+            'ImmunizationValidationTest' => ['391'],
+            'AverageBloodPressureValidationTest' => ['421'],
+            'ObservationClinicalResultValidationTest' => ['427']
+        }
+      verifies_requirements.requirement_lists['USCoreV700'][:map] = {
+        'MedicationRequestValidationTest' => ['414'],
+        'ProcedureValidationTest' => ['486'],
+        'ServiceRequestValidationTest' => ['520']
+        }
+      verifies_requirements.requirement_lists['USCoreV800'][:map] = {
+            'ProcedureValidationTest' => ['856']
+        }
+-%>
+<%- if verifies_requirements.has_requirements?(module_name, class_name) -%>
+<%= verifies_requirements.create_verifies_requirements(module_name, class_name) %>
+<%- end -%>
       output :dar_code_found, :dar_extension_found
 
       def resource_type

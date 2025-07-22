@@ -17,6 +17,7 @@ require_relative 'generator/suite_generator'
 require_relative 'generator/validation_test_generator'
 require_relative 'generator/practitioner_address_test_generator'
 require_relative 'generator/interpreter_required_extension_test_generator'
+require_relative 'generator/verifies_requirements'
 
 module USCoreTestKit
   class Generator
