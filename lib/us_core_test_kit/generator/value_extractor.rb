@@ -44,7 +44,27 @@ module USCoreTestKit
       end
 
       def value_set(the_element)
-        ig_resources.value_set_by_url(value_set_binding(the_element)&.valueSet)
+        binding = value_set_binding(the_element)
+        target_valueset = binding&.valueSet
+
+        additional_binding_ext = binding&.extension&.find do |ext|
+          ext.url == 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding' &&
+          ext.extension.any? { |sub_ext| sub_ext.url == 'purpose' && sub_ext.valueCode == 'minimum' }
+        end
+
+        min_valueset_ext = binding&.extension&.find do |ext|
+          ext.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet'
+        end
+
+        if additional_binding_ext.present?
+          min_valueset = additional_binding_ext.extension.find { |ext| ext.url == 'valueSet' }
+
+          target_valueset = min_valueset.valueCanonical if min_valueset.present?
+        elsif min_valueset_ext.present?
+          target_valueset = min_valueset_ext.valueCanonical
+        end
+
+        ig_resources.value_set_by_url(target_valueset)
       end
 
       def bound_systems(the_element)
