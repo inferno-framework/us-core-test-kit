@@ -1,4 +1,4 @@
-RSpec.describe USCoreTestKit::ValidationTest do
+RSpec.describe USCoreTestKit::ValidationTest, :runnable do
   let(:suite_id) { 'us_core_v400' }
   let(:runnable) do
     Inferno::Entities::Test.new

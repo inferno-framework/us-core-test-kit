@@ -1,4 +1,4 @@
-RSpec.describe USCoreTestKit::GranularScopeSearchTest do
+RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
   let(:suite_id) { 'us_core_v610' }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
   let(:url) { 'http://example.com/fhir' }

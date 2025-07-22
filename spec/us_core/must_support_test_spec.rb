@@ -1,4 +1,4 @@
-RSpec.describe USCoreTestKit::MustSupportTest do
+RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
   let(:suite_id) { 'us_core_v400' }
   let(:patient_ref) { 'Patient/85' }
   let(:patient) do

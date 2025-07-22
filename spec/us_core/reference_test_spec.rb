@@ -1,4 +1,4 @@
-RSpec.describe USCoreTestKit::ReferenceResolutionTest do
+RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
   let(:suite_id) { 'us_core_v400' }
   let(:url) { 'http://example.com/fhir' }
   let(:error_outcome) { FHIR::OperationOutcome.new(issue: [{ severity: 'error' }]) }

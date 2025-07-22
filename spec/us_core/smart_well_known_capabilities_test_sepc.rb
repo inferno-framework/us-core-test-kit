@@ -1,6 +1,6 @@
 require_relative '../../lib/us_core_test_kit/custom_groups/smart_well_known_capabilities_test'
 
-RSpec.describe USCoreTestKit::SmartWellKnownCapabilitiesTest do
+RSpec.describe USCoreTestKit::SmartWellKnownCapabilitiesTest do/
   let(:suite_id) { 'us_core_v700' }
   let(:url) { 'http://example.com/fhir' }
 
