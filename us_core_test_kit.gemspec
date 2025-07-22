@@ -4,7 +4,6 @@ Gem::Specification.new do |spec|
   spec.name          = 'us_core_test_kit'
   spec.version       = USCoreTestKit::VERSION
   spec.authors       = ['Stephen MacVicar']
-  spec.email         = ['inferno@groups.mitre.org']
   spec.summary       = 'US Core Inferno tests'
   spec.description   = 'US Core Inferno tests'
   spec.homepage      = 'https://github.com/inferno-framework/us-core-test-kit'
