@@ -1,24 +1,7 @@
 require_relative '../../lib/us_core_test_kit/custom_groups/screening_assessment_category_test'
 
 RSpec.describe USCoreTestKit::ScreeningAssessmentCategoryTest do
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
-
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v610') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
-
+  let(:suite_id) { 'us_core_v610' }
   let(:url) { 'http://example.com/fhir' }
   let(:patient_id) { '85' }
   let(:observation_categories) do

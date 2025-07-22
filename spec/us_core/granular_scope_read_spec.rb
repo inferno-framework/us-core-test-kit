@@ -1,24 +1,8 @@
 RSpec.describe USCoreTestKit::GranularScopeReadTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v610') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:suite_id) { 'us_core_v610' }
   let(:result) { repo_create(:result, test_session_id: test_session.id) }
   let(:url) { 'http://example.com/fhir' }
-  let(:patient_ids) { 'PATIENT_ID'}
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name: name,
-        value: value,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
-  end
+  let(:patient_ids) { 'PATIENT_ID' }
 
   let(:granular_scope_read_test) do
     Class.new(Inferno::Test) do
@@ -57,8 +41,8 @@ RSpec.describe USCoreTestKit::GranularScopeReadTest do
   before do
     Inferno::Repositories::Tests.new.insert(granular_scope_read_test)
   end
-  describe "#run_scope_read_test" do
 
+  describe "#run_scope_read_test" do
     context 'when previous searches do match the search parameters' do
       let(:matching_resource) do
         FHIR::Condition.new(

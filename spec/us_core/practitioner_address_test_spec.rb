@@ -3,9 +3,7 @@
 require_relative '../../lib/us_core_test_kit/generated/v6.1.0/practitioner/practitioner_address_test'
 
 RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v610') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:suite_id) { 'us_core_V610' }
   let(:url) { 'http://example.com/fhir' }
   let(:test_class) do
     Class.new(USCoreTestKit::USCoreV610::PractitionerAddressTest) do
@@ -19,21 +17,6 @@ RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
     end
   end
   let(:test) { test_class.new }
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
-
   let(:practitioner_id) { '100' }
   let(:pr_id) { '200' }
   let(:practitioner) do

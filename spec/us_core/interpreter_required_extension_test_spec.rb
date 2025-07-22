@@ -3,9 +3,7 @@
 require_relative '../../lib/us_core_test_kit/generated/v8.0.0/encounter/interpreter_required_extension_test'
 
 RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v800') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:suite_id) { 'us_core_v800' }
   let(:url) { 'http://example.com/fhir' }
   let(:test) { described_class }
 
@@ -53,20 +51,6 @@ RSpec.describe USCoreTestKit::USCoreV800::InterpreterRequiredExtensionTest do
         reference: 'Patient/123'
       }
     )
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   describe 'interpreter required extension test' do

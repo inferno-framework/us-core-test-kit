@@ -1,23 +1,7 @@
 require_relative '../../lib/us_core_test_kit/custom_groups/v3.1.1/resource_support_test'
 
 RSpec.describe USCoreTestKit::USCoreV311::ProfileSupportTest do
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name: name,
-        value: value,
-        type: runnable.config.input_type(name) || 'text'
-      )
-    end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
-  end
-
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('us_core_v311') }
+  let(:suite_id) { 'us_core_v311' }
   let(:test) { described_class }
   let(:url) { 'http://example.com/fhir' }
 
