@@ -1,3 +1,11 @@
+# 1.0.0
+* FI-4221 Remove codes other than sdoh from MustSupport for Condition.category:screening-assessment by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/268
+* FI-4214 Add US Core v8 to README by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/266
+* FI-4244: Update inferno_core by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/271
+* FI-4182 Remove inferno@groups.mitre.org email from gemspec by @arscan in https://github.com/inferno-framework/us-core-test-kit/pull/270
+* FI-4221/4222 Process min-valueSet in a slice  by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/269
+* Fi 4210 map v8 requirements by @edeyoung in https://github.com/inferno-framework/us-core-test-kit/pull/267
+
 # 0.11.6
 * FI-4176: Update implementation docs by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/259
 * FI-4194: Restore FHIRResourceNavigation and PrimitiveType constants by @Jammjammjamm in https://github.com/inferno-framework/us-core-test-kit/pull/261
