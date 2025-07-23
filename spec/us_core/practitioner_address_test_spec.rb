@@ -3,7 +3,7 @@
 require_relative '../../lib/us_core_test_kit/generated/v6.1.0/practitioner/practitioner_address_test'
 
 RSpec.describe USCoreTestKit::USCoreV610::PractitionerAddressTest do
-  let(:suite_id) { 'us_core_V610' }
+  let(:suite_id) { 'us_core_v610' }
   let(:url) { 'http://example.com/fhir' }
   let(:test_class) do
     Class.new(USCoreTestKit::USCoreV610::PractitionerAddressTest) do

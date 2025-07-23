@@ -2,7 +2,8 @@ require_relative '../../lib/us_core_test_kit/custom_groups/v3.1.1/resource_suppo
 
 RSpec.describe USCoreTestKit::USCoreV311::ProfileSupportTest do
   let(:suite_id) { 'us_core_v311' }
-  let(:test) { described_class }
+  # we can't use `described_class` directly because it omits parent inputs
+  let(:test) { find_test suite, described_class.id }
   let(:url) { 'http://example.com/fhir' }
 
   context 'with no required resources' do

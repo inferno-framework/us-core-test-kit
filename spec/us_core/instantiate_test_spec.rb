@@ -2,7 +2,8 @@ require_relative '../../lib/us_core_test_kit/custom_groups/capability_statement/
 
 RSpec.describe USCoreTestKit::InstantiateTest do
   let(:suite_id) { 'us_core_v400' }
-  let(:test) { described_class }
+  # we can't use `described_class` directly because it omits parent inputs
+  let(:test) { find_test suite, described_class.id }
   let(:url) { 'http://example.com/fhir' }
 
   it 'passes if instantiates does not have version' do
