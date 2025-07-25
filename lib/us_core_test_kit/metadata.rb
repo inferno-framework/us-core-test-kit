@@ -70,7 +70,7 @@ module USCoreTestKit
       of the repository.
     DESCRIPTION
     suite_ids [:us_core_v311, :us_core_v400, :us_core_v501, :us_core_v610, :us_core_v700, :us_core_v800, :us_core_client_v311,
-               :us_core_client_v400, :us_core_client_v501, :us_core_client_v610, :us_core_client_v700]
+               :us_core_client_v400, :us_core_client_v501, :us_core_client_v610, :us_core_client_v700, :us_core_client_v800]
     tags ['SMART App Launch', 'US Core']
     last_updated LAST_UPDATED
     version VERSION
