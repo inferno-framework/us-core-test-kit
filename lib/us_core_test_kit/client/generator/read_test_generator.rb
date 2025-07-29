@@ -38,7 +38,15 @@ module USCoreTestKit
         end
 
         def expected_resource_id
-          Naming.instance_id_for_profile_identifier(profile_identifier)
+          if profile_identifier == 'observation_clinical_result'
+            return [ Naming.instance_id_for_profile_identifier(profile_identifier), Naming.instance_id_for_profile_identifier('observation_lab') ]
+          else
+            Naming.instance_id_for_profile_identifier(profile_identifier)
+          end
+        end
+
+        def expected_resource_id_string
+          Array(expected_resource_id).map { |id| "`#{resource_type}/#{id}`"}.join(', ')
         end
 
         def title

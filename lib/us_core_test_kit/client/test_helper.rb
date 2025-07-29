@@ -10,14 +10,18 @@ module USCoreTestKit
       end
 
       def filter_requests_by_resource_id(requests, resource_id)
-        requests.select do |request|
-          request.url.split('/').last.split('?').first&.casecmp?(resource_id)
+        if resource_id.is_a?(Array)
+          resource_id.flat_map { |id| filter_requests_by_resource_id(requests, id) }
+        else
+          requests.select do |request|
+            request.url.split('/').last.split('?').first&.casecmp?(resource_id)
+          end
         end
       end
 
       def filter_requests_by_search_parameters(requests, search_parameters)
         requests.select do |request|
-          included_params = 
+          included_params =
             if request.verb.downcase == 'get'
               url_params(request.url).keys
             elsif request.verb.downcase == 'post'

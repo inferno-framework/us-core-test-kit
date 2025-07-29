@@ -33,7 +33,7 @@ for the resource type is required, and omitted otherwise.
 ## Reading
 This test will check that the client performed a read of the following id:
 
-* `us-core-client-tests-observation-clinical-result`
+* `us-core-client-tests-observation-clinical-result`\n* `us-core-client-tests-observation-lab`
 
 ## Searching
 These tests will check that the client performed searches agains the
