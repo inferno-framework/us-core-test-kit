@@ -319,6 +319,7 @@ The current version of this test suite does not:
           }
         )
 
+
         suite_option  :client_type,
                       title: 'Client Security Type',
                       list_options: [
@@ -340,7 +341,7 @@ The current version of this test suite does not:
         route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
           SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
         })
-        route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, ->(_env) {SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id) }) 
+        route(:get, SMARTAppLaunch::OIDC_DISCOVERY_PATH, ->(_env) {SMARTAppLaunch::MockSMARTServer.openid_connect_metadata(id) })
         route(
           :get,
           SMARTAppLaunch::OIDC_JWKS_PATH,
