@@ -47,7 +47,7 @@ module USCoreTestKit
             for the resource type is required, and omitted otherwise.
 
             ## Reading
-            This test will check that the client performed a read of #{expected_resource_id.size > 1 ? 'one of the following ids' : 'the following id'}:
+            This test will check that the client performed a read of #{expected_resource_id.length > 1 ? 'one of the following ids' : 'the following id'}:
 
             #{expected_resource_id_string}
 
@@ -85,12 +85,17 @@ module USCoreTestKit
           group_metadata.file_name = base_output_file_name
         end
 
-        def expected_resource_id_string
-          expected_resource_id = [ Naming.instance_id_for_profile_identifier(profile_identifier) ]
+        def expected_resource_id
+           resource_id = [ Naming.instance_id_for_profile_identifier(profile_identifier) ]
+
           if profile_identifier == 'observation_clinical_result'
-            expected_resource_id << Naming.instance_id_for_profile_identifier('observation_lab')
+            resource_id << Naming.instance_id_for_profile_identifier('observation_lab')
           end
 
+          resource_id
+        end
+
+        def expected_resource_id_string
           expected_resource_id.map { |id| "* `#{id}`"}.join("\n")
         end
       end
