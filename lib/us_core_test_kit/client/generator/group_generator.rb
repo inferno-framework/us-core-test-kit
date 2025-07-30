@@ -91,7 +91,7 @@ module USCoreTestKit
             expected_resource_id << Naming.instance_id_for_profile_identifier('observation_lab')
           end
 
-          expected_resource_id.map { |id| "* `#{id}`"}.join('\n')
+          expected_resource_id.map { |id| "* `#{id}`"}.join("\n")
         end
       end
     end
