@@ -31,14 +31,18 @@ module USCoreTestKit
         end
 
         def failure_message
-          "Inferno did not receive the expected read request for the target instance of the <%= group_metadata.profile_name %>: `<%= resource_type %>/<%= expected_resource_id %>`."
+          "Inferno did not receive the expected read request for the target instance of the <%= group_metadata.profile_name %>: <%= expected_resource_id_string %>."
         end
 
         run do
           requests = load_tagged_requests(READ_<%= resource.underscore.upcase %>_TAG)
           skip_if requests.blank?, skip_message
 
+          <%- if profile_identifier == 'observation_clinical_result' -%>
+          requests_for_id = filter_requests_by_resource_id(requests, <%= expected_resource_id %>)
+          <%- else -%>
           requests_for_id = filter_requests_by_resource_id(requests, '<%= expected_resource_id %>')
+          <%- end -%>
           assert requests_for_id.any?, failure_message
         end
       end

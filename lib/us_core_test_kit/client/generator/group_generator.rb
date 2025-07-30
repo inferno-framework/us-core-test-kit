@@ -37,7 +37,7 @@ module USCoreTestKit
             conforming to the #{profile_name}.
 
             # Testing Methodology
-            
+
             ## Data Access Supported
 
             Clients may not be required to support the #{resource_type} FHIR resource type. However, if they
@@ -47,20 +47,20 @@ module USCoreTestKit
             for the resource type is required, and omitted otherwise.
 
             ## Reading
-            This test will check that the client performed a read of the following id:
+            This test will check that the client performed a read of #{expected_resource_id.length > 1 ? 'one of the following ids' : 'the following id'}:
 
-            * `us-core-client-tests-#{profile_identifier.underscore.dasherize}`
+            #{expected_resource_id_string}
 
             ## Searching
             These tests will check that the client performed searches agains the
             #{resource_type} resource type with the following required parameters:
 
             #{search_param_name_string}
-            
+
             Inferno will also look for searches using the following optional parameters:
 
             #{optional_search_param_name_string}
-            
+
           DESCRIPTION
         end
 
@@ -83,6 +83,20 @@ module USCoreTestKit
           File.write(output_file_name, output)
           group_metadata.id = group_id
           group_metadata.file_name = base_output_file_name
+        end
+
+        def expected_resource_id
+           resource_id = [ Naming.instance_id_for_profile_identifier(profile_identifier) ]
+
+          if profile_identifier == 'observation_clinical_result'
+            resource_id << Naming.instance_id_for_profile_identifier('observation_lab')
+          end
+
+          resource_id
+        end
+
+        def expected_resource_id_string
+          expected_resource_id.map { |id| "* `#{id}`"}.join("\n")
         end
       end
     end

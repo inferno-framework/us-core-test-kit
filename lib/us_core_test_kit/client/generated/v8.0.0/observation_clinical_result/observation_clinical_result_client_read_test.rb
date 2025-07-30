@@ -17,14 +17,14 @@ module USCoreTestKit
         end
 
         def failure_message
-          "Inferno did not receive the expected read request for the target instance of the US Core Observation Clinical Result Profile: `Observation/us-core-client-tests-observation-clinical-result`."
+          "Inferno did not receive the expected read request for the target instance of the US Core Observation Clinical Result Profile: `Observation/us-core-client-tests-observation-clinical-result`, `Observation/us-core-client-tests-observation-lab`."
         end
 
         run do
           requests = load_tagged_requests(READ_OBSERVATION_TAG)
           skip_if requests.blank?, skip_message
 
-          requests_for_id = filter_requests_by_resource_id(requests, 'us-core-client-tests-observation-clinical-result')
+          requests_for_id = filter_requests_by_resource_id(requests, ["us-core-client-tests-observation-clinical-result", "us-core-client-tests-observation-lab"])
           assert requests_for_id.any?, failure_message
         end
       end

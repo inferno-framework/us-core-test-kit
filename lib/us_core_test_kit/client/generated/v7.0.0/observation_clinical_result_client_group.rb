@@ -32,9 +32,10 @@ Observation resource type. In this case, the test will be marked as skip if supp
 for the resource type is required, and omitted otherwise.
 
 ## Reading
-This test will check that the client performed a read of the following id:
+This test will check that the client performed a read of one of the following ids:
 
 * `us-core-client-tests-observation-clinical-result`
+* `us-core-client-tests-observation-lab`
 
 ## Searching
 These tests will check that the client performed searches agains the

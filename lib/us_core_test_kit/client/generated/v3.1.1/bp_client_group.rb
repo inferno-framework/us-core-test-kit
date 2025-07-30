@@ -38,7 +38,7 @@ for the resource type is required, and omitted otherwise.
 ## Reading
 This test will check that the client performed a read of the following id:
 
-* `us-core-client-tests-bp`
+* `us-core-client-tests-blood-pressure`
 
 ## Searching
 These tests will check that the client performed searches agains the
