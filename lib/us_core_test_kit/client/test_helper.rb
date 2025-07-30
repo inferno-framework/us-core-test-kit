@@ -10,11 +10,9 @@ module USCoreTestKit
       end
 
       def filter_requests_by_resource_id(requests, resource_id)
-        if resource_id.is_a?(Array)
-          resource_id.flat_map { |id| filter_requests_by_resource_id(requests, id) }
-        else
+        Array(resource_id).flat_map do |id|
           requests.select do |request|
-            request.url.split('/').last.split('?').first&.casecmp?(resource_id)
+            request.url.split('/').last.split('?').first&.casecmp?(id)
           end
         end
       end
