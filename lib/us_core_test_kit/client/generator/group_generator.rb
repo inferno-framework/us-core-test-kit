@@ -47,7 +47,7 @@ module USCoreTestKit
             for the resource type is required, and omitted otherwise.
 
             ## Reading
-            This test will check that the client performed a read of the following id:
+            This test will check that the client performed a read of #{expected_resource_id.size > 1 ? 'one of the following ids' : 'the following id'}:
 
             #{expected_resource_id_string}
 
