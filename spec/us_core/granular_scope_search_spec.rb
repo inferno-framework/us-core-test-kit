@@ -43,11 +43,6 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
     Inferno::Repositories::Tests.new.insert(granular_scope_test)
   end
 
-  def passes_except_data_never_returned(result)
-    result.result == 'fail' &&
-      result.result_message == 'Access using granular scopes not demonstrated: no resources returned from any query.'
-  end
-
   describe '#run_scope_check_test' do
     let(:received_scopes) { 'patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|survey patient/Observation.rs?category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh' }
 
@@ -330,7 +325,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
 
           result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
 
-          expect(passes_except_data_never_returned(result)).to be(true)
+          expect(result.result).to eq('pass')
         end
 
         it 'passes if the response is unauthorized (error)' do
@@ -341,7 +336,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
 
           result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
 
-          expect(passes_except_data_never_returned(result)).to be(true)
+          expect(result.result).to eq('pass')
         end
 
         it 'fails if out of scope data is returned' do
@@ -402,7 +397,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
             .to_return(body: FHIR::Bundle.new.to_json)
 
           result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
-          expect(passes_except_data_never_returned(result)).to be(true)
+          expect(result.result).to eq('pass')
         end
 
          it 'passes if unauthorized returned (error)' do
@@ -411,7 +406,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
             .to_return(status: 403)
 
           result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
-          expect(passes_except_data_never_returned(result)).to be(true)
+          expect(result.result).to eq('pass')
         end
 
         it 'fails if out-of-scope data is returned' do

@@ -19,7 +19,6 @@ module USCoreTestKit
       skip_if previous_requests.blank?,
               "No #{resource_type} searches with search params #{search_param_names.join(' & ')} found"
 
-      returned_resources_demonstrated = false
       previous_request_resources.each do |previous_request, all_previous_resources|
         search_method = previous_request.verb.to_sym
         params = search_method == :get ? previous_request.query_parameters : Hash[URI.decode_www_form(previous_request.request_body)]
@@ -32,8 +31,6 @@ module USCoreTestKit
             fetch_all_bundled_resources(resource_type: resource_type, bundle: resource)
               .select { |resource| resource.resourceType == resource_type }
           end
-
-        returned_resources_demonstrated = returned_resources_demonstrated || found_resources.present?
 
         mismatched_ids = mismatched_resource_ids(found_resources)
         assert mismatched_ids.empty?,
@@ -57,9 +54,6 @@ module USCoreTestKit
                  "but not when using resource-level scopes: #{unexpected_ids.join(', ')}"
         end
       end
-
-      assert returned_resources_demonstrated,
-              'Access using granular scopes not demonstrated: no resources returned from any query.'
     end
 
     def load_previous_requests
