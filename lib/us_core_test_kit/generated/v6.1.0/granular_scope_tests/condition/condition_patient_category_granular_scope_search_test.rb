@@ -12,7 +12,20 @@ module USCoreTestKit
       description %(
 This test repeats all Condition searches by
 patient + category and verifies that the results have been
-filtered based on the granted granular scopes.
+filtered based on the granted granular scopes. The response to each
+repeated request will be compared to the corresponding original response
+independently using the following logic:
+- If the repeated search filters on a category value that
+  is explicitly included within the granted scopes, e.g., a search for
+  `Observation?category=survey` when the granted scopes includes
+  `patient/Observation.rs?category=survey`, then the server is required to
+  return the original response filtered to include only entries that match
+  one of the granted scopes.
+- Otherwise, e.g., a search for `Observation?category=cognitive-status`
+  when the granted scopes include only `patient/Observation.rs?category=survey`,
+  servers may indicate that the request is unauthorized either through an empty
+  Bundle or an explicit HTTP error, or they may return the original response
+  filtered to include only entries that match one of the granted scopes.
 
       )
 

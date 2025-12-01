@@ -33,24 +33,26 @@ module USCoreTestKit
           end
 
         mismatched_ids = mismatched_resource_ids(found_resources)
-
         assert mismatched_ids.empty?,
                'Resources with the following ids were received even though they do not match the ' \
                "granted granular scopes: #{mismatched_ids.join(', ')}"
 
-        found_ids = found_resources.map(&:id)
-        previous_ids = expected_resource_ids(all_previous_resources)
-        missing_ids = previous_ids - found_ids
+        # if the query is in scope or resource were returned, we must check missing and unexpected
+        if query_in_scope?(resource_type, params) || found_resources.present?
 
-        assert missing_ids.empty?,
-               'Resources with the following ids were received when using resource-level scopes, ' \
-               "but not when using granular scopes: #{missing_ids.join(', ')}"
+          found_ids = found_resources.map(&:id)
+          previous_ids = expected_resource_ids(all_previous_resources)
 
-        unexpected_ids = found_ids - previous_ids
+          missing_ids = previous_ids - found_ids
+          assert missing_ids.empty?,
+                 'Resources with the following ids were received when using resource-level scopes, ' \
+                 "but not when using granular scopes: #{missing_ids.join(', ')}"
 
-        assert unexpected_ids.empty?,
-               'Resources with the following ids were received when using granular scopes, ' \
-               "but not when using resource-level scopes: #{unexpected_ids.join(', ')}"
+          unexpected_ids = found_ids - previous_ids
+          assert unexpected_ids.empty?,
+                 'Resources with the following ids were received when using granular scopes, ' \
+                 "but not when using resource-level scopes: #{unexpected_ids.join(', ')}"
+        end
       end
     end
 
@@ -61,6 +63,29 @@ module USCoreTestKit
       @previous_requests ||=
         load_tagged_requests(search_params_tag(search_params_as_hash))
           .sort_by { |request| request.index }
+    end
+
+    def query_in_scope?(resource_type, params)
+      received_scopes.split(' ').each do |scope|
+        parsed_scope = URI.parse(scope)
+        
+        # check for resource type, search scope, and matched params
+        next unless parsed_scope.path =~ /\/#{resource_type}\./ &&
+                    parsed_scope.path.split('.')[1].include?('s') &&
+                    granular_params_present?(parsed_scope.query, params)
+      
+        return true
+      end
+
+      false
+    end
+
+    def granular_params_present?(granular_params, search_params)
+      CGI.parse(granular_params).each do |param_name, value|
+        return false unless search_params.key?(param_name) && value.include?(search_params[param_name])
+      end
+
+      true
     end
 
     def previous_resources(params)
