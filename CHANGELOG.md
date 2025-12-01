@@ -1,3 +1,11 @@
+# 1.1.0
+
+* ID-8: Relax Granular Scope Tests to Allow Pre-filtering of searches by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/279
+* FI-4268 Allow client read test to accept multiple resource ids by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/275
+* FI-4216 Add US Core v8 client testing by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/274
+* FI-3815: Update Test Kit with new RSpec features by @Shaumik-Ashraf in https://github.com/inferno-framework/us-core-test-kit/pull/273
+
+
 # 1.0.0
 * FI-4221 Remove codes other than sdoh from MustSupport for Condition.category:screening-assessment by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/268
 * FI-4214 Add US Core v8 to README by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/266
