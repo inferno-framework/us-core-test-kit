@@ -66,26 +66,22 @@ module USCoreTestKit
     end
 
     def query_in_scope?(resource_type, params)
-      received_scopes.split(' ').each do |scope|
+      received_scopes.split(' ').any? do |scope|
         parsed_scope = URI.parse(scope)
         
         # check for resource type, search scope, and matched params
-        next unless parsed_scope.path =~ /\/#{resource_type}\./ &&
-                    parsed_scope.path.split('.')[1].include?('s') &&
-                    granular_params_present?(parsed_scope.query, params)
-      
-        return true
+        parsed_scope.path =~ /\/#{resource_type}\./ &&
+          parsed_scope.path.split('.')[1].include?('s') &&
+          search_is_for_the_granular_values?(parsed_scope.query, params)
       end
-
-      false
     end
 
-    def granular_params_present?(granular_params, search_params)
-      CGI.parse(granular_params).each do |param_name, value|
-        return false unless search_params.key?(param_name) && value.include?(search_params[param_name])
+    def search_is_for_the_granular_values?(granular_params, search_params)
+      return false if granular_params.blank? # ignore resource-level scopes
+      
+      CGI.parse(granular_params).all? do |param_name, value|
+        search_params.key?(param_name) && value.include?(search_params[param_name])
       end
-
-      true
     end
 
     def previous_resources(params)
