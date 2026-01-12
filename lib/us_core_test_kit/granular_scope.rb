@@ -38,29 +38,30 @@ module USCoreTestKit
       end
     end
 
-    def resolve_url(url, base_url)
-      return nil if url.nil?
+    def resolve_url(url_string)
+      return nil if url_string.nil?
       
-      uri = URI.parse(url)
+      uri = URI.parse(url_string)
       # If already absolute, return as-is
-      return url if uri.absolute?
+      return url_string if uri.absolute?
       
-      # If relative, resolve against base URL
-      base_uri = URI.parse(base_url)
-      resolved = URI.join("#{base_uri.scheme}://#{base_uri.host}#{":#{base_uri.port}" if base_uri.port && ![80, 443].include?(base_uri.port)}", url)
+      # If relative, resolve against the configured FHIR base URL
+      # Per FHIR spec, relative URLs are interpreted relative to the FHIR base URL
+      # Strip leading slash from relative URL if present to prevent URI.join from
+      # treating it as absolute path from root, and ensure base has trailing slash
+      base_with_slash = url.end_with?('/') ? url : "#{url}/"
+      relative_without_leading_slash = url_string.start_with?('/') ? url_string[1..-1] : url_string
+      resolved = URI.join(base_with_slash, relative_without_leading_slash)
       resolved.to_s
     rescue URI::InvalidURIError
-      url
+      url_string
     end
 
     def previous_request_resources
       first_request = previous_requests.first
       next_page_url = nil
-      base_url = nil
       hash = Hash.new { |hash, key| hash[key] = [] }
       previous_requests.each_with_object(hash) do |request, request_resource_hash|
-        # Extract base URL from first request for resolving relative URLs
-        base_url ||= request.url
         request_resources =
           if request.status == 200
             request.resource.entry.map(&:resource).select { |resource| resource.resourceType == resource_type }
@@ -68,12 +69,14 @@ module USCoreTestKit
             []
           end
 
-        # Resolve relative URLs to absolute for accurate comparison
-        resolved_next_page_url = resolve_url(next_page_url, base_url)
+        # Check if current request URL matches the next page URL from the previous request
+        # If not, this is a new search, so update first_request
+        resolved_next_page_url = resolve_url(next_page_url)
         first_request = request if request.url != resolved_next_page_url
 
         request_resource_hash[first_request].concat(request_resources)
 
+        # Extract the next page URL from the current request's bundle for the next iteration
         next if request.resource&.resourceType != 'Bundle'
 
         next_page_url = request.resource&.link&.find { |link| link.relation == 'next' }&.url

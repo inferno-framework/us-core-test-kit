@@ -430,16 +430,21 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
       end
 
       context 'with paginated results using relative URLs' do
+
+        let(:repo_create_output) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
         let!(:page1_request) do
           repo_create(
             :request,
             url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
             index: 1,
             test_session_id: test_session.id,
-            result: repo_create(
-              :result,
-              test_session_id: test_session.id
-            ),
+            result: repo_create_output,
             tags: ['Observation?patient&category'],
             response_body: FHIR::Bundle.new(
               type: 'searchset',
@@ -460,10 +465,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
             url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10',
             index: 2,
             test_session_id: test_session.id,
-            result: repo_create(
-              :result,
-              test_session_id: test_session.id
-            ),
+            result: repo_create_output,
             tags: ['Observation?patient&category'],
             response_body: FHIR::Bundle.new(
               type: 'searchset',
@@ -531,16 +533,20 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
       end
 
       context 'with paginated results using absolute URLs' do
+        let(:repo_create_output_absolute) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
         let!(:page1_request_absolute) do
           repo_create(
             :request,
             url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
             index: 1,
             test_session_id: test_session.id,
-            result: repo_create(
-              :result,
-              test_session_id: test_session.id
-            ),
+            result: repo_create_output_absolute,
             tags: ['Observation?patient&category'],
             response_body: FHIR::Bundle.new(
               type: 'searchset',
@@ -561,10 +567,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
             url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10',
             index: 2,
             test_session_id: test_session.id,
-            result: repo_create(
-              :result,
-              test_session_id: test_session.id
-            ),
+            result: repo_create_output_absolute,
             tags: ['Observation?patient&category'],
             response_body: FHIR::Bundle.new(
               type: 'searchset',
@@ -632,16 +635,20 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
       end
 
       context 'with multiple separate searches (not pagination)' do
+        let(:repo_create_output_searches) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
         let!(:first_search_request) do
         repo_create(
           :request,
           url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
           index: 1,
           test_session_id: test_session.id,
-          result: repo_create(
-            :result,
-            test_session_id: test_session.id
-          ),
+          result: repo_create_output_searches,
           tags: ['Observation?patient&category'],
           response_body: FHIR::Bundle.new(
             entry: [
@@ -657,10 +664,7 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
           url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category%7Csdoh',
           index: 2,
           test_session_id: test_session.id,
-          result: repo_create(
-            :result,
-            test_session_id: test_session.id
-          ),
+          result: repo_create_output_searches,
           tags: ['Observation?patient&category'],
           response_body: FHIR::Bundle.new(
             entry: [
