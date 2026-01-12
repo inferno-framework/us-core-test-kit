@@ -441,6 +441,266 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
           expect(result.result_message).to eq(expected_message)
         end
       end
+
+      context 'with paginated results using relative URLs' do
+
+        let(:repo_create_output) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
+        let!(:page1_request) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
+            index: 1,
+            test_session_id: test_session.id,
+            result: repo_create_output,
+            tags: ['Observation?patient&category'],
+            response_body: FHIR::Bundle.new(
+              type: 'searchset',
+              link: [
+                { relation: 'self', url: '/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey' },
+                { relation: 'next', url: '/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10' }
+              ],
+              entry: [
+                { resource: matching_resource.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        let!(:page2_request) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10',
+            index: 2,
+            test_session_id: test_session.id,
+            result: repo_create_output,
+            tags: ['Observation?patient&category'],
+            response_body: FHIR::Bundle.new(
+              type: 'searchset',
+              entry: [
+                { resource: matching_resource2.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        it 'properly groups paginated resources from relative URLs' do
+          # Stub page 1 with relative next link
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                link: [
+                  { relation: 'next', url: '/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10' }
+                ],
+                entry: [
+                  { resource: matching_resource.to_hash }
+                ]
+              ).to_json
+            )
+
+          # Stub page 2
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey', '_offset' => '10'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                entry: [
+                  { resource: matching_resource2.to_hash }
+                ]
+              ).to_json
+            )
+
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+          expect(result.result).to eq('pass')
+        end
+
+        it 'fails if paginated resources are not all returned when using relative URLs' do
+          # Only stub page 1, no pagination
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                entry: [
+                  { resource: matching_resource.to_hash }
+                ]
+              ).to_json
+            )
+
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Resources with the following ids were received when using resource-level scopes, " \
+                            "but not when using granular scopes: #{matching_resource2.id}"
+
+          expect(result.result).to eq('fail')
+          expect(result.result_message).to eq(expected_message)
+        end
+      end
+
+      context 'with paginated results using absolute URLs' do
+        let(:repo_create_output_absolute) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
+        let!(:page1_request_absolute) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
+            index: 1,
+            test_session_id: test_session.id,
+            result: repo_create_output_absolute,
+            tags: ['Observation?patient&category'],
+            response_body: FHIR::Bundle.new(
+              type: 'searchset',
+              link: [
+                { relation: 'self', url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey' },
+                { relation: 'next', url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10' }
+              ],
+              entry: [
+                { resource: matching_resource.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        let!(:page2_request_absolute) do
+          repo_create(
+            :request,
+            url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10',
+            index: 2,
+            test_session_id: test_session.id,
+            result: repo_create_output_absolute,
+            tags: ['Observation?patient&category'],
+            response_body: FHIR::Bundle.new(
+              type: 'searchset',
+              entry: [
+                { resource: matching_resource2.to_hash }
+              ]
+            ).to_json
+          )
+        end
+
+        it 'properly groups paginated resources from absolute URLs' do
+          # Stub page 1 with absolute next link
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                link: [
+                  { relation: 'next', url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey&_offset=10' }
+                ],
+                entry: [
+                  { resource: matching_resource.to_hash }
+                ]
+              ).to_json
+            )
+
+          # Stub page 2
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey', '_offset' => '10'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                entry: [
+                  { resource: matching_resource2.to_hash }
+                ]
+              ).to_json
+            )
+
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+          expect(result.result).to eq('pass')
+        end
+
+        it 'fails if paginated resources are not all returned when using absolute URLs' do
+          # Only stub page 1, no pagination
+          stub_request(:get, 'http://example.com/fhir/Observation')
+            .with(query: hash_including('patient' => 'PATIENT_ID', 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey'))
+            .to_return(
+              body: FHIR::Bundle.new(
+                type: 'searchset',
+                entry: [
+                  { resource: matching_resource.to_hash }
+                ]
+              ).to_json
+            )
+
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+          expected_message = "Resources with the following ids were received when using resource-level scopes, " \
+                            "but not when using granular scopes: #{matching_resource2.id}"
+
+          expect(result.result).to eq('fail')
+          expect(result.result_message).to eq(expected_message)
+        end
+      end
+
+      context 'with multiple separate searches (not pagination)' do
+        let(:repo_create_output_searches) do 
+          repo_create(
+              :result,
+              test_session_id: test_session.id
+            )
+        end
+
+        let!(:first_search_request) do
+        repo_create(
+          :request,
+          url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://terminology.hl7.org/CodeSystem/observation-category%7Csurvey',
+          index: 1,
+          test_session_id: test_session.id,
+          result: repo_create_output_searches,
+          tags: ['Observation?patient&category'],
+          response_body: FHIR::Bundle.new(
+            entry: [
+              { resource: matching_resource.to_hash }
+            ]
+          ).to_json
+        )
+      end
+
+      let!(:second_search_request) do
+        repo_create(
+          :request,
+          url: 'http://example.com/fhir/Observation?patient=PATIENT_ID&category=http://hl7.org/fhir/us/core/CodeSystem/us-core-category%7Csdoh',
+          index: 2,
+          test_session_id: test_session.id,
+          result: repo_create_output_searches,
+          tags: ['Observation?patient&category'],
+          response_body: FHIR::Bundle.new(
+            entry: [
+              { resource: matching_resource2.to_hash }
+            ]
+          ).to_json
+        )
+      end
+
+      it 'treats different searches separately' do
+        stub_request(:get, first_search_request.url.split('?').first)
+          .with(query: hash_including('patient' => patient_ids, 'category' => 'http://terminology.hl7.org/CodeSystem/observation-category|survey'))
+          .to_return(body: FHIR::Bundle.new(entry: [{ resource: matching_resource.to_hash }]).to_json)
+
+        stub_request(:get, second_search_request.url.split('?').first)
+          .with(query: hash_including('patient' => patient_ids, 'category' => 'http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh'))
+          .to_return(body: FHIR::Bundle.new(entry: [{ resource: matching_resource2.to_hash }]).to_json)
+
+        result = run(granular_scope_test, url:, patient_ids:, received_scopes:)
+
+        expect(result.result).to eq('pass')
+      end
+      end
     end
   end
 end
