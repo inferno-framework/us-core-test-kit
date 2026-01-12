@@ -256,7 +256,21 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
           expect(result.result).to eq('pass')
         end
 
-         context 'with POST requests' do
+        it 'ignores resource-level scopes provided' do
+          stub_request(request.verb.to_sym, request.url.split('?').first)
+            .with(query: request.query_parameters)
+            .to_return(body: FHIR::Bundle.new(
+                                entry: [
+                                  { resource: matching_resource.to_hash },
+                                  { resource: matching_resource2.to_hash }
+                                ]
+                              ).to_json)
+          
+          result = run(granular_scope_test, url:, patient_ids:, received_scopes: "patient/Observation.rs #{received_scopes}")
+          expect(result.result).to eq('pass')
+        end
+
+        context 'with POST requests' do
           let!(:post_request) do
             repo_create(
               :request,
@@ -426,7 +440,6 @@ RSpec.describe USCoreTestKit::GranularScopeSearchTest, :runnable do
           expect(result.result).to eq('fail')
           expect(result.result_message).to eq(expected_message)
         end
-
       end
 
       context 'with paginated results using relative URLs' do
