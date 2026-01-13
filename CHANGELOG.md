@@ -1,3 +1,9 @@
+# 1.1.1
+
+* ID-30: Handle relative bundle references during granular scope tests by @ljtucker in https://github.com/inferno-framework/us-core-test-kit/pull/282
+* ID-34: ignore resource-level scopes during granular scope query-in-scope evaluation by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/281
+* ID-28: Handle nil Provenance.target in DocumentReference tests by @abhinandan2012 in https://github.com/inferno-framework/us-core-test-kit/pull/284
+
 # 1.1.0
 
 * ID-8: Relax Granular Scope Tests to Allow Pre-filtering of searches by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/279
