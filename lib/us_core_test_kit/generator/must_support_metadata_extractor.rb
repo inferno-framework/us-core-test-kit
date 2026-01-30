@@ -84,21 +84,25 @@ module USCoreTestKit
           type_path = '' if type_path == '$this'
           type_element =
             if type_path.present?
-              elements.find { |element| element.id == "#{current_element.id}.#{type_path}" }
+              profile_elements.find { |element| element.id == "#{current_element.id}.#{type_path}" }
             else
               current_element
             end
 
           type_code = type_element.type.first.code
 
+          discriminator = {
+            type: 'type',
+            code: type_code.upcase_first
+          }
+          
+          discriminator[:path] = type_path unless type_path.empty?
+
           {
             slice_id: current_element.id,
             slice_name: current_element.sliceName,
             path: current_element.path.gsub("#{resource}.", ''),
-            discriminator: {
-              type: 'type',
-              code: type_code.upcase_first
-            }
+            discriminator: discriminator
           }.tap do |metadata|
             if is_uscdi_requirement_element?(current_element)
               metadata[:uscdi_only] = true
