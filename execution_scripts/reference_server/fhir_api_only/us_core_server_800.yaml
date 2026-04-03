@@ -1,0 +1,20 @@
+sessions:
+  - suite: us_core_v800
+    preset: us_core_v800_vs_ref_server
+
+steps:
+  - state_description: US Core Server 8.0.0 session created
+    status: created
+    start_run:
+      runnable: 4
+      inputs:
+        smart_auth_info:
+          access_token: SAMPLE_TOKEN
+    timeout: 1200 # API tests are very long-running
+    action_description: Run Group 4 US Core FHIR API
+
+  - state_description: Finished Group 4 US Core FHIR API
+    status: done
+    last_completed: 4
+    action: "END_SCRIPT"
+    action_description: Script Completed
