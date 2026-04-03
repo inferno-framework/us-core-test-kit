@@ -2,6 +2,22 @@ sessions:
   - suite: us_core_v400
     preset: us_core_v400_vs_ref_server
 
+comparison_config:
+  normalized_strings:
+    - replacement: <INFERNO_HOST>
+      patterns:
+        - http://localhost:4567/inferno # local inferno core ruby
+        - http://localhost:4567 # local ruby
+        - http://localhost # local docker
+        - https://inferno.healthit.gov/suites # prod
+        - https://inferno-qa.healthit.gov/suites # qa
+    - replacement: <REFERENCE_SERVER_URL>
+      patterns:
+        - https://inferno.healthit.gov/reference-server # prod reference server
+        - https://inferno-qa.healthit.gov/reference-server # qa reference server
+    - replacement: <UUID>
+      pattern: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
+
 steps:
   - state_description: US Core Server 4.0.0 session created
     status: created
