@@ -1,24 +1,7 @@
 GIT
-  remote: https://github.com/inferno-framework/smart-app-launch-test-kit.git
-  revision: 49ced37a8b55409152963001a94734c2adda86ca
-  branch: id45-execution-scripts
-  specs:
-    smart_app_launch_test_kit (1.0.0)
-      inferno_core (~> 1.0, >= 1.0.2)
-      json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
-      tls_test_kit (~> 1.0)
-
-PATH
-  remote: .
-  specs:
-    us_core_test_kit (1.1.1)
-      inferno_core (~> 1.1, >= 1.1.2)
-      smart_app_launch_test_kit (~> 1.0)
-      tls_test_kit (~> 1.0)
-
-PATH
-  remote: /Users/karlnaden/GlenViewAssociates/Inferno/source/inferno-core
+  remote: https://github.com/inferno-framework/inferno-core.git
+  revision: eef9e7814c661b592603c9d321fc764767c50d4a
+  branch: id45-session-cli
   specs:
     inferno_core (1.1.2)
       activesupport (~> 6.1.7.5)
@@ -53,6 +36,25 @@ PATH
       sqlite3 (~> 1.4)
       thor (~> 1.4)
       tty-markdown (~> 0.7.1)
+
+GIT
+  remote: https://github.com/inferno-framework/smart-app-launch-test-kit.git
+  revision: 49ced37a8b55409152963001a94734c2adda86ca
+  branch: id45-execution-scripts
+  specs:
+    smart_app_launch_test_kit (1.0.0)
+      inferno_core (~> 1.0, >= 1.0.2)
+      json-jwt (~> 1.15.3)
+      jwt (~> 2.6)
+      tls_test_kit (~> 1.0)
+
+PATH
+  remote: .
+  specs:
+    us_core_test_kit (1.1.1)
+      inferno_core (~> 1.1, >= 1.1.2)
+      smart_app_launch_test_kit (~> 1.0)
+      tls_test_kit (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
