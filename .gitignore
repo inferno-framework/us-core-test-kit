@@ -23,3 +23,7 @@ node_modules
 .rubocop.yml
 
 /lib/us_core_test_kit/igs/package
+
+# execution script failed run artifacts
+execution_scripts/**/*_actual_results*.json
+execution_scripts/**/*_compared_results*.csv
