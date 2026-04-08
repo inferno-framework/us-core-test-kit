@@ -49,7 +49,7 @@
   in https://github.com/inferno-framework/us-core-test-kit/pull/246
 
 # 0.11.2
-* FHIR-3946 Apply ASTP/ONC Enforcement Discretion issued on March 21, 2025 by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/241
+* FHIR-3946 Apply ONC Enforcement Discretion issued on March 21, 2025 by @yunwwang in https://github.com/inferno-framework/us-core-test-kit/pull/241
 
 # 0.11.1
 * FI-3813: Use core Must Support assertion by @dehall in https://github.com/inferno-framework/us-core-test-kit/pull/239
