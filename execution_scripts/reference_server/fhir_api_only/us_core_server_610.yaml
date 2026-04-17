@@ -18,7 +18,7 @@ comparison_config:
     - replacement: <UUID>
       pattern: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
 
-rules:
+steps:
   - state_description: US Core Server 6.1.0 session created
     status: created
     start_run:
