@@ -32,5 +32,5 @@ steps:
   - state_description: Finished Group 2 US Core FHIR API
     status: done
     last_completed: 2
-    command: "END_SCRIPT"
+    action: "END_SCRIPT"
     action_description: Script Completed
