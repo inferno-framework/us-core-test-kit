@@ -1,11 +1,16 @@
 sessions:
   - suite: us_core_v610
-    preset: us_core_v610_vs_ref_server
+    preset: Inferno Reference Server
     suite_options:
       smart_app_launch_version: smart_app_launch_2
 
 comparison_config:
   normalized_strings:
+    - replacement: <REFERENCE_SERVER_URL>
+      patterns:
+        - http://localhost:8080/reference-server # local reference server
+        - https://inferno.healthit.gov/reference-server # prod reference server
+        - https://inferno-qa.healthit.gov/reference-server # qa reference server
     - replacement: <INFERNO_HOST>
       patterns:
         - http://localhost:4567/inferno # local inferno core ruby
@@ -13,10 +18,6 @@ comparison_config:
         - http://localhost # local docker
         - https://inferno.healthit.gov/suites # prod
         - https://inferno-qa.healthit.gov/suites # qa
-    - replacement: <REFERENCE_SERVER_URL>
-      patterns:
-        - https://inferno.healthit.gov/reference-server # prod reference server
-        - https://inferno-qa.healthit.gov/reference-server # qa reference server
     - replacement: code_challenge=<CODE_CHALLENGE>
       pattern: /code_challenge=[A-Za-z0-9+\/=_-]{43}/
     - replacement: <UUID>

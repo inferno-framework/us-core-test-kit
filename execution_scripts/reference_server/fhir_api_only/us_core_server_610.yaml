@@ -1,9 +1,14 @@
 sessions:
   - suite: us_core_v610
-    preset: us_core_v610_vs_ref_server
+    preset: Inferno Reference Server
 
 comparison_config:
   normalized_strings:
+    - replacement: <REFERENCE_SERVER_URL>
+      patterns:
+        - http://localhost:8080/reference-server # local reference server
+        - https://inferno.healthit.gov/reference-server # prod reference server
+        - https://inferno-qa.healthit.gov/reference-server # qa reference server
     - replacement: <INFERNO_HOST>
       patterns:
         - http://localhost:4567/inferno # local inferno core ruby
@@ -11,10 +16,6 @@ comparison_config:
         - http://localhost # local docker
         - https://inferno.healthit.gov/suites # prod
         - https://inferno-qa.healthit.gov/suites # qa
-    - replacement: <REFERENCE_SERVER_URL>
-      patterns:
-        - https://inferno.healthit.gov/reference-server # prod reference server
-        - https://inferno-qa.healthit.gov/reference-server # qa reference server
     - replacement: <UUID>
       pattern: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
 
@@ -31,6 +32,6 @@ steps:
 
   - state_description: Finished Group 2 US Core FHIR API
     status: done
-    last_test: 2
+    last_completed: 2
     action: "END_SCRIPT"
     action_description: Script Completed
