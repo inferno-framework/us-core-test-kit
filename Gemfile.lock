@@ -29,7 +29,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     benchmark (0.5.0)
-    bigdecimal (3.3.1)
+    bigdecimal (4.1.2)
     bindata (2.5.1)
     blueprinter (0.25.2)
     byebug (13.0.0)
@@ -138,8 +138,7 @@ GEM
       mustermann (~> 1.0)
       mustermann-contrib (~> 1.0)
       rack (~> 2.0)
-    hanami-utils (2.3.0)
-      bigdecimal (~> 3.1)
+    hanami-utils (2.2.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
       dry-transformer (~> 1.0, < 2)
@@ -384,7 +383,7 @@ CHECKSUMS
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcp47 (0.3.3) sha256=e203e81a8f94425a0cbd3b2f05f466e5b321f38697412ba9cd121e02382d0825
   benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
-  bigdecimal (3.3.1) sha256=eaa01e228be54c4f9f53bf3cc34fe3d5e845c31963e7fcc5bedb05a4e7d52218
+  bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
   bindata (2.5.1) sha256=53186a1ec2da943d4cb413583d680644eb810aacbf8902497aac8f191fad9e58
   blueprinter (0.25.2) sha256=398b8b071e18734a2b10c66c45d0c1066a498c71f7130e5117c361f8ef5e894b
   byebug (13.0.0) sha256=d2263efe751941ca520fa29744b71972d39cbc41839496706f5d9b22e92ae05d
@@ -429,7 +428,7 @@ CHECKSUMS
   fhir_stu3_models (3.2.0) sha256=10479490abad0c67b4d9cc8e37a8bc9e7e943a9e7e75270ebb14bf3ef9ab43ab
   hanami-controller (2.0.0) sha256=73102e86bcdd4f3e65f0c103ffa31fed6b2c8c95f9e10c71055273a78ac10ec2
   hanami-router (2.0.0) sha256=e5b261933fdf04aa06d456dd4f5e61e0dc760201c7b55b80c2d6f18a2d9adbcd
-  hanami-utils (2.3.0) sha256=aa00f6c377ab4ad2cbe57d989781bace348c9f234201bc60715058dc6e220999
+  hanami-utils (2.2.0) sha256=7884ed3ef637697487d7cb57045adec3325b9273c550a34b0d0f0332ccee5f5a
   hansi (0.2.1) sha256=7e27dfd729f1692a3a7690fc0ef3af9d5e3cfc0285bb135cae7e56180e4805db
   hashdiff (1.2.1) sha256=9c079dbc513dfc8833ab59c0c2d8f230fa28499cc5efb4b8dd276cf931457cd1
   hashie (5.1.0) sha256=c266471896f323c446ea8207f8ffac985d2718df0a0ba98651a3057096ca3870
@@ -522,4 +521,4 @@ CHECKSUMS
   zeitwerk (2.7.5) sha256=d8da92128c09ea6ec62c949011b00ed4a20242b255293dd66bf41545398f73dd
 
 BUNDLED WITH
-  4.0.7
+   2.5.22
