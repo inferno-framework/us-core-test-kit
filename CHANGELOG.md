@@ -1,3 +1,13 @@
+* ID-134 Gem updates and FHIR:reference guard rail that filters out codeableConcept from being passed in FHIR:Reference only functions by @FlexonyoPizza in 
+https://github.com/inferno-framework/us-core-test-kit/pull/291
+* ID-98 Replace Replace "ASTP" with "ONC" by @FlexonyoPizza in 
+https://github.com/inferno-framework/us-core-test-kit/pull/288
+* Check for client generator diff in CI by @holmesie in 
+https://github.com/inferno-framework/us-core-test-kit/pull/289
+* Fix type_slices method using correct elements variable by @yunwwang in 
+https://github.com/inferno-framework/us-core-test-kit/pull/286
+
+
 # 1.1.1
 
 * ID-30: Handle relative bundle references during granular scope tests by @ljtucker in https://github.com/inferno-framework/us-core-test-kit/pull/282
