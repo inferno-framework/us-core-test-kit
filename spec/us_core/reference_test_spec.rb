@@ -303,6 +303,96 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
     end
   end
 
+    describe '#unresolved_references with choice type fields' do
+    let(:test_class) do
+      Class.new(Inferno::Entities::Test) do
+        include USCoreTestKit::ReferenceResolutionTest
+        fhir_client { url 'https://example.com/fhir' }
+
+        def self.metadata
+          OpenStruct.new(must_supports: { choices: [] })
+        end
+      end
+    end
+
+    let(:test) { test_class.new(scratch: {}) }
+
+    context 'when resolve_path returns a CodeableConcept for a Reference-typed path' do
+      it 'filters out the CodeableConcept and does not raise NoMethodError' do
+        codeable_concept = FHIR::CodeableConcept.new(
+          coding: [{ system: 'http://www.nlm.nih.gov/research/umls/rxnorm', code: '1049502' }]
+        )
+
+        allow(test).to receive(:must_support_references_with_target_profile).and_return(
+          [{ path: 'medication', target_profile: '' }]
+        )
+        allow(test).to receive(:resolve_path).and_return([codeable_concept])
+
+        expect { test.unresolved_references([FHIR::MedicationRequest.new]) }.not_to raise_error
+      end
+
+      it 'treats the path as having no reference found, so it is not counted as unresolved' do
+        codeable_concept = FHIR::CodeableConcept.new(
+          coding: [{ system: 'http://www.nlm.nih.gov/research/umls/rxnorm', code: '1049502' }]
+        )
+
+        allow(test).to receive(:must_support_references_with_target_profile).and_return(
+          [{ path: 'medication', target_profile: '' }]
+        )
+        allow(test).to receive(:resolve_path).and_return([codeable_concept])
+
+        expect(test.unresolved_references([FHIR::MedicationRequest.new])).to be_empty
+      end
+    end
+  end
+
+  describe 'MedicationRequest reference resolution when medication[x] is a CodeableConcept' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV311::MedicationRequestReferenceResolutionTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+
+    let(:patient) { FHIR::Patient.new(id: '123') }
+
+    let(:medication_request) do
+      FHIR::MedicationRequest.new(
+        subject: { reference: "Patient/#{patient.id}" },
+        medicationCodeableConcept: {
+          coding: [{
+            system: 'http://www.nlm.nih.gov/research/umls/rxnorm',
+            code: '1049502',
+            display: 'Example Medication'
+          }]
+        }
+      )
+    end
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return({ all: [medication_request] })
+
+      stub_request(:get, "#{url}/Patient/#{patient.id}")
+        .to_return(status: 200, body: patient.to_json)
+    end
+
+    it 'does not raise a NoMethodError when medication[x] is a CodeableConcept' do
+      allow_any_instance_of(test_class)
+        .to receive(:resource_is_valid_with_target_profile?).and_return(true)
+
+      expect { run(test_class, url: url) }.not_to raise_error
+    end
+
+    it 'passes when all found must-support references are resolved' do
+      allow_any_instance_of(test_class)
+        .to receive(:resource_is_valid_with_target_profile?).and_return(true)
+
+      result = run(test_class, url: url)
+      expect(result.result).to eq('pass')
+    end
+  end
+
   describe 'reference validation without target profile' do
     let(:test_class) do
       Class.new(USCoreTestKit::USCoreV311::DocumentReferenceReferenceResolutionTest) do
