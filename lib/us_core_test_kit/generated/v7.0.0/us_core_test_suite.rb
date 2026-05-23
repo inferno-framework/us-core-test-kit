@@ -122,8 +122,11 @@ module USCoreTestKit
         message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
-
           message_filters.any? { |filter| filter.match? message.message }
+        end
+
+        validation_context do
+          snomedCT '731000124108' # explicit snomedCT expansion parameter
         end
 
         perform_additional_validation do |resource, profile_url|
