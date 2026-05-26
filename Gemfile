@@ -7,4 +7,5 @@ gemspec
 group :development, :test do
   gem 'debug'
   gem 'rack-test'
+  gem 'selenium-webdriver'
 end

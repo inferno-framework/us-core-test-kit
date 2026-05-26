@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     us_core_test_kit (1.1.2)
-      inferno_core (~> 1.2, >= 1.2.2)
-      smart_app_launch_test_kit (~> 1.0, >= 1.0.1)
+      inferno_core (~> 1.3, >= 1.3.1)
+      smart_app_launch_test_kit (~> 1.0, >= 1.0.2)
       tls_test_kit (~> 1.0, >= 1.0.2)
 
 GEM
@@ -24,6 +24,8 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     aes_key_wrap (1.1.0)
+    auth-sanitizer (0.1.4)
+      version_gem (~> 1.1, >= 1.1.9)
     base62-rb (0.3.1)
     base64 (0.3.0)
     bcp47 (0.3.3)
@@ -153,7 +155,7 @@ GEM
       mutex_m
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    inferno_core (1.2.2)
+    inferno_core (1.3.1)
       activesupport (~> 7.2.3.1)
       base62-rb (= 0.3.1)
       blueprinter (= 0.25.2)
@@ -197,7 +199,7 @@ GEM
       aes_key_wrap
       bindata
       httpclient
-    jwt (2.10.2)
+    jwt (3.2.0)
       base64
     kramdown (2.5.2)
       rexml (>= 3.4.4)
@@ -237,13 +239,14 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.3-x86_64-linux-musl)
       racc (~> 1.4)
-    oauth2 (2.0.18)
+    oauth2 (2.0.20)
+      auth-sanitizer (~> 0.1, >= 0.1.3)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
       logger (~> 1.2)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
-      snaky_hash (~> 2.0, >= 2.0.3)
+      snaky_hash (~> 2.0, >= 2.0.4)
       version_gem (~> 1.1, >= 1.1.9)
     oj (3.11.0)
     pastel (0.8.0)
@@ -304,18 +307,24 @@ GEM
     ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
     securerandom (0.4.1)
+    selenium-webdriver (4.41.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 4.0)
+      websocket (~> 1.0)
     sequel (5.42.0)
     sidekiq (7.2.4)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    smart_app_launch_test_kit (1.0.1)
+    smart_app_launch_test_kit (1.0.2)
       inferno_core (~> 1.2, >= 1.2.2)
       json-jwt (~> 1.15.3)
-      jwt (~> 2.6)
+      jwt (~> 3.2)
       tls_test_kit (~> 1.0, >= 1.0.2)
-    snaky_hash (2.0.3)
+    snaky_hash (2.0.4)
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
     sqlite3 (1.7.3-aarch64-linux)
@@ -352,7 +361,8 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.7.5)
+    websocket (1.2.11)
+    zeitwerk (2.8.1)
 
 PLATFORMS
   aarch64-linux
@@ -372,6 +382,7 @@ DEPENDENCIES
   factory_bot (~> 6.1)
   rack-test
   rspec (~> 3.10)
+  selenium-webdriver
   us_core_test_kit!
   webmock (~> 3.11)
 
@@ -379,6 +390,7 @@ CHECKSUMS
   activesupport (7.2.3.1) sha256=11ebed516a43a0bb47346227a35ebae4d9427465a7c9eb197a03d5c8d283cb34
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   aes_key_wrap (1.1.0) sha256=b935f4756b37375895db45669e79dfcdc0f7901e12d4e08974d5540c8e0776a5
+  auth-sanitizer (0.1.4) sha256=ded72221d4d3a7c91e34e8a87b21e6a42cbf7829697f140dcf49d542422faedc
   base62-rb (0.3.1) sha256=24e084c7e4101366ced80facf46913e4fe975b18409c55772747f44d18bf6aa0
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcp47 (0.3.3) sha256=e203e81a8f94425a0cbd3b2f05f466e5b321f38697412ba9cd121e02382d0825
@@ -436,11 +448,11 @@ CHECKSUMS
   http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   httpclient (2.9.0) sha256=4b645958e494b2f86c2f8a2f304c959baa273a310e77a2931ddb986d83e498c8
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  inferno_core (1.2.2) sha256=1ad8cfcb53a3c55723b4b802d467b7ff638a86ee81df4e425aba36c74bcd4284
+  inferno_core (1.3.1)
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json-jwt (1.15.3.1) sha256=92b27378212b6aa72aba93a537eabd7f7ac7ad38e12b638863cd7727e0dcb08f
-  jwt (2.10.2) sha256=31e1ee46f7359883d5e622446969fe9c118c3da87a0b1dca765ce269c3a0c4f4
+  jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -463,7 +475,7 @@ CHECKSUMS
   nokogiri (1.19.3-x86_64-darwin) sha256=77f3fba57d46c53ab31e62fc6c28f705109d1bf6264356c76f132b2be5728d4d
   nokogiri (1.19.3-x86_64-linux-gnu) sha256=2f5078620fe12e83669b5b17311b32532a8153d02eee7ad06948b926d6080976
   nokogiri (1.19.3-x86_64-linux-musl) sha256=248c906d2166eca5efb56d52fdee5f9a1f51d69a72e2b64fdac647b4ce39ea3f
-  oauth2 (2.0.18) sha256=bacf11e470dfb963f17348666d0a75c7b29ca65bc48fd47be9057cf91a403287
+  oauth2 (2.0.20) sha256=790c6316346da12f9dcaf27a67530f802950af05d35c3874918da84f2deae674
   oj (3.11.0) sha256=470d6ac425efd19c526ecea1cabb0219dd8bbcbdeeec57bd45a803b5e082ab5b
   pastel (0.8.0) sha256=481da9fb7d2f6e6b1a08faf11fa10363172dc40fd47848f096ae21209f805a75
   pp (0.6.3) sha256=2951d514450b93ccfeb1df7d021cae0da16e0a7f95ee1e2273719669d0ab9df6
@@ -493,10 +505,11 @@ CHECKSUMS
   ruby2_keywords (0.0.5) sha256=ffd13740c573b7301cf7a2e61fc857b2a8e3d3aff32545d6f8300d8bae10e3ef
   rubyzip (2.4.1) sha256=8577c88edc1fde8935eb91064c5cb1aef9ad5494b940cf19c775ee833e075615
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
+  selenium-webdriver (4.41.0) sha256=cdc1173cd55cf186022cea83156cc2d0bec06d337e039b02ad25d94e41bedd22
   sequel (5.42.0) sha256=d7309e3f792372ffad1d06a7ff826bdefa86623a055bc2f57b344eca5c77848b
   sidekiq (7.2.4) sha256=810e02f486ce5e102dbe6b71a19b4bf839791e11b74942ec38f5e1a6d44a0778
-  smart_app_launch_test_kit (1.0.1) sha256=e2d8922dbc5f0e38203d5a35e4aa5beaeeed84eb1e176791be1ffaf3f885b5ce
-  snaky_hash (2.0.3) sha256=25a3d299566e8153fb02fa23fd9a9358845950f7a523ddbbe1fa1e0d79a6d456
+  smart_app_launch_test_kit (1.0.2) sha256=c2f9a8d387e848a5048a037cdfb822d9e16544cdb5d4551a95c0e1d536f6f721
+  snaky_hash (2.0.4) sha256=2b12758c57defa6796341a1620f84b1a23737421d8d7e2575d0550b53cc4fece
   sqlite3 (1.7.3-aarch64-linux) sha256=0ccb8c001cd2617f4801a2c816142d3c9bc299e3f3e0f49e03812f3610b0891c
   sqlite3 (1.7.3-arm-linux) sha256=eb653026d44f8502b74564e585245485a5667d72f8888854e53c561f816541b0
   sqlite3 (1.7.3-arm64-darwin) sha256=b956160cc882d2568f332f915c9fe27cae9a4521b202d6e7ea540171c88e4600
@@ -518,7 +531,8 @@ CHECKSUMS
   us_core_test_kit (1.1.2)
   version_gem (1.1.9) sha256=0c1a0962ae543c84a00889bb018d9f14d8f8af6029d26b295d98774e3d2eb9a4
   webmock (3.26.2) sha256=774556f2ea6371846cca68c01769b2eac0d134492d21f6d0ab5dd643965a4c90
-  zeitwerk (2.7.5) sha256=d8da92128c09ea6ec62c949011b00ed4a20242b255293dd66bf41545398f73dd
+  websocket (1.2.11) sha256=b7e7a74e2410b5e85c25858b26b3322f29161e300935f70a0e0d3c35e0462737
+  zeitwerk (2.8.1) sha256=1c85e0f28954d68cd16e575da37f26846f609b68d80b5942ccfd31030c2449d5
 
 BUNDLED WITH
    2.5.22

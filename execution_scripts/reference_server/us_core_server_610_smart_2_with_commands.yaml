@@ -1,0 +1,150 @@
+sessions:
+  - suite: us_core_v610
+    preset: Inferno Reference Server
+    suite_options:
+      smart_app_launch_version: smart_app_launch_2
+
+comparison_config:
+  normalized_strings:
+    - replacement: <REFERENCE_SERVER_URL>
+      patterns:
+        - http://localhost:8080/reference-server # local reference server
+        - https://inferno.healthit.gov/reference-server # prod reference server
+        - https://inferno-qa.healthit.gov/reference-server # qa reference server
+    - replacement: <INFERNO_HOST>
+      patterns:
+        - http://localhost:4567/inferno # local inferno core ruby
+        - http://localhost:4567 # local ruby
+        - http://localhost # local docker
+        - https://inferno.healthit.gov/suites # prod
+        - https://inferno-qa.healthit.gov/suites # qa
+    - replacement: code_challenge=<CODE_CHALLENGE>
+      pattern: /code_challenge=[A-Za-z0-9+\/=_-]{43}/
+    - replacement: <UUID>
+      pattern: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
+
+steps:
+  - state_description: US Core Server 6.1.0 session created
+    status: created
+    start_run:
+      runnable: 1.3
+    action_description: Run Group 1.3 Standalone Launch
+
+  - state_description: Wait at test 1.3.2.02 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 1.3.2.02
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_85_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize patient 85
+    
+  - state_description: Finished Group 1.3 Standalone Launch
+    status: done
+    last_completed: 1.3
+    start_run:
+      runnable: 1.4
+    action_description: Run Group 1.4 EHR Launch
+
+  - state_description: Wait at test 1.4.2.01 EHR server redirects client browser to Inferno app launch URI
+    status: waiting
+    last_completed: 1.4.2.01
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_ehr_launch_85.rb '{wait_outputs.launch_uri}' '{wait_outputs.target_iss}'
+    action_description: Launch Inferno as a SMART app using patient 85 as the patient context
+
+  - state_description: Wait at test 1.4.2.04 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 1.4.2.04
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_launched_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize all requested scopes for launched patient
+
+  - state_description: Finished Group 1.4 EHR Launch
+    status: done
+    last_completed: 1.4
+    start_run:
+      runnable: 2
+    timeout: 1200 # API tests are very long-running
+    action_description: Run Group 2 US Core FHIR API
+
+  - state_description: Finished Group 2 US Core FHIR API
+    status: done
+    last_completed: 2
+    start_run:
+      runnable: 3.1.1.1
+    action_description: Run Group 3.1.1.1 Granular Scopes 1 Standalone Launch
+
+  - state_description: Wait at test 3.1.1.1.2.02 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 3.1.1.1.2.02
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_85_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize all requested scopes for patient 85
+
+  - state_description: Finished Group 3.1.1.1 Granular Scopes 1 Standalone Launch
+    status: done
+    last_completed: 3.1.1.1
+    start_run:
+      runnable: 3.1.1.3
+    action_description: Run Group 3.1.1.3 Granular Scopes 1 EHR Launch
+
+  - state_description: Wait at test 3.1.1.3.2.01 EHR server redirects client browser to Inferno app launch URI
+    status: waiting
+    last_completed: 3.1.1.3.2.01
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_ehr_launch_85.rb '{wait_outputs.launch_uri}' '{wait_outputs.target_iss}'
+    action_description: Launch Inferno as a SMART app using patient 85 as the patient context
+
+  - state_description: Wait at test 3.1.1.3.2.04 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 3.1.1.3.2.04
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_launched_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize all requested scopes for launched patient
+
+  - state_description: Finished Group 3.1.1.3 Granular Scopes 1 EHR Launch
+    status: done
+    last_completed: 3.1.1.3
+    start_run:
+      runnable: 3.1.2
+    timeout: 600 # granular scopes test take a while
+    action_description: Run Group 3.1.2 US Core FHIR API w/ Granular Scopes 1
+
+  - state_description: Finished Group 3.1.2 US Core FHIR API w/ Granular Scopes 1
+    status: done
+    last_completed: 3.1.2
+    start_run:
+      runnable: 3.2.1.1
+    action_description: Run Group 3.2.1.1 Granular Scopes 2 Standalone Launch
+
+  - state_description: Wait at test 3.2.1.1.2.02 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 3.2.1.1.2.02
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_85_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize all requested scopes for patient 85
+
+  - state_description: Finished Group 3.2.1.1 Granular Scopes 2 Standalone Launch
+    status: done
+    last_completed: 3.2.1.1
+    start_run:
+      runnable: 3.2.1.3
+    action_description: Run Group 3.2.1.3 Granular Scopes 2 EHR Launch
+
+  - state_description: Wait at test 3.2.1.3.2.01 EHR server redirects client browser to Inferno app launch URI
+    status: waiting
+    last_completed: 3.2.1.3.2.01
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_ehr_launch_85.rb '{wait_outputs.launch_uri}' '{wait_outputs.target_iss}'
+    action_description: Launch Inferno as a SMART app using patient 85 as the patient context
+
+  - state_description: Wait at test 3.2.1.3.2.04 OAuth server redirects client browser to app redirect URI
+    status: waiting
+    last_completed: 3.2.1.3.2.04
+    command: bundle exec ruby execution_scripts/reference_server/ref_server_authorize_launched_all_scopes.rb '{wait_outputs.authorization_url}'
+    action_description: Authorize all requested scopes for launched patient
+
+  - state_description: Finished Group 3.2.1.3 Granular Scopes 2 EHR Launch
+    status: done
+    last_completed: 3.2.1.3
+    start_run:
+      runnable: 3.2.2
+    timeout: 600 # granular scopes test take a while
+    action_description: Run Group 3.2.2 US Core FHIR API w/ Granular Scopes 2
+
+  - state_description: Finished Group 3.2.2 US Core FHIR API w/ Granular Scopes 2
+    status: done
+    last_completed: 3.2.2
+    command: "END_SCRIPT"
+    action_description: Script Completed

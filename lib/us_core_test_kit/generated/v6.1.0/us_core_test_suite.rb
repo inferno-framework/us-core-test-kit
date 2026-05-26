@@ -85,7 +85,8 @@ module USCoreTestKit
         /\A\S+: \S+: URL value '.*' does not resolve/,
         /\A\S+: \S+: No definition could be found for URL value '.*'/,
         %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'}, # Known issue with the Pulse Oximetry Profile
-        %r{Slice 'Observation\.value\[x\]:valueQuantity': a matching slice is required, but not found \(from (http://hl7\.org/fhir/StructureDefinition/bmi\|4\.0\.1|http://hl7\.org/fhir/StructureDefinition/bmi\%7C4\.0\.1)\)}
+        %r{Slice 'Observation\.value\[x\]:valueQuantity': a matching slice is required, but not found \(from (http://hl7\.org/fhir/StructureDefinition/bmi\|4\.0\.1|http://hl7\.org/fhir/StructureDefinition/bmi\%7C4\.0\.1)\)},
+        %r{A definition for CodeSystem 'http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem' could not be found, so the code cannot be validated} # only logged the first DocumentReference validation
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [
@@ -119,8 +120,11 @@ module USCoreTestKit
         message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
-
           message_filters.any? { |filter| filter.match? message.message }
+        end
+
+        validation_context do
+          snomedCT '731000124108' # explicit snomedCT expansion parameter
         end
 
         perform_additional_validation do |resource, profile_url|
