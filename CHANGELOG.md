@@ -1,3 +1,9 @@
+# 1.1.2
+
+* ID-45/95: execution scripts and updated validator version by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/287
+
+# 1.1.2
+
 * ID-134 Gem updates and FHIR:reference guard rail that filters out codeableConcept from being passed in FHIR:Reference only functions by @FlexonyoPizza in 
 https://github.com/inferno-framework/us-core-test-kit/pull/291
 * ID-98 Replace Replace "ASTP" with "ONC" by @FlexonyoPizza in 
