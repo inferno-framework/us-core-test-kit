@@ -25,6 +25,16 @@ module USCoreTestKit
             %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
             %r{Observation\.effective\.ofType\(Period\)\.(start|end): This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
           ]
+        when 'v501'
+          [
+            %r{A definition for CodeSystem 'http://terminology\.hl7\.org/CodeSystem/v3-AdministrativeGender' version '2021-12-01' could not be found, so the code cannot be validated},
+            %r{A definition for CodeSystem 'http://terminology\.hl7\.org/CodeSystem/v3-NullFlavor' version '2021-12-01' could not be found, so the code cannot be validated},
+            %r{The value provided \('M'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+            %r{The value provided \('F'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+            %r{The value provided \('ASKU'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+            %r{The value provided \('OTH'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+            %r{The value provided \('UNK'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)}
+          ]
         else
           []
         end

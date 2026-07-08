@@ -82,7 +82,15 @@ module USCoreTestKit
         %r{A definition for CodeSystem 'http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem' could not be found, so the code cannot be validated} # only logged the first DocumentReference validation
       ].freeze
 
-      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [
+        %r{A definition for CodeSystem 'http://terminology\.hl7\.org/CodeSystem/v3-AdministrativeGender' version '2021-12-01' could not be found, so the code cannot be validated},
+        %r{A definition for CodeSystem 'http://terminology\.hl7\.org/CodeSystem/v3-NullFlavor' version '2021-12-01' could not be found, so the code cannot be validated},
+        %r{The value provided \('M'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+        %r{The value provided \('F'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+        %r{The value provided \('ASKU'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+        %r{The value provided \('OTH'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)},
+        %r{The value provided \('UNK'\) was not found in the value set 'Birth Sex' (http://hl7\.org/fhir/us/core/ValueSet/birthsex\|5.0.1)}
+      ].freeze
 
       VALIDATION_MESSAGE_FILTERS = GENERAL_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
