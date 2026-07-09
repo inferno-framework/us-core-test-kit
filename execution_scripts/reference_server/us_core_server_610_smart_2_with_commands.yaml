@@ -60,7 +60,7 @@ steps:
     last_completed: 1.4
     start_run:
       runnable: 2
-    timeout: 1200 # API tests are very long-running
+    timeout: 1800 # API tests are very long-running
     action_description: Run Group 2 US Core FHIR API
 
   - state_description: Finished Group 2 US Core FHIR API

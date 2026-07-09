@@ -27,7 +27,7 @@ steps:
       inputs:
         smart_auth_info:
           access_token: SAMPLE_TOKEN
-    timeout: 1200 # API tests are very long-running
+    timeout: 1800 # API tests are very long-running
     action_description: Run Group 4 US Core FHIR API
 
   - state_description: Finished Group 4 US Core FHIR API
