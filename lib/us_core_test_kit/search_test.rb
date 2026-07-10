@@ -630,20 +630,20 @@ module USCoreTestKit
               'lt' + (end_datetime + 1).xmlschema
             end
           when FHIR::Reference
-            element.reference
+            escape_search_value(element.reference)
           when FHIR::CodeableConcept
             coding = prefer_well_known_code_system(element, include_system)
-            include_system ? "#{coding.system}|#{coding.code}" : coding.code
+            token_search_value(coding.system, coding.code, include_system)
           when FHIR::Identifier
-            include_system ? "#{element.system}|#{element.value}" : element.value
+            token_search_value(element.system, element.value, include_system)
           when FHIR::Coding
-            include_system ? "#{element.system}|#{element.code}" : element.code
+            token_search_value(element.system, element.code, include_system)
           when FHIR::HumanName
-            element.family || element.given&.first || element.text
+            escape_search_value(element.family || element.given&.first || element.text)
           when FHIR::Address
-            element.text || element.city || element.state || element.postalCode || element.country
+            escape_search_value(element.text || element.city || element.state || element.postalCode || element.country)
           when Inferno::DSL::PrimitiveType
-            element.value
+            escape_search_value(element.value)
           else
             if metadata.version != 'v3.1.1' &&
                metadata.search_definitions[name.to_sym][:type] == 'date' &&
@@ -657,17 +657,17 @@ module USCoreTestKit
                  (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYY-MM-DD AND Resource is NOT Goal
                 "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
               else
-                element
+                escape_search_value(element)
               end
             else
-              element
+              escape_search_value(element)
             end
           end
 
         break if search_value.present?
       end
 
-      search_value&.gsub(',', '\\,')
+      search_value
     end
 
     def element_has_valid_value?(element, include_system)
@@ -733,13 +733,9 @@ module USCoreTestKit
 
         assert match_found,
                "#{resource_type}/#{resource.id} did not match the search parameters:\n" \
-               "* Expected: #{unescape_search_value(search_value)}\n" \
+               "* Expected: #{search_value}\n" \
                "* Found: #{values_found.map(&:inspect).join(', ')}"
       end
-    end
-
-    def unescape_search_value(value)
-      value&.gsub('\\,', ',')
     end
 
     def resource_matches_param?(resource, search_param_name, escaped_search_value, values_found = [])
@@ -793,29 +789,28 @@ module USCoreTestKit
             # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
             # less safety implications than excluding desired behavior".
             codings = values_found.flat_map(&:coding)
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
+            if escaped_search_value&.match?(UNESCAPED_PIPE)
+              system, code = parse_escaped_token(escaped_search_value)
               codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               codings&.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Coding'
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
+            if escaped_search_value&.match?(UNESCAPED_PIPE)
+              system, code = parse_escaped_token(escaped_search_value)
               values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               values_found.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Identifier'
-            if search_value.include? '|'
-              values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
+            if escaped_search_value&.match?(UNESCAPED_PIPE)
+              system, value = parse_escaped_token(escaped_search_value)
+              values_found.any? { |identifier| identifier.system == system && identifier.value == value }
             else
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+            searched_values = split_escaped_search_value(escaped_search_value, ',').map(&:downcase)
             values_found.any? do |value_found|
               searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
             end
@@ -829,7 +824,7 @@ module USCoreTestKit
                 possible_values.include? reference
               end
             else
-              search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+              search_values = split_escaped_search_value(escaped_search_value, ',')
               values_found.any? { |value_found| search_values.include? value_found }
             end
           end

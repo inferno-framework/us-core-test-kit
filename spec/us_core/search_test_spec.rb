@@ -947,6 +947,42 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
         expect(element).to eq('LAB')
         expect(element_with_system).to eq('http://terminology.hl7.org/CodeSystem/v2-0074|LAB')
       end
+
+      # https://hl7.org/fhir/R4/search.html#escaping
+      it 'escapes special characters in the code but preserves the system separator' do
+        diagnostic_report = FHIR::DiagnosticReport.new(
+          category: [
+            {
+              coding: [
+                {
+                  code: 'LA|B,X',
+                  system: 'http://terminology.hl7.org/CodeSystem/v2-0074'
+                }
+              ]
+            }
+          ]
+        )
+
+        element = test.search_param_value('category', Array.wrap(diagnostic_report))
+        element_with_system = test.search_param_value('category', Array.wrap(diagnostic_report), include_system: true)
+
+        expect(element).to eq('LA\\|B\\,X')
+        expect(element_with_system).to eq('http://terminology.hl7.org/CodeSystem/v2-0074|LA\\|B\\,X')
+      end
+    end
+
+    # https://hl7.org/fhir/R4/search.html#escaping
+    context 'value containing FHIR search special characters' do
+      let(:test_class) { USCoreTestKit::USCoreV311::PatientNameSearchTest }
+      let(:test) { test_class.new }
+
+      it 'escapes commas, pipes, dollar signs, and backslashes' do
+        patient = FHIR::Patient.new(name: [{ family: 'Doe, $mith|Jr\\Sr' }])
+
+        element = test.search_param_value('name', Array.wrap(patient))
+
+        expect(element).to eq('Doe\\, \\$mith\\|Jr\\\\Sr')
+      end
     end
   end
 
@@ -1327,6 +1363,71 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
 
       expect(match_found).to be_falsey
       expect(values_found.length).to eq(0)
+    end
+
+    # https://hl7.org/fhir/R4/search.html#escaping
+    context 'with escaped FHIR search special characters' do
+      it 'matches a string value containing an escaped special character' do
+        patient = FHIR::Patient.new(id: patient_id, name: [{ family: 'Doe, Jr' }])
+
+        match_found = test.resource_matches_param?(patient, 'family', 'Doe\\, Jr')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'treats an escaped comma as a literal character, not an OR separator' do
+        # `gender=a\,b` is a search for the single literal value "a,b", so a
+        # resource whose value is only "a" must not be considered a match.
+        matching_patient = FHIR::Patient.new(id: patient_id, gender: 'a,b')
+        nonmatching_patient = FHIR::Patient.new(id: patient_id, gender: 'a')
+
+        expect(test.resource_matches_param?(matching_patient, 'gender', 'a\\,b')).to be_truthy
+        expect(test.resource_matches_param?(nonmatching_patient, 'gender', 'a\\,b')).to be_falsey
+      end
+
+      it 'matches a token value whose code contains an escaped pipe' do
+        # `system|co\|de` searches for the code "co|de" under the given system,
+        # without mistaking the escaped pipe for the system/code separator.
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'http://example.com/mrn', value: 'co|de' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'http://example.com/mrn|co\\|de')
+
+        expect(match_found).to be_truthy
+      end
+    end
+  end
+
+  # An identifier whose value itself contains `|` characters and no system.
+  # Every `|` is part of the value, so each must be escaped as `\|` - none of
+  # them separate a system from a code.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for a value-only identifier' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::PatientFamilyGenderSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:identifier_value) { 'ID12345|001|999999999|TEST FACILITY' }
+    let(:escaped_value) { 'ID12345\\|001\\|999999999\\|TEST FACILITY' }
+    let(:patient) do
+      FHIR::Patient.new(id: '85', identifier: [{ value: identifier_value }])
+    end
+
+    it 'escapes every pipe when generating the search value' do
+      element = test.search_param_value('identifier', Array.wrap(patient))
+
+      expect(element).to eq(escaped_value)
+    end
+
+    it 'matches the resource when verifying with the escaped value' do
+      match_found = test.resource_matches_param?(patient, 'identifier', escaped_value)
+
+      expect(match_found).to be_truthy
     end
   end
 
