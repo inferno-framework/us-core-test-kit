@@ -1,4 +1,8 @@
-# 1.1.2
+# 1.1.4
+
+* Adjust v5.0.1 validator message filters for v5.0.1 based on validator version v1.0.79.
+
+# 1.1.3
 
 * ID-45/95: execution scripts and updated validator version by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/287
 
