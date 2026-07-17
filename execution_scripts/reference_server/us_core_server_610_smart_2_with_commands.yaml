@@ -28,6 +28,8 @@ steps:
     status: created
     start_run:
       runnable: 1.3
+      inputs:
+        url: https://inferno.healthit.gov/reference-server/r4 # always against prod, even on qa
     action_description: Run Group 1.3 Standalone Launch
 
   - state_description: Wait at test 1.3.2.02 OAuth server redirects client browser to app redirect URI
