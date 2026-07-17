@@ -25,6 +25,7 @@ steps:
     start_run:
       runnable: 4
       inputs:
+        url: https://inferno.healthit.gov/reference-server/r4 # always against prod, even on qa
         smart_auth_info:
           access_token: SAMPLE_TOKEN
     timeout: 1800 # API tests are very long-running
