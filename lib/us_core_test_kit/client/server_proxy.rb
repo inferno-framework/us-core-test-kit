@@ -58,12 +58,8 @@ module USCoreTestKit
 
       def replace_bundle_urls(bundle)
         reference_server_base = ENV.fetch('FHIR_REFERENCE_SERVER')
-        bundle&.link&.map! { |link| { relation: link.relation, url: link.url.gsub(reference_server_base, new_link) } }
-        bundle&.entry&.map! do |bundled_resource|
-          { fullUrl: bundled_resource.fullUrl.gsub(reference_server_base, new_link),
-            resource: bundled_resource.resource,
-            search: bundled_resource.search }
-        end
+        bundle&.link&.each { |link| link.url = link.url.gsub(reference_server_base, new_link) }
+        bundle&.entry&.each { |entry| entry.fullUrl = entry.fullUrl.gsub(reference_server_base, new_link) }
         bundle
       end
 

@@ -1,3 +1,7 @@
+# 1.1.5
+
+* Fix a bug in the client tests proxying.
+
 # 1.1.4
 
 * Adjust v5.0.1 validator message filters for v5.0.1 based on validator version v1.0.79.
