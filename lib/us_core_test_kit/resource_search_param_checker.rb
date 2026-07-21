@@ -1,4 +1,5 @@
 require_relative 'fhir_resource_navigation'
+require_relative 'fhir_search_escaping'
 
 module USCoreTestKit
   module ResourceSearchParamChecker
@@ -40,6 +41,36 @@ module USCoreTestKit
       end
     end
 
+    def escape_search_value(value)
+      value&.gsub(FHIRSearchEscaping::SPECIAL_CHARACTERS) { |character| "\\#{character}" }
+    end
+
+    def unescape_search_value(value)
+      value&.gsub(/\\(.)/m) { Regexp.last_match(1) }
+    end
+
+    # Build a token search value, escaping the system and code so that any
+    # special characters they contain are not mistaken for the unescaped `|`
+    # that separates the system from the code.
+    def token_search_value(system, code, include_system)
+      return escape_search_value(code) unless include_system
+
+      "#{escape_search_value(system)}|#{escape_search_value(code)}"
+    end
+
+    def parse_escaped_token(escaped_search_value)
+      system, code = escaped_search_value.split(FHIRSearchEscaping::UNESCAPED_PIPE, 2)
+      [unescape_search_value(system), unescape_search_value(code)]
+    end
+
+    # Split an escaped search value on the unescaped occurrences of `delimiter`,
+    # then unescape each of the resulting values.
+    def split_escaped_search_value(escaped_search_value, delimiter)
+      escaped_search_value
+        .split(/#{FHIRSearchEscaping::UNESCAPED}#{Regexp.escape(delimiter)}/)
+        .map { |value| unescape_search_value(value) }
+    end
+
     def resource_matches_param?(resource, search_param_name, escaped_search_value, values_found = [])
       search_value = unescape_search_value(escaped_search_value)
       paths = search_param_paths(search_param_name)
@@ -48,16 +79,22 @@ module USCoreTestKit
 
       paths.each do |path|
         type = metadata.search_definitions[search_param_name.to_sym][:type]
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-          if value.is_a? FHIR::Reference
-            value.reference
-          else
-            value
-          end
+
+        resolve_path(resource, path).each do |value|
+          values_found <<
+            if value.is_a? FHIR::Reference
+              value.reference
+            elsif value.is_a? Inferno::DSL::PrimitiveType
+              value.value
+            else
+              value
+            end
         end
 
+        # delete any nil values from the array so that we don't 
+        # have to check for nil when validating the search value
+        values_found.compact!
+        
         match_found =
           case type
           when 'Period', 'date', 'instant', 'dateTime'
@@ -88,29 +125,28 @@ module USCoreTestKit
             # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
             # less safety implications than excluding desired behavior".
             codings = values_found.flat_map(&:coding)
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
+              system, code = parse_escaped_token(escaped_search_value)
               codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               codings&.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Coding'
-            if search_value.include? '|'
-              system = search_value.split('|').first
-              code = search_value.split('|').last
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
+              system, code = parse_escaped_token(escaped_search_value)
               values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               values_found.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Identifier'
-            if search_value.include? '|'
-              values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == search_value }
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
+              system, value = parse_escaped_token(escaped_search_value)
+              values_found.any? { |identifier| identifier.system == system && identifier.value == value }
             else
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+            searched_values = split_escaped_search_value(escaped_search_value, ',').map(&:downcase)
             values_found.any? do |value_found|
               searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
             end
@@ -124,7 +160,7 @@ module USCoreTestKit
                 possible_values.include? reference
               end
             else
-              search_values = search_value.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
+              search_values = split_escaped_search_value(escaped_search_value, ',')
               values_found.any? { |value_found| search_values.include? value_found }
             end
           end
