@@ -1397,6 +1397,28 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
 
         expect(match_found).to be_truthy
       end
+
+      it 'recognizes a separator pipe preceded by an escaped backslash' do
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys\\', value: 'code' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'sys\\\\|code')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'handles an escaped backslash followed by an escaped pipe within a code' do
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys', value: 'val\\|rest' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'sys|val\\\\|rest')
+
+        expect(match_found).to be_truthy
+      end
     end
   end
 

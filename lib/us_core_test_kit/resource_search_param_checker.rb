@@ -1,4 +1,5 @@
 require_relative 'fhir_resource_navigation'
+require_relative 'fhir_search_escaping'
 
 module USCoreTestKit
   module ResourceSearchParamChecker
@@ -40,18 +41,8 @@ module USCoreTestKit
       end
     end
 
-    # The characters `\`, `|`, `$`, and `,` have special meaning within a FHIR
-    # search parameter value, so when they appear as part of an actual value
-    # they must be escaped by prepending a backslash.
-    # https://hl7.org/fhir/R4/search.html#escaping
-    FHIR_SEARCH_SPECIAL_CHARACTERS = /[\\|$,]/
-
-    # A `|` which separates the system from the code in a token search value,
-    # as opposed to one escaped as `\|` because it is part of a value.
-    UNESCAPED_PIPE = /(?<!\\)\|/
-
     def escape_search_value(value)
-      value&.gsub(FHIR_SEARCH_SPECIAL_CHARACTERS) { |character| "\\#{character}" }
+      value&.gsub(FHIRSearchEscaping::SPECIAL_CHARACTERS) { |character| "\\#{character}" }
     end
 
     def unescape_search_value(value)
@@ -68,7 +59,7 @@ module USCoreTestKit
     end
 
     def parse_escaped_token(escaped_search_value)
-      system, code = escaped_search_value.split(UNESCAPED_PIPE, 2)
+      system, code = escaped_search_value.split(FHIRSearchEscaping::UNESCAPED_PIPE, 2)
       [unescape_search_value(system), unescape_search_value(code)]
     end
 
@@ -76,7 +67,7 @@ module USCoreTestKit
     # then unescape each of the resulting values.
     def split_escaped_search_value(escaped_search_value, delimiter)
       escaped_search_value
-        .split(/(?<!\\)#{Regexp.escape(delimiter)}/)
+        .split(/#{FHIRSearchEscaping::UNESCAPED}#{Regexp.escape(delimiter)}/)
         .map { |value| unescape_search_value(value) }
     end
 
@@ -88,16 +79,22 @@ module USCoreTestKit
 
       paths.each do |path|
         type = metadata.search_definitions[search_param_name.to_sym][:type]
-        values_found =
-          resolve_path(resource, path)
-            .map do |value|
-          if value.is_a? FHIR::Reference
-            value.reference
-          else
-            value
-          end
+
+        resolve_path(resource, path).each do |value|
+          values_found <<
+            if value.is_a? FHIR::Reference
+              value.reference
+            elsif value.is_a? Inferno::DSL::PrimitiveType
+              value.value
+            else
+              value
+            end
         end
 
+        # delete any nil values from the array so that we don't 
+        # have to check for nil when validating the search value
+        values_found.compact!
+        
         match_found =
           case type
           when 'Period', 'date', 'instant', 'dateTime'
@@ -128,21 +125,21 @@ module USCoreTestKit
             # treat tokens in a case-insensitive manner, on the grounds that including undesired data has
             # less safety implications than excluding desired behavior".
             codings = values_found.flat_map(&:coding)
-            if escaped_search_value&.match?(UNESCAPED_PIPE)
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
               system, code = parse_escaped_token(escaped_search_value)
               codings&.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               codings&.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Coding'
-            if escaped_search_value&.match?(UNESCAPED_PIPE)
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
               system, code = parse_escaped_token(escaped_search_value)
               values_found.any? { |coding| coding.system == system && coding.code&.casecmp?(code) }
             else
               values_found.any? { |coding| coding.code&.casecmp?(search_value) }
             end
           when 'Identifier'
-            if escaped_search_value&.match?(UNESCAPED_PIPE)
+            if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
               system, value = parse_escaped_token(escaped_search_value)
               values_found.any? { |identifier| identifier.system == system && identifier.value == value }
             else
