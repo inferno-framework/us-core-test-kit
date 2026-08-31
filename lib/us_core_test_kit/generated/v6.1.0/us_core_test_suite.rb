@@ -90,9 +90,9 @@ module USCoreTestKit
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [
-        %r{Observation\.effective\.ofType\(Period\):.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
-        %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|6.1.0},
-        %r{Observation\.effective\.ofType\(Period\)\.(start|end): This element is not allowed by the profile http://hl7.org/fhir/StructureDefinition/dateTime}
+        %r{Observation\.effective\.ofType\(Period\):.*http://hl7\.org/fhir/us/core/StructureDefinition/us-core-smokingstatus\|6\.1\.0},
+        %r{Observation: Slice 'Observation\.effective\[x\]:effectiveDateTime':.*http://hl7\.org/fhir/us/core/StructureDefinition/us-core-smokingstatus\|6\.1\.0},
+        %r{Observation\.effective\.ofType\(Period\)\.(start|end): This element is not allowed by the profile http://hl7\.org/fhir/StructureDefinition/dateTime}
       ].freeze
 
       VALIDATION_MESSAGE_FILTERS = GENERAL_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
