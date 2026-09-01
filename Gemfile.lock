@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     us_core_test_kit (1.1.5)
-      inferno_core (~> 1.4, >= 1.4.2)
+      inferno_core (~> 1.4, >= 1.4.3)
       smart_app_launch_test_kit (~> 1.0, >= 1.0.2)
       tls_test_kit (~> 1.0, >= 1.0.2)
 
@@ -155,7 +155,7 @@ GEM
       mutex_m
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    inferno_core (1.4.2)
+    inferno_core (1.4.3)
       activesupport (~> 7.2.3.1)
       base62-rb (= 0.3.1)
       blueprinter (= 0.25.2)
@@ -452,7 +452,7 @@ CHECKSUMS
   http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   httpclient (2.9.0) sha256=4b645958e494b2f86c2f8a2f304c959baa273a310e77a2931ddb986d83e498c8
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  inferno_core (1.4.2) sha256=2a738a3d0cda8a2895019526176ab34fcae770a7755daeec87d154f4e4b6c630
+  inferno_core (1.4.3)
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json-jwt (1.15.3.1) sha256=92b27378212b6aa72aba93a537eabd7f7ac7ad38e12b638863cd7727e0dcb08f
