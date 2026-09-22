@@ -16,7 +16,7 @@ module USCoreTestKit
 
         In this set of tests, Inferno serves as a FHIR client that attempts to
         access the different types of Screening and Assessments specified in the guidance.
-        The provided patient needs to have the following four common Screening and Assessements
+        The provided patient needs to have the following seven common Screening and Assessements
         as Observation categories:
 
         * SDOH Assessment (sdoh)
