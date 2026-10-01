@@ -465,4 +465,82 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
       expect(result.result).to eq('skip')
     end
   end
+
+  describe 'reference validation against versioned target profiles' do
+    let(:suite_id) { 'us_core_v610' }
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::CoverageReferenceResolutionTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+
+    let(:patient) { FHIR::Patient.new(id: '85') }
+    let(:organization) { FHIR::Organization.new(id: '357') }
+    let(:coverage) do
+      FHIR::Coverage.new(
+        beneficiary: { reference: "Patient/#{patient.id}" },
+        payor: [{ reference: "Organization/#{organization.id}" }]
+      )
+    end
+
+    before do
+      allow_any_instance_of(test_class)
+        .to receive(:scratch_resources).and_return({ all: [coverage] })
+
+      stub_request(:get, "#{url}/Patient/#{patient.id}")
+        .to_return(status: 200, body: patient.to_json)
+
+      stub_request(:get, "#{url}/Organization/#{organization.id}")
+        .to_return(status: 200, body: organization.to_json)
+    end
+
+    it 'validates each referenced resource against the US Core 6.1.0 version of its target profile' do
+      validated_profiles = []
+      allow_any_instance_of(test_class).to receive(:resource_is_valid?) do |_test, resource:, profile_url:, **|
+        validated_profiles << [resource.resourceType, profile_url]
+        true
+      end
+
+      result = run(test_class, url: url)
+
+      expect(result.result).to eq('pass')
+      expect(validated_profiles).to contain_exactly(
+        ['Patient', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|6.1.0'],
+        ['Organization', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization|6.1.0']
+      )
+    end
+  end
+
+  describe '#resource_is_valid_with_target_profile?' do
+    let(:resource) { FHIR::Encounter.new(id: '123') }
+    let(:target_profile) { 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter' }
+
+    {
+      '6.1.0' => USCoreTestKit::USCoreV610::EncounterReferenceResolutionTest,
+      '7.0.0' => USCoreTestKit::USCoreV700::EncounterReferenceResolutionTest,
+      '8.0.0' => USCoreTestKit::USCoreV800::EncounterReferenceResolutionTest
+    }.each do |version, test_class|
+      context "with US Core #{version}" do
+        let(:test) { test_class.new(scratch: {}) }
+
+        it 'validates against the target profile with the US Core version appended' do
+          allow(test).to receive(:resource_is_valid?).and_return(true)
+
+          expect(test.resource_is_valid_with_target_profile?(resource, target_profile)).to be(true)
+          expect(test).to have_received(:resource_is_valid?)
+            .with(resource:, profile_url: "#{target_profile}|#{version}", add_messages_to_runnable: false)
+        end
+
+        it 'keeps the version of a target profile that already has one' do
+          versioned_profile = "#{target_profile}|1.2.3"
+          allow(test).to receive(:resource_is_valid?).and_return(false)
+
+          expect(test.resource_is_valid_with_target_profile?(resource, versioned_profile)).to be(false)
+          expect(test).to have_received(:resource_is_valid?)
+            .with(resource:, profile_url: versioned_profile, add_messages_to_runnable: false)
+        end
+      end
+    end
+  end
 end

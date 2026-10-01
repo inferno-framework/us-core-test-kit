@@ -167,7 +167,10 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      resource_is_valid?(resource:, profile_url: target_profile, add_messages_to_runnable: false)
+      target_profile_with_version =
+        target_profile.include?('|') ? target_profile : "#{target_profile}|#{metadata.profile_version}"
+
+      resource_is_valid?(resource:, profile_url: target_profile_with_version, add_messages_to_runnable: false)
     end
   end
 end
