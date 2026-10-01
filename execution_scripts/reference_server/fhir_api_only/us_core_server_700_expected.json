@@ -46685,7 +46685,7 @@
         ],
         "messages": [
             {
-                "message": "ServiceRequest/da9c8abc-c070-4be8-a132-e2285be19681: ServiceRequest.category[0]: Reference to draft ValueSet http://hl7.org/fhir/ValueSet/servicerequest-category|4.0.1",
+                "message": "ServiceRequest/da9c8abc-c070-4be8-a132-e2285be19681: ServiceRequest.category[0]: Reference to draft ValueSet http://hl7.org/fhir/ValueSet/servicerequest-category|4.0.1 from active ValueSet http://hl7.org/fhir/us/core/ValueSet/us-core-servicerequest-category|7.0.0",
                 "type": "info"
             },
             {
