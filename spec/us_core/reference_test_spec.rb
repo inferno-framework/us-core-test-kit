@@ -576,5 +576,52 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
           .with(resource:, profile_url: "#{pdex_profile}|2.0.0", add_messages_to_runnable: false)
       end
     end
+
+    context 'when the group profile is a base FHIR profile' do
+      # Mirrors the US Core 3.1.1 vital signs groups (e.g. http://hl7.org/fhir/StructureDefinition/bp, 4.0.1),
+      # whose canonical base is a prefix of every US Core canonical
+      let(:test_class) do
+        Class.new(Inferno::Test) do
+          include USCoreTestKit::ReferenceResolutionTest
+
+          def self.metadata
+            USCoreTestKit::Generator::GroupMetadata.new(
+              profile_url: 'http://hl7.org/fhir/StructureDefinition/bp',
+              profile_version: '4.0.1'
+            )
+          end
+        end
+      end
+      let(:test) { test_class.new(scratch: {}) }
+
+      it 'does not append the base FHIR version to a US Core target profile' do
+        allow(test).to receive(:resource_is_valid?).and_return(true)
+
+        expect(test.resource_is_valid_with_target_profile?(resource, target_profile)).to be(true)
+        expect(test).to have_received(:resource_is_valid?)
+          .with(resource:, profile_url: target_profile, add_messages_to_runnable: false)
+      end
+    end
+
+    context 'when the metadata has no profile_url' do
+      let(:test_class) do
+        Class.new(Inferno::Test) do
+          include USCoreTestKit::ReferenceResolutionTest
+
+          def self.metadata
+            USCoreTestKit::Generator::GroupMetadata.new(profile_version: '2.0.0')
+          end
+        end
+      end
+      let(:test) { test_class.new(scratch: {}) }
+
+      it 'validates against the target profile unchanged' do
+        allow(test).to receive(:resource_is_valid?).and_return(true)
+
+        expect(test.resource_is_valid_with_target_profile?(resource, target_profile)).to be(true)
+        expect(test).to have_received(:resource_is_valid?)
+          .with(resource:, profile_url: target_profile, add_messages_to_runnable: false)
+      end
+    end
   end
 end
