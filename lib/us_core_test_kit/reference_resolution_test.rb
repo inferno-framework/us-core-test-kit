@@ -167,10 +167,18 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      target_profile_with_version =
-        target_profile.include?('|') ? target_profile : "#{target_profile}|#{metadata.profile_version}"
+      resource_is_valid?(resource:, profile_url: versioned_target_profile(target_profile),
+                         add_messages_to_runnable: false)
+    end
 
-      resource_is_valid?(resource:, profile_url: target_profile_with_version, add_messages_to_runnable: false)
+    # Only target profiles from the same IG as the group's profile get the group's profile version. Other kits
+    # include this module with their own metadata (e.g. Da Vinci PDex, whose profile_version is the PDex
+    # version) while targeting US Core profiles, so those target profiles are left unchanged.
+    def versioned_target_profile(target_profile)
+      return target_profile if target_profile.include?('|')
+      return target_profile unless target_profile.start_with?(metadata.profile_url.split('StructureDefinition/').first)
+
+      "#{target_profile}|#{metadata.profile_version}"
     end
   end
 end
