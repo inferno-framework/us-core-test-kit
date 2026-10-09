@@ -167,10 +167,26 @@ module USCoreTestKit
     def resource_is_valid_with_target_profile?(resource, target_profile)
       return true if target_profile.blank?
 
-      target_profile_with_version =
-        target_profile.include?('|') ? target_profile : "#{target_profile}|#{metadata.profile_version}"
+      resource_is_valid?(resource:, profile_url: versioned_target_profile(target_profile),
+                         add_messages_to_runnable: false)
+    end
 
-      resource_is_valid?(resource:, profile_url: target_profile_with_version, add_messages_to_runnable: false)
+    # Only target profiles from the same IG as the group's profile get the group's profile version. Other kits
+    # include this module with their own metadata (e.g. Da Vinci PDex, whose profile_version is the PDex
+    # version) while targeting US Core profiles, and US Core 3.1.1 vital signs groups have base FHIR profiles,
+    # so target profiles with a different canonical base are left unchanged.
+    def versioned_target_profile(target_profile)
+      return target_profile if target_profile.include?('|')
+
+      group_base = canonical_base(metadata.profile_url)
+      return target_profile if group_base.nil? || canonical_base(target_profile) != group_base
+
+      "#{target_profile}|#{metadata.profile_version}"
+    end
+
+    def canonical_base(profile_url)
+      base, separator, = profile_url.to_s.partition('StructureDefinition/')
+      base if separator.present?
     end
   end
 end
