@@ -1,3 +1,8 @@
+# 1.1.6
+* Update execution scripts by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/297
+* Fix unescaped parens in v5.0.1 Birth Sex message filters by @smunini in https://github.com/inferno-framework/us-core-test-kit/pull/298
+* ID-225: fix 610 message filters by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/299
+
 # 1.1.5
 
 * Fix a bug in the client tests proxying.
