@@ -630,7 +630,7 @@ module USCoreTestKit
               'lt' + (end_datetime + 1).xmlschema
             end
           when FHIR::Reference
-            element.reference
+            escape_search_value(element.reference)
           when FHIR::CodeableConcept
             coding = prefer_well_known_code_system(element, include_system)
             token_search_value(coding.system, coding.code, include_system)

@@ -1419,6 +1419,30 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
 
         expect(match_found).to be_truthy
       end
+
+      it 'handles an arbitrary number of backslashes before a pipe' do
+        # Three escaped backslashes (`\\\\\\`) followed by the separator pipe.
+        separated_patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys\\\\\\', value: 'code' }]
+        )
+        # Two escaped backslashes followed by an escaped pipe (`\\\\\\|`).
+        escaped_patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ value: 'sys\\\\|code' }]
+        )
+
+        expect(test.resource_matches_param?(separated_patient, 'identifier', 'sys\\\\\\\\\\\\|code')).to be_truthy
+        expect(test.resource_matches_param?(escaped_patient, 'identifier', 'sys\\\\\\\\\\|code')).to be_truthy
+      end
+
+      it 'matches an identifier with no system when searching with a leading pipe' do
+        patient = FHIR::Patient.new(id: patient_id, identifier: [{ value: 'id1234' }])
+        patient_with_system = FHIR::Patient.new(id: patient_id, identifier: [{ system: 'sys', value: 'id1234' }])
+
+        expect(test.resource_matches_param?(patient, 'identifier', '|id1234')).to be_truthy
+        expect(test.resource_matches_param?(patient_with_system, 'identifier', '|id1234')).to be_falsey
+      end
     end
   end
 

@@ -4,6 +4,7 @@ require_relative 'fhir_search_escaping'
 module USCoreTestKit
   module ResourceSearchParamChecker
     include Inferno::DSL::FHIRResourceNavigation
+    include FHIRSearchEscaping
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
@@ -39,36 +40,6 @@ module USCoreTestKit
       else
         true
       end
-    end
-
-    def escape_search_value(value)
-      value&.gsub(FHIRSearchEscaping::SPECIAL_CHARACTERS) { |character| "\\#{character}" }
-    end
-
-    def unescape_search_value(value)
-      value&.gsub(/\\(.)/m) { Regexp.last_match(1) }
-    end
-
-    # Build a token search value, escaping the system and code so that any
-    # special characters they contain are not mistaken for the unescaped `|`
-    # that separates the system from the code.
-    def token_search_value(system, code, include_system)
-      return escape_search_value(code) unless include_system
-
-      "#{escape_search_value(system)}|#{escape_search_value(code)}"
-    end
-
-    def parse_escaped_token(escaped_search_value)
-      system, code = escaped_search_value.split(FHIRSearchEscaping::UNESCAPED_PIPE, 2)
-      [unescape_search_value(system), unescape_search_value(code)]
-    end
-
-    # Split an escaped search value on the unescaped occurrences of `delimiter`,
-    # then unescape each of the resulting values.
-    def split_escaped_search_value(escaped_search_value, delimiter)
-      escaped_search_value
-        .split(/#{FHIRSearchEscaping::UNESCAPED}#{Regexp.escape(delimiter)}/)
-        .map { |value| unescape_search_value(value) }
     end
 
     def resource_matches_param?(resource, search_param_name, escaped_search_value, values_found = [])
@@ -141,7 +112,7 @@ module USCoreTestKit
           when 'Identifier'
             if escaped_search_value&.match?(FHIRSearchEscaping::UNESCAPED_PIPE)
               system, value = parse_escaped_token(escaped_search_value)
-              values_found.any? { |identifier| identifier.system == system && identifier.value == value }
+              values_found.any? { |identifier| "#{identifier.system}|#{identifier.value}" == "#{system}|#{value}" }
             else
               values_found.any? { |identifier| identifier.value == search_value }
             end
