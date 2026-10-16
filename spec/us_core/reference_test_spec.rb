@@ -540,6 +540,25 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
           expect(test).to have_received(:resource_is_valid?)
             .with(resource:, profile_url: versioned_profile, add_messages_to_runnable: false)
         end
+
+        it 'does not append the US Core version to a base FHIR target profile' do
+          patient = FHIR::Patient.new(id: '85')
+          base_profile = 'http://hl7.org/fhir/StructureDefinition/Patient'
+          allow(test).to receive(:resource_is_valid?).and_return(true)
+
+          expect(test.resource_is_valid_with_target_profile?(patient, base_profile)).to be(true)
+          expect(test).to have_received(:resource_is_valid?)
+            .with(resource: patient, profile_url: base_profile, add_messages_to_runnable: false)
+        end
+
+        it 'does not validate when there is no target profile' do
+          allow(test).to receive(:resource_is_valid?)
+
+          [nil, ''].each do |blank_profile|
+            expect(test.resource_is_valid_with_target_profile?(resource, blank_profile)).to be(true)
+          end
+          expect(test).not_to have_received(:resource_is_valid?)
+        end
       end
     end
 
@@ -575,6 +594,19 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
         expect(test).to have_received(:resource_is_valid?)
           .with(resource:, profile_url: "#{pdex_profile}|2.0.0", add_messages_to_runnable: false)
       end
+
+      it 'keeps the version of a target profile that already has one' do
+        [
+          "#{target_profile}|6.1.0",
+          'http://hl7.org/fhir/us/davinci-pdex/StructureDefinition/pdex-device|1.0.0'
+        ].each do |versioned_profile|
+          allow(test).to receive(:resource_is_valid?).and_return(true)
+
+          expect(test.resource_is_valid_with_target_profile?(resource, versioned_profile)).to be(true)
+          expect(test).to have_received(:resource_is_valid?)
+            .with(resource:, profile_url: versioned_profile, add_messages_to_runnable: false)
+        end
+      end
     end
 
     context 'when the group profile is a base FHIR profile' do
@@ -603,6 +635,19 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
       end
     end
 
+    context 'with a generated US Core 3.1.1 vital signs group' do
+      # http://hl7.org/fhir/StructureDefinition/bodyheight, 4.0.1
+      let(:test) { USCoreTestKit::USCoreV311::BodyheightReferenceResolutionTest.new(scratch: {}) }
+
+      it 'does not append the base FHIR version to a US Core target profile' do
+        allow(test).to receive(:resource_is_valid?).and_return(true)
+
+        expect(test.resource_is_valid_with_target_profile?(resource, target_profile)).to be(true)
+        expect(test).to have_received(:resource_is_valid?)
+          .with(resource:, profile_url: target_profile, add_messages_to_runnable: false)
+      end
+    end
+
     context 'when the metadata has no profile_url' do
       let(:test_class) do
         Class.new(Inferno::Test) do
@@ -621,6 +666,50 @@ RSpec.describe USCoreTestKit::ReferenceResolutionTest, :runnable do
         expect(test.resource_is_valid_with_target_profile?(resource, target_profile)).to be(true)
         expect(test).to have_received(:resource_is_valid?)
           .with(resource:, profile_url: target_profile, add_messages_to_runnable: false)
+      end
+    end
+  end
+
+  describe 'target profiles requested by the generated reference resolution tests' do
+    def package_profiles(package_name)
+      package_path = File.join(__dir__, '..', '..', 'lib', 'us_core_test_kit', 'igs', "#{package_name}.tgz")
+      tar = Gem::Package::TarReader.new(Zlib::GzipReader.open(package_path))
+
+      tar.each_with_object(Set.new) do |entry, profiles|
+        next unless entry.file? && entry.full_name.match?(%r{\Apackage/StructureDefinition-.*\.json\z})
+
+        structure_definition = JSON.parse(entry.read)
+        profiles << "#{structure_definition['url']}|#{structure_definition['version']}"
+      end
+    ensure
+      tar&.close
+    end
+
+    {
+      'us_core_400' => USCoreTestKit::USCoreV400,
+      'us_core_501' => USCoreTestKit::USCoreV501,
+      'us_core_610' => USCoreTestKit::USCoreV610,
+      'us_core_700' => USCoreTestKit::USCoreV700,
+      'us_core_800' => USCoreTestKit::USCoreV800
+    }.each do |package_name, version_module|
+      it "exist in the #{package_name} package or in base FHIR" do
+        test_classes = version_module.constants.map { |name| version_module.const_get(name) }.select do |constant|
+          constant.is_a?(Class) && constant.include?(USCoreTestKit::ReferenceResolutionTest)
+        end
+
+        requested_profiles = test_classes.flat_map do |test_class|
+          test = test_class.new(scratch: {})
+          test.must_support_references_with_target_profile
+            .map { |reference| reference[:target_profile] }
+            .reject(&:blank?)
+            .map { |target_profile| test.versioned_target_profile(target_profile) }
+        end.uniq
+
+        versioned_profiles, unversioned_profiles = requested_profiles.partition { |profile| profile.include?('|') }
+
+        expect(versioned_profiles).not_to be_empty
+        expect(versioned_profiles - package_profiles(package_name).to_a).to be_empty
+        expect(unversioned_profiles).to all(start_with('http://hl7.org/fhir/StructureDefinition/'))
       end
     end
   end
