@@ -137,7 +137,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
       result = run(patient_must_support_test)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('Patient.extension:race')
+      expect(result.result_message).to include('extension:race')
     end
   end
 
@@ -192,7 +192,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
         result = run(care_plan_must_support_test)
 
         expect(result.result).to eq('skip')
-        expect(result.result_message).to include('CarePlan.category:AssessPlan')
+        expect(result.result_message).to include('category:AssessPlan')
       end
     end
 
@@ -353,7 +353,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
         result = run(test_class)
 
         expect(result.result).to eq('skip')
-        expect(result.result_message).to include('Observation.effective[x]:effectiveDateTime')
+        expect(result.result_message).to include('effective[x]:effectiveDateTime')
       end
     end
 
@@ -442,7 +442,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
           result = run(test_class)
           expect(result.result).to eq('skip')
-          expect(result.result_message).to include('Condition.category:us-core')
+          expect(result.result_message).to include('category:us-core')
         end
       end
 
@@ -600,7 +600,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
       result = run(test_class)
       expect(result.result).to eq('skip')
       expect(result.result_message).to include('onsetDateTime')
-      expect(result.result_message).to include('Condition.extension:assertedDate')
+      expect(result.result_message).to include('extension:assertedDate')
     end
   end
 
@@ -661,7 +661,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
       result = run(test_class)
       expect(result.result).to eq('skip')
       expect(result.result_message).to include('name.period.end')
-      expect(result.result_message).to include('name.use:old')
+      expect(result.result_message).to include('name.use = old')
     end
   end
 
@@ -813,8 +813,11 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
+      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
+      expect(missing).to contain_exactly(
+        'questionnaire.extension:questionnaireDisplay',
+        'questionnaire.extension:url'
+      )
     end
 
     it 'skips if both MS extensions and MS element in a primitive are not provided' do
@@ -832,9 +835,12 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:url')
-      expect(result.result_message).to include(' questionnaire')
+      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
+      expect(missing).to contain_exactly(
+        'questionnaire',
+        'questionnaire.extension:questionnaireDisplay',
+        'questionnaire.extension:url'
+      )
     end
 
     it 'skips if one of MS extensions in a primitive is not provided' do
@@ -850,9 +856,8 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      expect(result.result_message).to include('QuestionnaireResponse.questionnaire.extension:questionnaireDisplay')
-      expect(result.result_message).to_not include('QuestionnaireResponse.questionnaire.extension:url')
-      expect(result.result_message).to_not include(' questionnaire')
+      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
+      expect(missing).to contain_exactly('questionnaire.extension:questionnaireDisplay')
     end
 
     it 'skips if MS primitive value is missing' do
