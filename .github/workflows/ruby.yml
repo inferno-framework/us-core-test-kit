@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         ruby-version: ['3.3.6']
@@ -23,7 +23,7 @@ jobs:
 
   verify-test-generation:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         ruby-version: ['3.3.6']
@@ -47,7 +47,7 @@ jobs:
 
   test:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         ruby-version: ['3.3.6']
@@ -63,7 +63,7 @@ jobs:
 
   requirements:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         ruby-version: ['3.3.6']
