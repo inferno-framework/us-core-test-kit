@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    us_core_test_kit (1.1.6)
-      inferno_core (~> 1.4, >= 1.5.0)
+    us_core_test_kit (1.2.0)
+      inferno_core (~> 1.5, >= 1.5.0)
       smart_app_launch_test_kit (~> 1.0, >= 1.0.2)
       tls_test_kit (~> 1.0, >= 1.0.2)
 
@@ -538,7 +538,7 @@ CHECKSUMS
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   unicode_utils (1.4.0) sha256=b922d0cf2313b6b7136ada6645ce7154ffc86418ca07d53b058efe9eb72f2a40
-  us_core_test_kit (1.1.6)
+  us_core_test_kit (1.2.0)
   version_gem (1.1.15) sha256=a73241587b29252e3567e0c818ded80730eb754d43b508f6ce4db22ca9ba27d0
   webmock (3.26.4) sha256=8d8da206d217ebe6968cfb09c77f4533c23074e1432bad865f3994eacbaad50d
   websocket (1.2.11) sha256=b7e7a74e2410b5e85c25858b26b3322f29161e300935f70a0e0d3c35e0462737

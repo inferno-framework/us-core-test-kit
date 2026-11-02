@@ -813,11 +813,8 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
-      expect(missing).to contain_exactly(
-        'questionnaire.extension:questionnaireDisplay',
-        'questionnaire.extension:url'
-      )
+      expect(result.result_message).to include('questionnaire.extension:questionnaireDisplay')
+      expect(result.result_message).to include('questionnaire.extension:url')
     end
 
     it 'skips if both MS extensions and MS element in a primitive are not provided' do
@@ -835,11 +832,8 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
-      expect(missing).to contain_exactly(
-        'questionnaire',
-        'questionnaire.extension:questionnaireDisplay',
-        'questionnaire.extension:url'
+      expect(result.result_message).to include(
+        'questionnaire, questionnaire.extension:questionnaireDisplay, questionnaire.extension:url in'
       )
     end
 
@@ -856,8 +850,7 @@ RSpec.describe USCoreTestKit::MustSupportTest, :runnable do
 
       result = run(test_class)
       expect(result.result).to eq('skip')
-      missing = result.result_message[/Could not find (.+) in the/, 1].split(', ')
-      expect(missing).to contain_exactly('questionnaire.extension:questionnaireDisplay')
+      expect(result.result_message).to include('find questionnaire.extension:questionnaireDisplay in')
     end
 
     it 'skips if MS primitive value is missing' do

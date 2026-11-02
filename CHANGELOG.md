@@ -1,3 +1,10 @@
+# 1.2.0
+* Execution scripts update by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/301
+* ID-245: Correct documented number of Screening Assessment Categories by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/303
+* ID-254: Validate referenced resources against versioned target profiles by @alexd-leaporbit in https://github.com/inferno-framework/us-core-test-kit/pull/305
+* ID-254: Only version target profiles from the group's own IG by @alexd-leaporbit in https://github.com/inferno-framework/us-core-test-kit/pull/306
+
+
 # 1.1.6
 * Update execution scripts by @karlnaden in https://github.com/inferno-framework/us-core-test-kit/pull/297
 * Fix unescaped parens in v5.0.1 Birth Sex message filters by @smunini in https://github.com/inferno-framework/us-core-test-kit/pull/298
