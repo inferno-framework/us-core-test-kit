@@ -643,7 +643,7 @@ module USCoreTestKit
           when FHIR::Address
             escape_search_value(element.text || element.city || element.state || element.postalCode || element.country)
           when Inferno::DSL::PrimitiveType
-            escape_search_value(element.value)
+            primitive_search_value(name, element.value)
           else
             if metadata.version != 'v3.1.1' &&
                metadata.search_definitions[name.to_sym][:type] == 'date' &&
@@ -660,7 +660,7 @@ module USCoreTestKit
                 escape_search_value(element)
               end
             else
-              escape_search_value(element)
+              primitive_search_value(name, element)
             end
           end
 
@@ -668,6 +668,14 @@ module USCoreTestKit
       end
 
       search_value
+    end
+
+    # A canonical may include a version after an unescaped `|` (url|version),
+    # so it can't be escaped as a single value.
+    def primitive_search_value(name, value)
+      return canonical_search_value(value) if metadata.search_definitions[name.to_sym][:type] == 'canonical'
+
+      escape_search_value(value)
     end
 
     def element_has_valid_value?(element, include_system)

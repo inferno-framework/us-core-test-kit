@@ -1477,6 +1477,116 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
     end
   end
 
+  # An identifier with special characters in both its system and its value.
+  # Each is escaped separately, so the `|` separating them stays unescaped.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for an identifier with a system' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::PatientFamilyGenderSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:escaped_value) { 'http://example.org/ids\\$mrn|A\\|1\\,B' }
+    let(:patient) do
+      FHIR::Patient.new(id: '85', identifier: [{ system: 'http://example.org/ids$mrn', value: 'A|1,B' }])
+    end
+
+    it 'escapes the system and value but not the separator when generating the search value' do
+      element = test.search_param_value('identifier', Array.wrap(patient), include_system: true)
+
+      expect(element).to eq(escaped_value)
+    end
+
+    it 'matches the resource when verifying with the escaped value' do
+      match_found = test.resource_matches_param?(patient, 'identifier', escaped_value)
+
+      expect(match_found).to be_truthy
+    end
+  end
+
+  # A versioned canonical uses an unescaped `|` to separate the url from the
+  # version, so that `|` must not be escaped, while a `|` that is part of a
+  # string value still must be.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for canonical and string searches' do
+    let(:suite_id) { 'us_core_v610' }
+    let(:patient_id) { '85' }
+
+    context 'with a versioned canonical' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV610::QuestionnaireResponsePatientQuestionnaireSearchTest) do
+          fhir_client { url :url }
+          input :url
+        end
+      end
+      let(:questionnaire_response) do
+        FHIR::QuestionnaireResponse.new(
+          id: 'qr',
+          status: 'completed',
+          questionnaire: 'http://example.org/Questionnaire/q|1.0',
+          subject: { reference: "Patient/#{patient_id}" }
+        )
+      end
+
+      before do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [questionnaire_response],
+              patient_id => [questionnaire_response]
+            }
+          )
+      end
+
+      it 'does not escape the pipe separating the url from the version' do
+        request =
+          stub_request(:get, "#{url}/QuestionnaireResponse?patient=#{patient_id}" \
+                             '&questionnaire=http://example.org/Questionnaire/q|1.0')
+            .to_return(status: 200, body: FHIR::Bundle.new(entry: [{ resource: questionnaire_response }]).to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+
+        expect(result.result).to eq('pass')
+        expect(request).to have_been_made.once
+      end
+    end
+
+    context 'with a string containing a literal pipe' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV610::PatientNameSearchTest) do
+          fhir_client { url :url }
+          input :url, :patient_ids
+        end
+      end
+      let(:patient) do
+        FHIR::Patient.new(id: patient_id, name: [{ family: 'Smith|Jr' }])
+      end
+
+      before do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [patient],
+              patient_id => [patient]
+            }
+          )
+      end
+
+      it 'escapes the pipe' do
+        request =
+          stub_request(:get, "#{url}/Patient?name=Smith\\|Jr")
+            .to_return(status: 200, body: FHIR::Bundle.new(entry: [{ resource: patient }]).to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+
+        expect(result.result).to eq('pass')
+        expect(request).to have_been_made.once
+      end
+    end
+  end
+
   describe '#save_delayed_references' do
     let(:test_class) do
       Class.new(USCoreTestKit::USCoreV311::DiagnosticReportLabPatientCategorySearchTest) do

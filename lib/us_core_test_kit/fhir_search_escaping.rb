@@ -37,6 +37,16 @@ module USCoreTestKit
       "#{escape_search_value(system)}|#{escape_search_value(code)}"
     end
 
+    # Build a canonical search value, escaping the url and version so that any
+    # special characters they contain are not mistaken for the unescaped `|`
+    # that separates the url from the version.
+    def canonical_search_value(canonical)
+      url, version = canonical&.split('|', 2)
+      return escape_search_value(url) if version.nil?
+
+      "#{escape_search_value(url)}|#{escape_search_value(version)}"
+    end
+
     def parse_escaped_token(escaped_search_value)
       system, code = escaped_search_value.split(UNESCAPED_PIPE, 2)
       [unescape_search_value(system), unescape_search_value(code)]
