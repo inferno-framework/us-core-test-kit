@@ -67,10 +67,6 @@ module USCoreTestKit
           .sort_by { |request| request.index }
     end
 
-    def unescape_search_value(value)
-      value&.gsub('\\,', ',')
-    end
-
     def search_params_tag(params)
       "#{resource_type}?#{params.keys.join('&')}"
     end

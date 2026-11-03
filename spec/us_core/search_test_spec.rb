@@ -947,6 +947,42 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
         expect(element).to eq('LAB')
         expect(element_with_system).to eq('http://terminology.hl7.org/CodeSystem/v2-0074|LAB')
       end
+
+      # https://hl7.org/fhir/R4/search.html#escaping
+      it 'escapes special characters in the code but preserves the system separator' do
+        diagnostic_report = FHIR::DiagnosticReport.new(
+          category: [
+            {
+              coding: [
+                {
+                  code: 'LA|B,X',
+                  system: 'http://terminology.hl7.org/CodeSystem/v2-0074'
+                }
+              ]
+            }
+          ]
+        )
+
+        element = test.search_param_value('category', Array.wrap(diagnostic_report))
+        element_with_system = test.search_param_value('category', Array.wrap(diagnostic_report), include_system: true)
+
+        expect(element).to eq('LA\\|B\\,X')
+        expect(element_with_system).to eq('http://terminology.hl7.org/CodeSystem/v2-0074|LA\\|B\\,X')
+      end
+    end
+
+    # https://hl7.org/fhir/R4/search.html#escaping
+    context 'value containing FHIR search special characters' do
+      let(:test_class) { USCoreTestKit::USCoreV311::PatientNameSearchTest }
+      let(:test) { test_class.new }
+
+      it 'escapes commas, pipes, dollar signs, and backslashes' do
+        patient = FHIR::Patient.new(name: [{ family: 'Doe, $mith|Jr\\Sr' }])
+
+        element = test.search_param_value('name', Array.wrap(patient))
+
+        expect(element).to eq('Doe\\, \\$mith\\|Jr\\\\Sr')
+      end
     end
   end
 
@@ -1327,6 +1363,227 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
 
       expect(match_found).to be_falsey
       expect(values_found.length).to eq(0)
+    end
+
+    # https://hl7.org/fhir/R4/search.html#escaping
+    context 'with escaped FHIR search special characters' do
+      it 'matches a string value containing an escaped special character' do
+        patient = FHIR::Patient.new(id: patient_id, name: [{ family: 'Doe, Jr' }])
+
+        match_found = test.resource_matches_param?(patient, 'family', 'Doe\\, Jr')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'treats an escaped comma as a literal character, not an OR separator' do
+        # `gender=a\,b` is a search for the single literal value "a,b", so a
+        # resource whose value is only "a" must not be considered a match.
+        matching_patient = FHIR::Patient.new(id: patient_id, gender: 'a,b')
+        nonmatching_patient = FHIR::Patient.new(id: patient_id, gender: 'a')
+
+        expect(test.resource_matches_param?(matching_patient, 'gender', 'a\\,b')).to be_truthy
+        expect(test.resource_matches_param?(nonmatching_patient, 'gender', 'a\\,b')).to be_falsey
+      end
+
+      it 'matches a token value whose code contains an escaped pipe' do
+        # `system|co\|de` searches for the code "co|de" under the given system,
+        # without mistaking the escaped pipe for the system/code separator.
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'http://example.com/mrn', value: 'co|de' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'http://example.com/mrn|co\\|de')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'recognizes a separator pipe preceded by an escaped backslash' do
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys\\', value: 'code' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'sys\\\\|code')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'handles an escaped backslash followed by an escaped pipe within a code' do
+        patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys', value: 'val\\|rest' }]
+        )
+
+        match_found = test.resource_matches_param?(patient, 'identifier', 'sys|val\\\\|rest')
+
+        expect(match_found).to be_truthy
+      end
+
+      it 'handles an arbitrary number of backslashes before a pipe' do
+        # Three escaped backslashes (`\\\\\\`) followed by the separator pipe.
+        separated_patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ system: 'sys\\\\\\', value: 'code' }]
+        )
+        # Two escaped backslashes followed by an escaped pipe (`\\\\\\|`).
+        escaped_patient = FHIR::Patient.new(
+          id: patient_id,
+          identifier: [{ value: 'sys\\\\|code' }]
+        )
+
+        expect(test.resource_matches_param?(separated_patient, 'identifier', 'sys\\\\\\\\\\\\|code')).to be_truthy
+        expect(test.resource_matches_param?(escaped_patient, 'identifier', 'sys\\\\\\\\\\|code')).to be_truthy
+      end
+
+      it 'matches an identifier with no system when searching with a leading pipe' do
+        patient = FHIR::Patient.new(id: patient_id, identifier: [{ value: 'id1234' }])
+        patient_with_system = FHIR::Patient.new(id: patient_id, identifier: [{ system: 'sys', value: 'id1234' }])
+
+        expect(test.resource_matches_param?(patient, 'identifier', '|id1234')).to be_truthy
+        expect(test.resource_matches_param?(patient_with_system, 'identifier', '|id1234')).to be_falsey
+      end
+    end
+  end
+
+  # An identifier whose value itself contains `|` characters and no system.
+  # Every `|` is part of the value, so each must be escaped as `\|` - none of
+  # them separate a system from a code.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for a value-only identifier' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::PatientFamilyGenderSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:identifier_value) { 'ID12345|001|999999999|TEST FACILITY' }
+    let(:escaped_value) { 'ID12345\\|001\\|999999999\\|TEST FACILITY' }
+    let(:patient) do
+      FHIR::Patient.new(id: '85', identifier: [{ value: identifier_value }])
+    end
+
+    it 'escapes every pipe when generating the search value' do
+      element = test.search_param_value('identifier', Array.wrap(patient))
+
+      expect(element).to eq(escaped_value)
+    end
+
+    it 'matches the resource when verifying with the escaped value' do
+      match_found = test.resource_matches_param?(patient, 'identifier', escaped_value)
+
+      expect(match_found).to be_truthy
+    end
+  end
+
+  # An identifier with special characters in both its system and its value.
+  # Each is escaped separately, so the `|` separating them stays unescaped.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for an identifier with a system' do
+    let(:test_class) do
+      Class.new(USCoreTestKit::USCoreV610::PatientFamilyGenderSearchTest) do
+        fhir_client { url :url }
+        input :url
+      end
+    end
+    let(:test) { test_class.new }
+    let(:escaped_value) { 'http://example.org/ids\\$mrn|A\\|1\\,B' }
+    let(:patient) do
+      FHIR::Patient.new(id: '85', identifier: [{ system: 'http://example.org/ids$mrn', value: 'A|1,B' }])
+    end
+
+    it 'escapes the system and value but not the separator when generating the search value' do
+      element = test.search_param_value('identifier', Array.wrap(patient), include_system: true)
+
+      expect(element).to eq(escaped_value)
+    end
+
+    it 'matches the resource when verifying with the escaped value' do
+      match_found = test.resource_matches_param?(patient, 'identifier', escaped_value)
+
+      expect(match_found).to be_truthy
+    end
+  end
+
+  # A versioned canonical uses an unescaped `|` to separate the url from the
+  # version, so that `|` must not be escaped, while a `|` that is part of a
+  # string value still must be.
+  # https://hl7.org/fhir/R4/search.html#escaping
+  describe 'FHIR search escaping for canonical and string searches' do
+    let(:suite_id) { 'us_core_v610' }
+    let(:patient_id) { '85' }
+
+    context 'with a versioned canonical' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV610::QuestionnaireResponsePatientQuestionnaireSearchTest) do
+          fhir_client { url :url }
+          input :url
+        end
+      end
+      let(:questionnaire_response) do
+        FHIR::QuestionnaireResponse.new(
+          id: 'qr',
+          status: 'completed',
+          questionnaire: 'http://example.org/Questionnaire/q|1.0',
+          subject: { reference: "Patient/#{patient_id}" }
+        )
+      end
+
+      before do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [questionnaire_response],
+              patient_id => [questionnaire_response]
+            }
+          )
+      end
+
+      it 'does not escape the pipe separating the url from the version' do
+        request =
+          stub_request(:get, "#{url}/QuestionnaireResponse?patient=#{patient_id}" \
+                             '&questionnaire=http://example.org/Questionnaire/q|1.0')
+            .to_return(status: 200, body: FHIR::Bundle.new(entry: [{ resource: questionnaire_response }]).to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+
+        expect(result.result).to eq('pass')
+        expect(request).to have_been_made.once
+      end
+    end
+
+    context 'with a string containing a literal pipe' do
+      let(:test_class) do
+        Class.new(USCoreTestKit::USCoreV610::PatientNameSearchTest) do
+          fhir_client { url :url }
+          input :url, :patient_ids
+        end
+      end
+      let(:patient) do
+        FHIR::Patient.new(id: patient_id, name: [{ family: 'Smith|Jr' }])
+      end
+
+      before do
+        allow_any_instance_of(test_class)
+          .to receive(:scratch_resources).and_return(
+            {
+              all: [patient],
+              patient_id => [patient]
+            }
+          )
+      end
+
+      it 'escapes the pipe' do
+        request =
+          stub_request(:get, "#{url}/Patient?name=Smith\\|Jr")
+            .to_return(status: 200, body: FHIR::Bundle.new(entry: [{ resource: patient }]).to_json)
+
+        result = run(test_class, patient_ids: patient_id, url: url)
+
+        expect(result.result).to eq('pass')
+        expect(request).to have_been_made.once
+      end
     end
   end
 
