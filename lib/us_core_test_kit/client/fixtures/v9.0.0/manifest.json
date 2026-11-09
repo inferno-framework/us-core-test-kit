@@ -1,0 +1,373 @@
+[
+  {
+    "group": "patient",
+    "resource_type": "Patient",
+    "id": "us-core-client-tests-patient",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+    "source": "https://hl7.org/fhir/us/core/STU9/Patient-example.json"
+  },
+  {
+    "group": "allergy_intolerance",
+    "resource_type": "AllergyIntolerance",
+    "id": "us-core-client-tests-allergy-intolerance",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance",
+    "source": "https://hl7.org/fhir/us/core/STU9/AllergyIntolerance-example.json"
+  },
+  {
+    "group": "care_plan",
+    "resource_type": "CarePlan",
+    "id": "us-core-client-tests-care-plan",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan",
+    "source": "https://hl7.org/fhir/us/core/STU9/CarePlan-careplan-ulcer-example.json"
+  },
+  {
+    "group": "care_team",
+    "resource_type": "CareTeam",
+    "id": "us-core-client-tests-care-team",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam",
+    "source": "https://hl7.org/fhir/us/core/STU9/CareTeam-example.json"
+  },
+  {
+    "group": "condition_encounter_diagnosis",
+    "resource_type": "Condition",
+    "id": "us-core-client-tests-condition-encounter-diagnosis",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis",
+    "source": "https://hl7.org/fhir/us/core/STU9/Condition-encounter-diagnosis-example1.json"
+  },
+  {
+    "group": "condition_problems_health_concerns",
+    "resource_type": "Condition",
+    "id": "us-core-client-tests-condition-problems-health-concerns",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns",
+    "source": "https://hl7.org/fhir/us/core/STU9/Condition-health-concern-example.json"
+  },
+  {
+    "group": "coverage",
+    "resource_type": "Coverage",
+    "id": "us-core-client-tests-coverage",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-coverage",
+    "source": "https://hl7.org/fhir/us/core/STU9/Coverage-coverage-example.json"
+  },
+  {
+    "group": "device",
+    "resource_type": "Device",
+    "id": "us-core-client-tests-device",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device",
+    "source": "https://hl7.org/fhir/us/core/STU9/Device-udi-2.json"
+  },
+  {
+    "group": "diagnostic_report_note",
+    "resource_type": "DiagnosticReport",
+    "id": "us-core-client-tests-diagnostic-report-note",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-chest-xray-report.json"
+  },
+  {
+    "group": "diagnostic_report_lab",
+    "resource_type": "DiagnosticReport",
+    "id": "us-core-client-tests-diagnostic-report-lab",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-cbc.json"
+  },
+  {
+    "group": "document_reference",
+    "resource_type": "DocumentReference",
+    "id": "us-core-client-tests-document-reference",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "group": "adi_document_reference",
+    "resource_type": "DocumentReference",
+    "id": "us-core-client-tests-adi-document-reference",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-living-will.json"
+  },
+  {
+    "group": "encounter",
+    "resource_type": "Encounter",
+    "id": "us-core-client-tests-encounter",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter",
+    "source": "https://hl7.org/fhir/us/core/STU9/Encounter-example-1.json"
+  },
+  {
+    "group": "family_member_history",
+    "resource_type": "FamilyMemberHistory",
+    "id": "us-core-client-tests-family-member-history",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-familymemberhistory",
+    "source": "https://hl7.org/fhir/us/core/STU9/FamilyMemberHistory-familymemberhistory-example.json"
+  },
+  {
+    "group": "goal",
+    "resource_type": "Goal",
+    "id": "us-core-client-tests-goal",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal",
+    "source": "https://hl7.org/fhir/us/core/STU9/Goal-goal-1.json"
+  },
+  {
+    "group": "immunization",
+    "resource_type": "Immunization",
+    "id": "us-core-client-tests-immunization",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization",
+    "source": "https://hl7.org/fhir/us/core/STU9/Immunization-imm-1.json"
+  },
+  {
+    "group": "medication_dispense",
+    "resource_type": "MedicationDispense",
+    "id": "us-core-client-tests-medication-dispense",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense",
+    "source": "https://hl7.org/fhir/us/core/STU9/MedicationDispense-medicationdispense-example.json"
+  },
+  {
+    "group": "medication_request",
+    "resource_type": "MedicationRequest",
+    "id": "us-core-client-tests-medication-request",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest",
+    "source": "https://hl7.org/fhir/us/core/STU9/MedicationRequest-self-tylenol.json"
+  },
+  {
+    "group": "observation_adi_documentation",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-adi-documentation",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-adi-documentation",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-ADI-example.json"
+  },
+  {
+    "group": "observation_lab",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-lab",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-cbc-hemoglobin.json"
+  },
+  {
+    "group": "observation_pregnancystatus",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-pregnancystatus",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancystatus",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-pregnancy-status.json"
+  },
+  {
+    "group": "observation_pregnancyintent",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-pregnancyintent",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-pregnancyintent",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-pregnancy-intent.json"
+  },
+  {
+    "group": "observation_occupation",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-occupation",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-occupation",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-observation-occupation.json"
+  },
+  {
+    "group": "respiratory_rate",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-respiratory-rate",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-respiratory-rate",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-respiratory-rate.json"
+  },
+  {
+    "group": "simple_observation",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-simple-observation",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-simple-observation-cognitive-status.json"
+  },
+  {
+    "group": "treatment_intervention_preference",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-treatment-intervention-preference",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-treatment-intervention-preference.json"
+  },
+  {
+    "group": "care_experience_preference",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-care-experience-preference",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-care-experience-preference",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-care-experience-preference.json"
+  },
+  {
+    "group": "heart_rate",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-heart-rate",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-heart-rate.json"
+  },
+  {
+    "group": "body_temperature",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-body-temperature",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-temperature",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-temperature.json"
+  },
+  {
+    "group": "pediatric_weight_for_height",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-pediatric-weight-for-height",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-pediatric-wt-example.json"
+  },
+  {
+    "group": "pulse_oximetry",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-pulse-oximetry",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-oxygen-saturation.json"
+  },
+  {
+    "group": "smokingstatus",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-smokingstatus",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-e-cig-user.json"
+  },
+  {
+    "group": "observation_sexual_orientation",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-sexual-orientation",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-sexual-orientation",
+    "source": "Synthetic minimal resource"
+  },
+  {
+    "group": "head_circumference",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-head-circumference",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-head-circumference",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-head-circumference.json"
+  },
+  {
+    "group": "body_height",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-body-height",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-height",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-height.json"
+  },
+  {
+    "group": "bmi",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-bmi",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-bmi.json"
+  },
+  {
+    "group": "observation_screening_assessment",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-screening-assessment",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-PHQ9-item-example-44255-8.json"
+  },
+  {
+    "group": "average_blood_pressure",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-average-blood-pressure",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-average-blood-pressure.json"
+  },
+  {
+    "group": "blood_pressure",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-blood-pressure",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-blood-pressure.json"
+  },
+  {
+    "group": "observation_clinical_result",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-observation-clinical-result",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-qrs-dur-ekg-lead.json"
+  },
+  {
+    "group": "pediatric_bmi_for_age",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-pediatric-bmi-for-age",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-pediatric-bmi-example.json"
+  },
+  {
+    "group": "head_circumference_percentile",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-head-circumference-percentile",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-ofc-percentile.json"
+  },
+  {
+    "group": "body_weight",
+    "resource_type": "Observation",
+    "id": "us-core-client-tests-body-weight",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-body-weight",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-weight.json"
+  },
+  {
+    "group": "procedure",
+    "resource_type": "Procedure",
+    "id": "us-core-client-tests-procedure",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Procedure-rehab.json"
+  },
+  {
+    "group": "questionnaire_response",
+    "resource_type": "QuestionnaireResponse",
+    "id": "us-core-client-tests-questionnaire-response",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse",
+    "source": "https://hl7.org/fhir/us/core/STU9/QuestionnaireResponse-exercise-vital-sign.json"
+  },
+  {
+    "group": "service_request",
+    "resource_type": "ServiceRequest",
+    "id": "us-core-client-tests-service-request",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest",
+    "source": "https://hl7.org/fhir/us/core/STU9/ServiceRequest-rehab.json"
+  },
+  {
+    "group": "location",
+    "resource_type": "Location",
+    "id": "us-core-client-tests-location",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location",
+    "source": "https://hl7.org/fhir/us/core/STU9/Location-hospital.json"
+  },
+  {
+    "group": "organization",
+    "resource_type": "Organization",
+    "id": "us-core-client-tests-organization",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+    "source": "https://hl7.org/fhir/us/core/STU9/Organization-holy-healthcare.json"
+  },
+  {
+    "group": "practitioner",
+    "resource_type": "Practitioner",
+    "id": "us-core-client-tests-practitioner",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+    "source": "https://hl7.org/fhir/us/core/STU9/Practitioner-practitioner-1.json"
+  },
+  {
+    "group": "practitioner_role",
+    "resource_type": "PractitionerRole",
+    "id": "us-core-client-tests-practitioner-role",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+    "source": "Synthetic minimal resource"
+  },
+  {
+    "group": "provenance",
+    "resource_type": "Provenance",
+    "id": "us-core-client-tests-provenance",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance",
+    "source": "Synthetic minimal resource"
+  },
+  {
+    "group": "related_person",
+    "resource_type": "RelatedPerson",
+    "id": "us-core-client-tests-related-person",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-relatedperson",
+    "source": "https://hl7.org/fhir/us/core/STU9/RelatedPerson-shaw-niece.json"
+  },
+  {
+    "group": "specimen",
+    "resource_type": "Specimen",
+    "id": "us-core-client-tests-specimen",
+    "profile": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen",
+    "source": "https://hl7.org/fhir/us/core/STU9/Specimen-specimen-example-whole-blood.json"
+  }
+]

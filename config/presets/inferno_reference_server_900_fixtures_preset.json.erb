@@ -1,0 +1,63 @@
+{
+  "title": "US Core v9 Example Data Reference Server",
+  "id": "us_core_v900_vs_example_data",
+  "test_suite_id": "us_core_v900",
+  "inputs": [
+    {
+      "name": "url",
+      "type": "text",
+      "title": "FHIR Endpoint",
+      "description": "URL of the FHIR endpoint",
+      "value": <%= ENV.fetch('FHIR_REFERENCE_SERVER', 'http://localhost:8080/reference-server/r4').delete_suffix('/').to_json %>
+    },
+    {
+      "name": "smart_auth_info",
+      "type": "auth_info",
+      "value": {
+        "auth_type": "public",
+        "use_discovery": "true",
+        "client_id": "SAMPLE_PUBLIC_CLIENT_ID",
+        "auth_request_method": "GET",
+        "pkce_support": "enabled",
+        "pkce_code_challenge_method": "S256"
+      }
+    },
+    {
+      "name": "patient_ids",
+      "type": "text",
+      "title": "Patient IDs",
+      "description": "Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements",
+      "value": "us-core-client-tests-patient,us-core-server-tests-patient-unknown"
+    },
+    {
+      "name": "granular_scopes_1_auth_info",
+      "type": "auth_info",
+      "value": {
+        "auth_type": "public",
+        "use_discovery": "true",
+        "client_id": "SAMPLE_PUBLIC_CLIENT_ID",
+        "auth_request_method": "GET",
+        "pkce_support": "enabled",
+        "pkce_code_challenge_method": "S256"
+      }
+    },
+    {
+      "name": "granular_scopes_2_auth_info",
+      "type": "auth_info",
+      "value": {
+        "auth_type": "public",
+        "use_discovery": "true",
+        "client_id": "SAMPLE_PUBLIC_CLIENT_ID",
+        "auth_request_method": "GET",
+        "pkce_support": "enabled",
+        "pkce_code_challenge_method": "S256"
+      }
+    },
+    {
+      "name": "care_plan_categories",
+      "type": "text",
+      "title": "CarePlan categories in the test data",
+      "value": "734163000"
+    }
+  ]
+}

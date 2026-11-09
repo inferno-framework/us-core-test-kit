@@ -1,0 +1,512 @@
+[
+  {
+    "id": "us-core-server-tests-care-team",
+    "resource_type": "CareTeam",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-care-team",
+    "source": "https://hl7.org/fhir/us/core/STU9/CareTeam-example.json"
+  },
+  {
+    "id": "us-core-server-tests-medication-request",
+    "resource_type": "MedicationRequest",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-medication-request",
+    "source": "https://hl7.org/fhir/us/core/STU9/MedicationRequest-self-tylenol.json"
+  },
+  {
+    "id": "us-core-server-tests-blood-pressure",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-blood-pressure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-blood-pressure.json"
+  },
+  {
+    "id": "us-core-server-tests-provenance",
+    "resource_type": "Provenance",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-provenance",
+    "source": "Synthetic minimal resource"
+  },
+  {
+    "id": "us-core-server-tests-patient-unknown",
+    "resource_type": "Patient",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-patient",
+    "source": "https://hl7.org/fhir/us/core/STU9/Patient-example.json"
+  },
+  {
+    "id": "us-core-server-tests-care-plan",
+    "resource_type": "CarePlan",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-care-plan",
+    "source": "https://hl7.org/fhir/us/core/STU9/CarePlan-careplan-ulcer-example.json"
+  },
+  {
+    "id": "us-core-server-tests-condition-encounter-diagnosis",
+    "resource_type": "Condition",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-encounter-diagnosis|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-condition-encounter-diagnosis",
+    "source": "https://hl7.org/fhir/us/core/STU9/Condition-encounter-diagnosis-example1.json"
+  },
+  {
+    "id": "us-core-server-tests-condition-problems-health-concerns",
+    "resource_type": "Condition",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-condition-problems-health-concerns",
+    "source": "https://hl7.org/fhir/us/core/STU9/Condition-health-concern-example.json"
+  },
+  {
+    "id": "us-core-server-tests-device",
+    "resource_type": "Device",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-device|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-device",
+    "source": "https://hl7.org/fhir/us/core/STU9/Device-udi-2.json"
+  },
+  {
+    "id": "us-core-server-tests-diagnostic-report-note",
+    "resource_type": "DiagnosticReport",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-diagnostic-report-note",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-chest-xray-report.json"
+  },
+  {
+    "id": "us-core-server-tests-diagnostic-report-lab",
+    "resource_type": "DiagnosticReport",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-diagnostic-report-lab",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-cbc.json"
+  },
+  {
+    "id": "us-core-server-tests-note-consultation",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-history",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-procedure",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-progress",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-imaging",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-lab",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-pathology",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-operation",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-emergency",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-note-discharge",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-discharge-summary.json"
+  },
+  {
+    "id": "us-core-server-tests-adi-document-reference",
+    "resource_type": "DocumentReference",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-adi-documentreference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-adi-document-reference",
+    "source": "https://hl7.org/fhir/us/core/STU9/DocumentReference-living-will.json"
+  },
+  {
+    "id": "us-core-server-tests-report-cardiology",
+    "resource_type": "DiagnosticReport",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-diagnostic-report-note",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-chest-xray-report.json"
+  },
+  {
+    "id": "us-core-server-tests-report-pathology",
+    "resource_type": "DiagnosticReport",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-diagnostic-report-note",
+    "source": "https://hl7.org/fhir/us/core/STU9/DiagnosticReport-chest-xray-report.json"
+  },
+  {
+    "id": "us-core-server-tests-encounter",
+    "resource_type": "Encounter",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-encounter",
+    "source": "https://hl7.org/fhir/us/core/STU9/Encounter-example-1.json"
+  },
+  {
+    "id": "us-core-server-tests-goal",
+    "resource_type": "Goal",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-goal",
+    "source": "https://hl7.org/fhir/us/core/STU9/Goal-goal-1.json"
+  },
+  {
+    "id": "us-core-server-tests-immunization",
+    "resource_type": "Immunization",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-immunization",
+    "source": "https://hl7.org/fhir/us/core/STU9/Immunization-imm-1.json"
+  },
+  {
+    "id": "us-core-server-tests-medication-dispense",
+    "resource_type": "MedicationDispense",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationdispense|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-medication-dispense",
+    "source": "https://hl7.org/fhir/us/core/STU9/MedicationDispense-medicationdispense-example.json"
+  },
+  {
+    "id": "us-core-server-tests-lab-coded",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-at-home-in-vitro-test.json"
+  },
+  {
+    "id": "us-core-server-tests-simple-quantity",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-alcoholic-drinks-per-day.json"
+  },
+  {
+    "id": "us-core-server-tests-simple-boolean",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-simple-observation-sdoh.json"
+  },
+  {
+    "id": "us-core-server-tests-screening-quantity",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-AUDIT-C-item-example-68517-2.json"
+  },
+  {
+    "id": "us-core-server-tests-screening-string",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-PRAPARE-item-example-56799-0.json"
+  },
+  {
+    "id": "us-core-server-tests-screening-panel",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-PRAPARE-panel-example-93025-5.json"
+  },
+  {
+    "id": "us-core-server-tests-smoking-quantity",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-pack-years-example.json"
+  },
+  {
+    "id": "us-core-server-tests-simple-functional",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-simple-observation-functional-status.json"
+  },
+  {
+    "id": "us-core-server-tests-alcohol-status",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-alcohol-use-status.json"
+  },
+  {
+    "id": "us-core-server-tests-lab-string",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-observation-lab",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-cbc-hemoglobin.json"
+  },
+  {
+    "id": "us-core-server-tests-treatment-intervention-preference",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-treatment-intervention-preference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-treatment-intervention-preference",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-treatment-intervention-preference.json"
+  },
+  {
+    "id": "us-core-server-tests-care-experience-preference",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-care-experience-preference|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-care-experience-preference",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-care-experience-preference.json"
+  },
+  {
+    "id": "us-core-server-tests-pulse-oximetry",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-pulse-oximetry",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-oxygen-saturation.json"
+  },
+  {
+    "id": "us-core-server-tests-average-blood-pressure",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-average-blood-pressure|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-average-blood-pressure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-average-blood-pressure.json"
+  },
+  {
+    "id": "us-core-server-tests-observation-clinical-result",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-observation-clinical-result",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-qrs-dur-ekg-lead.json"
+  },
+  {
+    "id": "us-core-server-tests-procedure",
+    "resource_type": "Procedure",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-procedure",
+    "source": "https://hl7.org/fhir/us/core/STU9/Procedure-rehab.json"
+  },
+  {
+    "id": "us-core-server-tests-service-request",
+    "resource_type": "ServiceRequest",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-service-request",
+    "source": "https://hl7.org/fhir/us/core/STU9/ServiceRequest-rehab.json"
+  },
+  {
+    "id": "us-core-client-tests-practitioner",
+    "resource_type": "Practitioner",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner|9.0.0"
+    ],
+    "operation": "update base fixture",
+    "base_fixture_id": "us-core-client-tests-practitioner",
+    "source": "https://hl7.org/fhir/us/core/STU9/Practitioner-practitioner-1.json"
+  },
+  {
+    "id": "us-core-server-tests-practitioner-role",
+    "resource_type": "PractitionerRole",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-practitioner-role",
+    "source": "Synthetic minimal resource"
+  },
+  {
+    "id": "us-core-server-tests-specimen",
+    "resource_type": "Specimen",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-specimen|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-specimen",
+    "source": "https://hl7.org/fhir/us/core/STU9/Specimen-specimen-example-whole-blood.json"
+  },
+  {
+    "id": "us-core-client-tests-questionnaire-response",
+    "resource_type": "QuestionnaireResponse",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|9.0.0"
+    ],
+    "operation": "update base fixture",
+    "base_fixture_id": "us-core-client-tests-questionnaire-response",
+    "source": "https://hl7.org/fhir/us/core/STU9/QuestionnaireResponse-exercise-vital-sign.json"
+  },
+  {
+    "id": "us-core-server-tests-nested-questionnaire-response",
+    "resource_type": "QuestionnaireResponse",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-questionnaireresponse|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-questionnaire-response",
+    "source": "https://hl7.org/fhir/us/core/STU9/QuestionnaireResponse-exercise-vital-sign.json"
+  },
+  {
+    "id": "us-core-server-tests-screening-cognitive",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-simple-observation|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "base_fixture_id": "us-core-client-tests-simple-observation",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-simple-observation-cognitive-status.json"
+  },
+  {
+    "id": "us-core-server-tests-screening-activity",
+    "resource_type": "Observation",
+    "profiles": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screening-assessment|9.0.0"
+    ],
+    "operation": "add supplemental resource",
+    "source": "https://hl7.org/fhir/us/core/STU9/Observation-EVS-panel-example-89574-8.json"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "title": "Demo: Run Against the US Core Server Suite",
+  "id": "demo_us_core_client_against_server_v900",
+  "test_suite_id": "us_core_client_v900",
+  "inputs": [
+    {
+      "name": "client_id",
+      "description": "Testers may provide a specific value for Inferno to assign as the client id. If no value is provided, the Inferno session id will be used.",
+      "optional": true,
+      "title": "Client Id",
+      "type": "text",
+      "value": "us_core_client_demo_v900"
+    },
+    {
+      "name": "smart_launch_urls",
+      "description": "If the client app supports EHR launch, a comma-delimited list of one or more URLs that Inferno can use to launch the app.",
+      "optional": true,
+      "title": "SMART App Launch URL(s)",
+      "type": "textarea",
+      "value": ""
+    },
+    {
+      "name": "smart_redirect_uris",
+      "description": "Comma-separated redirect URIs the client may use when requesting an authorization code.",
+      "title": "SMART App Launch Redirect URI(s)",
+      "type": "textarea",
+      "value": "<%= Inferno::Application['base_url'] %>/custom/smart/redirect"
+    },
+    {
+      "name": "launch_context",
+      "description": "JSON object merged into token responses for this paired demo.",
+      "optional": true,
+      "title": "Launch Context",
+      "type": "textarea",
+      "value": "{\"patient\": \"us-core-client-tests-patient\"}"
+    },
+    {
+      "name": "fhir_user_relative_reference",
+      "description": "Relative reference for the fhirUser claim in this paired demo.",
+      "optional": true,
+      "title": "FHIR User Relative Reference",
+      "type": "text",
+      "value": "Patient/us-core-client-tests-patient"
+    }
+  ]
+}
