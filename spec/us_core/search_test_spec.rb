@@ -117,6 +117,56 @@ RSpec.describe USCoreTestKit::SearchTest, :runnable do
     end
   end
 
+  describe 'Provenance revinclude search requiring status' do
+    let(:patient_id) { '123' }
+    let(:procedure) do
+      FHIR::Procedure.new(
+        id: 'procedure-1',
+        status: 'completed',
+        subject: { reference: "Patient/#{patient_id}" }
+      )
+    end
+    let(:provenance) do
+      FHIR::Provenance.new(
+        id: 'provenance-1',
+        target: [{ reference: 'Procedure/procedure-1' }]
+      )
+    end
+    let(:bundle) do
+      FHIR::Bundle.new(entry: [{ resource: procedure }, { resource: provenance }])
+    end
+
+    {
+      'us_core_v610' => USCoreTestKit::USCoreV610::ProcedureProvenanceRevincludeSearchTest,
+      'us_core_v700' => USCoreTestKit::USCoreV700::ProcedureProvenanceRevincludeSearchTest,
+      'us_core_v800' => USCoreTestKit::USCoreV800::ProcedureProvenanceRevincludeSearchTest
+    }.each do |version_suite_id, generated_test|
+      context "with #{version_suite_id}" do
+        let(:suite_id) { version_suite_id }
+        let(:revinclude_test) do
+          Class.new(generated_test) do
+            fhir_client { url :url }
+            input :url, :patient_ids
+          end
+        end
+
+        it 'succeeds if a 400 is received with an OperationOutcome and the status search succeeds' do
+          stub_request(:get, "#{url}/Procedure?patient=#{patient_id}&_revinclude=Provenance:target")
+            .to_return(status: 400, body: FHIR::OperationOutcome.new.to_json)
+          status_search_request =
+            stub_request(:get, "#{url}/Procedure")
+              .with(query: hash_including(patient: patient_id, _revinclude: 'Provenance:target', status: /.+/))
+              .to_return(status: 200, body: bundle.to_json)
+
+          result = run(revinclude_test, patient_ids: patient_id, url: url)
+
+          expect(result.result).to eq('pass'), result.result_message
+          expect(status_search_request).to have_been_made.at_least_once
+        end
+      end
+    end
+  end
+
   describe 'search with Encounter status with optional multiple-or requirement' do
     let(:patient_id) { '123' }
     let(:test_class) do
