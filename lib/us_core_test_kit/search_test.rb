@@ -61,7 +61,7 @@ module USCoreTestKit
       skip_if !any_valid_search_params?(all_provenance_revinclude_search_params), unable_to_resolve_params_message
 
       provenance_resources =
-        all_provenance_revinclude_search_params.flat_map do |_patient_id, params_list|
+        all_provenance_revinclude_search_params.flat_map do |patient_id, params_list|
           params_list.flat_map do |params|
             fhir_search resource_type, params:, tags: tags(params)
 
